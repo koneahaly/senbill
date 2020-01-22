@@ -11,19 +11,45 @@ use PDF;
 use Auth;
 class billController extends Controller
 {
+
+  public function __construct()
+  {
+      $this->middleware('auth');
+  }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $input)
     {
-        //
+      if(!empty($input->mode_paiment)){
+        if($input->mode_paiment == '1')
+          return view('payment_cb',$input);
+        if($input->mode_paiment == '2')
+          return view('payment_om',$input);
+        if($input->mode_paiment == '3')
+          return view('payment_fc',$input);
+        }
+      if(!empty($input->choix_recharge)){
+        if($input->btn_sub == '1')
+          return view('payment_cb',['data'=>$input]);
+        if($input->btn_sub == '2')
+          return view('payment_om',['data'=>$input]);
+        if($input->btn_sub == '3')
+          return view('payment_fc',['data'=>$input]);
+      }
+    }
+
+    public function pay_bill(Request $input)
+    {
+      return view('facture_a_payer',['data'=>$input]);
     }
 
     /**
      * Show the form for creating a new resource.
-     *
+     *<input warning
+
      * @return \Illuminate\Http\Response
      */
     public function create()
@@ -56,13 +82,18 @@ class billController extends Controller
         $bill->save();
         return view('success');
     }
-    public function pay()
+    public function pay(Request $input)
     {
         $s=Auth::user()->customerId;
         DB::table('bills')
             ->where([['customerId', $s],['status','Unpaid']])
-            ->update(['status' => 'paid']);
-        return redirect()->intended(route('home'));
+            ->update(['status' => 'paid','payment_method' => $input->payment_method]);
+        return redirect()->intended(route('mes-factures'));
+    }
+
+    public function buy()
+    {
+        return redirect()->intended(route('mes-factures'));
     }
     /**
      * Display the specified resource.
@@ -104,21 +135,30 @@ class billController extends Controller
     }
     public static function calculate(string $s)
     {
-        
+
         $sum = DB::table('bills')->where([['customerId',$s],['status','Unpaid']])->sum('amount');
         return $sum;
     }
-    public function pdf(request $request)
+    public function pdf_bill(request $request)
     {
         $data= new Bill;
-        $month=Input::get("month");
-        $year=Input::get("year");
+        $id_bill=$request->id_bill;
         $s=Auth::user()->customerId;
-        $data=DB::table('bills')->where([['customerId',$s],['month',$month],['year',$year]])->get();
-
+        $data=DB::table('bills')->where([['customerId',$s],['id',$id_bill]])->get();
         $pdf=PDF::loadView('bill',['data'=>$data]);
         return $pdf->stream('bill.pdf');
     }
+
+    public function pdf_buy(request $request)
+    {
+        $data= new Bill;
+        $id_buy=$request->id_buy;
+        $s=Auth::user()->customerId;
+        $data=DB::connection('mysql2')->table('buys')->where([['counter_number',$s],['id',$id_buy]])->get();
+        $pdf=PDF::loadView('buy',['data'=>$data]);
+        return $pdf->stream('buy.pdf');
+    }
+
     public function update(Request $request, $id)
     {
         //

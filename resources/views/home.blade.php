@@ -32,40 +32,51 @@
                           else{
                             echo 'Vous n\'avez aucune facture en attente de paiement';
                           }
+                          break;
                         }
                       @endphp
                         <br>
                         <span>Rs  @php
                                     use App\Http\Controllers\billController;
-                                    echo billController::calculate(Auth::user()->customerId);
-                                    @endphp
+                                    $to_pay = billController::calculate(Auth::user()->customerId);
+                                    echo $to_pay;
+                                    $disabled = "";
+                                    if($to_pay == 0)
+                                      $disabled = " disabled = 'disabled' ";
+                                  @endphp
                         </span>
                         <!-- Multiple Radios -->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="radios">Mode de paiement</label>
-  <div class="col-md-4">
-  <div class="radio">
-    <label for="radios-0">
-      <input name="radios" id="radios-0" value="1" checked="checked" type="radio">
-      Carte de crédit
-    </label>
-    </div>
-  <div class="radio">
-    <label for="radios-2">
-      <input name="radios" id="radios-2" value="3" type="radio">
-      Orange Money
-    </label>
-    </div>
+<form class="form-horizontal" action="/" method="POST">
+  {{ csrf_field() }}
+
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="radios">Mode de paiement</label>
+    <div class="col-md-4">
     <div class="radio">
-      <label for="radios-1">
-        <input name="radios" id="radios-1" value="2" type="radio">
-        Free Cash
+      <label for="radios-0">
+        <input name="mode_paiment" id="radios-0" value="1" checked="checked" type="radio">
+        Carte de crédit
       </label>
+      </div>
+    <div class="radio">
+      <label for="radios-2">
+        <input name="mode_paiment" id="radios-2" value="2" type="radio">
+        Orange Money
+      </label>
+      </div>
+      <div class="radio">
+        <label for="radios-1">
+          <input name="mode_paiment" id="radios-1" value="3" type="radio">
+          Free Cash
+        </label>
+      </div>
     </div>
   </div>
-</div>
-                        <br><a href="{{url('/home/pay')}}"><button type="button" class="btn btn-warning">PAYEZ MAINTENANT</button></a>
-
+  <div class="col-md-4 col-md-offset-4">
+      <button type="submit" class="btn btn-warning" {{ $disabled }}>PAYEZ MAINTENANT</button>
+  </div>
+  <input type="hidden" name="page" value="home/pay" />
+</form>
                     </p>
                     <br>
                     <p class="pastBills col-md-8 col-md-offset-5">Factures payées</p>
@@ -90,7 +101,7 @@
                     </tbody>
                     </table>
                     <p class="downl col-md-offset-5">Télécharger Factures</p>
-                    <form class="form-inline" action="{{route('home.pdf')}}" method="POST">
+                    <form class="form-inline" action="{{ route('home.pdf_bill')}}" method="POST">
                         {{csrf_field()}}
                         <fieldset>
 

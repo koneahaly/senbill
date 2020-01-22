@@ -47,7 +47,7 @@ class PDF{
         $this->files = $files;
         $this->view = $view;
 
-        $this->showWarnings = $this->config->get('dompdf.show_warnings', false);
+        $this->showWarnings = $this->config->get('dompdf.show_warnings', true);
     }
 
     /**
