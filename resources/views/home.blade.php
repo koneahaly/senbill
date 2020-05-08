@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app', ['notification' => session('keepNumberOfBillsNonPaid')])
 
 @section('content')
 <div class="container">

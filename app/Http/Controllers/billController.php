@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Bill;
+use App\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
@@ -69,11 +70,11 @@ class billController extends Controller
             'customerId'=> 'required|min:10|max:10'
         ]);
         $bill = new Bill;
-        $bill->customerId=Input::get("customerId");
-        $bill->initial=Input::get("initial");
-        $bill->final=Input::get("final");
-        $bill->month=Input::get("month");
-        $bill->year=Input::get("year");
+        $bill->customerId=$request->customerId;
+        $bill->initial=$request->initial;
+        $bill->final=$request->final;
+        $bill->month=$request->month;
+        $bill->year=$request->year;
         $bill->units=(integer)$bill->final-(integer)$bill->initial;
         $admin=DB::table('admins')->first();
         $rate=$admin->rate;
@@ -82,6 +83,8 @@ class billController extends Controller
         $bill->save();
         return view('success');
     }
+
+
     public function pay(Request $input)
     {
         $s=Auth::user()->customerId;

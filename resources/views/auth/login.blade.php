@@ -5,9 +5,37 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
+              <?php $raw_woyofal_users_demo = File::get(storage_path('classical_users.txt')); //filename inverted
+              $raw_classical_users_demo = File::get(storage_path('woyofal_users.txt'));
+              $user_cl="admin";
+              $user_wy="admin";
+              if(!empty($raw_woyofal_users_demo) and !empty($raw_classical_users_demo)){
+                $classical_users_demo = substr($raw_classical_users_demo,0,-1);
+                $woyofal_users_demo = substr($raw_woyofal_users_demo,0,-1);
+                $classical_user_demo = explode(",", $classical_users_demo);
+                $woyofal_user_demo = explode(",", $woyofal_users_demo);
+
+                $rand_keys_cl = rand(0,count($classical_user_demo)-1);
+                $rand_keys_wy = rand(0,count($woyofal_user_demo)-1);
+
+                $user_cl = $classical_user_demo[$rand_keys_cl];
+                $user_wy = $woyofal_user_demo[$rand_keys_wy];
+
+              }
+              //echo $rand_keys_cl.'-----'.$rand_keys_wy;
+              //echo $classical_user_demo[$rand_keys_cl].'****'.$woyofal_user_demo[$rand_keys_wy];
+              ?>
+
                 <div class="panel-heading">SAISISSEZ VOS IDENTIFIANTS</div>
 
                 <div class="panel-body">
+                  <div class="alert alert-info" role="alert">
+                    <h4 class="alert-heading">Bienvenue dans la version Demo d'elektra! </h4>
+                    <p>Ne soumettez pas vos données confidentielles, elles seront visibles par le public.</p>
+                    <hr>
+                    <p class="mb-0">Pour vous connecter en tant que client <strong>classique</strong>, utilisez <span class="badge badge-pill badge-secondary">{{ $user_cl }}</span> comme nom d'utilisateur et <span class="badge badge-pill badge-secondary">demo123</span> comme mot de passe.</p>
+                    <p class="mb-0">Pour vous connecter en tant que client <strong>woyofal</strong>, utilisez <span class="badge badge-pill badge-secondary">{{ $user_wy }}</span> comme nom d'utilisateur et <span class="badge badge-pill badge-secondary">demo123</span> comme mot de passe.</p>
+                  </div>
                     <form class="form-horizontal" method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}
 

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app', ['notification' => session('keepNumberOfBillsNonPaid')])
 
 @section('content')
 <div class="container">
@@ -102,20 +102,19 @@
                             </tr>
                         </thead>
                         <tbody>
-
-                            @foreach($buys as $value)
-                              @php
-                                $size = count($value); $i = 0;
-                                while($i<($size)){
-                              @endphp
-                              <tr>
-                                    <td>{{$months[substr($value[$i]->last_updated_date,5,2) - 1]}}</td>
-                                    <td>{{substr($value[$i]->last_updated_date,0,4)}}</td>
-                                    <td>bought</td>
-                                    <td>{{$value[$i]->amount}}</td>
-                              </tr>
-                              @php $i++; } @endphp
-                            @endforeach
+                              @foreach($buys as $value)
+                                @php
+                                  $size = count($value); $i = 0;
+                                  while($i<($size)){
+                                @endphp
+                                <tr>
+                                      <td>{{$months[substr($value[$i]->last_updated_date,5,2) - 1]}}</td>
+                                      <td>{{substr($value[$i]->last_updated_date,0,4)}}</td>
+                                      <td>bought</td>
+                                      <td>{{$value[$i]->amount}}</td>
+                                </tr>
+                                @php $i++; } @endphp
+                              @endforeach
                         </tbody>
                         </table>
                     </p>

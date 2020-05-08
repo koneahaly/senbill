@@ -6,6 +6,9 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Storage;
+//use Faker\Factory;
+//use fzaninotto\faker;
 
 class RegisterController extends Controller
 {
@@ -74,5 +77,34 @@ class RegisterController extends Controller
             'address' =>$data['address'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+
+    public function create_users_demo() {
+
+      $fp = fopen(storage_path('classical_users.txt'), 'w');
+      $fc = fopen(storage_path('woyofal_users.txt'), 'w');
+      for($i = 0; $i < 10; $i++) {
+        $randomNumber = rand(100,999)+(2+$i**2)+(3+$i**3);
+        if($i%2 == 0)
+          $user_type = 1;
+        else
+          $user_type = 2;
+          User::create([
+              'name' => 'user'.$randomNumber,
+              'email' => 'user'.$randomNumber.'@gmail.com',
+              'phone' => '0659594346',
+              'customerId' => hexdec(uniqid()),
+              'user_type' => $user_type,
+              'address' => '26 avenue duschene',
+              'password' => bcrypt('demo123')
+          ]);
+          if($user_type == 2)
+            fwrite($fp, 'user'.$randomNumber.'@gmail.com,');
+          else
+            fwrite($fc, 'user'.$randomNumber.'@gmail.com,');
+      }
+      fclose($fp);
+      fclose($fc);
+      return redirect('admin');
     }
 }

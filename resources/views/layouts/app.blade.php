@@ -47,18 +47,18 @@
 $active_1 ='none';
 $active_2 ='none';
 $active_3 ='none';
-
-if(basename($_SERVER['PHP_SELF']) == 'infos-personnelles')
+if($_SERVER['REQUEST_URI'] == '/infos-personnelles')
   $active_1 = 'active';
-if(basename($_SERVER['PHP_SELF']) == 'mon-contrat')
+if($_SERVER['REQUEST_URI'] == '/mon-contrat')
   $active_2 = 'active';
-if(basename($_SERVER['PHP_SELF']) == 'mes-factures')
+if($_SERVER['REQUEST_URI'] == '/mes-factures')
   $active_3 = 'active';
 @endphp
+
 </head>
 <body style="background: url('{{ asset('images/white-background/19366_Fotor1.jpg') }}') 0 0 repeat;background-size:cover;opacity:1;">
     <div id="app">
-        <nav class="navbar navbar-light navbar-expand-lg navbar-icon-top" style="background-color:#22a7b5">
+        <nav class="navbar navbar-light navbar-expand-lg navbar-icon-top" style="background-color:#22a7b5;height:70px">
             <div class="container">
                 <div class="navbar-header">
 
@@ -89,25 +89,27 @@ if(basename($_SERVER['PHP_SELF']) == 'mes-factures')
                             <li><a href="{{ route('login') }}">Se connecter</a></li>
                             <li><a href="{{ route('register') }}">S'inscrire</a></li>
                         @else
-                            <li class="nav-item">
-                              <a class="nav-link {{ $active_3 }}"  href="{{ route('mes-factures') }}">
-                                <i class="fa fa-envelope-open-text">
-                                  <span class="badge">2</span>
-                                </i> Factures et paiements
-                               </a>
-                            </li>
-                            <li class="nav-item">
-                              <a class="nav-link {{ $active_2 }}"  href="{{ route('mon-contrat') }}">
-                                <i class="fa fa-file-contract"></i>Mon contrat
+                            @if($notification >=0)
+                              <li class="nav-item">
+                                <a class="nav-link {{ $active_3 }}"  href="{{ route('mes-factures') }}">
+                                  <i class="fa fa-envelope-open-text">
+                                    <span class="badge"> <?php if($notification > 0) echo $notification; ?></span>
+                                  </i> Factures et paiements
+                                 </a>
+                              </li>
+                              <li class="nav-item">
+                                <a class="nav-link {{ $active_2 }}"  href="{{ route('mon-contrat') }}">
+                                  <i class="fa fa-file-contract"></i>Mon contrat
+                                    <span class="sr-only">(current)</span>
+                                </a>
+                              </li>
+                              <li class="nav-item">
+                                <a class="nav-link {{ $active_1 }}"  href="{{ route('infos-personnelles') }}">
+                                  <i class="fa fa-address-card"></i>Mes informations personnelles
                                   <span class="sr-only">(current)</span>
-                              </a>
-                            </li>
-                            <li class="nav-item">
-                              <a class="nav-link {{ $active_1 }}"  href="{{ route('infos-personnelles') }}">
-                                <i class="fa fa-address-card"></i>Mes informations personnelles
-                                <span class="sr-only">(current)</span>
-                              </a>
-                            </li>
+                                </a>
+                              </li>
+                          @endif
                             <li class="dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
                                   <i class="fa fa-user-alt-slash"></i>{{ Auth::user()->name }}

@@ -1,4 +1,5 @@
-@extends('layouts.app')
+<?php if(!isset($numberOfBillsNonPaid)) $numberOfBillsNonPaid = -1; ?>
+@extends('layouts.app', ['notification' => $numberOfBillsNonPaid])
 
 @section('content')
 <div class="container">
@@ -14,8 +15,19 @@
                         </div>
                     @endif
 
+                    <form class="form-horizontal" method="POST" action="{{ route('admin.create_users_demo') }}">
+                        {{ csrf_field() }}
+                        <button type="submit" class="btn btn-primary">Importer les clients</button>
+                    </form>
+                    <br /> <br />
 
-                    <form class="form-horizontal" action="{{ route('admin.store') }}" method="POST">
+                    <form class="form-horizontal" method="POST" action="{{ route('admin.imports_bills') }}">
+                        {{ csrf_field() }}
+                        <button type="submit" class="btn btn-primary">Importer les factures</button>
+                    </form>
+                    <br /> <br />
+
+                    <form class="form-horizontal" action="{{ route('admin.store') }}" method="GET">
                         {{ csrf_field() }}
                         <fieldset>
 

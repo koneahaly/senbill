@@ -1,59 +1,45 @@
-@extends('layouts.app')
+<?php
+session_start();
+$_SESSION["numberOfBillsNonPaid"]=$numberOfBillsNonPaid;
+?>
+@extends('layouts.app', ['notification' => $numberOfBillsNonPaid])
 
 @section('content')
 <div class="container">
     <div>
           <div class=" row panel-heading" style="margin-top:10px;margin-bottom:20px">
-           <strong>Mes paiements</strong></div>
+           <strong><?php $type_service = (Auth::user()->user_type == 2) ? 'Mes paiements' : 'Mes factures'; echo $type_service ?></strong></div>
           </div>
 
           <div class="row col-md-offset-3" style="font-size:20px;margin-bottom:20px">
-            @if(Auth::user()->user_type == 2)
+            @if(Auth::user()->user_type == 2 and (!empty($data) || $data != NULL))
               <span><strong> Tous vos achats  </strong></span>
               <span class="text-success"><strong> à ce jour ! </strong></span>
             @endif
-            @if(Auth::user()->user_type != 2)
+
+            @if(Auth::user()->user_type == 2 and (empty($data) || $data == NULL))
+              <span><strong> Aucun achat de recharge  </strong></span>
+              <span class="text-success"><strong> à ce jour ! </strong></span>
+            @endif
+
+            @if(Auth::user()->user_type != 2 and (!empty($data) and $data != NULL) and $numberOfBillsNonPaid == 0)
               <span><strong> Tous vos paiements sont </strong></span>
               <span class="text-success"><strong> à jour ! </strong></span>
             @endif
-
+            @if(Auth::user()->user_type != 2 and (!empty($data) and $data != NULL) and $numberOfBillsNonPaid > 0)
+              <span><strong> Vous avez </strong></span>
+              <span class="text-danger"><strong> {{ $numberOfBillsNonPaid }} <?php $lib_bill = ($numberOfBillsNonPaid == 1) ? 'facture' : 'factures'; echo $lib_bill; ?></strong></span>
+              <span><strong> en attente de paiement ! </strong></span>
+            @endif
+            @if((Auth::user()->user_type != 2) and empty($data) || $data == NULL)
+              <span><strong> Aucune facture à ce jour ! </strong></span>
+            @endif
           </div>
 
           <div>
             @if(Auth::user()->user_type != 2)
-            <h4>Paiements déjà réalisés</h4>
-            <br/>
-              <table class="table">
-                <thead style="background-color:#455469;color:#fff">
-                  <tr>
-                    <th>Montant</th>
-                    <th>Prévu le</th>
-                    <th>Motif</th>
-                    <th>Etat du paiement</th>
-                    <th>Moyen de paiement</th>
-                  </tr>
-                </thead>
-                <tbody style="background-color:#fff;color:#455469">
-                  @foreach($data as $value)
-                    <tr>
-                      <td> {{$value->amount}} </td>
-                      <td> {{$value->year}} {{$value->month}} </td>
-                      <td> Echéance de {{$value->month}} {{$value->year}} </td>
-                      @if($value->status == "paid")
-                        <td style="color:#2dc7c5"> {{$value->status}} </td>
-                      @endif
-                      @if($value->status == "unpaid")
-                        <td><button data-toggle="modal" data-target="#pay_bill" class="btn btn-danger btn-xs"> Régler</button></td>
-                      @endif
-                      <td> {{$value->payment_method}} </td>
-                    </tr>
-                  @endforeach
-                </tbody>
-              </table>
-              @endif
-
-              @if(Auth::user()->user_type == 2)
-              <h4>Achats déjà effectués</h4>
+            @if(!empty($data) and $data != NULL)
+              <h4>Paiements déjà réalisés</h4>
               <br/>
                 <table class="table">
                   <thead style="background-color:#455469;color:#fff">
@@ -69,12 +55,49 @@
                     @foreach($data as $value)
                       <tr>
                         <td> {{$value->amount}} </td>
-                        <td> {{$value->creation_date}} </td>
-                        <td> Achat de carte prépayée </td>
-                        <td style="color:#2dc7c5"> Paid </td>
-                        <td> {{$value->payment_method}} </td>
+                        <td> {{$value->year}} {{$value->month}} </td>
+                        <td> Echéance de {{$value->month}} {{$value->year}} </td>
+                        @if($value->status == "paid")
+                          <td style="color:#2dc7c5"> {{$value->status}} </td>
+                          <td> {{$value->payment_method}} </td>
+                        @endif
+                        @if($value->status != "paid")
+                          <td><button data-toggle="modal" data-target="#pay_bill" class="btn btn-danger btn-xs"> Régler</button></td>
+                          <td> n/a </td>
+                        @endif
                       </tr>
                     @endforeach
+                  </tbody>
+                </table>
+              @endif
+            @endif
+
+              @if(Auth::user()->user_type == 2 and (!empty($data) and $data != NULL))
+                <h4>Achats déjà effectués</h4>
+                <br/>
+                <table class="table">
+                  <thead style="background-color:#455469;color:#fff">
+                    <tr>
+                      <th>Montant</th>
+                      <th>Prévu le</th>
+                      <th>Motif</th>
+                      <th>Etat du paiement</th>
+                      <th>Moyen de paiement</th>
+                    </tr>
+                  </thead>
+                  <tbody style="background-color:#fff;color:#455469">
+
+                      @foreach($data as $value)
+                        @foreach($value as $v)
+                          <tr>
+                            <td> {{$v->amount}} </td>
+                            <td> {{$v->creation_date}} </td>
+                            <td> Achat de carte prépayée </td>
+                            <td style="color:#2dc7c5"> Paid </td>
+                            <td> {{$v->payment_method}} </td>
+                          </tr>
+                          @endforeach
+                      @endforeach
                   </tbody>
                 </table>
               @endif
@@ -86,6 +109,7 @@
           </div>
           @endif
 
+          @if(!empty($last_row_data))
           <form class="form-inline" action="{{ route('mes-factures.pdf_bill')}}" method="GET">
               {{csrf_field()}}
             @if(Auth::user()->user_type != 2)
@@ -96,7 +120,7 @@
                   <div>
                     <br/>
                     <span> Facture du mois de {{$last_row_data->month}} &nbsp;</span>
-                    @if($last_row_data->status == "unpaid")
+                    @if($last_row_data->status != "paid")
                       <span class="glyphicon glyphicon-remove-circle text-danger">Impayée</span>
                     @endif
 
@@ -111,8 +135,12 @@
                     <br />
                     <hr>
                     <p><strong> Echéance de {{$last_row_data->month}} {{$last_row_data->year}} </strong></p>
-                    <span style="font-size:10px"> paiement effectué le @php echo substr($last_row_data->created_at,8,2)."/"; echo substr($last_row_data->created_at,5,2)."/"; echo substr($last_row_data->created_at,0,4); @endphp </span>
-
+                    @if($last_row_data->status == "paid")
+                      <span style="font-size:10px"> paiement effectué le @php echo substr($last_row_data->created_at,8,2)."/"; echo substr($last_row_data->created_at,5,2)."/"; echo substr($last_row_data->created_at,0,4); @endphp </span>
+                    @endif
+                    @if($last_row_data->status != "paid")Tous vos paiements sont
+                      <span style="font-size:10px"> &Agrave; régler avant le @php echo substr($last_row_data->created_at,8,2)."/"; echo substr($last_row_data->created_at,5,2)."/"; echo substr($last_row_data->created_at,0,4); @endphp </span>
+                    @endif
                     <br />
                     <br />
                     <div class="row">
@@ -122,7 +150,7 @@
                         <input type="hidden" name="id_bill" value="{{$last_row_data->id}}" />
                       @endif
 
-                      @if($last_row_data->status == "unpaid")
+                      @if($last_row_data->status != "paid")
                         <button data-toggle="modal" data-target="#pay_bill" class="btn btn-danger">Régler ma facture</button>
                       @endif
                     </div>
@@ -137,33 +165,34 @@
             </div>
             @endif
           </form>
+          @endif
 
         <form class="form-inline" action="{{ route('mes-factures.pdf_buy')}}" method="GET">
             {{csrf_field()}}
-            @if(Auth::user()->user_type == 2)
+            @if(Auth::user()->user_type == 2 and (!empty($data) and $data != NULL))
             <div class="row">
               <div class="col-md-3 col-md-offset-1" style="background-color:#fff;text-align:center;">
                 <div class="large-main-panel">
                   <div>
                     <br/>
-                    <span> Reçu du mois de {{$last_row_data->creation_date}} &nbsp;</span>
+                    <span> Reçu du mois de {{$last_row_data['creation_date']}} &nbsp;</span>
                     <span class="glyphicon glyphicon-ok-circle text-success">Payée</span>
 
                     <br />
                     <br />
-                    <span style="font-size:30px"> {{$last_row_data->amount}} FCFA</span>
+                    <span style="font-size:30px"> {{$last_row_data['amount']}} FCFA</span>
                     <br />
                     <br />
                     <hr>
-                    <p><strong> Achat du {{$last_row_data->creation_date}} </strong></p>
-                    <span style="font-size:10px"> paiement effectué le @php echo $last_row_data->creation_date @endphp </span>
+                    <p><strong> Achat du {{$last_row_data['creation_date']}} </strong></p>
+                    <span style="font-size:10px"> paiement effectué le @php echo $last_row_data['creation_date'] @endphp </span>
 
                     <br />
                     <br />
                     <div class="row">
                         <button class="btn" style="background-color:grey;color:#fff"> Envoyer par mail </button>
                         <button type="submit" class="btn" style="background-color:grey;color:#fff"> Téléchargez</button>
-                        <input type="hidden" name="id_buy" value="{{$last_row_data->id}}" />
+                        <input type="hidden" name="id_buy" value="{{$last_row_data['id']}}" />
                     </div>
                     <br />
                     <br />
@@ -180,6 +209,7 @@
           <br />
           <br />
 
+          @if(!empty($last_row_data))
           <div class="modal fade" id="pay_bill" tabindex="-1" role="dialog" aria-labelledby="pay_bill_title" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -276,7 +306,8 @@
                     </div>
                     <div class="row">
                     <div class="col-xs-12">
-                    <button class="btn btn-success btn-lg btn-block" type="submit">Payez {{$last_row_data->amount}} fcfa
+                      <?php $amount = (Auth::user()->user_type == 2) ? $last_row_data['amount'] : $last_row_data->amount; ?>
+                    <button class="btn btn-success btn-lg btn-block" type="submit">Payez {{ $amount }} fcfa
 
                     </button>
                     </div>
@@ -300,7 +331,9 @@
             </div>
           </div>
         </div>
+        @endif
 
+        @if(!empty($last_row_data))
         <div class="modal fade" id="om" tabindex="-1" role="dialog" aria-labelledby="om_title" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
@@ -380,7 +413,7 @@
                         </div>
                         <div class="row">
                         <div class="col-xs-12">
-                        <button class="btn btn-lg btn-block" type="submit" style="background-color:#FE9A2E;color:black">Payez {{$last_row_data->amount}} fcfa
+                        <button class="btn btn-lg btn-block" type="submit" style="background-color:#FE9A2E;color:black">Payez {{ $amount }} fcfa
                         </button>
                         </div>
                         </div>
@@ -411,7 +444,9 @@
     </div>
   </div>
 </div>
+@endif
 
+      @if(!empty($last_row_data))
       <div class="modal fade" id="fc" tabindex="-1" role="dialog" aria-labelledby="fc_title" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -491,7 +526,7 @@
                       </div>
                       <div class="row">
                       <div class="col-xs-12">
-                      <button class="btn btn-lg btn-block" type="submit" style="background-color:#FE2E2E;color:white">Payez {{$last_row_data->amount}} fcfa
+                      <button class="btn btn-lg btn-block" type="submit" style="background-color:#FE2E2E;color:white">Payez {{ $amount }} fcfa
                       </button>
                       </div>
                       </div>
@@ -522,6 +557,7 @@
   </div>
 </div>
 </div>
+@endif
 
 <div class="modal fade" id="buy_card" tabindex="-1" role="dialog" aria-labelledby="buy_card_title" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">

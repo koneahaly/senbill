@@ -1,4 +1,9 @@
-@extends('layouts.app')
+<?php
+session_start();
+$notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOfBillsNonPaid"] : '';
+?>
+
+@extends('layouts.app', ['notification' => $notification])
 
 @section('content')
 <div class="container">
@@ -17,7 +22,7 @@
 
                     <div class="row" style="margin-bottom:35px">
                       <div class="col-md-9" style="font-size:18px"></div>
-                      <div class="col-md-3"><button style="background:grey;color:white" class="btn">
+                      <div class="col-md-3"><button style="background:grey;color:white" class="btn" disabled="disabled">
                         JE DÉMÉNAGE
                         </button></div>
                   </div>
