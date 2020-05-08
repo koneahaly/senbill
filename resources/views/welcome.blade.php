@@ -9,88 +9,125 @@
         <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" type="text/css" href="{{url('css/bootstrap.min.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{url('css/all.min.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{url('css/elektra.css')}}">
+        <script src="{!! mix('js/app.js') !!}"></script>
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
+        <script language="JavaScript">
+            function init() {
+                var msg = "??????";
+                if (msg != "" && msg != "??????") {
+                    //alert(msg);
+                    document.getElementById("s2sn-error-login").style.display='block';
+                }else{
+                  if(document.getElementById("s2sn-error-login")!=null){
+                    document.getElementById("s2sn-error-login").style.display='none';
+                  }
+                }
             }
 
-            .position-ref {
-                position: relative;
+            function doInitializeLogin(){
+              return document.forms['loginFormInitialize'].submit();
             }
 
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-            .sub{
-                font-size: 16px;
-                font-weight: bold;
-            }
-        </style>
+    </script>
     </head>
+
     <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Accueil</a>
-                    @else
-                        <a href="{{ route('login') }}">Se connecter</a>
-                        <a href="{{ route('register') }}">S'inscrire</a>
-                    @endauth
-                </div>
-            @endif
+      <div class="s2sn-wrapper-login-container s2sn-js-login" style="background-image: url({{url('images/stLouis.jpg')}});">
+      	 <!-- HEADER START -->
+         <div class="s2sn-login-header-desktop">
+             <a class="s2sn-logo-elektra" href="https://www.services2sn.com/" target="_blank">
+                 <img src="{{url('images/logo-s2sn.png')}}" alt="logo-elektra" width="162" height="auto" class="s2sn-img-normal">
+             	   <img src="{{url('images/logo-s2sn-mediumsmall.png')}}" alt="logo-elektra" width="162" height="auto" class="s2sn-img-retina">
+             </a>
+             <div class="s2sn-login-header-nav">
+          <div class="s2sn-login-header-top">
+              <ul class="s2sn-login-header-social">
+                  <li><a class="s2sn-header-link s2sn-twitter" href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a></li>
+                  <li><a class="s2sn-header-link s2sn-youtube" href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube"></i></a></li>
+                  <li><a class="s2sn-header-link s2sn-linkedin" href="https://www.linkedin.com/" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+              </ul>
+              <ul class="s2sn-login-header-modals">
+                  <li><a class="s2sn-header-link" href="#" data-toggle="modal" data-target="#modal1">FAQ</a></li>
+                  <li><a class="s2sn-header-link" href="#" data-toggle="modal" data-target="#modal2">Contact</a></li>
+                  <li><a class="s2sn-header-link" href="#" data-toggle="modal" data-target="#modal3">DEMO</a></li>
+                  <li class="s2sn-copyright">SERVICES2SN 2019</li>
+              </ul>
+          </div>
+          <ul class="s2sn-navbar">
+              <li><a class="s2sn-header-link" href="https://www.services2sn.com/#a_propos" target="_blank">QUI SOMMES-NOUS &nbsp </a></li>
+              <li><a class="s2sn-header-link" href="https://www.services2sn.com/#projets" target="_blank">LA PLATEFORME ELEKTRA &nbsp </a></li>
+              <li><a class="s2sn-header-link" href="https://www.services2sn.com/" target="_blank">S'INSCRIRE</a></li>
+          </ul>
+      </div>
+         </div>
+         <nav class="navbar navbar-dark s2sn-login-header-mobile">
+             <a class="s2sn-logo-elektra" href="https://www.elektra.com/" target="_blank">
+                 <img src="{{url('images/logo-s2sn.png')}}" alt="logo-elektra" width="162" height="auto" class="s2sn-img-normal">
+             	   <img src="{{url('images/logo-s2sn-mediumsmall.png')}}" alt="logo-elektra" width="162" height="auto" class="s2sn-img-retina">
+             </a>
+             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-contrs2sn="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                 <span class="navbar-toggler-icon"></span>
+             </button>
+             <div class="collapse navbar-collapse" id="navbarNav">
+                 <ul class="navbar-nav">
+                     <li class="nav-item"><a class="nav-link" href="https://www.services2sn.com/#a_propos" target="_blank">QUI SOMMES-NOUS</a></li>
+                     <li class="nav-item"><a class="nav-link" href="https://www.services2sn.com/" target="_blank">LA PLATEFORME ELEKTRA</a></li>
+                     <li class="nav-item"><a class="nav-link" href="https://www.services2sn.com/" target="_blank">S'INSCRIRE</a></li>
 
-            <div class="content">
-                <div class="title m-b-md">
-                    eLECTRA
-                    <p class="sub">Portail de paiement d'éléctricité en ligne</p>
-                </div>
 
-                <div class="links">
-                    <a href="{{url('/admin/login')}}">Se connecter en tant que admin</a>
+                    <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#modal1">FAQ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#modal2">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#modal3">DEMO</a></li>
+                 </ul>
+             </div>
+         </nav>
+         <!-- HEADER END -->
+         <div class="s2sn-wrapper-center s2sn-wrapper-when-footer">
+           <img src="{{url('images/logo-elektra-halo.png')}}" alt="logo-elektra" width="auto" height="100" class="s2sn-logo-elektra">
+
+
+         <script type="text/javascript">
+
+         function submitCredentials(){
+                 return document.forms['loginForm'].submit();
+                }
+
+         </script>
+
+
+         <form action="{{ route('login') }}" name="loginForm" id="loginForm" method="post" autocomplete="off">
+           {{ csrf_field() }}
+           <div class="s2sn-error-login" id="s2sn-error-login" style="display: none">
+                   <p><i class="fas fa-exclamation-circle"></i>
+                    Identification Impossible.<br>Les données saisies sont incorrectes.<br>Veuillez les saisir à nouveau.</p>
+          </div>
+
+            <div class="s2sn-input-group input-group form-slider-step" id="form-step-1">
+             <input type="text" name="PIN" id="PIN" value="" class="form-control" placeholder="Veuillez saisir votre login ou email" aria-label="Veuillez saisir votre login ou email">
+             <div class="input-group-prepend">
+                         <button class="btn s2sn-js-btn-back" type="reset" value= "Reset" ><i class="fas fa-undo-alt"></i></button>
+                     </div>
+               </div>
+             <div id="form-step-2" class="form-slider-step">
+                <div class="s2sn-input-group input-group">
+                    <input type="password" class="form-control" placeholder="Mot de passe" aria-label="Mot de passe" name="PWD" id="PWD" onkeypress="if(event.keyCode==13){return submitCredentials();}">
+                    <div class="input-group-append">
+                        <button class="btn s2sn-js-btn-next" type="submit" onclick="return submitCredentials();">Go</button>
+                     </div>
                 </div>
-            </div>
-        </div>
+             </div>
+            </form>
+
+           </div>
+
+         <script src="{{url('js/jquery.min.js')}}"></script>
+         <script src="{{url('js/popper.min.js')}}"></script>
+         <script src="{{url('js/bootstrap.min.js')}}"></script>
+         <script src="{{url('js/jquery-ui.min.js')}}"></script>
+
+    </div>
     </body>
 </html>
