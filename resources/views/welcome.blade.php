@@ -14,27 +14,9 @@
         <link rel="stylesheet" type="text/css" href="{{url('css/elektra.css')}}">
         <script src="{!! mix('js/app.js') !!}"></script>
 
-        <script language="JavaScript">
-            function init() {
-                var msg = "??????";
-                if (msg != "" && msg != "??????") {
-                    //alert(msg);
-                    document.getElementById("s2sn-error-login").style.display='block';
-                }else{
-                  if(document.getElementById("s2sn-error-login")!=null){
-                    document.getElementById("s2sn-error-login").style.display='none';
-                  }
-                }
-            }
-
-            function doInitializeLogin(){
-              return document.forms['loginFormInitialize'].submit();
-            }
-
-    </script>
     </head>
 
-    <body onload="init();">
+    <body>
       <div class="s2sn-wrapper-login-container s2sn-js-login" style="background-image: url({{url('images/stLouis.jpg')}});">
       	 <!-- HEADER START -->
          <div class="s2sn-login-header-desktop">
@@ -100,13 +82,15 @@
 
          <form action="{{ route('login') }}" name="loginForm" id="loginForm" method="post" autocomplete="off">
            {{ csrf_field() }}
-           <div class="s2sn-error-login" id="s2sn-error-login" style="display: none">
-                   <p><i class="fas fa-exclamation-circle"></i>
-                    Identification Impossible.<br>Les données saisies sont incorrectes.<br>Veuillez les saisir à nouveau.</p>
-          </div>
 
-            <div class="s2sn-input-group input-group form-slider-step" id="form-step-1">
-             <input type="text" name="email" id="PIN" value="" class="form-control" placeholder="Veuillez saisir votre login ou email" aria-label="Veuillez saisir votre login ou email">
+            @if ($errors->has('email'))
+                <span class="help-block">
+                  <i class="fas fa-exclamation-circle"></i>
+                    <strong style="color:red">{{ $errors->first('email') }}</strong>
+                </span>
+            @endif
+            <div class="s2sn-input-group input-group form-slider-step form-group{{ $errors->has('email') ? ' has-error' : '' }}" id="form-step-1">
+             <input type="text" name="email" id="PIN" value="{{ old('email') }}" class="form-control" placeholder="Veuillez saisir votre login ou email" aria-label="Veuillez saisir votre login ou email" required>
              <div class="input-group-prepend">
                          <button class="btn s2sn-js-btn-back" type="reset" value= "Reset" ><i class="fas fa-undo-alt"></i></button>
                      </div>
@@ -115,7 +99,7 @@
                 <div class="s2sn-input-group input-group">
                     <input type="password" class="form-control" placeholder="Mot de passe" aria-label="Mot de passe" name="password" id="PWD" onkeypress="if(event.keyCode==13){return submitCredentials();}">
                     <div class="input-group-append">
-                        <button class="btn s2sn-js-btn-next" type="submit" onclick="return submitCredentials();">Go</button>
+                        <button class="btn s2sn-js-btn-next" type="submit" onclick="return submitCredentials();"><i class="fas fa-arrow-right"></i></button>
                      </div>
                 </div>
              </div>
