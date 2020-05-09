@@ -34,7 +34,7 @@
     </script>
     </head>
 
-    <body>
+    <body onload="init();">
       <div class="s2sn-wrapper-login-container s2sn-js-login" style="background-image: url({{url('images/stLouis.jpg')}});">
       	 <!-- HEADER START -->
          <div class="s2sn-login-header-desktop">
@@ -59,7 +59,7 @@
           <ul class="s2sn-navbar">
               <li><a class="s2sn-header-link" href="https://www.services2sn.com/#a_propos" target="_blank">QUI SOMMES-NOUS &nbsp </a></li>
               <li><a class="s2sn-header-link" href="https://www.services2sn.com/#projets" target="_blank">LA PLATEFORME ELEKTRA &nbsp </a></li>
-              <li><a class="s2sn-header-link" href="https://www.services2sn.com/" target="_blank">S'INSCRIRE</a></li>
+              <li><a class="s2sn-header-link" href="{{ route('register') }}" >S'INSCRIRE</a></li>
           </ul>
       </div>
          </div>
@@ -75,7 +75,7 @@
                  <ul class="navbar-nav">
                      <li class="nav-item"><a class="nav-link" href="https://www.services2sn.com/#a_propos" target="_blank">QUI SOMMES-NOUS</a></li>
                      <li class="nav-item"><a class="nav-link" href="https://www.services2sn.com/" target="_blank">LA PLATEFORME ELEKTRA</a></li>
-                     <li class="nav-item"><a class="nav-link" href="https://www.services2sn.com/" target="_blank">S'INSCRIRE</a></li>
+                     <li class="nav-item"><a class="nav-link" href="{{ route('register') }}" >S'INSCRIRE</a></li>
 
 
                     <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#modal1">FAQ</a></li>
@@ -106,14 +106,14 @@
           </div>
 
             <div class="s2sn-input-group input-group form-slider-step" id="form-step-1">
-             <input type="text" name="PIN" id="PIN" value="" class="form-control" placeholder="Veuillez saisir votre login ou email" aria-label="Veuillez saisir votre login ou email">
+             <input type="text" name="email" id="PIN" value="" class="form-control" placeholder="Veuillez saisir votre login ou email" aria-label="Veuillez saisir votre login ou email">
              <div class="input-group-prepend">
                          <button class="btn s2sn-js-btn-back" type="reset" value= "Reset" ><i class="fas fa-undo-alt"></i></button>
                      </div>
                </div>
              <div id="form-step-2" class="form-slider-step">
                 <div class="s2sn-input-group input-group">
-                    <input type="password" class="form-control" placeholder="Mot de passe" aria-label="Mot de passe" name="PWD" id="PWD" onkeypress="if(event.keyCode==13){return submitCredentials();}">
+                    <input type="password" class="form-control" placeholder="Mot de passe" aria-label="Mot de passe" name="password" id="PWD" onkeypress="if(event.keyCode==13){return submitCredentials();}">
                     <div class="input-group-append">
                         <button class="btn s2sn-js-btn-next" type="submit" onclick="return submitCredentials();">Go</button>
                      </div>
