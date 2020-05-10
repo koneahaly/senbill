@@ -17,6 +17,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/qui-sommes-nous', 'WhoController@display_who')->name('who');
+Route::get('/la-plateforme-elektra', 'WhatController@display_what')->name('what');
 Route::get('/mes-factures', 'HomeController@display_bills')->name('mes-factures');
 Route::post('/mes-factures', 'HomeController@display_bills')->name('mes-factures');
 Route::get('/mon-contrat', 'HomeController@display_contract')->name('mon-contrat');

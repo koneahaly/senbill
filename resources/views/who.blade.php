@@ -67,45 +67,21 @@
              </div>
          </nav>
          <!-- HEADER END -->
-         <div class="s2sn-wrapper-center s2sn-wrapper-when-footer">
-           <img src="{{url('images/logo-elektra-halo.png')}}" alt="logo-elektra" width="auto" height="100" class="s2sn-logo-elektra">
-
-
-         <script type="text/javascript">
-
-         function submitCredentials(){
-                 return document.forms['loginForm'].submit();
-                }
-
-         </script>
-
-
-         <form action="{{ route('login') }}" name="loginForm" id="loginForm" method="post" autocomplete="off">
-           {{ csrf_field() }}
-
-            @if ($errors->has('email'))
-                <span class="help-block">
-                  <i class="fas fa-exclamation-circle"></i>
-                    <strong style="color:red">{{ $errors->first('email') }}</strong>
-                </span>
-            @endif
-            <div class="s2sn-input-group input-group form-slider-step form-group{{ $errors->has('email') ? ' has-error' : '' }}" id="form-step-1">
-             <input type="text" name="email" id="PIN" value="{{ old('email') }}" class="form-control" placeholder="Veuillez saisir votre login ou email" aria-label="Veuillez saisir votre login ou email" required>
-             <div class="input-group-prepend">
-                         <button class="btn s2sn-js-btn-back" type="reset" value= "Reset" ><i class="fas fa-undo-alt"></i></button>
-                     </div>
-               </div>
-             <div id="form-step-2" class="form-slider-step">
-                <div class="s2sn-input-group input-group">
-                    <input type="password" class="form-control" placeholder="Mot de passe" aria-label="Mot de passe" name="password" id="PWD" onkeypress="if(event.keyCode==13){return submitCredentials();}">
-                    <div class="input-group-append">
-                        <button class="btn s2sn-js-btn-next" type="submit" onclick="return submitCredentials();"><i class="fas fa-arrow-right"></i></button>
-                     </div>
-                </div>
-             </div>
-            </form>
-
-           </div>
+         <style>
+         .jumbotron {
+            background: rgb(200, 54, 54); /* This is for ie8 and below */
+            background: rgba(199, 206, 205, 0.5);
+            }
+         </style>
+         <div class="container">
+           <div class="jumbotron">
+             <div class="inner">
+                <h1>Hello, world!</h1>
+                <p>uzhuithuhqruithhfuihhrueuthuihueiiziihrehehquhzuheuhehurhthquehrhthzehygzhyu</p>
+                <p><a class="btn btn-primary btn-lg" href="https://www.services2sn.com" role="button">Plus d'informations</a></p>
+              </div>
+            </div>
+          </div
 
          <script src="{{url('js/jquery.min.js')}}"></script>
          <script src="{{url('js/popper.min.js')}}"></script>
