@@ -84,10 +84,12 @@
            {{ csrf_field() }}
 
             @if ($errors->has('email'))
+            <div class="s2sn-error-login" id="s2sn-error-login">
                 <span class="help-block">
                   <i class="fas fa-exclamation-circle"></i>
-                    <strong style="color:red">{{ $errors->first('email') }}</strong>
+                    <p>{{ $errors->first('email') }}</p>
                 </span>
+              </div>
             @endif
             <div class="s2sn-input-group input-group form-slider-step form-group{{ $errors->has('email') ? ' has-error' : '' }}" id="form-step-1">
              <input type="text" name="email" id="PIN" value="{{ old('email') }}" class="form-control" placeholder="Veuillez saisir votre login ou email" aria-label="Veuillez saisir votre login ou email" required>
