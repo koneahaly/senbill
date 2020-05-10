@@ -257,9 +257,16 @@ html, body {
     font-family:"OpenSansSemiBold", arial, sans-serif;
     color:#318ce7;
 }
-.s2sn-modal-content .modal-header {
-    border:none;
+.s2sn-modal-title-name {
+    font-family:"OpenSansSemiBold", arial, sans-serif;
+    color:#ffffff;
 }
+.s2sn-modal-content .modal-header {
+
+  background: rgb(48,116,155);
+  background: linear-gradient(90deg, rgba(48,116,155,1) 0%, rgba(155,192,221,1) 50%, rgba(189,202,210,1) 100%);
+}
+
 .s2sn-small-link {
     padding: 0;
     font-size: 12px;

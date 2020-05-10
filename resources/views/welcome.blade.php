@@ -32,13 +32,14 @@
                   <li><a class="s2sn-header-link s2sn-linkedin" href="https://www.linkedin.com/" target="_blank"><i class="fab fa-linkedin"></i></a></li>
               </ul>
               <ul class="s2sn-login-header-modals">
-                  <li><a class="s2sn-header-link" href="#" data-toggle="modal" data-target="#modal1">FAQ</a></li>
+                  <li><a class="s2sn-header-link" href="#" data-toggle="modal" data-target="#modalFAQ">FAQ</a></li>
                   <li><a class="s2sn-header-link" href="#" data-toggle="modal" data-target="#modal2">Contact</a></li>
-                  <li><a class="s2sn-header-link" href="#" data-toggle="modal" data-target="#modal3">DEMO</a></li>
+                  <li><a class="s2sn-header-link" href="#" data-toggle="modal" data-target="#modalDemo">DEMO</a></li>
                   <li class="s2sn-copyright">SERVICES2SN 2019</li>
               </ul>
           </div>
           <ul class="s2sn-navbar">
+              <li><a class="s2sn-header-link" href=".">ACCUEIL &nbsp</a></li>
               <li><a class="s2sn-header-link" href="{{ route('who') }}">QUI SOMMES-NOUS &nbsp </a></li>
               <li><a class="s2sn-header-link" href="{{ route('what') }}">LA PLATEFORME ELEKTRA &nbsp </a></li>
               <li><a class="s2sn-header-link" href="{{ route('register') }}" >S'INSCRIRE</a></li>
@@ -55,14 +56,15 @@
              </button>
              <div class="collapse navbar-collapse" id="navbarNav">
                  <ul class="navbar-nav">
+                      <li class="nav-item"><a class="nav-link" href=".">ACCUEIL</a></li>
                      <li class="nav-item"><a class="nav-link" href="{{ route('who') }}">QUI SOMMES-NOUS</a></li>
                      <li class="nav-item"><a class="nav-link" href="{{ route('what') }}">LA PLATEFORME ELEKTRA</a></li>
                      <li class="nav-item"><a class="nav-link" href="{{ route('register') }}" >S'INSCRIRE</a></li>
 
 
-                    <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#modal1">FAQ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#modalFAQ">FAQ</a></li>
                     <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#modal2">Contact</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#modal3">DEMO</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#modalDemo">DEMO</a></li>
                  </ul>
              </div>
          </nav>
@@ -108,6 +110,68 @@
             </form>
 
            </div>
+
+           <!-- modal faq -->
+            <div class="modal fade" id="modalFAQ" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="false">
+              <div class="modal-dialog modal-dialog-centered">
+             <div class="modal-content s2sn-modal-content">
+                 <div class="modal-header">
+                     <h5 class="modal-title s2sn-modal-title-name">FAQ</h5>
+                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                         <span aria-hidden="true">&times;</span>
+                     </button>
+                 </div>
+                 <div class="modal-body">
+                         <p class="s2sn-modal-title">Qu'est-ce que la plateforme Elektra?</p>
+                         <p class="s2sn-modal-text">Elektra est une plateforme d'accès unique à vos paiements et factures de plusieurs établissements</p>
+
+                         <p class="s2sn-modal-title">Comment accéder à Elektra?</p>
+                         <p class="s2sn-modal-text">Vous pouvez vous connecter avec vos identifiants et accéder aux services auxquels vous vous êtes abonnés.  Si vous n'avez pas de compte, vous pouvez en créer via le lien <strong>s'inscrire</strong> </p>
+
+                         <p class="s2sn-modal-title">Combien me coûte l'utilisation d'Elektra?</p>
+                         <p class="s2sn-modal-text">Elektra inclut des achats intégrés (cartes, factures...) mais son utilisation est complètement gratuite</p>
+
+                         <p class="s2sn-modal-title">Que puis-je faire lorsque je n'arrive pas à me connecter?</p>
+                         <p class="s2sn-modal-text">Dans ce cas, vos identifiants sont certainement incorrects, vous pouvez les resaisir ou récupérer votre mot de passe. En cas de porblèmes, contactez le service client Services2sn</p>
+                 </div>
+             </div>
+           </div>
+         </div>
+         <!-- modal demo -->
+          <div class="modal fade" id="modalDemo" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="false">
+            <div class="modal-dialog modal-dialog-centered">
+           <div class="modal-content s2sn-modal-content">
+               <div class="modal-header">
+                   <h5 class="modal-title s2sn-modal-title-name">Se connecter en  démo</h5>
+                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                       <span aria-hidden="true">&times;</span>
+                   </button>
+               </div>
+               <div class="modal-body">
+                <div class="row">
+                  <div class="col-3">
+                    <p class="text-center">
+                      <i class="fas fa-desktop fa-4x"></i>
+                    </p>
+                  </div>
+
+                  <div class="col-9">
+                    <p>Vous pouvez explorer la plateforme Elektra en vous connectant en tant qu'utilisateur démo.
+                    </p>
+                    <p>
+                      <strong>Copiez les identifiants de connexion suivants et les utiliser pour vous connecter. Merci de les noter puisque l'identifiant sera unique et ne peut être généré qu'
+                        <u>une seule fois</u>.</strong>
+                    </p>
+                    <p class="mb-0">Pour vous connecter en tant que client <strong>classique</strong>, utilisez <span class="badge badge-pill badge-secondary">userClassique</span> comme nom d'utilisateur et <span class="badge badge-pill badge-secondary">demo123</span> comme mot de passe.</p>
+                    <br/>
+                    <p class="mb-0">Pour vous connecter en tant que client <strong>woyofal</strong>, utilisez <span class="badge badge-pill badge-secondary">userWoyofal</span> comme nom d'utilisateur et <span class="badge badge-pill badge-secondary">demo123</span> comme mot de passe.</p>
+
+                  </div>
+                </div>
+               </div>
+           </div>
+         </div>
+       </div>
 
          <script src="{{url('js/jquery.min.js')}}"></script>
          <script src="{{url('js/popper.min.js')}}"></script>

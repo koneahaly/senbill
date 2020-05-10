@@ -39,6 +39,7 @@
               </ul>
           </div>
           <ul class="s2sn-navbar">
+              <li><a class="s2sn-header-link" href=".">ACCUEIL &nbsp</a></li>
               <li><a class="s2sn-header-link" href="{{ route('who') }}">QUI SOMMES-NOUS &nbsp </a></li>
               <li><a class="s2sn-header-link" href="{{ route('what') }}">LA PLATEFORME ELEKTRA &nbsp </a></li>
               <li><a class="s2sn-header-link" href="{{ route('register') }}" >S'INSCRIRE</a></li>
@@ -55,6 +56,7 @@
              </button>
              <div class="collapse navbar-collapse" id="navbarNav">
                  <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href=".">ACCUEIL</a></li>
                      <li class="nav-item"><a class="nav-link" href="{{ route('who') }}">QUI SOMMES-NOUS</a></li>
                      <li class="nav-item"><a class="nav-link" href="{{ route('what') }}">LA PLATEFORME ELEKTRA</a></li>
                      <li class="nav-item"><a class="nav-link" href="{{ route('register') }}" >S'INSCRIRE</a></li>
