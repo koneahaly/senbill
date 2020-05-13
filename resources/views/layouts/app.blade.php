@@ -77,7 +77,7 @@ if($_SERVER['REQUEST_URI'] == '/mes-factures')
    <ul class="s2sn-navbar"  style="margin-left: 300px;">
      <!-- Authentication Links -->
      @guest
-       <li><a class="s2sn-header-link-elektra" href="{{ route('login') }}">Se connecter &nbsp </a></li>
+       <li><a class="s2sn-header-link-elektra" href=".">Se connecter &nbsp </a></li>
        <li><a class="s2sn-header-link-elektra elektra-register-button" href="{{ route('register') }}" >S'inscrire</a></li>
        @else
            @if($notification >=0)
@@ -135,7 +135,7 @@ if($_SERVER['REQUEST_URI'] == '/mes-factures')
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
-              <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">SE CONNECTER</a></li>
+              <li class="nav-item"><a class="nav-link" href=".">SE CONNECTER</a></li>
               <li class="nav-item"><a class="nav-link" href="{{ route('register') }}" >S'INSCRIRE</a></li>
           </ul>
       </div>

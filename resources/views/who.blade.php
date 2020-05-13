@@ -38,6 +38,15 @@ if(!empty($raw_woyofal_users_demo) and !empty($raw_classical_users_demo)){
 
     </head>
 
+    <script>
+    $(document).ready(function(){
+        $('[data-toggle="s2sn-login-header-social"]').popover({
+            placement : 'bottom',
+            trigger : 'hover'
+        });
+    });
+    </script>
+
     <body>
       <div class="s2sn-wrapper-login-container s2sn-js-login" style="background-image: url({{url('images/stLouis.jpg')}});">
       	 <!-- HEADER START -->
@@ -48,11 +57,11 @@ if(!empty($raw_woyofal_users_demo) and !empty($raw_classical_users_demo)){
              </a>
              <div class="s2sn-login-header-nav">
           <div class="s2sn-login-header-top">
-              <ul class="s2sn-login-header-social">
-                  <li><a class="s2sn-header-link s2sn-twitter" href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a></li>
-                  <li><a class="s2sn-header-link s2sn-youtube" href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube"></i></a></li>
-                  <li><a class="s2sn-header-link s2sn-linkedin" href="https://www.linkedin.com/" target="_blank"><i class="fab fa-linkedin"></i></a></li>
-              </ul>
+            <ul class="s2sn-login-header-social" data-toggle="s2sn-login-header-social" data-html="true" data-content="<div> Bientôt disponible </div>" >
+                <li><i class="fab fa-twitter"></i></li>
+                <li><i class="fab fa-youtube"></i></li>
+                <li><i class="fab fa-linkedin"></i></li>
+            </ul>
               <ul class="s2sn-login-header-modals">
                 <li><a class="s2sn-header-link" href="#" data-toggle="modal" data-target="#modalFAQ">FAQ</a></li>
                 <li><a class="s2sn-header-link" href="#" data-toggle="modal" data-target="#modal2">Contact</a></li>
