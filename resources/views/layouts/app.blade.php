@@ -10,6 +10,8 @@
 
     <title>{{ config('app.name', 'eLECTRA') }}</title>
 
+    <!-- Scripts -->
+  <script src="{!! mix('js/app.js') !!}"></script>
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/graphicalChart.css') }}" rel="stylesheet">
@@ -17,7 +19,7 @@
     <link href="{{ URL::asset('css/common.css') }}" rel="stylesheet">
     <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
 <!--===============================================================================================-->
-<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css" href="{{ asset('fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
 <!--===============================================================================================-->
@@ -35,6 +37,11 @@
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css" href="css/util.css">
 <link rel="stylesheet" type="text/css" href="css/main.css">
+<link rel="stylesheet" type="text/css" href="{{url('css/bootstrap.min.css')}}">
+<link rel="stylesheet" type="text/css" href="{{url('css/all.min.css')}}">
+<link rel="stylesheet" type="text/css" href="{{url('css/elektra.css')}}">
+<link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css'>
+
 <!--===============================================================================================-->
 <style>
 .active{
@@ -56,96 +63,86 @@ if($_SERVER['REQUEST_URI'] == '/mes-factures')
 @endphp
 
 </head>
+<script src="{{ url('js/form.js') }}"></script>
+
 <body style="background: url('{{ asset('images/white-background/19366_Fotor1.jpg') }}') 0 0 repeat;background-size:cover;opacity:1;">
-    <div id="app">
-        <nav class="navbar navbar-light navbar-expand-lg navbar-icon-top" style="background-color:#22a7b5;height:70px">
-            <div class="container">
-                <div class="navbar-header">
+<div id="app">
+  <!-- HEADER START -->
+  <div class="s2sn-login-header-desktop-elektra">
+      <a class="s2sn-logo-elektra-register" href=".">
+          <img src="{{url('images/logo-elektra-halo.png')}}" alt="logo-elektra" width="162" height="auto" class="s2sn-img-normal">
+          <img src="{{url('images/logo-elektra-halo.png')}}" alt="logo-elektra" width="80" height="auto" class="s2sn-img-retina">
+      </a>
+      <div class="s2sn-login-header-nav">
+   <ul class="s2sn-navbar"  style="margin-left: 300px;">
+     <!-- Authentication Links -->
+     @guest
+       <li><a class="s2sn-header-link-elektra" href="{{ route('login') }}">Se connecter &nbsp </a></li>
+       <li><a class="s2sn-header-link-elektra elektra-register-button" href="{{ route('register') }}" >S'inscrire</a></li>
+       @else
+           @if($notification >=0)
+             <li class="nav-item">
+               <a class="nav-link {{ $active_3 }}"  href="{{ route('mes-factures') }}">
+                 <i class="fa fa-envelope-open-text">
+                   <span class="badge"> <?php if($notification > 0) echo $notification; ?></span>
+                 </i> Factures et paiements
+                </a>
+             </li>
+             <li class="nav-item">
+               <a class="nav-link {{ $active_2 }}"  href="{{ route('mon-contrat') }}">
+                 <i class="fa fa-file-contract"></i>Mon contrat
+                   <span class="sr-only">(current)</span>
+               </a>
+             </li>
+             <li class="nav-item">
+               <a class="nav-link {{ $active_1 }}"  href="{{ route('infos-personnelles') }}">
+                 <i class="fa fa-address-card"></i>Mes informations personnelles
+                 <span class="sr-only">(current)</span>
+               </a>
+             </li>
+         @endif
+           <li class="dropdown">
+               <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
+                 <i class="fa fa-user-alt-slash"></i>{{ Auth::user()->name }}
+                 <span class="caret"></span>
+               </a>
 
-                    <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse" aria-expanded="false">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
+               <ul class="dropdown-menu">
+                   <li>
+                       <a href="{{ route('logout') }}"
+                           onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                           Se déconnecter
+                       </a>
 
-                    <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'eLECTRA') }}
-                    </a>
-                </div>
+                       <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                           {{ csrf_field() }}
+                       </form>
+                   </li>
+               </ul>
+           </li>
+       @endguest
+   </ul>
+</div>
+  </div>
+  <nav class="navbar navbar-dark s2sn-login-header-mobile">
+      <a class="s2sn-logo-elektra" href="https://www.elektra.com/" target="_blank">
+          <img src="{{url('images/logo-elektra-halo.png')}}" alt="logo-elektra" width="162" height="auto" class="s2sn-img-normal">
+          <img src="{{url('images/logo-elektra-halo.png')}}" alt="logo-elektra" width="162" height="auto" class="s2sn-img-retina">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-contrs2sn="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+              <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">SE CONNECTER</a></li>
+              <li class="nav-item"><a class="nav-link" href="{{ route('register') }}" >S'INSCRIRE</a></li>
+          </ul>
+      </div>
 
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right navdesign mr-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li><a href="{{ route('login') }}">Se connecter</a></li>
-                            <li><a href="{{ route('register') }}">S'inscrire</a></li>
-                        @else
-                            @if($notification >=0)
-                              <li class="nav-item">
-                                <a class="nav-link {{ $active_3 }}"  href="{{ route('mes-factures') }}">
-                                  <i class="fa fa-envelope-open-text">
-                                    <span class="badge"> <?php if($notification > 0) echo $notification; ?></span>
-                                  </i> Factures et paiements
-                                 </a>
-                              </li>
-                              <li class="nav-item">
-                                <a class="nav-link {{ $active_2 }}"  href="{{ route('mon-contrat') }}">
-                                  <i class="fa fa-file-contract"></i>Mon contrat
-                                    <span class="sr-only">(current)</span>
-                                </a>
-                              </li>
-                              <li class="nav-item">
-                                <a class="nav-link {{ $active_1 }}"  href="{{ route('infos-personnelles') }}">
-                                  <i class="fa fa-address-card"></i>Mes informations personnelles
-                                  <span class="sr-only">(current)</span>
-                                </a>
-                              </li>
-                          @endif
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
-                                  <i class="fa fa-user-alt-slash"></i>{{ Auth::user()->name }}
-                                  <span class="caret"></span>
-                                </a>
-
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Se déconnecter
-                                        </a>
-
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-        @yield('content')
-    </div>
-
-
-
-
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
-    <script src="{{ asset('js/iframe.js') }}"></script>
-    <!-- JS scripts -->
-</script>
+  </nav>
+    @yield('content')
+</div>
+  <!-- HEADER END -->
 </body>
 </html>
