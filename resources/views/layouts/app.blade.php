@@ -40,9 +40,9 @@
 <link rel="stylesheet" type="text/css" href="{{url('css/bootstrap.min.css')}}">
 <link rel="stylesheet" type="text/css" href="{{url('css/all.min.css')}}">
 <link rel="stylesheet" type="text/css" href="{{url('css/elektra.css')}}">
-<link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css'>
 
 <!--===============================================================================================-->
+<!--
 <style>
 .active{
   background-color:#d90000;
@@ -50,6 +50,7 @@
 
 }
 </style>
+-->
 @php
 $active_1 ='none';
 $active_2 ='none';
@@ -70,7 +71,7 @@ if($_SERVER['REQUEST_URI'] == '/mes-factures')
   <!-- HEADER START -->
   <div class="s2sn-login-header-desktop-elektra">
       <a class="s2sn-logo-elektra-register" href=".">
-          <img src="{{url('images/logo-elektra-halo.png')}}" alt="logo-elektra" width="162" height="auto" class="s2sn-img-normal">
+          <img src="{{url('images/logo-elektra-halo.png')}}" alt="logo-elektra" width="80" height="auto" class="s2sn-img-normal">
           <img src="{{url('images/logo-elektra-halo.png')}}" alt="logo-elektra" width="80" height="auto" class="s2sn-img-retina">
       </a>
       <div class="s2sn-login-header-nav">

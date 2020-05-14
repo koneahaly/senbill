@@ -7,14 +7,14 @@
           <div class="panel panel-default" style="margin-top:85px;color:black;">
               <div class="panel-heading">Crées ton compte utilisateur</div>
               <div class="panel-body">
-                <p>Remplir les champs pour aller aux étapes suivantes</p>
+                <p>Remplissez les champs pour aller aux étapes suivantes</p>
                 <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
 
                 <form id="msform" class="form-horizontal" method="POST" action="{{ route('register') }}">
                       {{ csrf_field() }}
                     <!-- progressbar -->
                     <ul id="progressbar">
-                        <li class="active" id="account"><strong>Account</strong></li>
+                        <li class="active" id="account"><strong>Compte</strong></li>
                         <li id="personal"><strong>Personal</strong></li>
                         <li id="payment"><strong>Image</strong></li>
                         <li id="confirm"><strong>Finish</strong></li>
@@ -136,7 +136,7 @@
                         <div class="form-card">
                             <div class="row">
                                 <div class="col-7">
-                                    <h2 class="fs-title">Personal Information:</h2>
+                                    <h2 class="fs-title">Informations personnelles</h2>
                                 </div>
                                 <div class="col-5">
                                     <h2 class="steps">Step 2 - 4</h2>

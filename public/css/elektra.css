@@ -1251,22 +1251,26 @@ html {
 }
 
 #progressbar #account:before {
-    font-family: FontAwesome;
+    font-family: Font Awesome\ 5 Free;
+    font-weight: 900;
     content: "\f13e"
 }
 
 #progressbar #personal:before {
-    font-family: FontAwesome;
+    font-family: Font Awesome\ 5 Free;
+    font-weight: 900;
     content: "\f007"
 }
 
 #progressbar #payment:before {
-    font-family: FontAwesome;
+    font-family: Font Awesome\ 5 Free;
+    font-weight: 900;
     content: "\f030"
 }
 
 #progressbar #confirm:before {
-    font-family: FontAwesome;
+    font-family: Font Awesome\ 5 Free;
+    font-weight: 900;
     content: "\f00c"
 }
 

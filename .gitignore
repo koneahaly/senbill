@@ -1,0 +1,3 @@
+# Ignoring files with full path.
+# This matches files in the root directory and subdirectories too.
+config/database.php
