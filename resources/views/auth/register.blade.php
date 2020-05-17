@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container-fluid">
+<div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8 text-center p-0 mt-3 mb-2">
+        <div class="col col-md-8 col-md-offset-2  text-center p-0 mt-3 mb-2">
           <div class="panel panel-default" style="margin-top:85px;color:black;">
               <div class="panel-heading">Crées ton compte utilisateur</div>
               <div class="panel-body">

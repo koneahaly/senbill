@@ -34,12 +34,15 @@ x/*font start*/
 /*font end*/
 
 html, body {
+  font-family: 'OpenSans', arial, sans-serif;
+
+}
+.welcome_elektra {
     height: 100%;
     color:#ffffff;
     font-family: 'OpenSans', arial, sans-serif;
     letter-spacing: 1px;
 }
-
 .s2sn-wrapper-login-container {
 
     min-height: 100%;
@@ -516,8 +519,20 @@ background: linear-gradient(90deg, rgba(48,116,155,1) 0%, rgba(155,192,221,1) 50
     align-self: center;
     margin-right: 355px;
 }
+.s2sn-login-header-desktop-elektra .s2sn-logo-elektra-connected {
+    align-self: center;
+    margin-right: 96px;
+}
 .s2sn-header-link,.s2sn-header-link-elektra,
 .s2sn-login-header-mobile .navbar-nav .nav-link {
+    color: #ffffff;
+    text-transform: none;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 16px;
+
+}
+.s2sn-header-link,.s2sn-header-link-elektra,
+.s2sn-login-header-mobile-elektra .navbar-nav .nav-link {
     color: #ffffff;
     text-transform: none;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -605,11 +620,25 @@ background: linear-gradient(90deg, rgba(49,140,231,1) 0%, rgba(137,180,213,1) 50
     margin:0;
     font-size:15px;
 }
+.s2sn-navbar-elektra {
+    padding:0;
+    margin:0;
+    font-size:15px;
+    height:100%;
+}
 .s2sn-navbar li{
     padding:0 8px;
 }
 .s2sn-navbar li:first-child{
     padding:0;
+}
+.s2sn-navbar-elektra li{
+    padding:0 8px;
+    height:100%;
+}
+.s2sn-navbar-elektra li:first-child{
+    padding:0;
+    height:100%;
 }
 .s2sn-navbar .s2sn-header-link {
     padding:26px 0;
@@ -639,6 +668,10 @@ background: linear-gradient(90deg, rgba(49,140,231,1) 0%, rgba(137,180,213,1) 50
     position: relative;
     text-align: center;
 }
+.s2sn-login-header-mobile-elektra .nav-item {
+    position: relative;
+    text-align: center;
+}
 .s2sn-navbar .s2sn-header-link:hover{
     color:#ffffff;
 }
@@ -646,6 +679,13 @@ background: linear-gradient(90deg, rgba(49,140,231,1) 0%, rgba(137,180,213,1) 50
     color:#ffffff;
 }
 .s2sn-login-header-mobile .navbar-nav .nav-link:hover {
+    color: rgba(5, 36, 49, 0.8);
+    background-color: #ffffff;
+    transition-property: background;
+    transition-timing-function: ease-out;
+    transition-duration: 0.3s;
+}
+.s2sn-login-header-mobile-elektra .navbar-nav .nav-link:hover {
     color: rgba(5, 36, 49, 0.8);
     background-color: #ffffff;
     transition-property: background;
@@ -686,6 +726,9 @@ background: linear-gradient(90deg, rgba(49,140,231,1) 0%, rgba(137,180,213,1) 50
     right:0;
 }
 .s2sn-login-header-mobile {
+   display: none;
+}
+.s2sn-login-header-mobile-elektra {
    display: none;
 }
 
@@ -1011,6 +1054,15 @@ background: linear-gradient(90deg, rgba(49,140,231,1) 0%, rgba(137,180,213,1) 50
         z-index: 3;
         display: flex;
     }
+    .s2sn-login-header-mobile-elektra {
+        position:fixed;
+        width: 100%;
+        height: 80px;
+        top: 0;
+        background-color:rgba(18, 75, 102, 0.7);
+        z-index: 3;
+        display: flex;
+    }
     .s2sn-wrapper-center {
         margin-top:67px;
     }
@@ -1314,4 +1366,10 @@ html {
 .fit-image {
     width: 100%;
     object-fit: cover
+}
+
+.item-connected .active{
+  background-color:#d90000;
+  color:#fff;
+
 }
