@@ -3,17 +3,17 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col col-md-8 col-md-offset-2  text-center p-0 mt-3 mb-2">
+        <div class="col col-md-8 col-md-offset-2  p-0 mt-3 mb-2">
           <div class="panel panel-default" style="margin-top:85px;color:black;">
               <div class="panel-heading">Crées ton compte utilisateur</div>
               <div class="panel-body">
-                <p>Remplissez les champs pour aller aux étapes suivantes</p>
+                <p class="text-center">Remplissez les champs pour aller aux étapes suivantes</p>
                 <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
 
                 <form id="msform" class="form-horizontal" method="POST" action="{{ route('register') }}">
                       {{ csrf_field() }}
                     <!-- progressbar -->
-                    <ul id="progressbar">
+                    <ul id="progressbar" class="text-center" >
                         <li class="active" id="account"><strong>Compte</strong></li>
                         <li id="personal"><strong>Personal</strong></li>
                         <li id="payment"><strong>Image</strong></li>

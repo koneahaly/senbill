@@ -45,7 +45,6 @@
 
 <!--===============================================================================================-->
 
-
 @php
 $active_1 ='none';
 $active_2 ='none';
@@ -89,32 +88,32 @@ if($_SERVER['REQUEST_URI'] == '/mes-factures')
               <img src="{{url('images/logo-elektra-halo.png')}}" alt="logo-elektra" width="80" height="auto" class="s2sn-img-normal">
               <img src="{{url('images/logo-elektra-halo.png')}}" alt="logo-elektra" width="80" height="auto" class="s2sn-img-retina">
           </a>
-          <div class="s2sn-login-header-nav">
+          <div class="s2sn-login-header-nav  navbarElektra">
          <ul class="s2sn-navbar-elektra"  style="margin-left: 300px;">
              @if($notification >=0)
                <li class="nav-item item-connected">
                  <a class="nav-link {{ $active_3 }}"  href="{{ route('mes-factures') }}">
                    <i  class="fa fa-envelope-open-text fa-2x ">
                      <span class="badge"> <?php if($notification > 0) echo $notification; ?></span>
-                   </i> Factures et paiements
+                   </i> <p>Factures et paiements</p>
                   </a>
                </li>
                <li class="nav-item item-connected">
                  <a class="nav-link {{ $active_2 }}"  href="{{ route('mon-contrat') }}">
-                   <i class="fa fa-file-contract"></i>Mon contrat
+                   <i class="fa fa-file-contract fa-2x"></i> <p>Mon contrat</p>
                      <span class="sr-only">(current)</span>
                  </a>
                </li>
                <li class="nav-item item-connected">
                  <a class="nav-link {{ $active_1 }}"  href="{{ route('infos-personnelles') }}">
-                   <i class="fa fa-address-card"></i>Mes informations personnelles
+                   <i class="fa fa-address-card fa-2x"></i><p>Mes informations personnelles</p>
                    <span class="sr-only">(current)</span>
                  </a>
                </li>
            @endif
              <li class="dropdown">
                  <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
-                   <i class="fa fa-user-alt-slash"></i>{{ Auth::user()->name }}
+                   <i class="fa fa-user-alt-slash fa-2x"></i> <p>{{ Auth::user()->name }}</p>
                    <span class="caret"></span>
                  </a>
 

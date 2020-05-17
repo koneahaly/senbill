@@ -1373,3 +1373,48 @@ html {
   color:#fff;
 
 }
+/* Style the navigation bar */
+.navbarElektra {
+  width: 100%;
+}
+
+/* Navbar links */
+.navbarElektra a {
+  float: left;
+  text-align: center;
+  padding: 12px;
+  color: white;
+  text-decoration: none;
+}
+
+/* Navbar links on mouse-over */
+.navbarElektra a:hover p {
+  background-color: #e8f3fc;
+  color:black;
+}
+.navbarElektra a:hover {
+  background-color: #e8f3fc;
+  color:black;
+}
+
+
+.navbarElektra p
+{
+  color:#fff;
+  display:block;
+}
+.badge
+{
+  position:relative;
+  top:-17px;
+  left:-10px;
+}
+/* Current/active navbar link */
+
+/* Add responsiveness - will automatically display the navbar vertically instead of horizontally on screens less than 500 pixels */
+@media screen and (max-width: 500px) {
+  .navbarElektra a {
+    float: none;
+    display: block;
+  }
+}
