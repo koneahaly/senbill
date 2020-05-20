@@ -47,7 +47,7 @@ if(!empty($raw_woyofal_users_demo) and !empty($raw_classical_users_demo)){
     });
     </script>
 
-    <body>
+    <body style="height:100%">
       <div class="s2sn-wrapper-login-container s2sn-js-login" style="background-image: url({{url('images/stLouis.jpg')}});">
       	 <!-- HEADER START -->
          <div class="s2sn-login-header-desktop">
@@ -167,9 +167,9 @@ if(!empty($raw_woyofal_users_demo) and !empty($raw_classical_users_demo)){
                      <strong>Copiez les identifiants de connexion suivants et les utiliser pour vous connecter. Merci de les noter puisque l'identifiant sera unique et ne peut être généré qu'
                        <u>une seule fois</u>.</strong>
                    </p>
-                   <p class="mb-0">Pour vous connecter en tant que client <strong>classique</strong>, utilisez <span class="badge badge-pill badge-secondary">{{ $user_cl }}</span> comme nom d'utilisateur et <span class="badge badge-pill badge-secondary">demo123</span> comme mot de passe.</p>
+                   <p class="mb-0">Pour vous connecter en tant que client <strong>classique</strong>, utilisez <span class="text-info">{{ $user_cl }}</span> comme nom d'utilisateur et <span class="text-white bg-dark">demo123</span> comme mot de passe.</p>
                    <br/>
-                   <p class="mb-0">Pour vous connecter en tant que client <strong>woyofal</strong>, utilisez <span class="badge badge-pill badge-secondary">{{ $user_wy }}</span> comme nom d'utilisateur et <span class="badge badge-pill badge-secondary">demo123</span> comme mot de passe.</p>
+                   <p class="mb-0">Pour vous connecter en tant que client <strong>woyofal</strong>, utilisez <span class="text-info">{{ $user_wy }}</span> comme nom d'utilisateur et <span class="text-white bg-dark">demo123</span> comme mot de passe.</p>
 
                  </div>
                </div>

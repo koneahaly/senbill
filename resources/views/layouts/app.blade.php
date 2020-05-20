@@ -89,12 +89,12 @@ if($_SERVER['REQUEST_URI'] == '/mes-factures')
               <img src="{{url('images/logo-elektra-halo.png')}}" alt="logo-elektra" width="80" height="auto" class="s2sn-img-retina">
           </a>
           <div class="s2sn-login-header-nav  navbarElektra">
-         <ul class="s2sn-navbar-elektra"  style="margin-left: 300px;">
+         <ul class="s2sn-navbar-elektra">
              @if($notification >=0)
                <li class="nav-item item-connected">
                  <a class="nav-link {{ $active_3 }}"  href="{{ route('mes-factures') }}">
                    <i  class="fa fa-envelope-open-text fa-2x ">
-                     <span class="badge"> <?php if($notification > 0) echo $notification; ?></span>
+                      <?php if($notification > 0) echo '<span class="badge">'.$notification.'</span>'; ?>
                    </i> <p>Factures et paiements</p>
                   </a>
                </li>
@@ -143,10 +143,10 @@ if($_SERVER['REQUEST_URI'] == '/mes-factures')
           <img src="{{url('images/logo-elektra-halo.png')}}" alt="logo-elektra" width="70" height="auto" class="s2sn-img-normal">
           <img src="{{url('images/logo-elektra-halo.png')}}" alt="logo-elektra" width="70" height="auto" class="s2sn-img-retina">
       </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-contrs2sn="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavElektra" aria-contrs2sn="navbarNavElektra" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
+      <div class="collapse navbar-collapse" id="navbarNavElektra">
           <ul class="navbar-nav">
             @guest
               <li class="nav-item"><a class="nav-link" href=".">SE CONNECTER</a></li>
