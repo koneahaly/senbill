@@ -144,7 +144,7 @@ if($_SERVER['REQUEST_URI'] == '/mes-factures')
           <img src="{{url('images/logo-elektra-halo.png')}}" alt="logo-elektra" width="70" height="auto" class="s2sn-img-retina">
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavElektra" aria-contrs2sn="navbarNavElektra" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon-elektra"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavElektra">
           <ul class="navbar-nav">
