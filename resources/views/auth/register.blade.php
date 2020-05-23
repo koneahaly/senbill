@@ -168,15 +168,40 @@
                         <div class="form-card">
                             <div class="row">
                                 <div class="col-7">
-                                    <h2 class="fs-title">Image Upload:</h2>
+                                    <h2 class="fs-title">Services</h2>
                                     <img alt="" class="form-image" style="border:0;margin-left:200px;" src="{{url('images/undraw_location_review_dmxd.png')}}" height="270px" width="318px" data-component="image">
 
                                 </div>
-                                <div class="col-5">
-                                    <!-- <h2 class="steps">Step 3 - 4</h2> -->
-                                </div>
-                            </div> <label class="fieldlabels">Upload Your Photo:</label> <input type="file" name="pic" accept="image/*"> <label class="fieldlabels">Upload Signature Photo:</label> <input type="file" name="pic" accept="image/*">
-                        </div> <input type="button" name="next" class="next action-button" value="Submit" /> <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                            </div>
+                            <div class="radio-group row justify-content-between px-3">
+                     <div class="card-block card-body selectRegister selected">
+                         <div class="row justify-content-end d-flex px-3">
+                             <div class="fa fa-check"></div>
+                         </div>
+                         <div class="row justify-content-center d-flex">
+                             <div class="pic"> <img src="https://i.imgur.com/4uBi6ib.png" class="pic-0"> </div>
+                             <h5 class="mb-4">Create Website</h5>
+                         </div>
+                     </div>
+                     <div class="card-block card-body selectRegister">
+                         <div class="row justify-content-end d-flex px-3">
+                             <div class="fa fa-circle"></div>
+                         </div>
+                         <div class="row justify-content-center d-flex">
+                             <div class="pic"> <img src="https://i.imgur.com/nwy6Wkh.png" class="pic-0"> </div>
+                             <h5 class="mb-4">Website Relaunch</h5>
+                         </div>
+                     </div>
+                     <div class="card-block card-body selectRegister">
+                         <div class="row justify-content-end d-flex px-3">
+                             <div class="fa fa-circle"></div>
+                         </div>
+                         <div class="row justify-content-center d-flex">
+                             <div class="pic"> <img src="https://i.imgur.com/74Ez7OS.png" class="pic-0"> </div>
+                             <h5 class="mb-4">Don't Know</h5>
+                         </div>
+                     </div>
+                 </div>
                     </fieldset>
                     <fieldset>
                         <div class="form-card">
@@ -207,4 +232,14 @@
           </div>
     </div>
 </div>
+<script>
+  $('.radio-group .selectRegister').click(function(){
+  $('.selected .fa').removeClass('fa-check');
+  $('.selected .fa').addClass('fa-circle');
+  $('.selectRegister').removeClass('selected');
+  $(this).addClass('selected');
+  $('.selected .fa').removeClass('fa-circle');
+  $('.selected .fa').addClass('fa-check');
+  });
+</script>
 @endsection
