@@ -33,7 +33,7 @@ if(!empty($raw_woyofal_users_demo) and !empty($raw_classical_users_demo)){
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
         <link rel="stylesheet" type="text/css" href="{{url('css/bootstrap.min.css')}}">
         <link rel="stylesheet" type="text/css" href="{{url('css/all.min.css')}}">
-        <link rel="stylesheet" type="text/css" href="{{url('css/elektra.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{url('css/elektra_bis.css')}}">
         <script src="{!! mix('js/app.js') !!}"></script>
 
     </head>
