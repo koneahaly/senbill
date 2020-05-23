@@ -27,6 +27,7 @@
                             <div class="row">
                                 <div class="col-9">
                                     <h2 class="fs-title">Informations de connexion</h2>
+                                    <img alt="" class="form-image" style="border:0;margin-left:200px;" src="{{url('images/undraw_just_browsing_m0vg.png')}}" height="299px" width="318px" data-component="image">
                                 </div>
 
                             </div>
@@ -88,6 +89,7 @@
                             <div class="row">
                                 <div class="col-7">
                                     <h2 class="fs-title">Informations personnelles</h2>
+                                    <img alt="" class="form-image" style="border:0;margin-left:200px;" src="{{url('images/undraw_online_information_4ui6.png')}}" height="304px" width="318px" data-component="image">
                                 </div>
                                 <div class="col-5">
                                   <!--  <h2 class="steps">Step 2 - 4</h2>-->
@@ -167,6 +169,8 @@
                             <div class="row">
                                 <div class="col-7">
                                     <h2 class="fs-title">Image Upload:</h2>
+                                    <img alt="" class="form-image" style="border:0;margin-left:200px;" src="{{url('images/undraw_location_review_dmxd.png')}}" height="270px" width="318px" data-component="image">
+
                                 </div>
                                 <div class="col-5">
                                     <!-- <h2 class="steps">Step 3 - 4</h2> -->
@@ -179,6 +183,8 @@
                             <div class="row">
                                 <div class="col-7">
                                     <h2 class="fs-title">Finish:</h2>
+                                    <img alt="" class="form-image" style="border:0;margin-left:200px;" src="{{url('images/undraw_reviewed_docs_neeb.png')}}" height="204px" width="318px" data-component="image">
+
                                 </div>
                                 <div class="col-5">
                                   <!--  <h2 class="steps">Step 4 - 4</h2> -->

@@ -1287,7 +1287,8 @@ html {
     color: #318ce7;
     margin-bottom: 15px;
     font-weight: normal;
-    text-align: left
+    text-align: left;
+    margin-left:200px;
 }
 
 .purple-text {
