@@ -40,7 +40,6 @@
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css" href="css/util.css">
 <link rel="stylesheet" type="text/css" href="css/main.css">
-
 <link rel="stylesheet" type="text/css" href="{{url('css/elektra.css')}}">
 
 <!--===============================================================================================-->
@@ -138,61 +137,49 @@ if($_SERVER['REQUEST_URI'] == '/mes-factures')
     <!--  Fin Header user connecté -->
 
 
-  <nav class="navbar navbar-dark s2sn-login-header-mobile">
-      <a class="s2sn-logo-elektra" href="https://www.elektra.com/" target="_blank">
-          <img src="{{url('images/logo-elektra-halo.png')}}" alt="logo-elektra" width="70" height="auto" class="s2sn-img-normal">
-          <img src="{{url('images/logo-elektra-halo.png')}}" alt="logo-elektra" width="70" height="auto" class="s2sn-img-retina">
-      </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavElektra" aria-contrs2sn="navbarNavElektra" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon-elektra"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavElektra">
-          <ul class="navbar-nav">
+  <nav class="navbar navbar-dark s2sn-login-header-mobile-elektra" role="navigation">
+      <div id="menuToggle">
+      <input type="checkbox" />
+            <!--
+      Some spans to act as a hamburger.
+      -->
+      <span></span>
+      <span></span>
+      <span></span>
+      <ul id="menuElek">
             @guest
-              <li class="nav-item"><a class="nav-link" href=".">SE CONNECTER</a></li>
-              <li class="nav-item"><a class="nav-link" href="{{ route('register') }}" >S'INSCRIRE</a></li>
+              <li><a class="nav-link" href=".">SE CONNECTER</a></li>
+              <li><a class="nav-link" href="{{ route('register') }}" >S'INSCRIRE</a></li>
             @else
               @if($notification >=0)
                 <li class="nav-item">
                   <a class="nav-link {{ $active_3 }}"  href="{{ route('mes-factures') }}">
-                    <i class="fa fa-envelope-open-text">
-                      <span class="badge"> 1</span>
-                    </i> Factures et paiements
+                  Factures et paiements
                    </a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link {{ $active_2 }}"  href="{{ route('mon-contrat') }}">
-                    <i class="fa fa-file-contract"></i>Mon contrat
-                      <span class="sr-only">(current)</span>
+                  Mon contrat
                   </a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link {{ $active_1 }}"  href="{{ route('infos-personnelles') }}">
-                    <i class="fa fa-address-card"></i>Mes informations personnelles
-                    <span class="sr-only">(current)</span>
+                  Mes informations personnelles
                   </a>
                 </li>
             @endif
-            <li class="dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
-                  <i class="fa fa-user-alt-slash"></i>{{ Auth::user()->name }}
-                  <span class="caret"></span>
-                </a>
+            <li class="nav-item">
+              <a href="{{ route('logout') }}"
+                  onclick="event.preventDefault();
+                           document.getElementById('logout-form').submit();">
+                  Se déconnecter
+              </a>
 
-                <ul class="dropdown-menu">
-                    <li>
-                        <a href="{{ route('logout') }}"
-                            onclick="event.preventDefault();
-                                     document.getElementById('logout-form').submit();">
-                            Se déconnecter
-                        </a>
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                  {{ csrf_field() }}
+              </form>
+              </li>
 
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            {{ csrf_field() }}
-                        </form>
-                    </li>
-                </ul>
-            </li>
             @endguest
           </ul>
       </div>
