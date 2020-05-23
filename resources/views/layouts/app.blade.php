@@ -65,7 +65,7 @@ if($_SERVER['REQUEST_URI'] == '/mes-factures')
    @guest
    <!--  Header  invité -->
   <div class="s2sn-login-header-desktop-elektra">
-      <a class="s2sn-logo-elektra-register" href=".">
+      <a class="s2sn-logo-elektra-register" href="{{ route('mes-factures') }}">
           <img src="{{url('images/logo-elektra-halo.png')}}" alt="logo-elektra" width="80" height="auto" class="s2sn-img-normal">
           <img src="{{url('images/logo-elektra-halo.png')}}" alt="logo-elektra" width="80" height="auto" class="s2sn-img-retina">
       </a>
@@ -83,7 +83,7 @@ if($_SERVER['REQUEST_URI'] == '/mes-factures')
   @else
       <!--  Début Header  user connecté -->
       <div class="s2sn-login-header-desktop-elektra">
-          <a class="s2sn-logo-elektra-connected" href=".">
+          <a class="s2sn-logo-elektra-connected" href="{{ route('mes-factures') }}">
               <img src="{{url('images/logo-elektra-halo.png')}}" alt="logo-elektra" width="80" height="auto" class="s2sn-img-normal">
               <img src="{{url('images/logo-elektra-halo.png')}}" alt="logo-elektra" width="80" height="auto" class="s2sn-img-retina">
           </a>
