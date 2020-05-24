@@ -7,10 +7,11 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
 
 @section('content')
 <div class="container">
-    <div class="row">
+    <div class="row" style="margin-top:10%">>
         <div class="col-md-8 col-md-offset-2">
-          <div class="panel-heading" style="margin-top:10px;margin-bottom:20px">Le contrat est au nom de <br/>
-           <strong>Ahmadou Aly Koné</strong></div>
+          <div class="panel-heading" style="margin-top:10px;margin-bottom:20px;line-height: 2.4;">
+            <h3>Le contrat est au nom de </h3>
+           <strong style="margin-top:10px">Ahmadou Aly Koné</strong></div>
             <div class="panel panel-default">
 
                 <div class="panel-body">

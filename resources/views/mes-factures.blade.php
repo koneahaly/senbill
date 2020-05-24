@@ -6,12 +6,13 @@ $_SESSION["numberOfBillsNonPaid"]=$numberOfBillsNonPaid;
 
 @section('content')
 <div class="container">
-    <div>
-          <div class=" row panel-heading" style="margin-top:10px;margin-bottom:20px">
-           <strong><?php $type_service = (Auth::user()->user_type == 2) ? 'Mes paiements' : 'Mes factures'; echo $type_service ?></strong></div>
+          <div class="row" style="margin-top:10%">
+          <div class="col-md-12" style="margin-top:10px;margin-bottom:20px;text-align:center;">
+           <h3><strong><?php $type_service = (Auth::user()->user_type == 2) ? 'Mes paiements' : 'Mes factures'; echo $type_service ?></strong></h3></div>
           </div>
 
-          <div class="row col-md-offset-3" style="font-size:20px;margin-bottom:20px">
+          <div class="row" style="font-size:20px;margin-bottom:20px;text-align:center;">
+            <div class="col-md-12">
             @if(Auth::user()->user_type == 2 and (!empty($data) || $data != NULL))
               <span><strong> Tous vos achats  </strong></span>
               <span class="text-success"><strong> à ce jour ! </strong></span>
@@ -34,9 +35,11 @@ $_SESSION["numberOfBillsNonPaid"]=$numberOfBillsNonPaid;
             @if((Auth::user()->user_type != 2) and empty($data) || $data == NULL)
               <span><strong> Aucune facture à ce jour ! </strong></span>
             @endif
+            </div>
           </div>
 
-          <div>
+          <div class="row">
+		        <div class="col-md-12">
             @if(Auth::user()->user_type != 2)
             @if(!empty($data) and $data != NULL)
               <h4>Paiements déjà réalisés</h4>
@@ -107,6 +110,7 @@ $_SESSION["numberOfBillsNonPaid"]=$numberOfBillsNonPaid;
           <div class=" row panel-heading" style="margin-top:10px;margin-bottom:20px">
            <button data-toggle="modal" data-target="#buy_card" class="btn btn-info"> Acheter une nouvelle carte</button></div>
           </div>
+        </div>
           @endif
 
           @if(!empty($last_row_data))
