@@ -173,14 +173,14 @@
 
                                 </div>
                             </div>
-                            <div class="radio-group row justify-content-between px-3">
+                            <div class="radio-group row justify-content-between px-3" style="margin-left: -3px;">
                      <div class="card-block card-body selectRegister selected">
                          <div class="row justify-content-end d-flex px-3">
                              <div class="fa fa-check"></div>
                          </div>
                          <div class="row justify-content-center d-flex">
-                             <div class="pic"> <img src="https://i.imgur.com/4uBi6ib.png" class="pic-0"> </div>
-                             <h5 class="mb-4">Create Website</h5>
+                             <div class="pic"> <i class="fas fa-faucet fa-5x pic-0" style="text-align:center;"></i> </div>
+                             <h5 class="mb-4" style="color:black;text-align:center;">Eau</h5>
                          </div>
                      </div>
                      <div class="card-block card-body selectRegister">
@@ -188,8 +188,8 @@
                              <div class="fa fa-circle"></div>
                          </div>
                          <div class="row justify-content-center d-flex">
-                             <div class="pic"> <img src="https://i.imgur.com/nwy6Wkh.png" class="pic-0"> </div>
-                             <h5 class="mb-4">Website Relaunch</h5>
+                             <div class="pic"> <i class="fas fa-plug fa-5x pic-0" style="text-align:center;"></i> </div>
+                             <h5 class="mb-4" style="color:black;text-align:center;">Electricité</h5>
                          </div>
                      </div>
                      <div class="card-block card-body selectRegister">
@@ -197,8 +197,17 @@
                              <div class="fa fa-circle"></div>
                          </div>
                          <div class="row justify-content-center d-flex">
-                             <div class="pic"> <img src="https://i.imgur.com/74Ez7OS.png" class="pic-0"> </div>
-                             <h5 class="mb-4">Don't Know</h5>
+                             <div class="pic"> <i class="fas fa-tv fa-5x pic-0" style="text-align:center;"></i> </div>
+                             <h5 class="mb-4" style="color:black;text-align:center;">Television</h5>
+                         </div>
+                     </div>
+                     <div class="card-block card-body selectRegister">
+                         <div class="row justify-content-end d-flex px-3">
+                             <div class="fa fa-circle"></div>
+                         </div>
+                         <div class="row justify-content-center d-flex">
+                             <div class="pic"> <i class="fas fa-mobile-alt fa-5x pic-0" style="text-align:center;"></i> </div>
+                             <h5 class="mb-4" style="color:black;text-align:center;">Mobile & Internet</h5>
                          </div>
                      </div>
                  </div>
@@ -234,12 +243,16 @@
 </div>
 <script>
   $('.radio-group .selectRegister').click(function(){
-  $('.selected .fa').removeClass('fa-check');
-  $('.selected .fa').addClass('fa-circle');
-  $('.selectRegister').removeClass('selected');
-  $(this).addClass('selected');
-  $('.selected .fa').removeClass('fa-circle');
-  $('.selected .fa').addClass('fa-check');
+  if($(this).hasClass('selected')){
+      $(this).find(".fa").removeClass('fa-check');
+      $(this).find(".fa").addClass('fa-circle');
+    $(this).removeClass('selected');
+  }
+  else {
+    $(this).addClass('selected');
+    $('.selected .fa').removeClass('fa-circle');
+    $('.selected .fa').addClass('fa-check');
+  }
   });
 </script>
 @endsection

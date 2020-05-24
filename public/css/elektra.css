@@ -1641,32 +1641,32 @@ font-size: 22px;
 }
 
 .selectRegister.selected {
-    border: 1px solid #F9A825;
+    border: 1px solid green;
     box-shadow: 0px 8px 16px 0px #EEEEEE;
     -webkit-filter: grayscale(0%);
     -moz-filter: grayscale(0%);
     -o-filter: grayscale(0%);
     -ms-filter: grayscale(0%);
-    filter: grayscale(0%)
+    filter: grayscale(0%);
 }
 
 .fa-check {
-    color: #FBC02D;
+    color: green;
     border-radius: 50%;
-    border: 2px solid #FBC02D;
-    padding: 5px
+    border: 2px solid green;
+    padding: 5px;
 }
 
 .fa-circle {
     color: #FAFAFA;
     border-radius: 50%;
     border: 2px solid #BDBDBD;
-    padding: 5px 6.155px
+    padding: 5px 6.155px;
 }
 .pic,
 .pic-0 {
-    height: 90px;
-    width: 130px
+
+    color:green;
 }
 
 .pic {
