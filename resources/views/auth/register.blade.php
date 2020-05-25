@@ -168,55 +168,63 @@
                         <div class="form-card">
                             <div class="row">
                                 <div class="col-7">
-                                    <h2 class="fs-title">Services</h2>
+                                    <h2 class="fs-title" style="margin-left: 40%;">Services</h2>
                                     <img alt="" class="form-image" style="border:0;margin-left:200px;" src="{{url('images/undraw_location_review_dmxd.png')}}" height="270px" width="318px" data-component="image">
 
                                 </div>
+                                <div class="col-5">
+                                    <!-- <h2 class="steps">Step 3 - 4</h2> -->
+                                </div>
                             </div>
-                            <div class="radio-group row justify-content-between px-3" style="margin-left: -3px;">
-                     <div class="card-block card-body selectRegister selected">
-                         <div class="row justify-content-end d-flex px-3">
-                             <div class="fa fa-check"></div>
-                         </div>
-                         <div class="row justify-content-center d-flex">
-                             <div class="pic"> <i class="fas fa-faucet fa-5x pic-0" style="text-align:center;"></i> </div>
-                             <h5 class="mb-4" style="color:black;text-align:center;">Eau</h5>
-                         </div>
-                     </div>
-                     <div class="card-block card-body selectRegister">
-                         <div class="row justify-content-end d-flex px-3">
-                             <div class="fa fa-circle"></div>
-                         </div>
-                         <div class="row justify-content-center d-flex">
-                             <div class="pic"> <i class="fas fa-plug fa-5x pic-0" style="text-align:center;"></i> </div>
-                             <h5 class="mb-4" style="color:black;text-align:center;">Electricité</h5>
-                         </div>
-                     </div>
-                     <div class="card-block card-body selectRegister">
-                         <div class="row justify-content-end d-flex px-3">
-                             <div class="fa fa-circle"></div>
-                         </div>
-                         <div class="row justify-content-center d-flex">
-                             <div class="pic"> <i class="fas fa-tv fa-5x pic-0" style="text-align:center;"></i> </div>
-                             <h5 class="mb-4" style="color:black;text-align:center;">Television</h5>
-                         </div>
-                     </div>
-                     <div class="card-block card-body selectRegister">
-                         <div class="row justify-content-end d-flex px-3">
-                             <div class="fa fa-circle"></div>
-                         </div>
-                         <div class="row justify-content-center d-flex">
-                             <div class="pic"> <i class="fas fa-mobile-alt fa-5x pic-0" style="text-align:center;"></i> </div>
-                             <h5 class="mb-4" style="color:black;text-align:center;">Mobile & Internet</h5>
-                         </div>
-                     </div>
-                 </div>
+                        </div>
+                        <div class="radio-group row justify-content-between px-3" style="margin-left: -3px;">
+                           <div class="card-block card-body selectRegister selected">
+                               <div class="row justify-content-end d-flex px-3">
+                                   <div class="fa fa-check"></div>
+                               </div>
+                               <div class="row justify-content-center d-flex">
+                                   <div class="pic"> <i class="fas fa-faucet fa-5x pic-0" style="margin-left:25%;"></i> </div>
+                                   <h5 class="mb-4" style="color:black;text-align:center;">Eau</h5>
+                               </div>
+                           </div>
+                           <div class="card-block card-body selectRegister">
+                               <div class="row justify-content-end d-flex px-3">
+                                   <div class="fa fa-circle"></div>
+                               </div>
+                               <div class="row justify-content-center d-flex">
+                                   <div class="pic"> <i class="fas fa-plug fa-5x pic-0" style="margin-left:25%;"></i> </div>
+                                   <h5 class="mb-4" style="color:black;text-align:center;">Electricité</h5>
+                               </div>
+                           </div>
+                           <div class="card-block card-body selectRegister">
+                               <div class="row justify-content-end d-flex px-3">
+                                   <div class="fa fa-circle"></div>
+                               </div>
+                               <div class="row justify-content-center d-flex">
+                                   <div class="pic"> <i class="fas fa-tv fa-5x pic-0" style="margin-left:25%;"></i> </div>
+                                   <h5 class="mb-4" style="color:black;text-align:center;">Television</h5>
+                               </div>
+                           </div>
+                           <div class="card-block card-body selectRegister">
+                               <div class="row justify-content-end d-flex px-3">
+                                   <div class="fa fa-circle"></div>
+                               </div>
+                               <div class="row justify-content-center d-flex">
+                                   <div class="pic"> <i class="fas fa-mobile-alt fa-5x pic-0" style="margin-left:25%;"></i> </div>
+                                   <h5 class="mb-4" style="color:black;text-align:center;">Mobile & Internet</h5>
+                               </div>
+                           </div>
+                       </div>
+                        <input type="button" name="next" class="next action-button" value="Submit" /> <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
                     </fieldset>
+
+
+                </fieldset>
                     <fieldset>
                         <div class="form-card">
                             <div class="row">
                                 <div class="col-7">
-                                    <h2 class="fs-title">Finish:</h2>
+                                    <h2 class="fs-title" style="margin-left: 40%;">Fin de l'inscription</h2>
                                     <img alt="" class="form-image" style="border:0;margin-left:200px;" src="{{url('images/undraw_reviewed_docs_neeb.png')}}" height="204px" width="318px" data-component="image">
 
                                 </div>
@@ -235,6 +243,7 @@
                             </div>
                         </div>
                     </fieldset>
+
                 </form>
             </div>
         </div>
