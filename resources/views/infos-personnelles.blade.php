@@ -36,7 +36,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                           <input type="hidden" name="update_perso_data" value="true"/>
                         </div>
                       <!-- <ul>
-                          <li><strong>Nom: </strong> {{ Auth::user()->name }}</li>
+                          <li><strong>Nomm: </strong> {{ Auth::user()->name }}</li>
                           <li><strong>Type de client:</strong> Classique</li>
                           <li><strong>Adresse mail: </strong> {{ Auth::user()->email }}</li>
                           <li><strong>Numéro de compteur: </strong>{{ Auth::user()->customerId }}</li>
