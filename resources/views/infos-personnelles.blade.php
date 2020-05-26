@@ -56,7 +56,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
 
                     <div class="row" style="margin-bottom:10px;margin-left:18px">
                       <p><strong>PRENOM</strong></p>
-                      <span> {{ Auth::user()->name }}</span>
+                      <span> {{ Auth::user()->first_name }}</span>
                     </div>
 
                     <!-- <div class="row" style="margin-bottom:10px;margin-left:30px">
@@ -96,7 +96,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
 
                     <div class="row" style="margin-bottom:18px;margin-left:18px">
                       <p><strong>PRENOM:</strong></p>
-                      <input type="text" class="col-form-label" name="name" value="{{ Auth::user()->name }}" style="border-bottom:3px solid #084f78 !important">
+                      <input type="text" class="col-form-label" name="first_name" value="{{ Auth::user()->first_name }}" style="border-bottom:3px solid #084f78 !important">
                     </div>
 
                     <!-- <div class="row" style="margin-bottom:10px;margin-left:30px">

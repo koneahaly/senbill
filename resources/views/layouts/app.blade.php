@@ -48,12 +48,16 @@
 $active_1 ='none';
 $active_2 ='none';
 $active_3 ='none';
+$home_directory = "mes-factures";
 if($_SERVER['REQUEST_URI'] == '/infos-personnelles')
   $active_1 = 'active';
 if($_SERVER['REQUEST_URI'] == '/mon-contrat')
   $active_2 = 'active';
 if($_SERVER['REQUEST_URI'] == '/mes-factures')
   $active_3 = 'active';
+
+if($_SERVER['REQUEST_URI'] == '/register')
+  $home_directory = '.';
 @endphp
 
 </head>
@@ -65,7 +69,7 @@ if($_SERVER['REQUEST_URI'] == '/mes-factures')
    @guest
    <!--  Header  invité -->
   <div class="s2sn-login-header-desktop-elektra">
-      <a class="s2sn-logo-elektra-register" href="{{ route('mes-factures') }}">
+      <a class="s2sn-logo-elektra-register" href="{{ $home_directory }}">
           <img src="{{url('images/logo-elektra-halo.png')}}" alt="logo-elektra" width="80" height="auto" class="s2sn-img-normal">
           <img src="{{url('images/logo-elektra-halo.png')}}" alt="logo-elektra" width="80" height="auto" class="s2sn-img-retina">
       </a>
@@ -83,7 +87,7 @@ if($_SERVER['REQUEST_URI'] == '/mes-factures')
   @else
       <!--  Début Header  user connecté -->
       <div class="s2sn-login-header-desktop-elektra">
-          <a class="s2sn-logo-elektra-connected" href="{{ route('mes-factures') }}">
+          <a class="s2sn-logo-elektra-connected" href="{{ $home_directory }}">
               <img src="{{url('images/logo-elektra-halo.png')}}" alt="logo-elektra" width="80" height="auto" class="s2sn-img-normal">
               <img src="{{url('images/logo-elektra-halo.png')}}" alt="logo-elektra" width="80" height="auto" class="s2sn-img-retina">
           </a>
@@ -112,7 +116,7 @@ if($_SERVER['REQUEST_URI'] == '/mes-factures')
            @endif
              <li class="dropdown">
                  <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
-                   <i class="fa fa-user-alt-slash fa-2x"></i> <p>{{ Auth::user()->name }}</p>
+                   <i class="fa fa-user-alt-slash fa-2x"></i> <p>{{ Auth::user()->first_name }}</p>
                    <span class="caret"></span>
                  </a>
 

@@ -11,7 +11,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
         <div class="col-md-8 col-md-offset-2">
           <div class="panel-heading" style="margin-top:10px;margin-bottom:20px;line-height: 2.4;">
             <h3>Le contrat est au nom de </h3>
-           <strong style="margin-top:10px">Ahmadou Aly Koné</strong></div>
+           <strong style="margin-top:10px">{{ Auth::user()->first_name.' '.Auth::user()->name}}</strong></div>
             <div class="panel panel-default">
 
                 <div class="panel-body">
