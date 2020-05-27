@@ -7,11 +7,11 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
 
 @section('content')
 <div class="container">
-    <div class="row" style="margin-top:10%">>
+    <div class="row" style="margin-top:10%">
         <div class="col-md-8 col-md-offset-2">
           <div class="panel-heading" style="margin-top:10px;margin-bottom:20px;line-height: 2.4;">
             <h3>Le contrat est au nom de </h3>
-           <strong style="margin-top:10px">Ahmadou Aly Koné</strong></div>
+           <strong style="margin-top:10px">{{ Auth::user()->first_name.' '.Auth::user()->name}}</strong></div>
             <div class="panel panel-default">
 
                 <div class="panel-body">
@@ -28,9 +28,9 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                         </button></div>
                   </div>
 
-                  <div class="row col-md-offset-6" style="margin-bottom:20px">
-                    <span class="glyphicon glyphicon-ok-circle text-success" style="font-size:30px"></span>
-                    <p style="color:green;margin-left:-14%;font-size:20px">Contrat actif</p>
+                  <div class="row  text-center" style="margin-bottom:20px">
+                    <span class="glyphicon glyphicon-ok-circle text-success " style="font-size:30px"></span>
+                    <p style="color:green;margin-left:-3%;font-size:20px">Contrat actif</p>
                   </div>
 
                   <div class="col-md-6" style="margin-bottom:20px;">

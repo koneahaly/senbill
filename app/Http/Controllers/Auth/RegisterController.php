@@ -30,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/mes-factures';
 
     /**
      * Create a new controller instance.
@@ -39,6 +39,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
+        //dd($_POST);
         $this->middleware('guest');
     }
 
@@ -57,6 +58,7 @@ class RegisterController extends Controller
             'customerId' =>'required|string|max:25|min:10|unique:users',
             'address' =>'required|string|max:255',
             'password' => 'required|string|min:6|confirmed',
+            'first_name' => 'required|string|max:255',
         ]);
     }
 
@@ -70,12 +72,16 @@ class RegisterController extends Controller
     {
         return User::create([
             'name' => $data['name'],
+            'first_name' => $data['first_name'],
             'email' => $data['email'],
             'phone' => $data['phone'],
             'customerId' =>$data['customerId'],
-            'user_type' =>$data['user_type'],
             'address' =>$data['address'],
             'password' => bcrypt($data['password']),
+            'service_1' => (!empty($data['service_1'])) ? $data['service_1'] : 'NULL',
+            'service_2' => (!empty($data['service_2'])) ? $data['service_2'] : 'NULL',
+            'service_3' => (!empty($data['service_3'])) ? $data['service_3'] : 'NULL',
+            'service_4' => (!empty($data['service_4'])) ? $data['service_4'] : 'NULL',
         ]);
     }
 
