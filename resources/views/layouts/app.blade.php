@@ -61,7 +61,6 @@ if($_SERVER['REQUEST_URI'] == '/register')
 @endphp
 
 </head>
-<script src="{{ url('js/form.js') }}"></script>
 
 <body>
 <div id="app" class="s2sn-wrapper-login-container s2sn-js-login" style="background-image: url({{url('images/white-background/19366_Fotor1.jpg')}});">

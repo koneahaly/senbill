@@ -36,7 +36,7 @@
                                 <label for="email" class="col-md-4 control-label">Adresse mail</label>
 
                                 <div class="col-md-6">
-                                    <input id="email" type="email" class="form-control mail" name="email"  placeholder="Adresse mail" required>
+                                    <input id="email" type="email" class="form-control mail" name="email" placeholder="Adresse mail" required>
 
                                     @if ($errors->has('email'))
                                         <span class="help-block">
@@ -86,7 +86,7 @@
                                 <label for="name" class="col-md-4 control-label">Prénom</label>
 
                                 <div class="col-md-6">
-                                    <input id="firstname" type="text" class="form-control first_name" name="first_name" value="{{ old('first_name') }}" placeholder="Prénom" required autofocus>
+                                    <input id="firstname" type="text" class="form-control first_name" name="first_name" value="{{ old('first_name') }}" placeholder="Prénom" required >
 
                                     @if ($errors->has('name'))
                                         <span class="help-block">
@@ -99,7 +99,7 @@
                                 <label for="name" class="col-md-4 control-label">Nom</label>
 
                                 <div class="col-md-6">
-                                    <input id="lastName" type="text" class="form-control name" name="name" value="{{ old('name') }}" placeholder="Nom" required autofocus>
+                                    <input id="lastName" type="text" class="form-control name" name="name" value="{{ old('name') }}" placeholder="Nom" required >
 
                                     @if ($errors->has('name'))
                                         <span class="help-block">
@@ -148,7 +148,7 @@
                         </div>
                         <input type="button" name="next" class="next action-button sv_2" value="Next" /> <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
                     </fieldset>
-                    <fieldset>
+                    <fieldset class="f3">
                         <div class="form-card">
                             <div class="row">
                                 <div class="col-7">
@@ -200,7 +200,7 @@
                                </div>
                            </div>
                        </div>
-                        <input type="button" name="next" class="next action-button" value="Submit" /> <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                        <input type="button" name="next" class="next action-button sv_3" value="Suivant" /> <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
                     </fieldset>
 
 
@@ -307,6 +307,8 @@
           </div>
     </div>
 </div>
+
+<script src="{{ url('js/form.js') }}"></script>
 <script>
 
 
@@ -316,6 +318,7 @@
       $(this).find(".fa").addClass('fa-circle');
       $('.service_1').remove();
     $(this).removeClass('selected');
+    $('.display_service_1').text('');
   }
   else {
     $(this).addClass('selected');
@@ -333,6 +336,7 @@
       $(this).find(".fa").addClass('fa-circle');
       $('.service_2').remove();
     $(this).removeClass('selected');
+    $('.display_service_2').text('');
   }
   else {
     $(this).addClass('selected');
@@ -350,6 +354,7 @@
       $(this).find(".fa").addClass('fa-circle');
       $('.service_3').remove();
     $(this).removeClass('selected');
+    $('.display_service_3').text('');
   }
   else {
     $(this).addClass('selected');
@@ -367,6 +372,7 @@
       $(this).find(".fa").addClass('fa-circle');
       $('.service_4').remove();
     $(this).removeClass('selected');
+    $('.display_service_4').text('');
   }
   else {
     $(this).addClass('selected');
