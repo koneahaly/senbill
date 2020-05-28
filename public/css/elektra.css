@@ -1294,6 +1294,23 @@ html {
     background-color: #000000
 }
 
+#msform .recapData {
+  font-weight: 600;
+  color: #276ebb;
+  font-family: serif;
+
+}
+#msform .recapPanel {
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+#msform .recapPanel:hover {
+  -ms-transform: scale(1.05); /* IE 9 */
+-webkit-transform: scale(1.05); /* Safari 3-8 */
+transform: scale(1.05);
+  cursor:pointer;
+}
+
 
 .card {
     z-index: 0;

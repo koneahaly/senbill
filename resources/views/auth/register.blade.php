@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col col-md-8 col-md-offset-2  p-0 mt-3 mb-2">
           <div class="panel panel-default" style="margin-top:85px;color:black;">
-              <div class="panel-heading">Crées ton compte utilisateur</div>
+              <div class="panel-heading">Créez votre compte utilisateur</div>
               <div class="panel-body">
                 <p class="text-center">Remplissez les champs pour aller aux étapes suivantes</p>
                 <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
@@ -220,7 +220,7 @@
                             <div class="row" style="margin-top:0px">
                                 <div class="col-md-10 col-md-offset-1">
 
-                                  <div class="panel panel-default">
+                                  <div class="panel panel-default recapPanel">
                                     <div class="panel-body">
                                       <div class="row" style="margin-bottom:35px">
                                         <div class="col-md-7" style="font-size:18px"> <strong>Mes informations de connexion</strong></div>
@@ -229,17 +229,17 @@
 
                                           <div class="col-md-6" style="margin-bottom:10px">
                                             <p><strong>EMAIL</strong></p>
-                                            <span class="display_mail">
+                                            <span class="display_mail recapData">
                                              </span>
                                           </div>
 
                                           <div class="col-md-6" style="margin-bottom:10px">
                                             <p><strong>MOT DE PASSE</strong></p>
-                                            <span>***********</span>
+                                            <span class="recapData">***********</span>
                                           </div>
                                         </div>
                                       </div>
-                                    <div class="panel panel-default">
+                                    <div class="panel panel-default recapPanel">
                                       <div class="panel-body">
                                         <div class="row" style="margin-bottom:35px">
                                           <div class="col-md-7" style="font-size:18px"> <strong>Mes informations personnelles</strong></div>
@@ -248,27 +248,27 @@
 
                                             <div class="col-md-6" style="margin-bottom:10px">
                                               <p><strong>PRENOM</strong></p>
-                                              <span class="display_first_name"></span>
+                                              <span class="display_first_name recapData"></span>
                                             </div>
 
                                             <div class="col-md-6" style="margin-bottom:10px">
                                               <p><strong>NOM</strong></p>
-                                              <span class="display_name"></span>
+                                              <span class="display_name recapData"></span>
                                             </div>
 
                                             <div class="col-md-6" style="margin-bottom:10px">
                                               <p><strong>CNI</strong></p>
-                                              <span class="display_cni"></span>
+                                              <span class="display_cni recapData"></span>
                                             </div>
 
                                             <div class="col-md-6" style="margin-bottom:10px">
                                               <p><strong>TELEPHONE</strong></p>
-                                              <span class="display_phone"></span>
+                                              <span class="display_phone recapData"></span>
                                             </div>
 
                                             <div class="col-md-6" style="margin-bottom:10px">
                                               <p><strong>ADRESSE</strong></p>
-                                              <span class="display_address"></span>
+                                              <span class="display_address recapData"></span>
                                             </div>
 
 
@@ -276,17 +276,17 @@
                                 </div>
                                 <!-- les infos banciares -->
 
-                                <div class="panel panel-default">
+                                <div class="panel panel-default recapPanel">
                                   <div class="panel-body">
                                     <div class="row" style="margin-bottom:35px">
                                       <div class="col-md-6" style="font-size:18px"> <strong>Mes services</strong></div>
                                     </div>
                                     <div class="col-md-7" style="margin-bottom:10px;">
                                       <p><strong>SOUSCRIPTION:</strong></p>
-                                        <strong><li class="display_service_1"></li></strong>
-                                        <strong><li class="display_service_2"></li></strong>
-                                        <strong><li class="display_service_3"></li></strong>
-                                        <strong><li class="display_service_4"></li></strong>
+                                        <strong><li class="display_service_1 recapData" style = "text-transform:capitalize;"></li></strong>
+                                        <strong><li class="display_service_2 recapData" style = "text-transform:capitalize;"></li></strong>
+                                        <strong><li class="display_service_3 recapData" style = "text-transform:capitalize;"></li></strong>
+                                        <strong><li class="display_service_4 recapData" style = "text-transform:capitalize;"></li></strong>
                                       </div>
                                 </div>
                             </div>
