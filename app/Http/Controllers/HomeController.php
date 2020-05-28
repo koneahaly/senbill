@@ -146,4 +146,9 @@ class HomeController extends Controller
     {
       return view('infos-personnelles');
     }
+
+    public function display_services()
+    {
+      return view('platform');
+    }
 }

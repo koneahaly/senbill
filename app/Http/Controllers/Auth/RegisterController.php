@@ -30,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/mes-factures';
+    protected $redirectTo = '/platform';
 
     /**
      * Create a new controller instance.

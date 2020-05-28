@@ -41,7 +41,7 @@
                   <div class="icons-media-container mbr-white">
                       <div class="card col-12 col-md-6 col-lg-3">
                           <div class="icon-block">
-                          <a href=".">
+                          <a href="mes-factures">
                               <i class="fas fa-faucet fa-7x"></i>
                           </a>
                           </div>
@@ -52,7 +52,7 @@
 
                       <div class="card col-12 col-md-6 col-lg-3">
                           <div class="icon-block">
-                              <a href=".">
+                              <a href="mes-factures">
                                     <i class="fas fa-plug fa-7x"></i>
                               </a>
                           </div>
@@ -63,7 +63,7 @@
 
                       <div class="card col-12 col-md-6 col-lg-3">
                           <div class="icon-block">
-                              <a href=".">
+                              <a href="mes-factures">
                                   <i class="fas fa-tv fa-7x"></i>
                               </a>
                           </div>
@@ -74,7 +74,7 @@
 
                       <div class="card col-12 col-md-6 col-lg-3">
                           <div class="icon-block">
-                              <a href=".">
+                              <a href="mes-factures">
                                   <i class="fas fa-wifi fa-7x"></i>
                               </a>
                           </div>
