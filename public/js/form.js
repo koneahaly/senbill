@@ -30,7 +30,7 @@ if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(myEmail)){
   else{
     $('#password').css("border","1px solid red");
     $("#password")
-          .popover({content: "Le mot de passe doit contenir 7 caractères ou plus avec un chiffre au moins." });
+          .popover({content: "Le mot de passe doit contenir 7 caractères ou plus avec un chiffre au moins.",placement:'top' });
     $("#password").popover('show');
     $("#password").blur(function(){
       $("#password").popover('hide');
@@ -41,10 +41,11 @@ if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(myEmail)){
 else{
   $('#email').css("border","1px solid red");
   $("#email")
-        .popover({content: "L'adresse mail n'est pas valide." });
+        .popover({content: "L'adresse mail n'est pas valide.",placement:'top' });
   $("#email").popover('show');
   $("#email").blur(function(){
     $("#email").popover('hide');
+    $('#email').css("border","1px solid #ccc");
 });
 }
 
@@ -52,7 +53,7 @@ else{
 if(myPasswordConfirm != myPassword){
   $('#password-confirm').css("border","1px solid red");
   $("#password-confirm")
-        .popover({content: "Les deux mots de passe ne sont pas identiques." });
+        .popover({content: "Les deux mots de passe ne sont pas identiques.",placement:'top' });
   $("#password-confirm").popover('show');
   $("#password-confirm").blur(function(){
     $("#password-confirm").popover('hide');
@@ -117,7 +118,7 @@ if(/^[a-zA-Z ]{2,30}$/.test(myFistName)){
         else{
           $('.address').css("border","1px solid red");
           $(".address")
-                .popover({content: "L'adresse fournie n'est pas valide." });
+                .popover({content: "L'adresse fournie n'est pas valide.",placement:'top' });
           $(".address").popover('show');
           $(".address").blur(function(){
             $(".address").popover('hide');
@@ -128,7 +129,7 @@ if(/^[a-zA-Z ]{2,30}$/.test(myFistName)){
       else{
         $('.phone').css("border","1px solid red");
         $(".phone")
-              .popover({content: "Le numéro de téléphone fourni n'est pas valide." });
+              .popover({content: "Le numéro de téléphone fourni n'est pas valide." ,placement:'top'});
         $(".phone").popover('show');
         $(".phone").blur(function(){
           $(".phone").popover('hide');
@@ -139,7 +140,7 @@ if(/^[a-zA-Z ]{2,30}$/.test(myFistName)){
     else{
       $('.cni').css("border","1px solid red");
       $(".cni")
-            .popover({content: "Le numéro d'identification fourni n'est pas valide." });
+            .popover({content: "Le numéro d'identification fourni n'est pas valide.",placement:'top' });
       $(".cni").popover('show');
       $(".cni").blur(function(){
         $(".cni").popover('hide');
@@ -150,7 +151,7 @@ if(/^[a-zA-Z ]{2,30}$/.test(myFistName)){
   else{
     $('.name').css("border","1px solid red");
     $(".name")
-          .popover({content: "Le nom fourni n'est pas valide." });
+          .popover({content: "Le nom fourni n'est pas valide." ,placement:'top'});
     $(".name").popover('show');
     $(".name").blur(function(){
       $(".name").popover('hide');
@@ -161,7 +162,7 @@ if(/^[a-zA-Z ]{2,30}$/.test(myFistName)){
 else{
   $('.first_name').css("border","1px solid red");
   $(".first_name")
-        .popover({content: "Le prénom fourni n'est pas valide." });
+        .popover({content: "Le prénom fourni n'est pas valide." ,placement:'top'});
   $(".first_name").popover('show');
   $(".first_name").blur(function(){
     $(".first_name").popover('hide');

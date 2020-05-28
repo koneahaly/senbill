@@ -69,7 +69,7 @@
                                 </div>
                             </div>
                         </div>
-                        <input type="button" name="next" class="next action-button sv_1" value="Next" />
+                        <input type="button" name="next" class="next action-button sv_1" value="Suivant" />
                     </fieldset>
                     <fieldset>
                         <div class="form-card">
@@ -146,7 +146,7 @@
                             </div>
 
                         </div>
-                        <input type="button" name="next" class="next action-button sv_2" value="Next" /> <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                        <input type="button" name="next" class="next action-button sv_2" value="Suivant" /> <input type="button" name="previous" class="previous action-button-previous" value="Précédent" />
                     </fieldset>
                     <fieldset class="f3">
                         <div class="form-card">
@@ -200,7 +200,7 @@
                                </div>
                            </div>
                        </div>
-                        <input type="button" name="next" class="next action-button sv_3" value="Suivant" /> <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                        <input type="button" name="next" class="next action-button sv_3" value="Suivant" /> <input type="button" name="previous" class="previous action-button-previous" value="Précédent" />
                     </fieldset>
 
 
@@ -209,7 +209,7 @@
                         <div class="form-card">
                             <div class="row">
                                 <div class="col-7">
-                                    <h2 class="fs-title" style="margin-left: 40%;">Récap de la souscription</h2>
+                                    <h2 class="fs-title" style="margin-left: 30%;">Récap de la souscription</h2>
                                     <img alt="" class="form-image" style="border:0;margin-left:200px;" src="{{url('images/undraw_reviewed_docs_neeb.png')}}" height="204px" width="318px" data-component="image">
 
                                 </div>
@@ -295,7 +295,7 @@
                         </div>
                             <div class="row justify-content-center">
                                 <div class="col-7 text-center">
-                                    <input type='submit' class='btn btn-primary' value='Soumettre' />
+                                    <input type='submit' class='btn btn-primary submitForm' value='Soumettre' />
                                 </div>
                             </div>
                         </div>
