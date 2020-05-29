@@ -155,7 +155,7 @@ $_SESSION["numberOfBillsNonPaid"]=$numberOfBillsNonPaid;
                       @endif
 
                       @if($last_row_data->status != "paid")
-                        <button data-toggle="modal" data-target="#pay_bill" class="btn btn-danger">Régler ma facture</button>
+                        <button data-toggle="modal" data-target="#pay_bill" class="btn btn-danger rgfac">Régler ma facture</button>
                       @endif
                     </div>
                     <br />
@@ -226,13 +226,13 @@ $_SESSION["numberOfBillsNonPaid"]=$numberOfBillsNonPaid;
               <div class="modal-body">
                 <ul class="nav nav-tabs">
                   <li class="nav-item">
-                    <a class="nav-link active" id="cb" href="#paiement">Carte Bancaire</a>
+                    <a class="nav-link active buycb" id="cb" href="#paiement">Carte Bancaire</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" class="close" data-dismiss="modal" data-toggle="modal" data-target="#om" href="#paiement">OrangeMoney</a>
+                    <a class="nav-link" class="close buyom" data-dismiss="modal" data-toggle="modal" data-target="#om" href="#paiement">OrangeMoney</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" class="close" data-dismiss="modal" data-toggle="modal" data-target="#fc" href="#paiement">FreeCash</a>
+                    <a class="nav-link" class="close buyfc" data-dismiss="modal" data-toggle="modal" data-target="#fc" href="#paiement">FreeCash</a>
                   </li>
                 </ul>
 
@@ -260,12 +260,13 @@ $_SESSION["numberOfBillsNonPaid"]=$numberOfBillsNonPaid;
                     <label for="cardNumber">CARD NUMBER</label>
                     <div class="input-group">
                     <input
-                    type="tel"
-                    class="form-control"
+                    pattern="(?:4[0-9]{12}(?:[0-9]{3})?)"
+                    title="le numéro de carte bancaire n'est pas valide."
+                    class="form-control cardNumber"
                     name="cardNumber"
                     placeholder="Valid Card Number"
                     autocomplete="cc-number"
-                    required autofocus
+                    required
                     />
                     <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
                     </div>
@@ -277,8 +278,9 @@ $_SESSION["numberOfBillsNonPaid"]=$numberOfBillsNonPaid;
                     <div class="form-group">
                     <label for="cardExpiry"><span class="hidden-xs">EXPIRATION</span><span class="visible-xs-inline">EXP</span> DATE</label>
                     <input
-                    type="tel"
-                    class="form-control"
+                    pattern="(0[1-9]|1[0-2])\/?([0-9]{4}|[0-9]{2})"
+                    title="la date d'expiration n'est pas valide."
+                    class="form-control cardExpiry"
                     name="cardExpiry"
                     placeholder="MM / YY"
                     autocomplete="cc-exp"
@@ -290,8 +292,9 @@ $_SESSION["numberOfBillsNonPaid"]=$numberOfBillsNonPaid;
                     <div class="form-group">
                     <label for="cardCVC">CV CODE</label>
                     <input
-                    type="tel"
-                    class="form-control"
+                    pattern="[0-9]{3}"
+                    title="le cv code n'est pas valide."
+                    class="form-control cardCVC"
                     name="cardCVC"
                     placeholder="CVC"
                     autocomplete="cc-csc"
@@ -350,13 +353,13 @@ $_SESSION["numberOfBillsNonPaid"]=$numberOfBillsNonPaid;
             <div class="modal-body">
               <ul class="nav nav-tabs">
                 <li class="nav-item">
-                  <a class="nav-link" class="close" data-dismiss="modal" data-toggle="modal" data-target="#pay_bill" href="#paiement">Carte Bancaire</a>
+                  <a class="nav-link" class="close buycb" data-dismiss="modal" data-toggle="modal" data-target="#pay_bill" href="#paiement">Carte Bancaire</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link active" data-toggle="modal" data-target="#om" href="#paiement">OrangeMoney</a>
+                  <a class="nav-link active buyom" data-toggle="modal" data-target="#om" href="#paiement">OrangeMoney</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" class="close" data-dismiss="modal" data-toggle="modal" data-target="#fc" href="#paiement">FreeCash</a>
+                  <a class="nav-link" class="close buyfc" data-dismiss="modal" data-toggle="modal" data-target="#fc" href="#paiement">FreeCash</a>
                 </li>
               </ul>
 
@@ -394,12 +397,13 @@ $_SESSION["numberOfBillsNonPaid"]=$numberOfBillsNonPaid;
                         <label for="phoneNumber">MOBILE PHONE NUMBER*</label>
                         <div class="input-group">
                         <input
-                        type="tel"
-                        class="form-control"
+                        pattern="[0-9]{10}"
+                        title="le numéro de téléphone n'est pas valide."
+                        class="form-control phoneNumber"
                         name="phoneNumber"
                         placeholder="Valid mobile phone number"
                         autocomplete="cc-number"
-                        required autofocus
+                        required
                         />
                         <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
                         </div>
@@ -411,7 +415,7 @@ $_SESSION["numberOfBillsNonPaid"]=$numberOfBillsNonPaid;
                         <div class="col-xs-12">
                         <div class="form-group">
                         <label for="paymentCode">PAYMENT CODE*</label>
-                        <input type="text" class="form-control" name="paymentCode" />
+                        <input pattern="[0-9]{4}" title="le code de paiement n'est pas valide." class="form-control paymentCode" name="paymentCode" required/>
                         </div>
                         </div>
                         </div>
@@ -463,13 +467,13 @@ $_SESSION["numberOfBillsNonPaid"]=$numberOfBillsNonPaid;
           <div class="modal-body">
             <ul class="nav nav-tabs">
               <li class="nav-item">
-                <a class="nav-link" class="close" data-dismiss="modal" data-target="#pay_bill" href="#paiement">Carte Bancaire</a>
+                <a class="nav-link" class="close buycb" data-dismiss="modal" data-target="#pay_bill" href="#paiement">Carte Bancaire</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" class="close" data-dismiss="modal" data-toggle="modal" data-target="#om" href="#paiement">OrangeMoney</a>
+                <a class="nav-link" class="close buyom" data-dismiss="modal" data-toggle="modal" data-target="#om" href="#paiement">OrangeMoney</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active"  data-target="#fc" href="#paiement">FreeCash</a>
+                <a class="nav-link active buyfc"  data-target="#fc" href="#paiement">FreeCash</a>
               </li>
             </ul>
 
@@ -507,12 +511,13 @@ $_SESSION["numberOfBillsNonPaid"]=$numberOfBillsNonPaid;
                       <label for="phoneNumber">MOBILE PHONE NUMBER*</label>
                       <div class="input-group">
                       <input
-                      type="tel"
-                      class="form-control"
+                      pattern="[0-9]{10}"
+                      title="le numéro de téléphone n'est pas valide."
+                      class="form-control phoneNumber"
                       name="phoneNumber"
                       placeholder="Valid mobile phone number"
                       autocomplete="cc-number"
-                      required autofocus
+                      required
                       />
                       <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
                       </div>
@@ -524,7 +529,7 @@ $_SESSION["numberOfBillsNonPaid"]=$numberOfBillsNonPaid;
                       <div class="col-xs-12">
                       <div class="form-group">
                       <label for="paymentCode">PAYMENT CODE*</label>
-                      <input type="text" class="form-control" name="paymentCode" />
+                      <input pattern="[0-9]{4}" title="le code de paiement n'est pas valide." class="form-control paymentCode" name="paymentCode" required/>
                       </div>
                       </div>
                       </div>
@@ -751,7 +756,7 @@ while($i<$length){ @endphp
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-        <button data-dismiss="modal" data-toggle="modal" data-toggle="modal" data-target="#last_buy_step_{{ $i }}" type="button" class="btn btn-primary">Acheter</button>
+        <button data-dismiss="modal" data-toggle="modal" data-toggle="modal" data-target="#last_buy_step_{{ $i }}" type="button" class="btn btn-primary rchrg">Acheter</button>
       </div>
     </div>
   </div>
@@ -783,13 +788,13 @@ if($i == $limit){
         <div class="modal-body">
           <ul class="nav nav-tabs">
             <li class="nav-item">
-              <a class="nav-link active" id="cb_buy_{{ $i }}" href="#paiement">Carte Bancaire</a>
+              <a class="nav-link active buycb" id="cb_buy_{{ $i }}" href="#paiement">Carte Bancaire</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" class="close" data-dismiss="modal" data-toggle="modal" data-target="#om_buy_{{ $i }}" href="#paiement">OrangeMoney</a>
+              <a class="nav-link" class="close buyom" data-dismiss="modal" data-toggle="modal" data-target="#om_buy_{{ $i }}" href="#paiement">OrangeMoney</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" class="close" data-dismiss="modal" data-toggle="modal" data-target="#fc_buy_{{ $i }}" href="#paiement">FreeCash</a>
+              <a class="nav-link" class="close buyfc" data-dismiss="modal" data-toggle="modal" data-target="#fc_buy_{{ $i }}" href="#paiement">FreeCash</a>
             </li>
           </ul>
 
@@ -817,8 +822,9 @@ if($i == $limit){
               <label for="cardNumber">CARD NUMBER</label>
               <div class="input-group">
               <input
-              type="tel"
-              class="form-control"
+              pattern="(?:4[0-9]{12}(?:[0-9]{3})?)"
+              title="le numéro de carte bancaire n'est pas valide."
+              class="form-control cardNumber"
               name="cardNumber"
               placeholder="Valid Card Number"
               autocomplete="cc-number"
@@ -834,8 +840,9 @@ if($i == $limit){
               <div class="form-group">
               <label for="cardExpiry"><span class="hidden-xs">EXPIRATION</span><span class="visible-xs-inline">EXP</span> DATE</label>
               <input
-              type="tel"
-              class="form-control"
+              pattern="(0[1-9]|1[0-2])\/?([0-9]{4}|[0-9]{2})"
+              title="la date d'expiration n'est pas valide."
+              class="form-control cardExpiry"
               name="cardExpiry"
               placeholder="MM / YY"
               autocomplete="cc-exp"
@@ -847,8 +854,9 @@ if($i == $limit){
               <div class="form-group">
               <label for="cardCVC">CV CODE</label>
               <input
-              type="tel"
-              class="form-control"
+              pattern="[0-9]{3}"
+              title="le cv code n'est pas valide."
+              class="form-control cardCVC"
               name="cardCVC"
               placeholder="CVC"
               autocomplete="cc-csc"
@@ -867,7 +875,7 @@ if($i == $limit){
               </div>
               <div class="row">
               <div class="col-xs-12">
-              <button class="btn btn-success btn-lg btn-block" type="submit">Payez {{ $t * 5000}} fcfa
+              <button class="btn btn-success btn-lg btn-block paycb" type="submit">Payez {{ $t * 5000}} fcfa
 
               </button>
               </div>
@@ -905,13 +913,13 @@ if($i == $limit){
       <div class="modal-body">
         <ul class="nav nav-tabs">
           <li class="nav-item">
-            <a class="nav-link" class="close" data-dismiss="modal" data-toggle="modal" data-target="#last_buy_step_{{ $i }}" href="#paiement">Carte Bancaire</a>
+            <a class="nav-link" class="close buycb" data-dismiss="modal" data-toggle="modal" data-target="#last_buy_step_{{ $i }}" href="#paiement">Carte Bancaire</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" data-toggle="modal" data-target="#om_buy_{{ $i }}" href="#paiement">OrangeMoney</a>
+            <a class="nav-link active buyom" data-toggle="modal" data-target="#om_buy_{{ $i }}" href="#paiement">OrangeMoney</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" class="close" data-dismiss="modal" data-toggle="modal" data-target="#fc_buy_{{ $i }}" href="#paiement">FreeCash</a>
+            <a class="nav-link" class="close buyfc" data-dismiss="modal" data-toggle="modal" data-target="#fc_buy_{{ $i }}" href="#paiement">FreeCash</a>
           </li>
         </ul>
         <form method="get" action="{{ route('mes-factures.buy')}}">
@@ -950,12 +958,13 @@ if($i == $limit){
                   <label for="phoneNumber">MOBILE PHONE NUMBER*</label>
                   <div class="input-group">
                   <input
-                  type="tel"
-                  class="form-control"
+                  pattern="[0-9]{10}"
+                  title="le numéro de téléphone n'est pas valide."
+                  class="form-control phoneNumber"
                   name="phoneNumber"
                   placeholder="Valid mobile phone number"
                   autocomplete="cc-number"
-                  required autofocus
+                  required
                   />
                   <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
                   </div>
@@ -967,7 +976,7 @@ if($i == $limit){
                   <div class="col-xs-12">
                   <div class="form-group">
                   <label for="paymentCode">PAYMENT CODE*</label>
-                  <input type="text" class="form-control" name="paymentCode" />
+                  <input pattern="[0-9]{4}" title="le code de paiement n'est pas valide." class="form-control paymentCode" name="paymentCode" required/>
                   </div>
                   </div>
                   </div>
@@ -1019,13 +1028,13 @@ if($i == $limit){
     <div class="modal-body">
       <ul class="nav nav-tabs">
         <li class="nav-item">
-          <a class="nav-link" class="close" data-dismiss="modal" data-target="#last_buy_step_{{ $i }}" href="#paiement">Carte Bancaire</a>
+          <a class="nav-link" class="close buycb" data-dismiss="modal" data-target="#last_buy_step_{{ $i }}" href="#paiement">Carte Bancaire</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" class="close" data-dismiss="modal" data-toggle="modal" data-target="#om_buy_{{ $i }}" href="#paiement">OrangeMoney</a>
+          <a class="nav-link" class="close buyom" data-dismiss="modal" data-toggle="modal" data-target="#om_buy_{{ $i }}" href="#paiement">OrangeMoney</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active"  data-target="#fc_buy_{{ $i }}" href="#paiement">FreeCash</a>
+          <a class="nav-link active buyfc"  data-target="#fc_buy_{{ $i }}" href="#paiement">FreeCash</a>
         </li>
       </ul>
 
@@ -1064,12 +1073,13 @@ if($i == $limit){
                 <label for="phoneNumber">MOBILE PHONE NUMBER*</label>
                 <div class="input-group">
                 <input
-                type="tel"
-                class="form-control"
+                pattern="[0-9]{10}"
+                title="le numéro de téléphone n'est pas valide."
+                class="form-control phoneNumber"
                 name="phoneNumber"
                 placeholder="Valid mobile phone number"
                 autocomplete="cc-number"
-                required autofocus
+                required
                 />
                 <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
                 </div>
@@ -1081,7 +1091,7 @@ if($i == $limit){
                 <div class="col-xs-12">
                 <div class="form-group">
                 <label for="paymentCode">PAYMENT CODE*</label>
-                <input type="text" class="form-control" name="paymentCode" />
+                <input pattern="[0-9]{4}" title="le code paiement n'est pas valide." class="form-control paymentCode" name="paymentCode" required/>
                 </div>
                 </div>
                 </div>

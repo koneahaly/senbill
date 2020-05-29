@@ -119,7 +119,7 @@ class HomeController extends Controller
       if($given->action == "save"){
         DB::table('users')
             ->where('customerId', $s)
-            ->update(['name' => $given->name,'address' => $given->address]);
+            ->update(['name' => $given->name,'first_name' => $given->first_name, 'customerId' => $given->customer_id, 'address' => $given->address]);
         }
 
       if($given->action_email == "save"){
@@ -149,6 +149,8 @@ class HomeController extends Controller
 
     public function display_services()
     {
-      return view('platform');
+      $s=Auth::user()->customerId;
+      $infos_perso['infos_perso']=DB::table('users')->where('customerId',$s)->first();
+      return view('platform')->with($infos_perso);
     }
 }

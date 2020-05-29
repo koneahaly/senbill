@@ -26,6 +26,8 @@
 
   <div class="mbr-overlay" style="opacity: 0.5; background-color: rgb(35, 35, 35);">
   </div>
+  {{ $infos_perso->service_1}}
+  {{ $infos_perso->service_2}}
 
   <div class="container  ">
           <div class="media-container">

@@ -45,29 +45,26 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                       </div>
                     </form>
                   @if(!isset($_POST['update_perso_data']))
-                    <div class="row" style="margin-bottom:10px;margin-left:18px">
-                      <p><strong>CIVILITE</strong></p>
-                    </div>
+                  <div class="col-md-6" style="margin-bottom:10px">
+                    <p><strong>PRENOM</strong></p>
+                    <span>{{ Auth::user()->first_name }}</span>
+                  </div>
 
-                    <div class="row" style="margin-bottom:10px;margin-left:18px">
-                      <p><strong>NOM</strong></p>
-                      <span> {{ Auth::user()->name }}</span>
-                    </div>
+                  <div class="col-md-6" style="margin-bottom:10px">
+                    <p><strong>NOM</strong></p>
+                    <span>{{ Auth::user()->name }}</span>
+                  </div>
 
-                    <div class="row" style="margin-bottom:10px;margin-left:18px">
-                      <p><strong>PRENOM</strong></p>
-                      <span> {{ Auth::user()->first_name }}</span>
-                    </div>
+                  <div class="col-md-6" style="margin-bottom:10px">
+                    <p><strong>CNI</strong></p>
+                    <span>{{Auth::user()->customerId}}</span>
+                  </div>
 
-                    <!-- <div class="row" style="margin-bottom:10px;margin-left:30px">
-                      <p><strong>ADRESSE MAIL</strong></p>
-                      <span>{{ Auth::user()->email }}</span>
-                    </div> -->
 
-                    <div class="row" style="margin-bottom:10px;margin-left:18px">
-                      <p><strong>ADRESSE DE FACTURATION</strong></p>
-                      <span>{{Auth::user()->address}}</span>
-                    </div>
+                  <div class="col-md-6" style="margin-bottom:10px">
+                    <p><strong>ADRESSE</strong></p>
+                    <span>{{Auth::user()->address}}</span>
+                  </div>
 
                     <div class="row" style="margin-bottom:10px;margin-left:18px">
                       <p><strong>RECEVOIR LA NEWSLETTER</strong></p>
@@ -89,24 +86,24 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                         </div>
                       </div>
 
-                    <div class="row" style="margin-bottom:18px;margin-left:18px">
-                      <p><strong>NOM:</strong></p>
-                      <input type="text" class="col-form-label" name="name" value="{{ Auth::user()->name }}" style="border-bottom:3px solid #084f78 !important">
-                    </div>
-
-                    <div class="row" style="margin-bottom:18px;margin-left:18px">
+                    <div class="col-md-6" style="margin-bottom:10px">
                       <p><strong>PRENOM:</strong></p>
-                      <input type="text" class="col-form-label" name="first_name" value="{{ Auth::user()->first_name }}" style="border-bottom:3px solid #084f78 !important">
+                      <input pattern="[a-zA-Z ]{2,30}" title="le prénom renseigné n'est pas correct." class="col-form-label" name="first_name" value="{{ Auth::user()->first_name }}" style="border-bottom:3px solid #084f78 !important" required>
                     </div>
 
-                    <!-- <div class="row" style="margin-bottom:10px;margin-left:30px">
-                      <p><strong>ADRESSE MAIL</strong></p>
-                      <span>{{ Auth::user()->email }}</span>
-                    </div> -->
+                    <div class="col-md-6" style="margin-bottom:10px">
+                      <p><strong>NOM:</strong></p>
+                      <input pattern="[a-zA-Z ]{2,30}" title="le nom renseigné n'est pas correct." class="col-form-label" name="name" value="{{ Auth::user()->name }}" style="border-bottom:3px solid #084f78 !important" required>
+                    </div>
 
-                    <div class="row" style="margin-bottom:18px;margin-left:18px">
+                    <div class="col-md-6" style="margin-bottom:10px">
+                      <p><strong>CNI</strong></p>
+                      <input pattern="\d{13}" title="le numéro d'identification n'est pas valide." class="col-form-label" name="customer_id" value="{{ Auth::user()->customerId }}" style="border-bottom:3px solid #084f78 !important" required>
+                    </div>
+
+                    <div class="col-md-6" style="margin-bottom:10px">
                       <p><strong>ADRESSE DE FACTURATION:</strong></p>
-                      <input type="text" class="col-form-label" name="address" value="{{Auth::user()->address}}" style="border-bottom:3px solid #084f78 !important">
+                      <input pattern="[a-zA-Z0-9\s,'-]+" title="l'adresse renseigné n'est pas valide." class="col-form-label" name="address" value="{{Auth::user()->address}}" style="border-bottom:3px solid #084f78 !important" required>
                     </div>
                     <br />
                     <div class="row form-check" style="margin-bottom:10px;margin-left:18px">
@@ -154,7 +151,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                     {{csrf_field()}}
                     <div class="col-md-6" style="margin-bottom:10px">
                       <p><strong>EMAIL:</strong></p>
-                      <input type="text" class="col-form-label" name="email" value="{{Auth::user()->email}}" style="border-bottom:3px solid #084f78 !important">
+                      <input <input pattern="\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+" title="l'adresse mail n'est pas valide." class="col-form-label" name="email" value="{{Auth::user()->email}}" style="border-bottom:3px solid #084f78 !important">
                       <div>
                         <button type="submit" name="action_email" value='save' style="margin-top:8px" class="btn btn-primary">
                           <span class="glyphicon glyphicon-edit"></span> Enregistrer
@@ -188,7 +185,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                     {{csrf_field()}}
                     <div class="col-md-6" style="margin-bottom:10px">
                       <p><strong>PHONE:</strong></p>
-                      <input type="text" class="col-form-label" name="phone" value="{{Auth::user()->phone}}" style="border-bottom:3px solid #084f78 !important">
+                      <input <input pattern="\d{10}" title="le numéro de téléphone n'est pas valide." class="col-form-label" name="phone" value="{{Auth::user()->phone}}" style="border-bottom:3px solid #084f78 !important">
                       <div>
                         <button type="submit" name="action_phone" value='save' style="margin-top:8px" class="btn btn-primary">
                           <span class="glyphicon glyphicon-edit"></span> Enregistrer
