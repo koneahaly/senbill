@@ -26,7 +26,15 @@
 
   <div class="mbr-overlay" style="opacity: 0.5; background-color: rgb(35, 35, 35);">
   </div>
-
+<?php
+  function getServiceColor($service)
+  {
+      if ($service =='eau' || $service =='tv' || $service =='electricite' || $service =='mobile' )
+          return '#ffffff';
+      else
+          return '#888484';
+  }
+  ?>
   <div class="container">
           <div>
               <div class="media-container">
@@ -42,10 +50,18 @@
               </div>
 
                   <div class="icons-media-container mbr-white">
-                      <div class="card col-12 col-md-6 col-lg-3">
+                      <div class="card col-12 col-md-6 col-lg-3" style="color: <?=getServiceColor($infos_perso->service_1)?>;">
                           <div class="icon-block">
-                          <a href=".">
-                              <i class="fas fa-faucet fa-7x"></i>
+                            <?php
+                            if($infos_perso->service_1 != "eau")
+                            {
+                                echo '<a href="javascript:void(0);" style="cursor:not-allowed;">';
+                            }
+                            else {
+                              echo '<a href=".">';
+                            }
+                            ?>
+                              <i class="fas fa-faucet fa-7x" style="color: <?=getServiceColor($infos_perso->service_1)?>;"></i>
                           </a>
                           </div>
                           <h5 class="mbr-fonts-style display-5">
@@ -53,10 +69,18 @@
                           </h5>
                       </div>
 
-                      <div class="card col-12 col-md-6 col-lg-3">
+                      <div class="card col-12 col-md-6 col-lg-3" style="color: <?=getServiceColor($infos_perso->service_2)?>;">
                           <div class="icon-block">
-                              <a href=".">
-                                    <i class="fas fa-plug fa-7x"></i>
+                            <?php
+                            if($infos_perso->service_2 != "electricite")
+                            {
+                                echo '<a href="javascript:void(0);" style="cursor:not-allowed;">';
+                            }
+                            else {
+                              echo '<a href=".">';
+                            }
+                            ?>
+                                    <i class="fas fa-plug fa-7x" style="color: <?=getServiceColor($infos_perso->service_2)?>;"></i>
                               </a>
                           </div>
                           <h5 class="mbr-fonts-style display-5">
@@ -64,10 +88,18 @@
                           </h5>
                       </div>
 
-                      <div class="card col-12 col-md-6 col-lg-3">
+                      <div class="card col-12 col-md-6 col-lg-3" style="color: <?=getServiceColor($infos_perso->service_3)?>;">
                           <div class="icon-block">
-                              <a href=".">
-                                  <i class="fas fa-tv fa-7x"></i>
+                            <?php
+                            if($infos_perso->service_3 != "tv")
+                            {
+                                echo '<a href="javascript:void(0);" style="cursor:not-allowed;">';
+                            }
+                            else {
+                              echo '<a href=".">';
+                            }
+                            ?>
+                                  <i class="fas fa-tv fa-7x" style="color: <?=getServiceColor($infos_perso->service_3)?>;"></i>
                               </a>
                           </div>
                           <h5 class="mbr-fonts-style display-5">
@@ -75,10 +107,18 @@
                           </h5>
                       </div>
 
-                      <div class="card col-12 col-md-6 col-lg-3">
+                      <div class="card col-12 col-md-6 col-lg-3" style="color: <?=getServiceColor($infos_perso->service_4)?>;">
                           <div class="icon-block">
-                              <a href=".">
-                                  <i class="fas fa-wifi fa-7x"></i>
+                            <?php
+                            if($infos_perso->service_4 != "mobile")
+                            {
+                                echo '<a href="javascript:void(0);" style="cursor:not-allowed;">';
+                            }
+                            else {
+                              echo '<a href=".">';
+                            }
+                            ?>
+                                  <i class="fas fa-wifi fa-7x" style="color: <?=getServiceColor($infos_perso->service_4)?>;"></i>
                               </a>
                           </div>
                           <h5 class="mbr-fonts-style display-5">
