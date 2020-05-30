@@ -29,9 +29,9 @@ Route::post('/infos-personnelles', 'HomeController@display_personal_infos')->nam
 Route::post('/infos-personnelles/update', 'HomeController@update_personal_infos')->name('infos-personnelles.update');
 
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::post('/home', 'HomeController@index')->name('home');
-Route::get('/home', 'HomeController@index')->name('home-woyofal');
+//Route::get('/home', 'HomeController@index')->name('home');
+//Route::post('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home-woyofal');
 Route::post('/mes-factures/pay','billController@pay')->name('mes-factures.pay');
 Route::get('/mes-factures/pay','billController@pay')->name('mes-factures.pay');
 Route::post('/mes-factures/facture_a_payer','billController@pay_bill')->name('mes-factures.facture_a_payer');

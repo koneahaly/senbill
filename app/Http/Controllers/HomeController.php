@@ -27,90 +27,84 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+
+
+    public function display_bills()
     {
+      try{
+
+        function ToObject($Array){
+          $object = new stdClass();
+
+          // Use loop to convert array into
+          // stdClass object
+          foreach ($Array as $key => $value) {
+              if (is_array($value)) {
+                  $value = ToObject($value);
+              }
+              $object->$key = $value;
+          }
+          return $object;
+        }
 
         $s=Auth::user()->customerId;
         if(Auth::user()->user_type != 2){
-          $data['data']=DB::table('bills')->where('customerId',$s)->get();
+          $numberOfBillsNonPaid = (int)DB::table('bills')->where('customerId',$s)->where('status','Unpaid')->orderBy('id', 'DESC')->count();
+          $numberOfBills = (int)DB::table('bills')->where('customerId',$s)->orderBy('id', 'DESC')->count();
+          if($numberOfBills > 0){
+            $data['data']=DB::table('bills')->where('customerId',$s)->orderBy('id', 'DESC')->get();
+          }
+          else {
+            $data['data']= NULL;
+          }
+          //dd(count($data));
+          $last_row_data['last_row_data']=DB::table('bills')->where('customerId',$s)->orderBy('created_at', 'DESC')->first();
+
+          //dd($numberOfBills);
+          return view('mes-factures')->with($data)->with($last_row_data)->with(compact('numberOfBillsNonPaid'));
         }
+        if(Auth::user()->user_type == 2){
+          //$data['data']=DB::connection('mysql2')->table('buys')->where('counter_number',$s)->orderBy('id', 'DESC')->get();
+          //$last_row_data['last_row_data']=DB::connection('mysql2')->table('buys')->where('counter_number',$s)->orderBy('creation_date', 'DESC')->first();
 
-        $raw_buys = file_get_contents("http://localhost/api_elec/buys/read.php?counter_number=".Auth::user()->customerId);
-        $buys_treated = json_decode($raw_buys);
-        $buys_init = array($buys_treated);
-        $buys['buys'] = $buys_init[0];
-        $months['months'] = array('January','February','March','April','May','June','July','August','September','October','November','December');
+          $raw_buys = file_get_contents("http://localhost/api_elec/buys/read.php?counter_number=".Auth::user()->customerId);
+          $buys_treated = json_decode($raw_buys);
+          $buys_init = array($buys_treated);
+          $buys_items = $buys_init[0];
+          //$buys_2 = $buys_1[0];
+          $buys_items_object = ToObject($buys_items);
+          $data['data'] = collect($buys_items_object);
 
+          $last_raw_buys = file_get_contents("http://localhost/api_elec/buys/read_one.php?counter_number=".Auth::user()->customerId);
+          $last_buys_treated = json_decode($last_raw_buys);
+          $last_row_data['last_row_data'] = array('creation_date' => $last_buys_treated->creation_date,'amount' => $last_buys_treated->amount,'id' => $last_buys_treated->id);
 
-        if (Auth::user()->user_type != '2')
-          return view('home',$data);
-        else
-          return view('home-woyofal',$buys)->with($buys)->with($months);
+          foreach($buys_items as $struct) {
+            if ($struct == 'No buy found.') {
+                $data['data'] = NULL;
+                break;
+            }
+          }
+
+          $numberOfBillsNonPaid = 0;
+          return view('mes-factures')->with($data)->with($last_row_data)->with(compact('numberOfBillsNonPaid'));
+        }
+        //session(['keepNumberOfBillsNonPaid' => $numberOfBillsNonPaid]);
+        Session::push('keepNumberOfBillsNonPaid', $keepNumberOfBillsNonPaid);
+        //dd(Session::get('keepNumberOfBillsNonPaid'));
+
+        } catch (Throwable $e) {
+       report($e);
+       Auth::logout();
+       return false;
+     }
+
     }
 
-
-    public function display_bills(Request $given)
+    public function index()
     {
-
-      function ToObject($Array){
-        $object = new stdClass();
-
-        // Use loop to convert array into
-        // stdClass object
-        foreach ($Array as $key => $value) {
-            if (is_array($value)) {
-                $value = ToObject($value);
-            }
-            $object->$key = $value;
-        }
-        return $object;
-      }
-
-      $s=Auth::user()->customerId;
-      if(Auth::user()->user_type != 2){
-        $numberOfBillsNonPaid = (int)DB::table('bills')->where('customerId',$s)->where('status','Unpaid')->orderBy('id', 'DESC')->count();
-        $numberOfBills = (int)DB::table('bills')->where('customerId',$s)->orderBy('id', 'DESC')->count();
-        if($numberOfBills > 0){
-          $data['data']=DB::table('bills')->where('customerId',$s)->orderBy('id', 'DESC')->get();
-        }
-        else {
-          $data['data']= NULL;
-        }
-        //dd(count($data));
-        $last_row_data['last_row_data']=DB::table('bills')->where('customerId',$s)->orderBy('created_at', 'DESC')->first();
-
-        //dd($numberOfBills);
-        return view('mes-factures')->with($data)->with($last_row_data)->with(compact('numberOfBillsNonPaid'));
-      }
-      if(Auth::user()->user_type == 2){
-        //$data['data']=DB::connection('mysql2')->table('buys')->where('counter_number',$s)->orderBy('id', 'DESC')->get();
-        //$last_row_data['last_row_data']=DB::connection('mysql2')->table('buys')->where('counter_number',$s)->orderBy('creation_date', 'DESC')->first();
-
-        $raw_buys = file_get_contents("http://localhost/api_elec/buys/read.php?counter_number=".Auth::user()->customerId);
-        $buys_treated = json_decode($raw_buys);
-        $buys_init = array($buys_treated);
-        $buys_items = $buys_init[0];
-        //$buys_2 = $buys_1[0];
-        $buys_items_object = ToObject($buys_items);
-        $data['data'] = collect($buys_items_object);
-
-        $last_raw_buys = file_get_contents("http://localhost/api_elec/buys/read_one.php?counter_number=".Auth::user()->customerId);
-        $last_buys_treated = json_decode($last_raw_buys);
-        $last_row_data['last_row_data'] = array('creation_date' => $last_buys_treated->creation_date,'amount' => $last_buys_treated->amount,'id' => $last_buys_treated->id);
-
-        foreach($buys_items as $struct) {
-          if ($struct == 'No buy found.') {
-              $data['data'] = NULL;
-              break;
-          }
-        }
-
-        $numberOfBillsNonPaid = 0;
-        return view('mes-factures')->with($data)->with($last_row_data)->with(compact('numberOfBillsNonPaid'));
-      }
-      //session(['keepNumberOfBillsNonPaid' => $numberOfBillsNonPaid]);
-      Session::push('keepNumberOfBillsNonPaid', $keepNumberOfBillsNonPaid);
-      //dd(Session::get('keepNumberOfBillsNonPaid'));
+        display_bills();
     }
 
     public function update_personal_infos(Request $given){

@@ -122,7 +122,7 @@ if(!empty($raw_woyofal_users_demo) and !empty($raw_classical_users_demo)){
                </div>
              <div id="form-step-2" class="form-slider-step">
                 <div class="s2sn-input-group input-group">
-                    <input type="password" class="form-control" placeholder="Mot de passe" aria-label="Mot de passe" name="password" id="PWD" onkeypress="if(event.keyCode==13){return submitCredentials();}">
+                    <input type="password" class="form-control" placeholder="Mot de passe" aria-label="Mot de passe" name="password" id="PWD" onkeypress="if(event.keyCode==13){return submitCredentials();}" required>
                     <div class="input-group-append">
                         <button class="btn s2sn-js-btn-next" type="submit" onclick="return submitCredentials();"><i class="fas fa-arrow-right"></i></button>
                      </div>
