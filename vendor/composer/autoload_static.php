@@ -381,6 +381,8 @@ class ComposerStaticInite29c9296813c3a5c421fe01d8e6b437c
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
+        'App\\Http\\Controllers\\WhatController' => __DIR__ . '/../..' . '/app/Http/Controllers/WhatController.php',
+        'App\\Http\\Controllers\\WhoController' => __DIR__ . '/../..' . '/app/Http/Controllers/WhoController.php',
         'App\\Http\\Controllers\\billController' => __DIR__ . '/../..' . '/app/Http/Controllers/billController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
