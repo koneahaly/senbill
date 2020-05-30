@@ -26,24 +26,25 @@
 
   <div class="mbr-overlay" style="opacity: 0.5; background-color: rgb(35, 35, 35);">
   </div>
-  {{ $infos_perso->service_1}}
-  {{ $infos_perso->service_2}}
 
-  <div class="container  ">
-          <div class="media-container">
-              <div class="col-md-12 align-center">
-                  <h1 class="mbr-section-title pb-3 mbr-white mbr-bold mbr-fonts-style display-1">
-                      PLATEFORMES DE PAIEMENT
-                  </h1>
-                  <p class="mbr-text pb-3 mbr-white mbr-fonts-style display-5">
-                      Cliquez pour accéder à une de nos plateformes
-                  </p>
-
+  <div class="container">
+          <div>
+              <div class="media-container">
+                  <svg><rect></rect></svg>
+                  <div class="col-md-12 align-center">
+                    <h1 class="mbr-section-title pb-3 mbr-white mbr-bold mbr-fonts-style display-1">
+                        PLATEFORMES DE PAIEMENT
+                    </h1>
+                    <p class="mbr-text pb-3 mbr-white mbr-fonts-style display-5">
+                        Cliquez pour accéder à une de nos plateformes
+                    </p>
+                  </div>
+              </div>
 
                   <div class="icons-media-container mbr-white">
                       <div class="card col-12 col-md-6 col-lg-3">
                           <div class="icon-block">
-                          <a href="mes-factures">
+                          <a href=".">
                               <i class="fas fa-faucet fa-7x"></i>
                           </a>
                           </div>
@@ -54,7 +55,7 @@
 
                       <div class="card col-12 col-md-6 col-lg-3">
                           <div class="icon-block">
-                              <a href="mes-factures">
+                              <a href=".">
                                     <i class="fas fa-plug fa-7x"></i>
                               </a>
                           </div>
@@ -65,7 +66,7 @@
 
                       <div class="card col-12 col-md-6 col-lg-3">
                           <div class="icon-block">
-                              <a href="mes-factures">
+                              <a href=".">
                                   <i class="fas fa-tv fa-7x"></i>
                               </a>
                           </div>
@@ -76,7 +77,7 @@
 
                       <div class="card col-12 col-md-6 col-lg-3">
                           <div class="icon-block">
-                              <a href="mes-factures">
+                              <a href=".">
                                   <i class="fas fa-wifi fa-7x"></i>
                               </a>
                           </div>
