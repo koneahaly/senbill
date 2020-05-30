@@ -38,7 +38,7 @@
   <div class="container">
           <div>
               <div class="media-container">
-                  <svg><rect></rect></svg>
+                  <svg><rect height="100%"></rect></svg>
                   <div class="col-md-12 align-center">
                     <h1 class="mbr-section-title pb-3 mbr-white mbr-bold mbr-fonts-style display-1">
                         PLATEFORMES DE PAIEMENT
