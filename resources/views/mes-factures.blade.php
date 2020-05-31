@@ -397,7 +397,7 @@ $_SESSION["numberOfBillsNonPaid"]=$numberOfBillsNonPaid;
                         <label for="phoneNumber">MOBILE PHONE NUMBER*</label>
                         <div class="input-group">
                         <input
-                        pattern="[0-9]{10}"
+                        pattern="(\+[1-9]{1}[0-9]{3,14}) |([0-9]{9,14})"
                         title="le numéro de téléphone n'est pas valide."
                         class="form-control phoneNumber"
                         name="phoneNumber"
@@ -511,7 +511,7 @@ $_SESSION["numberOfBillsNonPaid"]=$numberOfBillsNonPaid;
                       <label for="phoneNumber">MOBILE PHONE NUMBER*</label>
                       <div class="input-group">
                       <input
-                      pattern="[0-9]{10}"
+                      pattern="(\+[1-9]{1}[0-9]{3,14}) |([0-9]{9,14})"
                       title="le numéro de téléphone n'est pas valide."
                       class="form-control phoneNumber"
                       name="phoneNumber"
@@ -958,7 +958,7 @@ if($i == $limit){
                   <label for="phoneNumber">MOBILE PHONE NUMBER*</label>
                   <div class="input-group">
                   <input
-                  pattern="[0-9]{10}"
+                  pattern="(\+[1-9]{1}[0-9]{3,14}) |([0-9]{9,14})"
                   title="le numéro de téléphone n'est pas valide."
                   class="form-control phoneNumber"
                   name="phoneNumber"
@@ -1073,7 +1073,7 @@ if($i == $limit){
                 <label for="phoneNumber">MOBILE PHONE NUMBER*</label>
                 <div class="input-group">
                 <input
-                pattern="[0-9]{10}"
+                pattern="(\+[1-9]{1}[0-9]{3,14}) |([0-9]{9,14})"
                 title="le numéro de téléphone n'est pas valide."
                 class="form-control phoneNumber"
                 name="phoneNumber"

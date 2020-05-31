@@ -92,6 +92,9 @@ myLastName = $('.name').val();
 myCNI = $('.cni').val();
 myPhone = $('.phone').val();
 myAddress = $('.address').val();
+const regexAddr = RegExp("^[0-9]{1,3}(([,. ]?){1}[-a-zA-Zàâäéèêëïîôöùûüç']+)*$");
+const regexPhone = RegExp('^(\\+[1-9]{1}[0-9]{3,14}) |([0-9]{9,14})$');
+
 
 current_fs = $(this).parent();
 next_fs = $(this).parent().next();
@@ -107,11 +110,11 @@ if(/^[a-zA-Z ]{2,30}$/.test(myFistName)){
       myCNI = myCNI;
 
 
-      if(/^\d{10}$/.test(myPhone)){
+      if(regexPhone.test(myPhone)){
         myPhone = myPhone;
 
 
-        if(/^[a-zA-Z0-9\s,'-]+$/.test(myAddress)){
+        if(regexAddr.test(myAddress)){
           myAddress = myAddress;
         }
 
@@ -171,7 +174,7 @@ else{
 
 
 
-if(/^[a-zA-Z ]{2,30}$/.test(myFistName) && /^[a-zA-Z ]{2,30}$/.test(myLastName) && /^\d{13}$/.test(myCNI) && /^\d{10}$/.test(myPhone) && /^[a-zA-Z0-9\s,'-]+$/.test(myAddress)){
+if(/^[a-zA-Z ]{2,30}$/.test(myFistName) && /^[a-zA-Z ]{2,30}$/.test(myLastName) && /^\d{13}$/.test(myCNI) && regexPhone.test(myPhone) && regexAddr.test(myAddress)){
   //Add Class Active
   $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
 
