@@ -1146,6 +1146,10 @@ $(document).ready(function() {
                 className: 'mdc-data-table__cell'
             }
         ],
+        "paging":   true,
+        "lengthChange": false,
+        "pageLength": 5,
+        "info":     false,
         language: {
             "sEmptyTable":     "Aucune donnée disponible dans le tableau",
             "sInfo":           "Affichage de l'élément _START_ à _END_ sur _TOTAL_ éléments",
