@@ -46,7 +46,7 @@
                                 <label for="email" class="col-md-4 control-label">Adresse mail</label>
 
                                 <div class="col-md-6">
-                                    <input id="email" type="email" class="form-control mail" name="email" placeholder="Adresse mail" required>
+                                    <input id="email" type="email" class="form-control mail" value="{{ old('email') }}" name="email" placeholder="Adresse mail" required>
 
                                     @if ($errors->has('email'))
                                         <span class="help-block">
@@ -61,7 +61,7 @@
                                 <label for="password" class="col-md-4 control-label">Mot de passe</label>
 
                                 <div class="col-md-6">
-                                    <input id="password" type="password" class="form-control" name="password" placeholder="Mot de passe" required>
+                                    <input id="password" type="password" value="{{ old('password') }}" class="form-control" name="password" placeholder="Mot de passe" required>
 
                                     @if ($errors->has('password'))
                                         <span class="help-block">
@@ -75,7 +75,7 @@
                                 <label for="password-confirm" class="col-md-4 control-label">Confirmation de mot de passe</label>
 
                                 <div class="col-md-6">
-                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Confirmation du mot de passe" required>
+                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" value="{{ old('password_confirmation') }}" placeholder="Confirmation du mot de passe" required>
                                 </div>
                             </div>
                         </div>
@@ -133,7 +133,7 @@
                             </div>
 
                             <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
-                                <label for="email" class="col-md-4 control-label">Numéro de téléphone</label>
+                                <label for="phone" class="col-md-4 control-label">Numéro de téléphone</label>
 
                                 <div class="col-md-6">
                                     <input id="phone" type="phone" class="form-control phone" name="phone" value="{{ old('phone') }}" placeholder="Numéro de téléphone" required>
@@ -420,4 +420,8 @@ var value = $('.service_1').val();
 $('.display_service_1').text(value);
 
 </script>
+@if(!empty($errors->first('phone')))
+  <script> $(“.sv_1”).trigger(“click”);</script>
+@endif
+
 @endsection
