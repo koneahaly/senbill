@@ -44,24 +44,24 @@ $_SESSION["numberOfBillsNonPaid"]=$numberOfBillsNonPaid;
             @if(!empty($data) and $data != NULL)
               <h4>Paiements déjà réalisés</h4>
               <br/>
-                <table class="table">
-                  <thead style="background-color:#455469;color:#fff">
-                    <tr>
-                      <th>Montant</th>
-                      <th>Prévu le</th>
-                      <th>Motif</th>
-                      <th>Etat du paiement</th>
-                      <th>Moyen de paiement</th>
-                    </tr>
+                <table id="billsTable" class="mdl-data-table" style="width:100%">
+                  <thead style="background: rgba(137,180,213,1);color:#fff">
+                      <tr>
+                        <th>Prévu le</th>
+                        <th>Motif</th>
+                        <th>Montant</th>
+                        <th>Etat du paiement</th>
+                        <th>Moyen de paiement</th>
+                      </tr>
                   </thead>
                   <tbody style="background-color:#fff;color:#455469">
                     @foreach($data as $value)
                       <tr>
-                        <td> {{$value->amount}} </td>
                         <td> {{$value->year}} {{$value->month}} </td>
                         <td> Echéance de {{$value->month}} {{$value->year}} </td>
+                        <td style="text-align:right;font-weight: 700;"> {{$value->amount}} FCFA </td>
                         @if($value->status == "paid")
-                          <td style="color:#2dc7c5"> {{$value->status}} </td>
+                          <td style="color:#2dc7c5;font-weight: 700;"> {{$value->status}} </td>
                           <td> {{$value->payment_method}} </td>
                         @endif
                         @if($value->status != "paid")
@@ -1132,4 +1132,52 @@ if($i == $limit){
 
 
 @php $i++; } @endphp
+@endsection
+@section('scripts')
+<script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/dataTables.material.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('#billsTable').DataTable( {
+        autoWidth: true,
+        columnDefs: [
+            {
+                targets: ['_all'],
+                className: 'mdc-data-table__cell'
+            }
+        ],
+        language: {
+            "sEmptyTable":     "Aucune donnée disponible dans le tableau",
+            "sInfo":           "Affichage de l'élément _START_ à _END_ sur _TOTAL_ éléments",
+            "sInfoEmpty":      "Affichage de l'élément 0 à 0 sur 0 élément",
+            "sInfoFiltered":   "(filtré à partir de _MAX_ éléments au total)",
+            "sInfoPostFix":    "",
+            "sInfoThousands":  ",",
+            "sLengthMenu":     "Afficher _MENU_ éléments",
+            "sLoadingRecords": "Chargement...",
+            "sProcessing":     "Traitement...",
+            "sSearch":         "Rechercher :",
+            "sZeroRecords":    "Aucun élément correspondant trouvé",
+            "oPaginate": {
+                "sFirst":    "Premier",
+                "sLast":     "Dernier",
+                "sNext":     "Suivant",
+                "sPrevious": "Précédent"
+            },
+            "oAria": {
+                "sSortAscending":  ": activer pour trier la colonne par ordre croissant",
+                "sSortDescending": ": activer pour trier la colonne par ordre décroissant"
+            },
+            "select": {
+                    "rows": {
+                        "_": "%d lignes sélectionnées",
+                        "0": "Aucune ligne sélectionnée",
+                        "1": "1 ligne sélectionnée"
+                    }
+            }
+        }
+    } );
+} );
+</script>
+
 @endsection

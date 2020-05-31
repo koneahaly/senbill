@@ -1713,3 +1713,15 @@ font-size: 22px;
     padding-left: 55px;
     padding-right: 55px
 }
+.mdc-data-table{
+    width: 100%;
+    border-style: none;
+    background-color: #fff0;
+}
+.mdc-data-table__cell{
+  text-align:center;
+  font-size: 1.2rem;
+}
+.mdc-button, .mdc-button--raised:not(:disabled), .mdc-button--unelevated:not(:disabled) {
+    background: rgba(137,180,213,1);
+}
