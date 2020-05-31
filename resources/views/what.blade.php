@@ -136,7 +136,7 @@ if(!empty($raw_woyofal_users_demo) and !empty($raw_classical_users_demo)){
                 <p><a class="btn btn-primary btn-lg" href="." role="button">Voir la démo</a></p>
               </div>
             </div>
-          </div
+          </div>
 
           <!-- modal faq -->
            <div class="modal fade" id="modalFAQ" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="false">
