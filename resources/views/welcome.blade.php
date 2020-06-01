@@ -63,7 +63,7 @@ if(!empty($raw_woyofal_users_demo) and !empty($raw_classical_users_demo)){
               <li><a class="s2sn-header-link" href=".">ACCUEIL &nbsp</a></li>
               <li><a class="s2sn-header-link" href="{{ route('who') }}">QUI SOMMES-NOUS &nbsp </a></li>
               <li><a class="s2sn-header-link" href="{{ route('what') }}">LA PLATEFORME ELEKTRA &nbsp </a></li>
-              <li><a class="s2sn-header-link" href="{{ route('register') }}" >S'INSCRIRE</a></li>
+              <li><a class="s2sn-header-link" href="{{ route('register') }}">S'inscrire </a></li>
           </ul>
       </div>
          </div>
