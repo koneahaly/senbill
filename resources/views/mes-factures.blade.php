@@ -42,7 +42,7 @@ $_SESSION["numberOfBillsNonPaid"]=$numberOfBillsNonPaid;
 		        <div class="col-md-12">
             @if(Auth::user()->user_type != 2)
             @if(!empty($data) and $data != NULL)
-              <h4>Paiements déjà réalisés</h4>
+                <!--<h4>Paiements déjà réalisés</h4> -->
               <br/>
                 <table id="billsTable" class="mdl-data-table" style="width:100%">
                   <thead style="background: rgba(137,180,213,1);color:#fff">
@@ -76,27 +76,27 @@ $_SESSION["numberOfBillsNonPaid"]=$numberOfBillsNonPaid;
             @endif
 
               @if(Auth::user()->user_type == 2 and (!empty($data) and $data != NULL))
-                <h4>Achats déjà effectués</h4>
+                  <!--<h4>Achats déjà effectués</h4>-->
                 <br/>
-                <table class="table">
-                  <thead style="background-color:#455469;color:#fff">
-                    <tr>
-                      <th>Montant</th>
-                      <th>Prévu le</th>
-                      <th>Motif</th>
-                      <th>Etat du paiement</th>
-                      <th>Moyen de paiement</th>
-                    </tr>
+                <table id="buysTable" class="mdl-data-table" style="width:100%">
+                    <!-- <caption><h4>Achats déjà effectués</h4></caption> -->
+                  <thead style="background: rgba(137,180,213,1);color:#fff">
+                      <tr>
+                        <th>Prévu le</th>
+                        <th>Motif</th>
+                        <th>Montant</th>
+                        <th>Etat du paiement</th>
+                        <th>Moyen de paiement</th>
+                      </tr>
                   </thead>
                   <tbody style="background-color:#fff;color:#455469">
-
                       @foreach($data as $value)
                         @foreach($value as $v)
                           <tr>
-                            <td> {{$v->amount}} </td>
                             <td> {{$v->creation_date}} </td>
                             <td> Achat de carte prépayée </td>
-                            <td style="color:#2dc7c5"> Paid </td>
+                            <td style="text-align:right;font-weight: 700;"> {{$v->amount}} </td>
+                            <td style="color:#2dc7c5;font-weight: 700;"> Paid </td>
                             <td> {{$v->payment_method}} </td>
                           </tr>
                           @endforeach
@@ -107,8 +107,14 @@ $_SESSION["numberOfBillsNonPaid"]=$numberOfBillsNonPaid;
           </div>
           <br />
           @if(Auth::user()->user_type == 2)
-          <div class=" row panel-heading" style="margin-top:10px;margin-bottom:20px">
-           <button data-toggle="modal" data-target="#buy_card" class="btn btn-info"> Acheter une nouvelle carte</button></div>
+          <div class=" buydiv row panel-heading" style="margin-top:10px;margin-bottom:20px">
+           <button class="btnBuy" data-toggle="modal" data-target="#buy_card">
+             <span class="circle">
+               <span class="icon arrow"></span>
+             </span>
+             <span class="button-text">Acheter une nouvelle carte</span>
+           </button>
+          </div>
           </div>
         </div>
           @endif
@@ -1139,6 +1145,25 @@ if($i == $limit){
 <script>
 $(document).ready(function() {
     $('#billsTable').DataTable( {
+        autoWidth: true,
+        columnDefs: [
+            {
+                targets: ['_all'],
+                className: 'mdc-data-table__cell'
+            }
+        ],
+        "paging":   true,
+        "lengthChange": false,
+        "pageLength": 5,
+        "info":     false,
+        language: {
+            "url": "//cdn.datatables.net/plug-ins/1.10.21/i18n/French.json"
+        }
+    } );
+} );
+
+$(document).ready(function() {
+    $('#buysTable').DataTable( {
         autoWidth: true,
         columnDefs: [
             {
