@@ -1819,3 +1819,30 @@ button.btnBuy:hover .circle .icon.arrow {
 button.btnBuy:hover .button-text {
   color: #fff;
 }
+.ticket {
+  position: relative;
+  box-sizing: border-box;
+  padding: 20px;
+  border-radius: 1px;
+  background: #ffffff;
+  box-shadow: 2px 2px 5px 0px #aeddf9;
+
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+    left: 5px;
+    height: 6px;
+    width: 290px;
+  }
+
+  &:before {
+    top: -5px;
+    background: radial-gradient(circle, transparent, transparent 50%, #FBFBFB 50%, #FBFBFB 100% ) -7px -8px / 16px 16px repeat-x,
+  }
+
+  &:after {
+    bottom: -5px;
+    background: radial-gradient(circle, transparent, transparent 50%, #FBFBFB 50%, #FBFBFB 100% ) -7px -2px / 16px 16px repeat-x,
+  }
+}
