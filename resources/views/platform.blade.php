@@ -29,7 +29,7 @@
 <?php
   function getServiceColor($service)
   {
-      if ($service =='eau' || $service =='tv' || $service =='electricite' || $service =='mobile' )
+      if ($service =='eau' || $service =='tv' || $service =='electricite' || $service =='mobile' || $service == 'locataire' || $service == 'proprietaire')
           return '#ffffff';
       else
           return '#888484';
@@ -125,7 +125,47 @@
                               Mobile & Internet
                           </h5>
                       </div>
-                  </div>
+
+                      <div class="card col-12 col-md-6 col-lg-3" style="color: <?=getServiceColor($infos_perso->service_5)?>;">
+                          <div class="icon-block">
+                            <?php
+                            if($infos_perso->service_5 != "locataire")
+                            {
+                                echo '<a href="javascript:void(0);" style="cursor:not-allowed;">';
+                            }
+                            else {
+                              echo '<a href="mes-factures">';
+                            }
+                            ?>
+                                  <i class="fas fa-building fa-7x" style="color: <?=getServiceColor($infos_perso->service_5)?>;"></i>
+                              </a>
+                          </div>
+                          <h5 class="mbr-fonts-style display-5">
+                              Locataire
+                          </h5>
+                      </div>
+
+                      <div class="card col-12 col-md-6 col-lg-3" style="color: <?=getServiceColor($infos_perso->service_6)?>;">
+                          <div class="icon-block">
+                            <?php
+                            if($infos_perso->service_6 != "locataire")
+                            {
+                                echo '<a href="javascript:void(0);" style="cursor:not-allowed;">';
+                            }
+                            else {
+                              echo '<a href="mes-factures">';
+                            }
+                            ?>
+                                  <i class="fas fa-building fa-7x" style="color: <?=getServiceColor($infos_perso->service_6)?>;"></i>
+                              </a>
+                          </div>
+                          <h5 class="mbr-fonts-style display-5">
+                              Propriétaire
+                          </h5>
+                      </div>
+
+                      </div>
+
               </div>
           </div>
   </div>

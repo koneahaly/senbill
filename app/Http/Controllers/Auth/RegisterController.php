@@ -82,6 +82,8 @@ class RegisterController extends Controller
             'service_2' => (!empty($data['service_2'])) ? $data['service_2'] : 'NULL',
             'service_3' => (!empty($data['service_3'])) ? $data['service_3'] : 'NULL',
             'service_4' => (!empty($data['service_4'])) ? $data['service_4'] : 'NULL',
+            'service_5' => (!empty($data['service_5'])) ? $data['service_5'] : 'NULL',
+            'service_6' => (!empty($data['service_6'])) ? $data['service_6'] : 'NULL',
         ]);
     }
 
@@ -113,4 +115,5 @@ class RegisterController extends Controller
       fclose($fc);
       return redirect('admin');
     }
+
 }

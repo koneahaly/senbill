@@ -209,6 +209,24 @@
                                    <h5 class="mb-4" style="color:black;text-align:center;">Mobile & Internet</h5>
                                </div>
                            </div>
+                           <div class="card-block card-body selectRegister5">
+                               <div class="row justify-content-end d-flex px-3">
+                                   <div class="fa fa-circle"></div>
+                               </div>
+                               <div class="row justify-content-center d-flex">
+                                   <div class="pic"> <i class="fas fa-building fa-5x pic-0" style="margin-left:25%;"></i> </div>
+                                   <h5 class="mb-4" style="color:black;text-align:center;">Locataire</h5>
+                               </div>
+                           </div>
+                           <div class="card-block card-body selectRegister6">
+                               <div class="row justify-content-end d-flex px-3">
+                                   <div class="fa fa-circle"></div>
+                               </div>
+                               <div class="row justify-content-center d-flex">
+                                   <div class="pic"> <i class="fas fa-building fa-5x pic-0" style="margin-left:25%;"></i> </div>
+                                   <h5 class="mb-4" style="color:black;text-align:center;">Propriétaire</h5>
+                               </div>
+                           </div>
                        </div>
                         <input type="button" name="next" class="next action-button sv_3" value="Suivant" /> <input type="button" name="previous" class="previous action-button-previous" value="Précédent" />
                     </fieldset>
@@ -297,6 +315,8 @@
                                         <strong><li class="display_service_2 recapData" style = "text-transform:capitalize;"></li></strong>
                                         <strong><li class="display_service_3 recapData" style = "text-transform:capitalize;"></li></strong>
                                         <strong><li class="display_service_4 recapData" style = "text-transform:capitalize;"></li></strong>
+                                        <strong><li class="display_service_5 recapData" style = "text-transform:capitalize;"></li></strong>
+                                        <strong><li class="display_service_6 recapData" style = "text-transform:capitalize;"></li></strong>
                                       </div>
                                 </div>
                             </div>
@@ -394,6 +414,42 @@
   }
   });
 
+  $('.radio-group .selectRegister5').click(function(){
+  if($(this).hasClass('selected')){
+      $(this).find(".fa").removeClass('fa-check');
+      $(this).find(".fa").addClass('fa-circle');
+      $('.service_5').remove();
+    $(this).removeClass('selected');
+    $('.display_service_5').text('');
+  }
+  else {
+    $(this).addClass('selected');
+    $('.selected .fa').removeClass('fa-circle');
+    $('.selected .fa').addClass('fa-check');
+    $('.selectRegister5').append("<input class='service_5' type='hidden' name='service_5' value='locataire' />");
+    var value = $('.service_5').val();
+    $('.display_service_5').text(value);
+  }
+  });
+
+  $('.radio-group .selectRegister6').click(function(){
+  if($(this).hasClass('selected')){
+      $(this).find(".fa").removeClass('fa-check');
+      $(this).find(".fa").addClass('fa-circle');
+      $('.service_6').remove();
+    $(this).removeClass('selected');
+    $('.display_service_6').text('');
+  }
+  else {
+    $(this).addClass('selected');
+    $('.selected .fa').removeClass('fa-circle');
+    $('.selected .fa').addClass('fa-check');
+    $('.selectRegister6').append("<input class='service_6' type='hidden' name='service_6' value='proprietaire' />");
+    var value = $('.service_6').val();
+    $('.display_service_6').text(value);
+  }
+  });
+
 $('.sv_1').click(function(){
   var value = $('.mail').val();
   $('.display_mail').text(value);
@@ -420,8 +476,5 @@ var value = $('.service_1').val();
 $('.display_service_1').text(value);
 
 </script>
-@if(!empty($errors->first('phone')))
-  <script> $(“.sv_1”).trigger(“click”);</script>
-@endif
 
 @endsection
