@@ -1803,6 +1803,7 @@ font-size: 22px;
   text-align:center;
   font-size: 1.2rem;
 }
+
 .mdc-button, .mdc-button--raised:not(:disabled), .mdc-button--unelevated:not(:disabled) {
     background: rgba(137,180,213,1);
     color:#000000;

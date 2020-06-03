@@ -1,0 +1,17 @@
+.reIcon
+{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+.reAmount {
+    font-family: proxima-nova,Avenir,sans-serif;
+    font-size: 16px;
+    letter-spacing: 0;
+    word-break: break-all;
+    text-align:right;
+    font-weight: 700;
+}
+.green {
+    color:green;
+}
