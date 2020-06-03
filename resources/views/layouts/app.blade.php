@@ -53,6 +53,7 @@
 $active_1 ='none';
 $active_2 ='none';
 $active_3 ='none';
+$active_4 ='none';
 $home_directory = "mes-factures";
 if($_SERVER['REQUEST_URI'] == '/infos-personnelles')
   $active_1 = 'active';
@@ -60,6 +61,8 @@ if($_SERVER['REQUEST_URI'] == '/mon-contrat')
   $active_2 = 'active';
 if($_SERVER['REQUEST_URI'] == '/mes-factures')
   $active_3 = 'active';
+  if($_SERVER['REQUEST_URI'] == '/suivi-conso')
+    $active_4 = 'active';
 
 if($_SERVER['REQUEST_URI'] == '/register')
   $home_directory = '.';
@@ -98,6 +101,12 @@ if($_SERVER['REQUEST_URI'] == '/register')
           <div class="s2sn-login-header-nav  navbarElektra">
          <ul class="s2sn-navbar-elektra">
              @if($notification >=0)
+             <li class="nav-item item-connected">
+               <a class="nav-link {{ $active_4 }}"  href="{{ route('suivi-conso') }}">
+                 <i  class="fa fa-chart-bar fa-2x ">
+                 </i> <p>Suivi conso</p>
+                </a>
+             </li>
                <li class="nav-item item-connected">
                  <a class="nav-link {{ $active_3 }}"  href="{{ route('mes-factures') }}">
                    <i  class="fa fa-envelope-open-text fa-2x ">
@@ -113,7 +122,7 @@ if($_SERVER['REQUEST_URI'] == '/register')
                </li>
                <li class="nav-item item-connected">
                  <a class="nav-link {{ $active_1 }}"  href="{{ route('infos-personnelles') }}">
-                   <i class="fa fa-address-card fa-2x"></i><p>Mes informations personnelles</p>
+                   <i class="fa fa-address-card fa-2x"></i><p>Mes informations</p>
                    <span class="sr-only">(current)</span>
                  </a>
                </li>
@@ -160,6 +169,11 @@ if($_SERVER['REQUEST_URI'] == '/register')
               <li><a class="nav-link" href="{{ route('register') }}" >S'INSCRIRE</a></li>
             @else
               @if($notification >=0)
+              <li class="nav-item">
+                <a class="nav-link {{ $active_4 }}"  href="{{ route('suivi-conso') }}">
+                Suivi conso
+                 </a>
+              </li>
                 <li class="nav-item">
                   <a class="nav-link {{ $active_3 }}"  href="{{ route('mes-factures') }}">
                   Factures et paiements
@@ -172,7 +186,7 @@ if($_SERVER['REQUEST_URI'] == '/register')
                 </li>
                 <li class="nav-item">
                   <a class="nav-link {{ $active_1 }}"  href="{{ route('infos-personnelles') }}">
-                  Mes informations personnelles
+                  Mes informations
                   </a>
                 </li>
             @endif
