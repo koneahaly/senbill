@@ -28,9 +28,8 @@ Route::get('/mon-contrat', 'HomeController@display_contract')->name('mon-contrat
 Route::get('/infos-personnelles', 'HomeController@display_personal_infos')->name('infos-personnelles');
 Route::post('/infos-personnelles', 'HomeController@display_personal_infos')->name('infos-personnelles');
 Route::post('/infos-personnelles/update', 'HomeController@update_personal_infos')->name('infos-personnelles.update');
-Route::get('/transactions-proprietaire','realEstateOwnerController@display_transactions')->name('ownerTransactions');
-Route::get('/mes-logements','realEstateOwnerController@display_properties')->name('ownerProperties');
-Route::get('/mes-locataires','realEstateOwnerController@display_locataires')->name('mes-locataires');
+Route::get('/suivi-conso', 'HomeController@suivi_conso')->name('suivi-conso');
+
 
 //Route::get('/home', 'HomeController@index')->name('home');
 //Route::post('/home', 'HomeController@index')->name('home');

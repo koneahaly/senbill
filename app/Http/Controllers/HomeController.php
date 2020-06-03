@@ -147,4 +147,18 @@ class HomeController extends Controller
       $infos_perso['infos_perso']=DB::table('users')->where('customerId',$s)->first();
       return view('platform')->with($infos_perso);
     }
+
+    public function suivi_conso()
+    {
+      $s=Auth::user()->customerId;
+      $infos_conso['infos_conso']=DB::table('bills')->select('units','month','year')->where('customerId',$s)->orderBy('created_at', 'DESC')->get();
+      $useful_conso = array();
+      foreach($infos_conso as $info_conso){
+        foreach($info_conso as $vl){
+          $useful_conso[$vl->month] = $vl->units;
+        }
+      }
+      $my_infos_conso['my_infos_conso'] = $useful_conso;
+      return view('suivi-conso')->with($my_infos_conso);
+    }
 }
