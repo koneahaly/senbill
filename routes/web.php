@@ -52,6 +52,7 @@ Route::get('/mes-factures/pdf_buy','billController@pdf_buy')->name('mes-factures
 Route::post('/home/pdf_bill','billController@pdf_bill')->name('home.pdf_bill');
 Route::post('/admin/create-users-demo','Auth\RegisterController@create_users_demo')->name('admin.create_users_demo');
 Route::post('/admin/import-bills','AdminController@imports_bills')->name('admin.imports_bills');
+Route::post('/admin/import-bills-six-months','AdminController@imports_bills_previous_six_month')->name('admin.imports_bills_six_months');
 
 
 Route::get('json-api', 'ApiController@index');

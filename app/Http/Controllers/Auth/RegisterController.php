@@ -91,25 +91,32 @@ class RegisterController extends Controller
 
       $fp = fopen(storage_path('classical_users.txt'), 'w');
       $fc = fopen(storage_path('woyofal_users.txt'), 'w');
+      $services = ['eau', 'electricite', 'tv', 'mobile', 'locataire', 'proprietaire'];
       for($i = 0; $i < 10; $i++) {
         $randomNumber = rand(100,999)+(2+$i**2)+(3+$i**3);
         if($i%2 == 0)
           $user_type = 1;
         else
           $user_type = 2;
+
+        $service = rand(1,6);
+        $service_index = $service -1;
+
           User::create([
-              'name' => 'user'.$randomNumber,
-              'email' => 'user'.$randomNumber.'@gmail.com',
+              'name' => 'stat'.$randomNumber,
+              'first_name' => 'stat'.$randomNumber,
+              'email' => 'stat'.$randomNumber.'@gmail.com',
               'phone' => '0659594346',
               'customerId' => hexdec(uniqid()),
               'user_type' => $user_type,
               'address' => '26 avenue duschene',
-              'password' => bcrypt('demo123')
+              'password' => bcrypt('demo123'),
+              'service_'.$service.'' => $services[$service_index]
           ]);
           if($user_type == 2)
-            fwrite($fp, 'user'.$randomNumber.'@gmail.com,');
+            fwrite($fc, 'stat'.$randomNumber.'@gmail.com,');
           else
-            fwrite($fc, 'user'.$randomNumber.'@gmail.com,');
+            fwrite($fp, 'stat'.$randomNumber.'@gmail.com,');
       }
       fclose($fp);
       fclose($fc);

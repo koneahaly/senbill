@@ -3,9 +3,9 @@
 
 @section('content')
 <div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
+    <div class="row justify-content-center">
+        <div class="col col-md-8 col-md-offset-2  p-0 mt-3 mb-2">
+            <div class="panel panel-default" style="margin-top:85px;color:black;">
                 <div class="panel-heading">Tableau de bord Admin</div>
 
                 <div class="panel-body">
@@ -15,17 +15,32 @@
                         </div>
                     @endif
 
-                    <form class="form-horizontal" method="POST" action="{{ route('admin.create_users_demo') }}">
-                        {{ csrf_field() }}
-                        <button type="submit" class="btn btn-primary">Importer les clients</button>
-                    </form>
-                    <br /> <br />
+                    <div class="row">
+                      <div class="col-md-6">
+                        <form class="form-horizontal" method="POST" action="{{ route('admin.create_users_demo') }}">
+                            {{ csrf_field() }}
+                            <button type="submit" class="btn btn-primary">Importer les clients</button>
+                        </form>
+                        <br /> <br />
+                      </div>
+                      <div class="col-md-6">
+                        <form class="form-horizontal" method="POST" action="{{ route('admin.imports_bills') }}">
+                            {{ csrf_field() }}
+                            <button type="submit" class="btn btn-primary">Importer les factures</button>
+                        </form>
+                        <br /> <br />
+                      </div>
+                    </div>
 
-                    <form class="form-horizontal" method="POST" action="{{ route('admin.imports_bills') }}">
-                        {{ csrf_field() }}
-                        <button type="submit" class="btn btn-primary">Importer les factures</button>
-                    </form>
-                    <br /> <br />
+                    <div class="row">
+                      <div class="col-md-6">
+                        <form class="form-horizontal" method="POST" action="{{ route('admin.imports_bills_six_months') }}">
+                            {{ csrf_field() }}
+                            <button type="submit" class="btn btn-primary">Importer les factures du semestre</button>
+                        </form>
+                        <br /> <br />
+                      </div>
+                    </div>
 
                     <form class="form-horizontal" action="{{ route('admin.store') }}" method="GET">
                         {{ csrf_field() }}
@@ -77,7 +92,7 @@
                               <option value="September">Septembre</option>
                               <option value="October">Octobre</option>
                               <option value="November">Novembre</option>
-                              <option value="Decemeber">Decemebre</option>
+                              <option value="December">December</option>
                             </select>
                           </div>
                         </div>
