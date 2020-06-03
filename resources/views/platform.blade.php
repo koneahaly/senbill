@@ -148,12 +148,12 @@
                       <div class="card col-12 col-md-6 col-lg-3" style="color: <?=getServiceColor($infos_perso->service_6)?>;">
                           <div class="icon-block">
                             <?php
-                            if($infos_perso->service_6 != "locataire")
+                            if($infos_perso->service_6 != "proprietaire")
                             {
                                 echo '<a href="javascript:void(0);" style="cursor:not-allowed;">';
                             }
                             else {
-                              echo '<a href="mes-factures">';
+                              echo '<a href="transactions-proprietaire">';
                             }
                             ?>
                                   <i class="fas fa-building fa-7x" style="color: <?=getServiceColor($infos_perso->service_6)?>;"></i>

@@ -1,3 +1,7 @@
+<?php
+session_start();
+$notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOfBillsNonPaid"] : '';
+?>
 @extends('layouts.realEstate', ['notification' => $notification])
 
 @section('content')

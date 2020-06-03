@@ -54,12 +54,12 @@
 $active_1 ='none';
 $active_2 ='none';
 $active_3 ='none';
-$home_directory = "mes-factures";
+$home_directory = "transactions-proprietaire";
 if($_SERVER['REQUEST_URI'] == '/infos-personnelles')
   $active_1 = 'active';
 if($_SERVER['REQUEST_URI'] == '/mon-contrat')
   $active_2 = 'active';
-if($_SERVER['REQUEST_URI'] == '/mes-factures')
+if($_SERVER['REQUEST_URI'] == '/transactions-proprietaire')
   $active_3 = 'active';
 
 if($_SERVER['REQUEST_URI'] == '/register')
