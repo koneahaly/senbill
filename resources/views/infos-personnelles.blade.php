@@ -16,7 +16,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
 
     <div class="row" style="margin-top:50px">
         <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
+            <div class="panel panel-default personalInfoPanel">
                 <div class="panel-body">
                     @if (session('status'))
                         <div class="alert alert-success">
@@ -47,28 +47,28 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                   @if(!isset($_POST['update_perso_data']))
                   <div class="col-md-6" style="margin-bottom:10px">
                     <p><strong>PRENOM</strong></p>
-                    <span>{{ Auth::user()->first_name }}</span>
+                    <span class="recapData">{{ Auth::user()->first_name }}</span>
                   </div>
 
                   <div class="col-md-6" style="margin-bottom:10px">
                     <p><strong>NOM</strong></p>
-                    <span>{{ Auth::user()->name }}</span>
+                    <span class="recapData">{{ Auth::user()->name }}</span>
                   </div>
 
                   <div class="col-md-6" style="margin-bottom:10px">
                     <p><strong>CNI</strong></p>
-                    <span>{{Auth::user()->customerId}}</span>
+                    <span class="recapData">{{Auth::user()->customerId}}</span>
                   </div>
 
 
                   <div class="col-md-6" style="margin-bottom:10px">
                     <p><strong>ADRESSE</strong></p>
-                    <span>{{Auth::user()->address}}</span>
+                    <span class="recapData">{{Auth::user()->address}}</span>
                   </div>
 
                     <div class="row" style="margin-bottom:10px;margin-left:18px">
                       <p><strong>RECEVOIR LA NEWSLETTER</strong></p>
-                      <span>OUI</span>
+                      <span class="recapData">OUI</span>
                     </div>
                   @endif
 
@@ -123,7 +123,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
 
                 </div>
             </div>
-            <div class="panel panel-default">
+            <div class="panel panel-default personalInfoPanel">
               <div class="panel-body">
                 <div class="row" style="margin-bottom:35px">
                   <div class="col-md-7" style="font-size:18px"> <strong>Mes coordonnées de contact</strong></div>
@@ -135,7 +135,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                     {{csrf_field()}}
                     <div class="col-md-6" style="margin-bottom:10px">
                       <p><strong>EMAIL</strong></p>
-                      <span>{{ Auth::user()->email }}</span>
+                      <span class="recapData">{{ Auth::user()->email }}</span>
                       <div>
                         <button style="background:grey;color:white;margin-top:8px" class="btn">
                           <span class="glyphicon glyphicon-edit"></span> Modifier
@@ -169,7 +169,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                     {{csrf_field()}}
                     <div class="col-md-6" style="margin-bottom:10px">
                       <p><strong>PHONE</strong></p>
-                      <span>{{ Auth::user()->phone }}</span>
+                      <span class="recapData">{{ Auth::user()->phone }}</span>
                       <div>
                         <button style="background:grey;color:white;margin-top:8px" class="btn">
                           <span class="glyphicon glyphicon-edit"></span> Modifier
@@ -203,14 +203,14 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
         </div>
         <!-- les infos banciares -->
 
-        <div class="panel panel-default">
+        <div class="panel panel-default personalInfoPanel">
           <div class="panel-body">
             <div class="row" style="margin-bottom:35px">
               <div class="col-md-6" style="font-size:18px"> <strong>Mes informations bancaires</strong></div>
             </div>
             <div class="col-md-7" style="margin-bottom:10px;">
               <p><strong>ADRESSE DE FACTURATION:</strong></p>
-              <span><strong>{{ Auth::user()->address }}</strong></span>
+              <span class="recapData"><strong>{{ Auth::user()->address }}</strong></span>
               </div>
               <div class="col-md-3">
                 <button style="background:grey;color:white;margin-top:8px" class="btn btn-sm" disabled="disabled">
@@ -221,8 +221,8 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
 
             <div class="col-md-6" style="margin-bottom:10px">
               <p><strong>MOYEN DE PAIEMENT:</strong></p>
-              <span>Compte OrangeBank : <strong>06******45</strong> </br>
-              Paiement :<strong> récurrent</strong> <br />
+              <span>Compte OrangeBank : <strong class="recapData">06******45</strong> </br>
+              Paiement :<strong class="recapData"> récurrent</strong> <br />
               Statut : <strong style="color:green"> Valide</strong></span>
               <div>
                 <button style="background:grey;color:white;margin-top:8px" class="btn" disabled="disabled">
