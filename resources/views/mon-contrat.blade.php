@@ -56,8 +56,8 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                 <div class="card-body-contract">
                   <div class="row" style="margin-left: 1%;">
                     <div class="col-md-8">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Date de début du contrat</h5>
-                      <span class="h2 font-weight-bold mb-0">21/12/2018</span>
+                      <h5 class="card-title text-uppercase text-muted mb-0">Début du contrat</h5>
+                      <span class="h2 font-weight-bold mb-0">@php echo substr(Auth::user()->created_at, 0, 10); @endphp</span>
                     </div>
                     <div class="col-auto">
                       <div>
