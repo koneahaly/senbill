@@ -61,7 +61,7 @@ $_SESSION["numberOfBillsNonPaid"]=$numberOfBillsNonPaid;
                         <td> Echéance de {{$value->month}} {{$value->year}} </td>
                         <td style="text-align:right;font-weight: 700;"> {{$value->amount}} FCFA </td>
                         @if($value->status == "paid")
-                          <td style="color:#2dc7c5;font-weight: 700;"> {{$value->status}} </td>
+                          <td style="color:#28863e;font-weight: 700;"> {{$value->status}} </td>
                           <td> {{$value->payment_method}} </td>
                         @endif
                         @if($value->status != "paid")
@@ -73,6 +73,7 @@ $_SESSION["numberOfBillsNonPaid"]=$numberOfBillsNonPaid;
                   </tbody>
                 </table>
               @endif
+            </div>
             @endif
 
               @if(Auth::user()->user_type == 2 and (!empty($data) and $data != NULL))
@@ -95,8 +96,8 @@ $_SESSION["numberOfBillsNonPaid"]=$numberOfBillsNonPaid;
                           <tr>
                             <td> {{$v->creation_date}} </td>
                             <td> Achat de carte prépayée </td>
-                            <td style="text-align:right;font-weight: 700;"> {{$v->amount}} </td>
-                            <td style="color:#2dc7c5;font-weight: 700;"> Paid </td>
+                            <td style="text-align:right;font-weight: 700;"> {{$v->amount}} FCFA </td>
+                            <td style="color:#28863e;font-weight: 700;"> Paid </td>
                             <td> {{$v->payment_method}} </td>
                           </tr>
                           @endforeach
@@ -116,18 +117,19 @@ $_SESSION["numberOfBillsNonPaid"]=$numberOfBillsNonPaid;
            </button>
           </div>
           </div>
-        </div>
+
           @endif
 
           @if(!empty($last_row_data))
+          <div class="row">
           <form class="form-inline" action="{{ route('mes-factures.pdf_bill')}}" method="GET">
               {{csrf_field()}}
             @if(Auth::user()->user_type != 2)
-            <br />
-            <div class="row">
-              <div class="col-md-3 col-md-offset-1" style="background-color:#fff;text-align:center;">
-                <div class="large-main-panel">
+            <br/>
+              <div class="col-md-4  ticket" style="text-align:center;">
+                <div class="large-main-panel" style="background-color:#fff;">
                   <div>
+                    <i class="fas fa-paperclip fa-3x" style="margin-right:98%;margin-top: -200px;"></i>
                     <br/>
                     <span> Facture du mois de {{$last_row_data->month}} &nbsp;</span>
                     @if($last_row_data->status != "paid")
@@ -155,8 +157,8 @@ $_SESSION["numberOfBillsNonPaid"]=$numberOfBillsNonPaid;
                     <br />
                     <div class="row">
                       @if($last_row_data->status == "paid")
-                        <button class="btn" style="background-color:grey;color:#fff"> Envoyer par mail </button>
-                        <button type="submit" class="btn" style="background-color:grey;color:#fff"> Téléchargez</button>
+                        <button class="btn" style="background-color:rgba(137,180,213,1);color:#fff"> Envoyer par mail </button>
+                        <button type="submit" class="btn" style="background-color:rgba(137,180,213,1);color:#fff"> Télécharger</button>
                         <input type="hidden" name="id_bill" value="{{$last_row_data->id}}" />
                       @endif
 
@@ -172,18 +174,18 @@ $_SESSION["numberOfBillsNonPaid"]=$numberOfBillsNonPaid;
 
               </div>
 
-            </div>
             @endif
           </form>
+
           @endif
 
         <form class="form-inline" action="{{ route('mes-factures.pdf_buy')}}" method="GET">
             {{csrf_field()}}
             @if(Auth::user()->user_type == 2 and (!empty($data) and $data != NULL))
-            <div class="row">
-              <div class="col-md-3 col-md-offset-1" style="background-color:#fff;text-align:center;">
-                <div class="large-main-panel">
+              <div class="col-md-4 ticket" style="text-align:center;">
+                <div class="large-main-panel" style="background-color:#fff;">
                   <div>
+                    <i class="fas fa-paperclip fa-3x" style="margin-right:98%;margin-top: -200px;"></i>
                     <br/>
                     <span> Reçu du mois de {{$last_row_data['creation_date']}} &nbsp;</span>
                     <span class="glyphicon glyphicon-ok-circle text-success">Payée</span>
@@ -200,8 +202,8 @@ $_SESSION["numberOfBillsNonPaid"]=$numberOfBillsNonPaid;
                     <br />
                     <br />
                     <div class="row">
-                        <button class="btn" style="background-color:grey;color:#fff"> Envoyer par mail </button>
-                        <button type="submit" class="btn" style="background-color:grey;color:#fff"> Téléchargez</button>
+                        <button class="btn" style="background-color:rgba(137,180,213,1);color:#fff"> Envoyer par mail </button>
+                        <button type="submit" class="btn" style="background-color:rgba(137,180,213,1);color:#fff"> Télécharger</button>
                         <input type="hidden" name="id_buy" value="{{$last_row_data['id']}}" />
                     </div>
                     <br />
@@ -211,11 +213,9 @@ $_SESSION["numberOfBillsNonPaid"]=$numberOfBillsNonPaid;
                 </div>
 
               </div>
-
-            </div>
             @endif
           </form>
-
+            </div>
           <br />
           <br />
 
