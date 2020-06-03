@@ -54,13 +54,16 @@
 $active_1 ='none';
 $active_2 ='none';
 $active_3 ='none';
+$active_4 ='none';
 $home_directory = "transactions-proprietaire";
 if($_SERVER['REQUEST_URI'] == '/infos-personnelles')
   $active_1 = 'active';
-if($_SERVER['REQUEST_URI'] == '/mon-contrat')
+if($_SERVER['REQUEST_URI'] == '/mes-locataires')
   $active_2 = 'active';
 if($_SERVER['REQUEST_URI'] == '/transactions-proprietaire')
   $active_3 = 'active';
+  if($_SERVER['REQUEST_URI'] == '/mes-logements')
+    $active_4 = 'active';
 
 if($_SERVER['REQUEST_URI'] == '/register')
   $home_directory = '.';
@@ -81,20 +84,20 @@ if($_SERVER['REQUEST_URI'] == '/register')
          <ul class="s2sn-navbar-elektra">
              @if($notification >=0)
                <li class="nav-item item-connected">
-                 <a class="nav-link {{ $active_3 }}"  href="{{ route('mes-factures') }}">
+                 <a class="nav-link {{ $active_3 }}"  href="{{ route('ownerTransactions') }}">
                    <i  class="fa fa-envelope-open-text fa-2x ">
                       <?php if($notification > 0) echo '<span class="badge">'.$notification.'</span>'; ?>
                    </i> <p>Transactions</p>
                   </a>
                </li>
                <li class="nav-item item-connected">
-                 <a class="nav-link {{ $active_2 }}"  href="{{ route('mon-contrat') }}">
+                 <a class="nav-link {{ $active_2 }}"  href="{{ route('mes-locataires') }}">
                    <i class="fa fa-file-contract fa-2x"></i> <p>Mes Locataires</p>
                      <span class="sr-only">(current)</span>
                  </a>
                </li>
                <li class="nav-item item-connected">
-                 <a class="nav-link {{ $active_1 }}"  href="{{ route('infos-personnelles') }}">
+                 <a class="nav-link {{ $active_4 }}"  href="{{ route('ownerProperties') }}">
                    <i class="fa fa-address-card fa-2x"></i><p>Mes logements</p>
                    <span class="sr-only">(current)</span>
                  </a>
@@ -146,17 +149,22 @@ if($_SERVER['REQUEST_URI'] == '/register')
               @if($notification >=0)
                 <li class="nav-item">
                   <a class="nav-link {{ $active_3 }}"  href="{{ route('mes-factures') }}">
-                  Factures et paiements
+                  Transactions
                    </a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link {{ $active_2 }}"  href="{{ route('mon-contrat') }}">
-                  Mon contrat
+                  Mes locataires
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link {{ $active_4 }}"  href="{{ route('infos-personnelles') }}">
+                  Mes logements
                   </a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link {{ $active_1 }}"  href="{{ route('infos-personnelles') }}">
-                  Mes informations personnelles
+                  Mes informations
                   </a>
                 </li>
             @endif

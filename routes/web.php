@@ -29,7 +29,8 @@ Route::get('/infos-personnelles', 'HomeController@display_personal_infos')->name
 Route::post('/infos-personnelles', 'HomeController@display_personal_infos')->name('infos-personnelles');
 Route::post('/infos-personnelles/update', 'HomeController@update_personal_infos')->name('infos-personnelles.update');
 Route::get('/transactions-proprietaire','realEstateOwnerController@display_transactions')->name('ownerTransactions');
-
+Route::get('/mes-logements','realEstateOwnerController@display_properties')->name('ownerProperties');
+Route::get('/mes-locataires','realEstateOwnerController@display_locataires')->name('mes-locataires');
 
 //Route::get('/home', 'HomeController@index')->name('home');
 //Route::post('/home', 'HomeController@index')->name('home');
