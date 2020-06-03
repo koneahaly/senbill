@@ -29,7 +29,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                       <div class="row" style="margin-bottom:35px">
                         <div class="col-md-7" style="font-size:18px"> <strong>Mes données personnelles</strong></div>
                         <div class="col-md-3">
-                          <button style="background:grey;color:white" class="btn btn-sm">
+                          <button style="background:rgba(137,180,213,1);color:white" class="btn btn-sm">
                             <span class="glyphicon glyphicon-edit">
                             </span>Modifier mes données personnelles
                           </button>
@@ -137,7 +137,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                       <p><strong>EMAIL</strong></p>
                       <span class="recapData">{{ Auth::user()->email }}</span>
                       <div>
-                        <button style="background:grey;color:white;margin-top:8px" class="btn">
+                        <button style="background:rgba(137,180,213,1);color:white;margin-top:8px" class="btn">
                           <span class="glyphicon glyphicon-edit"></span> Modifier
                         </button>
                       </div>
@@ -171,7 +171,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                       <p><strong>PHONE</strong></p>
                       <span class="recapData">{{ Auth::user()->phone }}</span>
                       <div>
-                        <button style="background:grey;color:white;margin-top:8px" class="btn">
+                        <button style="background:rgba(137,180,213,1);color:white;margin-top:8px" class="btn">
                           <span class="glyphicon glyphicon-edit"></span> Modifier
                         </button>
                       </div>
@@ -213,7 +213,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
               <span class="recapData"><strong>{{ Auth::user()->address }}</strong></span>
               </div>
               <div class="col-md-3">
-                <button style="background:grey;color:white;margin-top:8px" class="btn btn-sm" disabled="disabled">
+                <button style="background:rgba(137,180,213,1);color:white;margin-top:8px" class="btn btn-sm" disabled="disabled">
                   <span class="glyphicon glyphicon-edit"> </span> Ajouter un moyen de paiement
                 </button>
               </div>
@@ -225,7 +225,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
               Paiement :<strong class="recapData"> récurrent</strong> <br />
               Statut : <strong style="color:green"> Valide</strong></span>
               <div>
-                <button style="background:grey;color:white;margin-top:8px" class="btn" disabled="disabled">
+                <button style="background:rgba(137,180,213,1);color:white;margin-top:8px" class="btn" disabled="disabled">
                 <span class="glyphicon glyphicon-edit"></span> Modifier
                 </button></div>
             </div>

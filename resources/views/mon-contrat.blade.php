@@ -21,7 +21,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                   <div class="row" style="margin-left: 1%;">
                     <div class="col-md-8">
                       <h5 class="card-title text-uppercase text-muted mb-0">Type d'offre</h5>
-                      <span class="h2 font-weight-bold mb-0">@php $wording_offer = (Auth::user()->user_type == 2) ? "Woyofal" : "Classique"; echo $wording_offer; @endphp</span>
+                      <span class="h4 font-weight-bold mb-0">@php $wording_offer = (Auth::user()->user_type == 2) ? "Woyofal" : "Classique"; echo $wording_offer; @endphp</span>
                     </div>
                     <div class="col-auto">
                       <div>
@@ -39,7 +39,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                   <div class="row" style="margin-left: 1%;">
                     <div class="col-md-8">
                       <h5 class="card-title text-uppercase text-muted mb-0">Statut du contrat</h5>
-                      <span class="h2 font-weight-bold mb-0">Actif</span>
+                      <span class="h4 font-weight-bold mb-0">Actif</span>
                     </div>
                     <div class="col-auto">
                       <div>
@@ -57,7 +57,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                   <div class="row" style="margin-left: 1%;">
                     <div class="col-md-8">
                       <h5 class="card-title text-uppercase text-muted mb-0">Début du contrat</h5>
-                      <span class="h2 font-weight-bold mb-0">@php echo substr(Auth::user()->created_at, 0, 10); @endphp</span>
+                      <span class="h4 font-weight-bold mb-0">@php echo substr(Auth::user()->created_at, 0, 10); @endphp</span>
                     </div>
                     <div class="col-auto">
                       <div>
@@ -76,7 +76,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                   <div class="row" style="margin-left: 1%;">
                     <div class="col-md-8">
                       <h5 class="card-title text-uppercase text-muted mb-0">Référence contrat</h5>
-                      <span class="h2 font-weight-bold mb-0">{{ Auth::user()->customerId }}</span>
+                      <span class="h4 font-weight-bold mb-0">{{ Auth::user()->customerId }}</span>
                     </div>
                     <div class="col-auto">
                       <div>
