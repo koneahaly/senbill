@@ -55,5 +55,11 @@ Route::post('/admin/create-users-demo','Auth\RegisterController@create_users_dem
 Route::post('/admin/import-bills','AdminController@imports_bills')->name('admin.imports_bills');
 Route::post('/admin/import-bills-six-months','AdminController@imports_bills_previous_six_month')->name('admin.imports_bills_six_months');
 
+Route::get('/transactions-proprietaire','realEstateOwnerController@display_transactions')->name('ownerTransactions');
+Route::get('/mes-logements','realEstateOwnerController@display_properties')->name('ownerProperties');
+Route::get('/mes-locataires','realEstateOwnerController@display_locataires')->name('mes-locataires');
+
+Route::get('/infos-proprietaire', 'HomeController@display_proprio_infos')->name('infos-proprietaire');
+Route::post('/infos-proprietaire', 'HomeController@display_proprio_infos')->name('infos-proprietaire');
 
 Route::get('json-api', 'ApiController@index');

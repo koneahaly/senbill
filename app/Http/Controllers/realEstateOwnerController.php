@@ -27,17 +27,20 @@ class realEstateOwnerController extends Controller
       $s=Auth::user()->customerId;
       $infos_perso['infos_perso']=DB::table('users')->where('customerId',$s)->first();
       return view('ownerTransactions')->with($infos_perso);
+      Session::push('layout', 'realEstate');
     }
     public function display_locataires()
     {
       $s=Auth::user()->customerId;
       $infos_perso['infos_perso']=DB::table('users')->where('customerId',$s)->first();
       return view('mes-locataires')->with($infos_perso);
+      Session::push('layout', 'realEstate');
     }
     public function display_properties()
     {
       $s=Auth::user()->customerId;
       $infos_perso['infos_perso']=DB::table('users')->where('customerId',$s)->first();
       return view('ownerProperties')->with($infos_perso);
+      Session::push('layout', 'realEstate');
     }
 }

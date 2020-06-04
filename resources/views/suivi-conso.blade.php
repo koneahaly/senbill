@@ -155,7 +155,6 @@ function toggleDataSeries(e){
 </script>
 </head>
 <body>
-  <h3><strong>Suivi de la consommation</strong></h3>
   <div id="app" class="s2sn-wrapper-login-container s2sn-js-login" style="background-image: url({{url('images/white-background/19366_Fotor1.jpg')}}) !important;">
     <div class="row" style="padding-top:15%">
       <div class="col-md-1"></div>

@@ -92,6 +92,7 @@ class HomeController extends Controller
         }
         //session(['keepNumberOfBillsNonPaid' => $numberOfBillsNonPaid]);
         Session::push('keepNumberOfBillsNonPaid', $keepNumberOfBillsNonPaid);
+        Session::push('layout', 'app');
         //dd(Session::get('keepNumberOfBillsNonPaid'));
 
         } catch (Throwable $e) {
@@ -139,6 +140,11 @@ class HomeController extends Controller
     public function display_personal_infos()
     {
       return view('infos-personnelles');
+    }
+
+    public function display_proprio_infos()
+    {
+      return view('infos-proprietaire');
     }
 
     public function display_services()
