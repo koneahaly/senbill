@@ -106,10 +106,6 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                       <input pattern="[a-zA-Z ]{2,30}" title="le nom renseigné n'est pas correct." class="col-form-label" name="name" value="{{ Auth::user()->name }}" style="border-bottom:3px solid #084f78 !important" required>
                     </div>
 
-                    <div class="col-md-6" style="margin-bottom:10px">
-                      <p><strong>CNI</strong></p>
-                      <input pattern="\d{13}" title="le numéro d'identification n'est pas valide." class="col-form-label" name="customer_id" value="{{ Auth::user()->customerId }}" style="border-bottom:3px solid #084f78 !important" required>
-                    </div>
 
                     <div class="col-md-6" style="margin-bottom:10px">
                       <p><strong>ADRESSE DE FACTURATION:</strong></p>
