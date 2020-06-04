@@ -92,6 +92,19 @@
                                   <!--  <h2 class="steps">Step 2 - 4</h2>-->
                                 </div>
                             </div>
+
+                            <div class="row">
+                                  <label for="exampleFormControlSelect1" class="col-md-4 control-label">CIVILITE</label>
+                                  <div class="col-md-6">
+                                    <select class="form-control" name="salutation" id="exampleFormControlSelect1">
+                                      <option value="" disabled="disabled">--Votre civilité--</option>
+                                      <option value="Mme">Madame</option>
+                                      <option value="Mr">Monsieur</option>
+                                    </select>
+                                    <br />
+                                </div>
+                              </div>
+
                             <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                                 <label for="name" class="col-md-4 control-label">Prénom</label>
 

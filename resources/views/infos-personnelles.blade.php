@@ -45,6 +45,10 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                       </div>
                     </form>
                   @if(!isset($_POST['update_perso_data']))
+                    <div style="margin-left:2%;margin-bottom:10px">
+                      <p><strong>CIVILITE</strong></p>
+                      <span class="recapData">{{ Auth::user()->civilite }}</span>
+                    </div>
                   <div class="col-md-6" style="margin-bottom:10px">
                     <p><strong>PRENOM</strong></p>
                     <span class="recapData">{{ Auth::user()->first_name }}</span>
@@ -80,8 +84,14 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                           <label for="exampleFormControlSelect1">CIVILITE</label>
                           <select class="form-control" name="salutation" id="exampleFormControlSelect1">
                             <option value="" disabled="disabled">--Votre civilité--</option>
-                            <option value="madame">Madame</option>
-                            <option value="monsieur">Monsieur</option>
+                            @if(Auth::user()->civilite == 'Mme')
+                              <option value="Mme">Madame</option>
+                              <option value="Mr">Monsieur</option>
+                            @endif
+                            @if(Auth::user()->civilite == 'Mr')
+                              <option value="Mr">Monsieur</option>
+                              <option value="Mme">Madame</option>
+                            @endif
                           </select>
                         </div>
                       </div>

@@ -113,7 +113,7 @@ class HomeController extends Controller
       if($given->action == "save"){
         DB::table('users')
             ->where('customerId', $s)
-            ->update(['name' => $given->name,'first_name' => $given->first_name, 'customerId' => $given->customer_id, 'address' => $given->address]);
+            ->update(['civilite' => $given->salutation, 'name' => $given->name,'first_name' => $given->first_name, 'customerId' => $given->customer_id, 'address' => $given->address]);
         }
 
       if($given->action_email == "save"){
