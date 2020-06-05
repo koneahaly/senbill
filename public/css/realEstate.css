@@ -63,3 +63,16 @@
     padding: 15px;
     display: flex;
 }
+.propPanelBody
+{
+  border-radius: 6px;
+}
+/* The popup form - hidden by default */
+.form-popup {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  right: 15px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}

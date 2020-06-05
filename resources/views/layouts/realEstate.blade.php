@@ -47,7 +47,9 @@
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <link rel="stylesheet" type="text/css" href="{{url('css/elektra.css')}}">
 <link rel="stylesheet" type="text/css" href="{{url('css/realEstate.css')}}">
-
+@if ($_SERVER['REQUEST_URI'] == '/mes-logements')
+ <link rel="stylesheet" type="text/css" href="{{url('css/appLandlord.css')}}">
+@endif
 <!--===============================================================================================-->
 
 @php
