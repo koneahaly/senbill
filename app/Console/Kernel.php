@@ -24,8 +24,11 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+      $schedule->call(function () {
+        DB::table('bills')
+            ->where([['customerId', $s],['status','En attente'],['deadline','<',date('Y-m-d H:i:s')]])
+            ->update(['status' => 'Impayé']);
+        })->daily();
     }
 
     /**
