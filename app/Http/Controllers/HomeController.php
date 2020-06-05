@@ -50,7 +50,7 @@ class HomeController extends Controller
 
         $s=Auth::user()->customerId;
         if(Auth::user()->user_type != 2){
-          $numberOfBillsNonPaid = (int)DB::table('bills')->where('customerId',$s)->where('status','Unpaid')->orderBy('id', 'DESC')->count();
+          $numberOfBillsNonPaid = (int)DB::table('bills')->where('customerId',$s)->where('status','!=','paid')->orderBy('id', 'DESC')->count();
           $numberOfBills = (int)DB::table('bills')->where('customerId',$s)->orderBy('id', 'DESC')->count();
           if($numberOfBills > 0){
             $data['data']=DB::table('bills')->where('customerId',$s)->orderBy('id', 'DESC')->get();

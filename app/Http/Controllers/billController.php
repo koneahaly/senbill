@@ -79,7 +79,7 @@ class billController extends Controller
         $admin=DB::table('admins')->first();
         $rate=$admin->rate;
         $bill->amount=$bill->units * $rate;
-        $bill->status="Unpaid";
+        $bill->status="En attente";
         $bill->save();
         return view('success');
     }
@@ -89,7 +89,7 @@ class billController extends Controller
     {
         $s=Auth::user()->customerId;
         DB::table('bills')
-            ->where([['customerId', $s],['status','Unpaid']])
+            ->where([['customerId', $s],['status','!=','paid']])
             ->update(['status' => 'paid','payment_method' => $input->payment_method]);
         return redirect()->intended(route('mes-factures'));
     }
@@ -139,7 +139,7 @@ class billController extends Controller
     public static function calculate(string $s)
     {
 
-        $sum = DB::table('bills')->where([['customerId',$s],['status','Unpaid']])->sum('amount');
+        $sum = DB::table('bills')->where([['customerId',$s],['status','!=','paid']])->sum('amount');
         return $sum;
     }
     public function pdf_bill(request $request)

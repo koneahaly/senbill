@@ -45,7 +45,7 @@ class AdminController extends Controller
           $admin=DB::table('admins')->first();
           $rate=$admin->rate;
           $bill->amount=$bill->units * $rate;
-          $bill->status="Unpaid";
+          $bill->status="En attente";
           $bill->save();
         }
       }
@@ -73,7 +73,7 @@ class AdminController extends Controller
             $rate=$admin->rate;
             $bill->amount=$bill->units * $rate;
             if($months[$month_int] == date('F'))
-              $bill->status="Unpaid";
+              $bill->status="En attente";
             else
               $bill->status="paid";
             $bill->save();
