@@ -120,11 +120,25 @@ if($_SERVER['REQUEST_URI'] == '/register')
                      <span class="sr-only">(current)</span>
                  </a>
                </li>
-               <li class="nav-item item-connected">
-                 <a class="nav-link {{ $active_1 }}"  href="{{ route('infos-personnelles') }}">
-                   <i class="fa fa-address-card fa-2x"></i><p>Mes informations</p>
-                   <span class="sr-only">(current)</span>
-                 </a>
+
+               <li class="dropdown nav-item item-connected">
+                   <a href="#" class="nav-link {{ $active_1 }} dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
+                     <i class="fa fa-user-alt-slash fa-2x"></i> <p>Mes informations</p>
+                     <span class="caret"></span>
+                   </a>
+
+                   <ul class="dropdown-menu">
+                       <li>
+                         <a href="{{ route('infos-personnelles') }}">
+                           personnelles
+                         </a>
+                       </li>
+                       <li>
+                         <a href="{{ route('infos-personnelles') }}">
+                           services
+                         </a>
+                       </li>
+                   </ul>
                </li>
            @endif
              <li class="dropdown">
