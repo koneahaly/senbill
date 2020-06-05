@@ -22,12 +22,12 @@ function calc_month($param){
 }
 
 $dataPoints1 = array(
-  array("label"=> calc_month(6), "y"=> $my_infos_conso[calc_month(6)]),
-  array("label"=> calc_month(5), "y"=> $my_infos_conso[calc_month(5)]),
-  array("label"=> calc_month(4), "y"=> $my_infos_conso[calc_month(4)]),
-  array("label"=> calc_month(3), "y"=> $my_infos_conso[calc_month(3)]),
-  array("label"=> calc_month(2), "y"=> $my_infos_conso[calc_month(2)]),
-  array("label"=> calc_month(1), "y"=> $my_infos_conso[calc_month(1)])
+  array("label"=> calc_month(6), "y"=> (!empty($my_infos_conso[calc_month(6)])) ? $my_infos_conso[calc_month(6)] : 0.00 ),
+  array("label"=> calc_month(5), "y"=> (!empty($my_infos_conso[calc_month(5)])) ? $my_infos_conso[calc_month(5)] : 0.00 ),
+  array("label"=> calc_month(4), "y"=> (!empty($my_infos_conso[calc_month(4)])) ? $my_infos_conso[calc_month(4)] : 0.00 ),
+  array("label"=> calc_month(3), "y"=> (!empty($my_infos_conso[calc_month(3)])) ? $my_infos_conso[calc_month(3)] : 0.00 ),
+  array("label"=> calc_month(2), "y"=> (!empty($my_infos_conso[calc_month(2)])) ? $my_infos_conso[calc_month(2)] : 0.00 ),
+  array("label"=> calc_month(1), "y"=> (!empty($my_infos_conso[calc_month(1)])) ? $my_infos_conso[calc_month(1)] : 0.00 )
 );
 $dataPoints2 = array(
   array("label"=> calc_month(6), "y"=> 64.61),
@@ -40,12 +40,12 @@ $dataPoints2 = array(
 );
 
 $dataPoints3 = array(
-  array("label"=> calc_month(6), "y"=> $my_infos_conso_euro[calc_month(6)]),
-  array("label"=> calc_month(5), "y"=> $my_infos_conso_euro[calc_month(5)]),
-  array("label"=> calc_month(4), "y"=> $my_infos_conso_euro[calc_month(4)]),
-  array("label"=> calc_month(3), "y"=> $my_infos_conso_euro[calc_month(3)]),
-  array("label"=> calc_month(2), "y"=> $my_infos_conso_euro[calc_month(2)]),
-  array("label"=> calc_month(1), "y"=> $my_infos_conso_euro[calc_month(1)])
+  array("label"=> calc_month(6), "y"=> (!empty($my_infos_conso_euro[calc_month(6)])) ? $my_infos_conso_euro[calc_month(6)] : 0.00 ),
+  array("label"=> calc_month(5), "y"=> (!empty($my_infos_conso_euro[calc_month(5)])) ? $my_infos_conso_euro[calc_month(5)] : 0.00 ),
+  array("label"=> calc_month(4), "y"=> (!empty($my_infos_conso_euro[calc_month(4)])) ? $my_infos_conso_euro[calc_month(4)] : 0.00 ),
+  array("label"=> calc_month(3), "y"=> (!empty($my_infos_conso_euro[calc_month(3)])) ? $my_infos_conso_euro[calc_month(3)] : 0.00 ),
+  array("label"=> calc_month(2), "y"=> (!empty($my_infos_conso_euro[calc_month(2)])) ? $my_infos_conso_euro[calc_month(2)] : 0.00 ),
+  array("label"=> calc_month(1), "y"=> (!empty($my_infos_conso_euro[calc_month(1)])) ? $my_infos_conso_euro[calc_month(1)] : 0.00 )
 );
 $dataPoints4 = array(
   array("label"=> calc_month(6), "y"=> 64.61),
