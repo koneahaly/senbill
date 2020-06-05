@@ -41,7 +41,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
             </div>
             <div class="sidebar-filter">
                <!----> <!----> <!---->
-               <a class="filter-item m-btn btn-primary" title="Ajouter un logement" onclick="openForm(); return false;">
+               <a class="filter-item m-btn btn-primary" title="Ajouter un logement" data-toggle="modal" data-target="#modalForm">
                   <div class="icon-svg">
                      <e-svg-icon set-class="i-svg--fill i-svg--12 i-svg-fill--white" xlink="#icon-line-plus" class="e-svg-icon">
                         <svg class="i-svg--fill i-svg--12 i-svg-fill--white" id="svgElement" viewBox="0 0 12 12">
@@ -261,14 +261,78 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
     </div>
   </div>
   <!---FORMULAIRE AJOUT LOGEMENT-->
-<div class="form-popup" id="propForm">
-<div class="row">
 
-</div>
-</div>
-  <!--- FIN FORMULAIRE AJOUT LOGEMENT-->
-</div>
+<!-- modal Formulaire -->
+<div class="modal fade" id="modalForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Ajouter un nouveau logement</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        <div class="modal-body mx-3">
+      <div class="p-l-24">
+       <div class="formRow">
+          <div class="col">
+             <custom-input label="Nom du logement">
+                <div class="form-group">
+                   <!---->
+                   <label  class="form-control-label" for="name">
+                      <span>Nom du logement</span> <!---->
+                   </label>
+                   <!---->
+                   <div class="group-input required" >
+                      <input class="form-control autofocus-control"  type="text"  name="name" id="name" required="required"> <!----> <!----> <!---->
+                   </div>
+                   <!---->
+                </div>
+             </custom-input>
+          </div>
+       </div>
+       <div class="formRow">
+          <div class="col">
+             <div>
+                <custom-geo placeholder="Entrer l'adresse" label="Adresse du logement">
+                   <div autocomplete-place="" class="form-group">
+                      <!----><label class="form-control-label"  for="address1">Adresse</label><!---->
+                      <div class="group-input required">
+                         <input class="form-control"  type="text" autocapitalize="off" autocorrect="off"   name="address1" id="address1" placeholder="Entrer l'adresse" required="required"> <!----> <!----> <!----> <!---->
+                      </div>
+                      <!---->
+                   </div>
+                </custom-geo>
+             </div>
+          </div>
+          <div class="col">
+             <custom-input label="Ville">
+                <div class="form-group">
+                   <!---->
+                   <label class="form-control-label" for="city">
+                      <span>Ville</span> <!---->
+                   </label>
+                   <!---->
+                   <div class="group-input required">
+                      <input class="form-control autofocus-control"  type="text" name="city" id="city" maxlength="127" required="required"> <!----> <!----> <!---->
+                   </div>
+                   <!---->
+                </div>
+             </custom-input>
+          </div>
+       </div>
+        <!-- AJOUTER NBRE DE CHAMBRES, CAUTION, LOCATION, MEUBLE, -->
+    </div>
 
+
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button class="btn btn-unique">Valider <i class="fas fa-paper-plane-o ml-1"></i></button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- modal Formulaire -->
 
 @endsection
 
