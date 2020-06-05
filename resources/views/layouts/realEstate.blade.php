@@ -47,10 +47,6 @@
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <link rel="stylesheet" type="text/css" href="{{url('css/elektra.css')}}">
 <link rel="stylesheet" type="text/css" href="{{url('css/realEstate.css')}}">
-<link rel="stylesheet" type="text/css" href="{{url('css/landlord.module.css')}}">
-@if($_SERVER['REQUEST_URI'] == '/mes-logements')
-     <link rel="stylesheet" type="text/css" href="{{url('css/appLandlord.css')}}">
-@endif
 
 <!--===============================================================================================-->
 
@@ -91,26 +87,39 @@ if($_SERVER['REQUEST_URI'] == '/register')
                  <a class="nav-link {{ $active_3 }}"  href="{{ route('ownerTransactions') }}">
                    <i  class="fa fa-envelope-open-text fa-2x ">
                       <?php if($notification > 0) echo '<span class="badge">'.$notification.'</span>'; ?>
-                   </i> <p>Paiements</p>
+                   </i> <p>Transactions</p>
                   </a>
                </li>
                <li class="nav-item item-connected">
-                 <a class="nav-link {{ $active_4 }}"  href="{{ route('ownerProperties') }}">
-                   <i class="fa fa-building fa-2x"></i><p>Mes logements</p>
-                   <span class="sr-only">(current)</span>
-                 </a>
-               </li>
-               <li class="nav-item item-connected">
                  <a class="nav-link {{ $active_2 }}"  href="{{ route('mes-locataires') }}">
-                   <i class="fa fa-house-user fa-2x"></i> <p>Mes Locataires</p>
+                   <i class="fa fa-file-contract fa-2x"></i> <p>Mes Locataires</p>
                      <span class="sr-only">(current)</span>
                  </a>
                </li>
                <li class="nav-item item-connected">
-                 <a class="nav-link {{ $active_1 }}"  href="{{ route('infos-proprietaire') }}">
-                   <i class="fa fa-address-card fa-2x"></i><p>Mes informations</p>
+                 <a class="nav-link {{ $active_4 }}"  href="{{ route('ownerProperties') }}">
+                   <i class="fa fa-address-card fa-2x"></i><p>Mes logements</p>
                    <span class="sr-only">(current)</span>
                  </a>
+               </li>
+               <li class="dropdown nav-item item-connected">
+                   <a href="#" class="nav-link {{ $active_1 }} dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
+                     <i class="fa fa-user fa-2x"></i> <p>Mon profil</p>
+                     <span class="caret"></span>
+                   </a>
+
+                   <ul class="dropdown-menu">
+                       <li>
+                         <a href="{{ route('infos-personnelles') }}">
+                           mes infos personnelles
+                         </a>
+                       </li>
+                       <li>
+                         <a href="{{ route('infos-personnelles') }}">
+                           mes services
+                         </a>
+                       </li>
+                   </ul>
                </li>
            @endif
              <li class="dropdown">
