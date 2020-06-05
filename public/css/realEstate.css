@@ -15,3 +15,51 @@
 .green {
     color:green;
 }
+.panel-wrapper
+{
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+  color: #4f566b;
+  font-variant-numeric: proportional-nums;
+  font-family: proxima-nova,Avenir,sans-serif;
+  line-height: 1.5;
+}
+ .propRow, .propRow--no-margin {
+    display: flex;
+    flex: 0 1 auto;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+ .propRow {
+    margin-left: -10px;
+    margin-right: -10px;
+}
+
+.panel-wrapper.column .panel-property--list {
+    margin-top: 20px;
+    flex-direction: column;
+    flex: 1 0 auto;
+}
+
+.panel-property--list {
+    position: relative;
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.panel-wrapper.column .panel-property--list .m-panel__body {
+    position: relative;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    flex: 1 0 auto;
+}
+
+.panel-property--list .m-panel__body {
+    padding: 0;
+}
+.panel-wrapper.column .panel-property--list .m-panel__body .body-detail {
+    padding: 15px;
+    display: flex;
+}
