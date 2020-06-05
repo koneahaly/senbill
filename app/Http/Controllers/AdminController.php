@@ -41,6 +41,7 @@ class AdminController extends Controller
           $bill->final=rand(100,4000);
           $bill->month=date("F");
           $bill->year=date("Y");
+          $bill->deadline=date('Y-m-d H:i:s', strtotime('+5 day', time()));
           $bill->units=(integer)$bill->final-(integer)$bill->initial;
           $admin=DB::table('admins')->first();
           $rate=$admin->rate;
@@ -68,6 +69,7 @@ class AdminController extends Controller
             $bill->final=rand(100,4000);
             $bill->month=$months[$month_int];
             $bill->year=$year_int;
+            $bill->deadline=date('Y-m-d H:i:s', strtotime('+5 day', time()));
             $bill->units=(integer)$bill->final-(integer)$bill->initial;
             $admin=DB::table('admins')->first();
             $rate=$admin->rate;

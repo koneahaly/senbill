@@ -104,9 +104,9 @@ class RegisterController extends Controller
         $service_index = $service -1;
 
           User::create([
-              'name' => 'stat'.$randomNumber,
-              'first_name' => 'stat'.$randomNumber,
-              'email' => 'stat'.$randomNumber.'@gmail.com',
+              'name' => 'user'.$randomNumber,
+              'first_name' => 'user'.$randomNumber,
+              'email' => 'user'.$randomNumber.'@gmail.com',
               'phone' => '0659594346',
               'customerId' => hexdec(uniqid()),
               'user_type' => $user_type,
@@ -115,9 +115,9 @@ class RegisterController extends Controller
               'service_'.$service.'' => $services[$service_index]
           ]);
           if($user_type == 2)
-            fwrite($fc, 'stat'.$randomNumber.'@gmail.com,');
+            fwrite($fc, 'user'.$randomNumber.'@gmail.com,');
           else
-            fwrite($fp, 'stat'.$randomNumber.'@gmail.com,');
+            fwrite($fp, 'user'.$randomNumber.'@gmail.com,');
       }
       fclose($fp);
       fclose($fc);
