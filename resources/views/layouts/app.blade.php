@@ -123,19 +123,19 @@ if($_SERVER['REQUEST_URI'] == '/register')
 
                <li class="dropdown nav-item item-connected">
                    <a href="#" class="nav-link {{ $active_1 }} dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
-                     <i class="fa fa-user-alt-slash fa-2x"></i> <p>Mes informations</p>
+                     <i class="fa fa-user fa-2x"></i> <p>Mon profil</p>
                      <span class="caret"></span>
                    </a>
 
                    <ul class="dropdown-menu">
                        <li>
                          <a href="{{ route('infos-personnelles') }}">
-                           personnelles
+                           mes infos personnelles
                          </a>
                        </li>
                        <li>
-                         <a href="{{ route('infos-personnelles') }}">
-                           services
+                         <a href="{{ route('infos-services') }}">
+                           mes services
                          </a>
                        </li>
                    </ul>
