@@ -15,7 +15,9 @@
        // Notice how this gets configured before we load Font Awesome
        window.FontAwesomeConfig = { autoReplaceSvg: false }
   </script>
-  <script src="{!! mix('js/app.js') !!}"></script>
+    <script src="{!! mix('js/app.js') !!}"></script>
+
+
   @yield('scripts')
 
     <!-- Styles -->
@@ -32,25 +34,33 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+
 <!--===============================================================================================-->
-<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+
+@if ($_SERVER['REQUEST_URI'] == '/mes-logements')
+ <link rel="stylesheet" type="text/css" href="{{url('vendor/select2/select2.min.css')}}">
+ <link rel="stylesheet" type="text/css" href="{{url('css/utilForm.css')}}">
+ <link rel="stylesheet" type="text/css" href="{{url('css/mainForm.css')}}">
+<link rel="stylesheet" type="text/css" href="{{url('vendor/animate/animate.css')}}">
 <!--===============================================================================================-->
-<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+  <link rel="stylesheet" type="text/css" href="{{url('vendor/css-hamburgers/hamburgers.min.css')}}">
 <!--===============================================================================================-->
-<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+  <link rel="stylesheet" type="text/css" href="{{url('vendor/animsition/css/animsition.min.css')}}">
 <!--===============================================================================================-->
-<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+  <link rel="stylesheet" type="text/css" href="{{url('vendor/daterangepicker/daterangepicker.css')}}">
 <!--===============================================================================================-->
-<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
-<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="{{url('vendor/noui/nouislider.min.css')}}">
+ <link rel="stylesheet" type="text/css" href="{{url('css/appLandlord.css')}}">
+@endif
+
 <link rel="stylesheet" type="text/css" href="css/util.css">
+@if ($_SERVER['REQUEST_URI'] != '/mes-logements')
 <link rel="stylesheet" type="text/css" href="css/main.css">
+@endif
 <link rel="stylesheet" type="text/css" href="{{url('css/elektra.css')}}">
 <link rel="stylesheet" type="text/css" href="{{url('css/realEstate.css')}}">
 <link rel="stylesheet" type="text/css" href="{{url('css/landlord.module.css')}}">
-@if ($_SERVER['REQUEST_URI'] == '/mes-logements')
- <link rel="stylesheet" type="text/css" href="{{url('css/appLandlord.css')}}">
-@endif
+
 <!--===============================================================================================-->
 
 @php

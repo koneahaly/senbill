@@ -10402,10 +10402,7 @@ samp {
 }
 
 button,
-input,
-optgroup,
-select,
-textarea {
+optgroup {
 	color: inherit;
 	font: inherit;
 	margin: 0
@@ -10415,8 +10412,7 @@ button {
 	overflow: visible
 }
 
-button,
-select {
+button {
 	text-transform: none
 }
 
@@ -10587,7 +10583,6 @@ input[type=text],
 input[type=time],
 input[type=url],
 input[type=week],
-select,
 textarea {
 	-webkit-appearance: none;
 	-moz-appearance: none;
@@ -16443,7 +16438,6 @@ small.hint-text {
 
 button,
 input,
-select,
 textarea {
 	font-family: inherit;
 	font-size: inherit;
@@ -17537,495 +17531,7 @@ input[type=radio]:focus {
 	display: none
 }
 
-.select2-property {
-	font-weight: 400
-}
 
-.select2-property,
-.select2-rent {
-	font-size: 12px;
-	font-family: montserrat, Avenir, sans-serif
-}
-
-.select2-rent {
-	font-weight: 600
-}
-
-.select2-date {
-	font-size: 12px;
-	font-weight: 400;
-	color: #4f566b
-}
-
-.ui-select2-content .info-user {
-	display: flex;
-	align-items: center
-}
-
-.ui-select2-content .info-user>span {
-	padding-right: 5px
-}
-
-.main-category .category-width-200 .select2-drop {
-	width: 203%!important
-}
-
-.select2-container {
-	margin: 0;
-	width: 100%;
-	position: relative;
-	display: inline-block;
-	border-radius: 4px;
-	vertical-align: middle;
-	background-color: #fff
-}
-
-.select2-container.select2-container-active .select2-choice,
-.select2-container.select2-container-active .select2-choices {
-	border: 1px solid #edf0f5;
-	border-top-left-radius: 2px;
-	border-top-right-radius: 2px;
-	outline: none;
-	box-shadow: none
-}
-
-.select2-container .select2-display-none {
-	display: none
-}
-
-.select2-container .select2-choice {
-	display: flex;
-	align-items: center;
-	overflow: hidden;
-	position: relative;
-	font-size: 13px;
-	border: 1px solid #edf0f5;
-	white-space: nowrap;
-	line-height: 26px;
-	text-decoration: none;
-	background-clip: padding-box;
-	background-image: none;
-	padding: 3px 9px;
-	height: 34px;
-	transition: border .2s linear;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none
-}
-
-.select2-container .select2-choice.ui-select-match {
-	color: #4f566b
-}
-
-.select2-container .select2-choice.select2-default {
-	color: #7790b3
-}
-
-.select2-container .select2-choice .select2-search-choice-close {
-	position: absolute;
-	top: 9px;
-	right: 18px;
-	z-index: 50;
-	display: block;
-	background: none;
-	line-height: 1;
-	cursor: pointer;
-	outline: none
-}
-
-.select2-container .select2-choice .select2-search-choice-close:hover {
-	text-decoration: none;
-	color: #4f566b
-}
-
-.select2-container .select2-choice .select2-search-choice-close:before {
-	font-family: fontello-line;
-	content: "\e9ab";
-	font-size: 9px;
-	color: #4f566b
-}
-
-.select2-container .select2-choice>.select2-chosen {
-	margin-right: 22px;
-	display: block;
-	overflow: hidden;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-	float: none;
-	width: 100%
-}
-
-.select2-container .select2-choice>.select2-arrow {
-	display: inline-block;
-	position: absolute;
-	right: 7px;
-	top: 7px;
-	background: transparent
-}
-
-.select2-container .select2-choice>.select2-arrow b:before {
-	font-family: fontello-line;
-	content: "\f0dd";
-	position: relative;
-	font-size: 12px
-}
-
-.select2-container .select2-drop {
-	width: 100%;
-	margin-top: -1px;
-	position: absolute;
-	z-index: 100;
-	top: 100%;
-	background: #fff;
-	color: #4f566b;
-	border: 1px solid #edf0f5;
-	border-top: 0;
-	border-radius: 0 0 4px 4px;
-	box-shadow: 5px 5px 15px rgba(50, 50, 93, .01), 0 2px 5px rgba(0, 0, 0, .07)
-}
-
-.select2-container .select2-drop.select2-drop-active {
-	z-index: 100;
-	padding-top: 5px;
-	border: 1px solid #edf0f5;
-	border-top: none;
-	border-bottom-right-radius: 2px;
-	border-bottom-left-radius: 2px
-}
-
-.select2-container .select2-drop .select2-search {
-	position: relative;
-	display: inline-block;
-	width: 100%;
-	margin: 0;
-	padding: 4px 8px 8px;
-	z-index: 101;
-	white-space: nowrap
-}
-
-.select2-container .select2-drop .select2-search input {
-	font-size: 12px;
-	width: 100%!important;
-	height: auto!important;
-	min-height: 24px;
-	line-height: 24px;
-	padding: 0 20px 0 5px;
-	vertical-align: initial;
-	margin: 0;
-	outline: 0;
-	font-family: proxima-nova, Avenir, sans-serif;
-	border: 1px solid #edf0f5;
-	border-radius: 2px;
-	background-image: url(images/shared/other/select2/select2.png);
-	background-repeat: no-repeat;
-	background-position: 100% -22px;
-	box-shadow: none;
-	transition: .2s ease
-}
-
-.select2-container .select2-drop .select2-search input:focus {
-	border-color: #e6ebf1
-}
-
-.select2-container .select2-drop .select2-results {
-	max-height: 200px;
-	padding: 0;
-	margin: 0;
-	position: relative;
-	overflow-x: hidden;
-	overflow-y: auto;
-	-webkit-tap-highlight-color: #000000
-}
-
-.select2-container .select2-drop .select2-results ul.select2-result-sub {
-	margin: 0;
-	padding-left: 0
-}
-
-.select2-container .select2-drop .select2-results .select2-disabled {
-	background: #e6ebf1;
-	display: list-item;
-	cursor: not-allowed
-}
-
-.select2-container .select2-drop .select2-results .select2-disabled .select2-result-label {
-	cursor: not-allowed
-}
-
-.select2-container .select2-drop .select2-results .select2-disabled.select2-highlighted {
-	color: #4f566b;
-	background: #e6ebf1;
-	display: list-item;
-	cursor: not-allowed
-}
-
-.select2-container .select2-drop .select2-results .select2-disabled.select2-highlighted .select2-result-label {
-	color: #4f566b
-}
-
-.select2-container .select2-drop .select2-results .select2-disabled.ui-select-choices-row {
-	cursor: not-allowed
-}
-
-.select2-container .select2-drop .select2-results .select2-disabled.ui-select-choices-row:hover {
-	background-color: #e6ebf1;
-	color: #4f566b
-}
-
-.select2-container .select2-drop .select2-results li {
-	color: #4f566b;
-	list-style: none;
-	display: list-item;
-	background-image: none
-}
-
-.select2-container .select2-drop .select2-results li .select2-result-label {
-	padding: 3px 10px 4px;
-	margin: 0;
-	cursor: pointer;
-	min-height: 1em;
-	font-size: 1rem;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none
-}
-
-.select2-container .select2-drop .select2-results li .select2-highlighted {
-	background: #f6f9fc;
-	border-radius: 0
-}
-
-.select2-container .select2-drop .select2-results li .select2-highlighted .select2-result-label {
-	color: #4f566b
-}
-
-.select2-container .select2-drop .select2-results li.ui-select-choices-row:hover {
-	background-color: #f6f9fc;
-	color: #4f566b
-}
-
-.select2-container.footer .select2-results {
-	overflow: visible;
-	height: 100%;
-	max-height: none;
-	margin-bottom: 40px
-}
-
-.select2-container.footer .select2-results li.ui-select-choices-group {
-	position: relative;
-	overflow-x: hidden;
-	overflow-y: auto;
-	max-height: 200px;
-	padding: 0
-}
-
-.select2-container.footer .select2-results li.ui-select-footer {
-	position: absolute;
-	bottom: -34px;
-	left: 0;
-	width: 100%
-}
-
-.select2-container.footer .select2-results li.ui-select-footer .m-btn-link,
-.select2-container.footer .select2-results li.ui-select-footer .m-btn-link--back,
-.select2-container.footer .select2-results li.ui-select-footer .m-btn-link--black,
-.select2-container.footer .select2-results li.ui-select-footer .m-btn-link--clone,
-.select2-container.footer .select2-results li.ui-select-footer .m-btn-link--danger,
-.select2-container.footer .select2-results li.ui-select-footer .m-btn-link--info,
-.select2-container.footer .select2-results li.ui-select-footer .m-btn-link--master,
-.select2-container.footer .select2-results li.ui-select-footer .m-btn-link--remove,
-.select2-container.footer .select2-results li.ui-select-footer .m-btn-link--view,
-.select2-container.footer .select2-results li.ui-select-footer .m-btn-link--warning {
-	padding: 5px 10px
-}
-
-.select2-container.footer .select2-results li.ui-select-footer .purchase-btn {
-	padding: 0 10px
-}
-
-.select2-container.footer .select2-results li.ui-select-footer .m-btn {
-	position: relative;
-	overflow: hidden;
-	width: 100%;
-	max-width: 100%;
-	font-size: 13px;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	word-wrap: normal
-}
-
-.ui-select-container.direction-up.select2-dropdown-open[theme=select2] .ui-select-match {
-	border-radius: 0!important;
-	border-bottom-color: transparent!important
-}
-
-.ui-select-container.direction-up[theme=select2] .ui-select-dropdown {
-	border-width: 0!important
-}
-
-.select2-drop-mask {
-	border: 0;
-	margin: 0;
-	padding: 0;
-	position: fixed;
-	left: 0;
-	top: 0;
-	min-height: 100%;
-	min-width: 100%;
-	height: auto;
-	width: auto;
-	opacity: 0;
-	z-index: 101;
-	background-color: #fff;
-	filter: alpha(opacity=0)
-}
-
-.select2-drop-auto-width {
-	border-top: 1px solid #c9d3e1;
-	width: auto
-}
-
-.select2-drop-auto-width .select2-search {
-	padding-top: 4px
-}
-
-.select2-dropdown-open .select2-choice {
-	border-bottom-color: transparent;
-	box-shadow: inset 0 1px 0 #fff;
-	border-bottom-left-radius: 0;
-	border-bottom-right-radius: 0;
-	background-color: #f6f9fc;
-	background-image: linear-gradient(0deg, #fff, #f6f9fc 50%)
-}
-
-.select2-dropdown-open .select2-choice .select2-arrow {
-	background: transparent;
-	border-left: none;
-	filter: none
-}
-
-.select2-hidden-accessible {
-	border: 0;
-	clip: rect(0 0 0 0);
-	height: 1px;
-	margin: -1px;
-	overflow: hidden;
-	padding: 0;
-	position: absolute;
-	width: 1px
-}
-
-.select2-results li.select2-result-with-children>.select2-result-label {
-	font-weight: 700
-}
-
-.select2-results .select2-ajax-error,
-.select2-results .select2-no-results,
-.select2-results .select2-searching,
-.select2-results .select2-selection-limit {
-	background: #f6f9fc;
-	display: list-item;
-	padding-left: 5px
-}
-
-.select2-results .select2-selected {
-	display: none
-}
-
-.select2-more-results.select2-active {
-	background: #f6f9fc url(images/shared/other/select2/select2-spinner.gif) no-repeat 100%
-}
-
-.select2-results .select2-ajax-error {
-	background: rgba(214, 69, 69, .15)
-}
-
-.select2-more-results {
-	background: #f6f9fc;
-	display: list-item
-}
-
-.select2-container.select2-container-disabled .select2-choice {
-	background-color: #f6f9fc;
-	background-image: none;
-	border: 1px solid #edf0f5;
-	cursor: default
-}
-
-.select2-container.select2-container-disabled .select2-choice .select2-arrow {
-	background-color: #f6f9fc;
-	background-image: none;
-	border-left: 0
-}
-
-.select2-container.select2-container-disabled .select2-choice abbr {
-	display: none
-}
-
-.select2-locked {
-	padding: 3px 5px!important
-}
-
-.select2-result-selectable .select2-match,
-.select2-result-unselectable .select2-match {
-	text-decoration: underline
-}
-
-.select2-offscreen,
-.select2-offscreen:focus {
-	clip: rect(0 0 0 0)!important;
-	width: 1px!important;
-	height: 1px!important;
-	border: 0!important;
-	margin: 0!important;
-	padding: 0!important;
-	overflow: hidden!important;
-	position: absolute!important;
-	outline: 0!important;
-	left: 0!important;
-	top: 0!important
-}
-
-.select2-measure-scrollbar {
-	position: absolute;
-	top: -10000px;
-	left: -10000px;
-	width: 100px;
-	height: 100px;
-	overflow: scroll
-}
-
-.select2-results li.select2-result-with-children>.select2-result-label {
-	color: #4f566b
-}
-
-.select2-results li.select2-result-with-children>.select2-result-label:first-child {
-	padding-top: 8px
-}
-
-.select2-results .select2-no-results,
-.select2-results .select2-searching,
-.select2-results .select2-selection-limit {
-	background: none;
-	color: #4f566b;
-	font-size: 12px;
-	padding-left: 8px;
-	padding-top: 0;
-	position: relative;
-	top: -5px
-}
-
-.select2.form-control {
-	padding: 0;
-	border: 0;
-	box-shadow: none
-}
-
-.select2-drop-mask {
-	z-index: 100
-}
 
 .ui-select-multiple .btn {
 	display: inline-block;
@@ -19860,55 +19366,6 @@ input[type=radio]:focus {
 	color: #4f566b
 }
 
-button,
-input,
-label,
-select,
-textarea {
-	font-size: 1rem;
-	font-weight: 400;
-	line-height: 20px
-}
-
-textarea {
-	height: auto;
-	resize: none
-}
-
-label {
-	display: block;
-	max-width: 100%
-}
-
-select[multiple],
-select[size] {
-	height: auto!important
-}
-
-input:focus,
-input[type=checkbox]:focus,
-input[type=file]:focus,
-input[type=radio]:focus,
-select:focus,
-textarea:focus {
-	outline: none;
-	box-shadow: none
-}
-
-form .label-simple {
-	display: flex;
-	margin-bottom: 10px;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	align-items: center
-}
-
-form .label-simple>span {
-	display: inline-block;
-	font-family: montserrat, Avenir, sans-serif;
-	font-size: 13px;
-	font-weight: 600
-}
 
 .l-content--landlord fieldset {
 	position: relative;
@@ -19964,36 +19421,8 @@ form .label-simple>span {
 	transform-style: preserve-3d
 }
 
-@media only screen and (min-width:992px) {
-	.l-content--landlord form .row {
-		margin-right: 0;
-		margin-left: 0
-	}
-	.l-content--landlord form .row>[class*=col-]:not(:first-child),
-	.l-content--landlord form .row>[class*=col-]:not(:last-child) {
-		padding-right: 15px;
-		padding-left: 15px
-	}
-	.l-content--landlord form .row>[class*=col-]:first-child {
-		padding-left: 0
-	}
-	.l-content--landlord form .row>[class*=col-]:last-child {
-		padding-right: 0
-	}
-	.l-content--landlord form .row>[class*=col-]:only-child {
-		padding-right: 15px
-	}
-}
 
-.l-content--landlord select:not(.custom-select-chosen):not(.flatpickr-monthDropdown-months):not(.select-range):not(.flatpickr-selected-year) {
-	padding: 8px 20px 8px 15px;
-	border: 1px solid #c9d3e1;
-	border-radius: 4px;
-	background-color: #edf0f5;
-	background-image: url(images/shared/other/arrow-select.png);
-	background-repeat: no-repeat;
-	background-position: 100%
-}
+
 
 .form-group {
 	position: relative;
@@ -20399,79 +19828,6 @@ form .label-simple>span {
 	background-color: #d64545
 }
 
-.uiSelect .ng-dirty.ng-invalid>a.select2-choice {
-	border-color: transparent
-}
-
-.uiSelect.input-group .select2-container.select2-allowclear .select2-choice .select2-search-choice-close {
-	right: 56px
-}
-
-.uiSelect.form-group-default-select2 .select2-container .select2-choice {
-	height: 34px;
-	padding-top: 5px;
-	padding-bottom: 5px
-}
-
-.uiSelect.form-group-default-select2 .select2-container .select2-choice>.select2-arrow {
-	top: 1px
-}
-
-.uiSelect.form-group-default-select2 .select2-container .select2-choice .select2-search-choice-close {
-	top: 9px;
-	right: 25px
-}
-
-.uiSelect.form-group-default-select2 .input-group-addon {
-	top: 6px
-}
-
-.uiSelect .ui-select-container.select2.select2-dropdown-open.direction-up .ui-select-match,
-.uiSelect .ui-select-container.select2.select2-dropdown-open .ui-select-match {
-	border-color: #c9d3e1!important;
-	border-radius: 6px!important
-}
-
-.uiSelect .select2-container.select2-dropdown-open .select2-choice {
-	background-color: initial;
-	background-image: none
-}
-
-.uiSelect .select2-container.select2-allowclear .select2-choice .select2-search-choice-close:before {
-	color: #d64545
-}
-
-.uiSelect .select2-container .select2-choice {
-	height: 46px;
-	padding: 10px 12px;
-	border-radius: 6px;
-	font-size: 14px;
-	border: 1px solid #9fb3c8;
-	transition: border .15s ease
-}
-
-.uiSelect .select2-container .select2-choice .select2-chosen {
-	color: #4f566b;
-	font-size: 14px
-}
-
-.uiSelect .select2-container .select2-choice .select2-chosen:first-child {
-	color: #4f566b;
-	opacity: .5
-}
-
-.uiSelect .select2-container .select2-choice .select2-search-choice-close {
-	top: 14px;
-	right: 25px
-}
-
-.uiSelect .select2-container .select2-choice .select2-arrow.ui-select-toggle {
-	right: 12px
-}
-
-.uiSelect .select2-container .ui-select-dropdown {
-	z-index: 101
-}
 
 .uiSelect .ui-select-multiple {
 	height: auto;
@@ -20483,24 +19839,6 @@ form .label-simple>span {
 	transition: border .15s ease
 }
 
-.uiSelect .ui-select-multiple .select2-chosen {
-	color: #4f566b;
-	font-size: 14px
-}
-
-.uiSelect .ui-select-multiple .select2-chosen:first-child {
-	color: #4f566b;
-	opacity: .5
-}
-
-.uiSelect .ui-select-multiple .select2-search-choice-close {
-	top: 14px;
-	right: 25px
-}
-
-.uiSelect .ui-select-multiple .select2-arrow.ui-select-toggle {
-	right: 12px
-}
 
 .uiSelect .ui-select-multiple .ui-select-match .close {
 	line-height: 8px
@@ -20533,12 +19871,7 @@ form .label-simple>span {
 	font-size: 22px
 }
 
-.uiSelect select {
-	width: 100%;
-	height: 100%;
-	border: 0;
-	background-color: initial
-}
+
 
 .form-control:disabled,
 .form-control[disabled],
@@ -20554,26 +19887,6 @@ fieldset[disabled] .form-control {
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none
-}
-
-.form-group.disabled .select2-container,
-.form-group[disabled] .select2-container {
-	pointer-events: none
-}
-
-.form-group.disabled .select2-container .select2-choice,
-.form-group[disabled] .select2-container .select2-choice {
-	background-color: #f6f9fc;
-	border-color: #c9d3e1;
-	background-image: none;
-	cursor: default
-}
-
-.form-group.disabled .select2-container .select2-choice .select2-arrow,
-.form-group.disabled .select2-container .select2-choice abbr,
-.form-group[disabled] .select2-container .select2-choice .select2-arrow,
-.form-group[disabled] .select2-container .select2-choice abbr {
-	display: none
 }
 
 .form-group.disabled .ui-select-multiple,
@@ -20803,13 +20116,6 @@ fieldset[disabled] .form-control {
 	margin-bottom: 10px
 }
 
-.form-group--input .form-row.keys-wrap .form-group .ng-dirty.ng-invalid>a.select2-choice {
-	border-color: #edf0f5
-}
-
-.form-group--input .form-row.keys-wrap .select2-container .select2-choice>.select2-chosen {
-	margin-right: 0
-}
 
 .form-group--input .form-row .group-input {
 	display: flex
@@ -21135,30 +20441,6 @@ fieldset[disabled] .form-control {
 	top: -1px
 }
 
-.input-small .select2-container .select2-choice .select2-search-choice-close {
-	top: 7px!important
-}
-
-.input-small .select2-container .select2-choice>.select2-arrow {
-	top: 2px!important
-}
-
-.input-small.form-group-default-select2 {
-	margin-bottom: 20px
-}
-
-.input-small.form-group-default-select2 .select2-container .select2-choice {
-	height: 32px!important
-}
-
-.select-combined .select2-container .select2-choice>.select2-chosen br {
-	display: none
-}
-
-.select-combined .select2-container .select2-choice>.select2-chosen .select-email {
-	margin-left: 5px;
-	color: #7790b3
-}
 
 .heading-small {
 	margin-bottom: 24px
@@ -26971,11 +26253,6 @@ fieldset[disabled] .btn-primary:hover {
 	transition: max-height .3s, padding .3s
 }
 
-.m-dots .filter-content .content-item .item-content select {
-	padding: 2px 20px 2px 8px;
-	font-size: 12px;
-	width: 100%
-}
 
 .m-dots .filter-content .content-item.active .item-content {
 	border-bottom: 1px solid #e6ebf1;
@@ -35402,119 +34679,6 @@ fieldset[disabled] .btn-primary:hover {
 	margin-top: 5px
 }
 
-.m-table-file-manager.column .tbody .tr-wrap .tr .tr-inner .td .ng-dirty.ng-invalid>a.select2-choice,
-.m-transactions-banks .tbody .tr-wrap .tr .tr-inner .td .ng-dirty.ng-invalid>a.select2-choice,
-.m-transactions-dwolla-beneficial .tbody .tr-wrap .tr .tr-inner .td .ng-dirty.ng-invalid>a.select2-choice,
-.m-transactions-dwolla-transfers .tbody .tr-wrap .tr .tr-inner .td .ng-dirty.ng-invalid>a.select2-choice,
-.m-transactions-table .tbody .tr-wrap .tr .tr-inner .td .ng-dirty.ng-invalid>a.select2-choice {
-	border-color: transparent
-}
-
-.m-table-file-manager.column .tbody .tr-wrap .tr .tr-inner .td .form-group,
-.m-transactions-banks .tbody .tr-wrap .tr .tr-inner .td .form-group,
-.m-transactions-dwolla-beneficial .tbody .tr-wrap .tr .tr-inner .td .form-group,
-.m-transactions-dwolla-transfers .tbody .tr-wrap .tr .tr-inner .td .form-group,
-.m-transactions-table .tbody .tr-wrap .tr .tr-inner .td .form-group {
-	margin-bottom: 0
-}
-
-.m-table-file-manager.column .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative) .form-control,
-.m-table-file-manager.column .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative) .select2-choice,
-.m-transactions-banks .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative) .form-control,
-.m-transactions-banks .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative) .select2-choice,
-.m-transactions-dwolla-beneficial .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative) .form-control,
-.m-transactions-dwolla-beneficial .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative) .select2-choice,
-.m-transactions-dwolla-transfers .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative) .form-control,
-.m-transactions-dwolla-transfers .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative) .select2-choice,
-.m-transactions-table .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative) .form-control,
-.m-transactions-table .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative) .select2-choice {
-	border-color: #c9d3e1;
-	border-radius: 4px;
-	background-color: #fff
-}
-
-.m-table-file-manager.column .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative) .form-control:focus,
-.m-table-file-manager.column .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative) .select2-choice:focus,
-.m-transactions-banks .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative) .form-control:focus,
-.m-transactions-banks .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative) .select2-choice:focus,
-.m-transactions-dwolla-beneficial .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative) .form-control:focus,
-.m-transactions-dwolla-beneficial .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative) .select2-choice:focus,
-.m-transactions-dwolla-transfers .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative) .form-control:focus,
-.m-transactions-dwolla-transfers .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative) .select2-choice:focus,
-.m-transactions-table .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative) .form-control:focus,
-.m-transactions-table .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative) .select2-choice:focus {
-	border-color: #7790b3
-}
-
-.m-table-file-manager.column .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative).disabled,
-.m-table-file-manager.column .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative)[disabled],
-.m-transactions-banks .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative).disabled,
-.m-transactions-banks .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative)[disabled],
-.m-transactions-dwolla-beneficial .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative).disabled,
-.m-transactions-dwolla-beneficial .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative)[disabled],
-.m-transactions-dwolla-transfers .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative).disabled,
-.m-transactions-dwolla-transfers .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative)[disabled],
-.m-transactions-table .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative).disabled,
-.m-transactions-table .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative)[disabled] {
-	cursor: default;
-	pointer-events: none
-}
-
-.m-table-file-manager.column .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative).disabled .form-control,
-.m-table-file-manager.column .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative)[disabled] .form-control,
-.m-transactions-banks .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative).disabled .form-control,
-.m-transactions-banks .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative)[disabled] .form-control,
-.m-transactions-dwolla-beneficial .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative).disabled .form-control,
-.m-transactions-dwolla-beneficial .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative)[disabled] .form-control,
-.m-transactions-dwolla-transfers .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative).disabled .form-control,
-.m-transactions-dwolla-transfers .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative)[disabled] .form-control,
-.m-transactions-table .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative).disabled .form-control,
-.m-transactions-table .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative)[disabled] .form-control {
-	background: #edf0f5;
-	color: #7790b3
-}
-
-.m-table-file-manager.column .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative) .select2-container .select2-choice,
-.m-transactions-banks .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative) .select2-container .select2-choice,
-.m-transactions-dwolla-beneficial .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative) .select2-container .select2-choice,
-.m-transactions-dwolla-transfers .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative) .select2-container .select2-choice,
-.m-transactions-table .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative) .select2-container .select2-choice {
-	background-color: #fff
-}
-
-.m-table-file-manager.column .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative) .select2-container.open .select2-choice,
-.m-transactions-banks .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative) .select2-container.open .select2-choice,
-.m-transactions-dwolla-beneficial .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative) .select2-container.open .select2-choice,
-.m-transactions-dwolla-transfers .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative) .select2-container.open .select2-choice,
-.m-transactions-table .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative) .select2-container.open .select2-choice {
-	border-color: #7790b3
-}
-
-.m-table-file-manager.column .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative).disabled .select2-container .select2-choice,
-.m-table-file-manager.column .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative)[disabled] .select2-container .select2-choice,
-.m-transactions-banks .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative).disabled .select2-container .select2-choice,
-.m-transactions-banks .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative)[disabled] .select2-container .select2-choice,
-.m-transactions-dwolla-beneficial .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative).disabled .select2-container .select2-choice,
-.m-transactions-dwolla-beneficial .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative)[disabled] .select2-container .select2-choice,
-.m-transactions-dwolla-transfers .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative).disabled .select2-container .select2-choice,
-.m-transactions-dwolla-transfers .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative)[disabled] .select2-container .select2-choice,
-.m-transactions-table .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative).disabled .select2-container .select2-choice,
-.m-transactions-table .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative)[disabled] .select2-container .select2-choice {
-	background-color: #edf0f5
-}
-
-.m-table-file-manager.column .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative).disabled .select2-container .select2-choice.ui-select-match,
-.m-table-file-manager.column .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative)[disabled] .select2-container .select2-choice.ui-select-match,
-.m-transactions-banks .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative).disabled .select2-container .select2-choice.ui-select-match,
-.m-transactions-banks .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative)[disabled] .select2-container .select2-choice.ui-select-match,
-.m-transactions-dwolla-beneficial .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative).disabled .select2-container .select2-choice.ui-select-match,
-.m-transactions-dwolla-beneficial .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative)[disabled] .select2-container .select2-choice.ui-select-match,
-.m-transactions-dwolla-transfers .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative).disabled .select2-container .select2-choice.ui-select-match,
-.m-transactions-dwolla-transfers .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative)[disabled] .select2-container .select2-choice.ui-select-match,
-.m-transactions-table .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative).disabled .select2-container .select2-choice.ui-select-match,
-.m-transactions-table .tbody .tr-wrap .tr .tr-inner .td .form-group .elementInput:not(.form-group-alternative)[disabled] .select2-container .select2-choice.ui-select-match {
-	color: #7790b3
-}
 
 .m-table-file-manager.column .tbody .tr-wrap .tr .tr-inner,
 .m-transactions-banks .tbody .tr-wrap .tr .tr-inner,
@@ -36693,17 +35857,6 @@ fieldset[disabled] .btn-primary:hover {
 	background: linear-gradient(135deg, #32bdba, #a4dba4)
 }
 
-.m-maintenance-category .main-search .select2-container .select2-choice span {
-	color: #7790b3
-}
-
-.m-maintenance-category .main-search .select2-container .select2-drop .select2-results li .select2-result-label {
-	text-transform: lowercase
-}
-
-.m-maintenance-category .main-search .select2-container .select2-drop .select2-results li .select2-result-label:first-letter {
-	text-transform: uppercase
-}
 
 .m-maintenance-category .category-separator {
 	margin-bottom: 40px;
@@ -41017,72 +40170,9 @@ fieldset[disabled] .btn-primary:hover {
 	color: #7790b3
 }
 
-@media (max-width:991px) {
-	.panel-maintenance--view>.m-panel__body .body-aside .aside-created {
-		padding-top: 0;
-		border: 0 solid
-	}
-}
 
-.panel-maintenance--edit>.m-panel__heading {
-	color: #7790b3;
-	background: linear-gradient(180deg, #e6ebf1 50%, #f6f9fc)
-}
 
-.panel-maintenance--edit>.m-panel__heading .heading-title svg[class*=i-svg] {
-	stroke: #7790b3
-}
 
-.panel-maintenance--edit>.m-panel__body .body-main {
-	margin-top: -105px
-}
-
-.panel-maintenance--edit>.m-panel__body .body-main fieldset {
-	margin-bottom: 40px
-}
-
-.panel-maintenance--edit>.m-panel__body .body-main .info-panel {
-	border-left-color: #f7c948
-}
-
-.panel-maintenance--edit>.m-panel__body .body-main .select2-container .select2-choice .select2-chosen {
-	text-transform: lowercase
-}
-
-.panel-maintenance--edit>.m-panel__body .body-main .select2-container .select2-choice .select2-chosen:first-letter {
-	text-transform: uppercase
-}
-
-.panel-maintenance--edit>.m-panel__body .body-main .select2-container .select2-drop .select2-results li .select2-result-label {
-	text-transform: lowercase
-}
-
-.panel-maintenance--edit>.m-panel__body .body-main .select2-container .select2-drop .select2-results li .select2-result-label:first-letter {
-	text-transform: uppercase
-}
-
-.panel-maintenance--edit>.m-panel__body .body-aside.is-landlord {
-	border-top: 1px solid #7790b3
-}
-
-@media (max-width:991px) {
-	.panel-maintenance--edit>.m-panel__body .body-aside.is-landlord {
-		border-top: 0 solid
-	}
-}
-
-.panel-maintenance--edit>.m-panel__body .body-aside .aside-inner .aside-group.priority {
-	color: #7790b3
-}
-
-.panel-maintenance--edit>.m-panel__body .body-aside .aside-inner .aside-group.priority .btn-group-status .m-btn {
-	border-color: #c9d3e1;
-	color: #7790b3
-}
-
-.panel-maintenance--edit>.m-panel__body .body-aside .aside-inner .aside-group h3 {
-	color: #7790b3
-}
 
 .workorders-list .swiper-place,
 .workorders-list .wrapper-list {

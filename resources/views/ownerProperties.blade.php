@@ -41,7 +41,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
             </div>
             <div class="sidebar-filter">
                <!----> <!----> <!---->
-               <a class="filter-item m-btn btn-primary" title="Ajouter un logement" data-toggle="modal" data-target="#modalForm">
+               <a class="filter-item m-btn btn-primary" title="Ajouter un logement" onclick="openForm(); return false;">
                   <div class="icon-svg">
                      <e-svg-icon set-class="i-svg--fill i-svg--12 i-svg-fill--white" xlink="#icon-line-plus" class="e-svg-icon">
                         <svg class="i-svg--fill i-svg--12 i-svg-fill--white" id="svgElement" viewBox="0 0 12 12">
@@ -259,88 +259,172 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
       </div>
 
     </div>
-  </div>
-  <!---FORMULAIRE AJOUT LOGEMENT-->
 
-<!-- modal Formulaire -->
-<div class="modal fade" id="modalForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Ajouter un nouveau logement</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+    <!---FORMULAIRE AJOUT LOGEMENT-->
+    <div class="container-contact100 form-popup" id="propForm">
+      <div class="wrap-contact100">
+        <form class="contact100-form validate-form" >
+          <span class="contact100-form-title">
+            Ajoutez un logement
+          </span>
+
+          <div class="wrap-input100 validate-input bg1" data-validate="Entrez svp un nom pour le logement">
+            <span class="label-input100">Nom du logement *</span>
+            <input class="input100" type="text" name="name" placeholder="Entrez un nom pour le logement">
+          </div>
+          <div class="wrap-input100 validate-input bg1 rs1-wrap-input100" data-validate = "Entrez l'adresse ou le quartier">
+            <span class="label-input100">Adresse du logement *</span>
+            <input class="input100" type="text" name="adresse" placeholder="Entrez l'adresse ou le quartier ">
+          </div>
+
+          <div class="wrap-input100 bg1 rs1-wrap-input100">
+            <span class="label-input100">Ville du logement</span>
+            <input class="input100" type="text" name="ville" placeholder="Entrez la ville du  logement">
+          </div>
+          <div class="wrap-input100 input100-select bg1">
+            <span class="label-input100">Nombre de chambres *</span>
+            <div>
+              <select class="js-select-bed" name="nbchambres">
+                <option>Studio</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>maison</option>
+              </select>
+              <div class="dropDownSelect2"></div>
+            </div>
+          </div>
+
+          <div class="wrap-input100 bg1 rs1-wrap-input100">
+            <span class="label-input100">Loyer *</span>
+            <input class="input100" type="number" name="loyer" placeholder="Entrez le montant du loyer">
+          </div>
+          <div class="wrap-input100 bg1 rs1-wrap-input100 input100-select">
+            <span class="label-input100">Devise *</span>
+            <div>
+              <select class="js-select-currency" name="DEVISE">
+                <option>FCFA</option>
+                <option>Euro</option>
+                <option>Dollar</option>
+                <option>Eco</option>
+              </select>
+              <div class="dropDownSelect2"></div>
+            </div>
+          </div>
+
+          <div class="wrap-input100 input100-select bg1">
+            <span class="label-input100">Libre ou occupé *</span>
+            <div>
+              <select class="js-select2" name="service">
+                <option>Choisir svp</option>
+                <option>Logement libre</option>
+                <option>Logement occupé</option>
+              </select>
+              <div class="dropDownSelect2"></div>
+            </div>
+          </div>
+          <div class="wrap-input100 validate-input bg1 js-show-locataire" data-validate="Entrez svp un nom de locataire du logement">
+            <span class="label-input100">Nom du locataire * </span>
+            <input class="input100" type="text" name="locataire" placeholder="Entrez un nom de locataire si occupé">
+          </div>
+
+          <div class="w-full dis-none js-show-service">
+            <div class="wrap-contact100-form-radio">
+              <span class="label-input100">Le logement est-il meublé?</span>
+
+              <div class="contact100-form-radio m-t-15">
+                <input class="input-radio100" id="radio1" type="radio" name="type-product" value="nonmeuble" checked="checked">
+                <label class="label-radio100" for="radio1">
+                  Logement non meublé
+                </label>
+              </div>
+
+              <div class="contact100-form-radio">
+                <input class="input-radio100" id="radio2" type="radio" name="type-product" value="meuble">
+                <label class="label-radio100" for="radio2">
+                  Logement meublé
+                </label>
+              </div>
+            </div>
+
+          </div>
+
+
+          <div class="container-contact100-form-btn">
+            <button class="contact100-form-btn" onclick="closeForm(); return false;">
+              <span>
+                Ajoutez
+                <i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+              </span>
+            </button>
+          </div>
+        </form>
       </div>
-        <div class="modal-body mx-3">
-      <div class="p-l-24">
-       <div class="formRow">
-          <div class="col">
-             <custom-input label="Nom du logement">
-                <div class="form-group">
-                   <!---->
-                   <label  class="form-control-label" for="name">
-                      <span>Nom du logement</span> <!---->
-                   </label>
-                   <!---->
-                   <div class="group-input required" >
-                      <input class="form-control autofocus-control"  type="text"  name="name" id="name" required="required"> <!----> <!----> <!---->
-                   </div>
-                   <!---->
-                </div>
-             </custom-input>
-          </div>
-       </div>
-       <div class="formRow">
-          <div class="col">
-             <div>
-                <custom-geo placeholder="Entrer l'adresse" label="Adresse du logement">
-                   <div autocomplete-place="" class="form-group">
-                      <!----><label class="form-control-label"  for="address1">Adresse</label><!---->
-                      <div class="group-input required">
-                         <input class="form-control"  type="text" autocapitalize="off" autocorrect="off"   name="address1" id="address1" placeholder="Entrer l'adresse" required="required"> <!----> <!----> <!----> <!---->
-                      </div>
-                      <!---->
-                   </div>
-                </custom-geo>
-             </div>
-          </div>
-          <div class="col">
-             <custom-input label="Ville">
-                <div class="form-group">
-                   <!---->
-                   <label class="form-control-label" for="city">
-                      <span>Ville</span> <!---->
-                   </label>
-                   <!---->
-                   <div class="group-input required">
-                      <input class="form-control autofocus-control"  type="text" name="city" id="city" maxlength="127" required="required"> <!----> <!----> <!---->
-                   </div>
-                   <!---->
-                </div>
-             </custom-input>
-          </div>
-       </div>
-        <!-- AJOUTER NBRE DE CHAMBRES, CAUTION, LOCATION, MEUBLE, -->
     </div>
-
-
-      </div>
-      <div class="modal-footer d-flex justify-content-center">
-        <button class="btn btn-unique">Valider <i class="fas fa-paper-plane-o ml-1"></i></button>
-      </div>
-    </div>
   </div>
-</div>
-<!-- modal Formulaire -->
+
+
+
 
 @endsection
 
 @section('scripts')
+<script src="{{url('js/mainForm.js')}}"></script>
+<script src="{{url('vendor/animsition/js/animsition.min.js')}}"></script>
+<!--===============================================================================================-->
+<script src="{{url('vendor/select2/select2.min.js')}}"></script>
+<script>
+$(document).ready(function() {
+  $(".js-select2").each(function(){
+    $(this).select2({
+      minimumResultsForSearch: 20,
+      dropdownParent: $(this).next('.dropDownSelect2')
+    });
+
+
+    $(".js-select2").each(function(){
+      $(this).on('select2:close', function (e){
+        if($(this).val() == "Choisir svp") {
+          $('.js-show-service').slideUp();
+          $('.js-show-locataire').slideUp();
+        }
+        else if($(this).val() == "Logement occupé") {
+          $('.js-show-locataire').slideUp();
+          $('.js-show-service').slideUp();
+          $('.js-show-locataire').slideDown();
+          $('.js-show-service').slideDown();
+        }
+        else {
+          $('.js-show-locataire').slideUp();
+          $('.js-show-service').slideUp();
+          $('.js-show-service').slideDown();
+        }
+      });
+    });
+  })
+  $(".js-select-bed").each(function(){
+    $(this).select2({
+      minimumResultsForSearch: 20,
+      dropdownParent: $(this).next('.dropDownSelect2')
+    });
+
+  })
+  $(".js-select-currency").each(function(){
+    $(this).select2({
+      minimumResultsForSearch: 20,
+      dropdownParent: $(this).next('.dropDownSelect2')
+    });
+
+  })
+  } );
+</script>
 
 <script>
   function openForm() {
-    document.getElementById("propForm").style.display = "block";
+    document.getElementById("propForm").style.display = "flex";
   }
 
   function closeForm() {
