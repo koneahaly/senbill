@@ -123,12 +123,12 @@ if($_SERVER['REQUEST_URI'] == '/register')
 
                    <ul class="dropdown-menu">
                        <li>
-                         <a href="{{ route('infos-personnelles') }}">
+                         <a href="{{ route('infos-proprietaire') }}">
                            mes infos personnelles
                          </a>
                        </li>
                        <li>
-                         <a href="{{ route('infos-personnelles') }}">
+                         <a href="{{ route('infos-services') }}">
                            mes services
                          </a>
                        </li>

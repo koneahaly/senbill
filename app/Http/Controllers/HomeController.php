@@ -163,10 +163,7 @@ class HomeController extends Controller
     {
       $s=Auth::user()->customerId;
       $infos_perso['infos_perso']=DB::table('users')->where('customerId',$s)->first();
-      if(!empty($infos_perso->service_6))
-        return view('infos-proprietaire');
-      else
-        return view('infos-personnelles');
+      return view('infos-proprietaire');
     }
 
     public function display_services()

@@ -26,27 +26,21 @@ class realEstateOwnerController extends Controller
     {
       $s=Auth::user()->customerId;
       $infos_perso['infos_perso']=DB::table('users')->where('customerId',$s)->first();
-      if(!empty($infos_perso->service_6))
-        return view('ownerTransactions')->with($infos_perso);
-      else
-        app('App\Http\Controllers\HomeController')->suivi_conso();
+      return view('ownerTransactions')->with($infos_perso);
+
     }
     public function display_locataires()
     {
       $s=Auth::user()->customerId;
       $infos_perso['infos_perso']=DB::table('users')->where('customerId',$s)->first();
-      if(!empty($infos_perso->service_6))
-        return view('mes-locataires')->with($infos_perso);
-      else
-        app('App\Http\Controllers\HomeController')->display_bills();
+      return view('mes-locataires')->with($infos_perso);
+
     }
     public function display_properties()
     {
       $s=Auth::user()->customerId;
       $infos_perso['infos_perso']=DB::table('users')->where('customerId',$s)->first();
-      if(!empty($infos_perso->service_6))
-        return view('ownerProperties')->with($infos_perso);
-      else
-        app('App\Http\Controllers\HomeController')->display_contract();
+      return view('ownerProperties')->with($infos_perso);
+
     }
 }
