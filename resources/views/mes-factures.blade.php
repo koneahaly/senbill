@@ -57,17 +57,19 @@ $_SESSION["numberOfBillsNonPaid"]=$numberOfBillsNonPaid;
                   <tbody style="background-color:#fff;color:#455469">
                     @foreach($data as $value)
                       <tr>
-                        <td> {{$value->year}} {{$value->month}} </td>
+                        <td id="{{$value->month}}"> {{$value->year}} {{$value->month}} </td>
                         <td> Echéance de {{$value->month}} {{$value->year}} </td>
-                        <td style="text-align:right;font-weight: 700;"> {{$value->amount}} FCFA </td>
+                        <td id="{{$value->month}}_amount" style="text-align:right;font-weight: 700;"> {{$value->amount}} FCFA </td>
                         @if($value->status == "paid")
-                          <td style="color:#28863e;font-weight: 700;"> {{$value->status}} </td>
+                          <td id="{{$value->month}}_status" style="color:#28863e;font-weight: 700;"> {{$value->status}} </td>
                           <td> {{$value->payment_method}} </td>
                         @endif
                         @if($value->status != "paid")
                           <td><button data-toggle="modal" data-target="#pay_bill" class="btn btn-danger btn-xs"> Régler</button></td>
                           <td> n/a </td>
                         @endif
+                        <input type="hidden" class="{{$value->month}}_year_j" name="{{$value->month}}_year_j" value="{{$value->year}}">
+                        <input type="hidden" class="{{$value->month}}_creation_date_j" name="{{$value->month}}_creation_date_j" value="{{ substr($last_row_data->created_at,8,2)."/".substr($last_row_data->created_at,5,2)."/".substr($last_row_data->created_at,0,4) }}">
                       </tr>
                     @endforeach
                   </tbody>
@@ -122,36 +124,52 @@ $_SESSION["numberOfBillsNonPaid"]=$numberOfBillsNonPaid;
 
           @if(!empty($last_row_data))
           <div class="row">
+            <script>
+            $('.slider-input').jRange({
+                from: -2.0,
+                to: 2.0,
+                step: 0.5,
+                scale: [-2.0,-1.0,0.0,1.0,2.0],
+                format: '%s',
+                width: 300,
+                showLabels: true,
+                snap: true
+            });
+            </script>
+            <div class="col-md-8 col-md-offset-2 picker">
+              <input type="hidden" class="slider-input" value="2" />
+            </div>
+            <br />
           <form class="form-inline" action="{{ route('mes-factures.pdf_bill')}}" method="GET">
               {{csrf_field()}}
             @if(Auth::user()->user_type != 2)
             <br/>
-              <div class="col-md-4  ticket" style="text-align:center;">
+              <div class="col-md-4 col-md-offset-4 ticket" style="text-align:center;">
                 <div class="large-main-panel" style="background-color:#fff;">
                   <div>
                     <i class="fas fa-paperclip fa-3x" style="margin-right:98%;margin-top: -200px;"></i>
                     <br/>
-                    <span> Facture du mois de {{$last_row_data->month}} &nbsp;</span>
+                    <span class="tl_fac"> Facture du mois de {{$last_row_data->month}} &nbsp;</span>
                     @if($last_row_data->status != "paid")
-                      <span class="glyphicon glyphicon-remove-circle text-danger">Impayée</span>
+                      <span class="status_j glyphicon glyphicon-remove-circle text-danger">Impayée</span>
                     @endif
 
                     @if($last_row_data->status == "paid")
-                      <span class="glyphicon glyphicon-ok-circle text-success">Payée</span>
+                      <span class=" status_j glyphicon glyphicon-ok-circle text-success">Paid</span>
                     @endif
 
                     <br />
                     <br />
-                    <span style="font-size:30px"> {{$last_row_data->amount}} FCFA</span>
+                    <span class="amount_j" style="font-size:30px"> {{$last_row_data->amount}} FCFA</span>
                     <br />
                     <br />
                     <hr>
-                    <p><strong> Echéance de {{$last_row_data->month}} {{$last_row_data->year}} </strong></p>
+                    <p class="tl_echeance"><strong> Echéance de {{$last_row_data->month}} {{$last_row_data->year}} </strong></p>
                     @if($last_row_data->status == "paid")
-                      <span style="font-size:10px"> paiement effectué le @php echo substr($last_row_data->created_at,8,2)."/"; echo substr($last_row_data->created_at,5,2)."/"; echo substr($last_row_data->created_at,0,4); @endphp </span>
+                      <span class="tl_paiement" style="font-size:10px"> paiement effectué le @php echo substr($last_row_data->created_at,8,2)."/"; echo substr($last_row_data->created_at,5,2)."/"; echo substr($last_row_data->created_at,0,4); @endphp </span>
                     @endif
                     @if($last_row_data->status != "paid")Tous vos paiements sont
-                      <span style="font-size:10px"> &Agrave; régler avant le @php echo substr($last_row_data->created_at,8,2)."/"; echo substr($last_row_data->created_at,5,2)."/"; echo substr($last_row_data->created_at,0,4); @endphp </span>
+                      <span class="tl_paiement" style="font-size:10px"> &Agrave; régler avant le @php echo substr($last_row_data->created_at,8,2)."/"; echo substr($last_row_data->created_at,5,2)."/"; echo substr($last_row_data->created_at,0,4); @endphp </span>
                     @endif
                     <br />
                     <br />
@@ -179,16 +197,32 @@ $_SESSION["numberOfBillsNonPaid"]=$numberOfBillsNonPaid;
 
           @endif
 
+          <script>
+          $('.slider-input').jRange({
+              from: 1,
+              to: 12,
+              step: 1,
+              scale: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+              format: '%s',
+              width: 800,
+              showLabels: true,
+              snap: true
+          });
+          </script>
+          <div>
+
+          </div>
+          <br />
         <form class="form-inline" action="{{ route('mes-factures.pdf_buy')}}" method="GET">
             {{csrf_field()}}
             @if(Auth::user()->user_type == 2 and (!empty($data) and $data != NULL))
-              <div class="col-md-4 ticket" style="text-align:center;">
+              <div class="col-md-4 offset-md-3 ticket" style="text-align:center;">
                 <div class="large-main-panel" style="background-color:#fff;">
                   <div>
                     <i class="fas fa-paperclip fa-3x" style="margin-right:98%;margin-top: -200px;"></i>
                     <br/>
                     <span> Reçu du mois de {{$last_row_data['creation_date']}} &nbsp;</span>
-                    <span class="glyphicon glyphicon-ok-circle text-success">Payée</span>
+                    <span class="glyphicon glyphicon-ok-circle text-success">Paid</span>
 
                     <br />
                     <br />
@@ -1180,6 +1214,40 @@ $(document).ready(function() {
         }
     } );
 } );
+
+$(document).ready(function() {
+  $('.picker').click(function(){
+    var month_value = $('.slider-input').val();
+    var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    var tag_month = months[month_value - 1];
+    var ech_value = $('#'+tag_month).html();
+    var montant_value = $('#'+tag_month+"_amount").html();
+    var status_value = $('#'+tag_month+"_status").html();
+    var year_value = $('.'+tag_month+"_year_j").val();
+    var creation_date_value = $('.'+tag_month+"_creation_date_j").val();
+
+    if(status_value.includes('paid')){
+      $('.status_j').removeClass('glyphicon-remove-circle');
+      $('.status_j').removeClass('text-danger');
+      $('.status_j').addClass('glyphicon-ok-circle');
+      $('.status_j').addClass('text-success');
+      $('.tl_paiement').html('paiement effectué le '+creation_date_value);
+    }
+    else{
+      $('.status_j').removeClass('glyphicon-remove-circle');
+      $('.status_j').removeClass('text-success');
+      $('.status_j').addClass('glyphicon-ok-circle');
+      $('.status_j').addClass('text-danger');
+      $('.tl_paiement').html('&Agrave; régler avant le '+creation_date_value);
+    }
+    $('.tl_fac').html("Facture du mois de "+tag_month+ "&nbsp;");
+    $('.amount_j').html(montant_value);
+    $('.status_j').html(status_value);
+    $('.tl_echeance').html("<strong>Echéance de "+tag_month+" "+year_value+"</strong>");
+
+  });
+});
+
 </script>
 
 @endsection

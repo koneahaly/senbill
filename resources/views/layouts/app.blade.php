@@ -47,6 +47,9 @@
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <link rel="stylesheet" type="text/css" href="{{url('css/elektra.css')}}">
 
+<link rel="stylesheet" href="{{url('css/jquery.range.css')}}">
+<script src="{{ url('js/jquery.range.js') }}"></script>
+
 <!--===============================================================================================-->
 
 @php

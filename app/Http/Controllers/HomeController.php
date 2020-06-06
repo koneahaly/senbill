@@ -161,11 +161,17 @@ class HomeController extends Controller
 
     public function display_proprio_infos()
     {
-      return view('infos-proprietaire');
+      $s=Auth::user()->customerId;
+      $infos_perso['infos_perso']=DB::table('users')->where('customerId',$s)->first();
+      if(!empty($infos_perso->service_6))
+        return view('infos-proprietaire');
+      else
+        return view('infos-personnelles');
     }
 
     public function display_services()
     {
+
       $s=Auth::user()->customerId;
       $infos_perso['infos_perso']=DB::table('users')->where('customerId',$s)->first();
       return view('platform')->with($infos_perso);
