@@ -503,6 +503,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
 
     <!--- FIN FORMULAIRE AJOUT LOCATAIRE-->
 </div>
+</div>
 @endsection
 
 @section('scripts')

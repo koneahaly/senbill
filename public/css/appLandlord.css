@@ -8115,7 +8115,7 @@ form-wizard-scenarios .card-desc {
 }
 
 .i-svg--info {
-	stroke: #686fdb
+	stroke: rgba(137,180,213,1)
 }
 
 .i-svg--help {
@@ -8301,7 +8301,7 @@ form-wizard-scenarios .card-desc {
 }
 
 .i-svg-fill--info {
-	fill: #686fdb
+	fill: rgba(137,180,213,1)
 }
 
 .i-svg-fill--warning {
@@ -9495,7 +9495,7 @@ form-wizard-scenarios .card-desc {
 }
 
 .b-info {
-	border-color: #686fdb
+	border-color: rgba(137,180,213,1)
 }
 
 .b-danger {
@@ -10194,7 +10194,7 @@ img {
 }
 
 .color-info {
-	color: #686fdb!important
+	color: rgba(137,180,213,1)!important
 }
 
 .color-info-dark {
@@ -10534,7 +10534,7 @@ h6+p {
 }
 
 .text-info {
-	color: #686fdb!important
+	color: rgba(137,180,213,1)!important
 }
 
 .text-warning {
@@ -11300,7 +11300,16 @@ ul li u {
 	font-size: 12px;
 	color: #c9d3e1
 }
-
+.rent-property.occupied>p {
+	margin: 10px 0 9px;
+	font-size: 13px;
+	color: #22a0de;
+}
+.rent-property.old>p {
+	margin: 10px 0 9px;
+	font-size: 13px;
+	color: #c9d3e1;
+}
 .lazy-img {
 	position: relative;
 	overflow: hidden;
@@ -15142,7 +15151,7 @@ small.hint-text {
 	.l-mobile-container.is-steps .divider {
 		height: 50px;
 		padding: 10px 25px;
-		background-color: #686fdb
+		background-color: rgba(137,180,213,1)
 	}
 	.l-mobile-container.is-steps .divider+div {
 		padding-top: 50px!important
@@ -16711,7 +16720,7 @@ input[type=radio]:focus {
 
 .radio.radio-group label {
 	margin-bottom: 10px;
-	color: #686fdb;
+	color: rgba(137,180,213,1);
 	font-size: 15px;
 	font-weight: 500
 }
@@ -19097,16 +19106,19 @@ input[type=radio]:focus {
 }
 
 .m-profile-info .info .info-name .link-email>a {
-	color: #686fdb;
+	color: rgba(137,180,213,1);
 	font-size: 13px
 }
-
+.m-profile-info .info .info-name .loc-phone>p {
+	color: rgb(137,180,213);
+	font-size: 13px
+}
 .m-profile-info .info .info-name .link-phone {
 	line-height: 1.4
 }
 
 .m-profile-info .info .info-name .link-phone div>a {
-	color: #686fdb;
+	color: rgba(137,180,213,1);
 	font-size: 12px
 }
 
@@ -19335,7 +19347,7 @@ input[type=radio]:focus {
 .h-card {
 	padding: 2px 12px;
 	border-radius: 5px;
-	background-image: linear-gradient(135deg, #615ce4, #686fdb);
+	background-image: linear-gradient(135deg, #615ce4, rgba(137,180,213,1));
 	color: #fff;
 	font-size: .78571rem;
 	font-weight: 600;
@@ -20245,7 +20257,7 @@ fieldset[disabled] .form-control {
 
 .form-group--text.border-left {
 	border: 1px solid rgba(0, 0, 0, .1);
-	border-left: 5px solid #686fdb
+	border-left: 5px solid rgba(137,180,213,1)
 }
 
 @media (max-width:767px) {
@@ -20255,7 +20267,7 @@ fieldset[disabled] .form-control {
 }
 
 .form-group--text.border-left:after {
-	color: #686fdb
+	color: rgba(137,180,213,1)
 }
 
 .form-group--text.border-left.danger {
@@ -20530,7 +20542,7 @@ fieldset[disabled] .form-control {
 .m-btn:active,
 .m-btn:focus,
 .m-btn:hover {
-	color: #686fdb
+	color: rgba(137,180,213,1)
 }
 
 .m-btn.active svg[class=i-svg],
@@ -20603,7 +20615,7 @@ fieldset[disabled] .form-control {
 	height: 15px;
 	padding: 0 4px;
 	border-radius: 15px;
-	background: #686fdb;
+	background: rgba(137,180,213,1);
 	color: #fff;
 	font-size: 10px;
 	line-height: 15px
@@ -20752,8 +20764,8 @@ button:focus {
 }
 
 .btn-primary--info {
-	border-color: #686fdb;
-	background-color: #686fdb;
+	border-color: rgba(137,180,213,1);
+	background-color: rgba(137,180,213,1);
 	color: #fff
 }
 
@@ -21071,9 +21083,9 @@ button:focus {
 }
 
 .btn-default--info {
-	border-color: #686fdb;
+	border-color: rgba(137,180,213,1);
 	background-color: initial;
-	color: #686fdb
+	color: rgba(137,180,213,1)
 }
 
 .btn-default--info.active,
@@ -21875,7 +21887,7 @@ button:focus {
 }
 
 .m-btn-link--info {
-	color: #686fdb
+	color: rgba(137,180,213,1)
 }
 
 .m-btn-link--info:active,
@@ -22020,7 +22032,7 @@ button:focus {
 }
 
 .m-btn-link--view.has-icon-color-info {
-	color: #686fdb
+	color: rgba(137,180,213,1)
 }
 
 .m-btn-link--remove {
@@ -22955,11 +22967,11 @@ fieldset[disabled] .btn-primary:hover {
 }
 
 .btn-group a.renew {
-	color: #686fdb
+	color: rgba(137,180,213,1)
 }
 
 .btn-group a.renew svg[class*=i-svg] {
-	stroke: #686fdb;
+	stroke: rgba(137,180,213,1);
 	transition: stroke .2s ease
 }
 
@@ -22979,7 +22991,7 @@ fieldset[disabled] .btn-primary:hover {
 
 .btn-group a.danger.void,
 .btn-group a.remove.void {
-	color: #686fdb
+	color: rgba(137,180,213,1)
 }
 
 .btn-group a.danger.void:hover,
@@ -23074,7 +23086,7 @@ fieldset[disabled] .btn-primary:hover {
 }
 
 .btn-group.gray a.reload:hover svg[class*=i-svg] {
-	stroke: #686fdb
+	stroke: rgba(137,180,213,1)
 }
 
 .btn-group.gray a.close:hover svg[class*=i-svg] {
@@ -23082,7 +23094,7 @@ fieldset[disabled] .btn-primary:hover {
 }
 
 .btn-group.gray a.timeline:hover svg[class*=i-svg] {
-	stroke: #686fdb
+	stroke: rgba(137,180,213,1)
 }
 
 .btn-group.gray a.disabled {
@@ -23395,9 +23407,9 @@ fieldset[disabled] .btn-primary:hover {
 	display: inline-block;
 	width: 20px;
 	height: 20px;
-	border: 2px solid #686fdb;
+	border: 2px solid rgba(137,180,213,1);
 	border-radius: 50%;
-	color: #686fdb;
+	color: rgba(137,180,213,1);
 	text-align: center;
 	font-size: 11px;
 	line-height: 18px
@@ -23713,7 +23725,7 @@ fieldset[disabled] .btn-primary:hover {
 }
 
 .m-action-btn-icon>a.move-in svg {
-	stroke: #686fdb
+	stroke: rgba(137,180,213,1)
 }
 
 .m-action-btn-icon>a.print svg {
@@ -24824,7 +24836,7 @@ fieldset[disabled] .btn-primary:hover {
 .m-modal--demo .m-panel__body .h-card {
 	padding: 0 6px;
 	border-radius: 5px;
-	background: #686fdb;
+	background: rgba(137,180,213,1);
 	color: #fff;
 	font-size: 1rem;
 	font-weight: 600;
@@ -25913,7 +25925,7 @@ fieldset[disabled] .btn-primary:hover {
 
 .m-insurance-view .insurance-panel .panel-body .view-expires>p {
 	font-size: 1.28571rem;
-	color: #686fdb;
+	color: rgba(137,180,213,1);
 	margin: 0;
 	padding: 0
 }
@@ -26163,7 +26175,7 @@ fieldset[disabled] .btn-primary:hover {
 }
 
 .m-dots .fixed-popover .popover-contents .box-root .dot-item.void {
-	color: #686fdb
+	color: rgba(137,180,213,1)
 }
 
 .m-dots .fixed-popover .popover-contents .box-root a {
@@ -34309,7 +34321,7 @@ fieldset[disabled] .btn-primary:hover {
 	top: -5px;
 	right: -5px;
 	z-index: 1;
-	background-color: #686fdb
+	background-color: rgba(137,180,213,1)
 }
 
 @media (max-width:767px) {
@@ -34509,7 +34521,7 @@ fieldset[disabled] .btn-primary:hover {
 	top: -12px;
 	right: -5px;
 	z-index: 1;
-	background-color: #686fdb
+	background-color: rgba(137,180,213,1)
 }
 
 .m-custom-li {
@@ -35468,7 +35480,7 @@ fieldset[disabled] .btn-primary:hover {
 }
 
 .m-line-chart .chart-item.info {
-	background: linear-gradient(135deg, #686fdb, #babdef)
+	background: linear-gradient(135deg, rgba(137,180,213,1), #babdef)
 }
 
 .m-transactions-dwolla-transfers .thead {
@@ -36357,7 +36369,7 @@ fieldset[disabled] .btn-primary:hover {
 }
 
 .m-legend li i.blue {
-	color: #686fdb
+	color: rgba(137,180,213,1)
 }
 
 .m-legend li i.red {
@@ -36810,13 +36822,13 @@ fieldset[disabled] .btn-primary:hover {
 .m-timeline .m-timeline-group .group-items .items-place .item-point.status-43,
 .m-timeline .m-timeline-group .group-items .items-place .item-point.status-46,
 .m-timeline .m-timeline-group .group-items .items-place .item-point.status-106 {
-	border-color: #686fdb
+	border-color: rgba(137,180,213,1)
 }
 
 .m-timeline .m-timeline-group .group-items .items-place .item-point.status-43:after,
 .m-timeline .m-timeline-group .group-items .items-place .item-point.status-46:after,
 .m-timeline .m-timeline-group .group-items .items-place .item-point.status-106:after {
-	background: #686fdb
+	background: rgba(137,180,213,1)
 }
 
 .m-timeline .m-timeline-group .group-items .items-place .item-point.status-25,
@@ -37086,13 +37098,13 @@ fieldset[disabled] .btn-primary:hover {
 .m-timeline.edit .m-timeline-group .group-items .items-place .item-content .content-info .info-timeline .timeline-alert:before {
 	content: "\e9a6";
 	margin-right: 3px;
-	color: #686fdb;
+	color: rgba(137,180,213,1);
 	font-family: fontello-line;
 	font-size: 12px
 }
 
 .m-timeline.edit .m-timeline-group .group-items .items-place .item-content .content-info .info-timeline .timeline-alert span {
-	color: #686fdb;
+	color: rgba(137,180,213,1);
 	font-size: .71429rem
 }
 
@@ -37514,7 +37526,7 @@ fieldset[disabled] .btn-primary:hover {
 		position: relative;
 		flex: 1;
 		margin: 0;
-		color: #686fdb
+		color: rgba(137,180,213,1)
 	}
 }
 
@@ -38275,7 +38287,7 @@ fieldset[disabled] .btn-primary:hover {
 .panel-calendar .left-panel {
 	position: relative;
 	background-color: #babdef;
-	background-image: linear-gradient(0deg, #686fdb 5%, #babdef 60%)
+	background-image: linear-gradient(0deg, rgba(137,180,213,1) 5%, #babdef 60%)
 }
 
 @media (min-width:992px) {
@@ -38341,7 +38353,7 @@ fieldset[disabled] .btn-primary:hover {
 @media (max-width:767px) {
 	.panel-calendar .left-panel .flatpickr-calendar .flatpickr-months {
 		background-color: #babdef;
-		background-image: linear-gradient(0deg, #686fdb 5%, #babdef 60%)
+		background-image: linear-gradient(0deg, rgba(137,180,213,1) 5%, #babdef 60%)
 	}
 }
 
@@ -38458,7 +38470,7 @@ fieldset[disabled] .btn-primary:hover {
 		height: 0;
 		border-radius: 0 0 5px 5px;
 		background-color: #babdef;
-		background-image: linear-gradient(0deg, #686fdb 5%, #babdef 60%);
+		background-image: linear-gradient(0deg, rgba(137,180,213,1) 5%, #babdef 60%);
 		box-shadow: 0 5px 10px -5px #4f566b;
 		transition: height .3s ease-in-out
 	}
@@ -38493,13 +38505,13 @@ fieldset[disabled] .btn-primary:hover {
 .panel-calendar .left-panel .flatpickr-calendar .flatpickr-innerContainer .flatpickr-days .dayContainer .flatpickr-day.today {
 	background-color: hsla(0, 0%, 100%, .5);
 	border-color: hsla(0, 0%, 100%, .5);
-	color: #686fdb
+	color: rgba(137,180,213,1)
 }
 
 .panel-calendar .left-panel .flatpickr-calendar .flatpickr-innerContainer .flatpickr-days .dayContainer .flatpickr-day.today.selected {
 	color: #fff;
-	border-color: #686fdb;
-	background-color: #686fdb
+	border-color: rgba(137,180,213,1);
+	background-color: rgba(137,180,213,1)
 }
 
 .panel-calendar .left-panel .flatpickr-calendar .flatpickr-innerContainer .flatpickr-days .dayContainer .flatpickr-day.active:before {
@@ -38837,11 +38849,11 @@ fieldset[disabled] .btn-primary:hover {
 }
 
 .panel-calendar .right-panel .events-list ul li.type-reminder .event-point {
-	border-color: #686fdb
+	border-color: rgba(137,180,213,1)
 }
 
 .panel-calendar .right-panel .events-list ul li.type-reminder .title-type {
-	color: #686fdb
+	color: rgba(137,180,213,1)
 }
 
 .panel-calendar .right-panel .events-list ul li.type-insurance .event-point {
@@ -38861,11 +38873,11 @@ fieldset[disabled] .btn-primary:hover {
 }
 
 .panel-calendar .right-panel .events-list ul li.type-warranty .event-point {
-	border-color: #686fdb
+	border-color: rgba(137,180,213,1)
 }
 
 .panel-calendar .right-panel .events-list ul li.type-warranty .title-type {
-	color: #686fdb
+	color: rgba(137,180,213,1)
 }
 
 .panel-calendar .right-panel .events-list ul li.type-maintenance .event-point {
@@ -42892,7 +42904,7 @@ fieldset[disabled] .btn-primary:hover {
 	background-repeat: no-repeat;
 	background-position: 50%;
 	background-size: cover;
-	background-color: #686fdb;
+	background-color: rgba(137,180,213,1);
 	padding: 25px
 }
 
@@ -42976,7 +42988,7 @@ fieldset[disabled] .btn-primary:hover {
 }
 
 .panel-listings-list .header-bar .header-bar-info .header-bar-info-bottom .item-show:hover {
-	color: #686fdb;
+	color: rgba(137,180,213,1);
 	background-color: #fff
 }
 
@@ -43597,7 +43609,7 @@ fieldset[disabled] .btn-primary:hover {
 
 .panel-listings--steps .steps-progress .progress-circle .circle-group {
 	fill: none;
-	stroke: #686fdb;
+	stroke: rgba(137,180,213,1);
 	stroke-width: 4px
 }
 
@@ -44269,7 +44281,7 @@ fieldset[disabled] .btn-primary:hover {
 
 .panel-listings--view .block-pets .policy-header .m-status {
 	background-color: #fff;
-	color: #686fdb
+	color: rgba(137,180,213,1)
 }
 
 .panel-listings--view .block-pets .policy-header h5 {
@@ -44706,7 +44718,7 @@ fieldset[disabled] .btn-primary:hover {
 .flatpickr-calendar.inline .flatpickr-innerContainer .flatpickr-days .dayContainer .flatpickr-day.today,
 .flatpickr-calendar.inline .flatpickr-innerContainer .flatpickr-days .dayContainer .flatpickr-day:hover {
 	border-color: transparent;
-	background: #686fdb;
+	background: rgba(137,180,213,1);
 	color: #fff
 }
 
@@ -44756,7 +44768,7 @@ fieldset[disabled] .btn-primary:hover {
 
 .flatpickr-months .flatpickr-next-month:hover svg,
 .flatpickr-months .flatpickr-prev-month:hover svg {
-	fill: #686fdb
+	fill: rgba(137,180,213,1)
 }
 
 .flatpickr-current-month {
@@ -44876,7 +44888,7 @@ fieldset[disabled] .btn-primary:hover {
 .flatpickr-day.startRange:focus,
 .flatpickr-day.startRange:hover {
 	border-color: transparent;
-	background: #686fdb;
+	background: rgba(137,180,213,1);
 	color: #fff;
 	border-radius: 0
 }

@@ -37,7 +37,7 @@
 
 <!--===============================================================================================-->
 
-@if ($_SERVER['REQUEST_URI'] == '/mes-logements')
+@if ($_SERVER['REQUEST_URI'] == '/mes-logements' ||$_SERVER['REQUEST_URI'] == '/mes-locataires')
  <link rel="stylesheet" type="text/css" href="{{url('vendor/select2/select2.min.css')}}">
  <link rel="stylesheet" type="text/css" href="{{url('css/utilForm.css')}}">
  <link rel="stylesheet" type="text/css" href="{{url('css/mainForm.css')}}">
@@ -55,7 +55,7 @@
 
 <link rel="stylesheet" type="text/css" href="css/util.css">
 <!--CHARGER MAIN.CSS PARTOUT SAUF POUR LA PAGE MES LOGEMENTS-->
-@if ($_SERVER['REQUEST_URI'] != '/mes-logements')
+@if ($_SERVER['REQUEST_URI'] != '/mes-logements' && $_SERVER['REQUEST_URI'] != '/mes-locataires' )
 <link rel="stylesheet" type="text/css" href="css/main.css">
 @endif
 <link rel="stylesheet" type="text/css" href="{{url('css/elektra.css')}}">

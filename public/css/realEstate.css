@@ -85,6 +85,11 @@
   border: 3px solid #f1f1f1;
 
 }
+.loc-edit-popup {
+  display: none;
+  border: 3px solid #f1f1f1;
+
+}
 
 .formRow {
   margin-left: 1%;
