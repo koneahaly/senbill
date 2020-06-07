@@ -32,6 +32,7 @@ Route::post('/infos-services', 'HomeController@display_services_infos')->name('i
 Route::post('/infos-personnelles/update', 'HomeController@update_personal_infos')->name('infos-personnelles.update');
 Route::get('/suivi-conso', 'HomeController@suivi_conso')->name('suivi-conso');
 Route::post('/infos-services/update', 'HomeController@update_services_infos')->name('infos-services.update');
+Route::post('/infos-services-pro/update', 'HomeController@update_services_pro_infos')->name('infos-services-pro.update');
 
 
 //Route::get('/home', 'HomeController@index')->name('home');
@@ -64,5 +65,8 @@ Route::get('/mes-locataires','realEstateOwnerController@display_locataires')->na
 
 Route::get('/infos-proprietaire', 'HomeController@display_proprio_infos')->name('infos-proprietaire');
 Route::post('/infos-proprietaire', 'HomeController@display_proprio_infos')->name('infos-proprietaire');
+
+Route::get('/infos-services-pro', 'HomeController@display_services_pro_infos')->name('infos-services-pro');
+Route::post('/infos-services-pro', 'HomeController@display_services_pro_infos')->name('infos-services-pro');
 
 Route::get('json-api', 'ApiController@index');

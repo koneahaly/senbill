@@ -128,7 +128,7 @@ if($_SERVER['REQUEST_URI'] == '/register')
                          </a>
                        </li>
                        <li>
-                         <a href="{{ route('infos-services') }}">
+                         <a href="{{ route('infos-services-pro') }}">
                            mes services
                          </a>
                        </li>

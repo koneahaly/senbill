@@ -144,6 +144,18 @@ class HomeController extends Controller
         return redirect()->intended(route('infos-services'));
       }
 
+    public function update_services_pro_infos(Request $given){
+
+      $s=Auth::user()->customerId;
+      if($given->action == "Enregistrer"){
+        DB::table('users')
+            ->where('customerId', $s)
+            ->update(['service_1' => $given->service_1, 'service_2' => $given->service_2,'service_3' => $given->service_3,
+             'service_4' => $given->service_4,'service_5' => $given->service_5,'service_6' => $given->service_6]);
+        }
+        return redirect()->intended(route('infos-services-pro'));
+      }
+
     public function display_contract()
     {
       return view('mon-contrat');
@@ -157,6 +169,11 @@ class HomeController extends Controller
     public function display_services_infos()
     {
       return view('infos-services');
+    }
+
+    public function display_services_pro_infos()
+    {
+      return view('infos-services-pro');
     }
 
     public function display_proprio_infos()
@@ -173,6 +190,8 @@ class HomeController extends Controller
       $infos_perso['infos_perso']=DB::table('users')->where('customerId',$s)->first();
       return view('platform')->with($infos_perso);
     }
+
+
 
     public function suivi_conso()
     {
