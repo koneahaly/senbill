@@ -131,39 +131,32 @@ if($_SERVER['REQUEST_URI'] == '/register')
                    </a>
 
                    <ul class="dropdown-menu">
-                       <li>
+                       <li class="dropdown-item">
                          <a href="{{ route('infos-personnelles') }}">
                            mes infos personnelles
                          </a>
                        </li>
-                       <li>
-                         <a href="{{ route('infos-services') }}">
+                       <li style="padding:0px" class="dropdown-item">
+                         <a  href="{{ route('infos-services') }}">
                            mes services
                          </a>
                        </li>
+                      @endif
+                      <hr />
+                       <li style="padding:0px" class="dropdown-item">
+                           <a href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                               Se déconnecter
+                           </a>
+
+                           <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                               {{ csrf_field() }}
+                           </form>
+                       </li>
                    </ul>
                </li>
-           @endif
-             <li class="dropdown">
-                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
-                   <i class="fa fa-user-alt-slash fa-2x"></i> <p>{{ Auth::user()->first_name }}</p>
-                   <span class="caret"></span>
-                 </a>
 
-                 <ul class="dropdown-menu">
-                     <li>
-                         <a href="{{ route('logout') }}"
-                             onclick="event.preventDefault();
-                                      document.getElementById('logout-form').submit();">
-                             Se déconnecter
-                         </a>
-
-                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                             {{ csrf_field() }}
-                         </form>
-                     </li>
-                 </ul>
-             </li>
      </ul>
    </div>
   </div>
