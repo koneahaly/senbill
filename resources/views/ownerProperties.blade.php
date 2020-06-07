@@ -31,7 +31,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                            </div>
                            <div class="nav-total">
                               <div>
-                                 <total> <span>2</span> <span style="text-transform:none" > logement(s) au total</span> </total>
+                                 <total> <span> {{ $nb_log }}</span> <span style="text-transform:none" > logement(s) au total</span> </total>
                               </div>
                            </div>
 
@@ -64,6 +64,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
         <div class="wrapper-list">
           <div class="row propRow">
               <!---DEBUT  CARTE LOGEMENT 1 -->
+            @foreach($infos_log as $vl)
             <div class="col-xs-12 col-sm-10 col-md-8">
               <div class="m-panel panel-property--list" >
                 <div class="markup"></div>
@@ -83,14 +84,14 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                                   <div class="m-property-info ">
                                      <div class="info-name-property">
                                         <span>
-                                          <span>Keur Serigne Saliou</span>
+                                          <span>{{ $vl->title }}</span>
                                         </span>
                                      </div>
                                      <!----> <!---->
                                      <div class="info-location">
                                         <div class="icon-svg"> <i class="fas fa-map-marker-alt"></i></div>
                                         <div class="location-address">
-                                        <span>Hann Mariste 2 villa Y46</span><br><span> Dakar, Sénégal</span><!---->
+                                        <span>{{ $vl->address }}</span><br><span> {{ $vl->city }}, Sénégal</span><!---->
                                         </div>
                                      </div>
                                      <!---->
@@ -101,20 +102,31 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                          <div class="name-view">
                             <div class="u-flex--items-center">
                                <!----> <!---->
-                               <div class="units"> <span class="unit-count"> 2 chambres </span> </div>
+                               <div class="units"> <span class="unit-count"> {{ $vl->nb_rooms }} chambres </span> </div>
                                <!----> <!---->
                             </div>
                             <div class="view-units">
+                              @if($vl->status == "N")
                                <div class="units-progress">
                                   <div style="width: 100%;"></div>
                                </div>
+                               @endif
+                               @if($vl->status == "Y")
+                               <div class="units-progress">
+                                 <div style="width: 100%;background-image: linear-gradient(90deg,#1ab92d,#f2ffd9 60%,#f2f6ff);"></div>
+                               </div>
+                               @endif
                                <div class="units-type">
+                                 @if($vl->status == "N")
                                   <div class="occupied">
                                      <!----> <span>Occupé par Yacine Ndiaye</span>
                                   </div>
-                                  <div class="vacant" style="display:none;">
+                                  @endif
+                                  @if($vl->status == "Y")
+                                  <div class="vacant">
                                      <!----> <span>Libre</span>
                                   </div>
+                                  @endif
                                </div>
                             </div>
                          </div>
@@ -149,117 +161,24 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                 <!---FIN MENU AVEC ICONES-->
                 <!---DEBUT FOOTER-->
                 <div class="m-panel__footer between-xs">
+                  @if($vl->status == "Y")
                    <div>
                       <!-- SI LOGEMENT LIBRE ALORS AJOUTER LE CODE  SUIVANT--> <!---->
-                    <!--
+
                     <a class="m-btn-link--view" title="détails" href="" style="text-transform: none;"> Ajouter un locataire <i class="fas fa-house-user"></i></a>
-                   -->
+
                    </div>
+                   @endif
                    <div class="property-view"> <a class="m-btn-link--view" title="détails" href="" style="text-transform: none;"  onclick="openDesc(); return false;"> Modifier <i class="far fa-edit"></i></a> </div>
                 </div>
                 <!---FIN FOOTER-->
               </div>
             </div>
+            @endforeach
 
   <!---FIN CARTE LOGEMENT 1 -->
     <!---DEBUT CARTE LOGEMENT 2-->
-    <div class="col-xs-12 col-sm-10 col-md-8">
-      <div class="m-panel panel-property--list" >
-        <div class="markup"></div>
-        <!-- DEBUT BODY DETAIL -->
-        <div class="m-panel__body">
 
-          <div class="body-detail">
-           <div class="detail-img"> <a title="icone logement" href="">
-             <img imageonload="" class="img-responsive s-image--loading_success" alt="avatar" src="{{url('images/icon-undraw-house.png')}}">
-            </a>
-          </div>
-           <div class="detail-info">
-              <div class="info-name">
-                 <div class="name-address">
-                    <a href="">
-                       <fieldset-property-info property="property" address1="26 Route des Maristes" city-address="Chelles, Dakar, 77500, SN">
-                          <div class="m-property-info ">
-                             <div class="info-name-property">
-                                <span>
-                                  <span>Keur Serigne Aly</span>
-                                </span>
-                             </div>
-                             <!----> <!---->
-                             <div class="info-location">
-                                <div class="icon-svg"> <i class="fas fa-map-marker-alt"></i></div>
-                                <div class="location-address">
-                                <span>Almadies  villa Aldiana</span><br><span> Dakar, Sénégal</span><!---->
-                                </div>
-                             </div>
-                             <!---->
-                          </div>
-                       </fieldset-property-info>
-                    </a>
-                 </div>
-                 <div class="name-view">
-                    <div class="u-flex--items-center">
-                       <!----> <!---->
-                       <div class="units"> <span class="unit-count"> 5 chambres </span> </div>
-                       <!----> <!---->
-                    </div>
-                    <div class="view-units">
-                       <div class="units-progress">
-                         <!-- AJOUTER ICI LE BACKGROUND IMAGE QUE SI LE LOGEMENT EST LIBRE-->
-                          <div style="width: 100%;background-image: linear-gradient(90deg,#1ab92d,#f2ffd9 60%,#f2f6ff);"></div>
-                       </div>
-                       <div class="units-type">
-                          <div class="occupied" style="display:none;">
-                             <!----> <span>Occupé</span>
-                          </div>
-                          <div class="vacant">
-                             <!----> <span>Libre</span>
-                          </div>
-                       </div>
-                    </div>
-                 </div>
-              </div>
-           </div>
-         </div>
-
-        </div>
-        <!---FIN BODY DETAIL-->
-          <!---DEBUT MENU AVEC ICONES-->
-        <div class="m-action-btn-icon">
-           <a class="col-xs-12 col-sm-12 tooltip-link" title="Locataire" href="">
-              <div class="icon-svg">
-                 <i class="fas fa-house-user"></i>
-              </div>
-              <div class="m-title-tooltip">
-                 <div class="tooltip-label">Locataire</div>
-              </div>
-              <p>Locataire</p>
-           </a>
-           <a class="col-xs-12 col-sm-12 tooltip-link"  title="Factures" href="">
-              <div class="icon-svg">
-                 <i class="fas fa-file-invoice-dollar"></i>
-              </div>
-              <div class="m-title-tooltip">
-                 <div class="tooltip-label">Factures</div>
-              </div>
-              <p>Factures</p>
-           </a>
-
-        </div>
-        <!---FIN MENU AVEC ICONES-->
-        <!---DEBUT FOOTER-->
-        <div class="m-panel__footer between-xs">
-           <div>
-              <!----> <!---->
-              <!-- SI LOGEMENT LIBRE ALORS AJOUTER LE CODE  SUIVANT--> <!---->
-            <a class="m-btn-link--view" title="détails" href="" style="text-transform: none;" onclick="openFormLocataire(); return false;"> Ajouter un locataire <i class="fas fa-house-user"></i></a>
-
-           </div>
-           <div class="property-view"> <a class="m-btn-link--view" title="détails" href="" style="text-transform: none;"> Modifier <i class="far fa-edit"></i></a> </div>
-        </div>
-        <!---FIN FOOTER-->
-      </div>
-    </div>
   <!---FIN CARTE LOGEMENT 2-->
           </div>
         </div>
@@ -268,88 +187,91 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
     </div>
 
     <!---FORMULAIRE AJOUT LOGEMENT-->
-    <div class="container-contact100 form-popup" id="propForm">
-      <div class="wrap-contact100">
-        <form class="contact100-form validate-form" >
-          <span class="contact100-form-title">
-            Ajoutez un logement
-          </span>
+    <form method="post" action="{{ route('mes-logements.add') }}">
+      {{csrf_field()}}
+      <div class="container-contact100 form-popup" id="propForm">
+        <div class="wrap-contact100">
+          <form class="contact100-form validate-form" >
+            <span class="contact100-form-title">
+              Ajoutez un logement
+            </span>
 
-          <div class="wrap-input100 validate-input bg1" data-validate="Entrez svp un nom pour le logement">
-            <span class="label-input100">Nom du logement *</span>
-            <input class="input100" type="text" name="name" placeholder="Entrez un nom pour le logement">
-          </div>
-          <div class="wrap-input100 validate-input bg1 rs1-wrap-input100" data-validate = "Entrez l'adresse ou le quartier">
-            <span class="label-input100">Adresse du logement *</span>
-            <input class="input100" type="text" name="adresse" placeholder="Entrez l'adresse ou le quartier ">
-          </div>
-
-          <div class="wrap-input100 bg1 rs1-wrap-input100">
-            <span class="label-input100">Ville du logement</span>
-            <input class="input100" type="text" name="ville" placeholder="Entrez la ville du  logement">
-          </div>
-          <div class="wrap-input100 input100-select bg1">
-            <span class="label-input100">Nombre de chambres *</span>
-            <div>
-              <select class="js-select-bed" name="nbchambres">
-                <option>Studio</option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-                <option>6</option>
-                <option>maison</option>
-              </select>
-              <div class="dropDownSelect2"></div>
+            <div class="wrap-input100 validate-input bg1" data-validate="Entrez svp un nom pour le logement">
+              <span class="label-input100">Nom du logement *</span>
+              <input class="input100" type="text" name="tl_housing" placeholder="Entrez un nom pour le logement">
             </div>
-          </div>
-
-          <div class="wrap-input100 input100-select bg1">
-            <span class="label-input100">Libre ou occupé *</span>
-            <div>
-              <select class="js-select2" name="service">
-                <option>Choisir svp</option>
-                <option>Logement libre</option>
-                <option>Logement occupé</option>
-              </select>
-              <div class="dropDownSelect2"></div>
+            <div class="wrap-input100 validate-input bg1 rs1-wrap-input100" data-validate = "Entrez l'adresse ou le quartier">
+              <span class="label-input100">Adresse du logement *</span>
+              <input class="input100" type="text" name="address_housing" placeholder="Entrez l'adresse ou le quartier ">
             </div>
-          </div>
 
-          <div class="w-full dis-none js-show-service">
-            <div class="wrap-contact100-form-radio">
-              <span class="label-input100">Le logement est-il meublé?</span>
-
-              <div class="contact100-form-radio m-t-15">
-                <input class="input-radio100" id="radio1" type="radio" name="type-product" value="nonmeuble" checked="checked">
-                <label class="label-radio100" for="radio1">
-                  Logement non meublé
-                </label>
-              </div>
-
-              <div class="contact100-form-radio">
-                <input class="input-radio100" id="radio2" type="radio" name="type-product" value="meuble">
-                <label class="label-radio100" for="radio2">
-                  Logement meublé
-                </label>
+            <div class="wrap-input100 bg1 rs1-wrap-input100">
+              <span class="label-input100">Ville du logement</span>
+              <input class="input100" type="text" name="city_housing" placeholder="Entrez la ville du  logement">
+            </div>
+            <div class="wrap-input100 input100-select bg1">
+              <span class="label-input100">Nombre de chambres *</span>
+              <div>
+                <select class="js-select-bed" name="nb_rooms">
+                  <option>Studio</option>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                  <option>6</option>
+                  <option>maison</option>
+                </select>
+                <div class="dropDownSelect2"></div>
               </div>
             </div>
 
-          </div>
+            <div class="wrap-input100 input100-select bg1">
+              <span class="label-input100">Libre ou occupé *</span>
+              <div>
+                <select class="js-select2" name="status_housing">
+                  <option disabled>Choisir svp</option>
+                  <option value="Y">Logement libre</option>
+                  <option value="N">Logement occupé</option>
+                </select>
+                <div class="dropDownSelect2"></div>
+              </div>
+            </div>
+
+            <div class="w-full dis-none js-show-service">
+              <div class="wrap-contact100-form-radio">
+                <span class="label-input100">Le logement est-il meublé?</span>
+
+                <div class="contact100-form-radio m-t-15">
+                  <input class="input-radio100" id="radio1" type="radio" name="housing_type" value="nonmeuble" checked="checked">
+                  <label class="label-radio100" for="radio1">
+                    Logement non meublé
+                  </label>
+                </div>
+
+                <div class="contact100-form-radio">
+                  <input class="input-radio100" id="radio2" type="radio" name="type_housing" value="meuble">
+                  <label class="label-radio100" for="radio2">
+                    Logement meublé
+                  </label>
+                </div>
+              </div>
+
+            </div>
 
 
-          <div class="container-contact100-form-btn">
-            <button class="contact100-form-btn" onclick="closeForm(); return false;">
-              <span>
-                Ajoutez
-                <i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
-              </span>
-            </button>
-          </div>
-        </form>
+            <div class="container-contact100-form-btn">
+              <button type="submit" class="contact100-form-btn">
+                <span>
+                  Ajoutez
+                  <i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+                </span>
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
+    </form>
 
     <!--- FIN FORMULAIRE AJOUT LOGEMENT-->
 
@@ -502,7 +424,6 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
     </div>
 
     <!--- FIN FORMULAIRE AJOUT LOCATAIRE-->
-</div>
 </div>
 @endsection
 

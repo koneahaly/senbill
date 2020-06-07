@@ -61,6 +61,7 @@ Route::post('/admin/import-bills-six-months','AdminController@imports_bills_prev
 
 Route::get('/transactions-proprietaire','realEstateOwnerController@display_transactions')->name('ownerTransactions');
 Route::get('/mes-logements','realEstateOwnerController@display_properties')->name('ownerProperties');
+Route::post('/mes-logements/add','realEstateOwnerController@add_housing')->name('mes-logements.add');
 Route::get('/mes-locataires','realEstateOwnerController@display_locataires')->name('mes-locataires');
 
 Route::get('/infos-proprietaire', 'HomeController@display_proprio_infos')->name('infos-proprietaire');
