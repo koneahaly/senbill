@@ -149,9 +149,12 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                 <!---DEBUT FOOTER-->
                 <div class="m-panel__footer between-xs">
                    <div>
-                      <!----> <!---->
+                      <!-- SI LOGEMENT LIBRE ALORS AJOUTER LE CODE  SUIVANT--> <!---->
+                    <!--
+                    <a class="m-btn-link--view" title="détails" href="" style="text-transform: none;"> Ajouter un locataire <i class="fas fa-house-user"></i></a>
+                   -->
                    </div>
-                   <div class="property-view"> <a class="m-btn-link--view" title="détails" href="" style="text-transform: none;"> Voir <i class="far fa-eye"></i> </a> </div>
+                   <div class="property-view"> <a class="m-btn-link--view" title="détails" href="" style="text-transform: none;"  onclick="openDesc(); return false;"> Modifier <i class="far fa-edit"></i></a> </div>
                 </div>
                 <!---FIN FOOTER-->
               </div>
@@ -247,8 +250,11 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
         <div class="m-panel__footer between-xs">
            <div>
               <!----> <!---->
+              <!-- SI LOGEMENT LIBRE ALORS AJOUTER LE CODE  SUIVANT--> <!---->
+            <a class="m-btn-link--view" title="détails" href="" style="text-transform: none;" onclick="openFormLocataire(); return false;"> Ajouter un locataire <i class="fas fa-house-user"></i></a>
+
            </div>
-           <div class="property-view"> <a class="m-btn-link--view" title="détails" href="" style="text-transform: none;"> Voir <i class="far fa-eye"></i> </a> </div>
+           <div class="property-view"> <a class="m-btn-link--view" title="détails" href="" style="text-transform: none;"> Modifier <i class="far fa-edit"></i></a> </div>
         </div>
         <!---FIN FOOTER-->
       </div>
@@ -298,23 +304,6 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
             </div>
           </div>
 
-          <div class="wrap-input100 bg1 rs1-wrap-input100">
-            <span class="label-input100">Loyer *</span>
-            <input class="input100" type="number" name="loyer" placeholder="Entrez le montant du loyer">
-          </div>
-          <div class="wrap-input100 bg1 rs1-wrap-input100 input100-select">
-            <span class="label-input100">Devise *</span>
-            <div>
-              <select class="js-select-currency" name="DEVISE">
-                <option>FCFA</option>
-                <option>Euro</option>
-                <option>Dollar</option>
-                <option>Eco</option>
-              </select>
-              <div class="dropDownSelect2"></div>
-            </div>
-          </div>
-
           <div class="wrap-input100 input100-select bg1">
             <span class="label-input100">Libre ou occupé *</span>
             <div>
@@ -325,10 +314,6 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
               </select>
               <div class="dropDownSelect2"></div>
             </div>
-          </div>
-          <div class="wrap-input100 validate-input bg1 js-show-locataire" data-validate="Entrez svp un nom de locataire du logement">
-            <span class="label-input100">Nom du locataire * </span>
-            <input class="input100" type="text" name="locataire" placeholder="Entrez un nom de locataire si occupé">
           </div>
 
           <div class="w-full dis-none js-show-service">
@@ -365,15 +350,164 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
       </div>
     </div>
   </div>
+    <!--- FIN FORMULAIRE AJOUT LOGEMENT-->
+
+    <!---DESCRIPTION LOGEMENT-->
+    <div class="container-contact100 desc-popup" id="propDesc">
+      <div class="wrap-contact100">
+        <form class="contact100-form validate-form" >
+          <span class="contact100-form-title">
+            Modifier votre logement
+          </span>
+
+          <div class="wrap-input100 validate-input bg1" data-validate="Entrez svp un nom pour le logement">
+            <span class="label-input100">Nom du logement *</span>
+            <input class="input100" type="text" name="name" placeholder="Entrez un nom pour le logement" value="Keur Serigne Saliou">
+          </div>
+          <div class="wrap-input100 validate-input bg1 rs1-wrap-input100" data-validate = "Entrez l'adresse ou le quartier">
+            <span class="label-input100">Adresse du logement *</span>
+            <input class="input100" type="text" name="adresse" placeholder="Entrez l'adresse ou le quartier" value="Hann Mariste 2 villa Y46">
+          </div>
+
+          <div class="wrap-input100 bg1 rs1-wrap-input100">
+            <span class="label-input100">Ville du logement</span>
+            <input class="input100" type="text" name="ville" placeholder="Entrez la ville du  logement" value="Dakar">
+          </div>
+          <div class="wrap-input100 input100-select bg1">
+            <span class="label-input100">Nombre de chambres *</span>
+            <div>
+              <select class="js-select-bed" name="nbchambres">
+                <option>Studio</option>
+                <option>1</option>
+                <option selected >2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>maison</option>
+              </select>
+              <div class="dropDownSelect2"></div>
+            </div>
+          </div>
+
+          <div class="wrap-input100 input100-select bg1">
+            <span class="label-input100">Libre ou occupé *</span>
+            <div>
+              <select class="js-select2" name="service">
+                <option>Choisir svp</option>
+                <option>Logement libre</option>
+                <option selected>Logement occupé</option>
+              </select>
+              <div class="dropDownSelect2"></div>
+            </div>
+          </div>
+          <div class="w-full dis-none js-show-service">
+            <div class="wrap-contact100-form-radio">
+              <span class="label-input100">Le logement est-il meublé?</span>
+
+              <div class="contact100-form-radio m-t-15">
+                <input class="input-radio100" id="radio1" type="radio" name="type-product" value="nonmeuble" checked="checked">
+                <label class="label-radio100" for="radio1">
+                  Logement non meublé
+                </label>
+              </div>
+
+              <div class="contact100-form-radio">
+                <input class="input-radio100" id="radio2" type="radio" name="type-product" value="meuble">
+                <label class="label-radio100" for="radio2">
+                  Logement meublé
+                </label>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="container-contact100-form-btn">
+            <button class="contact100-form-btn" onclick="closeForm(); return false;">
+              <span>
+                Sauvegarder
+                <i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+              </span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+    <!---FIN  DESCRIPTION LOGEMENT-->
+
+    <!---FORMULAIRE AJOUT LOCATAIRE-->
+    <div class="container-contact100 loc-popup" id="locForm">
+      <div class="wrap-contact100">
+        <form class="contact100-form validate-form" >
+          <span class="contact100-form-title">
+            Ajoutez un locataire
+          </span>
+            <div class="wrap-input100 input100-select bg1 rs1-wrap-input100">
+              <span class="label-input100">Civilité *</span>
+              <div>
+                <select class="js-select-civ" name="civilite">
+                  <option>Monsieur</option>
+                  <option>Madame</option>
+                  <option>Mademoiselle</option>
+                </select>
+                <div class="dropDownSelect2"></div>
+              </div>
+            </div>
+            <div class="rs1-wrap-input100">
+            </div>
+          <div class="wrap-input100 validate-input bg1 rs1-wrap-input100" data-validate = "Entrez le prénom">
+            <span class="label-input100">Prénom *</span>
+            <input class="input100" type="text" name="prenom" required placeholder="Entrez le prénom du locataire">
+          </div>
+
+          <div class="wrap-input100 bg1 rs1-wrap-input100">
+            <span class="label-input100">Nom *</span>
+            <input class="input100" type="text" name="nom" required  placeholder="Entrez le nom du locataire">
+          </div>
+          <div class="wrap-input100 input100-select bg1 rs1-wrap-input100">
+            <span class="label-input100">Date de naissance </span>
+            <input class="input100" type="text" name="dateOB" required  placeholder="Entrez la date">
+          </div>
+          <div class=" wrap-input100 bg1 rs1-wrap-input100">
+            <span class="label-input100">Lieu de naissance </span>
+            <input class="input100" type="text" name="placeOB" placeholder="Entrez le lieu de naissance du locataire">
+          </div>
+          <div class="wrap-input100 validate-input bg1 rs1-wrap-input100" data-validate = "Entrez l'adresse mail">
+            <span class="label-input100">Email </span>
+            <input class="input100" type="email" name="mail" placeholder="Entrez l'adresse mail du locataire">
+          </div>
+
+          <div class="wrap-input100 bg1 rs1-wrap-input100">
+            <span class="label-input100">Téléphone * </span>
+            <input class="input100" type="tel" pattern="[0-9]{*}" name="phone" required placeholder="Entrez le téléphone du locataire">
+          </div>
+          <div class="wrap-input100 validate-input bg1" data-validate="Entrez svp un nom pour le logement">
+            <span class="label-input100">Numéro CNI *</span>
+            <input class="input100" type="text" pattern="[0-9,A-Z,a-z]{13}" required name="cni" placeholder="Entrez le numéro de Carte d'identité nationale du locataire">
+          </div>
 
 
 
-
+          <div class="container-contact100-form-btn">
+            <button class="contact100-form-btn" onclick="closeFormLocataire(); return false;">
+              <span>
+                Ajoutez
+                <i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+              </span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+    <!--- FIN FORMULAIRE AJOUT LOCATAIRE-->
 @endsection
 
 @section('scripts')
 <script src="{{url('js/mainForm.js')}}"></script>
 <script src="{{url('vendor/animsition/js/animsition.min.js')}}"></script>
+
 <!--===============================================================================================-->
 <script src="{{url('vendor/select2/select2.min.js')}}"></script>
 <script>
@@ -384,26 +518,6 @@ $(document).ready(function() {
       dropdownParent: $(this).next('.dropDownSelect2')
     });
 
-
-    $(".js-select2").each(function(){
-      $(this).on('select2:close', function (e){
-        if($(this).val() == "Choisir svp") {
-          $('.js-show-service').slideUp();
-          $('.js-show-locataire').slideUp();
-        }
-        else if($(this).val() == "Logement occupé") {
-          $('.js-show-locataire').slideUp();
-          $('.js-show-service').slideUp();
-          $('.js-show-locataire').slideDown();
-          $('.js-show-service').slideDown();
-        }
-        else {
-          $('.js-show-locataire').slideUp();
-          $('.js-show-service').slideUp();
-          $('.js-show-service').slideDown();
-        }
-      });
-    });
   })
   $(".js-select-bed").each(function(){
     $(this).select2({
@@ -412,7 +526,7 @@ $(document).ready(function() {
     });
 
   })
-  $(".js-select-currency").each(function(){
+  $(".js-select-civ").each(function(){
     $(this).select2({
       minimumResultsForSearch: 20,
       dropdownParent: $(this).next('.dropDownSelect2')
@@ -421,7 +535,7 @@ $(document).ready(function() {
   })
   } );
 </script>
-
+<!--===============================================================================================-->
 <script>
   function openForm() {
     document.getElementById("propForm").style.display = "flex";
@@ -432,5 +546,72 @@ $(document).ready(function() {
   }
 
 </script>
+<script>
+  function openDesc() {
+    document.getElementById("propDesc").style.display = "flex";
+  }
+
+  function closeDesc() {
+    document.getElementById("propDesc").style.display = "none";
+  }
+
+</script>
+<script>
+  function openFormLocataire() {
+    document.getElementById("locForm").style.display = "flex";
+  }
+
+  function closeFormLocataire() {
+    document.getElementById("locForm").style.display = "none";
+  }
+
+</script>
+<!--===============================================================================================-->
+<script src="{{url('vendor/daterangepicker/moment.min.js')}}"></script>
+<script src="{{url('vendor/daterangepicker/daterangepicker.js')}}"></script>
+<script>
+$(function() {
+  $('input[name="dateOB"]').daterangepicker({
+    singleDatePicker: true,
+    showDropdowns: true,
+    minYear: 1901,
+    maxYear: parseInt(moment().format('YYYY'),10),
+    locale: {
+      format: 'DD/MM/YYYY',
+    separator: " - ",
+        applyLabel: "Valider",
+        cancelLabel: "Annuler",
+        fromLabel: "De",
+        toLabel: "A",
+        weekLabel: "S",
+        daysOfWeek: [
+            "Dim",
+            "Lu",
+            "Ma",
+            "Me",
+            "Je",
+            "Ve",
+            "Sa"
+        ],
+        monthNames: [
+            "Janvier",
+            "Février",
+            "Mars",
+            "Avril",
+            "Mai",
+            "Juin",
+            "Juillet",
+            "Août",
+            "Septembre",
+            "Octobre",
+            "Novembre",
+            "Décembre"
+        ],
+        firstDay: 1
+    }
+  });
+});
+</script>
+
 
 @endsection

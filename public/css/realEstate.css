@@ -73,8 +73,43 @@
   border: 3px solid #f1f1f1;
 
 }
+/* The popup desc - hidden by default */
+.desc-popup {
+  display: none;
+  border: 3px solid #f1f1f1;
+
+}
+/* The popup desc - hidden by default */
+.loc-popup {
+  display: none;
+  border: 3px solid #f1f1f1;
+
+}
 
 .formRow {
   margin-left: 1%;
   margin-right: 5%;
+}
+.calendarIcon {
+    position: absolute;
+    right: 5%;
+    top: 40%;
+    min-width: auto;
+    height: 23px;
+    border: none;
+    border-left: 0 solid;
+    border-radius: 0;
+    background-color: initial;
+    border: 1px solid #edf0f5;
+    background: #f6f9fc;
+    color: #4f566b5c;
+    font-size: 2rem;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: border .2s linear 0s,box-shadow .2s linear 0s,color .2s linear 0s,box-shadow .2s linear 0s,background .2s linear 0s;
 }
