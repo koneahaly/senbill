@@ -12,6 +12,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
    <h3><strong>Mes logements</strong></h3></div>
   </div>
 <!-- END TITLE OF THE PAGE-->
+<!--CONTENT OF THE PAGE-->
   <div class="panel panel-default" style="background-color: #f5f9fc;">
     <div class="panel-body propPanelBody">
       <!--<h4>DEBUT HEADER  </h4> -->
@@ -349,7 +350,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
         </form>
       </div>
     </div>
-  </div>
+
     <!--- FIN FORMULAIRE AJOUT LOGEMENT-->
 
     <!---DESCRIPTION LOGEMENT-->
@@ -433,7 +434,6 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
         </form>
       </div>
     </div>
-  </div>
     <!---FIN  DESCRIPTION LOGEMENT-->
 
     <!---FORMULAIRE AJOUT LOCATAIRE-->
@@ -500,8 +500,9 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
         </form>
       </div>
     </div>
-  </div>
+
     <!--- FIN FORMULAIRE AJOUT LOCATAIRE-->
+</div>
 @endsection
 
 @section('scripts')
@@ -538,6 +539,12 @@ $(document).ready(function() {
 <!--===============================================================================================-->
 <script>
   function openForm() {
+    if (document.getElementById("propDesc").style.display != "none"){
+      closeDesc();
+    }
+   if (document.getElementById("locForm").style.display != "none"){
+      closeFormLocataire();
+    }
     document.getElementById("propForm").style.display = "flex";
   }
 
@@ -548,6 +555,12 @@ $(document).ready(function() {
 </script>
 <script>
   function openDesc() {
+    if (document.getElementById("propForm").style.display != "none"){
+      closeForm();
+    }
+   if (document.getElementById("locForm").style.display != "none"){
+      closeFormLocataire();
+    }
     document.getElementById("propDesc").style.display = "flex";
   }
 
@@ -558,6 +571,12 @@ $(document).ready(function() {
 </script>
 <script>
   function openFormLocataire() {
+    if (document.getElementById("propDesc").style.display != "none"){
+      closeDesc();
+    }
+   if (document.getElementById("propForm").style.display != "none"){
+      closeForm();
+    }
     document.getElementById("locForm").style.display = "flex";
   }
 

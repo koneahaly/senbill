@@ -21,11 +21,11 @@
   @yield('scripts')
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/graphicalChart.css') }}" rel="stylesheet">
+<link href="{{ asset('css/app.css') }}" rel="stylesheet">
+<link href="{{ asset('css/graphicalChart.css') }}" rel="stylesheet">
 
-    <link href="{{ URL::asset('css/common.css') }}" rel="stylesheet">
-    <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<link href="{{ URL::asset('css/common.css') }}" rel="stylesheet">
+<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <!--===============================================================================================-->
@@ -54,6 +54,7 @@
 @endif
 
 <link rel="stylesheet" type="text/css" href="css/util.css">
+<!--CHARGER MAIN.CSS PARTOUT SAUF POUR LA PAGE MES LOGEMENTS-->
 @if ($_SERVER['REQUEST_URI'] != '/mes-logements')
 <link rel="stylesheet" type="text/css" href="css/main.css">
 @endif
@@ -190,11 +191,11 @@ if($_SERVER['REQUEST_URI'] == '/register')
             <li class="nav-item">
               <a href="{{ route('logout') }}"
                   onclick="event.preventDefault();
-                           document.getElementById('logout-form').submit();">
+                           document.getElementById('logout-form1').submit();">
                   Se déconnecter
               </a>
 
-              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+              <form id="logout-form1" action="{{ route('logout') }}" method="POST" style="display: none;">
                   {{ csrf_field() }}
               </form>
               </li>
