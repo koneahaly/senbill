@@ -120,7 +120,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                             </div>
                             <p>Loyer</p>
                          </a>
-                         <a class="col-xs-12" title="Contrat" href="">
+                         <a class="col-xs-12" title="Contrat" onclick="openLeaseDetails()">
                             <div class="icon-svg">
                                <e-svg-icon set-class="i-svg--master-darker i-svg--stroke-2 i-svg--24" xlink="#icon-line-lease" class="e-svg-icon">
                                   <svg class="i-svg--master-darker i-svg--stroke-2 i-svg--24" id="svgElement" viewBox="0 0 48 48">
@@ -222,6 +222,196 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
       </div>
 
       <!--- FIN FORMULAIRE MODIF LOCATAIRE-->
+
+      <!---DEBUT DETAILS CONTRAT-->
+            <div class="container-contact100 leaseDetails-popup" id="leaseDetails">
+              <div class="m-panel panel-users--body">
+               <div class="m-tabs--users">
+                  <a class="tab active"  title="Contrat"  href="">
+                     <div class="icon-svg">
+                        <e-svg-icon set-class="i-svg--26 i-svg--stroke-2" xlink="#icon-line-lease" class="e-svg-icon">
+                           <svg class="i-svg--26 i-svg--stroke-2" id="svgElement" viewBox="0 0 48 48">
+                              <g fill="none" stroke-linecap="round" stroke-miterlimit="10">
+                                 <path stroke-linejoin="round" d="M31 46H8a2 2 0 01-2-2V4a2 2 0 012-2h32a2 2 0 012 2v34l-11 8z"></path>
+                                 <path stroke-linejoin="round" d="M41 38H30v7"></path>
+                                 <path d="M19 11h10"></path>
+                                 <path stroke-dasharray="4" d="M12 20h24m-24 4h11"></path>
+                                 <path stroke-linejoin="round" d="M24.564 30.372a10.519 10.519 0 003.325-1.962c.076.756.15 3.81-.04 4.544s-.704 1.435-1.438 1.629c-.588.154-1.206-.032-1.78-.234l3.85-1.822c.47.336 1.17.086 1.516-.376.346-.462.43-1.062.504-1.635.446.766.736 1.623.846 2.503.248.006.469-.177.581-.398.112-.221.138-.474.162-.72l.344-3.586c-.07 1.58.068 3.17.409 4.716a3.125 3.125 0 001.335-1.52l3.533-1.314"></path>
+                              </g>
+                           </svg>
+                        </e-svg-icon>
+                     </div>
+                     <span>Contrat</span>
+                  </a>
+               </div>
+               <div class="m-panel__body">
+                  <!-- VUE CONTRAT -->
+                  <div class="body-leases" >
+                     <div class="u-flex--flex">
+                        <div class="panel-leases--card">
+                           <div class="card-info">
+                              <div class="info-address">
+                                 <i class="fas fa-map-marker-alt"></i>
+                                 <span>Hann Maristes 2 villa Y46</span>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="unit">
+                           <div>
+                              <div class="lease">
+                                 <div class="m-panel__heading active">
+                                    <div class="heading-title">
+                                      <span>Contrat</span>
+                                    </div>
+                                    <div class="heading-dots">
+                                       <div class="title-ended">
+                                          <!---->
+                                       </div>
+                                       <!-- REMPLACER PAR status-inactive si contrat inactif, soit un ancien locataire  -->
+                                       <span class="m-status m-r-10 status-active"> Actif </span>
+                                    </div>
+                                 </div>
+                                 <div class="panel-leases panel-leases--view" >
+                                    <div item="lease" class="u-flex--flex lease-view">
+                                       <div>
+                                          <article>
+                                             <h5 class="panel-view-title">Informations du locataire</h5>
+                                             <section class="lease-residents">
+                                                <div class="row">
+                                                   <div class="col-xs-24 col-sm-14">
+                                                      <div size="tiny" width="56"  class="m-b-10">
+                                                         <div class="m-profile-info horizontal">
+                                                            <div class="profile-img">
+                                                               <a>
+                                                                  <avatar name="profile-photo" item="$ctrl.item" width="56" size="tiny" class="m-avatar">
+                                                                    <!----> <!--Si civilité = homme alors -->
+                                                                    <!-- <img imageonload="" class="img-responsive s-image--loading_success" alt="avatar" src="{{url('images/icon-homme.png')}}"> -->
+                                                                    <img imageonload="" class="img-responsive s-image--loading_success" alt="avatar" src="{{url('images/icon-femme.png')}}">
+                                                                  </avatar>
+                                                               </a>
+                                                            </div>
+                                                            <div class="info">
+                                                               <div class="info-name">
+                                                                  <div class="type">
+                                                                  </div>
+                                                                  <div class="name">
+                                                                     <a>
+                                                                        <h2>Yacine Ndiaye</h2>
+                                                                     </a>
+                                                                     <div class="info-status">
+                                                                        <div class="is-connect">
+                                                                           <i class="fas fa-dice-one" style="color:#38c738;"></i>
+                                                                           <!-- SI ANCIEN LOCATAIRE (INACTIF) ALORS
+                                                                           <i class="fas fa-dice-one" style="color:#a1a6b3;"></i>
+                                                                         -->
+                                                                           <div class="m-title-tooltip">
+                                                                              <div class="tooltip-label">Actif</div>
+                                                                           </div>
+                                                                        </div>
+                                                                     </div>
+                                                                  </div>
+                                                                  <div class="loc-phone"> <p>773228879</p> </div>
+                                                               </div>
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                             </section>
+                                          </article>
+                                       </div>
+                                       <article class="lease-details">
+                                          <h5 class="panel-view-title">Détails de la location</h5>
+                                          <div class="row">
+                                             <div class="col-xs-24 col-sm-8">
+                                                <div class="view-block">
+                                                   <h3>Date de début</h3>
+                                                   <span>03/06/2020</span>
+                                                </div>
+                                             </div>
+                                             <div class="col-xs-24 col-sm-8">
+                                                <div class="view-block">
+                                                   <h3>Date de fin</h3>
+                                                   <span>03/06/2021</span>
+                                                </div>
+                                             </div>
+                                          </div>
+                                          <div class="row">
+                                             <div class="col-xs-24 col-sm-8">
+                                                <div class="view-block">
+                                                   <h3>Type de location</h3>
+                                                   <span>Mensuel</span>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </article>
+                                       <article class="lease-transaction">
+                                          <h5 class="panel-view-title">Transactions</h5>
+                                          <div>
+                                             <section>
+                                                <div>
+                                                   <div class="row bottom-xs">
+                                                      <div class="col-xs-24 col-sm-14">
+                                                         <div class="transaction-item">
+                                                            <div class="view-block m-b-0">
+                                                               <div class="title-block">
+                                                                  <h3 class="u-fontSize16">
+                                                                     <span>Loyer</span>
+                                                                  </h3>
+                                                                  <span>
+                                                                     <span>325 000 FCFA</span><span >/ Mois</span>
+                                                                  </span>
+                                                               </div>
+                                                               <div class="title-block">
+                                                                  <h3 class="u-fontSize16">Jour d'échéance</h3>
+                                                                  <span > 5 </span>
+                                                               </div>
+                                                            </div>
+                                                         </div>
+                                                      </div>
+
+                                                   </div>
+                                                </div>
+                                             </section>
+                                          </div>
+                                          <div>
+                                             <section>
+                                                <div class="row">
+                                                   <div class="col-xs-24 col-sm-14">
+                                                      <div class="transaction-item">
+                                                         <div class="view-block">
+                                                            <div class="title-block">
+                                                               <h3 class="u-fontSize16">
+                                                                  Caution
+                                                               </h3>
+                                                               <div class="deposit-block">
+                                                                  <div class="title-block deposit-amount"> <span class="amount-total">600 000 FCFA</span></div>
+                                                                  <div class="title-block">
+                                                                     <h3>Payé le</h3>
+                                                                     <span>10/06/2020</span>
+                                                                  </div>
+                                                               </div>
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                             </section>
+
+                                          </div>
+                                       </article>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            </div>
+
+  <!--- FIN DETAILS CONTRAT-->
 </div>
 </div>
 @endsection
@@ -246,11 +436,24 @@ $(document).ready(function() {
 <!--===============================================================================================-->
 <script>
   function openFormEditLocataire() {
+    if (document.getElementById("leaseDetails").style.display != "none"){
+      closeLeaseDetails();
+    }
     document.getElementById("locEditForm").style.display = "flex";
   }
 
   function closeFormEditLocataire() {
     document.getElementById("locEditForm").style.display = "none";
+  }
+  function openLeaseDetails() {
+    if (document.getElementById("locEditForm").style.display != "none"){
+      closeFormEditLocataire();
+    }
+    document.getElementById("leaseDetails").style.display = "flex";
+  }
+
+  function closeLeaseDetails() {
+    document.getElementById("leaseDetails").style.display = "none";
   }
 
 </script>
