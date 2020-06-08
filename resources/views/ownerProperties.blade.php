@@ -169,11 +169,17 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
 
                    </div>
                    @endif
-                   <div class="property-view"> <a class="m-btn-link--view" title="détails" href="" style="text-transform: none;"  onclick="openDesc(); return false;"> Modifier <i class="far fa-edit"></i></a> </div>
+                   <div class="property-view"> <a class="m-btn-link--view modify_housing housing_{{ $vl->id }}" title="détails" href="" style="text-transform: none;"  onclick="openDesc(); return false;"> Modifier <i class="far fa-edit"></i></a> </div>
                 </div>
                 <!---FIN FOOTER-->
               </div>
             </div>
+            <input type="hidden" class="modify_title_{{ $vl->id }}" value="{{ $vl->title }}" />
+            <input type="hidden" class="modify_address_{{ $vl->id }}" value="{{ $vl->address }}" />
+            <input type="hidden" class="modify_city_{{ $vl->id }}" value="{{ $vl->city }}" />
+            <input type="hidden" class="modify_status_{{ $vl->id }}" value="{{ $vl->status }}" />
+            <input type="hidden" class="modify_nb_rooms_{{ $vl->id }}" value="{{ $vl->nb_rooms }}" />
+            <input type="hidden" class="modify_housing_type_{{ $vl->id }}" value="{{ $vl->housing_type }}" />
             @endforeach
 
   <!---FIN CARTE LOGEMENT 1 -->
@@ -276,86 +282,90 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
     <!--- FIN FORMULAIRE AJOUT LOGEMENT-->
 
     <!---DESCRIPTION LOGEMENT-->
-    <div class="container-contact100 desc-popup" id="propDesc">
-      <div class="wrap-contact100">
-        <form class="contact100-form validate-form" >
-          <span class="contact100-form-title">
-            Modifier votre logement
-          </span>
+    <form method="post" action="{{ route('mes-logements.update') }}">
+      {{csrf_field()}}
+      <div class="container-contact100 desc-popup" id="propDesc">
+        <div class="wrap-contact100">
+          <form class="contact100-form validate-form" >
+            <span class="contact100-form-title">
+              Modifier votre logement
+            </span>
 
-          <div class="wrap-input100 validate-input bg1" data-validate="Entrez svp un nom pour le logement">
-            <span class="label-input100">Nom du logement *</span>
-            <input class="input100" type="text" name="name" placeholder="Entrez un nom pour le logement" value="Keur Serigne Saliou">
-          </div>
-          <div class="wrap-input100 validate-input bg1 rs1-wrap-input100" data-validate = "Entrez l'adresse ou le quartier">
-            <span class="label-input100">Adresse du logement *</span>
-            <input class="input100" type="text" name="adresse" placeholder="Entrez l'adresse ou le quartier" value="Hann Mariste 2 villa Y46">
-          </div>
-
-          <div class="wrap-input100 bg1 rs1-wrap-input100">
-            <span class="label-input100">Ville du logement</span>
-            <input class="input100" type="text" name="ville" placeholder="Entrez la ville du  logement" value="Dakar">
-          </div>
-          <div class="wrap-input100 input100-select bg1">
-            <span class="label-input100">Nombre de chambres *</span>
-            <div>
-              <select class="js-select-bed" name="nbchambres">
-                <option>Studio</option>
-                <option>1</option>
-                <option selected >2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-                <option>6</option>
-                <option>maison</option>
-              </select>
-              <div class="dropDownSelect2"></div>
+            <div class="wrap-input100 validate-input bg1" data-validate="Entrez svp un nom pour le logement">
+              <span class="label-input100">Nom du logement *</span>
+              <input class="input100 update_title_log" type="text" name="tl_housing_m" placeholder="Entrez un nom pour le logement" value="Keur Serigne Saliou">
             </div>
-          </div>
-
-          <div class="wrap-input100 input100-select bg1">
-            <span class="label-input100">Libre ou occupé *</span>
-            <div>
-              <select class="js-select2" name="service">
-                <option>Choisir svp</option>
-                <option>Logement libre</option>
-                <option selected>Logement occupé</option>
-              </select>
-              <div class="dropDownSelect2"></div>
+            <div class="wrap-input100 validate-input bg1 rs1-wrap-input100" data-validate = "Entrez l'adresse ou le quartier">
+              <span class="label-input100">Adresse du logement *</span>
+              <input class="input100 update_address_log" type="text" name="address_housing_m" placeholder="Entrez l'adresse ou le quartier" value="Hann Mariste 2 villa Y46">
             </div>
-          </div>
-          <div class="w-full dis-none js-show-service">
-            <div class="wrap-contact100-form-radio">
-              <span class="label-input100">Le logement est-il meublé?</span>
 
-              <div class="contact100-form-radio m-t-15">
-                <input class="input-radio100" id="radio1" type="radio" name="type-product" value="nonmeuble" checked="checked">
-                <label class="label-radio100" for="radio1">
-                  Logement non meublé
-                </label>
-              </div>
-
-              <div class="contact100-form-radio">
-                <input class="input-radio100" id="radio2" type="radio" name="type-product" value="meuble">
-                <label class="label-radio100" for="radio2">
-                  Logement meublé
-                </label>
+            <div class="wrap-input100 bg1 rs1-wrap-input100">
+              <span class="label-input100">Ville du logement</span>
+              <input class="input100 update_city_log" type="text" name="city_housing_m" placeholder="Entrez la ville du  logement" value="Dakar">
+            </div>
+            <div class="wrap-input100 input100-select bg1">
+              <span class="label-input100">Nombre de chambres *</span>
+              <div class="update_nb_rooms_log">
+                <select class="js-select-bed" name="nb_rooms_housing_m">
+                  <option class="disp_studio" value="Studio">Studio</option>
+                  <option class="disp_1" value="1">1</option>
+                  <option class="disp_2" value="2">2</option>
+                  <option class="disp_3" value="3">3</option>
+                  <option class="disp_4" value="4">4</option>
+                  <option class="disp_5" value="5">5</option>
+                  <option class="disp_6" value="6">6</option>
+                  <option class="disp_maison" value="maison">maison</option>
+                </select>
+                <div class="dropDownSelect2"></div>
               </div>
             </div>
 
-          </div>
+            <div class="wrap-input100 input100-select bg1">
+              <span class="label-input100">Libre ou occupé *</span>
+              <div class="update_status_log">
+                <select class="js-select2" name="status_housing_m">
+                  <option disabled>Choisir svp</option>
+                  <option class="status_Y" value="Y">Logement libre</option>
+                  <option class="status_N" value="N">Logement occupé</option>
+                </select>
+                <div class="dropDownSelect2"></div>
+              </div>
+            </div>
+            <div class="w-full dis-none js-show-service">
+              <div class="wrap-contact100-form-radio">
+                <span class="label-input100">Le logement est-il meublé?</span>
 
-          <div class="container-contact100-form-btn">
-            <button class="contact100-form-btn" onclick="closeForm(); return false;">
-              <span>
-                Sauvegarder
-                <i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
-              </span>
-            </button>
-          </div>
-        </form>
+                <div class="contact100-form-radio m-t-15">
+                  <input class="input-radio100 update_housing_type_log" id="radio1" type="radio" name="type_housing_m" value="nonmeuble" checked="checked">
+                  <label class="label-radio100" for="radio1">
+                    Logement non meublé
+                  </label>
+                </div>
+
+                <div class="contact100-form-radio">
+                  <input class="input-radio100 update_housing_type_log" id="radio2" type="radio" name="type_housing_m" value="meuble">
+                  <label class="label-radio100" for="radio2">
+                    Logement meublé
+                  </label>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="container-contact100-form-btn">
+              <button type="submit" class="contact100-form-btn">
+                <span>
+                  Modifier
+                  <i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+                </span>
+              </button>
+            </div>
+            <input type="hidden" name="housing_id_m" class="update_housing_id" value=""/>
+          </form>
+        </div>
       </div>
-    </div>
+    </form>
     <!---FIN  DESCRIPTION LOGEMENT-->
 
     <!---FORMULAIRE AJOUT LOCATAIRE-->
@@ -550,6 +560,31 @@ $(function() {
         ],
         firstDay: 1
     }
+  });
+});
+
+$(document).ready(function() {
+  $('.modify_housing').click(function(){
+    $('option').removeAttr('selected');
+    var nameClass = this.className.split(' ');
+    var housing_id = nameClass[2].split('_');
+    var status_housing = $('.modify_status_'+housing_id[1]).val();
+    var title_housing = $('.modify_title_'+housing_id[1]).val();
+    var address_housing = $('.modify_address_'+housing_id[1]).val();
+    var city_housing = $('.modify_city_'+housing_id[1]).val();
+    var housing_type = $('.modify_housing_type_'+housing_id[1]).val();
+    var nb_rooms_housing = $('.modify_nb_rooms_'+housing_id[1]).val();
+    $('.update_title_log').val(title_housing);
+    $('.update_address_log').val(address_housing);
+    $('.update_city_log').val(city_housing);
+    $("select option[value="+nb_rooms_housing+"]").attr('selected','selected');
+    $('.js-select-bed').val(nb_rooms_housing).change();
+    //$("div.update_nb_rooms_log select").val(nb_rooms_housing);
+    $("select option[value="+status_housing+"]").attr('selected','selected');
+    $('.js-select2').val(status_housing).change();
+    //$("div.update_status_log select").val(status_housing);
+    $('.update_housing_type_log').val(housing_type);
+    $('.update_housing_id').val(housing_id[1]);
   });
 });
 </script>

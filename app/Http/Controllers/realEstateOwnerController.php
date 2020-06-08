@@ -61,4 +61,14 @@ class realEstateOwnerController extends Controller
       $own->save();
       return redirect()->intended(route('ownerProperties'));
     }
+
+    public function update_housing(Request $given){
+
+      $s=Auth::user()->customerId;
+        DB::table('owns')
+            ->where('owner_id', $s)->where('id',$given->housing_id_m)
+            ->update(['title' => $given->tl_housing_m, 'address' => $given->address_housing_m,'city' => $given->city_housing_m,
+             'nb_rooms' => $given->nb_rooms_housing_m,'housing_type' => $given->type_housing_m,'status' => $given->status_housing_m]);
+             return redirect()->intended(route('ownerProperties'));
+      }
 }
