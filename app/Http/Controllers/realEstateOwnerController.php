@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Bill;
 use App\Own;
+use App\User;
+use App\Contract;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -49,6 +51,12 @@ class realEstateOwnerController extends Controller
 
     public function add_housing(Request $given){
 
+      $this->validate($given,[
+          'tl_housing'=> 'required|min:4|max:255',
+          'address_housing'=> 'required|min:10|max:255',
+          'city_housing'=> 'required|min:3|max:45'
+      ]);
+
       $s=Auth::user()->customerId;
       $own = new Own;
       $own->owner_id=$s;
@@ -64,11 +72,49 @@ class realEstateOwnerController extends Controller
 
     public function update_housing(Request $given){
 
+      $this->validate($given,[
+          'tl_housing_m'=> 'required|min:4|max:255',
+          'address_housing_m'=> 'required|min:10|max:255',
+          'city_housing_m'=> 'required|min:3|max:45'
+      ]);
       $s=Auth::user()->customerId;
         DB::table('owns')
             ->where('owner_id', $s)->where('id',$given->housing_id_m)
             ->update(['title' => $given->tl_housing_m, 'address' => $given->address_housing_m,'city' => $given->city_housing_m,
              'nb_rooms' => $given->nb_rooms_housing_m,'housing_type' => $given->type_housing_m,'status' => $given->status_housing_m]);
              return redirect()->intended(route('ownerProperties'));
+      }
+
+      public function add_occupant(Request $given){
+        $s=Auth::user()->customerId;
+        User::create([
+            'civilite' => $given->civilite,
+            'name' => $given->nom,
+            'first_name' => $given->prenom,
+            'email' => $given->mail,
+            'dob' => $given->dateOB,
+            'pob' => $given->placeOB,
+            'phone' => $given->phone,
+            'customerId' =>$given->cni,
+            'address' =>$given->housing_address,
+            'password' => bcrypt($given->nom.'123'),
+            'service_5' => 'locataire',
+        ]);
+        $renter_id=DB::table('users')->select('customerId')->where('customerId',$given->cni)->first();
+
+        $contract = new Contract;
+        $contract->id_own=$given->housing_id;
+        $contract->owner_id=$s;
+        $contract->renter_id=$renter_id->customerId;
+        $contract->bail=$given->caution;
+        $contract->monthly_pm=$given->loyer;
+        $contract->status='Y';
+        $contract->save();
+
+        DB::table('owns')
+            ->where('owner_id', $s)->where('id',$given->housing_id)
+            ->update(['status' => 'N','current_occupant_name' => $given->prenom.' '.$given->nom]);
+
+        return redirect()->intended(route('ownerProperties'));
       }
 }

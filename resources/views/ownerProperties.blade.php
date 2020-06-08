@@ -119,7 +119,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                                <div class="units-type">
                                  @if($vl->status == "N")
                                   <div class="occupied">
-                                     <!----> <span>Occupé par Yacine Ndiaye</span>
+                                     <!----> <span>Occupé par {{ $vl->current_occupant_name }}</span>
                                   </div>
                                   @endif
                                   @if($vl->status == "Y")
@@ -165,7 +165,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                    <div>
                       <!-- SI LOGEMENT LIBRE ALORS AJOUTER LE CODE  SUIVANT--> <!---->
 
-                    <a class="m-btn-link--view" title="détails" href="" style="text-transform: none;"> Ajouter un locataire <i class="fas fa-house-user"></i></a>
+                    <a class="m-btn-link--view add_occ housing_{{ $vl->id }}" title="détails" href="" style="text-transform: none;" onclick="openFormLocataire(); return false;"> Ajouter un locataire <i class="fas fa-house-user"></i></a>
 
                    </div>
                    @endif
@@ -204,21 +204,21 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
 
             <div class="wrap-input100 validate-input bg1" data-validate="Entrez svp un nom pour le logement">
               <span class="label-input100">Nom du logement *</span>
-              <input class="input100" type="text" name="tl_housing" placeholder="Entrez un nom pour le logement">
+              <input class="input100" type="text" name="tl_housing" placeholder="Entrez un nom pour le logement" required>
             </div>
             <div class="wrap-input100 validate-input bg1 rs1-wrap-input100" data-validate = "Entrez l'adresse ou le quartier">
               <span class="label-input100">Adresse du logement *</span>
-              <input class="input100" type="text" name="address_housing" placeholder="Entrez l'adresse ou le quartier ">
+              <input class="input100" type="text" name="address_housing" placeholder="Entrez l'adresse ou le quartier " required>
             </div>
 
             <div class="wrap-input100 bg1 rs1-wrap-input100">
               <span class="label-input100">Ville du logement</span>
-              <input class="input100" type="text" name="city_housing" placeholder="Entrez la ville du  logement">
+              <input class="input100" type="text" name="city_housing" placeholder="Entrez la ville du  logement" required>
             </div>
             <div class="wrap-input100 input100-select bg1">
               <span class="label-input100">Nombre de chambres *</span>
               <div>
-                <select class="js-select-bed" name="nb_rooms">
+                <select class="js-select-bed" name="nb_rooms" required>
                   <option>Studio</option>
                   <option>1</option>
                   <option>2</option>
@@ -235,7 +235,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
             <div class="wrap-input100 input100-select bg1">
               <span class="label-input100">Libre ou occupé *</span>
               <div>
-                <select class="js-select2" name="status_housing">
+                <select class="js-select2" name="status_housing" required>
                   <option disabled>Choisir svp</option>
                   <option value="Y">Logement libre</option>
                   <option value="N">Logement occupé</option>
@@ -293,21 +293,21 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
 
             <div class="wrap-input100 validate-input bg1" data-validate="Entrez svp un nom pour le logement">
               <span class="label-input100">Nom du logement *</span>
-              <input class="input100 update_title_log" type="text" name="tl_housing_m" placeholder="Entrez un nom pour le logement" value="Keur Serigne Saliou">
+              <input class="input100 update_title_log" type="text" name="tl_housing_m" placeholder="Entrez un nom pour le logement" value="Keur Serigne Saliou" required>
             </div>
             <div class="wrap-input100 validate-input bg1 rs1-wrap-input100" data-validate = "Entrez l'adresse ou le quartier">
               <span class="label-input100">Adresse du logement *</span>
-              <input class="input100 update_address_log" type="text" name="address_housing_m" placeholder="Entrez l'adresse ou le quartier" value="Hann Mariste 2 villa Y46">
+              <input class="input100 update_address_log" type="text" name="address_housing_m" placeholder="Entrez l'adresse ou le quartier" value="Hann Mariste 2 villa Y46" required>
             </div>
 
             <div class="wrap-input100 bg1 rs1-wrap-input100">
               <span class="label-input100">Ville du logement</span>
-              <input class="input100 update_city_log" type="text" name="city_housing_m" placeholder="Entrez la ville du  logement" value="Dakar">
+              <input class="input100 update_city_log" type="text" name="city_housing_m" placeholder="Entrez la ville du  logement" value="Dakar" required>
             </div>
             <div class="wrap-input100 input100-select bg1">
               <span class="label-input100">Nombre de chambres *</span>
               <div class="update_nb_rooms_log">
-                <select class="js-select-bed" name="nb_rooms_housing_m">
+                <select class="js-select-bed" name="nb_rooms_housing_m" required>
                   <option class="disp_studio" value="Studio">Studio</option>
                   <option class="disp_1" value="1">1</option>
                   <option class="disp_2" value="2">2</option>
@@ -324,7 +324,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
             <div class="wrap-input100 input100-select bg1">
               <span class="label-input100">Libre ou occupé *</span>
               <div class="update_status_log">
-                <select class="js-select2" name="status_housing_m">
+                <select class="js-select2" name="status_housing_m" required>
                   <option disabled>Choisir svp</option>
                   <option class="status_Y" value="Y">Logement libre</option>
                   <option class="status_N" value="N">Logement occupé</option>
@@ -369,69 +369,81 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
     <!---FIN  DESCRIPTION LOGEMENT-->
 
     <!---FORMULAIRE AJOUT LOCATAIRE-->
-    <div class="container-contact100 loc-popup" id="locForm">
-      <div class="wrap-contact100">
-        <form class="contact100-form validate-form" >
-          <span class="contact100-form-title">
-            Ajoutez un locataire
-          </span>
-            <div class="wrap-input100 input100-select bg1 rs1-wrap-input100">
-              <span class="label-input100">Civilité *</span>
-              <div>
-                <select class="js-select-civ" name="civilite">
-                  <option>Monsieur</option>
-                  <option>Madame</option>
-                  <option>Mademoiselle</option>
-                </select>
-                <div class="dropDownSelect2"></div>
+
+      <div class="container-contact100 loc-popup" id="locForm">
+        <div class="wrap-contact100">
+          <form class="contact100-form validate-form" method="post" action="{{ route('occupant.add') }}">
+            {{csrf_field()}}
+            <span class="contact100-form-title">
+              Ajoutez un locataire
+            </span>
+              <div class="wrap-input100 input100-select bg1 rs1-wrap-input100">
+                <span class="label-input100">Civilité *</span>
+                <div>
+                  <select class="js-select-civ" name="civilite">
+                    <option disabled>Votre civilité</option>
+                    <option value="Mr">Monsieur</option>
+                    <option value="Mme">Madame</option>
+                  </select>
+                  <div class="dropDownSelect2"></div>
+                </div>
               </div>
+              <div class="rs1-wrap-input100">
+              </div>
+            <div class="wrap-input100 validate-input bg1 rs1-wrap-input100" data-validate = "Entrez le prénom">
+              <span class="label-input100">Prénom *</span>
+              <input class="input100" type="text" name="prenom" required placeholder="Entrez le prénom du locataire">
             </div>
-            <div class="rs1-wrap-input100">
+
+            <div class="wrap-input100 bg1 rs1-wrap-input100">
+              <span class="label-input100">Nom *</span>
+              <input class="input100" type="text" name="nom" required  placeholder="Entrez le nom du locataire">
             </div>
-          <div class="wrap-input100 validate-input bg1 rs1-wrap-input100" data-validate = "Entrez le prénom">
-            <span class="label-input100">Prénom *</span>
-            <input class="input100" type="text" name="prenom" required placeholder="Entrez le prénom du locataire">
-          </div>
+            <div class="wrap-input100 input100-select bg1 rs1-wrap-input100">
+              <span class="label-input100">Date de naissance </span>
+              <input class="input100" type="text" name="dateOB" required  placeholder="Entrez la date">
+            </div>
+            <div class=" wrap-input100 bg1 rs1-wrap-input100">
+              <span class="label-input100">Lieu de naissance </span>
+              <input class="input100" type="text" name="placeOB" placeholder="Entrez le lieu de naissance du locataire">
+            </div>
+            <div class="wrap-input100 validate-input bg1 rs1-wrap-input100" data-validate = "Entrez l'adresse mail">
+              <span class="label-input100">Email </span>
+              <input class="input100" type="email" name="mail" placeholder="Entrez l'adresse mail du locataire" required>
+            </div>
 
-          <div class="wrap-input100 bg1 rs1-wrap-input100">
-            <span class="label-input100">Nom *</span>
-            <input class="input100" type="text" name="nom" required  placeholder="Entrez le nom du locataire">
-          </div>
-          <div class="wrap-input100 input100-select bg1 rs1-wrap-input100">
-            <span class="label-input100">Date de naissance </span>
-            <input class="input100" type="text" name="dateOB" required  placeholder="Entrez la date">
-          </div>
-          <div class=" wrap-input100 bg1 rs1-wrap-input100">
-            <span class="label-input100">Lieu de naissance </span>
-            <input class="input100" type="text" name="placeOB" placeholder="Entrez le lieu de naissance du locataire">
-          </div>
-          <div class="wrap-input100 validate-input bg1 rs1-wrap-input100" data-validate = "Entrez l'adresse mail">
-            <span class="label-input100">Email </span>
-            <input class="input100" type="email" name="mail" placeholder="Entrez l'adresse mail du locataire">
-          </div>
-
-          <div class="wrap-input100 bg1 rs1-wrap-input100">
-            <span class="label-input100">Téléphone * </span>
-            <input class="input100" type="tel" pattern="[0-9]{*}" name="phone" required placeholder="Entrez le téléphone du locataire">
-          </div>
-          <div class="wrap-input100 validate-input bg1" data-validate="Entrez svp un nom pour le logement">
-            <span class="label-input100">Numéro CNI *</span>
-            <input class="input100" type="text" pattern="[0-9,A-Z,a-z]{13}" required name="cni" placeholder="Entrez le numéro de Carte d'identité nationale du locataire">
-          </div>
-
+            <div class="wrap-input100 bg1 rs1-wrap-input100">
+              <span class="label-input100">Téléphone * </span>
+              <input class="input100" type="tel" pattern="[0-9]{*}" name="phone" required placeholder="Entrez le téléphone du locataire">
+            </div>
+            <div class="wrap-input100 validate-input bg1" data-validate="Entrez svp un nom pour le logement">
+              <span class="label-input100">Numéro CNI *</span>
+              <input class="input100" type="text" pattern="[0-9,A-Z,a-z]{13}" required name="cni" placeholder="Entrez le numéro de Carte d'identité nationale du locataire">
+            </div>
+            <div class="wrap-input100 bg1 rs1-wrap-input100">
+              <span class="label-input100">Caution *</span>
+              <input class="input100" type="number" pattern="[0-9]{*}" name="caution" required  placeholder="Entrez le montant de la caution">
+            </div>
+            <div class="wrap-input100 bg1 rs1-wrap-input100">
+              <span class="label-input100">Loyer *</span>
+              <input class="input100" type="number" pattern="[0-9]{*}" name="loyer" required  placeholder="Entrez le montant du loyer">
+            </div>
 
 
-          <div class="container-contact100-form-btn">
-            <button class="contact100-form-btn" onclick="closeFormLocataire(); return false;">
-              <span>
-                Ajoutez
-                <i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
-              </span>
-            </button>
-          </div>
-        </form>
+
+            <div class="container-contact100-form-btn">
+              <button type="submit" class="contact100-form-btn">
+                <span>
+                  Ajoutez
+                  <i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+                </span>
+              </button>
+            </div>
+            <input type="hidden" name="housing_id" class="add_occ_housing_id" value=""/>
+            <input type="hidden" name="housing_address" class="add_occ_housing_address" value=""/>
+          </form>
+        </div>
       </div>
-    </div>
 
     <!--- FIN FORMULAIRE AJOUT LOCATAIRE-->
 </div>
@@ -586,6 +598,15 @@ $(document).ready(function() {
     $('.update_housing_type_log').val(housing_type);
     $('.update_housing_id').val(housing_id[1]);
   });
+
+  $('.add_occ').click(function(){
+    var nameClass_2 = this.className.split(' ');
+    var housing_id_2 = nameClass_2[2].split('_');
+    $('.add_occ_housing_id').val(housing_id_2[1]);
+    var address_housing_2 = $('.modify_address_'+housing_id_2[1]).val();
+    $('.add_occ_housing_address').val(housing_id_2[1]);
+  });
+
 });
 </script>
 
