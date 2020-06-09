@@ -43,7 +43,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                     </div>
                     <div class="col-auto">
                       <div>
-                        <i class="fas fa-toggle-on fa-3x" style="color: forestgreen;"></i>
+                        <i class="fas fa-dice-one fa-3x" style="color: forestgreen;"></i>
                       </div>
                     </div>
                   </div>
