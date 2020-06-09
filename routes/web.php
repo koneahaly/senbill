@@ -65,6 +65,7 @@ Route::post('/mes-logements/add','realEstateOwnerController@add_housing')->name(
 Route::post('/mes-logements/update','realEstateOwnerController@update_housing')->name('mes-logements.update');
 Route::post('/occupant/add','realEstateOwnerController@add_occupant')->name('occupant.add');
 Route::get('/mes-locataires','realEstateOwnerController@display_locataires')->name('mes-locataires');
+Route::post('/mes-locataires-update','realEstateOwnerController@update_occupant')->name('mes-locataires.update');
 
 Route::get('/infos-proprietaire', 'HomeController@display_proprio_infos')->name('infos-proprietaire');
 Route::post('/infos-proprietaire', 'HomeController@display_proprio_infos')->name('infos-proprietaire');
