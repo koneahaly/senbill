@@ -35,8 +35,20 @@ class realEstateOwnerController extends Controller
     public function display_locataires()
     {
       $s=Auth::user()->customerId;
-      $infos_perso['infos_perso']=DB::table('users')->where('customerId',$s)->first();
-      return view('mes-locataires')->with($infos_perso);
+      $list_renter_id=array();
+      $list_housings_title = [];
+      $infos_housings=DB::table('owns')->select('occupant_id','title')->where('owner_id',$s)->get();
+      $infos_locations=DB::table('owns')->select('occupant_id')->where('owner_id',$s)->get();
+      $nb_locataires=(int)DB::table('owns')->where('owner_id',$s)->where('status','N')->count();
+      foreach($infos_locations as $infos_location){
+        array_push($list_renter_id,$infos_location->occupant_id);
+      }
+      foreach($infos_housings as $infos_housing){
+        $list_housings_title[$infos_housing->occupant_id] = $infos_housing->title;
+      }
+      $data_locations['data_locations'] =DB::table('users')->whereIn('customerId',$list_renter_id)->get();
+      $data_housing_title['data_housing_title'] = $list_housings_title;
+      return view('mes-locataires')->with($data_locations)->with($data_housing_title)->with('nb_locataires',$nb_locataires);
 
     }
     public function display_properties()
@@ -116,5 +128,19 @@ class realEstateOwnerController extends Controller
             ->update(['status' => 'N','current_occupant_name' => $given->prenom.' '.$given->nom]);
 
         return redirect()->intended(route('ownerProperties'));
+      }
+
+      public function update_occupant(Request $given){
+        $s=Auth::user()->customerId;
+        DB::table('users')
+            ->where('customerId', $given->occupant_id)
+            ->update(['civilite' => $given->civilite,'name' => $given->nom,'first_name' => $given->prenom,'email' => $given->mail,
+          'dob' => $given->dateOB, 'pob' => $given->placeOB, 'phone' => $given->phone, 'customerId' => $given->cni]);
+
+        DB::table('owns')
+            ->where('occupant_id',$given->occupant_id)
+            ->update(['current_occupant_name' => $given->prenom.' '.$given->nom]);
+
+        return redirect()->intended(route('mes-locataires'));
       }
 }

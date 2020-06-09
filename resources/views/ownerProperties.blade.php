@@ -138,7 +138,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                 <!---FIN BODY DETAIL-->
                   <!---DEBUT MENU AVEC ICONES-->
                 <div class="m-action-btn-icon">
-                   <a class="col-xs-12 col-sm-12 tooltip-link" title="Locataire" href="">
+                   <a class="col-xs-12 col-sm-12 tooltip-link" title="Locataire" href="mes-locataires">
                       <div class="icon-svg">
                          <i class="fas fa-house-user"></i>
                       </div>
@@ -147,7 +147,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                       </div>
                       <p>Locataire</p>
                    </a>
-                   <a class="col-xs-12 col-sm-12 tooltip-link"  title="Factures" href="">
+                   <a class="col-xs-12 col-sm-12 tooltip-link"  title="Factures" href="transactions-proprietaire">
                       <div class="icon-svg">
                          <i class="fas fa-file-invoice-dollar"></i>
                       </div>
@@ -591,10 +591,8 @@ $(document).ready(function() {
     $('.update_city_log').val(city_housing);
     $("select option[value="+nb_rooms_housing+"]").attr('selected','selected');
     $('.js-select-bed').val(nb_rooms_housing).change();
-    //$("div.update_nb_rooms_log select").val(nb_rooms_housing);
     $("select option[value="+status_housing+"]").attr('selected','selected');
     $('.js-select2').val(status_housing).change();
-    //$("div.update_status_log select").val(status_housing);
     $('.update_housing_type_log').val(housing_type);
     $('.update_housing_id').val(housing_id[1]);
   });
