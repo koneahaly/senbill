@@ -123,19 +123,19 @@ if($_SERVER['REQUEST_URI'] == '/register')
                    </a>
 
                    <ul class="dropdown-menu">
-                       <li>
+                       <li style="text-transform:capitalize" >
                          <a href="{{ route('infos-proprietaire') }}">
                            mes infos personnelles
                          </a>
                        </li>
-                       <li>
+                       <li style="padding:0px;text-transform:capitalize">
                          <a href="{{ route('infos-services-pro') }}">
                            mes services
                          </a>
                        </li>
                       @endif
                       <hr />
-                       <li style="padding:0px" class="dropdown-item">
+                       <li style="padding:0px;text-transform:capitalize" class="dropdown-item">
                            <a href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">

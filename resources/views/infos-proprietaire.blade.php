@@ -14,7 +14,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
   </div>
 
     <div class="row" style="margin-top:50px">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default personalInfoPanel">
                 <div class="panel-body">
                     @if (session('status'))
