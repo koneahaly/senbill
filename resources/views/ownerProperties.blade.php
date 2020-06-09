@@ -10,10 +10,6 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
   <div class="row" style="margin-top:10%">
   <div class="col-md-12" style="margin-top:10px;margin-bottom:20px;text-align:center;flex-basis:100%;max-width:100%;">
    <h3><strong>Mes logements</strong></h3>
-   <div>
-     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-     <lottie-player src="{{url('images/lottie/logement.json')}}"  background="transparent"  speed="1"  style="width: 300px; height: 200px;display: inline-block;"  loop  autoplay></lottie-player>
-   </div>
  </div>
   </div>
 <!-- END TITLE OF THE PAGE-->
@@ -451,6 +447,11 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
       </div>
 
     <!--- FIN FORMULAIRE AJOUT LOCATAIRE-->
+  </div>
+    <div class="row">
+      <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+      <lottie-player src="{{url('images/lottie/logement.json')}}"  background="transparent"  speed="1"  style="width: 100%; height: 400px;display: inline-block;"  loop  autoplay></lottie-player>
+    </div>
 </div>
 @endsection
 
