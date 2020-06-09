@@ -6,12 +6,19 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
 
 @section('content')
 <div class="container">
+  <div class="row" style="margin-top:4%;">
+      <lottie-player src="{{url('images/lottie/lines.json')}}"  background="transparent"  speed="0.1"  style="width: 500px; height: 500px; position:absolute;z-index:1000;margin-left:-20%;margin-top: 2.5%;"  loop  autoplay></lottie-player>
+      <lottie-player src="{{url('images/lottie/lines.json')}}"  background="transparent"  speed="0.1"  style="width: 500px; height: 500px; position:absolute;z-index:1000;margin-left:70%;margin-top: 2.5%;"  loop  autoplay></lottie-player>
+  </div>
   <!--TITLE OF THE PAGE-->
   <div class="row" style="margin-top:10%">
   <div class="col-md-12" style="margin-top:10px;margin-bottom:20px;text-align:center;">
    <h3><strong>Transactions</strong></h3>
  </div>
   </div>
+  <lottie-player src="{{url('images/lottie/properties.json')}}"  background="transparent"  speed="1"  style="width: 80px; height: 80px; position:absolute;z-index:1000;margin-left:-8%;margin-top: 15%;"  loop  autoplay></lottie-player>
+  <lottie-player src="{{url('images/lottie/properties.json')}}"  background="transparent"  speed="1"  style="width: 100px; height: 100px; position:absolute;z-index:1000;margin-left:84%;margin-top: -8%;"  loop  autoplay></lottie-player>
+  <lottie-player src="{{url('images/lottie/bubble.json')}}"  background="transparent"  speed="1"  style="width: 60px; height: 60px; position:absolute;z-index:1000;margin-left:1%;margin-top: -2%;"  loop  autoplay></lottie-player>
 <!-- END TITLE OF THE PAGE-->
 
   <!--<h4>TABLEAU DES TRANSACTIONS  </h4> -->
@@ -59,7 +66,6 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
   </div>
   </div>
   <div class="row">
-    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <lottie-player src="{{url('images/lottie/transactions1.json')}}"  background="transparent"  speed="1"  style="width: 100%; height: 100px;display: inline-block;"  loop  autoplay></lottie-player>
   </div>
 

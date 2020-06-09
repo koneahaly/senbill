@@ -156,8 +156,7 @@ function toggleDataSeries(e){
 </head>
 <body>
   <div id="app" class="s2sn-wrapper-login-container s2sn-js-login" style="background-image: url({{url('images/white-background/19366_Fotor1.jpg')}}) !important;">
-    <div class="row" style="margin-top:4%;">
-        <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <div class="row" style="margin-top:5%;">
         <lottie-player src="{{url('images/lottie/graph.json')}}"  background="transparent"  speed="1"  style="width: 200px; height: 200px; position:absolute;z-index:1000"  loop  autoplay></lottie-player>
     </div>
     <div class="row" style="padding-top:15%">
