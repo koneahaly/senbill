@@ -482,7 +482,7 @@ background: linear-gradient(90deg, rgba(48,116,155,1) 0%, rgba(155,192,221,1) 50
     /*background-color:rgba(184, 202, 216, 1);*/
     background: rgb(48,116,155);
 background: linear-gradient(90deg, rgba(48,116,155,1) 0%, rgba(155,192,221,1) 50%, rgba(189,202,210,1) 100%);
-    z-index: 3;
+    z-index: 1300;
     display: flex;
     justify-content: center;
 }
@@ -1798,6 +1798,7 @@ font-size: 22px;
     width: 100%;
     border-style: none;
     background-color: #fff0;
+    z-index: 1200;
 }
 .mdc-data-table__cell{
   text-align:center;
