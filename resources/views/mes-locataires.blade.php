@@ -112,7 +112,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                      </div>
                      <div class="move-out">
                         <div class="m-action-btn-icon">
-                           <a class="col-xs-12"  title="Loyer"  href="">
+                           <a class="col-xs-12 display_rent rent_{{ $data_location->customerId }}"  title="Loyer"  href="">
                               <div class="icon-svg">
                                  <e-svg-icon set-class="i-svg--master-darker i-svg--24 i-svg--stroke-2" xlink="#icon-line-finance" class="e-svg-icon">
                                     <svg class="i-svg--master-darker i-svg--24 i-svg--stroke-2" id="svgElement" viewBox="0 0 48 48">
@@ -126,7 +126,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                               </div>
                               <p>Loyer</p>
                            </a>
-                           <a class="col-xs-12" title="Contrat" onclick="openLeaseDetails()">
+                           <a class="col-xs-12 display_contract contract_{{ $data_location->customerId }}" title="Contrat" onclick="openLeaseDetails()">
                               <div class="icon-svg">
                                  <e-svg-icon set-class="i-svg--master-darker i-svg--stroke-2 i-svg--24" xlink="#icon-line-lease" class="e-svg-icon">
                                     <svg class="i-svg--master-darker i-svg--stroke-2 i-svg--24" id="svgElement" viewBox="0 0 48 48">
@@ -159,6 +159,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
          <input type="hidden" class="modify_dob_{{ $data_location->customerId }}" value="{{ $data_location->dob }}" />
          <input type="hidden" class="modify_pob_{{ $data_location->customerId }}" value="{{ $data_location->pob }}" />
          <input type="hidden" class="modify_email_{{ $data_location->customerId }}" value="{{ $data_location->email }}" />
+         <input type="hidden" class="modify_address_{{ $data_location->customerId }}" value="{{ $data_location->address }}" />
          <input type="hidden" class="modify_phone_{{ $data_location->customerId }}" value="{{ $data_location->phone }}" />
          <input type="hidden" class="modify_cni_{{ $data_location->customerId }}" value="{{ $data_location->customerId }}" />
        @endforeach
@@ -269,7 +270,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                            <div class="card-info">
                               <div class="info-address">
                                  <i class="fas fa-map-marker-alt"></i>
-                                 <span>Hann Maristes 2 villa Y46</span>
+                                 <span class="address_contract">Hann Maristes 2 villa Y46</span>
                               </div>
                            </div>
                         </div>
@@ -299,11 +300,11 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                                                       <div size="tiny" width="56"  class="m-b-10">
                                                          <div class="m-profile-info horizontal">
                                                             <div class="profile-img">
-                                                               <a>
+                                                               <a class='avatar'>
                                                                   <avatar name="profile-photo" item="$ctrl.item" width="56" size="tiny" class="m-avatar">
                                                                     <!----> <!--Si civilité = homme alors -->
-                                                                    <!-- <img imageonload="" class="img-responsive s-image--loading_success" alt="avatar" src="{{url('images/icon-homme.png')}}"> -->
-                                                                    <img imageonload="" class="img-responsive s-image--loading_success" alt="avatar" src="{{url('images/icon-femme.png')}}">
+                                                                    <!--<img imageonload="" class="img-responsive s-image--loading_success avatar_contract_h" alt="avatar" src="{{url('images/icon-homme.png')}}">
+                                                                    <img imageonload="" class="img-responsive s-image--loading_success avatar_contract_f" alt="avatar" src="{{url('images/icon-femme.png')}}"> -->
                                                                   </avatar>
                                                                </a>
                                                             </div>
@@ -313,7 +314,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                                                                   </div>
                                                                   <div class="name">
                                                                      <a>
-                                                                        <h2>Yacine Ndiaye</h2>
+                                                                        <h2 class="full_name_contract">Yacine Ndiaye</h2>
                                                                      </a>
                                                                      <div class="info-status">
                                                                         <div class="is-connect">
@@ -327,7 +328,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                                                                         </div>
                                                                      </div>
                                                                   </div>
-                                                                  <div class="loc-phone"> <p>773228879</p> </div>
+                                                                  <div class="loc-phone"> <p class="phone_contract">773228879</p> </div>
                                                                </div>
                                                             </div>
                                                          </div>
@@ -403,10 +404,10 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                                                                </h3>
                                                                <div class="deposit-block">
                                                                   <div class="title-block deposit-amount"> <span class="amount-total">600 000 FCFA</span></div>
-                                                                  <div class="title-block">
+                                                                  <!--<div class="title-block">
                                                                      <h3>Payé le</h3>
                                                                      <span>10/06/2020</span>
-                                                                  </div>
+                                                                  </div>-->
                                                                </div>
                                                             </div>
                                                          </div>
@@ -548,6 +549,28 @@ $(document).ready(function() {
     $('.update_cni').val(cni_occupant);
     $('.occupant_id').val(occupant_id[1]);
   });
+
+  $('.display_contract').click(function(){
+    var nameClass = this.className.split(' ');
+    var occupant_id = nameClass[2].split('_');
+    var civ_occupant = $('.modify_civilite_'+occupant_id[1]).val();
+    var nom_occupant = $('.modify_nom_'+occupant_id[1]).val();
+    var prenom_occupant = $('.modify_prenom_'+occupant_id[1]).val();
+    var address_occupant = $('.modify_address_'+occupant_id[1]).val();
+    var phone_occupant = $('.modify_phone_'+occupant_id[1]).val();
+    $('.address_contract').html(address_occupant);
+    $('.full_name_contract').html(prenom_occupant+' '+nom_occupant);
+    $('.phone_contract').html(phone_occupant);
+    if(civ_occupant == 'Mr'){
+      $('.avatar').children().html('<img imageonload="" class="img-responsive s-image--loading_success avatar_contract_h" alt="avatar" src="{{url("images/icon-homme.png")}}">');
+      $('.avatar_contract_f').remove();
+    }
+    if(civ_occupant == 'Mme'){
+      $('.avatar').children().html('<img imageonload="" class="img-responsive s-image--loading_success avatar_contract_f" alt="avatar" src="{{url("images/icon-femme.png")}}">');
+      $('.avatar_contract_h').remove();
+    }
+  });
+
 });
 </script>
 
