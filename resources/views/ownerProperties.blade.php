@@ -608,7 +608,7 @@ $(document).ready(function() {
     var housing_id_2 = nameClass_2[2].split('_');
     $('.add_occ_housing_id').val(housing_id_2[1]);
     var address_housing_2 = $('.modify_address_'+housing_id_2[1]).val();
-    $('.add_occ_housing_address').val(housing_id_2[1]);
+    $('.add_occ_housing_address').val(address_housing_2);
   });
 
 });
