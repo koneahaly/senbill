@@ -50,7 +50,7 @@
   <link rel="stylesheet" type="text/css" href="{{url('vendor/daterangepicker/daterangepicker.css')}}">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css" href="{{url('vendor/noui/nouislider.min.css')}}">
- <link rel="stylesheet" type="text/css" href="{{url('css/appLandlord.css')}}">
+ <link rel="stylesheet" type="text/css" href="{{url('css/locationApp.css')}}">
 @endif
 
 <link rel="stylesheet" type="text/css" href="css/util.css">
@@ -60,7 +60,7 @@
 @endif
 <link rel="stylesheet" type="text/css" href="{{url('css/elektra.css')}}">
 <link rel="stylesheet" type="text/css" href="{{url('css/realEstate.css')}}">
-<link rel="stylesheet" type="text/css" href="{{url('css/landlord.module.css')}}">
+<link rel="stylesheet" type="text/css" href="{{url('css/locationModule.css')}}">
 <script src="{{ url('js/lottie-player.js') }}"></script>
 
 
