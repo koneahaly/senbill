@@ -1928,3 +1928,18 @@ button.btnBuy:hover .button-text {
     background: radial-gradient(circle, transparent, transparent 50%, #FBFBFB 50%, #FBFBFB 100% ) -7px -2px / 16px 16px repeat-x,
   }
 }
+.custom-space {
+  font: 16px AperCuProRegular;
+  display: flex;
+  color: #ffffff;
+  justify-content: center;
+  align-items: center;
+}
+.custom-space:before {
+    background: #ffffff;
+    content: '';
+    display: block;
+    width: 1px;
+    height: 80%;
+    margin: 0 20px;
+}

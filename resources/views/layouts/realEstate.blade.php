@@ -96,6 +96,7 @@ if($_SERVER['REQUEST_URI'] == '/register')
               <img src="{{url('images/logo-elektra-halo.png')}}" alt="logo-elektra" width="80" height="auto" class="s2sn-img-normal">
               <img src="{{url('images/logo-elektra-halo.png')}}" alt="logo-elektra" width="80" height="auto" class="s2sn-img-retina">
           </a>
+          <p class="custom-space">Espace propriétaire</p>
           <div class="s2sn-login-header-nav  navbarElektra">
          <ul class="s2sn-navbar-elektra">
              @if($notification >=0)

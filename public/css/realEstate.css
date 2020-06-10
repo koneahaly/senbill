@@ -123,3 +123,18 @@
     align-items: center;
     transition: border .2s linear 0s,box-shadow .2s linear 0s,color .2s linear 0s,box-shadow .2s linear 0s,background .2s linear 0s;
 }
+.custom-space {
+  font: 16px AperCuProRegular;
+  display: flex;
+  color: #ffffff;
+  justify-content: center;
+  align-items: center;
+}
+.custom-space:before {
+    background: #ffffff;
+    content: '';
+    display: block;
+    width: 1px;
+    height: 80%;
+    margin: 0 20px;
+}
