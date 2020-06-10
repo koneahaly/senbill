@@ -37,7 +37,7 @@
 
 <!--===============================================================================================-->
 
-@if ($_SERVER['REQUEST_URI'] == '/mes-logements' ||$_SERVER['REQUEST_URI'] == '/mes-locataires')
+@if ($_SERVER['REQUEST_URI'] == '/mes-logements' ||strpos($_SERVER['REQUEST_URI'],"mes-locataires") == true)
  <link rel="stylesheet" type="text/css" href="{{url('vendor/select2/select2.min.css')}}">
  <link rel="stylesheet" type="text/css" href="{{url('css/utilForm.css')}}">
  <link rel="stylesheet" type="text/css" href="{{url('css/mainForm.css')}}">
@@ -55,7 +55,7 @@
 
 <link rel="stylesheet" type="text/css" href="css/util.css">
 <!--CHARGER MAIN.CSS PARTOUT SAUF POUR LA PAGE MES LOGEMENTS-->
-@if ($_SERVER['REQUEST_URI'] != '/mes-logements' && $_SERVER['REQUEST_URI'] != '/mes-locataires' )
+@if ($_SERVER['REQUEST_URI'] != '/mes-logements' && strpos($_SERVER['REQUEST_URI'],"mes-locataires") == false )
 <link rel="stylesheet" type="text/css" href="css/main.css">
 @endif
 <link rel="stylesheet" type="text/css" href="{{url('css/elektra.css')}}">
@@ -74,7 +74,7 @@ $active_4 ='none';
 $home_directory = "transactions-proprietaire";
 if($_SERVER['REQUEST_URI'] == '/infos-proprietaire')
   $active_1 = 'active';
-if($_SERVER['REQUEST_URI'] == '/mes-locataires')
+if(strpos($_SERVER['REQUEST_URI'],"mes-locataires") == true)
   $active_2 = 'active';
 if($_SERVER['REQUEST_URI'] == '/transactions-proprietaire')
   $active_3 = 'active';

@@ -642,5 +642,15 @@ $(document).ready(function() {
 
 });
 </script>
-
+<?php
+$id = explode('/',$_SERVER['REQUEST_URI']);
+if(!empty($id[2])){
+  echo '<script>
+        $(document).ready(function() {
+          var occupant_class = "contract_'.$id[2].'";
+          $("."+occupant_class).trigger( "click" );
+      });
+  </script>';
+}
+ ?>
 @endsection
