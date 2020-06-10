@@ -81,9 +81,6 @@ html, body {
     text-transform: uppercase;
 }
 
-.s2sn-logo-olis {
-    margin-bottom: 24px;
-}
 
 
 .s2sn-wrapper-center .s2sn-bloc-text {
@@ -906,21 +903,6 @@ background: linear-gradient(90deg, rgba(49,140,231,1) 0%, rgba(137,180,213,1) 50
     display: flex;
     font-size: 8px;
 }
-/* keyboard end*/
-/*introduction start*/
-.olis-introduction {
-    width: 611px;
-    max-width: 90%;
-    text-align: left;
-}
-.olis-introduction a {
-    color: #dedede;
-}
-.olis-introduction a:hover {
-    color: #318ce7;
-    text-decoration: none;
-}
-/*introduction end*/
 
 .s2sn-img-normal {
     display: block;
