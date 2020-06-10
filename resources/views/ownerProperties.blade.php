@@ -103,7 +103,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                          <div class="name-view">
                             <div class="u-flex--items-center">
                                <!----> <!---->
-                               <div class="units"> <span class="unit-count"> {{ $vl->nb_rooms }} chambres </span> </div>
+                               <div class="units"> <span class="unit-count"> {{ $vl->nb_rooms }} {{ ($vl->nb_rooms != "maison" and $vl->nb_rooms != "Studio") ? 'chambres' : ''}} </span> </div>
                                <!----> <!---->
                             </div>
                             <div class="view-units">
