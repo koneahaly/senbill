@@ -423,11 +423,34 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
             </div>
             <div class="wrap-input100 bg1 rs1-wrap-input100">
               <span class="label-input100">Caution *</span>
-              <input class="input100" type="number" pattern="[0-9]{*}" name="caution" required  placeholder="Entrez le montant de la caution">
+              <input class="input100" type="number" pattern="[0-9]{0,10}" name="caution" required  placeholder="Entrez le montant de la caution">
             </div>
             <div class="wrap-input100 bg1 rs1-wrap-input100">
               <span class="label-input100">Loyer *</span>
-              <input class="input100" type="number" pattern="[0-9]{*}" name="loyer" required  placeholder="Entrez le montant du loyer">
+              <input class="input100" type="number" pattern="[0-9]{0,10}" name="loyer" required  placeholder="Entrez le montant du loyer">
+            </div>
+            <div class="wrap-input100 bg1 rs1-wrap-input100">
+              <span class="label-input100">Date de début *</span>
+              <input class="input100" type="date" pattern="[0-9]{0,10}" name="start_date" required>
+            </div>
+            <div class="wrap-input100 bg1 rs1-wrap-input100">
+              <span class="label-input100">Date de fin </span>
+              <input class="input100" type="date" name="end_date">
+            </div>
+            <div class="wrap-input100 input100-select bg1 rs1-wrap-input100">
+              <span class="label-input100">Fréquence de paiement *</span>
+              <div>
+                <select class="js-select-civ" name="frequency" required>
+                  <option disabled>Fréquence</option>
+                  <option value="mensuel">mensuel</option>
+                  <option value="bimestriel">bimestriel</option>
+                </select>
+                <div class="dropDownSelect2"></div>
+              </div>
+            </div>
+            <div class="wrap-input100 bg1 rs1-wrap-input100">
+              <span class="label-input100">Délai de paiement *</span>
+              <input class="input100" type="number" pattern="[0-9]{0,5}" name="delay" required  value="0">
             </div>
 
 

@@ -37,6 +37,8 @@ class realEstateOwnerController extends Controller
       $s=Auth::user()->customerId;
       $list_renter_id=array();
       $list_housings_title = [];
+      $list_contracts_infos = [];
+      $data_contracts=DB::table('contracts')->where('owner_id',$s)->get();
       $infos_housings=DB::table('owns')->select('occupant_id','title')->where('owner_id',$s)->get();
       $infos_locations=DB::table('owns')->select('occupant_id')->where('owner_id',$s)->get();
       $nb_locataires=(int)DB::table('owns')->where('owner_id',$s)->where('status','N')->count();
@@ -46,9 +48,15 @@ class realEstateOwnerController extends Controller
       foreach($infos_housings as $infos_housing){
         $list_housings_title[$infos_housing->occupant_id] = $infos_housing->title;
       }
+      foreach($data_contracts as $data_contract){
+        $list_contracts_infos[$data_contract->renter_id] = [$data_contract->bail,$data_contract->monthly_pm,$data_contract->start_date,
+        $data_contract->end_date,$data_contract->frequency,$data_contract->delay];
+      }
+
       $data_locations['data_locations'] =DB::table('users')->whereIn('customerId',$list_renter_id)->get();
       $data_housing_title['data_housing_title'] = $list_housings_title;
-      return view('mes-locataires')->with($data_locations)->with($data_housing_title)->with('nb_locataires',$nb_locataires);
+      $data_contracts_compact['data_contracts_compact'] = $list_contracts_infos;
+      return view('mes-locataires')->with($data_locations)->with($data_housing_title)->with($data_contracts_compact)->with('nb_locataires',$nb_locataires);
 
     }
     public function display_properties()
@@ -121,11 +129,15 @@ class realEstateOwnerController extends Controller
         $contract->bail=$given->caution;
         $contract->monthly_pm=$given->loyer;
         $contract->status='Y';
+        $contract->delay=$given->delay;
+        $contract->start_date=$given->start_date;
+        $contract->end_date=$given->end_date;
+        $contract->frequency=$given->frequency;
         $contract->save();
 
         DB::table('owns')
             ->where('owner_id', $s)->where('id',$given->housing_id)
-            ->update(['status' => 'N','current_occupant_name' => $given->prenom.' '.$given->nom]);
+            ->update(['status' => 'N','current_occupant_name' => $given->prenom.' '.$given->nom,'occupant_id' => $given->cni]);
 
         return redirect()->intended(route('ownerProperties'));
       }
@@ -140,6 +152,11 @@ class realEstateOwnerController extends Controller
         DB::table('owns')
             ->where('occupant_id',$given->occupant_id)
             ->update(['current_occupant_name' => $given->prenom.' '.$given->nom]);
+
+        DB::table('contracts')
+            ->where('renter_id',$given->occupant_id)
+            ->update(['bail' => $given->caution, 'monthly_pm' => $given->loyer,
+          'delay' =>$given->delay, 'frequency' => $given->frequency]);
 
         return redirect()->intended(route('mes-locataires'));
       }

@@ -162,6 +162,13 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
          <input type="hidden" class="modify_address_{{ $data_location->customerId }}" value="{{ $data_location->address }}" />
          <input type="hidden" class="modify_phone_{{ $data_location->customerId }}" value="{{ $data_location->phone }}" />
          <input type="hidden" class="modify_cni_{{ $data_location->customerId }}" value="{{ $data_location->customerId }}" />
+
+         <input type="hidden" class="modify_caution_{{ $data_location->customerId }}" value="{{ $data_contracts_compact[$data_location->customerId][0] }}" />
+         <input type="hidden" class="modify_loyer_{{ $data_location->customerId }}" value="{{ $data_contracts_compact[$data_location->customerId][1] }}" />
+         <input type="hidden" class="modify_start_date_{{ $data_location->customerId }}" value="{{ $data_contracts_compact[$data_location->customerId][2] }}" />
+         <input type="hidden" class="modify_end_date_{{ $data_location->customerId }}" value="{{ $data_contracts_compact[$data_location->customerId][3] }}" />
+         <input type="hidden" class="modify_frequency_{{ $data_location->customerId }}" value="{{ $data_contracts_compact[$data_location->customerId][4] }}" />
+         <input type="hidden" class="modify_delay_{{ $data_location->customerId }}" value="{{ $data_contracts_compact[$data_location->customerId][5] }}" />
        @endforeach
         <!-- FIN CARTE LOCATAIRE 1-->
        <!---->
@@ -222,6 +229,37 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
             <div class="wrap-input100 validate-input bg1" data-validate="Entrez svp un cni pour le logement">
               <span class="label-input100">Numéro CNI *</span>
               <input class="input100 update_cni" type="text" pattern="[0-9,A-Z,a-z]{13}" required name="cni" placeholder="Entrez le numéro de Carte d'identité nationale du locataire" value="A000305199377">
+            </div>
+            <div class="wrap-input100 bg1 rs1-wrap-input100">
+              <span class="label-input100">Caution *</span>
+              <input class="input100 update_caution" type="number" pattern="[0-9]{0,10}" name="caution" required  placeholder="Entrez le montant de la caution">
+            </div>
+            <div class="wrap-input100 bg1 rs1-wrap-input100">
+              <span class="label-input100">Loyer *</span>
+              <input class="input100 update_loyer" type="number" pattern="[0-9]{0,10}" name="loyer" required  placeholder="Entrez le montant du loyer">
+            </div>
+            <div class="wrap-input100 bg1 rs1-wrap-input100">
+              <span class="label-input100">Date de début *</span>
+              <input class="input100 update_start_date" type="text" name="start_date" required value="">
+            </div>
+            <div class="wrap-input100 bg1 rs1-wrap-input100">
+              <span class="label-input100">Date de fin </span>
+              <input class="input100 update_end_date" type="text" name="end_date" value="">
+            </div>
+            <div class="wrap-input100 input100-select bg1 rs1-wrap-input100">
+              <span class="label-input100">Fréquence de paiement *</span>
+              <div>
+                <select class="js-select-freq update_frequency" name="frequency" required>
+                  <option disabled>Fréquence</option>
+                  <option value="mensuel">mensuel</option>
+                  <option value="bimestriel">bimestriel</option>
+                </select>
+                <div class="dropDownSelect2"></div>
+              </div>
+            </div>
+            <div class="wrap-input100 bg1 rs1-wrap-input100">
+              <span class="label-input100">Délai de paiement *</span>
+              <input class="input100 update_delay" type="number" pattern="[0-9]{0,5}" name="delay" required  value="">
             </div>
 
 
@@ -344,13 +382,13 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                                              <div class="col-xs-24 col-sm-8">
                                                 <div class="view-block">
                                                    <h3>Date de début</h3>
-                                                   <span>03/06/2020</span>
+                                                   <span class="start_date_contract">03/06/2020</span>
                                                 </div>
                                              </div>
                                              <div class="col-xs-24 col-sm-8">
                                                 <div class="view-block">
                                                    <h3>Date de fin</h3>
-                                                   <span>03/06/2021</span>
+                                                   <span class="end_date_contract">03/06/2021</span>
                                                 </div>
                                              </div>
                                           </div>
@@ -358,7 +396,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                                              <div class="col-xs-24 col-sm-8">
                                                 <div class="view-block">
                                                    <h3>Type de location</h3>
-                                                   <span>Mensuel</span>
+                                                   <span class="frequency_contract">Mensuel</span>
                                                 </div>
                                              </div>
                                           </div>
@@ -377,12 +415,12 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                                                                      <span>Loyer</span>
                                                                   </h3>
                                                                   <span>
-                                                                     <span>325 000 FCFA</span><span >/ Mois</span>
+                                                                     <span class="loyer_contract">325 000 FCFA</span><span class="slash_frequency_contract">/ Mois</span>
                                                                   </span>
                                                                </div>
                                                                <div class="title-block">
                                                                   <h3 class="u-fontSize16">Jour d'échéance</h3>
-                                                                  <span > 5 </span>
+                                                                  <span class="delay_contract"> 5 </span>
                                                                </div>
                                                             </div>
                                                          </div>
@@ -403,7 +441,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                                                                   Caution
                                                                </h3>
                                                                <div class="deposit-block">
-                                                                  <div class="title-block deposit-amount"> <span class="amount-total">600 000 FCFA</span></div>
+                                                                  <div class="title-block deposit-amount"> <span class="amount-total caution_contract">600 000 FCFA</span></div>
                                                                   <!--<div class="title-block">
                                                                      <h3>Payé le</h3>
                                                                      <span>10/06/2020</span>
@@ -446,7 +484,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
 <script src="{{url('vendor/select2/select2.min.js')}}"></script>
 <script>
 $(document).ready(function() {
-  $(".js-select-civ").each(function(){
+  $(".js-select-civ,.js-select-freq").each(function(){
     $(this).select2({
       minimumResultsForSearch: 20,
       dropdownParent: $(this).next('.dropDownSelect2')
@@ -484,7 +522,7 @@ $(document).ready(function() {
 <script src="{{url('vendor/daterangepicker/daterangepicker.js')}}"></script>
 <script>
 $(function() {
-  $('input[name="dateOB"]').daterangepicker({
+  $('input[name="dateOB"],input[name="start_date"],input[name="end_date"]').daterangepicker({
     singleDatePicker: true,
     showDropdowns: true,
     minYear: 1901,
@@ -538,6 +576,14 @@ $(document).ready(function() {
     var email_occupant = $('.modify_email_'+occupant_id[1]).val();
     var phone_occupant = $('.modify_phone_'+occupant_id[1]).val();
     var cni_occupant = $('.modify_cni_'+occupant_id[1]).val();
+
+    var cuation_occupant = $('.modify_caution_'+occupant_id[1]).val();
+    var loyer_occupant = $('.modify_loyer_'+occupant_id[1]).val();
+    var start_date_occupant = $('.modify_start_date_'+occupant_id[1]).val();
+    var end_date_occupant = $('.modify_end_date_'+occupant_id[1]).val();
+    var delay_occupant = $('.modify_delay_'+occupant_id[1]).val();
+    var frequency_occupant = $('.modify_frequency_'+occupant_id[1]).val();
+
     $('.update_nom').val(nom_occupant);
     $('.update_prenom').val(prenom_occupant);
     $('.update_dob').val(dob);
@@ -548,6 +594,14 @@ $(document).ready(function() {
     $('.update_phone').val(phone_occupant);
     $('.update_cni').val(cni_occupant);
     $('.occupant_id').val(occupant_id[1]);
+
+    $('.update_caution').val(cuation_occupant);
+    $('.update_loyer').val(loyer_occupant);
+    $('.update_start_date').val(start_date_occupant);
+    $('.update_end_date').val(end_date_occupant);
+    $('.update_delay').val(delay_occupant).change();
+    $("select option[value="+frequency_occupant+"]").attr('selected','selected');
+    $('.js-select-freq').val(frequency_occupant).change();
   });
 
   $('.display_contract').click(function(){
@@ -558,6 +612,14 @@ $(document).ready(function() {
     var prenom_occupant = $('.modify_prenom_'+occupant_id[1]).val();
     var address_occupant = $('.modify_address_'+occupant_id[1]).val();
     var phone_occupant = $('.modify_phone_'+occupant_id[1]).val();
+
+    var cuation_occupant = $('.modify_caution_'+occupant_id[1]).val();
+    var loyer_occupant = $('.modify_loyer_'+occupant_id[1]).val();
+    var start_date_occupant = $('.modify_start_date_'+occupant_id[1]).val();
+    var end_date_occupant = $('.modify_end_date_'+occupant_id[1]).val();
+    var delay_occupant = $('.modify_delay_'+occupant_id[1]).val();
+    var frequency_occupant = $('.modify_frequency_'+occupant_id[1]).val();
+
     $('.address_contract').html(address_occupant);
     $('.full_name_contract').html(prenom_occupant+' '+nom_occupant);
     $('.phone_contract').html(phone_occupant);
@@ -569,6 +631,13 @@ $(document).ready(function() {
       $('.avatar').children().html('<img imageonload="" class="img-responsive s-image--loading_success avatar_contract_f" alt="avatar" src="{{url("images/icon-femme.png")}}">');
       $('.avatar_contract_h').remove();
     }
+    $('.caution_contract').html(cuation_occupant);
+    $('.loyer_contract').html(loyer_occupant);
+    $('.start_date_contract').html(start_date_occupant);
+    $('.end_date_contract').html(end_date_occupant);
+    $('.delay_contract').html(delay_occupant);
+    $('.frequency_contract').html(frequency_occupant);
+    $('.slash_frequency_contract').html(' / '+frequency_occupant);
   });
 
 });
