@@ -60,7 +60,7 @@ Route::post('/admin/import-bills','AdminController@imports_bills')->name('admin.
 Route::post('/admin/import-occupants-bills','AdminController@imports_occupants_bills')->name('admin.imports_occupants_bills');
 Route::post('/admin/import-bills-six-months','AdminController@imports_bills_previous_six_month')->name('admin.imports_bills_six_months');
 
-Route::get('/transactions-proprietaire','realEstateOwnerController@display_transactions')->name('ownerTransactions');
+Route::get('/transactions-proprietaire/{id?}','realEstateOwnerController@display_transactions')->name('ownerTransactions');
 Route::get('/mes-logements','realEstateOwnerController@display_properties')->name('ownerProperties');
 Route::post('/mes-logements/add','realEstateOwnerController@add_housing')->name('mes-logements.add');
 Route::post('/mes-logements/update','realEstateOwnerController@update_housing')->name('mes-logements.update');

@@ -148,7 +148,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                       </div>
                       <p>Locataire</p>
                    </a>
-                   <a class="col-xs-12 col-sm-12 tooltip-link"  title="Factures" href="transactions-proprietaire">
+                   <a class="col-xs-12 col-sm-12 tooltip-link"  title="Factures" href="transactions-proprietaire/{{ $vl->occupant_id }}">
                       <div class="icon-svg">
                          <i class="fas fa-file-invoice-dollar"></i>
                       </div>

@@ -72,6 +72,17 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
   </div>
 
 </div>
+<?php
+$id = explode('/',$_SERVER['REQUEST_URI']);
+if(!empty($id[2])){
+  $filter_name = '"search": {
+    "search": "'.$data_infos_housing[$id[2]][1].'"
+  },';
+}
+else{
+  $filter_name = '';
+}
+ ?>
 @endsection
 @section('scripts')
 <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
@@ -79,6 +90,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
 <script>
 $(document).ready(function() {
     $('#transTable').DataTable( {
+        <?php echo $filter_name; ?>
         autoWidth: true,
         columnDefs: [
             {
