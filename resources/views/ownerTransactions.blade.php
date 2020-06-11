@@ -67,9 +67,6 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
       </table>
   </div>
   </div>
-  <div class="row">
-    <lottie-player src="{{url('images/lottie/transactions1.json')}}"  background="transparent"  speed="1"  style="width: 100%; height: 100px;display: inline-block;"  loop  autoplay></lottie-player>
-  </div>
 
 </div>
 <?php

@@ -22,7 +22,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
   <lottie-player src="{{url('images/lottie/bubble.json')}}"  background="transparent"  speed="1"  style="width: 60px; height: 60px; position:absolute;z-index:1000;margin-left:1%;margin-top: -2%;"  loop  autoplay></lottie-player>
 
     <div class="row" style="margin-top:50px">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default personalInfoPanel">
                 <div class="panel-body">
                     @if (session('status'))

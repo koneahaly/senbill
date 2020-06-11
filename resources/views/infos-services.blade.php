@@ -20,7 +20,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
   <lottie-player src="{{url('images/lottie/bubble.json')}}"  background="transparent"  speed="1"  style="width: 100px; height: 100px; position:absolute;z-index:1000;margin-left:80%;margin-top: -1.5%;"  loop  autoplay></lottie-player>
   <lottie-player src="{{url('images/lottie/bubble.json')}}"  background="transparent"  speed="1"  style="width: 60px; height: 60px; position:absolute;z-index:1000;margin-left:1%;margin-top: -2%;"  loop  autoplay></lottie-player>
     <div class="row" style="margin-top:50px">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default personalInfoPanel">
                 <div class="panel-body">
                     @if (session('status'))
@@ -34,7 +34,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                           <div class="form-card">
                               <div class="row">
                                   <div class="col-7">
-                                      <img alt="" class="form-image" style="border:0;margin-left:200px;" src="{{url('images/undraw_location_review_dmxd.png')}}" height="270px" width="318px" data-component="image">
+                                      <img alt="" class="form-image" style="border:0;margin-left:30%;" src="{{url('images/undraw_location_review_dmxd.png')}}" height="270px" width="318px" data-component="image">
 
                                   </div>
                                   <div class="col-5">
@@ -42,7 +42,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                                   </div>
                               </div>
                           </div>
-                          <div class="radio-group row justify-content-between px-3" style="margin-left: -3px;">
+                          <div class="radio-group row justify-content-between px-3" style="margin-left: 10%;">
                              <div class="card-block card-body selectRegister1 {{ (empty(Auth::user()->service_1)) ? '' : 'selected' }}">
                                  <div class="row justify-content-end d-flex px-3">
                                      <div class="fa fa-{{ (empty(Auth::user()->service_1)) ? 'circle' : 'check' }}"></div>
@@ -115,7 +115,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                                   <input class='service_6' type='hidden' name='service_6' value='proprietaire' />
                                   @endif
                              </div>
-                             <div class="row justify-content-center">
+                             <div class="row justify-content-center" style="margin-left: -10%;">
                                  <div class="col-7 text-center">
                                      <input type='submit' name='action' class='btn btn-primary submitForm' value='Enregistrer' />
                                  </div>
