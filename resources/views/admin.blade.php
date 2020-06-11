@@ -40,6 +40,13 @@
                         </form>
                         <br /> <br />
                       </div>
+                      <div class="col-md-6">
+                        <form class="form-horizontal" method="POST" action="{{ route('admin.imports_occupants_bills') }}">
+                            {{ csrf_field() }}
+                            <button type="submit" class="btn btn-primary">Importer les factures des locataires</button>
+                        </form>
+                        <br /> <br />
+                      </div>
                     </div>
 
                     <form class="form-horizontal" action="{{ route('admin.store') }}" method="GET">

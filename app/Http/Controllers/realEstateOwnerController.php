@@ -28,8 +28,19 @@ class realEstateOwnerController extends Controller
     public function display_transactions()
     {
       $s=Auth::user()->customerId;
-      $infos_perso['infos_perso']=DB::table('users')->where('customerId',$s)->first();
-      return view('ownerTransactions')->with($infos_perso);
+      $list_renter_id=array();
+      $list_housings_infos = [];
+      $infos_occupants=DB::table('owns')->select('occupant_id')->where('owner_id',$s)->get();
+      $infos_housings=DB::table('owns')->select('occupant_id','current_occupant_name','title')->where('owner_id',$s)->get();
+      foreach($infos_occupants as $infos_occupant){
+        array_push($list_renter_id,$infos_occupant->occupant_id);
+      }
+      foreach($infos_housings as $infos_housing){
+        $list_housings_infos[$infos_housing->occupant_id] = [$infos_housing->occupant_id,$infos_housing->current_occupant_name,$infos_housing->title];
+      }
+      $data_bills['data_bills'] =DB::table('bills')->whereIn('customerId',$list_renter_id)->whereNotNull('title')->get();
+      $data_infos_housing['data_infos_housing'] = $list_housings_infos;
+      return view('ownerTransactions')->with($data_bills)->with($data_infos_housing);
 
     }
     public function display_locataires()

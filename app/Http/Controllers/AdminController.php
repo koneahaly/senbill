@@ -47,6 +47,33 @@ class AdminController extends Controller
           $rate=$admin->rate;
           $bill->amount=$bill->units * $rate;
           $bill->status="En attente";
+          $bill->title=null;
+          $bill->payment_method='n/a';
+          $bill->save();
+        }
+      }
+      return redirect('admin');
+    }
+
+    public function imports_occupants_bills(){
+      $users['users']=DB::table('users')->where('service_5','locataire')->orderBy('id', 'DESC')->get();
+      //dd($users['users']);
+      foreach($users['users'] as $vl){
+        if($vl->user_type != 2){
+          $bill = new Bill;
+          $bill->customerId=$vl->customerId;
+          $bill->initial=0;
+          $bill->final=rand(100,4000);
+          $bill->month="July";
+          $bill->year=date("Y");
+          $bill->deadline=date('Y-m-d H:i:s', strtotime('+5 day', time()));
+          $bill->units=(integer)$bill->final-(integer)$bill->initial;
+          $admin=DB::table('admins')->first();
+          $rate=1;
+          $bill->amount=$bill->units * $rate;
+          $bill->status="En attente";
+          $bill->payment_method='n/a';
+          $bill->title="location";
           $bill->save();
         }
       }
@@ -74,10 +101,14 @@ class AdminController extends Controller
             $admin=DB::table('admins')->first();
             $rate=$admin->rate;
             $bill->amount=$bill->units * $rate;
-            if($months[$month_int] == date('F'))
+            if($months[$month_int] == date('F')){
               $bill->status="En attente";
-            else
+              $bill->payment_method='n/a';
+            }
+            else{
               $bill->status="paid";
+              $bill->payment_method='CB';
+            }
             $bill->save();
           }
         }

@@ -37,19 +37,21 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
             </tr>
         </thead>
         <tbody style="background-color:#fff;color:#455469">
+          @foreach($data_bills as $value)
             <tr>
-              <td> 10/08/2020</td>
-              <td> <span style="color: #4a49b0;font-size: 16px;">Garantie </span>
-                <div> Propriété: Maison HLM</div>
+              <td> {{ $value->deadline }}</td>
+              <td> <span style="color: #4a49b0;font-size: 16px;">{{ $value->title}} </span>
+                <div> Propriété: {{ $data_infos_housing[$value->customerId][2] }}</div>
               </td>
               <td><i class="fas fa-user-circle fa-2x reIcon"></i>
-                <span style="font-size: 12px;color: #0f541b;">Modou Fofana </span>
+                <span style="font-size: 12px;color: #0f541b;">{{ $data_infos_housing[$value->customerId][1] }}</span>
               </td>
-              <td class="reAmount"><span class="green">+</span> 625000 FCFA </td>
-                <td style="color:#28863e;font-weight: 700;"> payé </td>
-                <td> Orange Money</td>
+              <td class="reAmount"><span class="green">+</span> {{ $value->amount }} FCFA </td>
+                <td style="color:#28863e;font-weight: 700;"> {{ $value->status }} </td>
+                <td> {{ $value->payment_method }}</td>
             </tr>
-            <tr>
+          @endforeach
+            <!--<tr>
               <td> 10/09/2020 </td>
               <td><span style="color: #4a49b0;font-size: 16px;">Loyer </span>
                 <div> Propriété: Maison Mariste</div>
@@ -60,7 +62,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
               <td class="reAmount"><span class="green">+</span> 325000 FCFA </td>
                 <td style="color:#28863e;font-weight: 700;"> en attente </td>
                 <td> Orange Money</td>
-            </tr>
+            </tr>-->
         </tbody>
       </table>
   </div>
