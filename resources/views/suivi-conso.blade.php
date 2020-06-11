@@ -2,9 +2,6 @@
 session_start();
 $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOfBillsNonPaid"] : '';
 ?>
-
-@extends('layouts.app', ['notification' => $notification])
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.6/nv.d3.css">
 <?php
 
 function calc_month($param){
@@ -21,152 +18,118 @@ function calc_month($param){
   }
 }
 
+
+
 $dataPoints1 = array(
-  array("label"=> calc_month(6), "y"=> (!empty($my_infos_conso[calc_month(6)])) ? $my_infos_conso[calc_month(6)] : 0.00 ),
-  array("label"=> calc_month(5), "y"=> (!empty($my_infos_conso[calc_month(5)])) ? $my_infos_conso[calc_month(5)] : 0.00 ),
-  array("label"=> calc_month(4), "y"=> (!empty($my_infos_conso[calc_month(4)])) ? $my_infos_conso[calc_month(4)] : 0.00 ),
-  array("label"=> calc_month(3), "y"=> (!empty($my_infos_conso[calc_month(3)])) ? $my_infos_conso[calc_month(3)] : 0.00 ),
-  array("label"=> calc_month(2), "y"=> (!empty($my_infos_conso[calc_month(2)])) ? $my_infos_conso[calc_month(2)] : 0.00 ),
-  array("label"=> calc_month(1), "y"=> (!empty($my_infos_conso[calc_month(1)])) ? $my_infos_conso[calc_month(1)] : 0.00 )
+  array("x"=> calc_month(6), "y"=> (!empty($my_infos_conso[calc_month(6)])) ? $my_infos_conso[calc_month(6)] : 50.00 ),
+  array("x"=> calc_month(5), "y"=> (!empty($my_infos_conso[calc_month(5)])) ? $my_infos_conso[calc_month(5)] : 60.00 ),
+  array("x"=> calc_month(4), "y"=> (!empty($my_infos_conso[calc_month(4)])) ? $my_infos_conso[calc_month(4)] : 68.00 ),
+  array("x"=> calc_month(3), "y"=> (!empty($my_infos_conso[calc_month(3)])) ? $my_infos_conso[calc_month(3)] : 70.00 ),
+  array("x"=> calc_month(2), "y"=> (!empty($my_infos_conso[calc_month(2)])) ? $my_infos_conso[calc_month(2)] : 50.00 ),
+  array("x"=> calc_month(1), "y"=> (!empty($my_infos_conso[calc_month(1)])) ? $my_infos_conso[calc_month(1)] : 40.00 )
 );
 $dataPoints2 = array(
-  array("label"=> calc_month(6), "y"=> 64.61),
-  array("label"=> calc_month(5), "y"=> 70.55),
-  array("label"=> calc_month(4), "y"=> 72.50),
-  array("label"=> calc_month(3), "y"=> 81.30),
-  array("label"=> calc_month(2), "y"=> 63.60),
-  array("label"=> calc_month(1), "y"=> 69.38)
+  array("x"=> calc_month(6), "y"=> 3064.61),
+  array("x"=> calc_month(5), "y"=> 3070.55),
+  array("x"=> calc_month(4), "y"=> 3072.50),
+  array("x"=> calc_month(3), "y"=> 3081.30),
+  array("x"=> calc_month(2), "y"=> 3063.60),
+  array("x"=> calc_month(1), "y"=> 3069.38)
 
 );
 
 $dataPoints3 = array(
-  array("label"=> calc_month(6), "y"=> (!empty($my_infos_conso_euro[calc_month(6)])) ? $my_infos_conso_euro[calc_month(6)] : 0.00 ),
-  array("label"=> calc_month(5), "y"=> (!empty($my_infos_conso_euro[calc_month(5)])) ? $my_infos_conso_euro[calc_month(5)] : 0.00 ),
-  array("label"=> calc_month(4), "y"=> (!empty($my_infos_conso_euro[calc_month(4)])) ? $my_infos_conso_euro[calc_month(4)] : 0.00 ),
-  array("label"=> calc_month(3), "y"=> (!empty($my_infos_conso_euro[calc_month(3)])) ? $my_infos_conso_euro[calc_month(3)] : 0.00 ),
-  array("label"=> calc_month(2), "y"=> (!empty($my_infos_conso_euro[calc_month(2)])) ? $my_infos_conso_euro[calc_month(2)] : 0.00 ),
-  array("label"=> calc_month(1), "y"=> (!empty($my_infos_conso_euro[calc_month(1)])) ? $my_infos_conso_euro[calc_month(1)] : 0.00 )
+  array("x"=> calc_month(6), "y"=> (!empty($my_infos_conso_euro[calc_month(6)])) ? $my_infos_conso_euro[calc_month(6)] : 0.00 ),
+  array("x"=> calc_month(5), "y"=> (!empty($my_infos_conso_euro[calc_month(5)])) ? $my_infos_conso_euro[calc_month(5)] : 0.00 ),
+  array("x"=> calc_month(4), "y"=> (!empty($my_infos_conso_euro[calc_month(4)])) ? $my_infos_conso_euro[calc_month(4)] : 0.00 ),
+  array("x"=> calc_month(3), "y"=> (!empty($my_infos_conso_euro[calc_month(3)])) ? $my_infos_conso_euro[calc_month(3)] : 0.00 ),
+  array("x"=> calc_month(2), "y"=> (!empty($my_infos_conso_euro[calc_month(2)])) ? $my_infos_conso_euro[calc_month(2)] : 0.00 ),
+  array("x"=> calc_month(1), "y"=> (!empty($my_infos_conso_euro[calc_month(1)])) ? $my_infos_conso_euro[calc_month(1)] : 0.00 )
 );
+
+
 $dataPoints4 = array(
-  array("label"=> calc_month(6), "y"=> 64.61),
-  array("label"=> calc_month(5), "y"=> 70.55),
-  array("label"=> calc_month(4), "y"=> 72.50),
-  array("label"=> calc_month(3), "y"=> 81.30),
-  array("label"=> calc_month(2), "y"=> 63.60),
-  array("label"=> calc_month(1), "y"=> 69.38)
+  array("x"=> calc_month(6), "y"=> 3064.61),
+  array("x"=> calc_month(5), "y"=> 3070.55),
+  array("x"=> calc_month(4), "y"=> 3072.50),
+  array("x"=> calc_month(3), "y"=> 3081.30),
+  array("x"=> calc_month(2), "y"=> 3063.60),
+  array("x"=> calc_month(1), "y"=> 3069.38)
 
 );
 
 ?>
-<!DOCTYPE HTML>
-<html>
-<head>
-<style>
+@extends('layouts.app', ['notification' => $notification])
+<link rel="stylesheet" type="text/css" href="{{url('css/nv.d3.css')}}">
+@section('content')
 
-html { overflow-y: hidden; }
+<div class="container">
+  <div class="row" style="margin-top:4%;">
+      <lottie-player src="{{url('images/lottie/lines.json')}}"  background="transparent"  speed="0.1"  style="width: 500px; height: 500px; position:absolute;z-index:1000;margin-left:-20%;margin-top: 2.5%;"  loop  autoplay></lottie-player>
+      <lottie-player src="{{url('images/lottie/lines.json')}}"  background="transparent"  speed="0.1"  style="width: 500px; height: 500px; position:absolute;z-index:1000;margin-left:70%;margin-top: 2.5%;"  loop  autoplay></lottie-player>
+  </div>
+  <div class="row" style="margin-top:10%">
+  <div class="col-md-12" style="margin-top:10px;margin-bottom:20px;text-align:center;">
+   <h3><strong>Mon Suivi de consommation</strong></h3>
+  </div>
+  </div>
+  <lottie-player src="{{url('images/lottie/bubble.json')}}"  background="transparent"  speed="1"  style="width: 80px; height: 80px; position:absolute;z-index:1000;margin-left:-8%;margin-top: 15%;"  loop  autoplay></lottie-player>
+  <lottie-player src="{{url('images/lottie/bubble.json')}}"  background="transparent"  speed="1"  style="width: 100px; height: 100px; position:absolute;z-index:1000;margin-left:80%;margin-top: -1.5%;"  loop  autoplay></lottie-player>
+  <lottie-player src="{{url('images/lottie/bubble.json')}}"  background="transparent"  speed="1"  style="width: 60px; height: 60px; position:absolute;z-index:1000;margin-left:1%;margin-top: -2%;"  loop  autoplay></lottie-player>
+  <div class="row">
+    <div id="chart11" style="height: 70%; width: 80%; z-index:1100;margin-left:10%" class="col-md-11 offset-md-2">
+      <svg></svg>
+    </div>
+  </div>
+</div>
+@endsection
 
-</style>
+@section('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.6/nv.d3.js"></script>
+<script src="http://nvd3.org/assets/js/data/stream_layers.js"></script>
 <script>
-window.onload = function () {
 
-var chart = new CanvasJS.Chart("chartContainer", {
-  animationEnabled: true,
-  theme: "light2",
-  title:{
-    text: "Détail de la consommation globale en Kw."
-  },
-  legend:{
-    cursor: "pointer",
-    verticalAlign: "center",
-    horizontalAlign: "right",
-    itemclick: toggleDataSeries
-  },
-  data: [{
-    type: "column",
-    name: "Consommations réelles",
-    indexLabel: "{y}",
-    yValueFormatString: "#0.## Kw",
-    showInLegend: true,
-    dataPoints: <?php echo json_encode($dataPoints1, JSON_NUMERIC_CHECK); ?>
-  },{
-    type: "column",
-    name: "Consommations estimées",
-    indexLabel: "{y}",
-    yValueFormatString: "#0.## Kw",
-    showInLegend: true,
-    dataPoints: <?php echo json_encode($dataPoints2, JSON_NUMERIC_CHECK); ?>
-  }]
+$(document).ready(function() {
+nv.addGraph(function() {
+    var chart = nv.models.multiBarChart()
+      .duration(350)
+      .reduceXTicks(true)   //If 'false', every single x-axis tick label will be rendered.
+      .rotateLabels(0)      //Angle to rotate x-axis labels.
+      .showControls(true)   //Allow user to switch between 'Grouped' and 'Stacked' mode.
+      .groupSpacing(0.1)    //Distance between each group of bars.
+    ;
+    var unitFormat = function(d) { return d3.format(',.1f')(d)  + ' Watt'};
+
+//    chart.xAxis
+  //      .tickFormat(d3.format(',f'));
+
+    chart.yAxis
+        .tickFormat(unitFormat);
+
+    d3.select('#chart11 svg')
+        .datum(
+          [
+            {
+            "key": "Consommation réelle",
+            "values": <?php echo json_encode($dataPoints1, JSON_NUMERIC_CHECK); ?>
+            },
+            {
+              "key": "Consommation estimée",
+              "values": <?php echo json_encode($dataPoints2, JSON_NUMERIC_CHECK); ?>
+            }
+          ]
+          )
+        .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
 });
-chart.render();
 
-function toggleDataSeries(e){
-  if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
-    e.dataSeries.visible = false;
-  }
-  else{
-    e.dataSeries.visible = true;
-  }
-  chart.render();
-}
-
-
-var chart2 = new CanvasJS.Chart("chartContainer2", {
-  animationEnabled: true,
-  theme: "light2",
-  title:{
-    text: "Détail de la consommation globale en FCFA."
-  },
-  legend:{
-    cursor: "pointer",
-    verticalAlign: "center",
-    horizontalAlign: "right",
-    itemclick: toggleDataSeries
-  },
-  data: [{
-    type: "column",
-    name: "Consommations réelles",
-    indexLabel: "{y}",
-    yValueFormatString: "#0.## fcfa",
-    showInLegend: true,
-    dataPoints: <?php echo json_encode($dataPoints3, JSON_NUMERIC_CHECK); ?>
-  },{
-    type: "column",
-    name: "Consommations estimées",
-    indexLabel: "{y}",
-    yValueFormatString: "#0.## fcfa",
-    showInLegend: true,
-    dataPoints: <?php echo json_encode($dataPoints4, JSON_NUMERIC_CHECK); ?>
-  }]
 });
-chart2.render();
 
-function toggleDataSeries(e){
-  if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
-    e.dataSeries.visible = false;
-  }
-  else{
-    e.dataSeries.visible = true;
-  }
-  chart2.render();
-}
 
-}
 
 </script>
-</head>
-<body>
-  <div id="app" class="s2sn-wrapper-login-container s2sn-js-login" style="background-image: url({{url('images/white-background/19366_Fotor1.jpg')}}) !important;">
-    <div class="row" style="margin-top:5%;">
-        <lottie-player src="{{url('images/lottie/graph.json')}}"  background="transparent"  speed="1"  style="width: 200px; height: 200px; position:absolute;z-index:1000"  loop  autoplay></lottie-player>
-    </div>
-    <div class="row" style="padding-top:15%">
-      <div class="col-md-1"></div>
-      <div id="chartContainer" class="col-md-5 offset-md-3" style="height: 40%; width: 40%;"></div>
-      <div class="col-md-1"></div>
-      <div id="chartContainer2" class="col-md-5" style="height: 40%; width: 40%;"></div>
-    </div>
-    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-  </div>
-
-</body>
-</html>
+@endsection
