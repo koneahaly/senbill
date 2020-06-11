@@ -96,7 +96,8 @@ if($_SERVER['REQUEST_URI'] == '/register')
               <img src="{{url('images/logo-elektra-halo.png')}}" alt="logo-elektra" width="80" height="auto" class="s2sn-img-normal">
               <img src="{{url('images/logo-elektra-halo.png')}}" alt="logo-elektra" width="80" height="auto" class="s2sn-img-retina">
           </a>
-          <p class="custom-space">Espace propriétaire</p>
+          <p class="custom-space">Espace Propriétaire</p>
+          <lottie-player src="{{url('images/lottie/house.json')}}"  background="transparent"  speed="1"  style="width: 100px; height: 100px; position:absolute;z-index:1000;margin-left:-27%;margin-top:-1%;"  loop  autoplay></lottie-player>
           <div class="s2sn-login-header-nav  navbarElektra">
          <ul class="s2sn-navbar-elektra">
              @if($notification >=0)

@@ -67,6 +67,8 @@ if($_SERVER['REQUEST_URI'] == '/mes-factures')
   $active_3 = 'active';
   if($_SERVER['REQUEST_URI'] == '/suivi-conso')
     $active_4 = 'active';
+    if($_SERVER['REQUEST_URI'] == '/infos-services')
+      $active_1 = 'active';
 
 if($_SERVER['REQUEST_URI'] == '/register')
   $home_directory = '.';
@@ -102,7 +104,29 @@ if($_SERVER['REQUEST_URI'] == '/register')
               <img src="{{url('images/logo-elektra-halo.png')}}" alt="logo-elektra" width="80" height="auto" class="s2sn-img-normal">
               <img src="{{url('images/logo-elektra-halo.png')}}" alt="logo-elektra" width="80" height="auto" class="s2sn-img-retina">
           </a>
-          <p class="custom-space">Espace electricité</p>
+
+
+        <!--  POUR ELECTRICITE
+        <p class="custom-space">Espace electricité</p>
+         <lottie-player src="{{url('images/lottie/light.json')}}"  background="transparent"  speed="1"  style="width: 80px; height: 80px; position:absolute;z-index:1000;margin-left:-27%;"  loop  autoplay></lottie-player>
+       -->
+       <!--  POUR EAU -->
+       <p class="custom-space">Espace Eau</p>
+        <lottie-player src="{{url('images/lottie/water.json')}}"  background="transparent"  speed="1"  style="width: 80px; height: 80px; position:absolute;z-index:1000;margin-left:-27%;"  loop  autoplay></lottie-player>
+
+      <!--  POUR TV
+      <p class="custom-space">Espace Télévision </p>
+       <lottie-player src="{{url('images/lottie/tv.json')}}"  background="transparent"  speed="1"  style="width: 80px; height: 80px; position:absolute;z-index:1000;margin-left:-27%;"  loop  autoplay></lottie-player>
+     -->
+     <!--  POUR MOBILE & Internet
+     <p class="custom-space">Espace Mobile & Internet</p>
+     <lottie-player src="{{url('images/lottie/wifi.json')}}"  background="transparent"  speed="1"  style="width: 100px; height: 100px; position:absolute;z-index:1000;margin-left:-24%;margin-top:-0.7%;"  loop  autoplay></lottie-player>
+    -->
+    <!--  POUR Locataire
+    <p class="custom-space">Espace Locataire</p>
+    <lottie-player src="{{url('images/lottie/key.json')}}"  background="transparent"  speed="1"  style="width: 100px; height: 100px; position:absolute;z-index:1000;margin-left:-29%;margin-top:-1.5%;"  loop  autoplay></lottie-player>
+   -->
+
           <div class="s2sn-login-header-nav  navbarElektra">
          <ul class="s2sn-navbar-elektra">
              @if($notification >=0)
