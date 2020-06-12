@@ -48,6 +48,7 @@
 <link rel="stylesheet" type="text/css" href="{{url('css/elektra.css')}}">
 
 <link rel="stylesheet" href="{{url('css/jquery.range.css')}}">
+<link rel="stylesheet" href="{{url('css/payment_modal.css')}}">
 <script src="{{ url('js/jquery.range.js') }}"></script>
 <script src="{{ url('js/lottie-player.js') }}"></script>
 
