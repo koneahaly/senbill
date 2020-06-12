@@ -107,26 +107,33 @@ if($_SERVER['REQUEST_URI'] == '/register')
           </a>
 
 
-        <!--  POUR ELECTRICITE
-        <p class="custom-space">Espace electricité</p>
-         <lottie-player src="{{url('images/lottie/light.json')}}"  background="transparent"  speed="1"  style="width: 80px; height: 80px; position:absolute;z-index:1000;margin-left:-27%;"  loop  autoplay></lottie-player>
-       -->
-       <!--  POUR EAU -->
-       <p class="custom-space">Espace {{ $service }}</p>
-        <lottie-player src="{{url('images/lottie/water.json')}}"  background="transparent"  speed="1"  style="width: 80px; height: 80px; position:absolute;z-index:1000;margin-left:-27%;"  loop  autoplay></lottie-player>
+        <!--  POUR ELECTRICITE -->
+        @if( $service == "electricite")
+          <p class="custom-space">Espace electricité</p>
+          <lottie-player src="{{url('images/lottie/light.json')}}"  background="transparent"  speed="1"  style="width: 80px; height: 80px; position:absolute;z-index:1000;margin-left:-27%;"  loop  autoplay></lottie-player>
+        @endif
 
-      <!--  POUR TV
-      <p class="custom-space">Espace Télévision </p>
-       <lottie-player src="{{url('images/lottie/tv.json')}}"  background="transparent"  speed="1"  style="width: 80px; height: 80px; position:absolute;z-index:1000;margin-left:-27%;"  loop  autoplay></lottie-player>
-     -->
-     <!--  POUR MOBILE & Internet
-     <p class="custom-space">Espace Mobile & Internet</p>
-     <lottie-player src="{{url('images/lottie/wifi.json')}}"  background="transparent"  speed="1"  style="width: 100px; height: 100px; position:absolute;z-index:1000;margin-left:-24%;margin-top:-0.7%;"  loop  autoplay></lottie-player>
-    -->
-    <!--  POUR Locataire
-    <p class="custom-space">Espace Locataire</p>
-    <lottie-player src="{{url('images/lottie/key.json')}}"  background="transparent"  speed="1"  style="width: 100px; height: 100px; position:absolute;z-index:1000;margin-left:-29%;margin-top:-1.5%;"  loop  autoplay></lottie-player>
-   -->
+       <!--  POUR EAU -->
+        @if( $service == "eau")
+          <p class="custom-space">Espace eau</p>
+          <lottie-player src="{{url('images/lottie/water.json')}}"  background="transparent"  speed="1"  style="width: 80px; height: 80px; position:absolute;z-index:1000;margin-left:-27%;"  loop  autoplay></lottie-player>
+       @endif
+      <!--  POUR TV -->
+      @if( $service == "tv")
+        <p class="custom-space">Espace Télévision </p>
+        <lottie-player src="{{url('images/lottie/tv.json')}}"  background="transparent"  speed="1"  style="width: 80px; height: 80px; position:absolute;z-index:1000;margin-left:-27%;"  loop  autoplay></lottie-player>
+      @endif
+
+     <!--  POUR MOBILE & Internet -->
+     @if( $service == "mobile")
+      <p class="custom-space">Espace Mobile & Internet</p>
+      <lottie-player src="{{url('images/lottie/wifi.json')}}"  background="transparent"  speed="1"  style="width: 100px; height: 100px; position:absolute;z-index:1000;margin-left:-24%;margin-top:-0.7%;"  loop  autoplay></lottie-player>
+     @endif
+    <!--  POUR Locataire -->
+    @if( $service == "locataire")
+      <p class="custom-space">Espace Locataire</p>
+      <lottie-player src="{{url('images/lottie/key.json')}}"  background="transparent"  speed="1"  style="width: 100px; height: 100px; position:absolute;z-index:1000;margin-left:-29%;margin-top:-1.5%;"  loop  autoplay></lottie-player>
+   @endif
 
           <div class="s2sn-login-header-nav  navbarElektra">
          <ul class="s2sn-navbar-elektra">
