@@ -87,7 +87,7 @@ if($_SERVER['REQUEST_URI'] == '/register')
 
 </head>
 
-<body>
+<body style="height:100%">
 <div id="app" class="s2sn-wrapper-login-container s2sn-js-login" style="background-image: url({{url('images/white-background/19366_Fotor1.jpg')}});">
   <!-- HEADER START -->
       <!--  Début Header  user connecté -->

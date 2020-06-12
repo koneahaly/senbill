@@ -43,9 +43,9 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                               </div>
                           </div>
                           <div class="radio-group row justify-content-between px-3" style="margin-left: 10%;">
-                             <div class="card-block card-body selectRegister1 {{ (empty(Auth::user()->service_1)) ? '' : 'selected' }}">
+                             <div class="card-block card-body selectRegister1 {{ (Auth::user()->service_1 == "NULL") ? '' : 'selected' }}">
                                  <div class="row justify-content-end d-flex px-3">
-                                     <div class="fa fa-{{ (empty(Auth::user()->service_1)) ? 'circle' : 'check' }}"></div>
+                                     <div class="fa fa-{{ (Auth::user()->service_1 == "NULL") ? 'circle' : 'check' }}"></div>
                                  </div>
                                  <div class="row justify-content-center d-flex">
                                      <div class="pic"> <i class="fas fa-faucet fa-5x pic-0" style="margin-left:25%;"></i> </div>
@@ -55,9 +55,9 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                                   <input class='service_1' type='hidden' name='service_1' value='eau' />
                                   @endif
                              </div>
-                             <div class="card-block card-body selectRegister2 {{ (empty(Auth::user()->service_2)) ? '' : 'selected' }}">
+                             <div class="card-block card-body selectRegister2 {{ (Auth::user()->service_2 == "NULL") ? '' : 'selected' }}">
                                  <div class="row justify-content-end d-flex px-3">
-                                     <div class="fa fa-{{ (empty(Auth::user()->service_2)) ? 'circle' : 'check' }}"></div>
+                                     <div class="fa fa-{{ (Auth::user()->service_2 == "NULL") ? 'circle' : 'check' }}"></div>
                                  </div>
                                  <div class="row justify-content-center d-flex">
                                      <div class="pic"> <i class="fas fa-plug fa-5x pic-0" style="margin-left:25%;"></i> </div>
@@ -67,9 +67,9 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                                   <input class='service_2' type='hidden' name='service_2' value='electricite' />
                                   @endif
                              </div>
-                             <div class="card-block card-body selectRegister3 {{ (empty(Auth::user()->service_3)) ? '' : 'selected' }}">
+                             <div class="card-block card-body selectRegister3 {{ (Auth::user()->service_3 == "NULL") ? '' : 'selected' }}">
                                  <div class="row justify-content-end d-flex px-3">
-                                     <div class="fa fa-{{ (empty(Auth::user()->service_3)) ? 'circle' : 'check' }}"></div>
+                                     <div class="fa fa-{{ (Auth::user()->service_3 == "NULL") ? 'circle' : 'check' }}"></div>
                                  </div>
                                  <div class="row justify-content-center d-flex">
                                      <div class="pic"> <i class="fas fa-tv fa-5x pic-0" style="margin-left:25%;"></i> </div>
@@ -79,9 +79,9 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                                   <input class='service_3' type='hidden' name='service_3' value='tv' />
                                   @endif
                              </div>
-                             <div class="card-block card-body selectRegister4 {{ (empty(Auth::user()->service_4)) ? '' : 'selected' }}">
+                             <div class="card-block card-body selectRegister4 {{ (Auth::user()->service_4 == "NULL") ? '' : 'selected' }}">
                                  <div class="row justify-content-end d-flex px-3">
-                                     <div class="fa fa-{{ (empty(Auth::user()->service_4)) ? 'circle' : 'check' }}"></div>
+                                     <div class="fa fa-{{ (Auth::user()->service_4 == "NULL") ? 'circle' : 'check' }}"></div>
                                  </div>
                                  <div class="row justify-content-center d-flex">
                                      <div class="pic"> <i class="fas fa-mobile-alt fa-5x pic-0" style="margin-left:25%;"></i> </div>
@@ -91,9 +91,9 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                                   <input class='service_4' type='hidden' name='service_4' value='mobile' />
                                   @endif
                              </div>
-                             <div class="card-block card-body selectRegister5 {{ (empty(Auth::user()->service_5)) ? '' : 'selected' }}">
+                             <div class="card-block card-body selectRegister5 {{ (Auth::user()->service_5 == "NULL") ? '' : 'selected' }}">
                                  <div class="row justify-content-end d-flex px-3">
-                                     <div class="fa fa-{{ (empty(Auth::user()->service_5)) ? 'circle' : 'check' }}"></div>
+                                     <div class="fa fa-{{ (Auth::user()->service_5 == "NULL") ? 'circle' : 'check' }}"></div>
                                  </div>
                                  <div class="row justify-content-center d-flex">
                                      <div class="pic"> <i class="fas fa-building fa-5x pic-0" style="margin-left:25%;"></i> </div>
@@ -103,9 +103,9 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                                   <input class='service_5' type='hidden' name='service_5' value='locataire' />
                                   @endif
                              </div>
-                             <div class="card-block card-body selectRegister6 {{ (empty(Auth::user()->service_6)) ? '' : 'selected' }}">
+                             <div class="card-block card-body selectRegister6 {{ (Auth::user()->service_6 == "NULL") ? '' : 'selected' }}">
                                  <div class="row justify-content-end d-flex px-3">
-                                     <div class="fa fa-{{ (empty(Auth::user()->service_6)) ? 'circle' : 'check' }}"></div>
+                                     <div class="fa fa-{{ (Auth::user()->service_6 == "NULL") ? 'circle' : 'check' }}"></div>
                                  </div>
                                  <div class="row justify-content-center d-flex">
                                      <div class="pic"> <i class="fas fa-building fa-5x pic-0" style="margin-left:25%;"></i> </div>

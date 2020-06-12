@@ -46,7 +46,7 @@ if(!empty($raw_woyofal_users_demo) and !empty($raw_classical_users_demo)){
     });
     </script>
 
-    <body>
+    <body style="height:100%">
       <div class="s2sn-wrapper-login-container s2sn-js-login" style="background-image: url({{url('images/stLouis.jpg')}});">
       	 <!-- HEADER START -->
          <div class="s2sn-login-header-desktop">
