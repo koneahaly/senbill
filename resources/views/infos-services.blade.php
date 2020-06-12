@@ -28,7 +28,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                             {{ session('status') }}
                         </div>
                     @endif
-                    <form id="msform" class="form-horizontal" method="POST" action="{{ route('infos-services.update') }}">
+                    <form id="msform" class="form-horizontal" method="POST" action="../infos-services/$_SESSION['current_service']/update">
                       {{csrf_field()}}
                       <fieldset class="f3">
                           <div class="form-card">
