@@ -60,6 +60,11 @@ $active_2 ='none';
 $active_3 ='none';
 $active_4 ='none';
 
+if($_SERVER['REQUEST_URI'] == '/register'){
+  $home_directory = '.';
+  $service="";
+}
+
 $home_directory = "mes-factures/".$service."";
 if(strpos($_SERVER['REQUEST_URI'],"infos-personnelles") == true)
   $active_1 = 'active';
@@ -72,8 +77,6 @@ if(strpos($_SERVER['REQUEST_URI'],"suivi-conso") == true)
 if(strpos($_SERVER['REQUEST_URI'],"infos-services") == true)
       $active_1 = 'active';
 
-if($_SERVER['REQUEST_URI'] == '/register')
-  $home_directory = '.';
 @endphp
 
 </head>

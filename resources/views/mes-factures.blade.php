@@ -364,8 +364,15 @@ $_SESSION['current_service'] = $service[2];
                     </div>
                     <div class="row">
                     <div class="col-xs-12">
-                      <?php $amount = (Auth::user()->user_type == 2) ? $last_row_data['amount'] : $last_row_data->amount; ?>
-                      <?php $id_bill = (Auth::user()->user_type == 2) ? $last_row_data['id'] : $last_row_data->id; ?>
+                      @if(!empty($last_row_data))
+                        <?php $amount = (Auth::user()->user_type == 2) ? $last_row_data['amount'] : $last_row_data->amount; ?>
+                        <?php $id_bill = (Auth::user()->user_type == 2) ? $last_row_data['id'] : $last_row_data->id; ?>
+                      @endif
+                      @if($last_row_data == NULL)
+                      <?php $amount = 0;
+                            $id_bill = 0;
+                      ?>
+                      @endif
                     <button class="btn btn-success btn-lg btn-block" type="submit">Payez {{ $amount }} fcfa
 
                     </button>
@@ -378,7 +385,7 @@ $_SESSION['current_service'] = $service[2];
                     </div>
                     <input type="hidden" name="payment_method" value="CB" />
                     <input type="hidden" name="service" value="{{ $_SESSION['current_service'] }}"/>
-                    <input type="hidden" name='id_bill' value="{{ $id_bill }}" />
+                    <input type="hidden" name='id_bill' value="{{ (!empty($id_bill)) ? $id_bill : '0' }}" />
                     </form>
                     </div>
                     </div>
@@ -486,7 +493,7 @@ $_SESSION['current_service'] = $service[2];
                         </div>
                         <input type="hidden" name="payment_method" value="OrangeMoney" />
                         <input type="hidden" name="service" value="{{ $_SESSION['current_service'] }}"/>
-                        <input type="hidden" name='id_bill' value="{{ $id_bill }}" />
+                        <input type="hidden" name='id_bill' value="{{ (!empty($id_bill)) ? $id_bill : '0' }}" />
                         </form>
                         </div>
                         </div>
@@ -602,7 +609,7 @@ $_SESSION['current_service'] = $service[2];
                       </div>
                       <input type="hidden" name="payment_method" value="FreeCash" />
                       <input type="hidden" name="service" value="{{ $_SESSION['current_service'] }}"/>
-                      <input type="hidden" name='id_bill' value="{{ $id_bill }}" />
+                      <input type="hidden" name='id_bill' value="{{ (!empty($id_bill)) ? $id_bill : '0' }}" />
                       </form>
                       </div>
                       </div>
@@ -947,7 +954,7 @@ if($i == $limit){
               <input type="hidden" name="montant_recharge" value="{{ $t * 5000}}" />
               <input type="hidden" name="payment_method" value="CB" />
               <input type="hidden" name="service" value="{{ $_SESSION['current_service'] }}"/>
-              <input type="hidden" name='id_bill' value="{{ $id_bill }}" />
+              <input type="hidden" name='id_bill' value="{{ (!empty($id_bill)) ? $id_bill : '0' }}" />
               </form>
               </div>
               </div>
@@ -1056,7 +1063,7 @@ if($i == $limit){
                 <input type="hidden" name="montant_recharge" value="{{ $t * 5000}}" />
                 <input type="hidden" name="payment_method" value="OrangeMoney" />
                 <input type="hidden" name="service" value="{{ $_SESSION['current_service'] }}"/>
-                <input type="hidden" name='id_bill' value="{{ $id_bill }}" />
+                <input type="hidden" name='id_bill' value="{{ (!empty($id_bill)) ? $id_bill : '0' }}" />
                 </form>
                   </div>
                   </div>
@@ -1172,7 +1179,7 @@ if($i == $limit){
                 <input type="hidden" name="montant_recharge" value="{{ $t * 5000}}" />
                 <input type="hidden" name="payment_method" value="FreeCash" />
                 <input type="hidden" name="service" value="{{ $_SESSION['current_service'] }}"/>
-                <input type="hidden" name='id_bill' value="{{ $id_bill }}" />
+                <input type="hidden" name='id_bill' value="{{ (!empty($id_bill)) ? $id_bill : '0' }}" />
                 </form>
                 </div>
                 </div>

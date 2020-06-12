@@ -54,13 +54,14 @@ class HomeController extends Controller
           $numberOfBills = (int)DB::table('bills')->where('customerId',$s)->orderBy('id', 'DESC')->count();
           if($numberOfBills > 0){
             $data['data']=DB::table('bills')->where('customerId',$s)->orderBy('id', 'DESC')->get();
+            $last_row_data['last_row_data']=DB::table('bills')->where('customerId',$s)->orderBy('created_at', 'DESC')->first();
+
           }
           else {
             $data['data']= NULL;
+            $last_row_data['last_row_data']= NULL;
           }
           //dd(count($data));
-          $last_row_data['last_row_data']=DB::table('bills')->where('customerId',$s)->orderBy('created_at', 'DESC')->first();
-
           //dd($numberOfBills);
           return view('mes-factures')->with($data)->with($last_row_data)->with(compact('numberOfBillsNonPaid'));
         }
