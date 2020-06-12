@@ -25,7 +25,7 @@
 <link href="{{ asset('css/graphicalChart.css') }}" rel="stylesheet">
 
 <link href="{{ URL::asset('css/common.css') }}" rel="stylesheet">
-<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<link rel="icon" type="image/png" href="https://elektra.s3.amazonaws.com/images/icons/logo-elektra-halo.png"/>
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <!--===============================================================================================-->
