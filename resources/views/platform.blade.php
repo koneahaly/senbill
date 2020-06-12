@@ -58,7 +58,7 @@
                                 echo '<a href="javascript:void(0);" style="cursor:not-allowed;">';
                             }
                             else {
-                              echo '<a href="mes-factures">';
+                              echo '<a href="mes-factures/eau">';
                             }
                             ?>
                               <i class="fas fa-faucet fa-7x" style="color: <?=getServiceColor($infos_perso->service_1)?>;"></i>
@@ -77,7 +77,7 @@
                                 echo '<a href="javascript:void(0);" style="cursor:not-allowed;">';
                             }
                             else {
-                              echo '<a href="mes-factures">';
+                              echo '<a href="mes-factures/electricite">';
                             }
                             ?>
                                     <i class="fas fa-plug fa-7x" style="color: <?=getServiceColor($infos_perso->service_2)?>;"></i>
@@ -96,7 +96,7 @@
                                 echo '<a href="javascript:void(0);" style="cursor:not-allowed;">';
                             }
                             else {
-                              echo '<a href="mes-factures">';
+                              echo '<a href="mes-factures/tv">';
                             }
                             ?>
                                   <i class="fas fa-tv fa-7x" style="color: <?=getServiceColor($infos_perso->service_3)?>;"></i>
@@ -115,7 +115,7 @@
                                 echo '<a href="javascript:void(0);" style="cursor:not-allowed;">';
                             }
                             else {
-                              echo '<a href="mes-factures">';
+                              echo '<a href="mes-factures/mobile">';
                             }
                             ?>
                                   <i class="fas fa-wifi fa-7x" style="color: <?=getServiceColor($infos_perso->service_4)?>;"></i>
@@ -134,7 +134,7 @@
                                 echo '<a href="javascript:void(0);" style="cursor:not-allowed;">';
                             }
                             else {
-                              echo '<a href="mes-factures">';
+                              echo '<a href="mes-factures/locataire">';
                             }
                             ?>
                                   <i class="fas fa-building fa-7x" style="color: <?=getServiceColor($infos_perso->service_5)?>;"></i>

@@ -128,7 +128,7 @@ class HomeController extends Controller
             ->where('customerId', $s)
             ->update(['phone' => $given->phone]);
         }
-      return redirect()->intended(route('infos-personnelles'));
+      return redirect('infos-personnelles/'.$given->service);
 
     }
 
@@ -141,7 +141,7 @@ class HomeController extends Controller
             ->update(['service_1' => $given->service_1, 'service_2' => $given->service_2,'service_3' => $given->service_3,
              'service_4' => $given->service_4,'service_5' => $given->service_5,'service_6' => $given->service_6]);
         }
-        return redirect()->intended(route('infos-services'));
+        return redirect('infos-services/'.$given->service);
       }
 
     public function update_services_pro_infos(Request $given){

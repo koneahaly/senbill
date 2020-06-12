@@ -20,30 +20,30 @@ Auth::routes();
 
 Route::get('/qui-sommes-nous', 'WhoController@display_who')->name('who');
 Route::get('/la-plateforme-elektra', 'WhatController@display_what')->name('what');
-Route::get('/mes-factures', 'HomeController@display_bills')->name('mes-factures');
-Route::post('/mes-factures', 'HomeController@display_bills')->name('mes-factures');
-Route::get('/mes-services', 'HomeController@display_services')->name('platform');
-Route::post('/mes-services', 'HomeController@display_services')->name('platform');
-Route::get('/mon-contrat', 'HomeController@display_contract')->name('mon-contrat');
-Route::get('/infos-personnelles', 'HomeController@display_personal_infos')->name('infos-personnelles');
-Route::post('/infos-personnelles', 'HomeController@display_personal_infos')->name('infos-personnelles');
-Route::get('/infos-services', 'HomeController@display_services_infos')->name('infos-services');
-Route::post('/infos-services', 'HomeController@display_services_infos')->name('infos-services');
-Route::post('/infos-personnelles/update', 'HomeController@update_personal_infos')->name('infos-personnelles.update');
-Route::get('/suivi-conso', 'HomeController@suivi_conso')->name('suivi-conso');
-Route::post('/infos-services/update', 'HomeController@update_services_infos')->name('infos-services.update');
+Route::get('/mes-factures/{id?}', 'HomeController@display_bills')->name('mes-factures');
+Route::post('/mes-factures/{id?}', 'HomeController@display_bills')->name('mes-factures');
+Route::get('/mes-services/{id?}', 'HomeController@display_services')->name('platform');
+Route::post('/mes-services/{id?}', 'HomeController@display_services')->name('platform');
+Route::get('/mon-contrat/{id?}', 'HomeController@display_contract')->name('mon-contrat');
+Route::get('/infos-personnelles/{id?}', 'HomeController@display_personal_infos')->name('infos-personnelles');
+Route::post('/infos-personnelles/{id?}', 'HomeController@display_personal_infos')->name('infos-personnelles');
+Route::get('/infos-services/{id?}', 'HomeController@display_services_infos')->name('infos-services');
+Route::post('/infos-services/{id?}', 'HomeController@display_services_infos')->name('infos-services');
+Route::post('/infos-personnelles/{id?}/update', 'HomeController@update_personal_infos')->name('infos-personnelles.update');
+Route::get('/suivi-conso/{id?}', 'HomeController@suivi_conso')->name('suivi-conso');
+Route::post('/infos-services/{id?}/update', 'HomeController@update_services_infos')->name('infos-services.update');
 Route::post('/infos-services-pro/update', 'HomeController@update_services_pro_infos')->name('infos-services-pro.update');
 
 
 //Route::get('/home', 'HomeController@index')->name('home');
 //Route::post('/home', 'HomeController@index')->name('home');
 //Route::get('/home', 'HomeController@index')->name('home-woyofal');
-Route::post('/mes-factures/pay','billController@pay')->name('mes-factures.pay');
-Route::get('/mes-factures/pay','billController@pay')->name('mes-factures.pay');
-Route::post('/mes-factures/facture_a_payer','billController@pay_bill')->name('mes-factures.facture_a_payer');
-Route::get('/mes-factures/buy','ApiController@index')->name('mes-factures.buy');
-Route::get('/mes-factures/bought','billController@buy')->name('mes-factures.bought');
-Route::post('/mes-factures/bought','billController@buy')->name('mes-factures.bought');
+Route::post('/mes-factures/{id?}/pay','billController@pay')->name('mes-factures.pay');
+Route::get('/mes-factures/{id?}/pay','billController@pay')->name('mes-factures.pay');
+Route::post('/mes-factures/{id?}/facture_a_payer','billController@pay_bill')->name('mes-factures.facture_a_payer');
+Route::get('/mes-factures/{id?}/buy','ApiController@index')->name('mes-factures.buy');
+Route::get('/mes-factures/{id?}/bought','billController@buy')->name('mes-factures.bought');
+Route::post('/mes-factures/{id?}/bought','billController@buy')->name('mes-factures.bought');
 Route::get('/home/quick',function(){
 	return view('quick');
 });

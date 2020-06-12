@@ -89,14 +89,14 @@ class billController extends Controller
     {
         $s=Auth::user()->customerId;
         DB::table('bills')
-            ->where([['customerId', $s],['status','!=','paid']])
+            ->where([['customerId', $s],['status','<>','paid'],['id',$input->id_bill]])
             ->update(['status' => 'paid','payment_method' => $input->payment_method]);
-        return redirect()->intended(route('mes-factures'));
+        return redirect('mes-factures/'.$input->service);
     }
 
     public function buy()
     {
-        return redirect()->intended(route('mes-factures'));
+        return redirect('mes-factures/'.$input->service);
     }
     /**
      * Display the specified resource.

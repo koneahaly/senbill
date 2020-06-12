@@ -58,16 +58,17 @@ $active_1 ='none';
 $active_2 ='none';
 $active_3 ='none';
 $active_4 ='none';
-$home_directory = "mes-factures";
-if($_SERVER['REQUEST_URI'] == '/infos-personnelles')
+
+$home_directory = "mes-factures/".$service."";
+if(strpos($_SERVER['REQUEST_URI'],"infos-personnelles") == true)
   $active_1 = 'active';
-if($_SERVER['REQUEST_URI'] == '/mon-contrat')
+if(strpos($_SERVER['REQUEST_URI'],"mon-contrat") == true)
   $active_2 = 'active';
-if($_SERVER['REQUEST_URI'] == '/mes-factures')
+if(strpos($_SERVER['REQUEST_URI'],"mes-factures") == true)
   $active_3 = 'active';
-  if($_SERVER['REQUEST_URI'] == '/suivi-conso')
+if(strpos($_SERVER['REQUEST_URI'],"suivi-conso") == true)
     $active_4 = 'active';
-    if($_SERVER['REQUEST_URI'] == '/infos-services')
+if(strpos($_SERVER['REQUEST_URI'],"infos-services") == true)
       $active_1 = 'active';
 
 if($_SERVER['REQUEST_URI'] == '/register')
@@ -111,7 +112,7 @@ if($_SERVER['REQUEST_URI'] == '/register')
          <lottie-player src="{{url('images/lottie/light.json')}}"  background="transparent"  speed="1"  style="width: 80px; height: 80px; position:absolute;z-index:1000;margin-left:-27%;"  loop  autoplay></lottie-player>
        -->
        <!--  POUR EAU -->
-       <p class="custom-space">Espace Eau</p>
+       <p class="custom-space">Espace {{ $service }}</p>
         <lottie-player src="{{url('images/lottie/water.json')}}"  background="transparent"  speed="1"  style="width: 80px; height: 80px; position:absolute;z-index:1000;margin-left:-27%;"  loop  autoplay></lottie-player>
 
       <!--  POUR TV
@@ -131,20 +132,20 @@ if($_SERVER['REQUEST_URI'] == '/register')
          <ul class="s2sn-navbar-elektra">
              @if($notification >=0)
              <li class="nav-item item-connected">
-               <a class="nav-link {{ $active_4 }}"  href="{{ route('suivi-conso') }}">
+               <a class="nav-link {{ $active_4 }}"  href="../suivi-conso/{{ $service }}">
                  <i  class="fa fa-chart-bar fa-2x ">
                  </i> <p>Suivi conso</p>
                 </a>
              </li>
                <li class="nav-item item-connected">
-                 <a class="nav-link {{ $active_3 }}"  href="{{ route('mes-factures') }}">
+                 <a class="nav-link {{ $active_3 }}"  href="../mes-factures/{{ $service }}">
                    <i  class="fa fa-envelope-open-text fa-2x ">
                       <?php if($notification > 0) echo '<span class="badge">'.$notification.'</span>'; ?>
                    </i> <p>Factures et paiements</p>
                   </a>
                </li>
                <li class="nav-item item-connected">
-                 <a class="nav-link {{ $active_2 }}"  href="{{ route('mon-contrat') }}">
+                 <a class="nav-link {{ $active_2 }}"  href="../mon-contrat/{{ $service }}">
                    <i class="fa fa-file-contract fa-2x"></i> <p>Mon contrat</p>
                      <span class="sr-only">(current)</span>
                  </a>
@@ -158,12 +159,12 @@ if($_SERVER['REQUEST_URI'] == '/register')
 
                    <ul class="dropdown-menu">
                        <li class="dropdown-item" style="text-transform:capitalize">
-                         <a href="{{ route('infos-personnelles') }}">
+                         <a href="../infos-personnelles/{{ $service }}">
                            mes infos personnelles
                          </a>
                        </li>
                        <li style="padding:0px;text-transform:capitalize" class="dropdown-item">
-                         <a  href="{{ route('infos-services') }}">
+                         <a  href="../infos-services/{{ $service }}">
                            mes services
                          </a>
                        </li>

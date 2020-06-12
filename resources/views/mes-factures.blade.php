@@ -1,8 +1,10 @@
 <?php
 session_start();
 $_SESSION["numberOfBillsNonPaid"]=$numberOfBillsNonPaid;
+$service =explode('/',$_SERVER['REQUEST_URI']);
+$_SESSION['current_service'] = $service[2];
 ?>
-@extends('layouts.app', ['notification' => $numberOfBillsNonPaid])
+@extends('layouts.app', ['notification' => $numberOfBillsNonPaid, 'service' => $_SESSION['current_service']])
 
 @section('content')
 <div class="container">
@@ -144,7 +146,7 @@ $_SESSION["numberOfBillsNonPaid"]=$numberOfBillsNonPaid;
             });
             </script>
             <div class="col-md-8 col-md-offset-2 picker">
-              <input type="hidden" class="slider-input" value="2" />
+              <input type="hidden" class="slider-input" value="{{ date('n') }}" />
             </div>
             <br />
           <form class="form-inline" action="{{ route('mes-factures.pdf_bill')}}" method="GET">
@@ -185,6 +187,7 @@ $_SESSION["numberOfBillsNonPaid"]=$numberOfBillsNonPaid;
                         <button class="btn" style="background-color:rgba(137,180,213,1);color:#fff"> Envoyer par mail </button>
                         <button type="submit" class="btn" style="background-color:rgba(137,180,213,1);color:#fff"> Télécharger</button>
                         <input type="hidden" name="id_bill" value="{{$last_row_data->id}}" />
+                        <input type="hidden" name="service" value="{{ $_SESSION['current_service'] }}"/>
                       @endif
 
                       @if($last_row_data->status != "paid")
@@ -246,6 +249,7 @@ $_SESSION["numberOfBillsNonPaid"]=$numberOfBillsNonPaid;
                         <button class="btn" style="background-color:rgba(137,180,213,1);color:#fff"> Envoyer par mail </button>
                         <button type="submit" class="btn" style="background-color:rgba(137,180,213,1);color:#fff"> Télécharger</button>
                         <input type="hidden" name="id_buy" value="{{$last_row_data['id']}}" />
+                        <input type="hidden" name="service" value="{{ $_SESSION['current_service'] }}"/>
                     </div>
                     <br />
                     <br />
@@ -261,7 +265,7 @@ $_SESSION["numberOfBillsNonPaid"]=$numberOfBillsNonPaid;
           <br />
 
           @if(!empty($last_row_data))
-          <div class="modal fade" id="pay_bill" tabindex="-1" role="dialog" aria-labelledby="pay_bill_title" aria-hidden="true">
+          <div class="modal fade" id="pay_bill" tabindex="-1" role="dialog" style="position:absolute;z-index:1200;" aria-labelledby="pay_bill_title" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
               <div class="modal-header">
@@ -299,7 +303,7 @@ $_SESSION["numberOfBillsNonPaid"]=$numberOfBillsNonPaid;
                     </div>
                     </div>
                     <div class="panel-body">
-                    <form method="get" action="{{ route('mes-factures.pay')}}">
+                    <form method="post" action="../mes-factures/{{ $_SESSION['current_service'] }}/pay">
                       {{ csrf_field() }}
                     <div class="row">
                     <div class="col-xs-12">
@@ -361,6 +365,7 @@ $_SESSION["numberOfBillsNonPaid"]=$numberOfBillsNonPaid;
                     <div class="row">
                     <div class="col-xs-12">
                       <?php $amount = (Auth::user()->user_type == 2) ? $last_row_data['amount'] : $last_row_data->amount; ?>
+                      <?php $id_bill = (Auth::user()->user_type == 2) ? $last_row_data['id'] : $last_row_data->id; ?>
                     <button class="btn btn-success btn-lg btn-block" type="submit">Payez {{ $amount }} fcfa
 
                     </button>
@@ -372,6 +377,8 @@ $_SESSION["numberOfBillsNonPaid"]=$numberOfBillsNonPaid;
                     </div>
                     </div>
                     <input type="hidden" name="payment_method" value="CB" />
+                    <input type="hidden" name="service" value="{{ $_SESSION['current_service'] }}"/>
+                    <input type="hidden" name='id_bill' value="{{ $id_bill }}" />
                     </form>
                     </div>
                     </div>
@@ -388,7 +395,7 @@ $_SESSION["numberOfBillsNonPaid"]=$numberOfBillsNonPaid;
         @endif
 
         @if(!empty($last_row_data))
-        <div class="modal fade" id="om" tabindex="-1" role="dialog" aria-labelledby="om_title" aria-hidden="true">
+        <div class="modal fade" id="om" tabindex="-1" style="position:absolute;z-index:1200;" role="dialog" aria-labelledby="om_title" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -436,7 +443,7 @@ $_SESSION["numberOfBillsNonPaid"]=$numberOfBillsNonPaid;
                         <div class="panel panel-default credit-card-box">
 
                         <div class="panel-body">
-                        <form method="get" action="{{ route('mes-factures.pay')}}">
+                        <form method="post" action="../mes-factures/{{ $_SESSION['current_service'] }}/pay">
                           {{ csrf_field() }}
                         <div class="row">
                         <div class="col-xs-12">
@@ -478,6 +485,8 @@ $_SESSION["numberOfBillsNonPaid"]=$numberOfBillsNonPaid;
                         </div>
                         </div>
                         <input type="hidden" name="payment_method" value="OrangeMoney" />
+                        <input type="hidden" name="service" value="{{ $_SESSION['current_service'] }}"/>
+                        <input type="hidden" name='id_bill' value="{{ $id_bill }}" />
                         </form>
                         </div>
                         </div>
@@ -502,7 +511,7 @@ $_SESSION["numberOfBillsNonPaid"]=$numberOfBillsNonPaid;
 @endif
 
       @if(!empty($last_row_data))
-      <div class="modal fade" id="fc" tabindex="-1" role="dialog" aria-labelledby="fc_title" aria-hidden="true">
+      <div class="modal fade" id="fc" tabindex="-1" style="position:absolute;z-index:1200;" role="dialog" aria-labelledby="fc_title" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -550,7 +559,7 @@ $_SESSION["numberOfBillsNonPaid"]=$numberOfBillsNonPaid;
                       <div class="panel panel-default credit-card-box">
 
                       <div class="panel-body">
-                      <form method="get" action="{{ route('mes-factures.pay')}}">
+                      <form method="post" action="../mes-factures/{{ $_SESSION['current_service'] }}/pay">
                         {{ csrf_field() }}
                       <div class="row">
                       <div class="col-xs-12">
@@ -592,6 +601,8 @@ $_SESSION["numberOfBillsNonPaid"]=$numberOfBillsNonPaid;
                       </div>
                       </div>
                       <input type="hidden" name="payment_method" value="FreeCash" />
+                      <input type="hidden" name="service" value="{{ $_SESSION['current_service'] }}"/>
+                      <input type="hidden" name='id_bill' value="{{ $id_bill }}" />
                       </form>
                       </div>
                       </div>
@@ -615,7 +626,7 @@ $_SESSION["numberOfBillsNonPaid"]=$numberOfBillsNonPaid;
 </div>
 @endif
 
-<div class="modal fade" id="buy_card" tabindex="-1" role="dialog" aria-labelledby="buy_card_title" aria-hidden="true">
+<div class="modal fade" id="buy_card" tabindex="-1" style="position:absolute;z-index:1200;" role="dialog" aria-labelledby="buy_card_title" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -696,7 +707,7 @@ $_SESSION["numberOfBillsNonPaid"]=$numberOfBillsNonPaid;
 $length = 7;
 $i=1;
 while($i<$length){ @endphp
-  <div class="modal fade" id="recharge_{{ $i }}" tabindex="-1" role="dialog" aria-labelledby="recharge_{{ $i }}_title" aria-hidden="true">
+  <div class="modal fade" id="recharge_{{ $i }}" style="position:absolute;z-index:1200;" tabindex="-1" role="dialog" aria-labelledby="recharge_{{ $i }}_title" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -797,6 +808,7 @@ while($i<$length){ @endphp
               </div>
             </div>
           @endif
+          <input type="hidden" name="service" value="{{ $_SESSION['current_service'] }}"/>
         </form>
 
       </div>
@@ -823,7 +835,7 @@ if($i == $limit){
   $t = $i + 4;
 }
 @endphp
-    <div class="modal fade" id="last_buy_step_{{ $i }}" tabindex="-1" role="dialog" aria-labelledby="last_buy_step_{{ $i }}_title" aria-hidden="true">
+    <div class="modal fade" id="last_buy_step_{{ $i }}" style="position:absolute;z-index:1200;" tabindex="-1" role="dialog" aria-labelledby="last_buy_step_{{ $i }}_title" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -861,7 +873,7 @@ if($i == $limit){
               </div>
               </div>
               <div class="panel-body">
-              <form method="get" action="{{ route('mes-factures.buy')}}">
+              <form method="post" action="../mes-factures/{{ $_SESSION['current_service'] }}/buy">
                 {{ csrf_field() }}
               <div class="row">
               <div class="col-xs-12">
@@ -934,6 +946,8 @@ if($i == $limit){
               </div>
               <input type="hidden" name="montant_recharge" value="{{ $t * 5000}}" />
               <input type="hidden" name="payment_method" value="CB" />
+              <input type="hidden" name="service" value="{{ $_SESSION['current_service'] }}"/>
+              <input type="hidden" name='id_bill' value="{{ $id_bill }}" />
               </form>
               </div>
               </div>
@@ -948,7 +962,7 @@ if($i == $limit){
     </div>
   </div>
 
-  <div class="modal fade" id="om_buy_{{ $i }}" tabindex="-1" role="dialog" aria-labelledby="om_buy_{{ $i }}_title" aria-hidden="true">
+  <div class="modal fade" id="om_buy_{{ $i }}" style="position:absolute;z-index:1200;" tabindex="-1" role="dialog" aria-labelledby="om_buy_{{ $i }}_title" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -969,7 +983,7 @@ if($i == $limit){
             <a class="nav-link" class="close buyfc" data-dismiss="modal" data-toggle="modal" data-target="#fc_buy_{{ $i }}" href="#paiement">FreeCash</a>
           </li>
         </ul>
-        <form method="get" action="{{ route('mes-factures.buy')}}">
+        <form method="post" action="../mes-factures/{{ $_SESSION['current_service'] }}/buy">
           {{ csrf_field() }}
 
         <div class="row">
@@ -1041,6 +1055,8 @@ if($i == $limit){
 
                 <input type="hidden" name="montant_recharge" value="{{ $t * 5000}}" />
                 <input type="hidden" name="payment_method" value="OrangeMoney" />
+                <input type="hidden" name="service" value="{{ $_SESSION['current_service'] }}"/>
+                <input type="hidden" name='id_bill' value="{{ $id_bill }}" />
                 </form>
                   </div>
                   </div>
@@ -1063,7 +1079,7 @@ if($i == $limit){
   </div>
   </div>
 
-  <div class="modal fade" id="fc_buy_{{ $i }}" tabindex="-1" role="dialog" aria-labelledby="fc_buy_{{ $i }}_title" aria-hidden="true">
+  <div class="modal fade" id="fc_buy_{{ $i }}" style="position:absolute;z-index:1200;" tabindex="-1" role="dialog" aria-labelledby="fc_buy_{{ $i }}_title" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
   <div class="modal-content">
     <div class="modal-header">
@@ -1085,7 +1101,7 @@ if($i == $limit){
         </li>
       </ul>
 
-      <form method="get" action="{{ route('mes-factures.buy')}}">
+      <form method="post" action="../mes-factures/{{ $_SESSION['current_service'] }}/buy">
         {{ csrf_field() }}
 
       <div class="row">
@@ -1155,6 +1171,8 @@ if($i == $limit){
                 </div>
                 <input type="hidden" name="montant_recharge" value="{{ $t * 5000}}" />
                 <input type="hidden" name="payment_method" value="FreeCash" />
+                <input type="hidden" name="service" value="{{ $_SESSION['current_service'] }}"/>
+                <input type="hidden" name='id_bill' value="{{ $id_bill }}" />
                 </form>
                 </div>
                 </div>

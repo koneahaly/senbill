@@ -3,7 +3,7 @@ session_start();
 $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOfBillsNonPaid"] : '';
 ?>
 
-@extends('layouts.app', ['notification' => $notification])
+@extends('layouts.app', ['notification' => $notification, 'service' => $_SESSION['current_service']])
 
 @section('content')
 <div class="container">
