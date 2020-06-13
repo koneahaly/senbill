@@ -49,7 +49,7 @@
                       </div>
                     </div>
 
-                    <form class="form-horizontal" action="{{ route('admin.store') }}" method="GET">
+                    <form class="form-horizontal" action="{{ route('admin.store') }}" method="POST">
                         {{ csrf_field() }}
                         <fieldset>
 

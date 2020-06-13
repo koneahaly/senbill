@@ -60,12 +60,13 @@ $active_2 ='none';
 $active_3 ='none';
 $active_4 ='none';
 
-if($_SERVER['REQUEST_URI'] == '/register'){
+if($_SERVER['REQUEST_URI'] == '/register' || strpos($_SERVER['REQUEST_URI'],"admin") == true){
   $home_directory = '.';
   $service="";
 }
-
-$home_directory = "mes-factures/".$service."";
+else{
+$home_directory = "../mes-factures/".$service."";
+}
 if(strpos($_SERVER['REQUEST_URI'],"infos-personnelles") == true)
   $active_1 = 'active';
 if(strpos($_SERVER['REQUEST_URI'],"mon-contrat") == true)
