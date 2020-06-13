@@ -46,75 +46,136 @@ if(!empty($raw_woyofal_users_demo) and !empty($raw_classical_users_demo)){
         });
     });
     </script>
+    <style>
+    .home-main{
+    background: rgb(74, 106, 130);
+    color:#fff;
+    padding: 13%;
+    text-align: center;
+    display: block;
+    position: absolute;
+  }
+  .blinker{
+    animation: blinker 1.5s linear infinite;
+  }
+  @keyframes blinker {
+    50% {
+    opacity: 0;
+    }
+  }
+  .home-main button{
+    background: #fff;
+    color: rgb(50, 146, 220);
+    border-radius: 0;
+    font-weight: 700;
+    width:  25%;
+    height: 50px;
+    top: 4%;
+    margin-top: 3%;
+  }
+  .home-main button:hover{
+    transition: 1s ease;
+    color:rgb(50, 146, 220);
+    width: 28%;
+  }
+  .content1-left{
+    padding:17.5%;
+
+  }
+  .content1-right{
+    padding:5%;
+    background:#e4e4e4;
+  }
+  .home-content2{
+    background: #adb5bd;
+    padding: 3.4%;
+    text-align: center;
+  }
+  .home-content2 p{
+    font-size: 18px;
+    line-height: 50px;
+  }
+  .home-content2 p span{
+    font-weight: 500;
+  }
+    </style>
 
     <body style="height:100%">
-      <div class="s2sn-wrapper-login-container s2sn-js-login" style="background-image: url({{url('images/stLouis.jpg')}});">
-      	 <!-- HEADER START -->
-         <div class="s2sn-login-header-desktop">
-             <a class="s2sn-logo-elektra" href=".">
-                 <img src="{{url('images/logo-s2sn.png')}}" alt="logo-elektra" width="162" height="auto" class="s2sn-img-normal">
-             	   <img src="{{url('images/logo-s2sn-mediumsmall.png')}}" alt="logo-elektra" width="162" height="auto" class="s2sn-img-retina">
-             </a>
-             <div class="s2sn-login-header-nav">
-          <div class="s2sn-login-header-top">
-            <ul class="s2sn-login-header-social" data-toggle="s2sn-login-header-social" data-html="true" data-content="<div> Bientôt disponible </div>" >
-                <li><i class="fab fa-twitter"></i></li>
-                <li><i class="fab fa-youtube"></i></li>
-                <li><i class="fab fa-linkedin"></i></li>
-            </ul>
-              <ul class="s2sn-login-header-modals">
-                <li><a class="s2sn-header-link" href="#" data-toggle="modal" data-target="#modalFAQ">FAQ</a></li>
-                <li><a class="s2sn-header-link" href="#" data-toggle="modal" data-target="#modal2">Contact</a></li>
-                <li><a class="s2sn-header-link" href="#" data-toggle="modal" data-target="#modalDemo">DEMO</a></li>
-                  <li class="s2sn-copyright">SERVICES2SN 2019</li>
-              </ul>
-          </div>
-          <ul class="s2sn-navbar">
-              <li><a class="s2sn-header-link" href=".">ACCUEIL &nbsp</a></li>
-              <li><a class="s2sn-header-link" href="{{ route('who') }}">QUI SOMMES-NOUS &nbsp </a></li>
-              <li><a class="s2sn-header-link" href="{{ route('what') }}">LA PLATEFORME ELEKTRA &nbsp </a></li>
-              <li><a class="s2sn-header-link" href="{{ route('register') }}" >S'INSCRIRE</a></li>
-          </ul>
-      </div>
+      <div style="background-image: url({{url('images/stLouis.jpg')}});">
+        <!-- HEADER START -->
+        <div class="s2sn-login-header-desktop">
+            <a class="s2sn-logo-elektra" href=".">
+                <img src="{{url('images/logo-s2sn.png')}}" alt="logo-elektra" width="162" height="auto" class="s2sn-img-normal">
+                <img src="{{url('images/logo-s2sn-mediumsmall.png')}}" alt="logo-elektra" width="162" height="auto" class="s2sn-img-retina">
+            </a>
+            <div class="s2sn-login-header-nav">
+         <div class="s2sn-login-header-top">
+             <ul class="s2sn-login-header-social">
+                 <li><a class="s2sn-header-link s2sn-twitter" href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a></li>
+                 <li><a class="s2sn-header-link s2sn-youtube" href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube"></i></a></li>
+                 <li><a class="s2sn-header-link s2sn-linkedin" href="https://www.linkedin.com/" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+             </ul>
+             <ul class="s2sn-login-header-modals">
+                 <li><a class="s2sn-header-link" href="#" data-toggle="modal" data-target="#modalFAQ">FAQ</a></li>
+                 <li><a class="s2sn-header-link" href="#" data-toggle="modal" data-target="#modal2">Contact</a></li>
+                 <li><a class="s2sn-header-link" href="#" data-toggle="modal" data-target="#modalDemo">DEMO</a></li>
+                 <li class="s2sn-copyright">SERVICES2SN 2019</li>
+             </ul>
          </div>
-         <nav class="navbar navbar-dark s2sn-login-header-mobile">
-             <a class="s2sn-logo-elektra" href="https://www.elektra.com/" target="_blank">
-                 <img src="{{url('images/logo-s2sn.png')}}" alt="logo-elektra" width="162" height="auto" class="s2sn-img-normal">
-             	   <img src="{{url('images/logo-s2sn-mediumsmall.png')}}" alt="logo-elektra" width="162" height="auto" class="s2sn-img-retina">
-             </a>
-             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-contrs2sn="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                 <span class="navbar-toggler-icon"></span>
-             </button>
-             <div class="collapse navbar-collapse" id="navbarNav">
-                 <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href=".">ACCUEIL</a></li>
-                     <li class="nav-item"><a class="nav-link" href="{{ route('who') }}">QUI SOMMES-NOUS</a></li>
-                     <li class="nav-item"><a class="nav-link" href="{{ route('what') }}">LA PLATEFORME ELEKTRA</a></li>
-                     <li class="nav-item"><a class="nav-link" href="{{ route('register') }}" >S'INSCRIRE</a></li>
+         <ul class="s2sn-navbar">
+             <li><a class="s2sn-header-link" href=".">ACCUEIL &nbsp</a></li>
+             <li><a class="s2sn-header-link" href="{{ route('who') }}">QUI SOMMES-NOUS &nbsp </a></li>
+             <li><a class="s2sn-header-link" href="{{ route('what') }}">LA PLATEFORME ELEKTRA &nbsp </a></li>
+             <li><a class="s2sn-header-link" href="{{ route('register') }}">S'INSCRIRE</a></li>
+         </ul>
+     </div>
+        </div>
+        <nav class="navbar navbar-dark s2sn-login-header-mobile">
+            <a class="s2sn-logo-elektra" href="https://www.elektra.com/" target="_blank">
+                <img src="{{url('images/logo-s2sn.png')}}" alt="logo-elektra" width="162" height="auto" class="s2sn-img-normal">
+                <img src="{{url('images/logo-s2sn-mediumsmall.png')}}" alt="logo-elektra" width="162" height="auto" class="s2sn-img-retina">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-contrs2sn="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                     <li class="nav-item"><a class="nav-link" href=".">ACCUEIL</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('who') }}">QUI SOMMES-NOUS</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('what') }}">LA PLATEFORME ELEKTRA</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('register') }}" >S'INSCRIRE</a></li>
 
 
-                    <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#modalFAQ">FAQ</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#modal2">Contact</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#modalDemo">DEMO</a></li>
-                 </ul>
-             </div>
-         </nav>
-         <!-- HEADER END -->
+                   <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#modalFAQ">FAQ</a></li>
+                   <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#modal2">Contact</a></li>
+                   <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#modalDemo">DEMO</a></li>
+                </ul>
+            </div>
+        </nav>
+        <!-- HEADER END -->
          <style>
          .jumbotron {
             background: rgb(200, 54, 54); /* This is for ie8 and below */
             background: rgba(199, 206, 205, 1);
             }
          </style>
-         <div class="container">
-           <div class="jumbotron">
-             <div class="inner">
-                <h1>Qui sommes nous ?</h1>
+
+         <div class="container-fluid home-main">
+        		<h2>SERVICES2SN <span class="blinker">.</span></h2>
+        		<button type="button" class="btn btn-default">Visiter notre site </button>
+        	</div>
+        	<div class="container-fluid home-content1">
+        		<div class="row" style="display:block;">
+        			<div class="col-md-6 content1-left">
+                <!-- <div class="content1-left"></div> -->
+        			</div>
+        			<div class="col-md-6 content1-right">
+                <h3>Qui sommes nous <span class="blinker">?</span> </h3>
                 <p>Services2sn est une entreprise de services du numérique (ESN) sénégalaise et une société de conseil en transformation digitale des entreprises et des organisations. Services2sn propose ainsi des prestations de conseil et des services technologiques (intégration de systèmes, gestion d’infrastructures, exécution de processus métier) et est un éditeur de logiciels (CRM, facturation, gestion de stock, évenementiel, immobilier...).</p>
-                <p><a class="btn btn-primary btn-lg" href="https://www.services2sn.com" role="button">Plus d'informations</a></p>
-              </div>
-            </div>
-          </div
+        			</div>
+        		</div>
+        	</div>
+
 
           <!-- modal faq -->
            <div class="modal fade" id="modalFAQ" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="false">
