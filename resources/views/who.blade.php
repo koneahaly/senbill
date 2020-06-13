@@ -101,7 +101,7 @@ if(!empty($raw_woyofal_users_demo) and !empty($raw_classical_users_demo)){
     </style>
 
     <body style="height:100%">
-      <div style="background-image: url({{url('images/stLouis.jpg')}});">
+      <div style="background-image: url({{url('images/stLouis.jpg')}});" >
         <!-- HEADER START -->
         <div class="s2sn-login-header-desktop">
             <a class="s2sn-logo-elektra" href=".">
@@ -153,12 +153,6 @@ if(!empty($raw_woyofal_users_demo) and !empty($raw_classical_users_demo)){
             </div>
         </nav>
         <!-- HEADER END -->
-         <style>
-         .jumbotron {
-            background: rgb(200, 54, 54); /* This is for ie8 and below */
-            background: rgba(199, 206, 205, 1);
-            }
-         </style>
 
          <div class="container-fluid home-main">
         		<h2>SERVICES2SN <span class="blinker">.</span></h2>
