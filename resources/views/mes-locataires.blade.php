@@ -11,7 +11,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
       <lottie-player src="{{url('images/lottie/lines.json')}}"  background="transparent"  speed="0.1"  style="width: 500px; height: 500px; position:absolute;z-index:1000;margin-left:70%;margin-top: 2.5%;"  loop  autoplay></lottie-player>
   </div>
   <!--TITLE OF THE PAGE-->
-  <div class="row" style="margin-top:10%">
+  <div class="row" style="margin-top:10%;z-index: 1100;">
   <div class="col-md-12" style="margin-top:10px;margin-bottom:20px;text-align:center;flex-basis:100%;max-width:100%;">
    <h3><strong>Mes locataires</strong></h3>
  </div>
@@ -21,7 +21,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
   <lottie-player src="{{url('images/lottie/bubble.json')}}"  background="transparent"  speed="1"  style="width: 60px; height: 60px; position:absolute;z-index:1000;margin-left:1%;margin-top: -2%;"  loop  autoplay></lottie-player>
 <!-- END TITLE OF THE PAGE-->
 <!--CONTENT OF THE PAGE-->
-  <div class="panel panel-default" style="background-color: #f5f9fc;">
+  <div class="panel panel-default" style="background-color: #f5f9fc;z-index: 1100;">
     <div class="panel-body propPanelBody">
       <!--<h4>DEBUT HEADER  </h4> -->
       <div class="panel-heading">

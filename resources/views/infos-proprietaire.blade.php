@@ -8,12 +8,12 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
 
 
 <div class="container">
-  <div class="row" style="margin-top:10%">
+  <div class="row" style="margin-top:10%;z-index: 1100;">
   <div class="col-md-12" style="margin-top:10px;margin-bottom:20px;text-align:center;">
    <h3><strong>Mes informations personnelles</strong></h3></div>
   </div>
 
-    <div class="row" style="margin-top:50px">
+    <div class="row" style="margin-top:50px;z-index: 1100;">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default personalInfoPanel">
                 <div class="panel-body">
