@@ -233,7 +233,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
               </div>
             </div>
 
-            <div class="wrap-input100 input100-select bg1">
+          <!--  <div class="wrap-input100 input100-select bg1">
               <span class="label-input100">Libre ou occupé *</span>
               <div>
                 <select class="js-select2" name="status_housing" required>
@@ -243,7 +243,8 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                 </select>
                 <div class="dropDownSelect2"></div>
               </div>
-            </div>
+            </div> -->
+            <input type="hidden" name="status_housing" value='Y' />
 
             <div class="w-full dis-none js-show-service">
               <div class="wrap-contact100-form-radio">
