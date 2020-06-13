@@ -146,7 +146,7 @@ $_SESSION['current_service'] = $service[2];
             });
             </script>
             <div class="col-md-8 col-md-offset-2 picker">
-              <input type="hidden" class="slider-input" value="{{ date('n') }}" />
+              <input type="hidden" class="slider-input" value={{ date('n',strtotime($last_row_data->month)) }} />
             </div>
             <br />
           <form class="form-inline" action="{{ route('mes-factures.pdf_bill')}}" method="GET">
@@ -164,7 +164,7 @@ $_SESSION['current_service'] = $service[2];
                     @endif
 
                     @if($last_row_data->status == "paid")
-                      <span class=" status_j glyphicon glyphicon-ok-circle text-success">Paid</span>
+                      <span class=" status_j glyphicon glyphicon-ok-circle text-success">Payée</span>
                     @endif
 
                     <br />
@@ -265,7 +265,7 @@ $_SESSION['current_service'] = $service[2];
           <br />
 
           @if(!empty($last_row_data))
-          <div class="modal fade" id="pay_bill" tabindex="-1" role="dialog" style="position:absolute;z-index:1200;" aria-labelledby="pay_bill_title" aria-hidden="true">
+          <div class="modal fade" id="pay_bill" tabindex="-1" role="dialog" style="z-index:1300;overflow-x: hidden;overflow-y: auto;" aria-labelledby="pay_bill_title" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
               <div class="modal-header">
@@ -402,7 +402,7 @@ $_SESSION['current_service'] = $service[2];
         @endif
 
         @if(!empty($last_row_data))
-        <div class="modal fade" id="om" tabindex="-1" style="position:absolute;z-index:1200;" role="dialog" aria-labelledby="om_title" aria-hidden="true">
+        <div class="modal fade" id="om" tabindex="-1" style="overflow-x: hidden;overflow-y: auto;z-index:1300;" role="dialog" aria-labelledby="om_title" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -518,7 +518,7 @@ $_SESSION['current_service'] = $service[2];
 @endif
 
       @if(!empty($last_row_data))
-      <div class="modal fade" id="fc" tabindex="-1" style="position:absolute;z-index:1200;" role="dialog" aria-labelledby="fc_title" aria-hidden="true">
+      <div class="modal fade" id="fc" tabindex="-1" style="overflow-x: hidden;overflow-y: auto;z-index:1300;" role="dialog" aria-labelledby="fc_title" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -633,7 +633,7 @@ $_SESSION['current_service'] = $service[2];
 </div>
 @endif
 
-<div class="modal fade" id="buy_card" tabindex="-1" style="position:absolute;z-index:1200;" role="dialog" aria-labelledby="buy_card_title" aria-hidden="true">
+<div class="modal fade" id="buy_card" tabindex="-1" style="overflow-x: hidden;overflow-y: auto;z-index:1300;" role="dialog" aria-labelledby="buy_card_title" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -714,7 +714,7 @@ $_SESSION['current_service'] = $service[2];
 $length = 7;
 $i=1;
 while($i<$length){ @endphp
-  <div class="modal fade" id="recharge_{{ $i }}" style="position:absolute;z-index:1200;" tabindex="-1" role="dialog" aria-labelledby="recharge_{{ $i }}_title" aria-hidden="true">
+  <div class="modal fade" id="recharge_{{ $i }}" style="overflow-x: hidden;overflow-y: auto;z-index:1300;" tabindex="-1" role="dialog" aria-labelledby="recharge_{{ $i }}_title" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -842,7 +842,7 @@ if($i == $limit){
   $t = $i + 4;
 }
 @endphp
-    <div class="modal fade" id="last_buy_step_{{ $i }}" style="position:absolute;z-index:1200;" tabindex="-1" role="dialog" aria-labelledby="last_buy_step_{{ $i }}_title" aria-hidden="true">
+    <div class="modal fade" id="last_buy_step_{{ $i }}" style="overflow-x: hidden;overflow-y: auto;z-index:1300;" tabindex="-1" role="dialog" aria-labelledby="last_buy_step_{{ $i }}_title" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -969,7 +969,7 @@ if($i == $limit){
     </div>
   </div>
 
-  <div class="modal fade" id="om_buy_{{ $i }}" style="position:absolute;z-index:1200;" tabindex="-1" role="dialog" aria-labelledby="om_buy_{{ $i }}_title" aria-hidden="true">
+  <div class="modal fade" id="om_buy_{{ $i }}" style="overflow-x: hidden;overflow-y: auto;z-index:1300;" tabindex="-1" role="dialog" aria-labelledby="om_buy_{{ $i }}_title" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -1086,7 +1086,7 @@ if($i == $limit){
   </div>
   </div>
 
-  <div class="modal fade" id="fc_buy_{{ $i }}" style="position:absolute;z-index:1200;" tabindex="-1" role="dialog" aria-labelledby="fc_buy_{{ $i }}_title" aria-hidden="true">
+  <div class="modal fade" id="fc_buy_{{ $i }}" style="overflow-x: hidden;overflow-y: auto;z-index:1300;" tabindex="-1" role="dialog" aria-labelledby="fc_buy_{{ $i }}_title" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
   <div class="modal-content">
     <div class="modal-header">
@@ -1248,6 +1248,7 @@ $(document).ready(function() {
 } );
 
 $(document).ready(function() {
+
   $('.picker').click(function(){
     var month_value = $('.slider-input').val();
     var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -1279,7 +1280,6 @@ $(document).ready(function() {
 
   });
 });
-
 </script>
 
 @endsection
