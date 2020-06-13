@@ -119,7 +119,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                      </div>
                      <div class="move-out">
                         <div class="m-action-btn-icon">
-                           <a class="col-xs-12 display_rent rent_{{ $data_location->customerId }}"  title="Loyer"  href="transactions-proprietaire/{{ $data_location->customerId }}">
+                           <a class="col-xs-12 display_rent rent_{{ $data_location->customerId }}"  title="Loyer"  href="../transactions-proprietaire/{{ $data_location->customerId }}">
                               <div class="icon-svg">
                                  <e-svg-icon set-class="i-svg--master-darker i-svg--24 i-svg--stroke-2" xlink="#icon-line-finance" class="e-svg-icon">
                                     <svg class="i-svg--master-darker i-svg--24 i-svg--stroke-2" id="svgElement" viewBox="0 0 48 48">
