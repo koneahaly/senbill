@@ -1,5 +1,5 @@
-<h1> Whoops! </h1>
-<p> Something went wrong</p>
+<h1> Oups! </h1>
+<p> Un petit problème !!!</p>
 
 <style>
 
