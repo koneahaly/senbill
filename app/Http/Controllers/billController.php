@@ -67,7 +67,7 @@ class billController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'customerId'=> 'required|min:10|max:10'
+            'customerId'=> 'required|min:10|max:15'
         ]);
         $bill = new Bill;
         $bill->customerId=$request->customerId;
@@ -81,7 +81,7 @@ class billController extends Controller
         $bill->amount=$bill->units * $rate;
         $bill->status="En attente";
         $bill->save();
-        return view('success');
+        return view('admin');
     }
 
 

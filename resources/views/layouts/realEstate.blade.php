@@ -72,13 +72,13 @@ $active_2 ='none';
 $active_3 ='none';
 $active_4 ='none';
 $home_directory = "transactions-proprietaire";
-if($_SERVER['REQUEST_URI'] == '/infos-proprietaire')
+if(strpos($_SERVER['REQUEST_URI'],"infos-proprietaire") == true)
   $active_1 = 'active';
 if(strpos($_SERVER['REQUEST_URI'],"mes-locataires") == true)
   $active_2 = 'active';
-if($_SERVER['REQUEST_URI'] == '/transactions-proprietaire')
+if(strpos($_SERVER['REQUEST_URI'],"transactions-proprietaire") == true)
   $active_3 = 'active';
-  if($_SERVER['REQUEST_URI'] == '/mes-logements')
+if(strpos($_SERVER['REQUEST_URI'],"mes-logements") == true)
     $active_4 = 'active';
 
 if($_SERVER['REQUEST_URI'] == '/register')

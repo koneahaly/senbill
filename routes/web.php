@@ -50,7 +50,7 @@ Route::get('/home/quick',function(){
 Route::get('/admin/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
 Route::post('/admin/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
 Route::get('/admin', 'AdminController@index')->name('admin.dashboard');
-Route::get('/admin/store','billController@store')->name('admin.store');
+Route::post('/admin/store','billController@store')->name('admin.store');
 Route::post('/admin/updaterate','billController@updaterate')->name('admin.updaterate');
 Route::get('/mes-factures/pdf_bill','billController@pdf_bill')->name('mes-factures.pdf_bill');
 Route::get('/mes-factures/pdf_buy','billController@pdf_buy')->name('mes-factures.pdf_buy');
