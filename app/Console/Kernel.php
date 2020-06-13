@@ -4,6 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Facades\DB;
 
 class Kernel extends ConsoleKernel
 {
@@ -13,7 +14,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        'App\Console\Commands\YourFirstCommand'
     ];
 
     /**
@@ -26,9 +27,9 @@ class Kernel extends ConsoleKernel
     {
       $schedule->call(function () {
         DB::table('bills')
-            ->where([['customerId', $s],['status','En attente'],['deadline','<',date('Y-m-d H:i:s')]])
+            ->where([['status','En attente'],['deadline','<',date('Y-m-d H:i:s')]])
             ->update(['status' => 'Impayé']);
-        })->daily();
+        });
     }
 
     /**
