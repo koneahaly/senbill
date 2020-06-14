@@ -76,6 +76,7 @@ $_SESSION['current_service'] = $service[2];
                         @if($value->status != "paid")
                           <td><button data-toggle="modal" data-target="#pay_bill" class="btn btn-danger btn-xs"> Régler</button></td>
                           <td> n/a </td>
+                          <input type='hidden' id="{{$value->month}}_status" value="{{$value->status}}" />
                         @endif
                         <input type="hidden" class="{{$value->month}}_year_j" name="{{$value->month}}_year_j" value="{{$value->year}}">
                         <input type="hidden" class="{{$value->month}}_creation_date_j" name="{{$value->month}}_creation_date_j" value="{{ substr($last_row_data->created_at,8,2)."/".substr($last_row_data->created_at,5,2)."/".substr($last_row_data->created_at,0,4) }}">
@@ -177,15 +178,15 @@ $_SESSION['current_service'] = $service[2];
                     @if($last_row_data->status == "paid")
                       <span class="tl_paiement" style="font-size:10px"> paiement effectué le @php echo substr($last_row_data->created_at,8,2)."/"; echo substr($last_row_data->created_at,5,2)."/"; echo substr($last_row_data->created_at,0,4); @endphp </span>
                     @endif
-                    @if($last_row_data->status != "paid")Tous vos paiements sont
+                    @if($last_row_data->status != "paid")
                       <span class="tl_paiement" style="font-size:10px"> &Agrave; régler avant le @php echo substr($last_row_data->created_at,8,2)."/"; echo substr($last_row_data->created_at,5,2)."/"; echo substr($last_row_data->created_at,0,4); @endphp </span>
                     @endif
                     <br />
                     <br />
-                    <div class="row">
+                    <div class="row toPay">
                       @if($last_row_data->status == "paid")
-                        <button class="btn" style="background-color:rgba(137,180,213,1);color:#fff"> Envoyer par mail </button>
-                        <button type="submit" class="btn" style="background-color:rgba(137,180,213,1);color:#fff"> Télécharger</button>
+                        <button class="btn rgmail" style="background-color:rgba(137,180,213,1);color:#fff"> Envoyer par mail </button>
+                        <button type="submit" class="btn rgdown" style="background-color:rgba(137,180,213,1);color:#fff"> Télécharger</button>
                         <input type="hidden" name="id_bill" value="{{$last_row_data->id}}" />
                         <input type="hidden" name="service" value="{{ $_SESSION['current_service'] }}"/>
                       @endif
@@ -1259,6 +1260,11 @@ $(document).ready(function() {
     var year_value = $('.'+tag_month+"_year_j").val();
     var creation_date_value = $('.'+tag_month+"_creation_date_j").val();
 
+    if(typeof status_value === "undefined"){
+      status_value = 'vide';
+
+    }
+
     if(status_value.includes('paid')){
       $('.status_j').removeClass('glyphicon-remove-circle');
       $('.status_j').removeClass('text-danger');
@@ -1267,16 +1273,31 @@ $(document).ready(function() {
       $('.tl_paiement').html('paiement effectué le '+creation_date_value);
     }
     else{
-      $('.status_j').removeClass('glyphicon-remove-circle');
+      $('.status_j').removeClass('glyphicon-ok-circle');
       $('.status_j').removeClass('text-success');
-      $('.status_j').addClass('glyphicon-ok-circle');
+      $('.status_j').addClass('glyphicon-remove-circle');
       $('.status_j').addClass('text-danger');
       $('.tl_paiement').html('&Agrave; régler avant le '+creation_date_value);
     }
-    $('.tl_fac').html("Facture du mois de "+tag_month+ "&nbsp;");
-    $('.amount_j').html(montant_value);
-    $('.status_j').html(status_value);
-    $('.tl_echeance').html("<strong>Echéance de "+tag_month+" "+year_value+"</strong>");
+    if(status_value == 'vide'){
+      $('.tl_fac').html("<strong>Pas de facture pour le mois de "+tag_month+ "&nbsp;</strong>");
+      $('.amount_j').html('');
+      $('.status_j').html('');
+      $('.tl_echeance').html("");
+      $('.tl_paiement').html('');
+      $('.rgmail, .rgfac, .rgdown').attr('disabled','disabled');
+      $('.status_j').removeClass('glyphicon-ok-circle');
+      $('.status_j').removeClass('text-success');
+      $('.status_j').removeClass('glyphicon-remove-circle');
+      $('.status_j').removeClass('text-danger');
+    }
+    else{
+      $('.tl_fac').html("Facture du mois de "+tag_month+ "&nbsp;");
+      $('.amount_j').html(montant_value);
+      $('.status_j').html(status_value);
+      $('.tl_echeance').html("<strong>Echéance de "+tag_month+" "+year_value+"</strong>");
+      $('.rgmail, .rgfac, .rgdown').removeAttr('disabled');
+    }
 
   });
 });
