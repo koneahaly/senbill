@@ -150,7 +150,7 @@ $_SESSION['current_service'] = $service[2];
               <input type="hidden" class="slider-input" value={{ date('n',strtotime($last_row_data->month)) }} />
             </div>
             <br />
-          <form class="form-inline" action="{{ route('mes-factures.pdf_bill')}}" method="GET">
+          <form class="form-inline" action="../mes-factures/{{ $_SESSION['current_service'] }}/pdf_bill" method="POST">
               {{csrf_field()}}
             @if(Auth::user()->user_type != 2)
             <br/>

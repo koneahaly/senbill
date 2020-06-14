@@ -52,7 +52,7 @@ Route::post('/admin/login', 'Auth\AdminLoginController@login')->name('admin.logi
 Route::get('/admin', 'AdminController@index')->name('admin.dashboard');
 Route::post('/admin/store','billController@store')->name('admin.store');
 Route::post('/admin/updaterate','billController@updaterate')->name('admin.updaterate');
-Route::get('/mes-factures/pdf_bill','billController@pdf_bill')->name('mes-factures.pdf_bill');
+Route::post('/mes-factures/{id?}/pdf_bill','billController@pdf_bill')->name('mes-factures.pdf_bill');
 Route::get('/mes-factures/pdf_buy','billController@pdf_buy')->name('mes-factures.pdf_buy');
 Route::post('/home/pdf_bill','billController@pdf_bill')->name('home.pdf_bill');
 Route::post('/admin/create-users-demo','Auth\RegisterController@create_users_demo')->name('admin.create_users_demo');

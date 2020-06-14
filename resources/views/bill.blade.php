@@ -43,7 +43,7 @@ body{font-family:Raleway,sans-serif;}.right{float:right;}.red{color:red;}.tg  {b
           <td class="tg-yw4l">{{$data[0]->initial}}</td>
           <td class="tg-yw4l">{{$data[0]->final}}</td>
           <td class="tg-yw4l">{{$data[0]->units}}</td>
-          <td class="tg-yw4l">Rs.{{($data[0]->amount)/($data[0]->units)}} per unit</td>
+          <td class="tg-yw4l">{{($data[0]->amount)/($data[0]->units)}} FCFA per unit</td>
           <td class="tg-yw4l red"><strong>Rs.{{$data[0]->amount}}</strong></td>
         </tr>
       </table>
