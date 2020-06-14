@@ -29,12 +29,12 @@ $dataPoints1 = array(
   array("x"=> calc_month(1), "y"=> (!empty($my_infos_conso[calc_month(1)])) ? $my_infos_conso[calc_month(1)] : 40.00 )
 );
 $dataPoints2 = array(
-  array("x"=> calc_month(6), "y"=> 3064.61),
-  array("x"=> calc_month(5), "y"=> 3070.55),
-  array("x"=> calc_month(4), "y"=> 3072.50),
-  array("x"=> calc_month(3), "y"=> 3081.30),
-  array("x"=> calc_month(2), "y"=> 3063.60),
-  array("x"=> calc_month(1), "y"=> 3069.38)
+  array("x"=> calc_month(6), "y"=> (!empty($my_infos_conso[calc_month(6)]) && !empty($my_infos_conso[calc_month(5)])) ? ($my_infos_conso[calc_month(6)] + $my_infos_conso[calc_month(5)])/2 : (50+60)/2),
+  array("x"=> calc_month(5), "y"=> (!empty($my_infos_conso[calc_month(5)]) && !empty($my_infos_conso[calc_month(4)])) ? ($my_infos_conso[calc_month(5)] + $my_infos_conso[calc_month(4)])/2 : (60+68)/2),
+  array("x"=> calc_month(4), "y"=> (!empty($my_infos_conso[calc_month(4)]) && !empty($my_infos_conso[calc_month(3)])) ? ($my_infos_conso[calc_month(4)] + $my_infos_conso[calc_month(3)])/2 : (70+68)/2),
+  array("x"=> calc_month(3), "y"=> (!empty($my_infos_conso[calc_month(3)]) && !empty($my_infos_conso[calc_month(2)])) ? ($my_infos_conso[calc_month(3)] + $my_infos_conso[calc_month(2)])/2 : (70+50)/2),
+  array("x"=> calc_month(2), "y"=> (!empty($my_infos_conso[calc_month(2)]) && !empty($my_infos_conso[calc_month(1)])) ? ($my_infos_conso[calc_month(2)] + $my_infos_conso[calc_month(1)])/2 : (50+40)/2),
+  array("x"=> calc_month(1), "y"=> (!empty($my_infos_conso[calc_month(1)]) && !empty($my_infos_conso[calc_month(6)])) ? ($my_infos_conso[calc_month(1)] + $my_infos_conso[calc_month(6)])/2 : (40+50)/2)
 
 );
 
