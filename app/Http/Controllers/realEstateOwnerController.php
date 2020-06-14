@@ -7,6 +7,7 @@ use App\Bill;
 use App\Own;
 use App\User;
 use App\Contract;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -24,6 +25,7 @@ class realEstateOwnerController extends Controller
     {
         $this->middleware('auth');
     }
+
 
     public function display_transactions()
     {
@@ -119,27 +121,39 @@ class realEstateOwnerController extends Controller
 
       public function add_occupant(Request $given){
         $s=Auth::user()->customerId;
+
+        $given->validate([
+            'name' => 'required|string|string|max:255',
+            'first_name' => 'required|string|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'phone' => 'required|string|string|max:13|unique:users',
+            'customerId' =>'required|string|max:25|min:10|unique:users',
+            'monthly_pm' => 'required',
+            'caution' => 'required',
+            'start_date' =>'required',
+        ]);
+
         User::create([
             'civilite' => $given->civilite,
-            'name' => $given->nom,
-            'first_name' => $given->prenom,
-            'email' => $given->mail,
+            'name' => $given->name,
+            'first_name' => $given->first_name,
+            'email' => $given->email,
             'dob' => $given->dateOB,
             'pob' => $given->placeOB,
             'phone' => $given->phone,
-            'customerId' =>$given->cni,
+            'customerId' =>$given->customerId,
             'address' =>trim($given->housing_address),
-            'password' => bcrypt($given->nom.'123'),
+            'password' => bcrypt($given->name.'123'),
             'service_5' => 'locataire',
         ]);
-        $renter_id=DB::table('users')->select('customerId')->where('customerId',$given->cni)->first();
+        $renter_id=DB::table('users')->select('customerId')->where('customerId',$given->customerId)->first();
 
         $contract = new Contract;
         $contract->id_own=$given->housing_id;
         $contract->owner_id=$s;
         $contract->renter_id=$renter_id->customerId;
         $contract->bail=$given->caution;
-        $contract->monthly_pm=$given->loyer;
+        $contract->monthly_pm=$given->monthly_pm;
         $contract->status='Y';
         $contract->delay=$given->delay;
         $contract->start_date=$given->start_date;
@@ -149,13 +163,14 @@ class realEstateOwnerController extends Controller
 
         DB::table('owns')
             ->where('owner_id', $s)->where('id',$given->housing_id)
-            ->update(['status' => 'N','current_occupant_name' => $given->prenom.' '.$given->nom,'occupant_id' => $given->cni]);
+            ->update(['status' => 'N','current_occupant_name' => $given->first_name.' '.$given->name,'occupant_id' => $given->customerId]);
 
         return redirect()->intended(route('ownerProperties'));
       }
 
       public function update_occupant(Request $given){
         $s=Auth::user()->customerId;
+
         DB::table('users')
             ->where('customerId', $given->occupant_id)
             ->update(['civilite' => $given->civilite,'name' => $given->nom,'first_name' => $given->prenom,'email' => $given->mail,
