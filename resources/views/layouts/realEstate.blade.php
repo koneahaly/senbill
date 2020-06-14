@@ -208,8 +208,49 @@ if($_SERVER['REQUEST_URI'] == '/register')
       </div>
 
   </nav>
+  <!--  POUR CHANGER D'ESPACE -->
+  <div class="circleEspace ">
+    <div class="ringEspace ">
+      <a href="../mes-factures/eau" class="menuItemEspace fa fa-faucet fa-2x" title="Espace Eau"></a>
+      <a href="../mes-factures/electricite" class="menuItemEspace fa fa-plug fa-2x" title="Espace Electricité"></a>
+      <a href="../mes-factures/tv" class="menuItemEspace fa fa-tv fa-2x" title="Espace Télévision"></a>
+      <a href="../mes-factures/mobile" class="menuItemEspace fa fa-wifi fa-2x" title="Espace Mobile &  Internet"></a>
+      <a href="../transactions-proprietaire" class="menuItemEspace fa fa-building fa-2x" title="Espace Propriétaire"></a>
+      <a href="../mes-factures/locataire" class="menuItemEspace fa fa-key fa-2x" title="Espace Locataire"></a>
+    </div>
+    <a href="#" class="center fa fa-th fa-2x"  title="Changer d'espace"></a>
+  </div>
+  <!--  FIN POUR CHANGER D'ESPACE -->
     @yield('content')
 </div>
   <!-- HEADER END -->
+  <script>
+  $(document).ready(function() {
+    var items = document.querySelectorAll('.menuItemEspace');
+
+    for(var i = 0, l = items.length; i < l; i++) {
+      items[i].style.left = (50 - 35*Math.cos(-0.5 * Math.PI - 2*(1/l)*i*Math.PI)).toFixed(4) + "%";
+
+      items[i].style.top = (50 + 35*Math.sin(-0.5 * Math.PI - 2*(1/l)*i*Math.PI)).toFixed(4) + "%";
+    }
+
+    document.querySelector('.center').onclick = function(e) {
+       e.preventDefault(); document.querySelector('.circleEspace').classList.toggle('open');
+       $(".circleEspace").toggleZindex();
+    }
+    $.fn.toggleZindex= function() {
+    var $this  = $(this);
+      if($this.css("z-index")=="1000"){
+          $this.css("z-index","1300")
+      }else{
+          $this.css("z-index","1000")
+      }
+
+
+    return this;
+  };
+
+  });
+  </script>
 </body>
 </html>
