@@ -434,7 +434,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                  </div>
                  <div class="wrap-input100 bg1 rs1-wrap-input100">
                    <span class="label-input100">Caution *</span>
-                   <input class="input100" type="number" pattern="[0-9]{0,10}" name="caution" required  placeholder="Entrez le montant de la caution">
+                   <input class="input100" type="number" pattern="[0-9]{0,10}" name="bail" required  placeholder="Entrez le montant de la caution">
                  </div>
                  <div class="wrap-input100 bg1 rs1-wrap-input100">
                    <span class="label-input100">Loyer *</span>

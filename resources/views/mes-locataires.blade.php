@@ -209,12 +209,12 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
               </div>
             <div class="wrap-input100 validate-input bg1 rs1-wrap-input100" data-validate = "Entrez le prénom">
               <span class="label-input100">Prénom *</span>
-              <input class="input100 update_prenom" type="text" name="prenom" required placeholder="Entrez le prénom du locataire" value="Yacine">
+              <input class="input100 update_prenom" type="text" name="first_name" required placeholder="Entrez le prénom du locataire" value="Yacine">
             </div>
 
             <div class="wrap-input100 bg1 rs1-wrap-input100">
               <span class="label-input100">Nom *</span>
-              <input class="input100 update_nom" type="text" name="nom" required  placeholder="Entrez le nom du locataire" value="Ndiaye">
+              <input class="input100 update_nom" type="text" name="name" required  placeholder="Entrez le nom du locataire" value="Ndiaye">
             </div>
             <div class="wrap-input100 input100-select bg1 rs1-wrap-input100">
               <span class="label-input100">Date de naissance </span>
@@ -225,8 +225,8 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
               <input class="input100 update_pob" type="text" name="placeOB" placeholder="Entrez le lieu de naissance du locataire" value="Dakar">
             </div>
             <div class="wrap-input100 validate-input bg1 rs1-wrap-input100" data-validate = "Entrez l'adresse mail" >
-              <span class="label-input100">Email </span>
-              <input class="input100 update_email" type="email" name="mail" placeholder="Entrez l'adresse mail du locataire" value="yacinenana@gmail.com">
+              <span class="label-input100">Email *</span>
+              <input class="input100 update_email" type="email" name="email" placeholder="Entrez l'adresse mail du locataire" value="yacinenana@gmail.com">
             </div>
 
             <div class="wrap-input100 bg1 rs1-wrap-input100">
@@ -235,15 +235,15 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
             </div>
             <div class="wrap-input100 validate-input bg1" data-validate="Entrez svp un cni pour le logement">
               <span class="label-input100">Numéro CNI *</span>
-              <input class="input100 update_cni" type="text" pattern="[0-9,A-Z,a-z]{13}" required name="cni" placeholder="Entrez le numéro de Carte d'identité nationale du locataire" value="A000305199377">
+              <input class="input100 update_cni" type="text" pattern="[0-9,A-Z,a-z]{13}" required name="customerId" placeholder="Entrez le numéro de Carte d'identité nationale du locataire" value="A000305199377">
             </div>
             <div class="wrap-input100 bg1 rs1-wrap-input100">
               <span class="label-input100">Caution *</span>
-              <input class="input100 update_caution" type="number" pattern="[0-9]{0,10}" name="caution" required  placeholder="Entrez le montant de la caution">
+              <input class="input100 update_caution" type="number" pattern="[0-9]{0,10}" name="bail" required  placeholder="Entrez le montant de la caution">
             </div>
             <div class="wrap-input100 bg1 rs1-wrap-input100">
               <span class="label-input100">Loyer *</span>
-              <input class="input100 update_loyer" type="number" pattern="[0-9]{0,10}" name="loyer" required  placeholder="Entrez le montant du loyer">
+              <input class="input100 update_loyer" type="number" pattern="[0-9]{0,10}" name="monthly_pm" required  placeholder="Entrez le montant du loyer">
             </div>
             <div class="wrap-input100 bg1 rs1-wrap-input100">
               <span class="label-input100">Date de début *</span>

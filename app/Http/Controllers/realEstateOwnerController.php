@@ -129,7 +129,7 @@ class realEstateOwnerController extends Controller
             'phone' => 'required|string|string|max:13|unique:users',
             'customerId' =>'required|string|max:25|min:10|unique:users',
             'monthly_pm' => 'required',
-            'caution' => 'required',
+            'bail' => 'required',
             'start_date' =>'required',
         ]);
 
@@ -152,7 +152,7 @@ class realEstateOwnerController extends Controller
         $contract->id_own=$given->housing_id;
         $contract->owner_id=$s;
         $contract->renter_id=$renter_id->customerId;
-        $contract->bail=$given->caution;
+        $contract->bail=$given->bail;
         $contract->monthly_pm=$given->monthly_pm;
         $contract->status='Y';
         $contract->delay=$given->delay;
@@ -171,18 +171,29 @@ class realEstateOwnerController extends Controller
       public function update_occupant(Request $given){
         $s=Auth::user()->customerId;
 
+        $given->validate([
+            'name' => 'required|string|string|max:255',
+            'first_name' => 'required|string|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'phone' => 'required|string|string|max:13|unique:users',
+            'customerId' =>'required|string|max:25|min:10|unique:users',
+            'monthly_pm' => 'required',
+            'bail' => 'required',
+            'start_date' =>'required',
+        ]);
+
         DB::table('users')
             ->where('customerId', $given->occupant_id)
-            ->update(['civilite' => $given->civilite,'name' => $given->nom,'first_name' => $given->prenom,'email' => $given->mail,
-          'dob' => $given->dateOB, 'pob' => $given->placeOB, 'phone' => $given->phone, 'customerId' => $given->cni]);
+            ->update(['civilite' => $given->civilite,'name' => $given->name,'first_name' => $given->first_name,'email' => $given->email,
+          'dob' => $given->dateOB, 'pob' => $given->placeOB, 'phone' => $given->phone, 'customerId' => $given->customerId]);
 
         DB::table('owns')
             ->where('occupant_id',$given->occupant_id)
-            ->update(['current_occupant_name' => $given->prenom.' '.$given->nom]);
+            ->update(['current_occupant_name' => $given->first_name.' '.$given->name]);
 
         DB::table('contracts')
             ->where('renter_id',$given->occupant_id)
-            ->update(['bail' => $given->caution, 'monthly_pm' => $given->loyer,
+            ->update(['bail' => $given->bail, 'monthly_pm' => $given->monthly_pm,
           'delay' =>$given->delay, 'frequency' => $given->frequency]);
 
         return redirect()->intended(route('mes-locataires'));
