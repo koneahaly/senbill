@@ -90,6 +90,14 @@ html, body {
     max-width: 100%;
     overflow-x: hidden;
 }
+
+.disabled {
+  color: currentColor;
+  cursor: not-allowed;
+  opacity: 0.5;
+  text-decoration: none;
+}
+
 </style>
 </head>
 
@@ -215,17 +223,19 @@ html, body {
 
   </nav>
   <!--  POUR CHANGER D'ESPACE -->
+@if($_SERVER['REQUEST_URI'] != '/register' && strpos($_SERVER['REQUEST_URI'],"admin") == false)
   <div class="circleEspace ">
     <div class="ringEspace ">
-      <a href="../mes-factures/eau" class="menuItemEspace fa fa-faucet fa-2x" title="Espace Eau"></a>
-      <a href="../mes-factures/electricite" class="menuItemEspace fa fa-plug fa-2x" title="Espace Electricité"></a>
-      <a href="../mes-factures/tv" class="menuItemEspace fa fa-tv fa-2x" title="Espace Télévision"></a>
-      <a href="../mes-factures/mobile" class="menuItemEspace fa fa-wifi fa-2x" title="Espace Mobile &  Internet"></a>
-      <a href="../transactions-proprietaire" class="menuItemEspace fa fa-building fa-2x" title="Espace Propriétaire"></a>
-      <a href="../mes-factures/locataire" class="menuItemEspace fa fa-key fa-2x" title="Espace Locataire"></a>
+      <a href="../mes-factures/eau" class="menuItemEspace fa fa-faucet fa-2x {{ (!empty($services->service_1)) ? '' : 'disabled' }}" title="Espace Eau"></a>
+      <a href="../mes-factures/electricite" class="menuItemEspace fa fa-plug fa-2x {{ (!empty($services->service_2)) ? '' : 'disabled' }}" title="Espace Electricité"></a>
+      <a href="../mes-factures/tv" class="menuItemEspace fa fa-tv fa-2x {{ (!empty($services->service_3)) ? '' : 'disabled' }}" title="Espace Télévision"></a>
+      <a href="../mes-factures/mobile" class="menuItemEspace fa fa-wifi fa-2x {{ (!empty($services->service_4)) ? '' : 'disabled' }}" title="Espace Mobile &  Internet"></a>
+      <a href="../transactions-proprietaire" class="menuItemEspace fa fa-building fa-2x {{ (!empty($services->service_6)) ? '' : 'disabled' }}" title="Espace Propriétaire"></a>
+      <a href="../mes-factures/locataire" class="menuItemEspace fa fa-key fa-2x {{ (!empty($services->service_5)) ? '' : 'disabled' }}" title="Espace Locataire"></a>
     </div>
     <a href="#" class="center fa fa-th fa-2x"  title="Changer d'espace"></a>
   </div>
+@endif
   <!--  FIN POUR CHANGER D'ESPACE -->
     @yield('content')
 </div>

@@ -32,6 +32,7 @@ class realEstateOwnerController extends Controller
       $s=Auth::user()->customerId;
       $list_renter_id=array();
       $list_housings_infos = [];
+      $actived_services['actived_services'] = DB::table('users')->where('customerId',$s)->first();
       $infos_occupants=DB::table('owns')->select('occupant_id')->where('owner_id',$s)->get();
       $infos_housings=DB::table('owns')->select('occupant_id','current_occupant_name','title')->where('owner_id',$s)->get();
       foreach($infos_occupants as $infos_occupant){
@@ -43,7 +44,7 @@ class realEstateOwnerController extends Controller
       $data_bills['data_bills'] =DB::table('bills')->whereIn('customerId',$list_renter_id)->whereNotNull('title')->get();
       $numberOfBillsNonPaid = (int)DB::table('bills')->where('status','<>','paid')->whereIn('customerId',$list_renter_id)->whereNotNull('title')->count();
       $data_infos_housing['data_infos_housing'] = $list_housings_infos;
-      return view('ownerTransactions')->with($data_bills)->with($data_infos_housing)->with(compact('numberOfBillsNonPaid'));
+      return view('ownerTransactions')->with($data_bills)->with($data_infos_housing)->with(compact('numberOfBillsNonPaid'))->with($actived_services);
 
     }
     public function display_locataires()
@@ -52,6 +53,7 @@ class realEstateOwnerController extends Controller
       $list_renter_id=array();
       $list_housings_title = [];
       $list_contracts_infos = [];
+      $actived_services['actived_services'] = DB::table('users')->where('customerId',$s)->first();
       $data_contracts=DB::table('contracts')->where('owner_id',$s)->get();
       $infos_housings=DB::table('owns')->select('occupant_id','title')->where('owner_id',$s)->get();
       $infos_locations=DB::table('owns')->select('occupant_id')->where('owner_id',$s)->get();
@@ -70,16 +72,17 @@ class realEstateOwnerController extends Controller
       $data_locations['data_locations'] =DB::table('users')->whereIn('customerId',$list_renter_id)->get();
       $data_housing_title['data_housing_title'] = $list_housings_title;
       $data_contracts_compact['data_contracts_compact'] = $list_contracts_infos;
-      return view('mes-locataires')->with($data_locations)->with($data_housing_title)->with($data_contracts_compact)->with('nb_locataires',$nb_locataires);
+      return view('mes-locataires')->with($data_locations)->with($data_housing_title)->with($data_contracts_compact)->with('nb_locataires',$nb_locataires)->with($actived_services);
 
     }
     public function display_properties()
     {
       $s=Auth::user()->customerId;
+      $actived_services['actived_services'] = DB::table('users')->where('customerId',$s)->first();
       $infos_perso['infos_perso']=DB::table('users')->where('customerId',$s)->first();
       $infos_log['infos_log']=DB::table('owns')->where('owner_id',$s)->get();
       $nb_log=(int)DB::table('owns')->where('owner_id',$s)->count();
-      return view('ownerProperties')->with($infos_perso)->with($infos_log)->with('nb_log',$nb_log);
+      return view('ownerProperties')->with($infos_perso)->with($infos_log)->with('nb_log',$nb_log)->with($actived_services);
 
     }
 

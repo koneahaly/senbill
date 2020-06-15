@@ -49,6 +49,7 @@ class HomeController extends Controller
         }
 
         $s=Auth::user()->customerId;
+        $actived_services['actived_services'] = DB::table('users')->where('customerId',$s)->first();
         if(Auth::user()->user_type != 2){
           $numberOfBillsNonPaid = (int)DB::table('bills')->where('customerId',$s)->where('status','!=','paid')->orderBy('id', 'DESC')->count();
           $numberOfBills = (int)DB::table('bills')->where('customerId',$s)->orderBy('id', 'DESC')->count();
@@ -63,7 +64,7 @@ class HomeController extends Controller
           }
           //dd(count($data));
           //dd($numberOfBills);
-          return view('mes-factures')->with($data)->with($last_row_data)->with(compact('numberOfBillsNonPaid'));
+          return view('mes-factures')->with($data)->with($last_row_data)->with(compact('numberOfBillsNonPaid'))->with($actived_services);
         }
         if(Auth::user()->user_type == 2){
           //$data['data']=DB::connection('mysql2')->table('buys')->where('counter_number',$s)->orderBy('id', 'DESC')->get();
@@ -89,7 +90,7 @@ class HomeController extends Controller
           }
 
           $numberOfBillsNonPaid = 0;
-          return view('mes-factures')->with($data)->with($last_row_data)->with(compact('numberOfBillsNonPaid'));
+          return view('mes-factures')->with($data)->with($last_row_data)->with(compact('numberOfBillsNonPaid'))->with($actived_services);
         }
         //session(['keepNumberOfBillsNonPaid' => $numberOfBillsNonPaid]);
         Session::push('keepNumberOfBillsNonPaid', $keepNumberOfBillsNonPaid);
@@ -176,29 +177,37 @@ class HomeController extends Controller
 
     public function display_contract()
     {
-      return view('mon-contrat');
+      $s=Auth::user()->customerId;
+      $actived_services['actived_services'] = DB::table('users')->where('customerId',$s)->first();
+      return view('mon-contrat')->with($actived_services);
     }
 
     public function display_personal_infos()
     {
-      return view('infos-personnelles');
+      $s=Auth::user()->customerId;
+      $actived_services['actived_services'] = DB::table('users')->where('customerId',$s)->first();
+      return view('infos-personnelles')->with($actived_services);
     }
 
     public function display_services_infos()
     {
-      return view('infos-services');
+      $s=Auth::user()->customerId;
+      $actived_services['actived_services'] = DB::table('users')->where('customerId',$s)->first();
+      return view('infos-services')->with($actived_services);
     }
 
     public function display_services_pro_infos()
     {
-      return view('infos-services-pro');
+      $s=Auth::user()->customerId;
+      $actived_services['actived_services'] = DB::table('users')->where('customerId',$s)->first();
+      return view('infos-services-pro')->with($actived_services);
     }
 
     public function display_proprio_infos()
     {
       $s=Auth::user()->customerId;
-      $infos_perso['infos_perso']=DB::table('users')->where('customerId',$s)->first();
-      return view('infos-proprietaire');
+      $actived_services['actived_services'] = DB::table('users')->where('customerId',$s)->first();
+      return view('infos-proprietaire')->with($actived_services);
     }
 
     public function display_services()
@@ -206,7 +215,8 @@ class HomeController extends Controller
 
       $s=Auth::user()->customerId;
       $infos_perso['infos_perso']=DB::table('users')->where('customerId',$s)->first();
-      return view('platform')->with($infos_perso);
+      $actived_services['actived_services'] = DB::table('users')->where('customerId',$s)->first();
+      return view('platform')->with($infos_perso)->with($actived_services);
     }
 
 
@@ -214,6 +224,7 @@ class HomeController extends Controller
     public function suivi_conso()
     {
       $s=Auth::user()->customerId;
+      $actived_services['actived_services'] = DB::table('users')->where('customerId',$s)->first();
       $infos_conso['infos_conso']=DB::table('bills')->select('units','amount','month','year')->where('customerId',$s)->orderBy('created_at', 'DESC')->get();
       $useful_conso = array();
       $useful_conso_euro = array();
@@ -225,6 +236,6 @@ class HomeController extends Controller
       }
       $my_infos_conso['my_infos_conso'] = $useful_conso;
       $my_infos_conso_euro['my_infos_conso_euro'] = $useful_conso_euro;
-      return view('suivi-conso')->with($my_infos_conso)->with($my_infos_conso_euro);
+      return view('suivi-conso')->with($my_infos_conso)->with($my_infos_conso_euro)->with($actived_services);
     }
 }

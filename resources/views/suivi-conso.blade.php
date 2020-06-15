@@ -59,7 +59,7 @@ $dataPoints4 = array(
 );
 
 ?>
-@extends('layouts.app', ['notification' => $notification, 'service' => $_SESSION['current_service']])
+@extends('layouts.app', ['notification' => $notification, 'service' => $_SESSION['current_service'], 'services' => $actived_services])
 <link rel="stylesheet" type="text/css" href="{{url('css/nv.d3.css')}}">
 @section('content')
 

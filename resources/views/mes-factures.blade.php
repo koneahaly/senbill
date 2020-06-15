@@ -4,7 +4,7 @@ $_SESSION["numberOfBillsNonPaid"]=$numberOfBillsNonPaid;
 $service =explode('/',$_SERVER['REQUEST_URI']);
 $_SESSION['current_service'] = $service[2];
 ?>
-@extends('layouts.app', ['notification' => $numberOfBillsNonPaid, 'service' => $_SESSION['current_service']])
+@extends('layouts.app', ['notification' => $numberOfBillsNonPaid, 'service' => $_SESSION['current_service'], 'services' => $actived_services])
 
 @section('content')
 <div class="container">
