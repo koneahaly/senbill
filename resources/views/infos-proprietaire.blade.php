@@ -23,7 +23,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                         </div>
                     @endif
 
-                    <form method="post" action="{{ route('infos-personnelles') }}">
+                    <form method="post" action="{{ route('infos-proprietaire') }}">
                       {{csrf_field()}}
                       <div class="row" style="margin-bottom:35px">
                         <div class="col-md-7" style="font-size:18px"> <strong>Mes données personnelles</strong></div>
@@ -76,7 +76,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                   @endif
 
                   @if(isset($_POST['update_perso_data']))
-                  <form method="post" action="{{ route('infos-personnelles.update') }}">
+                  <form method="post" action="{{ route('infos-proprietaire.update') }}">
                     {{csrf_field()}}
                     <div class="row" style="margin-bottom:2px;margin-left:5px">
                         <div class="form-group col-md-3">
@@ -123,6 +123,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                         <span class="glyphicon glyphicon-remove-circle"></span> Annuler
                       </button>
                     </div>
+                    <input type="hidden" name="page" value="proprietaire" />
                   </form>
                   @endif
 
@@ -136,7 +137,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
 
 
                 @if(!isset($_POST['update_email']))
-                  <form method="post" action="{{ route('infos-personnelles') }}">
+                  <form method="post" action="{{ route('infos-proprietaire') }}">
                     {{csrf_field()}}
                     <div class="col-md-6" style="margin-bottom:10px">
                       <p><strong>EMAIL</strong></p>
@@ -148,11 +149,12 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                       </div>
                     </div>
                     <input type="hidden" name="update_email" value="true"/>
+                    <input type="hidden" name="page" value="proprietaire" />
                   </form>
                 @endif
 
                 @if(isset($_POST['update_email']))
-                  <form method="post" action="{{ route('infos-personnelles.update') }}">
+                  <form method="post" action="{{ route('infos-proprietaire.update') }}">
                     {{csrf_field()}}
                     <div class="col-md-6" style="margin-bottom:10px">
                       <p><strong>EMAIL:</strong></p>
@@ -166,11 +168,12 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                         </button>
                       </div>
                     </div>
+                    <input type="hidden" name="page" value="proprietaire" />
                   </form>
                 @endif
 
                 @if(!isset($_POST['update_phone']))
-                  <form method="post" action="{{ route('infos-personnelles') }}">
+                  <form method="post" action="{{ route('infos-proprietaire') }}">
                     {{csrf_field()}}
                     <div class="col-md-6" style="margin-bottom:10px">
                       <p><strong>PHONE</strong></p>
@@ -182,11 +185,12 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                       </div>
                     </div>
                     <input type="hidden" name="update_phone" value="true"/>
+                    <input type="hidden" name="page" value="proprietaire" />
                   </form>
                 @endif
 
                 @if(isset($_POST['update_phone']))
-                  <form method="post" action="{{ route('infos-personnelles.update') }}">
+                  <form method="post" action="{{ route('infos-proprietaire.update') }}">
                     {{csrf_field()}}
                     <div class="col-md-6" style="margin-bottom:10px">
                       <p><strong>PHONE:</strong></p>
@@ -200,6 +204,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                         </button>
                       </div>
                     </div>
+                    <input type="hidden" name="page" value="proprietaire" />
                   </form>
                 @endif
 

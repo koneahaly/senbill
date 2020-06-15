@@ -30,6 +30,7 @@ Route::post('/infos-personnelles/{id?}', 'HomeController@display_personal_infos'
 Route::get('/infos-services/{id?}', 'HomeController@display_services_infos')->name('infos-services');
 Route::post('/infos-services/{id?}', 'HomeController@display_services_infos')->name('infos-services');
 Route::post('/infos-personnelles/{id?}/update', 'HomeController@update_personal_infos')->name('infos-personnelles.update');
+Route::post('/infos-proprietaire/update', 'HomeController@update_personal_infos')->name('infos-proprietaire.update');
 Route::get('/suivi-conso/{id?}', 'HomeController@suivi_conso')->name('suivi-conso');
 Route::post('/infos-services/{id?}/update', 'HomeController@update_services_infos')->name('infos-services.update');
 Route::post('/infos-services-pro/update', 'HomeController@update_services_pro_infos')->name('infos-services-pro.update');

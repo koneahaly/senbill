@@ -112,24 +112,41 @@ class HomeController extends Controller
     public function update_personal_infos(Request $given){
 
       $s=Auth::user()->customerId;
+
       if($given->action == "save"){
+        $this->validate($given,[
+          'name' => 'required|string|max:255',
+          'address' =>'required|string|max:255',
+          'first_name' => 'required|string|max:255'
+        ]);
         DB::table('users')
             ->where('customerId', $s)
             ->update(['civilite' => $given->salutation, 'name' => $given->name,'first_name' => $given->first_name, 'address' => $given->address]);
         }
 
       if($given->action_email == "save"){
+        $this->validate($given,[
+          'email' => 'required|string|email|max:255|unique:users'
+        ]);
         DB::table('users')
             ->where('customerId', $s)
             ->update(['email' => $given->email]);
         }
 
       if($given->action_phone == "save"){
+        $this->validate($given,[
+          'phone' => 'required|string|string|max:10|unique:users'
+        ]);
         DB::table('users')
             ->where('customerId', $s)
             ->update(['phone' => $given->phone]);
         }
-      return redirect('infos-personnelles/'.$given->service);
+        if($given->page == "proprietaire"){
+          return redirect('infos-proprietaire');
+        }
+        else{
+          return redirect('infos-personnelles/'.$given->service);
+        }
 
     }
 
