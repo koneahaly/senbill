@@ -1,4 +1,4 @@
 
 Auth::routes();
 
-Route::get('/mes-services', 'HomeController@index')->name('platform');
+Route::get('.', 'HomeController@index')->name('welcome');
