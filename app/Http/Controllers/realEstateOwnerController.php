@@ -86,17 +86,17 @@ class realEstateOwnerController extends Controller
     public function add_housing(Request $given){
 
       $this->validate($given,[
-          'tl_housing'=> 'required|min:4|max:255',
-          'address_housing'=> 'required|min:10|max:255',
-          'city_housing'=> 'required|min:3|max:45'
+          'title'=> 'required|min:4|max:255',
+          'address'=> 'required|min:10|max:255',
+          'city'=> 'required|min:3|max:45'
       ]);
 
       $s=Auth::user()->customerId;
       $own = new Own;
       $own->owner_id=$s;
-      $own->title=$given->tl_housing;
-      $own->address=$given->address_housing;
-      $own->city=$given->city_housing;
+      $own->title=$given->title;
+      $own->address=$given->address;
+      $own->city=$given->city;
       $own->nb_rooms=$given->nb_rooms;
       $own->housing_type=$given->housing_type;
       $own->status=$given->status_housing;
@@ -107,14 +107,15 @@ class realEstateOwnerController extends Controller
     public function update_housing(Request $given){
 
       $this->validate($given,[
-          'tl_housing_m'=> 'required|min:4|max:255',
-          'address_housing_m'=> 'required|min:10|max:255',
-          'city_housing_m'=> 'required|min:3|max:45'
+          'title'=> 'required|min:4|max:255',
+          'address'=> 'required|min:10|max:255',
+          'city'=> 'required|min:3|max:45'
       ]);
+
       $s=Auth::user()->customerId;
         DB::table('owns')
             ->where('owner_id', $s)->where('id',$given->housing_id_m)
-            ->update(['title' => $given->tl_housing_m, 'address' => trim($given->address_housing_m),'city' => $given->city_housing_m,
+            ->update(['title' => $given->title, 'address' => trim($given->address),'city' => $given->city,
              'nb_rooms' => $given->nb_rooms_housing_m,'housing_type' => $given->type_housing_m,'status' => $given->status_housing_m]);
              return redirect()->intended(route('ownerProperties'));
       }

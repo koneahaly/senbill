@@ -213,18 +213,33 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                    Ajoutez un logement
                  </span>
 
-                 <div class="wrap-input100 validate-input bg1" data-validate="Entrez svp un nom pour le logement">
+                 <div class="wrap-input100 validate-input bg1 form-group{{ $errors->has('title') ? ' has-error' : '' }}" data-validate="Entrez svp un nom pour le logement">
                    <span class="label-input100">Nom du logement *</span>
-                   <input class="input100" type="text" name="tl_housing" placeholder="Entrez un nom pour le logement" required>
+                   <input class="input100 control-label" type="text" name="title" placeholder="Entrez un nom pour le logement" required>
+                   @if ($errors->has('title'))
+                       <span class="help-block">
+                           <strong>{{ $errors->first('title') }}</strong>
+                       </span>
+                   @endif
                  </div>
-                 <div class="wrap-input100 validate-input bg1 rs1-wrap-input100" data-validate = "Entrez l'adresse ou le quartier">
-                   <span class="label-input100">Adresse du logement *</span>
-                   <input class="input100" type="text" name="address_housing" placeholder="Entrez l'adresse ou le quartier " required>
+                 <div class="wrap-input100 validate-input bg1 rs1-wrap-input100 form-group{{ $errors->has('address') ? ' has-error' : '' }}" data-validate = "Entrez l'adresse ou le quartier">
+                   <span class="label-input100 control-label">Adresse du logement *</span>
+                   <input class="input100" type="text" name="address" placeholder="Entrez l'adresse ou le quartier " required>
+                   @if ($errors->has('address'))
+                       <span class="help-block">
+                           <strong>{{ $errors->first('address') }}</strong>
+                       </span>
+                   @endif
                  </div>
 
-                 <div class="wrap-input100 bg1 rs1-wrap-input100">
-                   <span class="label-input100">Ville du logement</span>
-                   <input class="input100" type="text" name="city_housing" placeholder="Entrez la ville du  logement" required>
+                 <div class="wrap-input100 bg1 rs1-wrap-input100 form-group{{ $errors->has('city') ? ' has-error' : '' }}">
+                   <span class="label-input100 control-label">Ville du logement</span>
+                   <input class="input100" type="text" name="city" placeholder="Entrez la ville du  logement" required>
+                   @if ($errors->has('city'))
+                       <span class="help-block">
+                           <strong>{{ $errors->first('city') }}</strong>
+                       </span>
+                   @endif
                  </div>
                  <div class="wrap-input100 input100-select bg1">
                    <span class="label-input100">Nombre de chambres *</span>
@@ -303,18 +318,33 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                    Modifier votre logement
                  </span>
 
-                 <div class="wrap-input100 validate-input bg1" data-validate="Entrez svp un nom pour le logement">
-                   <span class="label-input100">Nom du logement *</span>
-                   <input class="input100 update_title_log" type="text" name="tl_housing_m" placeholder="Entrez un nom pour le logement" value="Keur Serigne Saliou" required>
+                 <div class="wrap-input100 validate-input bg1 form-group{{ $errors->has('title') ? ' has-error' : '' }}" data-validate="Entrez svp un nom pour le logement">
+                   <span class="label-input100 control-label">Nom du logement *</span>
+                   <input class="input100 update_title_log" type="text" name="title" placeholder="Entrez un nom pour le logement" value="Keur Serigne Saliou" required>
+                   @if ($errors->has('title'))
+                       <span class="help-block">
+                           <strong>{{ $errors->first('title') }}</strong>
+                       </span>
+                   @endif
                  </div>
-                 <div class="wrap-input100 validate-input bg1 rs1-wrap-input100" data-validate = "Entrez l'adresse ou le quartier">
-                   <span class="label-input100">Adresse du logement *</span>
-                   <input class="input100 update_address_log" type="text" name="address_housing_m" placeholder="Entrez l'adresse ou le quartier" value="Hann Mariste 2 villa Y46" required>
+                 <div class="wrap-input100 validate-input bg1 rs1-wrap-input100 form-group{{ $errors->has('address') ? ' has-error' : '' }}" data-validate = "Entrez l'adresse ou le quartier">
+                   <span class="label-input100 control-label">Adresse du logement *</span>
+                   <input class="input100 update_address_log" type="text" name="address" placeholder="Entrez l'adresse ou le quartier" value="Hann Mariste 2 villa Y46" required>
+                   @if ($errors->has('address'))
+                       <span class="help-block">
+                           <strong>{{ $errors->first('address') }}</strong>
+                       </span>
+                   @endif
                  </div>
 
                  <div class="wrap-input100 bg1 rs1-wrap-input100">
-                   <span class="label-input100">Ville du logement</span>
-                   <input class="input100 update_city_log" type="text" name="city_housing_m" placeholder="Entrez la ville du  logement" value="Dakar" required>
+                   <span class="label-input100 control-label form-group{{ $errors->has('city') ? ' has-error' : '' }}">Ville du logement</span>
+                   <input class="input100 update_city_log" type="text" name="city" placeholder="Entrez la ville du  logement" value="Dakar" required>
+                   @if ($errors->has('city'))
+                       <span class="help-block">
+                           <strong>{{ $errors->first('city') }}</strong>
+                       </span>
+                   @endif
                  </div>
                  <div class="wrap-input100 input100-select bg1">
                    <span class="label-input100">Nombre de chambres *</span>
@@ -402,14 +432,24 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                    </div>
                    <div class="rs1-wrap-input100">
                    </div>
-                 <div class="wrap-input100 validate-input bg1 rs1-wrap-input100" data-validate = "Entrez le prénom">
-                   <span class="label-input100">Prénom *</span>
+                 <div class="wrap-input100 validate-input bg1 rs1-wrap-input100 form-group{{ $errors->has('first_name') ? ' has-error' : '' }}" data-validate = "Entrez le prénom">
+                   <span class="label-input100 control-label">Prénom *</span>
                    <input class="input100" type="text" name="first_name" required placeholder="Entrez le prénom du locataire">
+                   @if ($errors->has('first_name'))
+                       <span class="help-block">
+                           <strong>{{ $errors->first('first_name') }}</strong>
+                       </span>
+                   @endif
                  </div>
 
-                 <div class="wrap-input100 bg1 rs1-wrap-input100">
-                   <span class="label-input100">Nom *</span>
+                 <div class="wrap-input100 bg1 rs1-wrap-input100 form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                   <span class="label-input100 control-label">Nom *</span>
                    <input class="input100" type="text" name="name" required  placeholder="Entrez le nom du locataire">
+                   @if ($errors->has('name'))
+                       <span class="help-block">
+                           <strong>{{ $errors->first('name') }}</strong>
+                       </span>
+                   @endif
                  </div>
                  <div class="wrap-input100 input100-select bg1 rs1-wrap-input100">
                    <span class="label-input100">Date de naissance </span>
@@ -419,30 +459,60 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                    <span class="label-input100">Lieu de naissance </span>
                    <input class="input100" type="text" name="placeOB" placeholder="Entrez le lieu de naissance du locataire">
                  </div>
-                 <div class="wrap-input100 validate-input bg1 rs1-wrap-input100" data-validate = "Entrez l'adresse mail">
-                   <span class="label-input100">Email *</span>
+                 <div class="wrap-input100 validate-input bg1 rs1-wrap-input100 form-group{{ $errors->has('email') ? ' has-error' : '' }}" data-validate = "Entrez l'adresse mail">
+                   <span class="label-input100 control-label">Email *</span>
                    <input class="input100" type="email" name="email" placeholder="Entrez l'adresse mail du locataire" required>
+                   @if ($errors->has('email'))
+                       <span class="help-block">
+                           <strong>{{ $errors->first('email') }}</strong>
+                       </span>
+                   @endif
                  </div>
 
-                 <div class="wrap-input100 bg1 rs1-wrap-input100">
-                   <span class="label-input100">Téléphone * </span>
+                 <div class="wrap-input100 bg1 rs1-wrap-input100 form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
+                   <span class="label-input100 control-label">Téléphone * </span>
                    <input class="input100" type="tel" pattern="[0-9]{*}" name="phone" required placeholder="Entrez le téléphone du locataire">
+                   @if ($errors->has('phone'))
+                       <span class="help-block">
+                           <strong>{{ $errors->first('phone') }}</strong>
+                       </span>
+                   @endif
                  </div>
-                 <div class="wrap-input100 validate-input bg1" data-validate="Entrez svp un nom pour le logement">
-                   <span class="label-input100">Numéro CNI *</span>
+                 <div class="wrap-input100 validate-input bg1 form-group{{ $errors->has('customerId') ? ' has-error' : '' }}" data-validate="Entrez svp un nom pour le logement">
+                   <span class="label-input100 control-label">Numéro CNI *</span>
                    <input class="input100" type="text" pattern="[0-9,A-Z,a-z]{13}" required name="customerId" placeholder="Entrez le numéro de Carte d'identité nationale du locataire">
+                   @if ($errors->has('customerId'))
+                       <span class="help-block">
+                           <strong>{{ $errors->first('customerId') }}</strong>
+                       </span>
+                   @endif
                  </div>
-                 <div class="wrap-input100 bg1 rs1-wrap-input100">
-                   <span class="label-input100">Caution *</span>
+                 <div class="wrap-input100 bg1 rs1-wrap-input100 form-group{{ $errors->has('bail') ? ' has-error' : '' }}">
+                   <span class="label-input100 control-label">Caution *</span>
                    <input class="input100" type="number" pattern="[0-9]{0,10}" name="bail" required  placeholder="Entrez le montant de la caution">
+                   @if ($errors->has('bail'))
+                       <span class="help-block">
+                           <strong>{{ $errors->first('bail') }}</strong>
+                       </span>
+                   @endif
                  </div>
-                 <div class="wrap-input100 bg1 rs1-wrap-input100">
-                   <span class="label-input100">Loyer *</span>
+                 <div class="wrap-input100 bg1 rs1-wrap-input100 form-group{{ $errors->has('monthly_pm') ? ' has-error' : '' }}">
+                   <span class="label-input100 control-label">Loyer *</span>
                    <input class="input100" type="number" pattern="[0-9]{0,10}" name="monthly_pm" required  placeholder="Entrez le montant du loyer">
+                   @if ($errors->has('monthly_pm'))
+                       <span class="help-block">
+                           <strong>{{ $errors->first('monthly_pm') }}</strong>
+                       </span>
+                   @endif
                  </div>
-                 <div class="wrap-input100 bg1 rs1-wrap-input100">
-                   <span class="label-input100">Date de début *</span>
+                 <div class="wrap-input100 bg1 rs1-wrap-input100 form-group{{ $errors->has('start_date') ? ' has-error' : '' }}">
+                   <span class="label-input100 control-label">Date de début *</span>
                    <input class="input100" type="date" pattern="[0-9]{0,10}" name="start_date" required>
+                   @if ($errors->has('start_date'))
+                       <span class="help-block">
+                           <strong>{{ $errors->first('start_date') }}</strong>
+                       </span>
+                   @endif
                  </div>
                  <div class="wrap-input100 bg1 rs1-wrap-input100">
                    <span class="label-input100">Date de fin </span>
