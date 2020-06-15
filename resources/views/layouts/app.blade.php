@@ -80,6 +80,12 @@ if(strpos($_SERVER['REQUEST_URI'],"infos-services") == true)
 
 @endphp
 
+<style>
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+</style>
 </head>
 
 <body style="height:100%">

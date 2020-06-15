@@ -147,7 +147,12 @@ $_SESSION['current_service'] = $service[2];
             });
             </script>
             <div class="col-md-8 col-md-offset-2 picker">
-              <input type="hidden" class="slider-input" value={{ date('n',strtotime($last_row_data->month)) }} />
+              @if(!empty($last_row_data->month))
+                <input type="hidden" class="slider-input" value={{ date('n',strtotime($last_row_data->month)) }} />
+              @endif
+              @if(empty($last_row_data->month))
+                <input type="hidden" class="slider-input" value="{{ date('n') }}" />
+              @endif
             </div>
             <br />
           <form class="form-inline" action="../mes-factures/{{ $_SESSION['current_service'] }}/pdf_bill" method="POST">

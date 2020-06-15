@@ -85,6 +85,12 @@ if($_SERVER['REQUEST_URI'] == '/register')
   $home_directory = '.';
 @endphp
 
+<style>
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+</style>
 </head>
 
 <body style="height:100%">
