@@ -423,7 +423,7 @@ $_SESSION['current_service'] = $service[2];
                   <a class="nav-link" class="close buycb" data-dismiss="modal" data-toggle="modal" data-target="#pay_bill" href="#paiement">Carte Bancaire</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link active buyom" data-toggle="modal" data-target="#om" href="#paiement">OrangeMoney</a>
+                  <a class="nav-link active buyom" data-target="#om" href="#paiement">OrangeMoney</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" class="close buyfc" data-dismiss="modal" data-toggle="modal" data-target="#fc" href="#paiement">FreeCash</a>
@@ -990,7 +990,7 @@ if($i == $limit){
             <a class="nav-link" class="close buycb" data-dismiss="modal" data-toggle="modal" data-target="#last_buy_step_{{ $i }}" href="#paiement">Carte Bancaire</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active buyom" data-toggle="modal" data-target="#om_buy_{{ $i }}" href="#paiement">OrangeMoney</a>
+            <a class="nav-link active buyom" data-target="#om_buy_{{ $i }}" href="#paiement">OrangeMoney</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" class="close buyfc" data-dismiss="modal" data-toggle="modal" data-target="#fc_buy_{{ $i }}" href="#paiement">FreeCash</a>
