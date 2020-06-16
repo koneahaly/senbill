@@ -1155,6 +1155,9 @@ background: linear-gradient(90deg, rgba(49,140,231,1) 0%, rgba(137,180,213,1) 50
     padding-top:15px;
     max-width: 100%;
 }
+.navbarMobileElek{
+      display:none;
+}
 /* app list end */
 
 /*validator password end*/
@@ -1177,7 +1180,6 @@ background: linear-gradient(90deg, rgba(49,140,231,1) 0%, rgba(137,180,213,1) 50
     .s2sn-login-header-mobile-elektra {
         position:fixed;
         width: 100%;
-
         top: 0;
         background-color:rgba(18, 75, 102, 0.7);
         z-index: 1300;
@@ -1198,7 +1200,108 @@ background: linear-gradient(90deg, rgba(49,140,231,1) 0%, rgba(137,180,213,1) 50
     .form-image{
         margin-left:0%;
     }
+
+
+    .navbarMobileElek{
+      bottom: 0;
+      position: fixed;
+      background-color: rgba(18, 75, 102, 0.7);
+      width: 100%;
+      margin-bottom: unset;
+      display: block;
+    }
+    .mobile-nav_list-elektra {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        z-index: 1300;
+        padding: 0;
+        color: #fff;
+        font-size: .75rem;
+        line-height: 15px;
+    }
+    .mobile-nav-elektra-item {
+        flex: 0 0 auto;
+        flex-grow: 1;
+        flex-basis: 0;
+        max-width: 100%;
+        margin-bottom: 0;
+        line-height: 1.375rem;
+    }
+
+    .mobile-nav-elektra-link {
+        display: block;
+        width: 100%;
+        padding: 5px 0;
+        margin-bottom: 0;
+        color: inherit;
+        font-size: .625rem;
+        text-align: center;
+        text-decoration: none;
+        text-transform: uppercase;
+    }
+    .mob-nav-bottom .nav-list .nav-item a.active {
+        color: #fcec34;
+    }
+    .mobile-nav-elektra-icon {
+        display: block;
+        margin-bottom: 2px;
+        font-size: 1.5625rem;
+    }
+    .button--link {
+        height: auto;
+        background-color: transparent;
+        color: #3976dc;
+        line-height: inherit;
+        padding: 0;
+        margin-top:5%;
+    }
+    .mobile-nav-elektra-overlay{
+        display: none;
+        position: fixed;
+        height: 100%;
+        width: 100%;
+        bottom: 0;
+        left: 0;
+        background: rgba(0,0,0,.5);
+    }
+    .mobile-nav-elektra-menu-popup {
+        display: none;
+        position: absolute;
+        bottom: 53px;
+        overflow: hidden;
+        background: #5f9ea0;
+        width: 100%;
+        font-size: 1rem;
+    }
+    .mobile-nav-elektra-item--popup {
+        border-bottom: 1px solid #f3f3f3;
+        border-bottom: 1px solid rgba(243,243,243,.35);
+        padding: 7px 10px;
+        color: #fff;
+        text-transform: uppercase;
+    }
+    .mobile-nav-elektra-inherit-color {
+        color: #fff;
+    }
+    .mobile-nav-elektra-popup-btn{
+      border-radius: 5px;
+      padding: 4px 5px;
+      color: inherit;
+      font-size: .75rem;
+      text-transform: uppercase;
+      background-color: transparent;
+      -webkit-box-shadow: 0 0 0 1px rgba(255,255,255,.35) inset;
+      box-shadow: 0 0 0 1px rgba(255,255,255,.35) inset;
+    }
+
+
 }
+
 .form-image{
     margin-left:30%;
     border:0;

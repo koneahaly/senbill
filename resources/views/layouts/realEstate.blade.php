@@ -124,13 +124,13 @@ html, body {
                </li>
                <li class="nav-item item-connected">
                  <a class="nav-link {{ $active_2 }}"  href="{{ route('mes-locataires') }}">
-                   <i class="fa fa-file-contract fa-2x"></i> <p>Mes Locataires</p>
+                   <i class="fa fa-house-user fa-2x"></i> <p>Mes Locataires</p>
                      <span class="sr-only">(current)</span>
                  </a>
                </li>
                <li class="nav-item item-connected">
                  <a class="nav-link {{ $active_4 }}"  href="{{ route('ownerProperties') }}">
-                   <i class="fa fa-address-card fa-2x"></i><p>Mes logements</p>
+                   <i class="fa fa-building fa-2x"></i><p>Mes logements</p>
                    <span class="sr-only">(current)</span>
                  </a>
                </li>
@@ -252,8 +252,71 @@ html, body {
   </div>
 @endif
   <!--  FIN POUR CHANGER D'ESPACE -->
+
+    <!--  MENU MOBILE DU BAS -->
     @yield('content')
+  <nav class="navbar navbarMobileElek navbar-expand-md navbar-dark bg-dark fixed-bottom">
+    <ul id="nav-list" class="mobile-nav_list-elektra">
+      @guest
+          <li><a class="nav-link" href=".">SE CONNECTER</a></li>
+          <li><a class="nav-link" href="{{ route('register') }}" >S'INSCRIRE</a></li>
+      @else
+      <li class="mobile-nav-elektra-item">
+          <a href="{{ route('ownerTransactions') }}" class="mobile-nav-elektra-link mobile-nav-elektra-link--active">
+              <i class="fa fa-envelope-open-text mobile-nav-elektra-icon"></i>
+              Transactions
+          </a>
+      </li>
+      <li class="mobile-nav-elektra-item">
+          <a href="{{ route('mes-locataires') }}" class="mobile-nav-elektra-link ">
+              <i class="fa fa-house-user mobile-nav-elektra-icon"></i>
+              Locataires
+          </a>
+      </li>
+
+      <li class="mobile-nav-elektra-item">
+          <a href="{{ route('ownerProperties') }}" class="mobile-nav-elektra-link ">
+              <i class="fa fa-building mobile-nav-elektra-icon"></i>
+              Logements
+          </a>
+      </li>
+      <li class="mobile-nav-elektra-item">
+          <a href="{{ route('infos-proprietaire') }}" class="mobile-nav-elektra-link ">
+              <i class="fa fa-user mobile-nav-elektra-icon"></i>
+              Profil
+          </a>
+      </li>
+      <li class="mobile-nav-elektra-item">
+          <button id="menu-btn" onclick="toggleMenuMobile()" class="mobile-nav-elektra-link js-mobile-nav-elektra-more-btn button--link" style="color: rgb(255, 255, 255);">
+              <i class="fa fa-ellipsis-h mobile-nav-elektra-icon"></i>
+              Plus
+          </button>
+      </li>
+    @endif
+  </ul>
+
+  <div id="mobile-nav-overlay" class="mobile-nav-elektra-overlay" >
+        <!--mobile dropdown-->
+        <ul class="mobile-nav-elektra-menu-popup">
+            <li class="mobile-nav-elektra-item mobile-nav-elektra-item--popup">
+                <a class="mobile-nav-elektra-inherit-color" href="{{ route('infos-services-pro') }}">Mes services</a>
+            </li>
+            <li class="mobile-nav-elektra-item mobile-nav-elektra-item--popup  js-mobile-nav-elektra-menu-my-account">
+                <a class="mobile-nav-elektra-inherit-color" href="../mes-services/">Changer de plateforme</a>
+            </li>
+            <li class="mobile-nav-elektra-item mobile-nav-elektra-item--popup mobile-nav-elektra-login-social-wrap">
+                <button id="mobile-nav-sign-up" class="mobile-nav-elektra-popup-btn" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Se Déconnecter</button>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    {{ csrf_field() }}
+                </form>
+            </li>
+        </ul>
+        <!--mobile dropdown end-->
+    </div>
+  </nav>
+  <!--  FIN MENU MOBILE DU BAS -->
 </div>
+
   <!-- HEADER END -->
   <script>
   $(document).ready(function() {
@@ -282,6 +345,16 @@ html, body {
   };
 
   });
+  function toggleMenuMobile() {
+  var moreDiv = document.getElementById("mobile-nav-overlay");
+  var layout=document.getElementsByClassName("mobile-nav-elektra-menu-popup");
+  if (moreDiv.style.display === "none") {
+    moreDiv.style.display = "block";
+    layout[0].style.display = "block";
+  } else {
+    moreDiv.style.display = "none";
+  }
+}
   </script>
 </body>
 </html>
