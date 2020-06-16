@@ -173,55 +173,70 @@ html, body {
     <!--  Fin Header user connecté -->
 
 
-  <nav class="navbar navbar-dark s2sn-login-header-mobile-elektra" role="navigation">
-      <div id="menuToggle">
-      <input type="checkbox" />
-            <!--
-      Some spans to act as a hamburger.
-      -->
-      <span></span>
-      <span></span>
-      <span></span>
-      <ul id="menuElek">
-
-              @if($notification >=0)
+    <nav class="navbar navbar-dark s2sn-login-header-mobile-elektra" role="navigation">
+        <div id="menuToggle">
+        <input type="checkbox" />
+              <!--
+        Some spans to act as a hamburger.
+        -->
+        <span></span>
+        <span></span>
+        <span></span>
+        <ul id="menuElek">
+              @guest
+                <li><a class="nav-link" href=".">SE CONNECTER</a></li>
+                <li><a class="nav-link" href="{{ route('register') }}" >S'INSCRIRE</a></li>
+              @else
+                @if($notification >=0)
                 <li class="nav-item">
-                  <a class="nav-link {{ $active_3 }}"  href="{{ route('mes-factures') }}">
+                  <a class="nav-link {{ $active_4 }}"  href="{{ route('ownerTransactions') }}">
                   Transactions
                    </a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link {{ $active_2 }}"  href="{{ route('mon-contrat') }}">
-                  Mes locataires
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link {{ $active_4 }}"  href="{{ route('infos-personnelles') }}">
-                  Mes logements
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link {{ $active_1 }}"  href="{{ route('infos-personnelles') }}">
-                  Mes informations
-                  </a>
-                </li>
-            @endif
-            <li class="nav-item">
-              <a href="{{ route('logout') }}"
-                  onclick="event.preventDefault();
-                           document.getElementById('logout-form1').submit();">
-                  Se déconnecter
-              </a>
+                  <li class="nav-item">
+                    <a class="nav-link {{ $active_3 }}"  href="{{ route('mes-locataires') }}">
+                    Mes locataires
+                     </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link {{ $active_2 }}"  href="{{ route('ownerProperties') }}">
+                    Mes logements
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link {{ $active_1 }}"  href="{{ route('infos-proprietaire') }}">
+                    Mes informations
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link {{ $active_1 }}"  href="{{ route('infos-services-pro') }}">
+                    Mes services
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link {{ $active_1 }}"  href="../mes-services/">
+                     Changer d'espace
+                    </a>
+                  </li>
 
-              <form id="logout-form1" action="{{ route('logout') }}" method="POST" style="display: none;">
-                  {{ csrf_field() }}
-              </form>
-              </li>
+              @endif
+              <li class="nav-item">
+                <a href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
+                             document.getElementById('logout-form').submit();">
+                    Se déconnecter
+                </a>
 
-          </ul>
-      </div>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    {{ csrf_field() }}
+                </form>
+                </li>
 
-  </nav>
+              @endguest
+            </ul>
+        </div>
+
+    </nav>
   <!--  POUR CHANGER D'ESPACE -->
 @if($_SERVER['REQUEST_URI'] != '/register' && strpos($_SERVER['REQUEST_URI'],"admin") == false)
   <div class="circleEspace ">

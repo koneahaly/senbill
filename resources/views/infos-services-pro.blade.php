@@ -28,7 +28,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                           <div class="form-card">
                               <div class="row">
                                   <div class="col-7">
-                                      <img alt="" class="form-image" style="border:0;margin-left:30%;" src="{{url('images/undraw_location_review_dmxd.png')}}" height="270px" width="318px" data-component="image">
+                                      <img alt="" class="form-image"  src="{{url('images/undraw_location_review_dmxd.png')}}" height="270px" width="318px" data-component="image">
 
                                   </div>
                                   <div class="col-5">
