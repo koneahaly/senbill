@@ -129,29 +129,29 @@ html, body {
         <!--  POUR ELECTRICITE -->
         @if( $service == "electricite")
           <p class="custom-space">Espace electricité</p>
-          <lottie-player src="{{url('images/lottie/light.json')}}"  background="transparent"  speed="1"  style="width: 80px; height: 80px; position:absolute;z-index:1000;margin-left:-27%;"  loop  autoplay></lottie-player>
+          <lottie-player src="{{url('images/lottie/light.json')}}"  background="transparent"  speed="1" class="space-logo"   loop  autoplay></lottie-player>
         @endif
 
        <!--  POUR EAU -->
         @if( $service == "eau")
           <p class="custom-space">Espace eau</p>
-          <lottie-player src="{{url('images/lottie/water.json')}}"  background="transparent"  speed="1"  style="width: 80px; height: 80px; position:absolute;z-index:1000;margin-left:-27%;"  loop  autoplay></lottie-player>
+          <lottie-player src="{{url('images/lottie/water.json')}}"  background="transparent"  speed="1" class="space-logo"  loop  autoplay></lottie-player>
        @endif
       <!--  POUR TV -->
       @if( $service == "tv")
         <p class="custom-space">Espace Télévision </p>
-        <lottie-player src="{{url('images/lottie/tv.json')}}"  background="transparent"  speed="1"  style="width: 80px; height: 80px; position:absolute;z-index:1000;margin-left:-27%;"  loop  autoplay></lottie-player>
+        <lottie-player src="{{url('images/lottie/tv.json')}}"  background="transparent"  speed="1" class="space-logo-tv" loop  autoplay></lottie-player>
       @endif
 
      <!--  POUR MOBILE & Internet -->
      @if( $service == "mobile")
       <p class="custom-space">Espace Mobile & Internet</p>
-      <lottie-player src="{{url('images/lottie/wifi.json')}}"  background="transparent"  speed="1"  style="width: 100px; height: 100px; position:absolute;z-index:1000;margin-left:-24%;margin-top:-0.7%;"  loop  autoplay></lottie-player>
+      <lottie-player src="{{url('images/lottie/wifi.json')}}"  background="transparent"  speed="1" class="space-logo-internet"  loop  autoplay></lottie-player>
      @endif
     <!--  POUR Locataire -->
     @if( $service == "locataire")
       <p class="custom-space">Espace Locataire</p>
-      <lottie-player src="{{url('images/lottie/key.json')}}"  background="transparent"  speed="1"  style="width: 100px; height: 100px; position:absolute;z-index:1000;margin-left:-29%;margin-top:-1.5%;"  loop  autoplay></lottie-player>
+      <lottie-player src="{{url('images/lottie/key.json')}}"  background="transparent"  speed="1" class="space-logo-locataire"  loop  autoplay></lottie-player>
    @endif
           <div class="s2sn-login-header-nav  navbarElektra">
          <ul class="s2sn-navbar-elektra">
@@ -232,25 +232,36 @@ html, body {
             @else
               @if($notification >=0)
               <li class="nav-item">
-                <a class="nav-link {{ $active_4 }}"  href="{{ route('suivi-conso') }}">
+                <a class="nav-link {{ $active_4 }}"  href="../suivi-conso/{{ $service }}">
                 Suivi conso
                  </a>
               </li>
                 <li class="nav-item">
-                  <a class="nav-link {{ $active_3 }}"  href="{{ route('mes-factures') }}">
+                  <a class="nav-link {{ $active_3 }}"  href="../mes-factures/{{ $service }}">
                   Factures et paiements
                    </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link {{ $active_2 }}"  href="{{ route('mon-contrat') }}">
+                  <a class="nav-link {{ $active_2 }}"  href="../mon-contrat/{{ $service }}">
                   Mon contrat
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link {{ $active_1 }}"  href="{{ route('infos-personnelles') }}">
+                  <a class="nav-link {{ $active_1 }}"  href="../infos-personnelles/{{ $service }}">
                   Mes informations
                   </a>
                 </li>
+                <li class="nav-item">
+                  <a class="nav-link {{ $active_1 }}"  href="../infos-services/{{ $service }}">
+                  Mes services
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link {{ $active_1 }}"  href="../mes-services/">
+                   Changer d'espace
+                  </a>
+                </li>
+
             @endif
             <li class="nav-item">
               <a href="{{ route('logout') }}"

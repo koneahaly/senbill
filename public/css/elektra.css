@@ -621,10 +621,24 @@ background: linear-gradient(90deg, rgba(49,140,231,1) 0%, rgba(137,180,213,1) 50
     height:100%;
     margin-left: 40%;
 }
-
-@media all and (max-width: 1100px) {
+@media all and (min-width: 2560px) {
   .s2sn-navbar-elektra {
-   margin-left: 30%;
+   margin-left: 70%;
+  }
+}
+@media all and (min-width: 1920px) and (max-width: 2559px) {
+  .s2sn-navbar-elektra {
+   margin-left: 60%;
+  }
+}
+@media all and (max-width: 1300px) {
+  .s2sn-navbar-elektra {
+   margin-left: 37%;
+  }
+}
+@media all and (max-width: 1200px) {
+  .s2sn-navbar-elektra {
+   margin-left: 20%;
   }
 }
 @media all and (max-width: 992px) {
@@ -638,10 +652,109 @@ background: linear-gradient(90deg, rgba(49,140,231,1) 0%, rgba(137,180,213,1) 50
   }
 }
 
+.space-logo{
+  margin-left: -27%;
+  width: 80px;
+  height: 80px;
+  position:absolute;
+  z-index:1000;
+}
+.space-logo-tv{
+  margin-left: -27%;
+  width: 80px;
+  height: 80px;
+  position:absolute;
+  z-index:1000;
+}
+.space-logo-internet{
+  margin-left: -24%;
+  width:  100px;
+  height: 100px;
+  position:absolute;
+  z-index:1000;
+  margin-top: -0.7%;
+}
+.space-logo-locataire{
+  margin-left: -29%;
+  width: 100px;
+  height: 100px;
+  position:absolute;
+  z-index:1000;
+}
+@media all and (min-width: 1920px){
+  .space-logo{
+    margin-left: -34%;
+  }
+  .space-logo-internet{
+    margin-left: -31%;
+  }
+  .space-logo-locataire{
+    margin-left: -34%;
+  }
+  .space-logo-tv{
+    margin-left: -32%;
+  }
+}
+@media all and (max-width: 1280px){
+  .space-logo{
+    margin-left: -27%;
+  }
+  .space-logo-tv{
+    margin-left: -18%;
+  }
+  .space-logo-internet{
+    margin-left: -20%;
+  }
+  .space-logo-locataire{
+    margin-left: -22%;
+  }
+}
+@media only screen  and (max-width : 1400px) {
+  .space-logo-locataire{
+    margin-left: -23%;
+  }
+  .space-logo-tv{
+    margin-left: -20%;
+  }
+}
+@media all and (max-width: 1270px){
+  .space-logo{
+    margin-left: -20%;
+  }
+  .space-logo-tv{
+    margin-left: -20%;
+  }
+}
+@media all and (max-width: 1100px){
+  .space-logo{
+    margin-left: -20%;
+  }
+  .space-logo-internet{
+    margin-left: -17%;
+  }
+  .space-logo-locataire{
+    margin-left: -20%;
+  }
+  .space-logo-tv{
+    margin-left: -18%;
+  }
+}
+
+
+
 /*IPAD PRO*/
 @media all and (max-width: 1024px) and (min-width: 1000px) {
   .container {
    margin-top: -300px;
+  }
+  .space-logo{
+    margin-left: -20%;
+  }
+  .space-logo-internet{
+    margin-left: -16%;
+  }
+  .space-logo-locataire{
+    margin-left: -20%;
   }
 }
 .s2sn-navbar li{
@@ -689,6 +802,7 @@ background: linear-gradient(90deg, rgba(49,140,231,1) 0%, rgba(137,180,213,1) 50
 .s2sn-login-header-mobile-elektra .nav-item {
     position: relative;
     text-align: center;
+    z-index: 1300;
 }
 .s2sn-navbar .s2sn-header-link:hover{
     color:#ffffff;
@@ -1066,12 +1180,28 @@ background: linear-gradient(90deg, rgba(49,140,231,1) 0%, rgba(137,180,213,1) 50
 
         top: 0;
         background-color:rgba(18, 75, 102, 0.7);
-        z-index: 3;
+        z-index: 1300;
         display: flex;
     }
     .s2sn-wrapper-center {
         margin-top:67px;
     }
+    .lottie-lines{
+        display:none;
+    }
+    .lottie-bubbles{
+        display:none;
+    }
+    .circleEspace{
+        display:none;
+    }
+    .form-image{
+        margin-left:0%;
+    }
+}
+.form-image{
+    margin-left:30%;
+    border:0;
 }
 @media (max-width: 767px) {
     .s2sn-footer {
@@ -1079,6 +1209,9 @@ background: linear-gradient(90deg, rgba(49,140,231,1) 0%, rgba(137,180,213,1) 50
     }
     .s2sn-wrapper-when-footer {
         margin-bottom:0;
+    }
+    .form-image{
+        margin-left:0%;
     }
 }
 @media (max-height: 767px) {
@@ -1365,6 +1498,7 @@ transform: scale(1.05);
     line-height: 1.5;
     text-align: left;
     color: #525f7f;
+    text-align:center;
 }
 .text-muted {
     color: #8898aa!important;

@@ -49,7 +49,7 @@
                   </div>
               </div>
 
-                  <div class="icons-media-container mbr-white">
+                  <div class="icons-media-container mbr-white" style="text-align:center">
                       <div class="card col-12 col-md-6 col-lg-3" style="color: <?=getServiceColor($infos_perso->service_1)?>;">
                           <div class="icon-block">
                             <?php
