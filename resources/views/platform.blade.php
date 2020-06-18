@@ -137,7 +137,7 @@
                               echo '<a href="../mes-factures/locataire">';
                             }
                             ?>
-                                  <i class="fas fa-building fa-7x" style="color: <?=getServiceColor($infos_perso->service_5)?>;"></i>
+                                  <i class="fas fa-house-user  fa-7x" style="color: <?=getServiceColor($infos_perso->service_5)?>;"></i>
                               </a>
                           </div>
                           <h5 class="mbr-fonts-style display-5">
