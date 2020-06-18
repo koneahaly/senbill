@@ -2,9 +2,9 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center rowContentMobile">
         <div class="col col-md-8 col-md-offset-2  p-0 mt-3 mb-2">
-          <div class="panel panel-default" style="margin-top:85px;color:black;">
+          <div class="panel panel-default registerPanel" style="margin-top:85px;color:black;">
               <div class="panel-heading">Créez votre compte utilisateur</div>
               <div class="panel-body">
                 <p class="text-center">Remplissez les champs pour aller aux étapes suivantes</p>
@@ -175,7 +175,7 @@
                         <div class="form-card">
                             <div class="row">
                                 <div class="col-7">
-                                    <h2 class="fs-title" style="margin-left: 40%;">Services</h2>
+                                    <h2 class="fs-title">Services</h2>
                                     <img alt="" class="form-image" style="border:0;margin-left:200px;" src="{{url('images/undraw_location_review_dmxd.png')}}" height="270px" width="318px" data-component="image">
 
                                 </div>
@@ -250,7 +250,7 @@
                         <div class="form-card">
                             <div class="row">
                                 <div class="col-7">
-                                    <h2 class="fs-title" style="margin-left: 30%;">Récap de la souscription</h2>
+                                    <h2 class="fs-title">Récap de la souscription</h2>
                                     <img alt="" class="form-image" style="border:0;margin-left:200px;" src="{{url('images/undraw_reviewed_docs_neeb.png')}}" height="204px" width="318px" data-component="image">
 
                                 </div>
@@ -350,7 +350,7 @@
           </div>
     </div>
 </div>
-
+</div>
 <script src="{{ url('js/form.js') }}"></script>
 <script>
 

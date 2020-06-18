@@ -641,9 +641,46 @@ background: linear-gradient(90deg, rgba(49,140,231,1) 0%, rgba(137,180,213,1) 50
    margin-left: 1%;
   }
 }
+/*MOBILE PHONES*/
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+/* Styles */
+  .home-content1 {
+   margin-top: 43% !important;
+  }
+  .welcomewhocontent{
+   margin-bottom: 17% !important;
+  }
+  .home-main button {
+    width: 55% !important;
+  }
 
+  .whatMobileContent{
+   margin-top: 43% !important;
+  }
+
+}
+
+/* iPads (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+/* Styles */
+.home-content1 {
+ margin-top:23% !important;
+}
+.content1-right {
+ margin-top:-11% !important;
+}
+.welcomewhocontent{
+ margin-bottom: 17% !important;
+}
+
+}
 /*IPAD PRO*/
 @media all and (max-width: 1024px) and (min-width: 1000px) {
+
+  .home-content1 {
+   margin-top:10% !important;
+  }
   .container {
    margin-top: -300px;
   }
@@ -1060,7 +1097,7 @@ background: linear-gradient(90deg, rgba(49,140,231,1) 0%, rgba(137,180,213,1) 50
         position:fixed;
         width: 100%;
         top: 0;
-        background-color:rgba(18, 75, 102, 0.7);
+        background-color:rgb(18, 75, 102);
         z-index: 3;
         display: flex;
     }

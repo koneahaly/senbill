@@ -101,7 +101,7 @@ if(!empty($raw_woyofal_users_demo) and !empty($raw_classical_users_demo)){
     </style>
 
     <body style="height:100%">
-      <div style="background-image: url({{url('images/stLouis.jpg')}});" >
+      <div style="background-image: url({{url('images/stLouis.jpg')}});height:100%" >
         <!-- HEADER START -->
         <div class="s2sn-login-header-desktop">
             <a class="s2sn-logo-elektra" href=".">
@@ -160,7 +160,7 @@ if(!empty($raw_woyofal_users_demo) and !empty($raw_classical_users_demo)){
         	</div>
         	<div class="container-fluid home-content1">
         		<div class="row" style="display:block;">
-        			<div class="col-md-6 content1-left">
+        			<div class="col-md-6 content1-left welcomewhocontent">
                 <!-- <div class="content1-left"></div> -->
         			</div>
         			<div class="col-md-6 content1-right">

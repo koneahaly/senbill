@@ -219,8 +219,18 @@ html, body {
   <nav class="navbar navbarMobileElek navbar-expand-md navbar-dark bg-dark fixed-bottom">
     <ul id="nav-list" class="mobile-nav_list-elektra">
       @guest
-          <li><a class="nav-link" href=".">SE CONNECTER</a></li>
-          <li><a class="nav-link" href="{{ route('register') }}" >S'INSCRIRE</a></li>
+      <li class="mobile-nav-elektra-item">
+          <a href="." class="mobile-nav-elektra-link mobile-nav-elektra-link--active">
+              <i class="fas fa-user-circle mobile-nav-elektra-icon"></i>
+              SE CONNECTER
+          </a>
+      </li>
+      <li class="mobile-nav-elektra-item">
+          <a href="{{ route('register') }}" class="mobile-nav-elektra-link ">
+              <i class="fas fa-sign-in-alt mobile-nav-elektra-icon"></i>
+              S'INSCRIRE
+          </a>
+      </li>
       @else
       <li class="mobile-nav-elektra-item">
           <a href="{{ route('ownerTransactions') }}" class="mobile-nav-elektra-link mobile-nav-elektra-link--active">

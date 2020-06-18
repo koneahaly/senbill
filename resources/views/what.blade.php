@@ -140,7 +140,7 @@ if(!empty($raw_woyofal_users_demo) and !empty($raw_classical_users_demo)){
         </nav>
         <!-- HEADER END -->
 
-        <div class="container s2sn-wrapper-center" style="background:#ffffff">
+        <div class="container s2sn-wrapper-center whatMobileContent" style="background:#ffffff">
             	<div class="row bg-info card my-4 mb-3 pd-l-2" style="padding-right: 2%;">
             		<h3>
             		    <span class="fa fa-question-circle text-white" ></span>

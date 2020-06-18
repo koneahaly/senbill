@@ -630,6 +630,9 @@ background: linear-gradient(90deg, rgba(49,140,231,1) 0%, rgba(137,180,213,1) 50
   .s2sn-navbar-elektra {
    margin-left: 60%;
   }
+  .registerPanel {
+   margin-top: 20% !important;
+  }
 }
 @media all and (max-width: 1300px) {
   .s2sn-navbar-elektra {
@@ -1659,8 +1662,7 @@ transform: scale(1.05);
     color: #318ce7;
     margin-bottom: 15px;
     font-weight: normal;
-    text-align: left;
-    margin-left:200px;
+    text-align: center;
 }
 
 .purple-text {
@@ -2292,4 +2294,17 @@ button.btnBuy:hover .button-text {
   z-index:1000;
   width: 100px;
   margin-top:-1%;
+}
+
+.form-image{
+  display: block !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+
+.card-block {
+    display: block  !important;
+    margin-left: auto  !important;
+    margin-right: auto  !important;
 }
