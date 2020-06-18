@@ -216,70 +216,50 @@ html, body {
     <!--  Fin Header user connecté -->
 
 
-  <nav class="navbar navbar-dark s2sn-login-header-mobile-elektra" role="navigation">
-      <div id="menuToggle">
-      <input type="checkbox" />
-            <!--
-      Some spans to act as a hamburger.
-      -->
-      <span></span>
-      <span></span>
-      <span></span>
-      <ul id="menuElek">
-            @guest
-              <li><a class="nav-link" href=".">SE CONNECTER</a></li>
-              <li><a class="nav-link" href="{{ route('register') }}" >S'INSCRIRE</a></li>
-            @else
-              @if($notification >=0)
-              <li class="nav-item">
-                <a class="nav-link {{ $active_4 }}"  href="../suivi-conso/{{ $service }}">
-                Suivi conso
-                 </a>
-              </li>
-                <li class="nav-item">
-                  <a class="nav-link {{ $active_3 }}"  href="../mes-factures/{{ $service }}">
-                  Factures et paiements
-                   </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link {{ $active_2 }}"  href="../mon-contrat/{{ $service }}">
-                  Mon contrat
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link {{ $active_1 }}"  href="../infos-personnelles/{{ $service }}">
-                  Mes informations
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link {{ $active_1 }}"  href="../infos-services/{{ $service }}">
-                  Mes services
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link {{ $active_1 }}"  href="../mes-services/">
-                   Changer d'espace
-                  </a>
-                </li>
-
-            @endif
-            <li class="nav-item">
-              <a href="{{ route('logout') }}"
-                  onclick="event.preventDefault();
-                           document.getElementById('logout-form').submit();">
-                  Se déconnecter
+    <nav class="navbar navbar-dark s2sn-login-header-mobile-elektra" role="navigation">
+              <!--
+        Some spans to act as a hamburger.
+        -->
+        <span></span>
+        <span></span>
+        <span></span>
+              @guest
+              @else
+              <a class="s2sn-logo-elektra-connected" href="{{ $home_directory }}">
+                  <img src="{{url('images/logo-elektra-halo.png')}}" alt="logo-elektra" width="80" height="auto" class="s2sn-img-normal">
+                  <img src="{{url('images/logo-elektra-halo.png')}}" alt="logo-elektra" width="80" height="auto" class="s2sn-img-retina">
               </a>
 
-              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                  {{ csrf_field() }}
-              </form>
-              </li>
+              <!--  POUR ELECTRICITE -->
+              @if( $service == "electricite")
+                <p class="custom-space">Espace electricité</p>
+                <lottie-player src="{{url('images/lottie/light.json')}}"  background="transparent"  speed="1" class="space-logo logoEspaceMobile"   loop  autoplay></lottie-player>
+              @endif
 
-            @endguest
-          </ul>
-      </div>
+             <!--  POUR EAU -->
+              @if( $service == "eau")
+                <p class="custom-space">Espace eau</p>
+                <lottie-player src="{{url('images/lottie/water.json')}}"  background="transparent"  speed="1" class="space-logo logoEspaceMobile"  loop  autoplay></lottie-player>
+             @endif
+            <!--  POUR TV -->
+            @if( $service == "tv")
+              <p class="custom-space">Espace Télévision </p>
+              <lottie-player src="{{url('images/lottie/tv.json')}}"  background="transparent"  speed="1" class="space-logo-tv logoEspaceMobile" loop  autoplay></lottie-player>
+            @endif
 
-  </nav>
+           <!--  POUR MOBILE & Internet -->
+           @if( $service == "mobile")
+            <p class="custom-space">Espace Mobile & Internet</p>
+            <lottie-player src="{{url('images/lottie/wifi.json')}}"  background="transparent"  speed="1" class="space-logo-internet logoEspaceMobile"  loop  autoplay></lottie-player>
+           @endif
+          <!--  POUR Locataire -->
+          @if( $service == "locataire")
+            <p class="custom-space">Espace Locataire</p>
+            <lottie-player src="{{url('images/lottie/key.json')}}"  background="transparent"  speed="1" class="space-logo-locataire logoEspaceMobile"  loop  autoplay></lottie-player>
+         @endif
+              @endguest
+
+    </nav>
   <!--  POUR CHANGER D'ESPACE -->
   @if($_SERVER['REQUEST_URI'] != '/register' && strpos($_SERVER['REQUEST_URI'],"admin") == false)
     <div class="circleEspace ">
@@ -296,6 +276,68 @@ html, body {
   @endif
   <!--  FIN POUR CHANGER D'ESPACE -->
     @yield('content')
+
+    <!--  MENU MOBILE DU BAS -->
+  <nav class="navbar navbarMobileElek navbar-expand-md navbar-dark bg-dark fixed-bottom">
+    <ul id="nav-list" class="mobile-nav_list-elektra">
+      @guest
+          <li><a class="nav-link" href=".">SE CONNECTER</a></li>
+          <li><a class="nav-link" href="{{ route('register') }}" >S'INSCRIRE</a></li>
+      @else
+      <li class="mobile-nav-elektra-item">
+          <a href="../suivi-conso/{{ $service }}" class="mobile-nav-elektra-link mobile-nav-elektra-link--active">
+              <i class="fa fa-envelope-open-text mobile-nav-elektra-icon"></i>
+              Suivi conso
+          </a>
+      </li>
+      <li class="mobile-nav-elektra-item">
+          <a href="../mes-factures/{{ $service }}" class="mobile-nav-elektra-link ">
+              <i class="fa fa-house-user mobile-nav-elektra-icon"></i>
+              Paiements
+          </a>
+      </li>
+
+      <li class="mobile-nav-elektra-item">
+          <a href="../mon-contrat/{{ $service }}" class="mobile-nav-elektra-link ">
+              <i class="fa fa-building mobile-nav-elektra-icon"></i>
+              Contrat
+          </a>
+      </li>
+      <li class="mobile-nav-elektra-item">
+          <a href="../infos-personnelles/{{ $service }}" class="mobile-nav-elektra-link ">
+              <i class="fa fa-user mobile-nav-elektra-icon"></i>
+              Profil
+          </a>
+      </li>
+      <li class="mobile-nav-elektra-item">
+          <button id="menu-btn" onclick="toggleMenuMobile()" class="mobile-nav-elektra-link js-mobile-nav-elektra-more-btn button--link" style="color: rgb(255, 255, 255);">
+              <i class="fa fa-ellipsis-h mobile-nav-elektra-icon"></i>
+              Plus
+          </button>
+      </li>
+    @endif
+  </ul>
+
+  <div id="mobile-nav-overlay" class="mobile-nav-elektra-overlay" >
+        <!--mobile dropdown-->
+        <ul class="mobile-nav-elektra-menu-popup">
+            <li class="mobile-nav-elektra-item mobile-nav-elektra-item--popup">
+                <a class="mobile-nav-elektra-inherit-color" href="../infos-services/{{ $service }}">Mes services</a>
+            </li>
+            <li class="mobile-nav-elektra-item mobile-nav-elektra-item--popup  js-mobile-nav-elektra-menu-my-account">
+                <a class="mobile-nav-elektra-inherit-color" href="../mes-services/">Changer de plateforme</a>
+            </li>
+            <li class="mobile-nav-elektra-item mobile-nav-elektra-item--popup mobile-nav-elektra-login-social-wrap">
+                <button id="mobile-nav-sign-up" class="mobile-nav-elektra-popup-btn" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Se Déconnecter</button>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    {{ csrf_field() }}
+                </form>
+            </li>
+        </ul>
+        <!--mobile dropdown end-->
+    </div>
+</nav>
+  <!--  FIN MENU MOBILE DU BAS -->
 </div>
   <!-- HEADER END -->
 <script>
@@ -325,6 +367,16 @@ $(document).ready(function() {
 };
 
 });
+function toggleMenuMobile() {
+  var moreDiv = document.getElementById("mobile-nav-overlay");
+  var layout=document.getElementsByClassName("mobile-nav-elektra-menu-popup");
+  if (moreDiv.style.display === "none") {
+    moreDiv.style.display = "block";
+    layout[0].style.display = "block";
+  } else {
+    moreDiv.style.display = "none";
+}
+}
 </script>
 </body>
 </html>

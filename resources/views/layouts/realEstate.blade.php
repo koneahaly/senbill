@@ -213,8 +213,9 @@ html, body {
 @endif
   <!--  FIN POUR CHANGER D'ESPACE -->
 
-    <!--  MENU MOBILE DU BAS -->
+
     @yield('content')
+    <!--  MENU MOBILE DU BAS -->
   <nav class="navbar navbarMobileElek navbar-expand-md navbar-dark bg-dark fixed-bottom">
     <ul id="nav-list" class="mobile-nav_list-elektra">
       @guest
@@ -273,7 +274,7 @@ html, body {
         </ul>
         <!--mobile dropdown end-->
     </div>
-  </nav>
+</nav>
   <!--  FIN MENU MOBILE DU BAS -->
 </div>
 

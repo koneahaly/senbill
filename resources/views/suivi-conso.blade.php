@@ -64,7 +64,7 @@ $dataPoints4 = array(
 @section('content')
 
 <div class="container">
-  <div class="row" style="margin-top:10%;z-index: 1100;">
+  <div class="row rowmobile" style="margin-top:10%;z-index: 1100;">
   <div class="col-md-12" style="margin-top:10px;margin-bottom:20px;text-align:center;">
    <h3><strong>Mon Suivi de consommation</strong></h3>
   </div>

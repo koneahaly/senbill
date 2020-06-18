@@ -11,7 +11,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
       <lottie-player src="{{url('images/lottie/lines.json')}}"  background="transparent"  speed="0.1"  style="width: 500px; height: 500px; position:absolute;z-index:1000;margin-left:-20%;margin-top: 2.5%;"  loop  autoplay></lottie-player>
       <lottie-player src="{{url('images/lottie/lines.json')}}"  background="transparent"  speed="0.1"  style="width: 500px; height: 500px; position:absolute;z-index:1000;margin-left:66%;margin-top: 2.5%;"  loop  autoplay></lottie-player>
   </div>
-    <div class="row" style="margin-top:10%;z-index: 1100;">
+    <div class="row rowmobile" style="margin-top:10%;z-index: 1100;">
       <lottie-player src="{{url('images/lottie/bubble.json')}}" class="lottie-bubbles"  background="transparent"  speed="1"  style="width: 80px; height: 80px; position:absolute;z-index:1000;margin-left:-8%;margin-top: 18%;"  loop  autoplay></lottie-player>
       <lottie-player src="{{url('images/lottie/bubble.json')}}" class="lottie-bubbles" background="transparent"  speed="1"  style="width: 100px; height: 100px; position:absolute;z-index:1000;margin-left:80%;margin-top: 2.5%;"  loop  autoplay></lottie-player>
       <lottie-player src="{{url('images/lottie/bubble.json')}}" class="lottie-bubbles" background="transparent"  speed="1"  style="width: 60px; height: 60px; position:absolute;z-index:1000;margin-left:1%;margin-top: 2%;"  loop  autoplay></lottie-player>
@@ -195,5 +195,6 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
     </div>
 
     </div>
+</div>
 </div>
 @endsection

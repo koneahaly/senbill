@@ -1239,6 +1239,8 @@ background: linear-gradient(90deg, rgba(49,140,231,1) 0%, rgba(137,180,213,1) 50
         color: #fff;
         font-size: .75rem;
         line-height: 15px;
+        list-style: none;
+        margin: 0px;
     }
     .mobile-nav-elektra-item {
         flex: 0 0 auto;
@@ -1275,6 +1277,7 @@ background: linear-gradient(90deg, rgba(49,140,231,1) 0%, rgba(137,180,213,1) 50
         line-height: inherit;
         padding: 0;
         margin-top:5%;
+        border:none;
     }
     .mobile-nav-elektra-overlay{
         display: none;
@@ -1288,11 +1291,12 @@ background: linear-gradient(90deg, rgba(49,140,231,1) 0%, rgba(137,180,213,1) 50
     .mobile-nav-elektra-menu-popup {
         display: none;
         position: absolute;
-        bottom: 53px;
+        bottom: 45px;
         overflow: hidden;
         background: #5f9ea0;
         width: 100%;
         font-size: 1rem;
+        margin: 0px;
     }
     .mobile-nav-elektra-item--popup {
         border-bottom: 1px solid #f3f3f3;
@@ -2263,4 +2267,11 @@ button.btnBuy:hover .button-text {
  .ringEspace :hover {
     color: rgba(137,180,213,1)!important;
     text-decoration: none !important;
+}
+.logoEspaceMobile{
+  position:absolute;
+  right: 0px;
+  z-index:1000;
+  width: 100px;
+  margin-top:-1%;
 }
