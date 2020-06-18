@@ -29,9 +29,12 @@
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.5/css/responsive.dataTables.min.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/dataTables.material.min.css">
 <link rel="stylesheet" type="text/css" href=" https://cdnjs.cloudflare.com/ajax/libs/material-components-web/4.0.0/material-components-web.min.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+
+
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
 
@@ -64,6 +67,7 @@
 <script src="{{ url('js/lottie-player.js') }}"></script>
 
 
+
 <!--===============================================================================================-->
 
 @php
@@ -74,6 +78,8 @@ $active_4 ='none';
 $home_directory = "transactions-proprietaire";
 if(strpos($_SERVER['REQUEST_URI'],"infos-proprietaire") == true)
   $active_1 = 'active';
+if(strpos($_SERVER['REQUEST_URI'],"infos-services-pro") == true)
+    $active_1 = 'active';
 if(strpos($_SERVER['REQUEST_URI'],"mes-locataires") == true)
   $active_2 = 'active';
 if(strpos($_SERVER['REQUEST_URI'],"transactions-proprietaire") == true)
@@ -174,67 +180,21 @@ html, body {
 
 
     <nav class="navbar navbar-dark s2sn-login-header-mobile-elektra" role="navigation">
-        <div id="menuToggle">
-        <input type="checkbox" />
               <!--
         Some spans to act as a hamburger.
         -->
         <span></span>
         <span></span>
         <span></span>
-        <ul id="menuElek">
               @guest
-                <li><a class="nav-link" href=".">SE CONNECTER</a></li>
-                <li><a class="nav-link" href="{{ route('register') }}" >S'INSCRIRE</a></li>
               @else
-                @if($notification >=0)
-                <li class="nav-item">
-                  <a class="nav-link {{ $active_4 }}"  href="{{ route('ownerTransactions') }}">
-                  Transactions
-                   </a>
-                </li>
-                  <li class="nav-item">
-                    <a class="nav-link {{ $active_3 }}"  href="{{ route('mes-locataires') }}">
-                    Mes locataires
-                     </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link {{ $active_2 }}"  href="{{ route('ownerProperties') }}">
-                    Mes logements
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link {{ $active_1 }}"  href="{{ route('infos-proprietaire') }}">
-                    Mes informations
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link {{ $active_1 }}"  href="{{ route('infos-services-pro') }}">
-                    Mes services
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link {{ $active_1 }}"  href="../mes-services/">
-                     Changer d'espace
-                    </a>
-                  </li>
-
-              @endif
-              <li class="nav-item">
-                <a href="{{ route('logout') }}"
-                    onclick="event.preventDefault();
-                             document.getElementById('logout-form').submit();">
-                    Se déconnecter
-                </a>
-
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    {{ csrf_field() }}
-                </form>
-                </li>
-
+              <a class="s2sn-logo-elektra-connected" href="{{ $home_directory }}">
+                  <img src="{{url('images/logo-elektra-halo.png')}}" alt="logo-elektra" width="80" height="auto" class="s2sn-img-normal">
+                  <img src="{{url('images/logo-elektra-halo.png')}}" alt="logo-elektra" width="80" height="auto" class="s2sn-img-retina">
+              </a>
+              <p class="custom-space">Espace Propriétaire</p>
+              <lottie-player src="{{url('images/lottie/house.json')}}"  background="transparent"  speed="1"  class="propLogoMobile"  loop  autoplay></lottie-player>
               @endguest
-            </ul>
-        </div>
 
     </nav>
   <!--  POUR CHANGER D'ESPACE -->

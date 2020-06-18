@@ -7,7 +7,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
 @section('content')
 <div class="container">
   <!--TITLE OF THE PAGE-->
-  <div class="row" style="margin-top:10%">
+  <div class="row rowloc" style="margin-top:14%;z-index: 1100;">
   <div class="col-md-12" style="margin-top:10px;margin-bottom:20px;text-align:center;flex-basis:100%;max-width:100%;z-index: 1100;">
    <h3><strong>Mes logements</strong></h3>
  </div>
@@ -66,7 +66,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                <div class="row propRow">
                    <!---DEBUT  CARTE LOGEMENT 1 -->
                  @foreach($infos_log as $vl)
-                 <div class="col-xs-12 col-sm-10 col-md-8">
+                 <div class="col-xs-24 col-sm-10 col-md-8">
                    <div class="m-panel panel-property--list" >
                      <div class="markup"></div>
                      <!-- DEBUT BODY DETAIL -->
