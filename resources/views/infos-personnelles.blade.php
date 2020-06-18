@@ -222,7 +222,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
         </div>
         <!-- les infos banciares -->
 
-        <div class="panel panel-default personalInfoPanel">
+        <div class="panel panel-default personalInfoPanel contractContentMobile">
           <div class="panel-body">
             <div class="row" style="margin-bottom:35px">
               <div class="col-md-6" style="font-size:18px"> <strong>Mes informations bancaires</strong></div>

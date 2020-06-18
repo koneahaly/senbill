@@ -98,7 +98,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
 
 
          </div>
-            <div class="panel panel-default" id= "contract-panel">
+            <div class="panel panel-default contractContentMobile" id= "contract-panel">
 
                 <div class="panel-body">
                     @if (session('status'))

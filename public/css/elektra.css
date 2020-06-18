@@ -748,6 +748,24 @@ background: linear-gradient(90deg, rgba(49,140,231,1) 0%, rgba(137,180,213,1) 50
    margin-top: 35% !important;
   }
 
+  .rowContentMobile{
+   margin-bottom: 52px !important;
+  }
+  .contractContentMobile{
+   margin-bottom: 72px !important;
+  }
+
+}
+
+/* iPads (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+/* Styles */
+  .rowContentMobile{
+   margin-bottom: 52px !important;
+  }
+  .contractContentMobile{
+   margin-bottom: 72px !important;
+  }
 }
 
 /*IPAD PRO*/

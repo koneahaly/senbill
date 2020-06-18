@@ -232,7 +232,7 @@ $_SESSION['current_service'] = $service[2];
         <form class="form-inline" action="{{ route('mes-factures.pdf_buy')}}" method="GET">
             {{csrf_field()}}
             @if(Auth::user()->user_type == 2 and (!empty($data) and $data != NULL))
-              <div class="col-md-4 col-md-offset-4 ticket" style="text-align:center;">
+              <div class="col-md-4 col-md-offset-4 ticket  rowContentMobile" style="text-align:center;">
                 <div class="large-main-panel" style="background-color:#fff;">
                   <div>
                     <i class="fas fa-paperclip fa-3x" style="margin-right:98%;margin-top: -200px;"></i>
