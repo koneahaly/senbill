@@ -740,7 +740,15 @@ background: linear-gradient(90deg, rgba(49,140,231,1) 0%, rgba(137,180,213,1) 50
   }
 }
 
+/*MOBILE PHONES*/
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+/* Styles */
+  .container .rowmobile {
+   margin-top: 35% !important;
+  }
 
+}
 
 /*IPAD PRO*/
 @media all and (max-width: 1024px) and (min-width: 1000px) {
@@ -1216,6 +1224,7 @@ background: linear-gradient(90deg, rgba(49,140,231,1) 0%, rgba(137,180,213,1) 50
       width: 100%;
       margin-bottom: unset;
       display: block;
+      z-index: 1300;
     }
     .mobile-nav_list-elektra {
         display: flex;

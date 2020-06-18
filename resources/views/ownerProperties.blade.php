@@ -7,7 +7,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
 @section('content')
 <div class="container">
   <!--TITLE OF THE PAGE-->
-  <div class="row rowloc" style="margin-top:14%;z-index: 1100;">
+  <div class="row rowloc rowmobile" style="margin-top:14%;z-index: 1100;">
   <div class="col-md-12" style="margin-top:10px;margin-bottom:20px;text-align:center;flex-basis:100%;max-width:100%;z-index: 1100;">
    <h3><strong>Mes logements</strong></h3>
  </div>

@@ -11,7 +11,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
       <lottie-player src="{{url('images/lottie/lines.json')}}"  background="transparent"  speed="0.1"  style="width: 500px; height: 500px; position:absolute;z-index:1000;margin-left:70%;margin-top: 2.5%;"  loop  autoplay></lottie-player>
   </div>
   <!--TITLE OF THE PAGE-->
-  <div class="row rowloc" style="margin-top:14%;z-index: 1100;">
+  <div class="row rowloc rowmobile" style="margin-top:14%;z-index: 1100;">
   <div class="col-md-12" style="margin-top:10px;margin-bottom:20px;text-align:center;flex-basis:100%;max-width:100%;">
    <h3><strong>Mes locataires</strong></h3>
  </div>
