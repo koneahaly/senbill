@@ -453,7 +453,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                  </div>
                  <div class="wrap-input100 input100-select bg1 rs1-wrap-input100">
                    <span class="label-input100">Date de naissance </span>
-                   <input class="input100" type="text" name="dateOB" required  placeholder="Entrez la date">
+                   <input class="input100" type="date" name="dateOB" >
                  </div>
                  <div class=" wrap-input100 bg1 rs1-wrap-input100">
                    <span class="label-input100">Lieu de naissance </span>
@@ -471,7 +471,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
 
                  <div class="wrap-input100 bg1 rs1-wrap-input100 form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
                    <span class="label-input100 control-label">Téléphone * </span>
-                   <input class="input100" type="tel" pattern="[0-9]{*}" name="phone" required placeholder="Entrez le téléphone du locataire">
+                   <input class="input100" type="tel" name="phone" required placeholder="Entrez le téléphone du locataire">
                    @if ($errors->has('phone'))
                        <span class="help-block">
                            <strong>{{ $errors->first('phone') }}</strong>

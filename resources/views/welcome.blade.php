@@ -33,10 +33,9 @@ if(!empty($raw_woyofal_users_demo) and !empty($raw_classical_users_demo)){
         <link rel="stylesheet" type="text/css" href="{{url('css/bootstrap.min.css')}}">
         <link rel="stylesheet" type="text/css" href="{{url('css/all.min.css')}}">
         <link rel="stylesheet" type="text/css" href="{{url('css/elektra_bis.css')}}">
-        <script src="{!! mix('js/app.js') !!}"></script>
+        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
     </head>
-
     <body class="welcome_elektra">
       <div class="s2sn-wrapper-login-container s2sn-js-login" style="background-image: url({{url('images/stLouis.jpg')}});">
       	 <!-- HEADER START -->
@@ -109,7 +108,7 @@ if(!empty($raw_woyofal_users_demo) and !empty($raw_classical_users_demo)){
             @if ($errors->has('email'))
             <div class="s2sn-error-login" id="s2sn-error-login">
                 <span class="help-block">
-                  <i class="fas fa-exclamation-circle"></i>
+                  <span class="fa fa-exclamation-circle"></span>
                     <p>{{ $errors->first('email') }}</p>
                 </span>
               </div>
@@ -117,14 +116,14 @@ if(!empty($raw_woyofal_users_demo) and !empty($raw_classical_users_demo)){
             <div class="s2sn-input-group input-group form-slider-step form-group{{ $errors->has('email') ? ' has-error' : '' }}" id="form-step-1">
              <input type="text" name="email" id="PIN" value="{{ old('email') }}" class="form-control" placeholder="Veuillez saisir votre login ou email" aria-label="Veuillez saisir votre login ou email" required>
              <div class="input-group-prepend">
-                         <button class="btn s2sn-js-btn-back" type="reset" value= "Reset" ><i class="fas fa-undo-alt"></i></button>
+                         <button class="btn s2sn-js-btn-back" type="reset" value= "Reset" ><span class="fa fa-undo"></span></button>
                      </div>
                </div>
              <div id="form-step-2" class="form-slider-step">
                 <div class="s2sn-input-group input-group">
                     <input type="password" class="form-control" placeholder="Mot de passe" aria-label="Mot de passe" name="password" id="PWD" onkeypress="if(event.keyCode==13){return submitCredentials();}" required>
                     <div class="input-group-append">
-                        <button class="btn s2sn-js-btn-next" type="submit" onclick="return submitCredentials();"><i class="fas fa-arrow-right"></i></button>
+                        <button class="btn s2sn-js-btn-next" type="submit" onclick="return submitCredentials();"><span class="fa fa-arrow-right"></span></button>
                      </div>
                 </div>
              </div>
@@ -172,7 +171,8 @@ if(!empty($raw_woyofal_users_demo) and !empty($raw_classical_users_demo)){
                 <div class="row">
                   <div class="col-3">
                     <p class="text-center">
-                      <i class="fas fa-desktop fa-4x"></i>
+                      <span class="fa fa-desktop fa-4x"></span>
+
                     </p>
                   </div>
 
@@ -197,7 +197,6 @@ if(!empty($raw_woyofal_users_demo) and !empty($raw_classical_users_demo)){
          <script src="{{url('js/jquery.min.js')}}"></script>
          <script src="{{url('js/popper.min.js')}}"></script>
          <script src="{{url('js/bootstrap.min.js')}}"></script>
-         <script src="{{url('js/jquery-ui.min.js')}}"></script>
 
     </div>
     </body>

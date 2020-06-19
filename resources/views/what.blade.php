@@ -35,7 +35,7 @@ if(!empty($raw_woyofal_users_demo) and !empty($raw_classical_users_demo)){
         <link rel="stylesheet" type="text/css" href="{{url('css/all.min.css')}}">
         <link rel="stylesheet" type="text/css" href="{{url('css/elektra_bis.css')}}">
         <link href="https://fonts.googleapis.com/css?family=Oswald|PT+Sans" rel="stylesheet">
-        <script src="{!! mix('js/app.js') !!}"></script>
+        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
     </head>
 

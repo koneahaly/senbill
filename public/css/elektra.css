@@ -757,6 +757,9 @@ background: linear-gradient(90deg, rgba(49,140,231,1) 0%, rgba(137,180,213,1) 50
   .contractContentMobile{
    margin-bottom: 72px !important;
   }
+  .slider-container{
+    width: 350px !important;
+  }
 
 }
 
@@ -768,6 +771,9 @@ background: linear-gradient(90deg, rgba(49,140,231,1) 0%, rgba(137,180,213,1) 50
   }
   .contractContentMobile{
    margin-bottom: 72px !important;
+  }
+  .slider-container{
+    width: 700px !important;
   }
 }
 
