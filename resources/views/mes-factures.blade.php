@@ -56,18 +56,18 @@ $_SESSION['current_service'] = $service[2];
                 <table id="billsTable" class="mdl-data-table" style="width:100%">
                   <thead style="background: rgba(137,180,213,1);color:#fff">
                       <tr>
-                        <th>Prévu le</th>
-                        <th>Motif</th>
+                        <!--<th>Prévu le</th> -->
+                        <th>&Eacute;chéance</th>
                         <th>Montant</th>
-                        <th>Etat du paiement</th>
+                        <th>&Eacute;tat</th>
                         <th>Moyen de paiement</th>
                       </tr>
                   </thead>
                   <tbody style="background-color:#fff;color:#455469">
                     @foreach($data as $value)
                       <tr>
-                        <td id="{{$value->month}}"> {{$value->year}} {{$value->month}} </td>
-                        <td> Echéance de {{$value->month}} {{$value->year}} </td>
+                        <!--<td id="{{$value->month}}"> {{$value->year}} {{$value->month}} </td>-->
+                        <td>{{$value->month}} {{$value->year}} </td>
                         <td id="{{$value->month}}_amount" style="text-align:right;font-weight: 700;"> {{$value->amount}} FCFA </td>
                         @if($value->status == "paid")
                           <td id="{{$value->month}}_status" style="color:#28863e;font-weight: 700;"> {{$value->status}} </td>
@@ -95,10 +95,10 @@ $_SESSION['current_service'] = $service[2];
                     <!-- <caption><h4>Achats déjà effectués</h4></caption> -->
                   <thead style="background: rgba(137,180,213,1);color:#fff">
                       <tr>
-                        <th>Prévu le</th>
+                      <!--  <th>Prévu le</th>-->
                         <th>Motif</th>
                         <th>Montant</th>
-                        <th>Etat du paiement</th>
+                        <th>&Eacute;tat</th>
                         <th>Moyen de paiement</th>
                       </tr>
                   </thead>
@@ -106,7 +106,7 @@ $_SESSION['current_service'] = $service[2];
                       @foreach($data as $value)
                         @foreach($value as $v)
                           <tr>
-                            <td> {{$v->creation_date}} </td>
+                          <!--  <td> {{$v->creation_date}} </td>-->
                             <td> Achat de carte prépayée </td>
                             <td style="text-align:right;font-weight: 700;"> {{$v->amount}} FCFA </td>
                             <td style="color:#28863e;font-weight: 700;"> Paid </td>
@@ -125,7 +125,7 @@ $_SESSION['current_service'] = $service[2];
              <span class="circle">
                <span class="icon arrow"></span>
              </span>
-             <span class="button-text">Acheter une nouvelle carte</span>
+             <span class="button-text">Acheter une carte</span>
            </button>
           </div>
           </div>
@@ -141,7 +141,7 @@ $_SESSION['current_service'] = $service[2];
                 step: 0.5,
                 scale: [-2.0,-1.0,0.0,1.0,2.0],
                 format: '%s',
-                width: 300,
+                width: 30%,
                 showLabels: true,
                 snap: true
             });
@@ -237,8 +237,8 @@ $_SESSION['current_service'] = $service[2];
                   <div>
                     <i class="fas fa-paperclip fa-3x" style="margin-right:98%;margin-top: -200px;"></i>
                     <br/>
-                    <span> Reçu du mois de {{$last_row_data['creation_date']}} &nbsp;</span>
-                    <span class="glyphicon glyphicon-ok-circle text-success">Paid</span>
+                    <span> Reçu du {{$last_row_data['creation_date']}} &nbsp;</span>
+                    <span class="glyphicon glyphicon-ok-circle text-success">Payée</span>
 
                     <br />
                     <br />

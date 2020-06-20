@@ -53,7 +53,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                       </div>
                     </form>
                   @if(!isset($_POST['update_perso_data']))
-                    <div style="margin-left:2%;margin-bottom:10px">
+                    <div class="col-md-12" style="margin-bottom:10px">
                       <p><strong>CIVILITE</strong></p>
                       <span class="recapData">{{ Auth::user()->civilite }}</span>
                     </div>
@@ -80,7 +80,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
 
                     <div class="row" style="margin-bottom:10px;margin-left:18px">
                       <p><strong>RECEVOIR LA NEWSLETTER</strong></p>
-                      <span class="recapData">OUI</span>
+                      <span class="recapData">NON</span>
                     </div>
                   @endif
 
@@ -185,7 +185,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                   <form method="post" action="../infos-personnelles/{{ $_SESSION['current_service']}}">
                     {{csrf_field()}}
                     <div class="col-md-6" style="margin-bottom:10px">
-                      <p><strong>PHONE</strong></p>
+                      <p><strong>T&Eacute;L&Eacute;PHONE</strong></p>
                       <span class="recapData">{{ Auth::user()->phone }}</span>
                       <div>
                         <button style="background:rgba(137,180,213,1);color:white;margin-top:8px" class="btn">
@@ -240,8 +240,8 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
 
             <div class="col-md-6" style="margin-bottom:10px">
               <p><strong>MOYEN DE PAIEMENT:</strong></p>
-              <span>Compte OrangeBank : <strong class="recapData">06******45</strong> </br>
-              Paiement :<strong class="recapData"> récurrent</strong> <br />
+              <span>Compte OrangeMoney : <strong class="recapData">{{ substr(Auth::user()->phone,0,2) }}******{{ substr(Auth::user()->phone,-2,2) }}</strong> </br>
+              Paiement :<strong class="recapData"> ponctuel</strong> <br />
               Statut : <strong style="color:green"> Valide</strong></span>
               <div>
                 <button style="background:rgba(137,180,213,1);color:white;margin-top:8px" class="btn" disabled="disabled">

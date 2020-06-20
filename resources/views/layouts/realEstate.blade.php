@@ -130,19 +130,19 @@ html, body {
                </li>
                <li class="nav-item item-connected">
                  <a class="nav-link {{ $active_2 }}"  href="{{ route('mes-locataires') }}">
-                   <i class="fa fa-house-user fa-2x"></i> <p>Mes Locataires</p>
+                   <i class="fa fa-house-user fa-2x"></i> <p>Locataires</p>
                      <span class="sr-only">(current)</span>
                  </a>
                </li>
                <li class="nav-item item-connected">
                  <a class="nav-link {{ $active_4 }}"  href="{{ route('ownerProperties') }}">
-                   <i class="fa fa-building fa-2x"></i><p>Mes logements</p>
+                   <i class="fa fa-building fa-2x"></i><p>Logements</p>
                    <span class="sr-only">(current)</span>
                  </a>
                </li>
                <li class="dropdown nav-item item-connected">
                    <a href="#" class="nav-link {{ $active_1 }} dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
-                     <i class="fa fa-user fa-2x"></i> <p>Mon profil</p>
+                     <i class="fa fa-user fa-2x"></i> <p>Profil</p>
                      <span class="caret"></span>
                    </a>
 
