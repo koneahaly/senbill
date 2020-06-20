@@ -218,7 +218,7 @@ $_SESSION['current_service'] = $service[2];
               from: 1,
               to: 12,
               step: 1,
-              scale: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+              scale: ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Jui', 'Jul', 'Aoû', 'Sep', 'Oct', 'Nov', 'Déc'],
               format: '%s',
               width: 800,
               showLabels: true,
@@ -1257,7 +1257,7 @@ $(document).ready(function() {
 
   $('.picker').click(function(){
     var month_value = $('.slider-input').val();
-    var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    var months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
     var tag_month = months[month_value - 1];
     var ech_value = $('#'+tag_month).html();
     var montant_value = $('#'+tag_month+"_amount").html();

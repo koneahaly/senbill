@@ -83,7 +83,7 @@ class AdminController extends Controller
     public function imports_bills_previous_six_month(){
       $users['users']=DB::table('users')->where('email','like','stat%')->orderBy('id', 'DESC')->get();
       //dd($users['users']);
-      $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+      $months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
       $month_int = date('n') - 1; //to begin at zero as table index
       $year_int = date('Y');
 

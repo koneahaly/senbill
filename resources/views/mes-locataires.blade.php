@@ -236,7 +236,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                   </span>
               @endif
             </div>
-            <div class="wrap-input100 input100-select bg1 rs1-wrap-input100">
+            <div class="wrap-input100 bg1 rs1-wrap-input100">
               <span class="label-input100">Date de naissance </span>
               <input class="input100 update_dob" type="text" name="dateOB" placeholder="Entrez la date" value="03/05/1993">
             </div>
