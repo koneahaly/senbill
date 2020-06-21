@@ -535,7 +535,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                  </div>
                  <div class="wrap-input100 bg1 rs1-wrap-input100">
                    <span class="label-input100">Jour d'échéance *</span>
-                   <input class="input100" type="number" pattern="[0-9]{0,5}" name="delay" required  value="0">
+                   <input class="input100" type="number" pattern="[0-9]{0,5}" name="delay" required  value="5">
                  </div>
 
 
