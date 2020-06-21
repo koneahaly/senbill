@@ -28,7 +28,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                   <div class="row" style="margin-left: 1%;">
                     <div class="col-md-8">
                       <h5 class="card-title text-uppercase text-muted mb-0">Type d'offre</h5>
-                      <span class="h4 font-weight-bold mb-0">@php $wording_offer = (Auth::user()->user_type == 2) ? "Woyofal" : "Classique"; echo $wording_offer; @endphp</span>
+                      <span class="h4 font-weight-bold mb-0">@php $wording_offer = (Auth::user()->user_type == 2) ? "Prépayée" : "Postpayée"; echo $wording_offer; @endphp</span>
                     </div>
                     <div class="col-auto">
                       <div>
