@@ -64,7 +64,7 @@ $dataPoints4 = array(
 @section('content')
 
 <div class="container">
-  <div class="row rowmobile" style="margin-top:10%;z-index: 1100;">
+  <div class="row rowmobile" style="margin-top:14%;z-index: 1100;">
   <div class="col-md-12" style="margin-top:10px;margin-bottom:20px;text-align:center;">
    <h3><strong>Mon Suivi de consommation</strong></h3>
   </div>
@@ -88,11 +88,18 @@ $dataPoints4 = array(
 
 $(document).ready(function() {
 nv.addGraph(function() {
+    var screen_width = $(window).width();
+    var showControlsBoolean = true;
+    if(screen_width <= 480 && screen_width > 320){
+      showControlsBoolean = false;
+    }
+
     var chart = nv.models.multiBarChart()
       .duration(350)
       .reduceXTicks(true)   //If 'false', every single x-axis tick label will be rendered.
       .rotateLabels(0)      //Angle to rotate x-axis labels.
-      .showControls(true)   //Allow user to switch between 'Grouped' and 'Stacked' mode.
+      .showControls(showControlsBoolean)   //Allow user to switch between 'Grouped' and 'Stacked' mode.
+      .controlLabels({"grouped":"Groupé","stacked":"Empilé"})
       .groupSpacing(0.1)    //Distance between each group of bars.
     ;
     var unitFormat = function(d) { return d3.format(',.1f')(d)  + ' Watt'};
