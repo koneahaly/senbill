@@ -68,13 +68,13 @@ $_SESSION['current_service'] = $service[2];
                       <tr>
                         <!--<td id="{{$value->month}}"> {{$value->year}} {{$value->month}} </td>-->
                         <td>{{$value->month}} {{$value->year}} </td>
-                        <td id="{{$value->month}}_amount" style="text-align:right;font-weight: 700;"> {{$value->amount}} FCFA </td>
+                        <td id="{{$value->month}}_amount" style="text-align:center;font-weight: 700;"> {{$value->amount}} FCFA </td>
                         @if($value->status == "paid")
-                          <td id="{{$value->month}}_status" style="color:#28863e;font-weight: 700;"> {{$value->status}} </td>
-                          <td> {{$value->payment_method}} </td>
+                          <td id="{{$value->month}}_status" style="color:#28863e;font-weight: 700;width:20%;"> <span title="payée" class=" status_j glyphicon btn-lg glyphicon-ok-circle text-success"></span> <br /> <span style="font-size:0.7em;font-weight: lighter;color:black;">  le {{$value->created_at}} <span> </td>
+                          <td style="width:20%;"> {{$value->payment_method}} </td>
                         @endif
                         @if($value->status != "paid")
-                          <td><button data-toggle="modal" data-target="#pay_bill" class="btn btn-danger btn-xs"> Régler</button></td>
+                          <td><button data-toggle="modal" data-target="#pay_bill" class="btn btn-danger btn-xs"> Régler</button> <br /> <span style="font-size:2;font-weight: lighter;color:black;"> avant le {{$v->created_at}} <span></td>
                           <td> n/a </td>
                           <input type='hidden' id="{{$value->month}}_status" value="{{$value->status}}" />
                         @endif
@@ -108,9 +108,9 @@ $_SESSION['current_service'] = $service[2];
                           <tr>
                           <!--  <td> {{$v->creation_date}} </td>-->
                             <td> Achat de carte prépayée </td>
-                            <td style="text-align:right;font-weight: 700;"> {{$v->amount}} FCFA </td>
-                            <td style="color:#28863e;font-weight: 700;"> Paid </td>
-                            <td> {{$v->payment_method}} </td>
+                            <td style="text-align:center;font-weight: 700;"> {{$v->amount}} FCFA </td>
+                            <td style="color:#28863e;font-weight: 700;width:20%;"> <span title="payée" class=" status_j glyphicon btn-lg glyphicon-ok-circle text-success"></span> <br /> <span style="font-size:2;font-weight: lighter;color:black;"> le {{$v->created_at}} <span></td>
+                            <td style="width:20%;"> {{$v->payment_method}} </td>
                           </tr>
                           @endforeach
                       @endforeach
