@@ -49,7 +49,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
               </td>
               <td class="reAmount"><span class="green">+</span> {{ $value->amount }} FCFA </td>
                 <td style="color:#28863e;font-weight: 700;"> {{ $value->status }} </td>
-                <td> {{ $value->payment_method }}</td>
+                <td> {{ ($value->status == 'paid') ? $value->payment_method  : 'n/a'}}</td>
             </tr>
           @endforeach
             <!--<tr>

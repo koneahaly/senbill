@@ -28,7 +28,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                   <div class="row" style="margin-left: 1%;">
                     <div class="col-md-8">
                       <h5 class="card-title text-uppercase text-muted mb-0">Type d'offre</h5>
-                      <span class="h4 font-weight-bold mb-0">@php $wording_offer = (Auth::user()->user_type == 2) ? "Woyofal" : "Classique"; echo $wording_offer; @endphp</span>
+                      <span class="h4 font-weight-bold mb-0">@php $wording_offer = (Auth::user()->user_type == 2) ? "Prépayée" : "Postpayée"; echo $wording_offer; @endphp</span>
                     </div>
                     <div class="col-auto">
                       <div>
@@ -121,7 +121,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
 
                   <div class="col-md-6" style="margin-bottom:20px;">
                     <p>OFFRE</p>
-                    <span class="recapData"><strong>@php $wording_offer = (Auth::user()->user_type == 2) ? "Woyofal" : "Classique"; echo $wording_offer; @endphp</strong></span>
+                    <span class="recapData"><strong>@php $wording_offer = (Auth::user()->user_type == 2) ? "Prépayée" : "Postpayée"; echo $wording_offer; @endphp</strong></span>
                   </div>
 
                   <div class="col-md-6" style="margin-bottom:20px;">
@@ -144,10 +144,10 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                   </div>
 
 
-                  <div class="col-md-6 col-md-offset-0" style="margin-bottom:20px;">
+                  <!--<div class="col-md-6 col-md-offset-0" style="margin-bottom:20px;">
                     <p>POINT DE LIVRAISON</p>
                     <span  class="recapData"><strong>{{Auth::user()->address}}</strong></span>
-                  </div>
+                  </div>-->
 
                   <div class="col-md-6 col-md-offset-0" style="margin-bottom:20px;">
                     <p>R&Eacute;F&Eacute;RENCE DU CONTRAT</p>
@@ -164,10 +164,41 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                     <span class="recapData"><strong>{{ Auth::user()->address }}</strong></span>
                   </div>
 
-                  <div class="col-md-6 col-md-offset-0" style="margin-bottom:20px;">
-                    <p>OPTION ET PUISSANCE SOUSCRITE</p>
-                    <span class="recapData"><strong>9 KVA - Base</strong></span>
-                  </div>
+                  @if($_SESSION['current_service'] == 'electricite')
+                    <div class="col-md-6 col-md-offset-0" style="margin-bottom:20px;">
+                      <p>OPTION ET PUISSANCE SOUSCRITE</p>
+                      <span class="recapData"><strong>9 KVA - Base</strong></span>
+                    </div>
+                  @endif
+
+                  @if($_SESSION['current_service'] == 'eau')
+                    <div class="col-md-6 col-md-offset-0" style="margin-bottom:20px;">
+                      <p>OFFRE</p>
+                      <span class="recapData"><strong>Eau</strong></span>
+                    </div>
+                  @endif
+
+                  @if($_SESSION['current_service'] == 'tv')
+                    <div class="col-md-6 col-md-offset-0" style="margin-bottom:20px;">
+                      <p>OFFRE</p>
+                      <span class="recapData"><strong>Canal Afrique</strong></span>
+                    </div>
+                  @endif
+
+                  @if($_SESSION['current_service'] == 'mobile')
+                    <div class="col-md-6 col-md-offset-0" style="margin-bottom:20px;">
+                      <p>OFFRE</p>
+                      <span class="recapData"><strong>Live Box Family</strong></span>
+                    </div>
+                  @endif
+
+                  @if($_SESSION['current_service'] == 'locataire')
+                    <div class="col-md-6 col-md-offset-0" style="margin-bottom:20px;">
+                      <p>OFFRE</p>
+                      <span class="recapData"><strong>Location</strong></span>
+                    </div>
+                  @endif
+
                   <div class="col-md-6 col-md-offset-0" style="margin-bottom:20px;">
                     <p>TYPE DE FACTURATION</p>
                     <span class="recapData"><strong> BIMESTRE </strong></span>
@@ -182,7 +213,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                       Si vous souhaitez parrainer un(e) proche, vous avez la possibilité
                        de lui partager votre lien personnalisé depuis lequel il ou elle
                        pourra souscrire son contrat <a href="127.0.0.1/parrainage/{{ Auth::user()->customerId }}">ici </a>.
-                        Le gain est de 10000FCFA dans la cagnotte du parrain et 10000FCFA dans celle du filleul, dès
+                        Le gain est de 10000 FCFA dans la cagnotte du parrain et 10000 FCFA dans celle du filleul, dès
                         lors que le contrat du filleul aura été activé.
                     </span>
                   </div>

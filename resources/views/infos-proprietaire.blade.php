@@ -229,16 +229,16 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
               </div>
 
 
-            <div class="col-md-6" style="margin-bottom:10px">
-              <p><strong>MOYEN DE PAIEMENT:</strong></p>
-              <span>Compte OrangeBank : <strong class="recapData">06******45</strong> </br>
-              Paiement :<strong class="recapData"> récurrent</strong> <br />
-              Statut : <strong style="color:green"> Valide</strong></span>
-              <div>
-                <button style="background:rgba(137,180,213,1);color:white;margin-top:8px" class="btn" disabled="disabled">
-                <span class="glyphicon glyphicon-edit"></span> Modifier
-                </button></div>
-            </div>
+              <div class="col-md-6" style="margin-bottom:10px">
+                <p><strong>MOYEN DE PAIEMENT:</strong></p>
+                <span>Compte OrangeMoney : <strong class="recapData">{{ substr(Auth::user()->phone,0,2) }}******{{ substr(Auth::user()->phone,-2,2) }}</strong> </br>
+                Paiement :<strong class="recapData"> ponctuel</strong> <br />
+                Statut : <strong style="color:green"> Valide</strong></span>
+                <div>
+                  <button style="background:rgba(137,180,213,1);color:white;margin-top:8px" class="btn" disabled="disabled">
+                  <span class="glyphicon glyphicon-edit"></span> Modifier
+                  </button></div>
+              </div>
 
 
         </div>
