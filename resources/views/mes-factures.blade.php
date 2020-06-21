@@ -179,7 +179,7 @@ $_SESSION['current_service'] = $service[2];
                     <br />
                     <div class="row toPay">
                       @if($last_row_data->status == "paid")
-                        <button class="btn rgmail" style="background-color:rgba(137,180,213,1);color:#fff"> Envoyer par mail </button>
+                        <!--<button class="btn rgmail" style="background-color:rgba(137,180,213,1);color:#fff"> Envoyer par mail </button>-->
                         <button type="submit" class="btn rgdown" style="background-color:rgba(137,180,213,1);color:#fff"> Télécharger</button>
                         <input type="hidden" name="id_bill" value="{{$last_row_data->id}}" />
                         <input type="hidden" name="service" value="{{ $_SESSION['current_service'] }}"/>
@@ -221,7 +221,7 @@ $_SESSION['current_service'] = $service[2];
                 scale: ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Jui', 'Jul', 'Aoû', 'Sep', 'Oct', 'Nov', 'Déc'],
                 format: '%s',
                 width: slider_width,
-                showLabels: true,
+                showLabels: false,
                 snap: true
             });
           </script>
@@ -252,7 +252,7 @@ $_SESSION['current_service'] = $service[2];
                     <br />
                     <br />
                     <div class="row">
-                        <button class="btn" style="background-color:rgba(137,180,213,1);color:#fff"> Envoyer par mail </button>
+                        <!--<button class="btn" style="background-color:rgba(137,180,213,1);color:#fff"> Envoyer par mail </button>-->
                         <button type="submit" class="btn" style="background-color:rgba(137,180,213,1);color:#fff"> Télécharger</button>
                         <input type="hidden" name="id_buy" value="{{$last_row_data['id']}}" />
                         <input type="hidden" name="service" value="{{ $_SESSION['current_service'] }}"/>
