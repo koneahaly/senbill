@@ -2306,7 +2306,7 @@ button.btnBuy:hover .button-text {
 
 
 .card-block {
-    display: block  !important;
+    display: inline-block  !important;
     margin-left: auto  !important;
     margin-right: auto  !important;
 }

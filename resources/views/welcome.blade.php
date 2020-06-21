@@ -47,9 +47,9 @@ if(!empty($raw_woyofal_users_demo) and !empty($raw_classical_users_demo)){
              <div class="s2sn-login-header-nav">
           <div class="s2sn-login-header-top">
               <ul class="s2sn-login-header-social">
-                  <li><a class="s2sn-header-link s2sn-twitter" href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a></li>
-                  <li><a class="s2sn-header-link s2sn-youtube" href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube"></i></a></li>
-                  <li><a class="s2sn-header-link s2sn-linkedin" href="https://www.linkedin.com/" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+                  <li><a class="s2sn-header-link s2sn-twitter" href="https://twitter.com/" target="_blank"><span class="fa fa-twitter"></span></a></li>
+                  <li><a class="s2sn-header-link s2sn-youtube" href="https://www.youtube.com/" target="_blank"><span class="fa fa-youtube"></span></a></li>
+                  <li><a class="s2sn-header-link s2sn-linkedin" href="https://www.linkedin.com/" target="_blank"><span class="fa fa-linkedin"></span></a></li>
               </ul>
               <ul class="s2sn-login-header-modals">
                   <li><a class="s2sn-header-link" href="#" data-toggle="modal" data-target="#modalFAQ">FAQ</a></li>
