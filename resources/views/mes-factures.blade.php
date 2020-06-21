@@ -134,18 +134,7 @@ $_SESSION['current_service'] = $service[2];
 
           @if(!empty($last_row_data))
           <div class="row">
-            <script>
-            $('.slider-input').jRange({
-                from: -2.0,
-                to: 2.0,
-                step: 0.5,
-                scale: [-2.0,-1.0,0.0,1.0,2.0],
-                format: '%s',
-                width: 30%,
-                showLabels: true,
-                snap: true
-            });
-            </script>
+
             <div class="col-md-8 col-md-offset-2 picker">
               @if(!empty($last_row_data->month))
                 <input type="hidden" class="slider-input" value={{ date('n',strtotime($last_row_data->month)) }} />
@@ -214,16 +203,27 @@ $_SESSION['current_service'] = $service[2];
           @endif
 
           <script>
-          $('.slider-input').jRange({
-              from: 1,
-              to: 12,
-              step: 1,
-              scale: ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Jui', 'Jul', 'Aoû', 'Sep', 'Oct', 'Nov', 'Déc'],
-              format: '%s',
-              width: 800,
-              showLabels: true,
-              snap: true
-          });
+            var screen_width = $(window).width();
+            var slider_width = 800;
+            var step_def = 1;
+            if(screen_width <= 480 && screen_width > 320){
+              slider_width = 330;
+              step_def = 0.2;
+            }
+            if(screen_width <= 1024 && screen_width > 768){
+              slider_width = 680;
+              step_def = 0.5;
+            }
+            $('.slider-input').jRange({
+                from: 1,
+                to: 12,
+                step: step_def,
+                scale: ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Jui', 'Jul', 'Aoû', 'Sep', 'Oct', 'Nov', 'Déc'],
+                format: '%s',
+                width: slider_width,
+                showLabels: true,
+                snap: true
+            });
           </script>
           <div>
 
@@ -1258,7 +1258,7 @@ $(document).ready(function() {
   $('.picker').click(function(){
     var month_value = $('.slider-input').val();
     var months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
-    var tag_month = months[month_value - 1];
+    var tag_month = months[Math.round(month_value) - 1];
     var ech_value = $('#'+tag_month).html();
     var montant_value = $('#'+tag_month+"_amount").html();
     var status_value = $('#'+tag_month+"_status").html();
