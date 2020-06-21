@@ -453,7 +453,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                  </div>
                  <div class="wrap-input100 input100-select bg1 rs1-wrap-input100">
                    <span class="label-input100">Date de naissance </span>
-                   <input class="input100" type="date" name="dateOB" >
+                   <input class="input100" type="text" name="dateOB" >
                  </div>
                  <div class=" wrap-input100 bg1 rs1-wrap-input100">
                    <span class="label-input100">Lieu de naissance </span>
@@ -507,7 +507,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                  </div>
                  <div class="wrap-input100 bg1 rs1-wrap-input100 form-group{{ $errors->has('start_date') ? ' has-error' : '' }}">
                    <span class="label-input100 control-label">Date de début *</span>
-                   <input class="input100" type="date" pattern="[0-9]{0,10}" name="start_date" required>
+                   <input class="input100" type="text" pattern="[0-9]{0,10}" name="start_date" required>
                    @if ($errors->has('start_date'))
                        <span class="help-block">
                            <strong>{{ $errors->first('start_date') }}</strong>
@@ -516,7 +516,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                  </div>
                  <div class="wrap-input100 bg1 rs1-wrap-input100">
                    <span class="label-input100">Date de fin </span>
-                   <input class="input100" type="date" name="end_date">
+                   <input class="input100" type="text" name="end_date">
                  </div>
                  <div class="wrap-input100 input100-select bg1 rs1-wrap-input100">
                    <span class="label-input100">Fréquence de paiement *</span>
@@ -644,7 +644,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
      <script src="{{url('vendor/daterangepicker/daterangepicker.js')}}"></script>
      <script>
      $(function() {
-       $('input[name="dateOB"]').daterangepicker({
+       $('input[name="dateOB"],input[name="start_date"],input[name="end_date"]').daterangepicker({
          singleDatePicker: true,
          showDropdowns: true,
          minYear: 1901,

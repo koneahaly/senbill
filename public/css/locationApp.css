@@ -11539,51 +11539,6 @@ ul li u {
 	}
 }
 
-body {
-	position: relative;
-	overflow-x: hidden;
-	min-width: 320px;
-	margin: 0;
-	padding: 0;
-	background-color: #f5f9fc;
-	color: #2a2f45;
-	-moz-osx-font-smoothing: grayscale;
-	-webkit-font-smoothing: antialiased;
-	-moz-font-feature-settings: "kern" 1;
-	-webkit-font-feature-settings: "kern" 1;
-	font-variant-numeric: proportional-nums;
-	font-family: proxima-nova, Avenir, sans-serif;
-	line-height: 1.5;
-	-ms-text-size-adjust: 100%;
-	-webkit-text-size-adjust: 100%
-}
-
-body.no-connection {
-	background-color: #4aabb1;
-	background-image: url(images/shared/other/cloud.gif);
-	background-repeat: no-repeat;
-	background-position: center 5%
-}
-
-body.no-connection:before {
-	content: "Ooops! No Internet connection";
-	top: 60%
-}
-
-body.no-connection:after,
-body.no-connection:before {
-	position: absolute;
-	right: 0;
-	left: 3%;
-	width: 94%;
-	color: #fff;
-	text-align: center
-}
-
-body.no-connection:after {
-	content: "Please connect to the Internet and continue to use TenantCloud";
-	top: 66%
-}
 
 @media (max-width:991px) {
 	body.no-connection {
