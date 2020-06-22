@@ -3,6 +3,9 @@ session_start();
 $_SESSION["numberOfBillsNonPaid"]=$numberOfBillsNonPaid;
 $service =explode('/',$_SERVER['REQUEST_URI']);
 $_SESSION['current_service'] = $service[2];
+
+$months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
+
 ?>
 @extends('layouts.app', ['notification' => $numberOfBillsNonPaid, 'service' => $_SESSION['current_service'], 'services' => $actived_services])
 
@@ -70,7 +73,7 @@ $_SESSION['current_service'] = $service[2];
                         <td>{{$value->month}} {{$value->year}} </td>
                         <td id="{{$value->month}}_amount" style="text-align:center;font-weight: 700;"> {{$value->amount}} FCFA </td>
                         @if($value->status == "paid")
-                          <td id="{{$value->month}}_status" style="color:#28863e;font-weight: 700;width:20%;"> <span title="payée" class=" status_j glyphicon btn-lg glyphicon-ok-circle text-success"></span> <br /> <span style="font-size:0.7em;font-weight: lighter;color:black;">  le {{$value->created_at}} <span> </td>
+                          <td id="{{$value->month}}_status" style="color:#28863e;font-weight: 700;width:20%;"> <span title="payée" class=" glyphicon btn-lg glyphicon-ok-circle text-success"></span> <br /> <span style="font-size:0.7em;font-weight: lighter;color:black;">  le {{$value->created_at}} <span> </td>
                           <td style="width:20%;"> {{$value->payment_method}} </td>
                         @endif
                         @if($value->status != "paid")
@@ -108,9 +111,12 @@ $_SESSION['current_service'] = $service[2];
                           <tr>
                           <!--  <td> {{$v->creation_date}} </td>-->
                             <td> Achat de carte prépayée </td>
-                            <td style="text-align:center;font-weight: 700;"> {{$v->amount}} FCFA </td>
-                            <td style="color:#28863e;font-weight: 700;width:20%;"> <span title="payée" class=" status_j glyphicon btn-lg glyphicon-ok-circle text-success"></span> <br /> <span style="font-size:2;font-weight: lighter;color:black;"> le {{$v->created_at}} <span></td>
+                            <td id="{{$months[(int)substr($v->creation_date,5,2) -1] }}_amount" style="text-align:center;font-weight: 700;"> {{$v->amount}} FCFA </td>
+                            <td id="{{$months[(int)substr($v->creation_date,5,2) -1] }}_status" style="color:#28863e;font-weight: 700;width:20%;"> <span title="payée" class=" glyphicon btn-lg glyphicon-ok-circle text-success"></span> <br /> <span style="font-size:0.7em;font-weight: lighter;color:black;"> le {{$v->creation_date}} <span></td>
                             <td style="width:20%;"> {{$v->payment_method}} </td>
+                            <input type="hidden" class="{{$months[(int)substr($v->creation_date,5,2) -1] }}_year_j" name="{{$months[(int)substr($v->creation_date,5,2) -1] }}_year_j" value="{{substr($v->creation_date,0,4)}}" />
+                            <input type="hidden" class="{{$months[(int)substr($v->creation_date,5,2) -1] }}_creation_date_j" name="{{$months[(int)substr($v->creation_date,5,2) -1] }}_creation_date_j" value="{{ substr($v->creation_date,8,2)."/".substr($v->creation_date,5,2)."/".substr($v->creation_date,0,4) }}" />
+                            <input type='hidden' id="{{$months[(int)substr($v->creation_date,5,2) -1] }}_status" value="paid" />
                           </tr>
                           @endforeach
                       @endforeach
@@ -135,14 +141,27 @@ $_SESSION['current_service'] = $service[2];
           @if(!empty($last_row_data))
           <div class="row">
 
-            <div class="col-md-8 col-md-offset-2 picker">
-              @if(!empty($last_row_data->month))
-                <input type="hidden" class="slider-input" value={{ date('n',strtotime($last_row_data->month)) }} />
-              @endif
-              @if(empty($last_row_data->month))
-                <input type="hidden" class="slider-input" value="{{ date('n') }}" />
-              @endif
-            </div>
+            @if(Auth::user()->user_type != 2)
+              <div class="col-md-8 col-md-offset-2 picker">
+                @if(!empty($last_row_data->month))
+                  <input type="hidden" class="slider-input" value={{ date('n',strtotime($last_row_data->month)) }} />
+                @endif
+                @if(empty($last_row_data->month))
+                  <input type="hidden" class="slider-input" value="{{ date('n') }}" />
+                @endif
+              </div>
+            @endif
+
+            @if(Auth::user()->user_type == 2)
+              <div class="col-md-8 col-md-offset-2 picker_2">
+                @if(!empty($last_row_data->month))
+                  <input type="hidden" class="slider-input" value={{ date('n',strtotime($last_row_data->month)) }} />
+                @endif
+                @if(empty($last_row_data->month))
+                  <input type="hidden" class="slider-input" value="{{ date('n') }}" />
+                @endif
+              </div>
+            @endif
             <br />
           <form class="form-inline" action="../mes-factures/{{ $_SESSION['current_service'] }}/pdf_bill" method="POST">
               {{csrf_field()}}
@@ -237,17 +256,17 @@ $_SESSION['current_service'] = $service[2];
                   <div>
                     <i class="fas fa-paperclip fa-3x" style="margin-right:98%;margin-top: -200px;"></i>
                     <br/>
-                    <span> Reçu du {{$last_row_data['creation_date']}} &nbsp;</span>
-                    <span class="glyphicon glyphicon-ok-circle text-success">Payée</span>
+                    <span class="tl_fac"> Reçu du {{$last_row_data['creation_date']}} &nbsp;</span>
+                    <span class=" status_j glyphicon glyphicon-ok-circle text-success">Payée</span>
 
                     <br />
                     <br />
-                    <span style="font-size:30px"> {{$last_row_data['amount']}} FCFA</span>
+                    <span class="amount_j" style="font-size:30px"> {{$last_row_data['amount']}} FCFA</span>
                     <br />
                     <br />
                     <hr>
-                    <p><strong> Achat du {{$last_row_data['creation_date']}} </strong></p>
-                    <span style="font-size:10px"> paiement effectué le @php echo $last_row_data['creation_date'] @endphp </span>
+                    <p class="tl_echeance"><strong> Achat du {{$last_row_data['creation_date']}} </strong></p>
+                    <span class="tl_paiement" style="font-size:10px"> paiement effectué le @php echo $last_row_data['creation_date'] @endphp </span>
 
                     <br />
                     <br />
@@ -1270,12 +1289,13 @@ $(document).ready(function() {
 
     }
 
-    if(status_value.includes('paid')){
+    if(status_value.includes('paid') || status_value.includes('payée')){
       $('.status_j').removeClass('glyphicon-remove-circle');
       $('.status_j').removeClass('text-danger');
       $('.status_j').addClass('glyphicon-ok-circle');
       $('.status_j').addClass('text-success');
       $('.tl_paiement').html('paiement effectué le '+creation_date_value);
+      $('.status_j').html('payée');
     }
     else{
       $('.status_j').removeClass('glyphicon-ok-circle');
@@ -1283,6 +1303,7 @@ $(document).ready(function() {
       $('.status_j').addClass('glyphicon-remove-circle');
       $('.status_j').addClass('text-danger');
       $('.tl_paiement').html('&Agrave; régler avant le '+creation_date_value);
+      $('.status_j').html('En attente');
     }
     if(status_value == 'vide'){
       $('.tl_fac').html("<strong>Pas de facture pour le mois de "+tag_month+ "&nbsp;</strong>");
@@ -1299,12 +1320,63 @@ $(document).ready(function() {
     else{
       $('.tl_fac').html("Facture du mois de "+tag_month+ "&nbsp;");
       $('.amount_j').html(montant_value);
-      $('.status_j').html(status_value);
       $('.tl_echeance').html("<strong>Echéance de "+tag_month+" "+year_value+"</strong>");
       $('.rgmail, .rgfac, .rgdown').removeAttr('disabled');
     }
 
   });
+
+  $('.picker_2').click(function(){
+    var month_value = $('.slider-input').val();
+    var months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
+    var tag_month = months[Math.round(month_value) - 1];
+    var ech_value = $('#'+tag_month).html();
+    var montant_value = $('#'+tag_month+"_amount").html();
+    var status_value = $('#'+tag_month+"_status").html();
+    var year_value = $('.'+tag_month+"_year_j").val();
+    var creation_date_value = $('.'+tag_month+"_creation_date_j").val();
+
+    if(typeof status_value === "undefined"){
+      status_value = 'vide';
+
+    }
+
+    if(status_value.includes('paid') || status_value.includes('payée')){
+      $('.status_j').removeClass('glyphicon-remove-circle');
+      $('.status_j').removeClass('text-danger');
+      $('.status_j').addClass('glyphicon-ok-circle');
+      $('.status_j').addClass('text-success');
+      $('.tl_paiement').html('achat effectué le '+creation_date_value);
+    }
+    else{
+      $('.status_j').removeClass('glyphicon-ok-circle');
+      $('.status_j').removeClass('text-success');
+      $('.status_j').addClass('glyphicon-remove-circle');
+      $('.status_j').addClass('text-danger');
+      $('.tl_paiement').html('&Agrave; régler avant le '+creation_date_value);
+    }
+    if(status_value == 'vide'){
+      $('.tl_fac').html("<strong>Pas de reçu pour le mois de "+tag_month+ "&nbsp;</strong>");
+      $('.amount_j').html('');
+      $('.status_j').html('');
+      $('.tl_echeance').html("");
+      $('.tl_paiement').html('');
+      $('.rgmail, .rgfac, .rgdown').attr('disabled','disabled');
+      $('.status_j').removeClass('glyphicon-ok-circle');
+      $('.status_j').removeClass('text-success');
+      $('.status_j').removeClass('glyphicon-remove-circle');
+      $('.status_j').removeClass('text-danger');
+    }
+    else{
+      $('.tl_fac').html("Facture du mois de "+tag_month+ "&nbsp;");
+      $('.amount_j').html(montant_value);
+      $('.status_j').html('payée');
+      $('.tl_echeance').html("<strong>Echéance de "+tag_month+" "+year_value+"</strong>");
+      $('.rgmail, .rgfac, .rgdown').removeAttr('disabled');
+    }
+
+  });
+
 });
 </script>
 
