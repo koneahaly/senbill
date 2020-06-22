@@ -143,19 +143,22 @@ class realEstateOwnerController extends Controller
             'start_date' =>'required',
         ]);
 
-        User::create([
-            'civilite' => $given->civilite,
-            'name' => $given->name,
-            'first_name' => $given->first_name,
-            'email' => $given->email,
-            'dob' => $given->dateOB,
-            'pob' => $given->placeOB,
-            'phone' => $given->phone,
-            'customerId' =>$given->customerId,
-            'address' =>trim($given->housing_address),
-            'password' => bcrypt($given->name.'123'),
-            'service_5' => 'locataire',
-        ]);
+        $renter_check_id=DB::table('users')->select('customerId')->where('customerId',$given->customerId)->count();
+        if($renter_check_id < 1){
+          User::create([
+              'civilite' => $given->civilite,
+              'name' => $given->name,
+              'first_name' => $given->first_name,
+              'email' => $given->email,
+              'dob' => $given->dateOB,
+              'pob' => $given->placeOB,
+              'phone' => $given->phone,
+              'customerId' =>$given->customerId,
+              'address' =>trim($given->housing_address),
+              'password' => bcrypt($given->name.'123'),
+              'service_5' => 'locataire',
+          ]);
+        }
         $renter_id=DB::table('users')->select('customerId')->where('customerId',$given->customerId)->first();
 
         $contract = new Contract;
