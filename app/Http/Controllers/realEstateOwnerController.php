@@ -66,7 +66,7 @@ class realEstateOwnerController extends Controller
       }
       foreach($data_contracts as $data_contract){
         $list_contracts_infos[$data_contract->renter_id] = [$data_contract->bail,$data_contract->monthly_pm,$data_contract->start_date,
-        $data_contract->end_date,$data_contract->frequency,$data_contract->delay];
+        $data_contract->end_date,$data_contract->frequency,$data_contract->delay,$data_contract->status];
       }
 
       $data_locations['data_locations'] =DB::table('users')->whereIn('customerId',$list_renter_id)->get();
@@ -109,18 +109,24 @@ class realEstateOwnerController extends Controller
 
     public function update_housing(Request $given){
 
-      $this->validate($given,[
-          'title'=> 'required|min:4|max:255',
-          'address'=> 'required|min:10|max:255',
-          'city'=> 'required|min:3|max:45'
-      ]);
+        $this->validate($given,[
+            'title'=> 'required|min:4|max:255',
+            'address'=> 'required|min:10|max:255',
+            'city'=> 'required|min:3|max:45'
+        ]);
 
-      $s=Auth::user()->customerId;
-        DB::table('owns')
-            ->where('owner_id', $s)->where('id',$given->housing_id_m)
-            ->update(['title' => $given->title, 'address' => trim($given->address),'city' => $given->city,
-             'nb_rooms' => $given->nb_rooms_housing_m,'housing_type' => $given->type_housing_m,'status' => $given->status_housing_m]);
-             return redirect()->intended(route('ownerProperties'));
+        $s=Auth::user()->customerId;
+          DB::table('owns')
+              ->where('owner_id', $s)->where('id',$given->housing_id_m)
+              ->update(['title' => $given->title, 'address' => trim($given->address),'city' => $given->city,
+               'nb_rooms' => $given->nb_rooms_housing_m,'housing_type' => $given->type_housing_m,'status' => $given->status_housing_m]);
+
+        if($given->status_housing_m == "Y"){
+          DB::table('contracts')
+              ->where('owner_id', $s)->where('id_own',$given->housing_id_m)
+              ->update(['status' => 'N']);
+        }
+        return redirect()->intended(route('ownerProperties'));
       }
 
       public function add_occupant(Request $given){
