@@ -147,7 +147,7 @@ $months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Ao
                   <input type="hidden" class="slider-input" value={{ date('n',strtotime($last_row_data->month)) }} />
                 @endif
                 @if(empty($last_row_data->month))
-                  <input type="hidden" class="slider-input" value="{{ date('n') }}" />
+                  <input type="hidden" class="slider-hide" value="{{ date('n') }}" />
                 @endif
               </div>
             @endif
@@ -158,7 +158,7 @@ $months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Ao
                   <input type="hidden" class="slider-input" value={{ date('n',strtotime($last_row_data->month)) }} />
                 @endif
                 @if(empty($last_row_data->month))
-                  <input type="hidden" class="slider-input" value="{{ date('n') }}" />
+                  <input type="hidden" class="slider-hide" value="{{ date('n') }}" />
                 @endif
               </div>
             @endif
