@@ -207,6 +207,8 @@ html, body {
       <a href="../mes-factures/mobile" class="menuItemEspace fa fa-wifi fa-2x {{ (!empty($services->service_4)) ? '' : 'disabled' }}" title="Espace Mobile &  Internet"></a>
       <a href="../transactions-proprietaire" class="menuItemEspace fa fa-building fa-2x {{ (!empty($services->service_6)) ? '' : 'disabled' }}" title="Espace Propriétaire"></a>
       <a href="../mes-factures/locataire" class="menuItemEspace fa fa-key fa-2x {{ (!empty($services->service_5)) ? '' : 'disabled' }}" title="Espace Locataire"></a>
+      <a href="../mes-factures/scolarite" class="menuItemEspace fa fa-university fa-2x {{ (!empty($services->service_7)) ? '' : 'disabled' }}" title="Espace Scolarité"></a>
+      <a href="../mes-factures/sport" class="menuItemEspace fa fa-running fa-2x {{ (!empty($services->service_8)) ? '' : 'disabled' }}" title="Espace Sport"></a>
     </div>
     <a href="#" class="center fa fa-th fa-2x"  title="Changer d'espace"></a>
   </div>

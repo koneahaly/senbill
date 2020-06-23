@@ -133,7 +133,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                                  </div>
                                  <div class="row justify-content-center d-flex">
                                      <div class="pic"> <i class="fas fa-running fa-5x pic-0" style="margin-left:25%;"></i> </div>
-                                     <h5 class="mb-4" style="color:black;text-align:center;">Scolarité</h5>
+                                     <h5 class="mb-4" style="color:black;text-align:center;">Sport</h5>
                                  </div>
                                  @if(!empty(Auth::user()->service_8))
                                   <input class='service_8' type='hidden' name='service_8' value='sport' />

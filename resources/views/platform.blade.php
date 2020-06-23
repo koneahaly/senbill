@@ -173,7 +173,7 @@
                                 echo '<a href="javascript:void(0);" style="cursor:not-allowed;">';
                             }
                             else {
-                              echo '<a href="../transactions-proprietaire">';
+                              echo '<a href="../mes-factures/scolarite">';
                             }
                             ?>
                                   <i class="fas fa-university fa-7x" style="color: <?=getServiceColor($infos_perso->service_7)?>;"></i>
@@ -192,7 +192,7 @@
                                 echo '<a href="javascript:void(0);" style="cursor:not-allowed;">';
                             }
                             else {
-                              echo '<a href="../transactions-proprietaire">';
+                              echo '<a href="../mes-factures/sport">';
                             }
                             ?>
                                   <i class="fas fa-running fa-7x" style="color: <?=getServiceColor($infos_perso->service_8)?>;"></i>
