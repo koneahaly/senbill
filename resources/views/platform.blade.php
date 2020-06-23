@@ -29,7 +29,8 @@
 <?php
   function getServiceColor($service)
   {
-      if ($service =='eau' || $service =='tv' || $service =='electricite' || $service =='mobile' || $service == 'locataire' || $service == 'proprietaire')
+      if ($service =='eau' || $service =='tv' || $service =='electricite' ||
+      $service =='mobile' || $service == 'locataire' || $service == 'proprietaire' || $service == 'scolarite' || $service == 'sport')
           return '#ffffff';
       else
           return '#888484';
@@ -161,6 +162,44 @@
                           </div>
                           <h5 class="mbr-fonts-style display-5">
                               Propriétaire
+                          </h5>
+                      </div>
+
+                      <div class="card col-12 col-md-6 col-lg-3" style="color: <?=getServiceColor($infos_perso->service_7)?>;">
+                          <div class="icon-block">
+                            <?php
+                            if($infos_perso->service_7 != "scolarite")
+                            {
+                                echo '<a href="javascript:void(0);" style="cursor:not-allowed;">';
+                            }
+                            else {
+                              echo '<a href="../transactions-proprietaire">';
+                            }
+                            ?>
+                                  <i class="fas fa-university fa-7x" style="color: <?=getServiceColor($infos_perso->service_7)?>;"></i>
+                              </a>
+                          </div>
+                          <h5 class="mbr-fonts-style display-5">
+                              Scolarité
+                          </h5>
+                      </div>
+
+                      <div class="card col-12 col-md-6 col-lg-3" style="color: <?=getServiceColor($infos_perso->service_8)?>;">
+                          <div class="icon-block">
+                            <?php
+                            if($infos_perso->service_8 != "sport")
+                            {
+                                echo '<a href="javascript:void(0);" style="cursor:not-allowed;">';
+                            }
+                            else {
+                              echo '<a href="../transactions-proprietaire">';
+                            }
+                            ?>
+                                  <i class="fas fa-running fa-7x" style="color: <?=getServiceColor($infos_perso->service_8)?>;"></i>
+                              </a>
+                          </div>
+                          <h5 class="mbr-fonts-style display-5">
+                              Sport
                           </h5>
                       </div>
 

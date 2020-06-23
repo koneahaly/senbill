@@ -158,7 +158,8 @@ class HomeController extends Controller
         DB::table('users')
             ->where('customerId', $s)
             ->update(['service_1' => $given->service_1, 'service_2' => $given->service_2,'service_3' => $given->service_3,
-             'service_4' => $given->service_4,'service_5' => $given->service_5,'service_6' => $given->service_6]);
+             'service_4' => $given->service_4,'service_5' => $given->service_5,'service_6' => $given->service_6,
+             'service_7' => $given->service_7,'service_8' => $given->service_8]);
         }
         return redirect('infos-services/'.$given->service);
       }
@@ -170,7 +171,8 @@ class HomeController extends Controller
         DB::table('users')
             ->where('customerId', $s)
             ->update(['service_1' => $given->service_1, 'service_2' => $given->service_2,'service_3' => $given->service_3,
-             'service_4' => $given->service_4,'service_5' => $given->service_5,'service_6' => $given->service_6]);
+             'service_4' => $given->service_4,'service_5' => $given->service_5,'service_6' => $given->service_6,
+             'service_7' => $given->service_7,'service_8' => $given->service_8]);
         }
         return redirect()->intended(route('infos-services-pro'));
       }

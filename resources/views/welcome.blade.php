@@ -67,7 +67,7 @@ if(!empty($raw_woyofal_users_demo) and !empty($raw_classical_users_demo)){
       </div>
          </div>
          <nav class="navbar navbar-dark s2sn-login-header-mobile">
-             <a class="s2sn-logo-elektra" href="https://www.elektra.com/" target="_blank">
+             <a class="s2sn-logo-elektra" href=".">
                  <img src="https://elektra.s3.amazonaws.com/images/icons/logo-s2sn.png" alt="logo-elektra" width="162" height="auto" class="s2sn-img-normal">
              	   <img src="https://elektra.s3.amazonaws.com/images/icons/logo-s2sn-mediumsmall.png" alt="logo-elektra" width="162" height="auto" class="s2sn-img-retina">
              </a>

@@ -237,6 +237,42 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
   }
   });
 
+  $('.radio-group .selectRegister7').click(function(){
+  if($(this).hasClass('selected')){
+      $(this).find(".fa").removeClass('fa-check');
+      $(this).find(".fa").addClass('fa-circle');
+      $('.service_7').remove();
+    $(this).removeClass('selected');
+    $('.display_service_7').text('');
+  }
+  else {
+    $(this).addClass('selected');
+    $('.selected .fa').removeClass('fa-circle');
+    $('.selected .fa').addClass('fa-check');
+    $('.selectRegister7').append("<input class='service_7' type='hidden' name='service_7' value='scolarite' />");
+    var value = $('.service_7').val();
+    $('.display_service_7').text(value);
+  }
+  });
+
+  $('.radio-group .selectRegister8').click(function(){
+  if($(this).hasClass('selected')){
+      $(this).find(".fa").removeClass('fa-check');
+      $(this).find(".fa").addClass('fa-circle');
+      $('.service_8').remove();
+    $(this).removeClass('selected');
+    $('.display_service_8').text('');
+  }
+  else {
+    $(this).addClass('selected');
+    $('.selected .fa').removeClass('fa-circle');
+    $('.selected .fa').addClass('fa-check');
+    $('.selectRegister8').append("<input class='service_8' type='hidden' name='service_8' value='sport' />");
+    var value = $('.service_8').val();
+    $('.display_service_8').text(value);
+  }
+  });
+
 </script>
 
 @endsection

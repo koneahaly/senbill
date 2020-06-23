@@ -117,7 +117,7 @@ if(!empty($raw_woyofal_users_demo) and !empty($raw_classical_users_demo)){
      </div>
         </div>
         <nav class="navbar navbar-dark s2sn-login-header-mobile">
-            <a class="s2sn-logo-elektra" href="https://www.elektra.com/" target="_blank">
+            <a class="s2sn-logo-elektra" href=".">
                 <img src="https://elektra.s3.amazonaws.com/images/icons/logo-s2sn.png" alt="logo-elektra" width="162" height="auto" class="s2sn-img-normal">
                 <img src="https://elektra.s3.amazonaws.com/images/icons/logo-s2sn-mediumsmall.png" alt="logo-elektra" width="162" height="auto" class="s2sn-img-retina">
             </a>
@@ -160,14 +160,14 @@ if(!empty($raw_woyofal_users_demo) and !empty($raw_classical_users_demo)){
             	            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                               <div class="card-body">
                                 Elektra est une plateforme d'accès unique à vos paiements de factures et  recharges de plusieurs établissements <br />
-                                En vous inscrivant à Elektra, vos factures relatives à nos différents partenaires sont ainsi importées au sein <br />de notre plateforme. Ce qui vous ainsi la possibilité de les régler. <br />
+                                En vous inscrivant à Elektra, vos factures relatives à nos différents partenaires sont ainsi importées au sein <br />de notre plateforme. Ce qui vous donne ainsi la possibilité de les régler. <br />
                               Pour les offres prépayées, vous avez également la possibilité d'acheter vos recharges en ligne et de les appliquer<br /> à vos comptes (sans autre action manuelle).
                               <p><strong>Les autres services : </strong></p>
                               <ul style="list-style: circle;margin-left: 5%;">
                                 <li style="list-style: circle;">Numérisation des factures (Téléchargement et envoi par mail).</li>
                                 <li style="list-style: circle;">Envoi de notification (nouvelle facture, relance impayée, suggestion et informations utiles).</li>
                                 <li style="list-style: circle;">Envoi d'alertes (utilisation abusive de ressources, solde proche de zéro...)</li>
-                                <li style="list-style: circle;">Statitiques sur l'utilisation des ressources</li>
+                                <li style="list-style: circle;">Statistiques sur l'utilisation des ressources</li>
                               </ul>
                               </div>
                             </div>
@@ -209,7 +209,7 @@ if(!empty($raw_woyofal_users_demo) and !empty($raw_classical_users_demo)){
                             <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
                               <div class="card-body">
                                 Dans ce cas, vos identifiants sont certainement incorrects, vous pouvez les resaisir ou récupérer votre mot de passe.<br />
-                                 En cas de porblèmes, contactez le service client Services2sn.
+                                 En cas de problèmes, contactez le service client Services2sn.
                               </div>
                             </div>
             	        </li>
