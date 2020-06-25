@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Bill;
 use App\Own;
 use App\User;
+use App\Service;
 use App\Contract;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Schema;
@@ -32,7 +33,7 @@ class realEstateOwnerController extends Controller
       $s=Auth::user()->customerId;
       $list_renter_id=array();
       $list_housings_infos = [];
-      $actived_services['actived_services'] = DB::table('users')->where('customerId',$s)->first();
+      $actived_services['actived_services'] = DB::table('services')->where('customerId',$s)->first();
       $infos_occupants=DB::table('owns')->select('occupant_id')->where('owner_id',$s)->get();
       $infos_housings=DB::table('owns')->select('occupant_id','current_occupant_name','title')->where('owner_id',$s)->get();
       foreach($infos_occupants as $infos_occupant){
@@ -53,7 +54,7 @@ class realEstateOwnerController extends Controller
       $list_renter_id=array();
       $list_housings_title = [];
       $list_contracts_infos = [];
-      $actived_services['actived_services'] = DB::table('users')->where('customerId',$s)->first();
+      $actived_services['actived_services'] = DB::table('services')->where('customerId',$s)->first();
       $data_contracts=DB::table('contracts')->where('owner_id',$s)->get();
       $infos_housings=DB::table('owns')->select('occupant_id','title')->where('owner_id',$s)->get();
       $infos_locations=DB::table('owns')->select('occupant_id')->where('owner_id',$s)->get();
@@ -78,7 +79,7 @@ class realEstateOwnerController extends Controller
     public function display_properties()
     {
       $s=Auth::user()->customerId;
-      $actived_services['actived_services'] = DB::table('users')->where('customerId',$s)->first();
+      $actived_services['actived_services'] = DB::table('services')->where('customerId',$s)->first();
       $infos_perso['infos_perso']=DB::table('users')->where('customerId',$s)->first();
       $infos_log['infos_log']=DB::table('owns')->where('owner_id',$s)->get();
       $nb_log=(int)DB::table('owns')->where('owner_id',$s)->count();
@@ -156,6 +157,9 @@ class realEstateOwnerController extends Controller
               'customerId' =>$given->customerId,
               'address' =>trim($given->housing_address),
               'password' => bcrypt($given->name.'123'),
+            ]);
+            Service::create([
+              'customerId' => $given->customerId,
               'service_5' => 'locataire',
           ]);
         }

@@ -51,7 +51,7 @@
               </div>
 
                   <div class="icons-media-container mbr-white" style="text-align:center">
-                      <div class="card col-12 col-md-6 col-lg-3" style="color: <?=getServiceColor($infos_perso->service_1)?>;">
+                      <div class="card col-12 col-md-6 col-lg-3" style="color: <?=getServiceColor($actived_services->service_1)?>;">
                           <div class="icon-block">
                             <?php
                             if($infos_perso->service_1 != "eau")
@@ -62,7 +62,7 @@
                               echo '<a href="../mes-factures/eau">';
                             }
                             ?>
-                              <i class="fas fa-faucet fa-7x" style="color: <?=getServiceColor($infos_perso->service_1)?>;"></i>
+                              <i class="fas fa-faucet fa-7x" style="color: <?=getServiceColor($actived_services->service_1)?>;"></i>
                           </a>
                           </div>
                           <h5 class="mbr-fonts-style display-5">
@@ -70,7 +70,7 @@
                           </h5>
                       </div>
 
-                      <div class="card col-12 col-md-6 col-lg-3" style="color: <?=getServiceColor($infos_perso->service_2)?>;">
+                      <div class="card col-12 col-md-6 col-lg-3" style="color: <?=getServiceColor($actived_services->service_2)?>;">
                           <div class="icon-block">
                             <?php
                             if($infos_perso->service_2 != "electricite")
@@ -81,7 +81,7 @@
                               echo '<a href="../mes-factures/electricite">';
                             }
                             ?>
-                                    <i class="fas fa-plug fa-7x" style="color: <?=getServiceColor($infos_perso->service_2)?>;"></i>
+                                    <i class="fas fa-plug fa-7x" style="color: <?=getServiceColor($actived_services->service_2)?>;"></i>
                               </a>
                           </div>
                           <h5 class="mbr-fonts-style display-5">
@@ -89,7 +89,7 @@
                           </h5>
                       </div>
 
-                      <div class="card col-12 col-md-6 col-lg-3" style="color: <?=getServiceColor($infos_perso->service_3)?>;">
+                      <div class="card col-12 col-md-6 col-lg-3" style="color: <?=getServiceColor($actived_services->service_3)?>;">
                           <div class="icon-block">
                             <?php
                             if($infos_perso->service_3 != "tv")
@@ -100,7 +100,7 @@
                               echo '<a href="../mes-factures/tv">';
                             }
                             ?>
-                                  <i class="fas fa-tv fa-7x" style="color: <?=getServiceColor($infos_perso->service_3)?>;"></i>
+                                  <i class="fas fa-tv fa-7x" style="color: <?=getServiceColor($actived_services->service_3)?>;"></i>
                               </a>
                           </div>
                           <h5 class="mbr-fonts-style display-5">
@@ -108,7 +108,7 @@
                           </h5>
                       </div>
 
-                      <div class="card col-12 col-md-6 col-lg-3" style="color: <?=getServiceColor($infos_perso->service_4)?>;">
+                      <div class="card col-12 col-md-6 col-lg-3" style="color: <?=getServiceColor($actived_services->service_4)?>;">
                           <div class="icon-block">
                             <?php
                             if($infos_perso->service_4 != "mobile")
@@ -119,7 +119,7 @@
                               echo '<a href="../mes-factures/mobile">';
                             }
                             ?>
-                                  <i class="fas fa-wifi fa-7x" style="color: <?=getServiceColor($infos_perso->service_4)?>;"></i>
+                                  <i class="fas fa-wifi fa-7x" style="color: <?=getServiceColor($actived_services->service_4)?>;"></i>
                               </a>
                           </div>
                           <h5 class="mbr-fonts-style display-5">
@@ -127,7 +127,7 @@
                           </h5>
                       </div>
 
-                      <div class="card col-12 col-md-6 col-lg-3" style="color: <?=getServiceColor($infos_perso->service_5)?>;">
+                      <div class="card col-12 col-md-6 col-lg-3" style="color: <?=getServiceColor($actived_services->service_5)?>;">
                           <div class="icon-block">
                             <?php
                             if($infos_perso->service_5 != "locataire")
@@ -138,7 +138,7 @@
                               echo '<a href="../mes-factures/locataire">';
                             }
                             ?>
-                                  <i class="fas fa-house-user  fa-7x" style="color: <?=getServiceColor($infos_perso->service_5)?>;"></i>
+                                  <i class="fas fa-house-user  fa-7x" style="color: <?=getServiceColor($actived_services->service_5)?>;"></i>
                               </a>
                           </div>
                           <h5 class="mbr-fonts-style display-5">
@@ -146,7 +146,7 @@
                           </h5>
                       </div>
 
-                      <div class="card col-12 col-md-6 col-lg-3" style="color: <?=getServiceColor($infos_perso->service_6)?>;">
+                      <div class="card col-12 col-md-6 col-lg-3" style="color: <?=getServiceColor($actived_services->service_6)?>;">
                           <div class="icon-block">
                             <?php
                             if($infos_perso->service_6 != "proprietaire")
@@ -157,7 +157,7 @@
                               echo '<a href="../transactions-proprietaire">';
                             }
                             ?>
-                                  <i class="fas fa-building fa-7x" style="color: <?=getServiceColor($infos_perso->service_6)?>;"></i>
+                                  <i class="fas fa-building fa-7x" style="color: <?=getServiceColor($actived_services->service_6)?>;"></i>
                               </a>
                           </div>
                           <h5 class="mbr-fonts-style display-5">
@@ -165,7 +165,7 @@
                           </h5>
                       </div>
 
-                      <div class="card col-12 col-md-6 col-lg-3" style="color: <?=getServiceColor($infos_perso->service_7)?>;">
+                      <div class="card col-12 col-md-6 col-lg-3" style="color: <?=getServiceColor($actived_services->service_7)?>;">
                           <div class="icon-block">
                             <?php
                             if($infos_perso->service_7 != "scolarite")
@@ -176,7 +176,7 @@
                               echo '<a href="../mes-factures/scolarite">';
                             }
                             ?>
-                                  <i class="fas fa-university fa-7x" style="color: <?=getServiceColor($infos_perso->service_7)?>;"></i>
+                                  <i class="fas fa-university fa-7x" style="color: <?=getServiceColor($actived_services->service_7)?>;"></i>
                               </a>
                           </div>
                           <h5 class="mbr-fonts-style display-5">
@@ -184,7 +184,7 @@
                           </h5>
                       </div>
 
-                      <div class="card col-12 col-md-6 col-lg-3" style="color: <?=getServiceColor($infos_perso->service_8)?>;">
+                      <div class="card col-12 col-md-6 col-lg-3" style="color: <?=getServiceColor($actived_services->service_8)?>;">
                           <div class="icon-block">
                             <?php
                             if($infos_perso->service_8 != "sport")
@@ -195,7 +195,7 @@
                               echo '<a href="../mes-factures/sport">';
                             }
                             ?>
-                                  <i class="fas fa-running fa-7x" style="color: <?=getServiceColor($infos_perso->service_8)?>;"></i>
+                                  <i class="fas fa-running fa-7x" style="color: <?=getServiceColor($actived_services->service_8)?>;"></i>
                               </a>
                           </div>
                           <h5 class="mbr-fonts-style display-5">
