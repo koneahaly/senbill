@@ -49,7 +49,7 @@ class HomeController extends Controller
         }
 
         $s=Auth::user()->customerId;
-        $actived_services['actived_services'] = DB::table('users')->where('customerId',$s)->first();
+        $actived_services['actived_services'] = DB::table('services')->where('customerId',$s)->first();
         if(Auth::user()->user_type != 2){
           $numberOfBillsNonPaid = (int)DB::table('bills')->where('customerId',$s)->where('status','!=','paid')->orderBy('id', 'DESC')->count();
           $numberOfBills = (int)DB::table('bills')->where('customerId',$s)->orderBy('id', 'DESC')->count();
@@ -155,10 +155,11 @@ class HomeController extends Controller
 
       $s=Auth::user()->customerId;
       if($given->action == "Enregistrer"){
-        DB::table('users')
+        DB::table('services')
             ->where('customerId', $s)
             ->update(['service_1' => $given->service_1, 'service_2' => $given->service_2,'service_3' => $given->service_3,
-             'service_4' => $given->service_4,'service_5' => $given->service_5,'service_6' => $given->service_6]);
+             'service_4' => $given->service_4,'service_5' => $given->service_5,'service_6' => $given->service_6,
+             'service_7' => $given->service_7,'service_8' => $given->service_8]);
         }
         return redirect('infos-services/'.$given->service);
       }
@@ -167,10 +168,11 @@ class HomeController extends Controller
 
       $s=Auth::user()->customerId;
       if($given->action == "Enregistrer"){
-        DB::table('users')
+        DB::table('services')
             ->where('customerId', $s)
             ->update(['service_1' => $given->service_1, 'service_2' => $given->service_2,'service_3' => $given->service_3,
-             'service_4' => $given->service_4,'service_5' => $given->service_5,'service_6' => $given->service_6]);
+             'service_4' => $given->service_4,'service_5' => $given->service_5,'service_6' => $given->service_6,
+             'service_7' => $given->service_7,'service_8' => $given->service_8]);
         }
         return redirect()->intended(route('infos-services-pro'));
       }
@@ -178,35 +180,35 @@ class HomeController extends Controller
     public function display_contract()
     {
       $s=Auth::user()->customerId;
-      $actived_services['actived_services'] = DB::table('users')->where('customerId',$s)->first();
+      $actived_services['actived_services'] = DB::table('services')->where('customerId',$s)->first();
       return view('mon-contrat')->with($actived_services);
     }
 
     public function display_personal_infos()
     {
       $s=Auth::user()->customerId;
-      $actived_services['actived_services'] = DB::table('users')->where('customerId',$s)->first();
+      $actived_services['actived_services'] = DB::table('services')->where('customerId',$s)->first();
       return view('infos-personnelles')->with($actived_services);
     }
 
     public function display_services_infos()
     {
       $s=Auth::user()->customerId;
-      $actived_services['actived_services'] = DB::table('users')->where('customerId',$s)->first();
+      $actived_services['actived_services'] = DB::table('services')->where('customerId',$s)->first();
       return view('infos-services')->with($actived_services);
     }
 
     public function display_services_pro_infos()
     {
       $s=Auth::user()->customerId;
-      $actived_services['actived_services'] = DB::table('users')->where('customerId',$s)->first();
+      $actived_services['actived_services'] = DB::table('services')->where('customerId',$s)->first();
       return view('infos-services-pro')->with($actived_services);
     }
 
     public function display_proprio_infos()
     {
       $s=Auth::user()->customerId;
-      $actived_services['actived_services'] = DB::table('users')->where('customerId',$s)->first();
+      $actived_services['actived_services'] = DB::table('services')->where('customerId',$s)->first();
       return view('infos-proprietaire')->with($actived_services);
     }
 
@@ -215,7 +217,7 @@ class HomeController extends Controller
 
       $s=Auth::user()->customerId;
       $infos_perso['infos_perso']=DB::table('users')->where('customerId',$s)->first();
-      $actived_services['actived_services'] = DB::table('users')->where('customerId',$s)->first();
+      $actived_services['actived_services'] = DB::table('services')->where('customerId',$s)->first();
       return view('platform')->with($infos_perso)->with($actived_services);
     }
 
@@ -224,7 +226,7 @@ class HomeController extends Controller
     public function suivi_conso()
     {
       $s=Auth::user()->customerId;
-      $actived_services['actived_services'] = DB::table('users')->where('customerId',$s)->first();
+      $actived_services['actived_services'] = DB::table('services')->where('customerId',$s)->first();
       $infos_conso['infos_conso']=DB::table('bills')->select('units','amount','month','year')->where('customerId',$s)->orderBy('created_at', 'DESC')->get();
       $useful_conso = array();
       $useful_conso_euro = array();

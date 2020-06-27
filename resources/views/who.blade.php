@@ -105,8 +105,8 @@ if(!empty($raw_woyofal_users_demo) and !empty($raw_classical_users_demo)){
         <!-- HEADER START -->
         <div class="s2sn-login-header-desktop">
             <a class="s2sn-logo-elektra" href=".">
-                <img src="{{url('images/logo-s2sn.png')}}" alt="logo-elektra" width="162" height="auto" class="s2sn-img-normal">
-                <img src="{{url('images/logo-s2sn-mediumsmall.png')}}" alt="logo-elektra" width="162" height="auto" class="s2sn-img-retina">
+                <img src="https://elektra.s3.amazonaws.com/images/icons/logo-s2sn.png" alt="logo-elektra" width="162" height="auto" class="s2sn-img-normal">
+                <img src="https://elektra.s3.amazonaws.com/images/icons/logo-s2sn-mediumsmall.png" alt="logo-elektra" width="162" height="auto" class="s2sn-img-retina">
             </a>
             <div class="s2sn-login-header-nav">
          <div class="s2sn-login-header-top">
@@ -131,9 +131,9 @@ if(!empty($raw_woyofal_users_demo) and !empty($raw_classical_users_demo)){
      </div>
         </div>
         <nav class="navbar navbar-dark s2sn-login-header-mobile">
-            <a class="s2sn-logo-elektra" href="https://www.elektra.com/" target="_blank">
-                <img src="{{url('images/logo-s2sn.png')}}" alt="logo-elektra" width="162" height="auto" class="s2sn-img-normal">
-                <img src="{{url('images/logo-s2sn-mediumsmall.png')}}" alt="logo-elektra" width="162" height="auto" class="s2sn-img-retina">
+            <a class="s2sn-logo-elektra" href=".">
+                <img src="https://elektra.s3.amazonaws.com/images/icons/logo-s2sn.png" alt="logo-elektra" width="162" height="auto" class="s2sn-img-normal">
+                <img src="https://elektra.s3.amazonaws.com/images/icons/logo-s2sn-mediumsmall.png" alt="logo-elektra" width="162" height="auto" class="s2sn-img-retina">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-contrs2sn="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -156,7 +156,9 @@ if(!empty($raw_woyofal_users_demo) and !empty($raw_classical_users_demo)){
 
          <div class="container-fluid home-main">
         		<h2>SERVICES2SN <span class="blinker">.</span></h2>
-        		<button type="button" class="btn btn-default">Visiter notre site </button>
+            <form action="https://www.services2sn.com" target="blank">
+        		    <button type="submit" class="btn btn-default">Visiter notre site </button>
+            </form>
         	</div>
         	<div class="container-fluid home-content1">
         		<div class="row" style="display:block;">
@@ -165,7 +167,7 @@ if(!empty($raw_woyofal_users_demo) and !empty($raw_classical_users_demo)){
         			</div>
         			<div class="col-md-6 content1-right">
                 <h3>Qui sommes nous <span class="blinker">?</span> </h3>
-                <p>Services2sn est une entreprise de services du numérique (ESN) sénégalaise et une société de conseil en transformation digitale des entreprises et des organisations. Services2sn propose ainsi des prestations de conseil et des services technologiques (intégration de systèmes, gestion d’infrastructures, exécution de processus métier) et est un éditeur de logiciels (CRM, facturation, gestion de stock, évenementiel, immobilier...).</p>
+                <p>Services2sn est une entreprise de services du numérique (ESN) sénégalaise et une société de conseil en transformation digitale des entreprises et des organisations. Services2sn propose ainsi des prestations de conseil et des services technologiques (intégration de systèmes, gestion d’infrastructures, exécution de processus métier) et est un éditeur de logiciels (CRM, facturation, gestion de stock, évènementiel, immobilier...).</p>
         			</div>
         		</div>
         	</div>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Bill;
 use App\Own;
 use App\User;
+use App\Service;
 use App\Contract;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Schema;
@@ -32,7 +33,7 @@ class realEstateOwnerController extends Controller
       $s=Auth::user()->customerId;
       $list_renter_id=array();
       $list_housings_infos = [];
-      $actived_services['actived_services'] = DB::table('users')->where('customerId',$s)->first();
+      $actived_services['actived_services'] = DB::table('services')->where('customerId',$s)->first();
       $infos_occupants=DB::table('owns')->select('occupant_id')->where('owner_id',$s)->get();
       $infos_housings=DB::table('owns')->select('occupant_id','current_occupant_name','title')->where('owner_id',$s)->get();
       foreach($infos_occupants as $infos_occupant){
@@ -53,7 +54,7 @@ class realEstateOwnerController extends Controller
       $list_renter_id=array();
       $list_housings_title = [];
       $list_contracts_infos = [];
-      $actived_services['actived_services'] = DB::table('users')->where('customerId',$s)->first();
+      $actived_services['actived_services'] = DB::table('services')->where('customerId',$s)->first();
       $data_contracts=DB::table('contracts')->where('owner_id',$s)->get();
       $infos_housings=DB::table('owns')->select('occupant_id','title')->where('owner_id',$s)->get();
       $infos_locations=DB::table('owns')->select('occupant_id')->where('owner_id',$s)->get();
@@ -66,7 +67,7 @@ class realEstateOwnerController extends Controller
       }
       foreach($data_contracts as $data_contract){
         $list_contracts_infos[$data_contract->renter_id] = [$data_contract->bail,$data_contract->monthly_pm,$data_contract->start_date,
-        $data_contract->end_date,$data_contract->frequency,$data_contract->delay];
+        $data_contract->end_date,$data_contract->frequency,$data_contract->delay,$data_contract->status];
       }
 
       $data_locations['data_locations'] =DB::table('users')->whereIn('customerId',$list_renter_id)->get();
@@ -78,7 +79,7 @@ class realEstateOwnerController extends Controller
     public function display_properties()
     {
       $s=Auth::user()->customerId;
-      $actived_services['actived_services'] = DB::table('users')->where('customerId',$s)->first();
+      $actived_services['actived_services'] = DB::table('services')->where('customerId',$s)->first();
       $infos_perso['infos_perso']=DB::table('users')->where('customerId',$s)->first();
       $infos_log['infos_log']=DB::table('owns')->where('owner_id',$s)->get();
       $nb_log=(int)DB::table('owns')->where('owner_id',$s)->count();
@@ -109,18 +110,24 @@ class realEstateOwnerController extends Controller
 
     public function update_housing(Request $given){
 
-      $this->validate($given,[
-          'title'=> 'required|min:4|max:255',
-          'address'=> 'required|min:10|max:255',
-          'city'=> 'required|min:3|max:45'
-      ]);
+        $this->validate($given,[
+            'title'=> 'required|min:4|max:255',
+            'address'=> 'required|min:10|max:255',
+            'city'=> 'required|min:3|max:45'
+        ]);
 
-      $s=Auth::user()->customerId;
-        DB::table('owns')
-            ->where('owner_id', $s)->where('id',$given->housing_id_m)
-            ->update(['title' => $given->title, 'address' => trim($given->address),'city' => $given->city,
-             'nb_rooms' => $given->nb_rooms_housing_m,'housing_type' => $given->type_housing_m,'status' => $given->status_housing_m]);
-             return redirect()->intended(route('ownerProperties'));
+        $s=Auth::user()->customerId;
+          DB::table('owns')
+              ->where('owner_id', $s)->where('id',$given->housing_id_m)
+              ->update(['title' => $given->title, 'address' => trim($given->address),'city' => $given->city,
+               'nb_rooms' => $given->nb_rooms_housing_m,'housing_type' => $given->type_housing_m,'status' => $given->status_housing_m]);
+
+        if($given->status_housing_m == "Y"){
+          DB::table('contracts')
+              ->where('owner_id', $s)->where('id_own',$given->housing_id_m)
+              ->update(['status' => 'N']);
+        }
+        return redirect()->intended(route('ownerProperties'));
       }
 
       public function add_occupant(Request $given){
@@ -137,19 +144,25 @@ class realEstateOwnerController extends Controller
             'start_date' =>'required',
         ]);
 
-        User::create([
-            'civilite' => $given->civilite,
-            'name' => $given->name,
-            'first_name' => $given->first_name,
-            'email' => $given->email,
-            'dob' => $given->dateOB,
-            'pob' => $given->placeOB,
-            'phone' => $given->phone,
-            'customerId' =>$given->customerId,
-            'address' =>trim($given->housing_address),
-            'password' => bcrypt($given->name.'123'),
-            'service_5' => 'locataire',
-        ]);
+        $renter_check_id=DB::table('users')->select('customerId')->where('customerId',$given->customerId)->count();
+        if($renter_check_id < 1){
+          User::create([
+              'civilite' => $given->civilite,
+              'name' => $given->name,
+              'first_name' => $given->first_name,
+              'email' => $given->email,
+              'dob' => $given->dateOB,
+              'pob' => $given->placeOB,
+              'phone' => $given->phone,
+              'customerId' =>$given->customerId,
+              'address' =>trim($given->housing_address),
+              'password' => bcrypt($given->name.'123'),
+            ]);
+            Service::create([
+              'customerId' => $given->customerId,
+              'service_5' => 'locataire',
+          ]);
+        }
         $renter_id=DB::table('users')->select('customerId')->where('customerId',$given->customerId)->first();
 
         $contract = new Contract;

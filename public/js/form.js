@@ -4,6 +4,7 @@ var current_fs, next_fs, previous_fs; //fieldsets
 var myEmail, myPassword, myPasswordConfirm; //fields step 1
 var myFistName, myLastName, myCNI, myPhone, myAddress; //fields step 2
 var myService_1, myService_2, myService_3, myService_4; //fields step 3
+var myService_5, myService_6, myService_7, myService_8; //fields step 3
 
 var opacity;
 var current = 1;
@@ -106,7 +107,7 @@ if(/^[a-zA-Z ]{2,30}$/.test(myFistName)){
     myLastName = myLastName;
 
 
-    if(/^\d{13}$/.test(myCNI)){
+    if(/^[a-zA-Z0-9 ]{13}$/.test(myCNI)){
       myCNI = myCNI;
 
 
@@ -174,7 +175,7 @@ else{
 
 
 
-if(/^[a-zA-Z ]{2,30}$/.test(myFistName) && /^[a-zA-Z ]{2,30}$/.test(myLastName) && /^\d{13}$/.test(myCNI) && regexPhone.test(myPhone) && regexAddr.test(myAddress)){
+if(/^[a-zA-Z ]{2,30}$/.test(myFistName) && /^[a-zA-Z ]{2,30}$/.test(myLastName) && /^[a-zA-Z0-9 ]{13}$/.test(myCNI) && regexPhone.test(myPhone) && regexAddr.test(myAddress)){
   //Add Class Active
   $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
 
@@ -206,12 +207,18 @@ myService_2 = $('.service_2').val()+'wt';
 myService_3 = $('.service_3').val()+'wt';
 myService_4 = $('.service_4').val()+'wt';
 
+myService_5 = $('.service_5').val()+'wt';
+myService_6 = $('.service_6').val()+'wt';
+myService_7 = $('.service_7').val()+'wt';
+myService_8 = $('.service_8').val()+'wt';
+
 
 current_fs = $(this).parent();
 next_fs = $(this).parent().next();
 
 
-if(myService_1 != 'undefinedwt' || myService_2 != 'undefinedwt' || myService_3 != 'undefinedwt' || myService_4 != 'undefinedwt'){ // undefined + wt
+if(myService_1 != 'undefinedwt' || myService_2 != 'undefinedwt' || myService_3 != 'undefinedwt' || myService_4 != 'undefinedwt' ||
+myService_5 != 'undefinedwt' || myService_6 != 'undefinedwt' || myService_7 != 'undefinedwt' || myService_8 != 'undefinedwt'){ // undefined + wt
   //Add Class Active
   $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
 

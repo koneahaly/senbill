@@ -514,9 +514,13 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                        </span>
                    @endif
                  </div>
+                 <?php
+                 $date_plus_one_year_en = date('Y-m-d',strtotime(date("Y-m-d", time()) . " + 365 day"));
+                 $date_plus_one_year_fr = substr($date_plus_one_year_en,-2,2).'/'.substr($date_plus_one_year_en,5,2).'/'.substr($date_plus_one_year_en,0,4);
+                  ?>
                  <div class="wrap-input100 bg1 rs1-wrap-input100">
                    <span class="label-input100">Date de fin </span>
-                   <input class="input100" type="text" name="end_date">
+                   <input class="input100" type="text" name="end_date" value="{{ $date_plus_one_year_fr }}">
                  </div>
                  <div class="wrap-input100 input100-select bg1 rs1-wrap-input100">
                    <span class="label-input100">Fréquence de paiement *</span>
@@ -531,7 +535,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                  </div>
                  <div class="wrap-input100 bg1 rs1-wrap-input100">
                    <span class="label-input100">Jour d'échéance *</span>
-                   <input class="input100" type="number" pattern="[0-9]{0,5}" name="delay" required  value="0">
+                   <input class="input100" type="number" pattern="[0-9]{0,5}" name="delay" required  value="5">
                  </div>
 
 

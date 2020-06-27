@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Service;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -70,7 +71,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+         User::create([
             'civilite' => $data['salutation'],
             'name' => $data['name'],
             'first_name' => $data['first_name'],
@@ -79,12 +80,17 @@ class RegisterController extends Controller
             'customerId' =>$data['customerId'],
             'address' =>$data['address'],
             'password' => bcrypt($data['password']),
+          ]);
+          return Service::create([
+            'customerId' => $data['customerId'],
             'service_1' => (!empty($data['service_1'])) ? $data['service_1'] : 'NULL',
             'service_2' => (!empty($data['service_2'])) ? $data['service_2'] : 'NULL',
             'service_3' => (!empty($data['service_3'])) ? $data['service_3'] : 'NULL',
             'service_4' => (!empty($data['service_4'])) ? $data['service_4'] : 'NULL',
             'service_5' => (!empty($data['service_5'])) ? $data['service_5'] : 'NULL',
             'service_6' => (!empty($data['service_6'])) ? $data['service_6'] : 'NULL',
+            'service_7' => (!empty($data['service_5'])) ? $data['service_5'] : 'NULL',
+            'service_8' => (!empty($data['service_6'])) ? $data['service_6'] : 'NULL',
         ]);
     }
 

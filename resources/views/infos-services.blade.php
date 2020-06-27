@@ -43,9 +43,9 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                               </div>
                           </div>
                           <div class="radio-group row justify-content-between px-3" style="margin-left: 10%;">
-                             <div class="card-block card-body selectRegister1 {{ (empty(Auth::user()->service_1)) ? '' : 'selected' }}">
+                             <div class="card-block card-body selectRegister1 {{ (empty($actived_services->service_1)) ? '' : 'selected' }}">
                                  <div class="row justify-content-end d-flex px-3">
-                                     <div class="fa fa-{{ (empty(Auth::user()->service_1)) ? 'circle' : 'check' }}"></div>
+                                     <div class="fa fa-{{ (empty($actived_services->service_1)) ? 'circle' : 'check' }}"></div>
                                  </div>
                                  <div class="row justify-content-center d-flex">
                                      <div class="pic"> <i class="fas fa-faucet fa-5x pic-0" style="margin-left:25%;"></i> </div>
@@ -55,9 +55,9 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                                   <input class='service_1' type='hidden' name='service_1' value='eau' />
                                   @endif
                              </div>
-                             <div class="card-block card-body selectRegister2 {{ (empty(Auth::user()->service_2)) ? '' : 'selected' }}">
+                             <div class="card-block card-body selectRegister2 {{ (empty($actived_services->service_2)) ? '' : 'selected' }}">
                                  <div class="row justify-content-end d-flex px-3">
-                                     <div class="fa fa-{{ (empty(Auth::user()->service_2)) ? 'circle' : 'check' }}"></div>
+                                     <div class="fa fa-{{ (empty($actived_services->service_2)) ? 'circle' : 'check' }}"></div>
                                  </div>
                                  <div class="row justify-content-center d-flex">
                                      <div class="pic"> <i class="fas fa-plug fa-5x pic-0" style="margin-left:25%;"></i> </div>
@@ -67,9 +67,9 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                                   <input class='service_2' type='hidden' name='service_2' value='electricite' />
                                   @endif
                              </div>
-                             <div class="card-block card-body selectRegister3 {{ (empty(Auth::user()->service_3)) ? '' : 'selected' }}">
+                             <div class="card-block card-body selectRegister3 {{ (empty($actived_services->service_3)) ? '' : 'selected' }}">
                                  <div class="row justify-content-end d-flex px-3">
-                                     <div class="fa fa-{{ (empty(Auth::user()->service_3)) ? 'circle' : 'check' }}"></div>
+                                     <div class="fa fa-{{ (empty($actived_services->service_3)) ? 'circle' : 'check' }}"></div>
                                  </div>
                                  <div class="row justify-content-center d-flex">
                                      <div class="pic"> <i class="fas fa-tv fa-5x pic-0" style="margin-left:25%;"></i> </div>
@@ -79,9 +79,9 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                                   <input class='service_3' type='hidden' name='service_3' value='tv' />
                                   @endif
                              </div>
-                             <div class="card-block card-body selectRegister4 {{ (empty(Auth::user()->service_4)) ? '' : 'selected' }}">
+                             <div class="card-block card-body selectRegister4 {{ (empty($actived_services->service_4)) ? '' : 'selected' }}">
                                  <div class="row justify-content-end d-flex px-3">
-                                     <div class="fa fa-{{ (empty(Auth::user()->service_4)) ? 'circle' : 'check' }}"></div>
+                                     <div class="fa fa-{{ (empty($actived_services->service_4)) ? 'circle' : 'check' }}"></div>
                                  </div>
                                  <div class="row justify-content-center d-flex">
                                      <div class="pic"> <i class="fas fa-mobile-alt fa-5x pic-0" style="margin-left:25%;"></i> </div>
@@ -91,9 +91,9 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                                   <input class='service_4' type='hidden' name='service_4' value='mobile' />
                                   @endif
                              </div>
-                             <div class="card-block card-body selectRegister5 {{ (empty(Auth::user()->service_5)) ? '' : 'selected' }}">
+                             <div class="card-block card-body selectRegister5 {{ (empty($actived_services->service_5)) ? '' : 'selected' }}">
                                  <div class="row justify-content-end d-flex px-3">
-                                     <div class="fa fa-{{ (empty(Auth::user()->service_5)) ? 'circle' : 'check' }}"></div>
+                                     <div class="fa fa-{{ (empty($actived_services->service_5)) ? 'circle' : 'check' }}"></div>
                                  </div>
                                  <div class="row justify-content-center d-flex">
                                      <div class="pic"> <i class="fas fa-building fa-5x pic-0" style="margin-left:25%;"></i> </div>
@@ -103,9 +103,9 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                                   <input class='service_5' type='hidden' name='service_5' value='locataire' />
                                   @endif
                              </div>
-                             <div class="card-block card-body selectRegister6 {{ (empty(Auth::user()->service_6)) ? '' : 'selected' }}">
+                             <div class="card-block card-body selectRegister6 {{ (empty($actived_services->service_6)) ? '' : 'selected' }}">
                                  <div class="row justify-content-end d-flex px-3">
-                                     <div class="fa fa-{{ (empty(Auth::user()->service_6)) ? 'circle' : 'check' }}"></div>
+                                     <div class="fa fa-{{ (empty($actived_services->service_6)) ? 'circle' : 'check' }}"></div>
                                  </div>
                                  <div class="row justify-content-center d-flex">
                                      <div class="pic"> <i class="fas fa-building fa-5x pic-0" style="margin-left:25%;"></i> </div>
@@ -113,6 +113,30 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                                  </div>
                                  @if(!empty(Auth::user()->service_6))
                                   <input class='service_6' type='hidden' name='service_6' value='proprietaire' />
+                                  @endif
+                             </div>
+                             <div class="card-block card-body selectRegister7 {{ (empty($actived_services->service_7)) ? '' : 'selected' }}">
+                                 <div class="row justify-content-end d-flex px-3">
+                                     <div class="fa fa-{{ (empty($actived_services->service_7)) ? 'circle' : 'check' }}"></div>
+                                 </div>
+                                 <div class="row justify-content-center d-flex">
+                                     <div class="pic"> <i class="fas fa-university fa-5x pic-0" style="margin-left:25%;"></i> </div>
+                                     <h5 class="mb-4" style="color:black;text-align:center;">Scolarité</h5>
+                                 </div>
+                                 @if(!empty(Auth::user()->service_7))
+                                  <input class='service_7' type='hidden' name='service_7' value='scolarite' />
+                                  @endif
+                             </div>
+                             <div class="card-block card-body selectRegister8 {{ (empty($actived_services->service_8)) ? '' : 'selected' }}">
+                                 <div class="row justify-content-end d-flex px-3">
+                                     <div class="fa fa-{{ (empty($actived_services->service_8)) ? 'circle' : 'check' }}"></div>
+                                 </div>
+                                 <div class="row justify-content-center d-flex">
+                                     <div class="pic"> <i class="fas fa-running fa-5x pic-0" style="margin-left:25%;"></i> </div>
+                                     <h5 class="mb-4" style="color:black;text-align:center;">Sport</h5>
+                                 </div>
+                                 @if(!empty(Auth::user()->service_8))
+                                  <input class='service_8' type='hidden' name='service_8' value='sport' />
                                   @endif
                              </div>
                              <div class="row justify-content-center" style="margin-left: -10%;">
@@ -241,6 +265,42 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
     $('.selectRegister6').append("<input class='service_6' type='hidden' name='service_6' value='proprietaire' />");
     var value = $('.service_6').val();
     $('.display_service_6').text(value);
+  }
+  });
+
+  $('.radio-group .selectRegister7').click(function(){
+  if($(this).hasClass('selected')){
+      $(this).find(".fa").removeClass('fa-check');
+      $(this).find(".fa").addClass('fa-circle');
+      $('.service_7').remove();
+    $(this).removeClass('selected');
+    $('.display_service_7').text('');
+  }
+  else {
+    $(this).addClass('selected');
+    $('.selected .fa').removeClass('fa-circle');
+    $('.selected .fa').addClass('fa-check');
+    $('.selectRegister7').append("<input class='service_7' type='hidden' name='service_7' value='scolarite' />");
+    var value = $('.service_7').val();
+    $('.display_service_7').text(value);
+  }
+  });
+
+  $('.radio-group .selectRegister8').click(function(){
+  if($(this).hasClass('selected')){
+      $(this).find(".fa").removeClass('fa-check');
+      $(this).find(".fa").addClass('fa-circle');
+      $('.service_8').remove();
+    $(this).removeClass('selected');
+    $('.display_service_8').text('');
+  }
+  else {
+    $(this).addClass('selected');
+    $('.selected .fa').removeClass('fa-circle');
+    $('.selected .fa').addClass('fa-check');
+    $('.selectRegister8').append("<input class='service_8' type='hidden' name='service_8' value='sport' />");
+    var value = $('.service_8').val();
+    $('.display_service_8').text(value);
   }
   });
 

@@ -39,7 +39,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                            </div>
                            <div class="nav-total">
                               <div>
-                                 <total> <span>{{ $nb_locataires }}</span> <span style="text-transform:none" > locataire(s) au total</span> </total>
+                                 <total> <span>{{ $nb_locataires }}</span> <span style="text-transform:none" > locataire(s) actif(s) au total</span> </total>
                               </div>
                            </div>
 
@@ -89,12 +89,16 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                                              <h2>{{ $data_location->first_name.' '.$data_location->name}}</h2>
                                           </a>
                                           <!----> <!----> <!----> <!---->
+                                          <?php $status = $data_contracts_compact[$data_location->customerId][6] == 'Y'; ?>
                                           <div class="info-status">
                                              <div class="is-connect">
+                                              @if($data_contracts_compact[$data_location->customerId][6] == 'Y')
                                                 <i class="fas fa-dice-one" style="color:#38c738;"></i>
-                                                <!-- SI ANCIEN LOCATAIRE (INACTIF) ALORS
+                                              @endif
+                                                <!-- SI ANCIEN LOCATAIRE (INACTIF) ALORS -->
+                                              @if($data_contracts_compact[$data_location->customerId][6] == 'N')
                                                 <i class="fas fa-dice-one" style="color:#a1a6b3;"></i>
-                                              -->
+                                              @endif
                                                 <div class="m-title-tooltip">
                                                    <div class="tooltip-label">Actif</div>
                                                 </div>

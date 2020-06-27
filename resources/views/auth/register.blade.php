@@ -240,6 +240,24 @@
                                    <h5 class="mb-4" style="color:black;text-align:center;">Propriétaire</h5>
                                </div>
                            </div>
+                           <div class="card-block card-body selectRegister7">
+                               <div class="row justify-content-end d-flex px-3">
+                                   <div class="fa fa-circle"></div>
+                               </div>
+                               <div class="row justify-content-center d-flex">
+                                   <div class="pic"> <i class="fas fa-university fa-5x pic-0" style="margin-left:25%;"></i> </div>
+                                   <h5 class="mb-4" style="color:black;text-align:center;">Scolarité</h5>
+                               </div>
+                           </div>
+                           <div class="card-block card-body selectRegister8">
+                               <div class="row justify-content-end d-flex px-3">
+                                   <div class="fa fa-circle"></div>
+                               </div>
+                               <div class="row justify-content-center d-flex">
+                                   <div class="pic"> <i class="fas fa-running fa-5x pic-0" style="margin-left:25%;"></i> </div>
+                                   <h5 class="mb-4" style="color:black;text-align:center;">Sport</h5>
+                               </div>
+                           </div>
                        </div>
                         <input type="button" name="next" class="next action-button sv_3" value="Suivant" /> <input type="button" name="previous" class="previous action-button-previous" value="Précédent" />
                     </fieldset>
@@ -330,6 +348,8 @@
                                         <strong><li class="display_service_4 recapData" style = "text-transform:capitalize;"></li></strong>
                                         <strong><li class="display_service_5 recapData" style = "text-transform:capitalize;"></li></strong>
                                         <strong><li class="display_service_6 recapData" style = "text-transform:capitalize;"></li></strong>
+                                        <strong><li class="display_service_7 recapData" style = "text-transform:capitalize;"></li></strong>
+                                        <strong><li class="display_service_8 recapData" style = "text-transform:capitalize;"></li></strong>
                                       </div>
                                 </div>
                             </div>
@@ -460,6 +480,42 @@
     $('.selectRegister6').append("<input class='service_6' type='hidden' name='service_6' value='proprietaire' />");
     var value = $('.service_6').val();
     $('.display_service_6').text(value);
+  }
+  });
+
+  $('.radio-group .selectRegister7').click(function(){
+  if($(this).hasClass('selected')){
+      $(this).find(".fa").removeClass('fa-check');
+      $(this).find(".fa").addClass('fa-circle');
+      $('.service_7').remove();
+    $(this).removeClass('selected');
+    $('.display_service_7').text('');
+  }
+  else {
+    $(this).addClass('selected');
+    $('.selected .fa').removeClass('fa-circle');
+    $('.selected .fa').addClass('fa-check');
+    $('.selectRegister7').append("<input class='service_7' type='hidden' name='service_7' value='scolarite' />");
+    var value = $('.service_7').val();
+    $('.display_service_7').text(value);
+  }
+  });
+
+  $('.radio-group .selectRegister8').click(function(){
+  if($(this).hasClass('selected')){
+      $(this).find(".fa").removeClass('fa-check');
+      $(this).find(".fa").addClass('fa-circle');
+      $('.service_8').remove();
+    $(this).removeClass('selected');
+    $('.display_service_8').text('');
+  }
+  else {
+    $(this).addClass('selected');
+    $('.selected .fa').removeClass('fa-circle');
+    $('.selected .fa').addClass('fa-check');
+    $('.selectRegister8').append("<input class='service_8' type='hidden' name='service_8' value='sport' />");
+    var value = $('.service_8').val();
+    $('.display_service_8').text(value);
   }
   });
 

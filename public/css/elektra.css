@@ -1998,7 +1998,7 @@ font-size: 22px;
     margin-bottom: 30px
 }
 
-.selectRegister1, .selectRegister2, .selectRegister3, .selectRegister4, .selectRegister5, .selectRegister6 {
+.selectRegister1, .selectRegister2, .selectRegister3, .selectRegister4, .selectRegister5, .selectRegister6, .selectRegister7, .selectRegister8 {
     display: inline-block;
     border-radius: 0;
     box-sizing: border-box;
@@ -2012,11 +2012,11 @@ font-size: 22px;
     filter: grayscale(100%)
 }
 
-.selectRegister1:hover, .selectRegister2:hover, .selectRegister3:hover, .selectRegister4:hover, .selectRegister5:hover, .selectRegister6:hover {
+.selectRegister1:hover, .selectRegister2:hover, .selectRegister3:hover, .selectRegister4:hover, .selectRegister5:hover, .selectRegister6:hover, .selectRegister7:hover, .selectRegister8:hover {
     box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.1)
 }
 
-.selectRegister1.selected, .selectRegister2.selected, .selectRegister3.selected, .selectRegister4.selected, .selectRegister5.selected, .selectRegister6.selected {
+.selectRegister1.selected, .selectRegister2.selected, .selectRegister3.selected, .selectRegister4.selected, .selectRegister5.selected, .selectRegister6.selected, .selectRegister7.selected, .selectRegister8.selected {
     border: 1px solid green;
     box-shadow: 0px 8px 16px 0px #EEEEEE;
     -webkit-filter: grayscale(0%);

@@ -41,8 +41,8 @@ if(!empty($raw_woyofal_users_demo) and !empty($raw_classical_users_demo)){
       	 <!-- HEADER START -->
          <div class="s2sn-login-header-desktop">
              <a class="s2sn-logo-elektra" href=".">
-                 <img src="{{url('images/logo-s2sn.png')}}" alt="logo-elektra" width="162" height="auto" class="s2sn-img-normal">
-             	   <img src="{{url('images/logo-s2sn-mediumsmall.png')}}" alt="logo-elektra" width="162" height="auto" class="s2sn-img-retina">
+                 <img src="https://elektra.s3.amazonaws.com/images/icons/logo-s2sn.png" alt="logo-elektra" width="162" height="auto" class="s2sn-img-normal">
+             	   <img src="https://elektra.s3.amazonaws.com/images/icons/logo-s2sn-mediumsmall.png" alt="logo-elektra" width="162" height="auto" class="s2sn-img-retina">
              </a>
              <div class="s2sn-login-header-nav">
           <div class="s2sn-login-header-top">
@@ -60,16 +60,16 @@ if(!empty($raw_woyofal_users_demo) and !empty($raw_classical_users_demo)){
           </div>
           <ul class="s2sn-navbar">
               <li><a class="s2sn-header-link" href=".">ACCUEIL &nbsp</a></li>
-              <li><a class="s2sn-header-link" href="{{ route('who') }}">QUI SOMMES-NOUS &nbsp </a></li>
+              <li><a class="s2sn-header-link" href="https://www.services2sn.com" target="blank">QUI SOMMES-NOUS &nbsp </a></li>
               <li><a class="s2sn-header-link" href="{{ route('what') }}">LA PLATEFORME ELEKTRA &nbsp </a></li>
               <li><a class="s2sn-header-link" href="{{ route('register') }}">S'INSCRIRE</a></li>
           </ul>
       </div>
          </div>
          <nav class="navbar navbar-dark s2sn-login-header-mobile">
-             <a class="s2sn-logo-elektra" href="https://www.elektra.com/" target="_blank">
-                 <img src="{{url('images/logo-s2sn.png')}}" alt="logo-elektra" width="162" height="auto" class="s2sn-img-normal">
-             	   <img src="{{url('images/logo-s2sn-mediumsmall.png')}}" alt="logo-elektra" width="162" height="auto" class="s2sn-img-retina">
+             <a class="s2sn-logo-elektra" href=".">
+                 <img src="https://elektra.s3.amazonaws.com/images/icons/logo-s2sn.png" alt="logo-elektra" width="162" height="auto" class="s2sn-img-normal">
+             	   <img src="https://elektra.s3.amazonaws.com/images/icons/logo-s2sn-mediumsmall.png" alt="logo-elektra" width="162" height="auto" class="s2sn-img-retina">
              </a>
              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-contrs2sn="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                  <span class="navbar-toggler-icon"></span>
