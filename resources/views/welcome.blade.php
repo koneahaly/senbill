@@ -77,7 +77,7 @@ if(!empty($raw_woyofal_users_demo) and !empty($raw_classical_users_demo)){
              <div class="collapse navbar-collapse" id="navbarNav">
                  <ul class="navbar-nav">
                       <li class="nav-item"><a class="nav-link" href=".">ACCUEIL</a></li>
-                     <li class="nav-item"><a class="nav-link" href="{{ route('who') }}">QUI SOMMES-NOUS</a></li>
+                     <li class="nav-item"><a class="nav-link" href="www.services2sn.com">QUI SOMMES-NOUS</a></li>
                      <li class="nav-item"><a class="nav-link" href="{{ route('what') }}">LA PLATEFORME ELEKTRA</a></li>
                      <li class="nav-item"><a class="nav-link" href="{{ route('register') }}" >S'INSCRIRE</a></li>
 
