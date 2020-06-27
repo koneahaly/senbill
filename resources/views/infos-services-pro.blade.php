@@ -45,7 +45,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                                      <div class="pic"> <i class="fas fa-faucet fa-5x pic-0" style="margin-left:25%;"></i> </div>
                                      <h5 class="mb-4" style="color:black;text-align:center;">Eau</h5>
                                  </div>
-                                 @if(!empty(Auth::user()->service_1))
+                                 @if(!empty($actived_services->service_1))
                                   <input class='service_1' type='hidden' name='service_1' value='eau' />
                                   @endif
                              </div>
@@ -57,7 +57,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                                      <div class="pic"> <i class="fas fa-plug fa-5x pic-0" style="margin-left:25%;"></i> </div>
                                      <h5 class="mb-4" style="color:black;text-align:center;">Electricité</h5>
                                  </div>
-                                 @if(!empty(Auth::user()->service_2))
+                                 @if(!empty($actived_services->service_2))
                                   <input class='service_2' type='hidden' name='service_2' value='electricite' />
                                   @endif
                              </div>
@@ -69,7 +69,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                                      <div class="pic"> <i class="fas fa-tv fa-5x pic-0" style="margin-left:25%;"></i> </div>
                                      <h5 class="mb-4" style="color:black;text-align:center;">Television</h5>
                                  </div>
-                                 @if(!empty(Auth::user()->service_3))
+                                 @if(!empty($actived_services->service_3))
                                   <input class='service_3' type='hidden' name='service_3' value='tv' />
                                   @endif
                              </div>
@@ -81,7 +81,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                                      <div class="pic"> <i class="fas fa-mobile-alt fa-5x pic-0" style="margin-left:25%;"></i> </div>
                                      <h5 class="mb-4" style="color:black;text-align:center;">Mobile & Internet</h5>
                                  </div>
-                                 @if(!empty(Auth::user()->service_4))
+                                 @if(!empty($actived_services->service_4))
                                   <input class='service_4' type='hidden' name='service_4' value='mobile' />
                                   @endif
                              </div>
@@ -93,7 +93,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                                      <div class="pic"> <i class="fas fa-building fa-5x pic-0" style="margin-left:25%;"></i> </div>
                                      <h5 class="mb-4" style="color:black;text-align:center;">Locataire</h5>
                                  </div>
-                                 @if(!empty(Auth::user()->service_5))
+                                 @if(!empty($actived_services->service_5))
                                   <input class='service_5' type='hidden' name='service_5' value='locataire' />
                                   @endif
                              </div>
@@ -105,7 +105,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                                      <div class="pic"> <i class="fas fa-building fa-5x pic-0" style="margin-left:25%;"></i> </div>
                                      <h5 class="mb-4" style="color:black;text-align:center;">Propriétaire</h5>
                                  </div>
-                                 @if(!empty(Auth::user()->service_6))
+                                 @if(!empty($actived_services->service_6))
                                   <input class='service_6' type='hidden' name='service_6' value='proprietaire' />
                                   @endif
                              </div>
@@ -117,7 +117,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                                      <div class="pic"> <i class="fas fa-university fa-5x pic-0" style="margin-left:25%;"></i> </div>
                                      <h5 class="mb-4" style="color:black;text-align:center;">Scolarité</h5>
                                  </div>
-                                 @if(!empty(Auth::user()->service_7))
+                                 @if(!empty($actived_services->service_7))
                                   <input class='service_7' type='hidden' name='service_7' value='scolarite' />
                                   @endif
                              </div>
@@ -129,7 +129,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                                      <div class="pic"> <i class="fas fa-running fa-5x pic-0" style="margin-left:25%;"></i> </div>
                                      <h5 class="mb-4" style="color:black;text-align:center;">Sport</h5>
                                  </div>
-                                 @if(!empty(Auth::user()->service_8))
+                                 @if(!empty($actived_services->service_8))
                                   <input class='service_8' type='hidden' name='service_8' value='sport' />
                                   @endif
                              </div>

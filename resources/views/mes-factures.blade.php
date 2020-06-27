@@ -5,6 +5,9 @@ $service =explode('/',$_SERVER['REQUEST_URI']);
 $_SESSION['current_service'] = $service[2];
 
 $months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
+$mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_service_2', 'tv' => 'type_service_3', 'mobile' => 'type_service_4',
+                          'locataire' => 'type_service_5', 'proprietaire' => 'type_service_6', 'education' => 'type_service_7',
+                          'sport' => 'type_service_8'];
 
 ?>
 @extends('layouts.app', ['notification' => $numberOfBillsNonPaid, 'service' => $_SESSION['current_service'], 'services' => $actived_services])
@@ -16,8 +19,17 @@ $months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Ao
               <lottie-player src="{{url('images/lottie/lines.json')}}"  background="transparent"  speed="0.1"  style="width: 500px; height: 500px; position:absolute;z-index:1000;margin-left:70%;margin-top: 2.5%;"  loop  autoplay></lottie-player>
           </div>
           <div class="row rowmobile" style="margin-top:10%">
-          <div class="col-md-12" style="margin-top:10px;margin-bottom:20px;text-align:center;">
-           <h3><strong><?php $type_service = (Auth::user()->user_type == 2) ? 'Mes paiements' : 'Mes factures'; echo $type_service ?></strong></h3></div>
+            <div class="col-md-12" style="margin-top:10px;margin-bottom:20px;text-align:center;">
+              @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'prepaid')
+                <h3><strong>Mes paiements</strong></h3>
+              @endif
+              @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'postpaid')
+                <h3><strong>Mes factures</strong></h3>
+              @endif
+              @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} != 'postpaid' and $actived_services->{$mapping_type_services[$_SESSION['current_service']]} != 'prepaid')
+                <h3><strong>Mes factures et paiements</strong></h3>
+              @endif
+           </div>
           </div>
               <lottie-player src="{{url('images/lottie/bubble.json')}}" class="lottie-bubbles" background="transparent"  speed="1"  style="width: 80px; height: 80px; position:absolute;z-index:1000;margin-left:-8%;margin-top: 15%;"  loop  autoplay></lottie-player>
               <lottie-player src="{{url('images/lottie/bubble.json')}}"  class="lottie-bubbles" background="transparent"  speed="1"  style="width: 100px; height: 100px; position:absolute;z-index:1000;margin-left:80%;margin-top: -1.5%;"  loop  autoplay></lottie-player>
@@ -25,26 +37,29 @@ $months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Ao
 
           <div class="row" style="font-size:20px;margin-bottom:20px;text-align:center;">
             <div class="col-md-12">
-            @if(Auth::user()->user_type == 2 and (!empty($data) || $data != NULL))
+              <!-- if prepaid client-->
+            @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'prepaid' and (!empty($data) || $data != NULL))
               <span><strong> Tous vos achats  </strong></span>
               <span class="text-success"><strong> à ce jour ! </strong></span>
             @endif
-
-            @if(Auth::user()->user_type == 2 and (empty($data) || $data == NULL))
+            <!-- if prepaid client-->
+            @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'prepaid' and (empty($data) || $data == NULL))
               <span><strong> Aucun achat de recharge  </strong></span>
               <span class="text-success"><strong> à ce jour ! </strong></span>
             @endif
-
-            @if(Auth::user()->user_type != 2 and (!empty($data) and $data != NULL) and $numberOfBillsNonPaid == 0)
+            <!-- if postpaid client-->
+            @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'postpaid' and (!empty($data) and $data != NULL) and $numberOfBillsNonPaid == 0)
               <span><strong> Tous vos paiements sont </strong></span>
               <span class="text-success"><strong> à jour ! </strong></span>
             @endif
-            @if(Auth::user()->user_type != 2 and (!empty($data) and $data != NULL) and $numberOfBillsNonPaid > 0)
+            <!-- if postpaid client-->
+            @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'postpaid' and (!empty($data) and $data != NULL) and $numberOfBillsNonPaid > 0)
               <span><strong> Vous avez </strong></span>
               <span class="text-danger"><strong> {{ $numberOfBillsNonPaid }} <?php $lib_bill = ($numberOfBillsNonPaid == 1) ? 'facture' : 'factures'; echo $lib_bill; ?></strong></span>
               <span><strong> en attente de paiement ! </strong></span>
             @endif
-            @if((Auth::user()->user_type != 2) and empty($data) || $data == NULL)
+            <!-- if postpaid client-->
+            @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'postpaid' and empty($data) || $data == NULL)
               <span><strong> Aucune facture à ce jour ! </strong></span>
             @endif
             </div>
@@ -52,8 +67,8 @@ $months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Ao
 
           <div class="row" style="z-index:1001">
 		        <div class="col-md-12">
-            @if(Auth::user()->user_type != 2)
-            @if(!empty($data) and $data != NULL)
+              <!-- if postpaid client-->
+            @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'postpaid' and !empty($data) and $data != NULL)
                 <!--<h4>Paiements déjà réalisés</h4> -->
               <br/>
                 <table id="billsTable" class="mdl-data-table" style="width:100%">
@@ -87,11 +102,11 @@ $months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Ao
                     @endforeach
                   </tbody>
                 </table>
-              @endif
             </div>
             @endif
 
-              @if(Auth::user()->user_type == 2 and (!empty($data) and $data != NULL))
+            <!-- if prepaid client-->
+            @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'prepaid' and (!empty($data) and $data != NULL))
                   <!--<h4>Achats déjà effectués</h4>-->
                 <br/>
                 <table id="buysTable" class="mdl-data-table" style="width:100%">
@@ -125,7 +140,8 @@ $months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Ao
               @endif
           </div>
           <br />
-          @if(Auth::user()->user_type == 2)
+          <!-- if prepaid client-->
+          @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'prepaid')
           <div class=" buydiv row panel-heading" style="margin-top:10px;margin-bottom:20px">
            <button class="btnBuy" data-toggle="modal" data-target="#buy_card">
              <span class="circle">
@@ -140,8 +156,8 @@ $months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Ao
 
           @if(!empty($last_row_data))
           <div class="row">
-
-            @if(Auth::user()->user_type != 2)
+            <!-- if postpaid client-->
+            @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'postpaid')
               <div class="col-md-8 col-md-offset-2 picker">
                 @if(!empty($last_row_data->month))
                   <input type="hidden" class="slider-input" value={{ date('n',strtotime($last_row_data->month)) }} />
@@ -151,8 +167,8 @@ $months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Ao
                 @endif
               </div>
             @endif
-
-            @if(Auth::user()->user_type == 2)
+            <!-- if prepaid client-->
+            @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'prepaid')
               <div class="col-md-8 col-md-offset-2 picker_2">
                 @if(!empty($last_row_data->month))
                   <input type="hidden" class="slider-input" value={{ date('n',strtotime($last_row_data->month)) }} />
@@ -163,11 +179,12 @@ $months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Ao
               </div>
             @endif
             <br />
-          <form class="form-inline" action="../mes-factures/{{ $_SESSION['current_service'] }}/pdf_bill" method="POST">
-              {{csrf_field()}}
-            @if(Auth::user()->user_type != 2)
+            <!-- if postpaid client-->
+            @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'postpaid')
             <br/>
               <div class="col-md-4 col-md-offset-4 ticket" style="text-align:center;">
+                <form class="form-inline" action="../mes-factures/{{ $_SESSION['current_service'] }}/pdf_bill" method="POST">
+                    {{csrf_field()}}
                 <div class="large-main-panel" style="background-color:#fff;">
                   <div>
                     <i class="fas fa-paperclip fa-3x" style="margin-right:98%;margin-top: -200px;"></i>
@@ -203,21 +220,18 @@ $months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Ao
                         <input type="hidden" name="id_bill" value="{{$last_row_data->id}}" />
                         <input type="hidden" name="service" value="{{ $_SESSION['current_service'] }}"/>
                       @endif
-
+                    </div>
+                    </div></div>
+                    </form>
                       @if($last_row_data->status != "paid")
                         <button data-toggle="modal" data-target="#pay_bill" class="btn btn-danger rgfac">Régler ma facture</button>
                       @endif
-                    </div>
                     <br />
                     <br />
-                  </div>
-
-                </div>
 
               </div>
 
             @endif
-          </form>
 
           @endif
 
@@ -250,7 +264,8 @@ $months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Ao
           <br />
         <form class="form-inline" action="{{ route('mes-factures.pdf_buy')}}" method="GET">
             {{csrf_field()}}
-            @if(Auth::user()->user_type == 2 and (!empty($data) and $data != NULL))
+            <!-- if prepaid client-->
+            @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'prepaid' and (!empty($data) and $data != NULL))
               <div class="col-md-4 col-md-offset-4 ticket  rowContentMobile" style="text-align:center;">
                 <div class="large-main-panel" style="background-color:#fff;">
                   <div>

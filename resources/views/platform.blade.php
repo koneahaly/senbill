@@ -54,7 +54,7 @@
                       <div class="card col-12 col-md-6 col-lg-3" style="color: <?=getServiceColor($actived_services->service_1)?>;">
                           <div class="icon-block">
                             <?php
-                            if($infos_perso->service_1 != "eau")
+                            if($actived_services->service_1 != "eau")
                             {
                                 echo '<a href="javascript:void(0);" style="cursor:not-allowed;">';
                             }
@@ -73,7 +73,7 @@
                       <div class="card col-12 col-md-6 col-lg-3" style="color: <?=getServiceColor($actived_services->service_2)?>;">
                           <div class="icon-block">
                             <?php
-                            if($infos_perso->service_2 != "electricite")
+                            if($actived_services->service_2 != "electricite")
                             {
                                 echo '<a href="javascript:void(0);" style="cursor:not-allowed;">';
                             }
@@ -92,7 +92,7 @@
                       <div class="card col-12 col-md-6 col-lg-3" style="color: <?=getServiceColor($actived_services->service_3)?>;">
                           <div class="icon-block">
                             <?php
-                            if($infos_perso->service_3 != "tv")
+                            if($actived_services->service_3 != "tv")
                             {
                                 echo '<a href="javascript:void(0);" style="cursor:not-allowed;">';
                             }
@@ -111,7 +111,7 @@
                       <div class="card col-12 col-md-6 col-lg-3" style="color: <?=getServiceColor($actived_services->service_4)?>;">
                           <div class="icon-block">
                             <?php
-                            if($infos_perso->service_4 != "mobile")
+                            if($actived_services->service_4 != "mobile")
                             {
                                 echo '<a href="javascript:void(0);" style="cursor:not-allowed;">';
                             }
@@ -130,7 +130,7 @@
                       <div class="card col-12 col-md-6 col-lg-3" style="color: <?=getServiceColor($actived_services->service_5)?>;">
                           <div class="icon-block">
                             <?php
-                            if($infos_perso->service_5 != "locataire")
+                            if($actived_services->service_5 != "locataire")
                             {
                                 echo '<a href="javascript:void(0);" style="cursor:not-allowed;">';
                             }
@@ -149,7 +149,7 @@
                       <div class="card col-12 col-md-6 col-lg-3" style="color: <?=getServiceColor($actived_services->service_6)?>;">
                           <div class="icon-block">
                             <?php
-                            if($infos_perso->service_6 != "proprietaire")
+                            if($actived_services->service_6 != "proprietaire")
                             {
                                 echo '<a href="javascript:void(0);" style="cursor:not-allowed;">';
                             }
@@ -168,7 +168,7 @@
                       <div class="card col-12 col-md-6 col-lg-3" style="color: <?=getServiceColor($actived_services->service_7)?>;">
                           <div class="icon-block">
                             <?php
-                            if($infos_perso->service_7 != "scolarite")
+                            if($actived_services->service_7 != "scolarite")
                             {
                                 echo '<a href="javascript:void(0);" style="cursor:not-allowed;">';
                             }
@@ -187,7 +187,7 @@
                       <div class="card col-12 col-md-6 col-lg-3" style="color: <?=getServiceColor($actived_services->service_8)?>;">
                           <div class="icon-block">
                             <?php
-                            if($infos_perso->service_8 != "sport")
+                            if($actived_services->service_8 != "sport")
                             {
                                 echo '<a href="javascript:void(0);" style="cursor:not-allowed;">';
                             }
