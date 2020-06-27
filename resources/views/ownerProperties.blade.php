@@ -507,7 +507,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                  </div>
                  <div class="wrap-input100 bg1 rs1-wrap-input100 form-group{{ $errors->has('start_date') ? ' has-error' : '' }}">
                    <span class="label-input100 control-label">Date de début *</span>
-                   <input class="input100" type="text" pattern="[0-9]{0,10}" name="start_date" required>
+                   <input class="input100" type="text"  name="start_date" required>
                    @if ($errors->has('start_date'))
                        <span class="help-block">
                            <strong>{{ $errors->first('start_date') }}</strong>
