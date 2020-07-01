@@ -105,7 +105,8 @@ class realEstateOwnerController extends Controller
       $own->housing_type=$given->housing_type;
       $own->status=$given->status_housing;
       $own->save();
-      return redirect()->intended(route('ownerProperties'));
+      //return redirect()->intended(route('ownerProperties'));
+      return redirect()->back()->with('message', 'Le logement a été correctement ajouté!');
     }
 
     public function update_housing(Request $given){
@@ -127,7 +128,7 @@ class realEstateOwnerController extends Controller
               ->where('owner_id', $s)->where('id_own',$given->housing_id_m)
               ->update(['status' => 'N']);
         }
-        return redirect()->intended(route('ownerProperties'));
+        return redirect()->back()->with('message', 'Le logement a été correctement modifié!');
       }
 
       public function add_occupant(Request $given){

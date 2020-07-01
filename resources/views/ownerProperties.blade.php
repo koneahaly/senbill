@@ -1,10 +1,12 @@
 <?php
 session_start();
 $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOfBillsNonPaid"] : '';
+
 ?>
 @extends('layouts.realEstate', ['notification' => $notification, 'services' => $actived_services])
 
 @section('content')
+
 <div class="container">
   <!--TITLE OF THE PAGE-->
   <div class="row rowloc rowmobile" style="margin-top:14%;z-index: 1100;">
@@ -14,6 +16,19 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
   </div>
 <!-- END TITLE OF THE PAGE-->
 <!--CONTENT OF THE PAGE-->
+@if(session('message'))
+<input  type='hidden' class="mess" value="{{ session('message') }}">
+<script>
+ $(document).ready(function() {
+  var  mess= $('.mess').val();
+  showAddPropertyNotif(mess);
+  });
+ </script>
+    <!--  <div class="alert alert-success">
+        {{ session('message') }}
+    </div>
+    -->
+@endif
   <div class="panel panel-default" style="background-color: #f5f9fc;z-index: 1100;">
     <div class="panel-body propPanelBody">
       <!--<h4>DEBUT HEADER  </h4> -->
@@ -43,7 +58,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
             </div>
             <div class="sidebar-filter">
                <!----> <!----> <!---->
-               <a class="filter-item m-btn btn-primary" title="Ajouter un logement" onclick="openForm(); return false;">
+               <a class="filter-item m-btn btn-primary addProperty" title="Ajouter un logement" onclick="openForm(); return false;">
                   <div class="icon-svg">
                      <e-svg-icon set-class="i-svg--fill i-svg--12 i-svg-fill--white" xlink="#icon-line-plus" class="e-svg-icon">
                         <svg class="i-svg--fill i-svg--12 i-svg-fill--white" id="svgElement" viewBox="0 0 12 12">
@@ -171,6 +186,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                         </div>
                         @endif
                         <div class="property-view"> <a class="m-btn-link--view modify_housing housing_{{ $vl->id }}" title="détails" href="" style="text-transform: none;"  onclick="openDesc(); return false;"> Modifier <i class="far fa-edit"></i></a> </div>
+                        <div class="property-view"> <a class="m-btn-link--view delete_housing housing_{{ $vl->id }}" title="supprimer" href="" style="text-transform: none; color:red;" onclick="">  <i class="fa fa-trash" aria-hidden="true"></i></a> </div>
                      </div>
                      <!---FIN FOOTER-->
                    </div>
@@ -200,6 +216,8 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                  </ul>
              </div>
            @endif
+
+
 
          </div>
 
@@ -604,10 +622,45 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
            closeFormLocataire();
          }
          document.getElementById("propForm").style.display = "flex";
+
        }
 
        function closeForm() {
          document.getElementById("propForm").style.display = "none";
+       }
+
+       function showAddPropertyNotif(message) {
+         $(".panel-default").notify(message, {
+           // whether to hide the notification on click
+          clickToHide: true,
+          // whether to auto-hide the notification
+          autoHide: true,
+          // if autoHide, hide after milliseconds
+          autoHideDelay: 10000,
+          // show the arrow pointing at the element
+          arrowShow: true,
+          // arrow size in pixels
+          arrowSize: 5,
+          // position defines the notification position though uses the defaults below
+          position: 'top',
+          // default positions
+          elementPosition: 'top right',
+          globalPosition: 'top right',
+          // default style
+          style: 'bootstrap',
+          // default class (string or [string])
+          className: 'success',
+          // show animation
+          showAnimation: 'slideDown',
+          // show animation duration
+          showDuration: 400,
+          // hide animation
+          hideAnimation: 'slideUp',
+          // hide animation duration
+          hideDuration: 200,
+          // padding between element and notification
+          gap: 2
+          });
        }
 
      </script>
@@ -720,6 +773,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
        });
 
      });
+
      </script>
 
 

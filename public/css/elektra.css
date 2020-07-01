@@ -1,38 +1,6 @@
 x/*font start*/
 @import url("https://fonts.googleapis.com/css?family=Mukta:700");
-/* Webfont: OpenSans-Bold */@font-face {
-    font-family: 'OpenSansBold';
-    src: url('../fonts/OpenSans-Bold.ttf') format('truetype');
-    font-style: normal;
-    font-weight: normal;
-    text-rendering: optimizeLegibility;
-}
 
-/* Webfont: OpenSans-Regular */@font-face {
-    font-family: 'OpenSans';
-    src: url('../fonts/OpenSans-Regular.ttf') format('truetype');
-    font-style: italic;
-    font-weight: normal;
-    text-rendering: optimizeLegibility;
-}
-
-/* Webfont: OpenSans-Italic */@font-face {
-    font-family: 'OpenSansItalic';
-    src: url('../fonts/OpenSans-Italic.ttf') format('truetype');
-    font-style: italic;
-    font-weight: normal;
-    text-rendering: optimizeLegibility;
-}
-
-/* Webfont: OpenSans-Light */@font-face {
-    font-family: 'OpenSansSemiBold';
-    src: url('../fonts/OpenSans-Semibold.ttf') format('truetype');
-    font-style: normal;
-    font-weight: normal;
-    text-rendering: optimizeLegibility;
-}
-
-/*font end*/
 
 html, body {
   font-family: 'OpenSans', arial, sans-serif;

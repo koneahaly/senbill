@@ -64,7 +64,7 @@
 <link rel="stylesheet" type="text/css" href="{{url('css/elektra.css')}}">
 <link rel="stylesheet" type="text/css" href="{{url('css/realEstate.css')}}">
 <link rel="stylesheet" type="text/css" href="{{url('css/locationModule.css')}}">
-<script src="{{ url('js/lottie-player.js') }}"></script>
+<script src="{{ url('js/notify.js') }}"></script>
 
 
 
