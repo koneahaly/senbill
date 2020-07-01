@@ -160,7 +160,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                      <!---->
                      <!----> <a class="m-btn-link--view" href=""></a>
                      <div class="property-view"> <a class="m-btn-link--view modify_occupant occupant_{{ $data_location->customerId }}" title="détails" style="text-transform: none;" onclick="openFormEditLocataire()"> Modifier <i class="far fa-edit"></i></a> </div>
-                     <div class="property-view"> <a class="m-btn-link--view modify_occupant occupant_{{ $data_location->customerId }}" title="détails" style="text-transform: none; color:red;" onclick="">  <i class="fa fa-trash"></i></a> </div>
+                     <div class="property-view"> <a class="m-btn-link--view modify_occupant occupant_{{ $data_location->customerId }}" href= "" title="supprimer" style="text-transform: none; color:red;" onclick="confirmation(event,{{ $data_location->customerId }})">  <i class="fa fa-trash"></i></a> </div>
 
                   </div>
                </div>
@@ -704,6 +704,29 @@ $(document).ready(function() {
   });
 
 });
+
+function confirmation(ev,id) {
+    ev.preventDefault();
+    swal({
+      title: "Etes vous sûr de vouloir supprimer ce locataire ?",   text: "Vous ne pourrez plus le restaurer après cette action!",
+       type: "warning",
+       showCancelButton: true,
+       confirmButtonColor: "#DD6B55",
+       confirmButtonText: "Oui, supprimez!",
+       closeOnConfirm: false
+     }, function(){
+        swal({
+            title: "Supprimé!",
+            text: "Ce locataire a été supprimé avec succès.",
+            type: "success",
+            //timer: 3000
+        },
+        function(){
+          window.location.href = "../mes-locataires/delete/"+ id;
+        })
+  });
+ }
+
 </script>
 <?php
 $id = explode('/',$_SERVER['REQUEST_URI']);

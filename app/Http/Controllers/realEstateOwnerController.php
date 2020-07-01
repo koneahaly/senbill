@@ -131,6 +131,16 @@ class realEstateOwnerController extends Controller
         return redirect()->back()->with('message', 'Le logement a été correctement modifié!');
       }
 
+      public function delete_housing(Request $given,$id){
+        $s=Auth::user()->customerId;
+        //dd($id);
+        DB::table('owns')
+            ->where('id',$id)
+            ->update(['status' => 'D']);
+
+        return redirect()->intended(route('ownerProperties'));
+      }
+
       public function add_occupant(Request $given){
         $s=Auth::user()->customerId;
 
@@ -215,6 +225,16 @@ class realEstateOwnerController extends Controller
             ->where('renter_id',$given->occupant_id)
             ->update(['bail' => $given->bail, 'monthly_pm' => $given->monthly_pm,
           'delay' =>$given->delay, 'frequency' => $given->frequency]);
+
+        return redirect()->intended(route('mes-locataires'));
+      }
+
+      public function delete_occupant(Request $given,$id){
+        $s=Auth::user()->customerId;
+        //dd($id);
+        DB::table('contracts')
+            ->where('renter_id',$id)
+            ->update(['status' => 'D']);
 
         return redirect()->intended(route('mes-locataires'));
       }

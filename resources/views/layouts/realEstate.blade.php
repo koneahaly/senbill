@@ -64,7 +64,9 @@
 <link rel="stylesheet" type="text/css" href="{{url('css/elektra.css')}}">
 <link rel="stylesheet" type="text/css" href="{{url('css/realEstate.css')}}">
 <link rel="stylesheet" type="text/css" href="{{url('css/locationModule.css')}}">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.0/sweetalert.min.css">
 <script src="{{ url('js/notify.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.0/sweetalert.min.js"></script>
 
 
 

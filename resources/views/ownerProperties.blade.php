@@ -186,7 +186,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                         </div>
                         @endif
                         <div class="property-view"> <a class="m-btn-link--view modify_housing housing_{{ $vl->id }}" title="détails" href="" style="text-transform: none;"  onclick="openDesc(); return false;"> Modifier <i class="far fa-edit"></i></a> </div>
-                        <div class="property-view"> <a class="m-btn-link--view delete_housing housing_{{ $vl->id }}" title="supprimer" href="" style="text-transform: none; color:red;" onclick="">  <i class="fa fa-trash" aria-hidden="true"></i></a> </div>
+                        <div class="property-view"> <a class="m-btn-link--view delete_housing housing_{{ $vl->id }}" title="supprimer" href="" style="text-transform: none; color:red;" onclick="confirmation(event,{{ $vl->id }})">  <i class="fa fa-trash" aria-hidden="true"></i></a> </div>
                      </div>
                      <!---FIN FOOTER-->
                    </div>
@@ -773,6 +773,28 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
        });
 
      });
+
+     function confirmation(ev,id) {
+       ev.preventDefault();
+       swal({
+         title: "Etes vous sûr de vouloir supprimer ce logement ?",   text: "Vous ne pourrez plus le restaurer après cette action!",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#DD6B55",
+          confirmButtonText: "Oui, supprimez!",
+          closeOnConfirm: false
+        }, function(){
+           swal({
+               title: "Supprimé!",
+               text: "Ce logement a été supprimé avec succès.",
+               type: "success",
+               //timer: 3000
+           },
+           function(){
+             window.location.href = "../mes-logements/delete/"+ id;
+           })
+     });
+      }
 
      </script>
 
