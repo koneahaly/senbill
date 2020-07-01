@@ -147,6 +147,7 @@ class realEstateOwnerController extends Controller
 
         $renter_check_id=DB::table('users')->select('customerId')->where('customerId',$given->customerId)->count();
         if($renter_check_id < 1){
+          $occupant_id = $given->customerId;
           User::create([
               'civilite' => $given->civilite,
               'name' => $given->name,
@@ -159,10 +160,11 @@ class realEstateOwnerController extends Controller
               'address' =>trim($given->housing_address),
               'password' => bcrypt($given->name.'123'),
             ]);
-            Service::create([
-              'customerId' => $given->customerId,
-              'service_5' => 'locataire',
-          ]);
+
+            $service = new Service;
+            $service->customerId= $given->customerId;
+            $service->service_5='locataire';
+            $service->save();
         }
         $renter_id=DB::table('users')->select('customerId')->where('customerId',$given->customerId)->first();
 

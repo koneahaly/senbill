@@ -155,11 +155,11 @@ html, body {
    @endif
    @if( $service == "scolarite")
      <p class="custom-space">Espace Scolarité</p>
-     <lottie-player src="{{url('images/lottie/key.json')}}"  background="transparent"  speed="1" class="space-logo-locataire"  loop  autoplay></lottie-player>
+     <lottie-player src="https://assets6.lottiefiles.com/packages/lf20_JYe5t7/data2.json"  background="transparent"  speed="1" class="space-logo-locataire"  loop  autoplay></lottie-player>
    @endif
   @if( $service == "sport")
     <p class="custom-space">Espace Sport</p>
-    <lottie-player src="{{url('images/lottie/key.json')}}"  background="transparent"  speed="1" class="space-logo-locataire"  loop  autoplay></lottie-player>
+    <lottie-player src="{{url('images/lottie/7206-run-for-loading.json')}}"  background="transparent"  speed="1" class="space-logo-locataire"  loop  autoplay></lottie-player>
   @endif
           <div class="s2sn-login-header-nav  navbarElektra">
          <ul class="s2sn-navbar-elektra">
@@ -267,11 +267,11 @@ html, body {
          @endif
          @if( $service == "scolarite")
            <p class="custom-space">Espace Scolarité</p>
-           <lottie-player src="{{url('images/lottie/key.json')}}"  background="transparent"  speed="1" class="space-logo-locataire logoEspaceMobile"  loop  autoplay></lottie-player>
+           <lottie-player src="https://assets6.lottiefiles.com/packages/lf20_JYe5t7/data2.json"  background="transparent"  speed="1" class="space-logo-locataire logoEspaceMobile"  loop  autoplay></lottie-player>
          @endif
          @if( $service == "sport")
            <p class="custom-space">Espace Sport</p>
-           <lottie-player src="{{url('images/lottie/key.json')}}"  background="transparent"  speed="1" class="space-logo-locataire logoEspaceMobile"  loop  autoplay></lottie-player>
+           <lottie-player src="{{url('images/lottie/7206-run-for-loading.json')}}"  background="transparent"  speed="1" class="space-logo-locataire logoEspaceMobile"  loop  autoplay></lottie-player>
          @endif
               @endguest
 

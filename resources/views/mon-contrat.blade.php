@@ -1,6 +1,17 @@
 <?php
 session_start();
 $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOfBillsNonPaid"] : '';
+
+$mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_service_2', 'tv' => 'type_service_3', 'mobile' => 'type_service_4',
+                          'locataire' => 'type_service_5', 'proprietaire' => 'type_service_6', 'education' => 'type_service_7',
+                          'sport' => 'type_service_8'];
+
+if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'prepaid')
+  $wording_offer = "Prépayée";
+if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'postpaid')
+  $wording_offer = "Postpayée";
+if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} != 'postpaid' and $actived_services->{$mapping_type_services[$_SESSION['current_service']]} != 'prepaid')
+  $wording_offer = "Inconnue";
 ?>
 
 @extends('layouts.app', ['notification' => $notification, 'service' => $_SESSION['current_service'], 'services' => $actived_services])
@@ -28,7 +39,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                   <div class="row" style="margin-left: 1%;">
                     <div class="col-md-8">
                       <h5 class="card-title text-uppercase text-muted mb-0">Type d'offre</h5>
-                      <span class="h4 font-weight-bold mb-0">@php $wording_offer = (Auth::user()->user_type == 2) ? "Prépayée" : "Postpayée"; echo $wording_offer; @endphp</span>
+                      <span class="h4 font-weight-bold mb-0">{{ $wording_offer }}</span>
                     </div>
                     <div class="col-auto">
                       <div>
@@ -46,11 +57,11 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                   <div class="row" style="margin-left: 1%;">
                     <div class="col-md-8">
                       <h5 class="card-title text-uppercase text-muted mb-0">Statut du contrat</h5>
-                      <span class="h4 font-weight-bold mb-0">Actif</span>
+                      <span class="h4 font-weight-bold mb-0">{{ ($wording_offer == 'Inconnue') ? 'Inactif' : 'Actif' }}</span>
                     </div>
                     <div class="col-auto">
                       <div>
-                        <i class="fas fa-dice-one fa-3x" style="color: forestgreen;"></i>
+                        <i class="fas fa-dice-one fa-3x" {{ ($wording_offer == "Inconnue") ? 'style="color: red;"' : 'style="color: forestgreen;"' }}></i>
                       </div>
                     </div>
                   </div>
@@ -115,13 +126,19 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                   </div>
 
                   <div class="row  text-center" style="margin-bottom:20px">
-                    <span class="glyphicon glyphicon-ok-circle text-success " style="font-size:30px"></span>
-                    <p style="color:green;margin-left:-3%;font-size:20px">Contrat actif</p>
+                    @if($wording_offer != 'Inconnue')
+                      <span class="glyphicon glyphicon-ok-circle text-success " style="font-size:30px"></span>
+                      <p style="color:green;margin-left:-3%;font-size:20px">Contrat actif</p>
+                    @endif
+                    @if($wording_offer == 'Inconnue')
+                      <span class="glyphicon glyphicon-remove-circle text-danger " style="font-size:30px"></span>
+                      <p style="color:red;margin-left:-3%;font-size:20px">Contrat inactif</p>
+                    @endif
                   </div>
 
                   <div class="col-md-6" style="margin-bottom:20px;">
                     <p>OFFRE</p>
-                    <span class="recapData"><strong>@php $wording_offer = (Auth::user()->user_type == 2) ? "Prépayée" : "Postpayée"; echo $wording_offer; @endphp</strong></span>
+                    <span class="recapData"><strong>{{ $wording_offer }}</strong></span>
                   </div>
 
                   <div class="col-md-6" style="margin-bottom:20px;">
@@ -131,7 +148,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
 
                   <div class="col-md-6" style="margin-bottom:20px;">
                     <p>STATUT</p>
-                    <span class="recapData"><strong> ACTIF </strong></span>
+                    <span class="recapData"><strong> {{ ($wording_offer == 'Inconnue') ? 'INACTIF' : 'ACTIF' }} </strong></span>
                   </div>
 
                   <div class="col-md-6" style="margin-bottom:20px;">
