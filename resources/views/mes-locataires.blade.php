@@ -160,6 +160,8 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                      <!---->
                      <!----> <a class="m-btn-link--view" href=""></a>
                      <div class="property-view"> <a class="m-btn-link--view modify_occupant occupant_{{ $data_location->customerId }}" title="détails" style="text-transform: none;" onclick="openFormEditLocataire()"> Modifier <i class="far fa-edit"></i></a> </div>
+                     <div class="property-view"> <a class="m-btn-link--view modify_occupant occupant_{{ $data_location->customerId }}" title="détails" style="text-transform: none; color:red;" onclick="">  <i class="fa fa-trash"></i></a> </div>
+
                   </div>
                </div>
             </div>

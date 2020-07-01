@@ -194,9 +194,9 @@ class realEstateOwnerController extends Controller
         $given->validate([
             'name' => 'required|string|string|max:255',
             'first_name' => 'required|string|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'phone' => 'required|string|string|max:13|unique:users',
-            'customerId' =>'required|string|max:25|min:10|unique:users',
+            'email' => 'required|string|email|max:255',
+            'phone' => 'required|string|string|max:13',
+            'customerId' =>'required|string|max:25|min:10',
             'monthly_pm' => 'required',
             'bail' => 'required',
             'start_date' =>'required',
