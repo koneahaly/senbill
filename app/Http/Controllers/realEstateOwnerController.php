@@ -185,7 +185,7 @@ class realEstateOwnerController extends Controller
             ->where('owner_id', $s)->where('id',$given->housing_id)
             ->update(['status' => 'N','current_occupant_name' => $given->first_name.' '.$given->name,'occupant_id' => $given->customerId]);
 
-        return redirect()->intended(route('ownerProperties'));
+            return redirect()->back()->with('message', 'Le locataire a été correctement ajouté au logement, il recevra sous peu un SMS et un email l invitant à rejoindre Elektra pour payer ses factures!');
       }
 
       public function update_occupant(Request $given){
@@ -216,6 +216,6 @@ class realEstateOwnerController extends Controller
             ->update(['bail' => $given->bail, 'monthly_pm' => $given->monthly_pm,
           'delay' =>$given->delay, 'frequency' => $given->frequency]);
 
-        return redirect()->intended(route('mes-locataires'));
+          return redirect()->back()->with('message', 'Le locataire a été correctement modifié');
       }
 }

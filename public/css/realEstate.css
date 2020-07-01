@@ -268,3 +268,8 @@
     margin-left: -18%;
   }
 }
+.notifyjs-corner {
+    position: fixed;
+    margin: 80px;
+    z-index: 1500;
+}
