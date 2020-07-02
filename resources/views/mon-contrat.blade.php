@@ -3,7 +3,7 @@ session_start();
 $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOfBillsNonPaid"] : '';
 
 $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_service_2', 'tv' => 'type_service_3', 'mobile' => 'type_service_4',
-                          'locataire' => 'type_service_5', 'proprietaire' => 'type_service_6', 'education' => 'type_service_7',
+                          'locataire' => 'type_service_5', 'proprietaire' => 'type_service_6', 'scolarite' => 'type_service_7',
                           'sport' => 'type_service_8'];
 
 if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'prepaid')
