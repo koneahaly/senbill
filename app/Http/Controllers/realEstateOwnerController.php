@@ -55,10 +55,10 @@ class realEstateOwnerController extends Controller
       $list_housings_title = [];
       $list_contracts_infos = [];
       $actived_services['actived_services'] = DB::table('services')->where('customerId',$s)->first();
-      $data_contracts=DB::table('contracts')->where('owner_id',$s)->get();
-      $infos_housings=DB::table('owns')->select('occupant_id','title')->where('owner_id',$s)->get();
-      $infos_locations=DB::table('owns')->select('occupant_id')->where('owner_id',$s)->get();
-      $nb_locataires=(int)DB::table('owns')->where('owner_id',$s)->where('status','N')->count();
+      $data_contracts=DB::table('contracts')->where('owner_id',$s)->where('status','<>','D')->get();
+      $infos_housings=DB::table('owns')->select('occupant_id','title')->where('owner_id',$s)->where('status','<>','D')->get();
+      $infos_locations=DB::table('owns')->select('occupant_id')->where('owner_id',$s)->where('status','<>','D')->get();
+      $nb_locataires=(int)DB::table('owns')->where('owner_id',$s)->where('status','N')->where('status','<>','D')->count();
       foreach($infos_locations as $infos_location){
         array_push($list_renter_id,$infos_location->occupant_id);
       }
@@ -81,8 +81,8 @@ class realEstateOwnerController extends Controller
       $s=Auth::user()->customerId;
       $actived_services['actived_services'] = DB::table('services')->where('customerId',$s)->first();
       $infos_perso['infos_perso']=DB::table('users')->where('customerId',$s)->first();
-      $infos_log['infos_log']=DB::table('owns')->where('owner_id',$s)->get();
-      $nb_log=(int)DB::table('owns')->where('owner_id',$s)->count();
+      $infos_log['infos_log']=DB::table('owns')->where('owner_id',$s)->where('status','<>','D')->get();
+      $nb_log=(int)DB::table('owns')->where('owner_id',$s)->where('status','<>','D')->count();
       return view('ownerProperties')->with($infos_perso)->with($infos_log)->with('nb_log',$nb_log)->with($actived_services);
 
     }
