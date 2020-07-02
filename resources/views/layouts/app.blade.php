@@ -51,8 +51,9 @@
 <link rel="stylesheet" href="{{url('css/payment_modal.css')}}">
 <script src="{{ url('js/jquery.range.js') }}"></script>
 <script src="{{ url('js/lottie-player.js') }}"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-<script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
+<link rel="stylesheet" type="text/css" href="{{ url('css/sweetalert.min.css') }}">
+<script src="{{ url('js/notify.js') }}"></script>
+<script src="{{ url('js/sweetalert.min.js') }}"></script>
 
 <!--===============================================================================================-->
 
