@@ -18,9 +18,17 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
   </div>
   <lottie-player src="{{url('images/lottie/bubble.json')}}" class="lottie-bubbles" background="transparent"  speed="1"  style="width: 80px; height: 80px; position:absolute;z-index:1000;margin-left:-8%;margin-top: 15%;"  loop  autoplay></lottie-player>
   <lottie-player src="{{url('images/lottie/bubble.json')}}" class="lottie-bubbles" background="transparent"  speed="1"  style="width: 100px; height: 100px; position:absolute;z-index:1000;margin-left:84%;margin-top: -8%;"  loop  autoplay></lottie-player>
-  <lottie-player src="{{url('images/lottie/bubble.json')}}" class="lottie-bubbles" background="transparent"  speed="1"  style="width: 60px; height: 60px; position:absolute;z-index:1000;margin-left:1%;margin-top: -2%;"  loop  autoplay></lottie-player>
 <!-- END TITLE OF THE PAGE-->
 <!--CONTENT OF THE PAGE-->
+@if(session('message'))
+<input  type='hidden' class="mess" value="{{ session('message') }}">
+<script>
+ $(document).ready(function() {
+  var  mess= $('.mess').val();
+  showAddTenantNotif(mess);
+  });
+ </script>
+@endif
   <div class="panel panel-default" style="background-color: #f5f9fc;z-index: 1100;">
     <div class="panel-body propPanelBody">
       <!--<h4>DEBUT HEADER  </h4> -->
@@ -578,6 +586,39 @@ $(document).ready(function() {
   function closeLeaseDetails() {
     document.getElementById("leaseDetails").style.display = "none";
   }
+  function showAddTenantNotif(message) {
+    $('.panel-heading').notify(message, {
+      // whether to hide the notification on click
+     clickToHide: true,
+     // whether to auto-hide the notification
+     autoHide: true,
+     // if autoHide, hide after milliseconds
+     autoHideDelay: 10000,
+     // show the arrow pointing at the element
+     arrowShow: true,
+     // arrow size in pixels
+     arrowSize: 5,
+     // position defines the notification position though uses the defaults below
+     position: 'top',
+     // default positions
+     elementPosition: 'top left',
+     globalPosition: 'top left',
+     // default style
+     style: 'bootstrap',
+     // default class (string or [string])
+     className: 'success',
+     // show animation
+     showAnimation: 'slideDown',
+     // show animation duration
+     showDuration: 400,
+     // hide animation
+     hideAnimation: 'slideUp',
+     // hide animation duration
+     hideDuration: 200,
+     // padding between element and notification
+     gap: -2,
+     });
+  }
 
 </script>
 <!--===============================================================================================-->
@@ -702,6 +743,8 @@ $(document).ready(function() {
     $('.frequency_contract').html(frequency_occupant);
     $('.slash_frequency_contract').html(' / '+frequency_occupant);
   });
+
+
 
 });
 

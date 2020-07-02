@@ -24,10 +24,6 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
   showAddPropertyNotif(mess);
   });
  </script>
-    <!--  <div class="alert alert-success">
-        {{ session('message') }}
-    </div>
-    -->
 @endif
   <div class="panel panel-default" style="background-color: #f5f9fc;z-index: 1100;">
     <div class="panel-body propPanelBody">
@@ -630,7 +626,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
        }
 
        function showAddPropertyNotif(message) {
-         $(".panel-default").notify(message, {
+         $('.panel-heading').notify(message, {
            // whether to hide the notification on click
           clickToHide: true,
           // whether to auto-hide the notification
@@ -644,8 +640,8 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
           // position defines the notification position though uses the defaults below
           position: 'top',
           // default positions
-          elementPosition: 'top right',
-          globalPosition: 'top right',
+          elementPosition: 'top left',
+          globalPosition: 'top left',
           // default style
           style: 'bootstrap',
           // default class (string or [string])
@@ -659,7 +655,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
           // hide animation duration
           hideDuration: 200,
           // padding between element and notification
-          gap: 2
+          gap: -2,
           });
        }
 
