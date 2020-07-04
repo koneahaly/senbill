@@ -751,9 +751,10 @@ $(document).ready(function() {
 function confirmation(ev,id) {
     ev.preventDefault();
     swal({
-      title: "Etes vous sûr de vouloir supprimer ce locataire ?",   text: "Vous ne pourrez plus le restaurer après cette action!",
+      title: "Etes vous sûr de vouloir supprimer ce locataire ?",   text: "Le logement rattaché à ce locataire sera libre après cette suppression! Cette action est irréversible.",
        type: "warning",
        showCancelButton: true,
+       cancelButtonText: 'Annuler',
        confirmButtonColor: "#DD6B55",
        confirmButtonText: "Oui, supprimez!",
        closeOnConfirm: false
