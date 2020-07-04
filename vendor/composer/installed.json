@@ -608,6 +608,62 @@
         ]
     },
     {
+        "name": "foris-master/orange-money-sdk",
+        "version": "0.6.0",
+        "version_normalized": "0.6.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Foris-master/orange-money-sdk.git",
+            "reference": "0335679a4c6a9ea5f40aef75948392fe163d3a35"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Foris-master/orange-money-sdk/zipball/0335679a4c6a9ea5f40aef75948392fe163d3a35",
+            "reference": "0335679a4c6a9ea5f40aef75948392fe163d3a35",
+            "shasum": ""
+        },
+        "require": {
+            "guzzlehttp/guzzle": "^6.3",
+            "php": ">=5.3.0"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "4.*"
+        },
+        "time": "2018-05-06T16:03:24+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.0-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Foris\\OmSdk\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": ":Foris Fomekong",
+                "email": "evarisfomekong@gmail.com",
+                "homepage": "http://author-website.example.com",
+                "role": "Developer"
+            }
+        ],
+        "description": "This is a php sdk for orange operator mobile money api. ",
+        "homepage": "https://github.com/php-loep/:package_name",
+        "keywords": [
+            "money",
+            "orange",
+            "php",
+            "sdk"
+        ]
+    },
+    {
         "name": "fzaninotto/faker",
         "version": "v1.7.1",
         "version_normalized": "1.7.1.0",

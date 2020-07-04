@@ -9,6 +9,7 @@
         "barryvdh/laravel-dompdf": "^0.8.1",
         "caouecs/laravel-lang": "^6.0",
         "fideloper/proxy": "~3.3",
+        "foris-master/orange-money-sdk": "^0.6.0",
         "guzzle/guzzle": "~3.3",
         "guzzlehttp/guzzle": "^6.5",
         "laravel/framework": "5.5.*",
