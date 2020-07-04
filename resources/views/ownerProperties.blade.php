@@ -773,9 +773,10 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
      function confirmation(ev,id) {
        ev.preventDefault();
        swal({
-         title: "Etes vous sûr de vouloir supprimer ce logement ?",   text: "Vous ne pourrez plus le restaurer après cette action!",
+         title: "Etes vous sûr de vouloir supprimer ce logement ?",   text: "Le locataire associé à ce logement sera également supprimé ! Cette action est irréversible.",
           type: "warning",
           showCancelButton: true,
+          cancelButtonText: "Annuler",
           confirmButtonColor: "#DD6B55",
           confirmButtonText: "Oui, supprimez!",
           closeOnConfirm: false

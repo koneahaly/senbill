@@ -138,6 +138,10 @@ class realEstateOwnerController extends Controller
             ->where('id',$id)
             ->update(['status' => 'D']);
 
+        DB::table('contracts')
+            ->where('id_own',$id)
+            ->update(['status' => 'D']);
+
         return redirect()->intended(route('ownerProperties'));
       }
 
@@ -235,6 +239,10 @@ class realEstateOwnerController extends Controller
         DB::table('contracts')
             ->where('renter_id',$id)
             ->update(['status' => 'D']);
+
+        DB::table('owns')
+            ->where('occupant_id',$id)
+            ->update(['status' => 'N', 'occupant_id' => NULL]);
 
         return redirect()->intended(route('mes-locataires'));
       }
