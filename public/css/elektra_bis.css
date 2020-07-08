@@ -1632,3 +1632,8 @@ font-size: 22px;
 {
   transform: none;
 }
+
+
+.s2sn-wrapper-center-dashboard {
+    margin-top: -1% !important;  
+}
