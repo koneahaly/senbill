@@ -32,6 +32,11 @@ class AdminController extends Controller
         return view('admin')->with($services);
     }
 
+    public function welcome_dashboard()
+    {
+      return view('dashbord.dashboardWelcome');
+    }
+
     public function add_service(Request $input){
       $service = new Offer;
       $service->libelle = $input->libelle;
