@@ -54,6 +54,8 @@ Route::get('/admin', 'AdminController@index')->name('admin.dashboard');
 Route::post('/admin', 'AdminController@index')->name('admin.dashboard');
 Route::post('/admin/store','billController@store')->name('admin.store');
 Route::post('/admin/updaterate','billController@updaterate')->name('admin.updaterate');
+Route::get('/admin/dashboard', 'Auth\AdminLoginController@display_dashboard')->name('admin.dashbord');
+Route::post('/admin/dashboard', 'Auth\AdminLoginController@display_dashboard')->name('admin.dashbord');
 Route::post('/mes-factures/{id?}/pdf_bill','billController@pdf_bill')->name('mes-factures.pdf_bill');
 Route::get('/mes-factures/pdf_buy','billController@pdf_buy')->name('mes-factures.pdf_buy');
 Route::post('/mes-factures/{id?}/pdf_bill','billController@pdf_bill')->name('home.pdf_bill');
