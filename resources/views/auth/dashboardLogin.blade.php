@@ -30,14 +30,14 @@
                 </span>
               </div>
             @endif
-            <div class="s2sn-input-group input-group form-slider-step form-group{{ $errors->has('email') ? ' has-error' : '' }}" id="form-step-1">
+            <div class="s2sn-input-group s2sn-input-group-dashboard input-group form-slider-step form-group{{ $errors->has('email') ? ' has-error' : '' }}" id="form-step-1">
              <input type="text" name="email" id="PIN" value="{{ old('email') }}" class="form-control" placeholder="Veuillez saisir votre login ou email" aria-label="Veuillez saisir votre login ou email" required>
              <div class="input-group-prepend">
                          <button class="btn s2sn-js-btn-back" type="reset" value= "Reset" ><span class="fa fa-undo"></span></button>
                      </div>
                </div>
              <div id="form-step-2" class="form-slider-step">
-                <div class="s2sn-input-group input-group">
+                <div class="s2sn-input-group s2sn-input-group-dashboard input-group">
                     <input type="password" class="form-control" placeholder="Mot de passe" aria-label="Mot de passe" name="password" id="PWD" onkeypress="if(event.keyCode==13){return submitCredentials();}" required>
                     <div class="input-group-append">
                         <button class="btn s2sn-js-btn-next" type="submit" onclick="return submitCredentials();"><span class="fa fa-arrow-right"></span></button>

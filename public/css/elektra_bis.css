@@ -139,6 +139,9 @@ html, body {
     border: 3px solid #ffffff;
     font-size:15px;
 }
+.s2sn-input-group-dashboard .btn {
+    background-color: #e77431 !important;
+}
 .s2sn-btn {
     font-family: "OpenSansSemiBold", arial, sans-serif;
     border-radius: 30px;
@@ -173,6 +176,10 @@ html, body {
 .s2sn-input-group .btn:hover,
 .s2sn-btn-aqua:hover {
     background-color: rgba(49, 140, 231, 0.8);
+}
+
+.s2sn-input-group-dashboard .btn:hover {
+    background-color: #e7743191 !important;
 }
 /*FOOTER START*/
 .s2sn-footer {
@@ -1635,5 +1642,5 @@ font-size: 22px;
 
 
 .s2sn-wrapper-center-dashboard {
-    margin-top: -1% !important;  
+    margin-top: -1% !important;
 }
