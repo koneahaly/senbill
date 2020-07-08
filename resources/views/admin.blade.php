@@ -32,6 +32,7 @@
                       </div>
                     </div>
 
+
                     <div class="row">
                       <div class="col-md-6">
                         <form class="form-horizontal" method="POST" action="{{ route('admin.imports_bills_six_months') }}">
@@ -49,6 +50,24 @@
                       </div>
                     </div>
 
+                    <div class="row">
+                      <div class="col-md-6">
+                        <form class="form-horizontal" method="POST" action="{{ route('admin.dashboard') }}">
+                            {{ csrf_field() }}
+                            <button type="submit" name="add_service" class="btn btn-primary">Ajouter un service</button>
+                        </form>
+                        <br /> <br />
+                      </div>
+                      <div class="col-md-6">
+                        <form class="form-horizontal" method="POST" action="{{ route('admin.dashboard') }}">
+                            {{ csrf_field() }}
+                            <button type="submit" name="add_partner" class="btn btn-primary">Ajouter un partenaire</button>
+                        </form>
+                        <br /> <br />
+                      </div>
+                    </div>
+
+                    @if(!isset($_POST['add_service']) && !isset($_POST['add_partner']))
                     <form class="form-horizontal" action="{{ route('admin.store') }}" method="POST">
                         {{ csrf_field() }}
                         <fieldset>
@@ -163,7 +182,126 @@
 
                             </fieldset>
                         </form>
+                        @endif
+                        @if(isset($_POST['add_service']))
+                        <form class="form-horizontal" action="{{ route('admin.add_service') }}" method="POST">
+                            {{ csrf_field() }}
+                            <fieldset>
 
+                            <!-- Form Name -->
+                            <legend>Nouveau service</legend>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                              <label class="col-md-4 control-label" for="libelle">Libellé</label>
+                              <div class="col-md-4">
+                              <input id="libelle" name="libelle" placeholder="" class="form-control input-md" required="" type="text">
+
+                              </div>
+                            </div>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                              <label class="col-md-4 control-label" for="desc">Description</label>
+                              <div class="col-md-6">
+                              <textarea id="desc" name="desc" placeholder="" class="form-control input-md" required=""></textarea>
+
+                              </div>
+                            </div>
+
+                            <!-- Select Basic -->
+                            <div class="form-group">
+                              <label class="col-md-4 control-label" for="month">Type de service</label>
+                              <div class="col-md-4">
+                                <select id="tos" name="tos" class="form-control">
+                                  <option value="postpaid">Postpayé</option>
+                                  <option value="prepaid">Prépayé</option>
+                                  <option value="hybrid">Hybride</option>
+                                </select>
+                              </div>
+                            </div>
+
+                            <div class="form-group">
+                              <div class="col-md-4 col-md-offset-4">
+                                <button type="submit" class="btn btn-primary">Enregistrer</button>
+                              </div>
+                            </div>
+
+                            </fieldset>
+                            </form>
+                        @endif
+
+                        @if(isset($_POST['add_partner']))
+                        <form class="form-horizontal" action="{{ route('admin.add_partner') }}" method="POST">
+                            {{ csrf_field() }}
+                            <fieldset>
+
+                            <!-- Form Name -->
+                            <legend>Nouveau partenaire</legend>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                              <label class="col-md-4 control-label" for="social">Nom de la société</label>
+                              <div class="col-md-6">
+                              <input id="social" name="social" placeholder="" class="form-control input-md" required="" type="text">
+
+                              </div>
+                            </div>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                              <label class="col-md-4 control-label" for="siret">N° de siret</label>
+                              <div class="col-md-6">
+                              <input id="siret" name="siret" placeholder="" class="form-control input-md" required="" type="text"/>
+
+                              </div>
+                            </div>
+
+                            <div class="form-group">
+                              <label class="col-md-4 control-label" for="email">Email</label>
+                              <div class="col-md-6">
+                              <input id="email" name="email" placeholder="" class="form-control input-md" required="" type="text"/>
+
+                              </div>
+                            </div>
+
+                            <div class="form-group">
+                              <label class="col-md-4 control-label" for="phone">Téléphone</label>
+                              <div class="col-md-6">
+                              <input id="phone" name="phone" placeholder="" class="form-control input-md" required="" type="text"/>
+
+                              </div>
+                            </div>
+
+                            <div class="form-group">
+                              <label class="col-md-4 control-label" for="address">Adresse du siège</label>
+                              <div class="col-md-6">
+                              <input id="address" name="address" placeholder="" class="form-control input-md" required="" type="text"/>
+
+                              </div>
+                            </div>
+
+                            <!-- Select Basic -->
+                            <div class="form-group">
+                              <label class="col-md-4 control-label" for="month">Service</label>
+                              <div class="col-md-4">
+                                <select id="service" name="service" class="form-control">
+                                  @foreach($services as $service)
+                                    <option value="{{ $service->id }}">{{ $service->libelle }}</option>
+                                  @endforeach
+                                </select>
+                              </div>
+                            </div>
+
+                            <div class="form-group">
+                              <div class="col-md-4 col-md-offset-4">
+                                <button type="submit" class="btn btn-primary">Enregistrer</button>
+                              </div>
+                            </div>
+
+                            </fieldset>
+                            </form>
+                        @endif
 
                 </div>
             </div>

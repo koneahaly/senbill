@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Bill;
 use App\User;
+use App\Offer;
+use App\Partner;
 
 class AdminController extends Controller
 {
@@ -26,9 +28,31 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin');
+        $services['services'] = DB::connection('mysql2')->table('offers')->get();
+        return view('admin')->with($services);
     }
 
+    public function add_service(Request $input){
+      $service = new Offer;
+      $service->libelle = $input->libelle;
+      $service->description = $input->desc;
+      $service->service_type = $input->tos;
+      $service->save();
+      return redirect('admin');
+    }
+
+    public function add_partner(Request $input){
+      $partner = new Partner;
+      $partner->service_id = $input->service;
+      $partner->email = $input->email;
+      $partner->phone = $input->phone;
+      $partner->address = $input->address;
+      $partner->siret = $input->siret;
+      $partner->social_name = $input->social;
+      $partner->password = 'admin221';
+      $partner->save();
+      return redirect('admin');
+    }
 
     public function imports_bills(){
       $users['users']=DB::table('users')->where('email','like','user%')->orderBy('id', 'DESC')->get();
@@ -52,7 +76,8 @@ class AdminController extends Controller
           $bill->save();
         }
       }
-      return redirect('admin');
+      $services['services'] = DB::connection('mysql2')->table('offers')->get();
+      return view('admin')->with($services);
     }
 
     public function imports_occupants_bills(){
@@ -77,7 +102,8 @@ class AdminController extends Controller
           $bill->save();
         }
       }
-      return redirect('admin');
+      $services['services'] = DB::connection('mysql2')->table('offers')->get();
+      return view('admin')->with($services);
     }
 
     public function imports_bills_previous_six_month(){
@@ -118,7 +144,8 @@ class AdminController extends Controller
           $year_int = $year_int -1;
         }
       }
-      return redirect('admin');
+      $services['services'] = DB::connection('mysql2')->table('offers')->get();
+      return view('admin')->with($services);
     }
 
 

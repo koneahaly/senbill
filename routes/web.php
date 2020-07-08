@@ -51,6 +51,7 @@ Route::get('/home/quick',function(){
 Route::get('/admin/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
 Route::post('/admin/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
 Route::get('/admin', 'AdminController@index')->name('admin.dashboard');
+Route::post('/admin', 'AdminController@index')->name('admin.dashboard');
 Route::post('/admin/store','billController@store')->name('admin.store');
 Route::post('/admin/updaterate','billController@updaterate')->name('admin.updaterate');
 Route::post('/mes-factures/{id?}/pdf_bill','billController@pdf_bill')->name('mes-factures.pdf_bill');
@@ -60,6 +61,9 @@ Route::post('/admin/create-users-demo','Auth\RegisterController@create_users_dem
 Route::post('/admin/import-bills','AdminController@imports_bills')->name('admin.imports_bills');
 Route::post('/admin/import-occupants-bills','AdminController@imports_occupants_bills')->name('admin.imports_occupants_bills');
 Route::post('/admin/import-bills-six-months','AdminController@imports_bills_previous_six_month')->name('admin.imports_bills_six_months');
+
+Route::post('/admin/add-service','AdminController@add_service')->name('admin.add_service');
+Route::post('/admin/add-partner','AdminController@add_partner')->name('admin.add_partner');
 
 Route::get('/transactions-proprietaire/{id?}','realEstateOwnerController@display_transactions')->name('ownerTransactions');
 Route::get('/mes-logements','realEstateOwnerController@display_properties')->name('ownerProperties');

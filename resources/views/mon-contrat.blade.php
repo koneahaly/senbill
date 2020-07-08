@@ -61,7 +61,7 @@ if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} != 
                     </div>
                     <div class="col-auto">
                       <div>
-                        <i class="fas fa-dice-one fa-3x" {{ ($wording_offer == "Inconnue") ? 'style="color: red;"' : 'style="color: forestgreen;"' }}></i>
+                        <i class="fas fa-dice-one fa-3x" <?php echo ($wording_offer == "Inconnue") ? 'style="color: red"' : 'style="color: forestgreen"' ?> ></i>
                       </div>
                     </div>
                   </div>

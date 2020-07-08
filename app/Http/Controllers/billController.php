@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 use PDF;
 use Auth;
+use Foris\OmSdk\OmSdk;
 class billController extends Controller
 {
 
@@ -88,6 +89,7 @@ class billController extends Controller
     public function pay(Request $input)
     {
         $s=Auth::user()->customerId;
+
         DB::table('bills')
             ->where([['customerId', $s],['status','<>','paid'],['id',$input->id_bill]])
             ->update(['status' => 'paid','payment_method' => $input->payment_method]);
