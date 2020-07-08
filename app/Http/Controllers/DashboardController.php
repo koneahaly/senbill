@@ -31,5 +31,9 @@ class DashboardController extends Controller
       return view('dashboard.dashboardWelcome');
     }
 
+    public function clients_dashboard()
+    {
+      return view('dashboard.usersDashboard');
+    }
 
 }
