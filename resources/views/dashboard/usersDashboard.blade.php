@@ -10,6 +10,10 @@
   <link rel="stylesheet" href="{{url('dashboardAssets/plugins/fontawesome-free/css/all.min.css')}}">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+  <!-- DataTables -->
+  <link rel="stylesheet" href="{{url('dashboardAssets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
+  <link rel="stylesheet" href="{{url('dashboardAssets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
   <!-- Tempusdominus Bbootstrap 4 -->
   <link rel="stylesheet" href="{{url('dashboardAssets/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}">
   <!-- iCheck -->
@@ -109,7 +113,20 @@ color:#2282e4 !important;
     transition: padding .3s ease-in-out  !important;
     padding-left: 1rem !important;
 }
-
+.dataTables_length label{
+    display: inline-flex  !important;
+}
+.dataTables_length label select{
+    margin-left:4%!important;
+    margin-right:4%!important;
+    width: max-content;
+}
+.dataTables_filter label{
+    display: inline-flex  !important;
+}
+.dataTables_filter input{
+    margin-left:4%!important;
+}
 </style>
 <body class="hold-transition sidebar-mini layout-fixed bgElek">
 <div class="wrapper">
@@ -321,6 +338,214 @@ color:#2282e4 !important;
     <section class="content">
       <div class="container-fluid">
         <!-- /.METTRE TABLEAU ICI -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Suivi des clients</h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <table id="clientsTable" class="table table-bordered table-striped">
+              <thead>
+              <tr>
+                <th>Numéro Identification Nationale</th>
+                <th>Prénom(s)</th>
+                <th>Nom</th>
+                <th>Compte Elektra</th>
+                <th>Statut</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td>1234567890123</td>
+                <td>Mame Astou
+                </td>
+                <td>Faye</td>
+                <td> OUI</td>
+                <td>actif</td>
+              </tr>
+              <tr>
+                <td>1234563890123</td>
+                <td>Yacine
+                </td>
+                <td>Coulibaly</td>
+                <td> OUI</td>
+                <td>actif</td>
+              </tr>
+              <tr>
+                <td>1234590890123</td>
+                <td>Pape Oumar
+                </td>
+                <td>Mbodj</td>
+                <td> NON</td>
+                <td>actif</td>
+              </tr>
+              <tr>
+                <td>1232567890123</td>
+                <td>Aissatou
+                </td>
+                <td>Lô</td>
+                <td> OUI</td>
+                <td>actif</td>
+              </tr>
+              <tr>
+                <td>1234507890123</td>
+                <td>Woulimata
+                </td>
+                <td>Lô</td>
+                <td> OUI</td>
+                <td>actif</td>
+              </tr>
+              <tr>
+                <td>1234567890654</td>
+                <td>Awa
+                </td>
+                <td>Ndiaye</td>
+                <td> OUI</td>
+                <td>actif</td>
+              </tr>
+              <tr>
+                <td>1234567890123</td>
+                <td>Mame Astou
+                </td>
+                <td>Faye</td>
+                <td> OUI</td>
+                <td>actif</td>
+              </tr>
+              <tr>
+                <td>1234567890123</td>
+                <td>Mame Astou
+                </td>
+                <td>Faye</td>
+                <td> OUI</td>
+                <td>actif</td>
+              </tr>
+              <tr>
+                <td>1234567890123</td>
+                <td>Mame Astou
+                </td>
+                <td>Faye</td>
+                <td> OUI</td>
+                <td>actif</td>
+              </tr>
+              <tr>
+                <td>1234567890123</td>
+                <td>Mame Astou
+                </td>
+                <td>Faye</td>
+                <td> OUI</td>
+                <td>actif</td>
+              </tr>
+              <tr>
+                <td>1234567890123</td>
+                <td>Mame Astou
+                </td>
+                <td>Faye</td>
+                <td> OUI</td>
+                <td>actif</td>
+              </tr>
+              <tr>
+                <td>1234567890123</td>
+                <td>Mame Astou
+                </td>
+                <td>Faye</td>
+                <td> OUI</td>
+                <td>actif</td>
+              </tr>
+              <tr>
+                <td>1234567890123</td>
+                <td>Mame Astou
+                </td>
+                <td>Faye</td>
+                <td> OUI</td>
+                <td>actif</td>
+              </tr>
+              <tr>
+                <td>1234567890123</td>
+                <td>Mame Astou
+                </td>
+                <td>Faye</td>
+                <td> OUI</td>
+                <td>actif</td>
+              </tr>
+              <tr>
+                <td>1234567890123</td>
+                <td>Mame Astou
+                </td>
+                <td>Faye</td>
+                <td> OUI</td>
+                <td>actif</td>
+              </tr>
+              <tr>
+                <td>1234567890123</td>
+                <td>Mame Astou
+                </td>
+                <td>Faye</td>
+                <td> OUI</td>
+                <td>actif</td>
+              </tr>
+              <tr>
+                <td>1234567890123</td>
+                <td>Mame Astou
+                </td>
+                <td>Faye</td>
+                <td> OUI</td>
+                <td>actif</td>
+              </tr>
+              <tr>
+                <td>1234567890123</td>
+                <td>Mame Astou
+                </td>
+                <td>Faye</td>
+                <td> OUI</td>
+                <td>actif</td>
+              </tr>
+              <tr>
+                <td>1234567890123</td>
+                <td>Mame Astou
+                </td>
+                <td>Faye</td>
+                <td> OUI</td>
+                <td>actif</td>
+              </tr>
+              <tr>
+                <td>1234567890123</td>
+                <td>Mame Astou
+                </td>
+                <td>Faye</td>
+                <td> OUI</td>
+                <td>actif</td>
+              </tr>
+              <tr>
+                <td>1234567890123</td>
+                <td>Mame Astou
+                </td>
+                <td>Faye</td>
+                <td> OUI</td>
+                <td>actif</td>
+              </tr>
+              <tr>
+                <td>1234567890123</td>
+                <td>Mame Astou
+                </td>
+                <td>Faye</td>
+                <td> OUI</td>
+                <td>actif</td>
+              </tr>
+              <tr>
+                <td>1234567890123</td>
+                <td>Mame Astou
+                </td>
+                <td>Faye</td>
+                <td> OUI</td>
+                <td>actif</td>
+              </tr>
+
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
       </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
@@ -376,12 +601,32 @@ color:#2282e4 !important;
 <script src="{{ url('dashboardAssets/dist/js/pages/dashboard.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ url('dashboardAssets/dist/js/demo.js') }}"></script>
+<!-- DataTables -->
+<script src="{{ url('dashboardAssets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ url('dashboardAssets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ url('dashboardAssets/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+<script src="{{ url('dashboardAssets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
 <script>
 $(document).ready(function() {
   $(function () {
     $('[data-toggle="tooltip"]').tooltip()
   })
 });
+</script>
+<script>
+  $(function () {
+    $("#clientsTable").DataTable({
+      "responsive": true,
+      "autoWidth": false,
+      "lengthChange": true,
+      "info": true,
+      "ordering": true,
+      language: {
+          "url": "//cdn.datatables.net/plug-ins/1.10.21/i18n/French.json"
+      }
+
+    });
+  });
 </script>
 </body>
 </html>
