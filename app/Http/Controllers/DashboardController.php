@@ -35,5 +35,13 @@ class DashboardController extends Controller
     {
       return view('dashboard.usersDashboard');
     }
+    public function transactions_dashboard()
+    {
+      return view('dashboard.transactionsDashboard');
+    }
+    public function bills_dashboard()
+    {
+      return view('dashboard.billsDashboard');
+    }
 
 }

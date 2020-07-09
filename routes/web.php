@@ -54,6 +54,7 @@ Route::get('/admin', 'AdminController@index')->name('admin.dashboard');
 Route::post('/admin', 'AdminController@index')->name('admin.dashboard');
 Route::post('/admin/store','billController@store')->name('admin.store');
 Route::post('/admin/updaterate','billController@updaterate')->name('admin.updaterate');
+//++++++++++++++++++++++++++++ ROUTES OF THE PARTNER DASHBOARD ++++++++++++++++++++++++++++++++++++++++
 Route::get('/admin/dashboard', 'Auth\AdminLoginController@display_dashboard')->name('admin.dashboard');
 Route::post('/admin/dashboard', 'Auth\AdminLoginController@display_dashboard')->name('admin.dashboard');
 
@@ -62,6 +63,14 @@ Route::get('/dashboard/accueil', 'DashboardController@welcome_dashboard')->name(
 
 Route::post('/dashboard/clients', 'DashboardController@clients_dashboard')->name('clients.dashboard');
 Route::get('/dashboard/clients', 'DashboardController@clients_dashboard')->name('clients.dashboard');
+
+Route::post('/dashboard/transactions', 'DashboardController@transactions_dashboard')->name('transactions.dashboard');
+Route::get('/dashboard/transactions', 'DashboardController@transactions_dashboard')->name('transactions.dashboard');
+
+Route::post('/dashboard/factures', 'DashboardController@bills_dashboard')->name('bills.dashboard');
+Route::get('/dashboard/factures', 'DashboardController@bills_dashboard')->name('bills.dashboard');
+
+//++++++++++++++++++++++++++++ END ROUTES OF THE PARTNER DASHBOARD ++++++++++++++++++++++++++++++++++++++++
 
 Route::post('/mes-factures/{id?}/pdf_bill','billController@pdf_bill')->name('mes-factures.pdf_bill');
 Route::get('/mes-factures/pdf_buy','billController@pdf_buy')->name('mes-factures.pdf_buy');
