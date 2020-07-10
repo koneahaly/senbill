@@ -1,4 +1,4 @@
-@extends('layouts.dashboardLayout')
+@extends('layouts.dashboardLayout', ['social_name' => session()->get('social_name')])
 @section('content')
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -41,191 +41,16 @@
               </tr>
               </thead>
               <tbody>
-              <tr>
-                <td>1234567890123</td>
-                <td>Mame Astou
-                </td>
-                <td>Faye</td>
-                <td> OUI</td>
-                <td>actif</td>
-              </tr>
-              <tr>
-                <td>1234563890123</td>
-                <td>Yacine
-                </td>
-                <td>Coulibaly</td>
-                <td> OUI</td>
-                <td>actif</td>
-              </tr>
-              <tr>
-                <td>1234590890123</td>
-                <td>Pape Oumar
-                </td>
-                <td>Mbodj</td>
-                <td> NON</td>
-                <td>actif</td>
-              </tr>
-              <tr>
-                <td>1232567890123</td>
-                <td>Aissatou
-                </td>
-                <td>Lô</td>
-                <td> OUI</td>
-                <td>actif</td>
-              </tr>
-              <tr>
-                <td>1234507890123</td>
-                <td>Woulimata
-                </td>
-                <td>Lô</td>
-                <td> OUI</td>
-                <td>actif</td>
-              </tr>
-              <tr>
-                <td>1234567890654</td>
-                <td>Awa
-                </td>
-                <td>Ndiaye</td>
-                <td> OUI</td>
-                <td>actif</td>
-              </tr>
-              <tr>
-                <td>1234567890123</td>
-                <td>Mame Astou
-                </td>
-                <td>Faye</td>
-                <td> OUI</td>
-                <td>actif</td>
-              </tr>
-              <tr>
-                <td>1234567890123</td>
-                <td>Mame Astou
-                </td>
-                <td>Faye</td>
-                <td> OUI</td>
-                <td>actif</td>
-              </tr>
-              <tr>
-                <td>1234567890123</td>
-                <td>Mame Astou
-                </td>
-                <td>Faye</td>
-                <td> OUI</td>
-                <td>actif</td>
-              </tr>
-              <tr>
-                <td>1234567890123</td>
-                <td>Mame Astou
-                </td>
-                <td>Faye</td>
-                <td> OUI</td>
-                <td>actif</td>
-              </tr>
-              <tr>
-                <td>1234567890123</td>
-                <td>Mame Astou
-                </td>
-                <td>Faye</td>
-                <td> OUI</td>
-                <td>actif</td>
-              </tr>
-              <tr>
-                <td>1234567890123</td>
-                <td>Mame Astou
-                </td>
-                <td>Faye</td>
-                <td> OUI</td>
-                <td>actif</td>
-              </tr>
-              <tr>
-                <td>1234567890123</td>
-                <td>Mame Astou
-                </td>
-                <td>Faye</td>
-                <td> OUI</td>
-                <td>actif</td>
-              </tr>
-              <tr>
-                <td>1234567890123</td>
-                <td>Mame Astou
-                </td>
-                <td>Faye</td>
-                <td> OUI</td>
-                <td>actif</td>
-              </tr>
-              <tr>
-                <td>1234567890123</td>
-                <td>Mame Astou
-                </td>
-                <td>Faye</td>
-                <td> OUI</td>
-                <td>actif</td>
-              </tr>
-              <tr>
-                <td>1234567890123</td>
-                <td>Mame Astou
-                </td>
-                <td>Faye</td>
-                <td> OUI</td>
-                <td>actif</td>
-              </tr>
-              <tr>
-                <td>1234567890123</td>
-                <td>Mame Astou
-                </td>
-                <td>Faye</td>
-                <td> OUI</td>
-                <td>actif</td>
-              </tr>
-              <tr>
-                <td>1234567890123</td>
-                <td>Mame Astou
-                </td>
-                <td>Faye</td>
-                <td> OUI</td>
-                <td>actif</td>
-              </tr>
-              <tr>
-                <td>1234567890123</td>
-                <td>Mame Astou
-                </td>
-                <td>Faye</td>
-                <td> OUI</td>
-                <td>actif</td>
-              </tr>
-              <tr>
-                <td>1234567890123</td>
-                <td>Mame Astou
-                </td>
-                <td>Faye</td>
-                <td> OUI</td>
-                <td>actif</td>
-              </tr>
-              <tr>
-                <td>1234567890123</td>
-                <td>Mame Astou
-                </td>
-                <td>Faye</td>
-                <td> OUI</td>
-                <td>actif</td>
-              </tr>
-              <tr>
-                <td>1234567890123</td>
-                <td>Mame Astou
-                </td>
-                <td>Faye</td>
-                <td> OUI</td>
-                <td>actif</td>
-              </tr>
-              <tr>
-                <td>1234567890123</td>
-                <td>Mame Astou
-                </td>
-                <td>Faye</td>
-                <td> OUI</td>
-                <td>actif</td>
-              </tr>
-
+              @foreach($infos_contacts as $infos_contact)
+                <tr>
+                  <td>{{ $infos_contact->customerId }}</td>
+                  <td>{{ $infos_contact->first_name }}
+                  </td>
+                  <td>{{ $infos_contact->last_name }}</td>
+                  <td> OUI</td>
+                  <td>{{ $infos_contact->status }}</td>
+                </tr>
+              @endforeach
               </tbody>
             </table>
           </div>

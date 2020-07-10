@@ -28,8 +28,8 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $services['services'] = DB::connection('mysql2')->table('offers')->get();
-        return view('admin')->with($services);
+      $services['services'] = DB::connection('mysql2')->table('offers')->get();
+      return view('admin')->with($services);
     }
 
     public function welcome_dashboard()
@@ -54,7 +54,7 @@ class AdminController extends Controller
       $partner->address = $input->address;
       $partner->siret = $input->siret;
       $partner->social_name = $input->social;
-      $partner->password = 'admin221';
+      $partner->password = bcrypt('admin221');
       $partner->save();
       return redirect('admin');
     }

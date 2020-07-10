@@ -19,7 +19,7 @@
       <div class="s2sn-wrapper-login-container s2sn-js-login" style="background-image: url({{url('images/bare-tree.jpg')}});">
          <div class="s2sn-wrapper-center s2sn-wrapper-center-dashboard s2sn-wrapper-when-footer">
            <img src="{{url('images/logo-elektra-halo.png')}}" alt="logo-elektra" width="auto" height="100" class="s2sn-logo-elektra">
-         <form action="{{ route('login') }}" name="loginForm" id="loginForm" method="post" autocomplete="off">
+         <form action="{{ route('welcome.dashboard') }}" name="loginForm" id="loginForm" method="post" autocomplete="off">
            {{ csrf_field() }}
 
             @if ($errors->has('email'))

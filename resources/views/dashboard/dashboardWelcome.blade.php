@@ -1,4 +1,9 @@
-@extends('layouts.dashboardLayout')
+<?php
+session_start();
+
+?>
+
+@extends('layouts.dashboardLayout', ['social_name' => session()->get('social_name')])
 @section('content')
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">

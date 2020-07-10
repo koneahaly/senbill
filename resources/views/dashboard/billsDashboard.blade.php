@@ -1,4 +1,4 @@
-@extends('layouts.dashboardLayout')
+@extends('layouts.dashboardLayout', ['social_name' => session()->get('social_name')])
 @section('content')
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">

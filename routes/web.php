@@ -55,11 +55,11 @@ Route::post('/admin', 'AdminController@index')->name('admin.dashboard');
 Route::post('/admin/store','billController@store')->name('admin.store');
 Route::post('/admin/updaterate','billController@updaterate')->name('admin.updaterate');
 //++++++++++++++++++++++++++++ ROUTES OF THE PARTNER DASHBOARD ++++++++++++++++++++++++++++++++++++++++
-Route::get('/admin/dashboard', 'Auth\AdminLoginController@display_dashboard')->name('admin.dashboard');
-Route::post('/admin/dashboard', 'Auth\AdminLoginController@display_dashboard')->name('admin.dashboard');
+Route::get('/admin/dashboard', 'Auth\AdminLoginController@display_dashboard')->name('admin.panel');
+Route::post('/admin/dashboard', 'Auth\AdminLoginController@display_dashboard')->name('admin.panel');
 
-Route::post('/dashboard/accueil', 'DashboardController@welcome_dashboard')->name('welcome.dashboard');
-Route::get('/dashboard/accueil', 'DashboardController@welcome_dashboard')->name('welcome.dashboard');
+Route::post('/dashboard/accueil', 'Auth\AdminLoginController@dashboardLogin')->name('welcome.dashboard');
+Route::get('/dashboard/accueil', 'Auth\AdminLoginController@display_panel')->name('welcome.get.dashboard');
 
 Route::post('/dashboard/clients', 'DashboardController@clients_dashboard')->name('clients.dashboard');
 Route::get('/dashboard/clients', 'DashboardController@clients_dashboard')->name('clients.dashboard');
