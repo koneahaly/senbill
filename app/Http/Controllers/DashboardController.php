@@ -40,7 +40,8 @@ class DashboardController extends Controller
     }
     public function bills_dashboard()
     {
-      return view('dashboard.billsDashboard');
+      $infos_factures['infos_factures'] = DB::connection('mysql2')->table('invoices')->join('contacts', 'contacts.customerId', '=', 'invoices.customerId')->select('contacts.first_name as first_name', 'contacts.last_name as last_name','contacts.customerId as customerId','invoices.created_at as created_at','invoices.payment_status as payment_status')->where('provider','Akilee')->get();
+      return view('dashboard.billsDashboard')->with($infos_factures);
     }
 
 }

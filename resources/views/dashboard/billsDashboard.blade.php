@@ -29,6 +29,7 @@
             <h3 class="card-title">Suivi des factures</h3>
           </div>
           <!-- /.card-header -->
+          <?php $months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre']; ?>
           <div class="card-body">
             <table id="clientsTable" class="table table-bordered table-striped">
               <thead>
@@ -42,231 +43,22 @@
               </tr>
               </thead>
               <tbody>
-              <tr>
-                <td>1234567890123</td>
-                <td>Mame Astou
-                </td>
-                <td>Faye</td>
-                <td> Facture du mois de mai 2020</td>
-                <td>Payé</td>
-                <td style="vertical-align: middle;"><i class="fas fa-dice-one fa-1x" style="color: forestgreen;" ></i>
-                </td>
-              </tr>
-              <tr>
-                <td>1234563890123</td>
-                <td>Yacine
-                </td>
-                <td>Coulibaly</td>
-                <td> Facture du mois de mai 2020</td>
-                <td>Impayé</td>
-                <td style="vertical-align: middle;"><i class="fas fa-dice-one fa-1x" style="color: red;" ></i>
-              </tr>
-              <tr>
-                <td>1234590890123</td>
-                <td>Pape Oumar
-                </td>
-                <td>Mbodj</td>
-                <td> Facture du mois de mai 2020</td>
-                <td>Payé</td>
-                <td style="vertical-align: middle;"><i class="fas fa-dice-one fa-1x" style="color: forestgreen;" ></i>
-              </tr>
-              <tr>
-                <td>1232567890123</td>
-                <td>Aissatou
-                </td>
-                <td>Lô</td>
-                <td> Facture du mois de mai 2020</td>
-                <td>Impayé</td>
-                <td style="vertical-align: middle;"><i class="fas fa-dice-one fa-1x" style="color: red;" ></i>
-              </tr>
-              <tr>
-                <td>1234507890123</td>
-                <td>Woulimata
-                </td>
-                <td>Lô</td>
-                <td> Facture du mois de mai 2020</td>
-                <td>Payé</td>
-                <td style="vertical-align: middle;"><i class="fas fa-dice-one fa-1x" style="color: forestgreen;" ></i>
-              </tr>
-              <tr>
-                <td>1234567890654</td>
-                <td>Awa
-                </td>
-                <td>Ndiaye</td>
-                <td> Facture du mois de mai 2020</td>
-                <td>Impayé</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>1234567890123</td>
-                <td>Mame Astou
-                </td>
-                <td>Faye</td>
-                <td> Facture du mois de mai 2020</td>
-                <td>Impayé</td>
-                <td></td>
+                @foreach($infos_factures as $infos_facture)
+                  <tr>
+                    <td>{{ $infos_facture->customerId}}</td>
+                    <td>{{ $infos_facture->first_name}}
+                    </td>
+                    <td>{{ $infos_facture->last_name}}</td>
+                    <?php
+                      $creation_date = explode("-",$infos_facture->created_at);
+                     ?>
+                    <td> Facture du mois de {{ $months[(int)$creation_date[1] - 1] }} {{ $creation_date[0]}}</td>
+                    <td>{{ $infos_facture->payment_status}}</td>
+                    <td style="vertical-align: middle;"><i class="fas fa-dice-one fa-1x" style="color: red;" ></i>
+                    </td>
+                  </tr>
+              @endforeach
 
-              </tr>
-              <tr>
-                <td>1234567890123</td>
-                <td>Mame Astou
-                </td>
-                <td>Faye</td>
-                <td> Facture du mois de mai 2020</td>
-                <td>Impayé</td>
-                <td></td>
-
-              </tr>
-              <tr>
-                <td>1234567890123</td>
-                <td>Mame Astou
-                </td>
-                <td>Faye</td>
-                <td> Facture du mois de mai 2020</td>
-                <td>Payé</td>
-                <td></td>
-
-              </tr>
-              <tr>
-                <td>1234567890123</td>
-                <td>Mame Astou
-                </td>
-                <td>Faye</td>
-                <td> Facture du mois de mai 2020</td>
-                <td>Impayé</td>
-                <td></td>
-
-              </tr>
-              <tr>
-                <td>1234567890123</td>
-                <td>Mame Astou
-                </td>
-                <td>Faye</td>
-                <td> Facture du mois de mai 2020</td>
-                <td>Impayé</td>
-                <td></td>
-
-              </tr>
-              <tr>
-                <td>1234567890123</td>
-                <td>Mame Astou
-                </td>
-                <td>Faye</td>
-                <td> Facture du mois de mai 2020</td>
-                <td>Impayé</td>
-                <td></td>
-
-              </tr>
-              <tr>
-                <td>1234567890123</td>
-                <td>Mame Astou
-                </td>
-                <td>Faye</td>
-                <td> Facture du mois de mai 2020</td>
-                <td>Impayé</td>
-                <td></td>
-
-              </tr>
-              <tr>
-                <td>1234567890123</td>
-                <td>Mame Astou
-                </td>
-                <td>Faye</td>
-                <td> Facture du mois de Février 2020</td>
-                <td>Impayé</td>
-                <td></td>
-
-              </tr>
-              <tr>
-                <td>1234567890123</td>
-                <td>Mame Astou
-                </td>
-                <td>Faye</td>
-                <td> Facture du mois de Février 2020</td>
-                <td>Impayé</td>
-                <td></td>
-
-              </tr>
-              <tr>
-                <td>1234567890123</td>
-                <td>Mame Astou
-                </td>
-                <td>Faye</td>
-                <td> Facture du mois de Février 2020</td>
-                <td>Impayé</td>
-                <td></td>
-
-              </tr>
-              <tr>
-                <td>1234567890123</td>
-                <td>Mame Astou
-                </td>
-                <td>Faye</td>
-                <td> Facture du mois de Février 2020</td>
-                <td>Impayé</td>
-                <td></td>
-
-              </tr>
-              <tr>
-                <td>1234567890123</td>
-                <td>Mame Astou
-                </td>
-                <td>Faye</td>
-                <td> Facture du mois de Février 2020</td>
-                <td>Impayé</td>
-                <td></td>
-
-              </tr>
-              <tr>
-                <td>1234567890123</td>
-                <td>Mame Astou
-                </td>
-                <td>Faye</td>
-                <td> Facture du mois de Février 2020</td>
-                <td>Impayé</td>
-                <td></td>
-
-              </tr>
-              <tr>
-                <td>1234567890123</td>
-                <td>Mame Astou
-                </td>
-                <td>Faye</td>
-                <td> Facture du mois de Février 2020</td>
-                <td>Payé</td>
-                <td></td>
-
-              </tr>
-              <tr>
-                <td>1234567890123</td>
-                <td>Mame Astou
-                </td>
-                <td>Faye</td>
-                <td> Facture du mois de Février 2020</td>
-                <td>Payé</td>
-                <td></td>
-
-              </tr>
-              <tr>
-                <td>1234567890123</td>
-                <td>Mame Astou
-                </td>
-                <td>Faye</td>
-                <td> Facture du mois de Février 2020</td>
-                <td>Payé</td>
-                <td></td>
-
-              </tr>
-              <tr>
-                <td>1234567890123</td>
-                <td>Mame Astou
-                </td>
-                <td>Faye</td>
-                <td> Facture du mois de Février 2020</td>
-                <td>Payé</td>
-                <td></td>
-
-              </tr>
 
               </tbody>
             </table>
