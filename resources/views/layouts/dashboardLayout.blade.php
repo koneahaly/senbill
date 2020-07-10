@@ -226,7 +226,7 @@ color:#2282e4 !important;
           <img src="{{ url('dashboardAssets/dist/img/yassnana.jpg') }}" class="img-circle elevation-2" alt="Image utilisateur">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Yacine Ndiaye</a>
+          <a href="#" class="d-block">{{ $full_name }}</a>
         </div>
       </div>
 

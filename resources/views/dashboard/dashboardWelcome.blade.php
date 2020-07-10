@@ -3,7 +3,7 @@ session_start();
 
 ?>
 
-@extends('layouts.dashboardLayout', ['social_name' => session()->get('social_name')])
+@extends('layouts.dashboardLayout', ['social_name' => session()->get('social_name'), 'full_name' => session()->get('full_name')])
 @section('content')
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">

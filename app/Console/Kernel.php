@@ -4,6 +4,7 @@ namespace App\Console;
 
 use App\Contact;
 use App\Subscription;
+use App\Invoice;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Illuminate\Support\Facades\DB;
@@ -30,7 +31,7 @@ class Kernel extends ConsoleKernel
     {
 
       $faker = Faker::create('fr_FR');
-      $fake_data= [];
+    /*  $fake_data= [];
 
       for ($i = 0; $i < 10; $i++) {
           $new_line = '"'.strval($faker->nir).'","'.strval($faker->unique()->email).'",'.$faker->phoneNumber.','.str_replace(',',' ',$faker->streetAddress).','.str_replace(',',' ',$faker->streetAddress).',"'.$faker->firstName.'","'.$faker->lastName.'","A",'.$faker->numberBetween($min = 1, $max = 4).',1,"A","bimestriel","Mr","18/11/1992","DAKAR"';
@@ -45,9 +46,28 @@ class Kernel extends ConsoleKernel
           $val = explode(",", $line);
           fputcsv($fp, $val,',','"');
       }
+      fclose($fp);*/
+
+      $fake_data_invoices= [];
+
+      $infos_contacts = DB::connection('mysql2')->table('contacts')->join('subscriptions', 'contacts.id', '=', 'subscriptions.contact_id')->select('contacts.customerId as customerId', 'subscriptions.id as sid')->where('partner_id',4)->get();
+      foreach($infos_contacts as $infos_contact){
+
+        $new_line = '"'.strval($infos_contact->customerId).'","'.$infos_contact->sid.'","'.strval($faker->vat).'","'.$faker->randomElement($array = array ('Mensualité', 'Paiement Facture', 'Régularisation')).'",'.$faker->numberBetween($min = 1000, $max = 9000).','.$faker->numberBetween($min = 1000, $max = 9000).','.date('Y-m-d H:i:s', strtotime('+5 day', time())).',"","En attente","Akilee","1","A",'.$faker->numberBetween($min = 1000, $max = 9000).',""';
+        array_push($fake_data_invoices,$new_line);
+      }
+
+      header('Content-Type: text/csv');
+      header('Content-Disposition: attachment; filename="sample.csv"');
+
+      $fp = fopen(base_path("storage/pending_invoices/invoices.csv"), 'wb');
+      foreach ( $fake_data_invoices as $line ) {
+          $val = explode(",", $line);
+          fputcsv($fp, $val,',','"');
+      }
       fclose($fp);
 
-      $schedule->call(function () {
+    /*  $schedule->call(function () {
         DB::table('bills')
             ->where([['status','En attente'],['deadline','<',date('Y-m-d H:i:s')]])
             ->update(['status' => 'Impayé']);
@@ -82,8 +102,31 @@ class Kernel extends ConsoleKernel
               //delete the file
               unlink($file);
           }
-        });
+        });*/
+        $path = base_path("storage/pending_invoices/*.csv");
 
+        //run 2 loops at a time
+        foreach (array_slice(glob($path),0,2) as $file) {
+
+            //read the data into an array
+            $data = array_map('str_getcsv', file($file));
+
+            //loop over the data
+            foreach($data as $row) {
+
+                //insert the record or update if the email already exists
+                Invoice::updateOrCreate([
+                    'customerId' => str_replace('"','',$row[0]), 'order_number' => str_replace('"','',$row[2]),
+                ], ['subscription_id' => str_replace('"','',$row[1]),'order_number' => str_replace('"','',$row[2]), 'title' => $row[3],
+                    'min_payment_due' => str_replace('"','',$row[4]), 'tot_payment_due' => str_replace('"','',$row[5]), 'payment_due_date' => str_replace('"','',$row[6]),
+                    'payment_method' => str_replace('"','',$row[7]),'payment_status' => str_replace('"','',$row[8]), 'provider' => str_replace('"','',$row[9]),
+                      'import_status' => str_replace('"','',$row[10]), 'paid_amount' => str_replace('"','',$row[11]), 'bill' => str_replace('"','',$row[12])]);
+
+            }
+
+            //delete the file
+            unlink($file);
+        }
     }
 
     /**

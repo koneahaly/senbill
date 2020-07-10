@@ -51,6 +51,7 @@ class AdminLoginController extends Controller
 				foreach ($infos_partenaires as $info_partenaire) {
 					Session::put('social_name', $info_partenaire->social_name);
 					Session::put('partner_id', $info_partenaire->id);
+					Session::put('full_name', $info_partenaire->email);
 				}
 				return view('dashboard.dashboardWelcome')->with($infos_partenaires);
     	}
