@@ -31,7 +31,34 @@
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
+@php
+$active_dashboard ='none';
+$active_clients ='none';
+$active_transactions ='none';
+$active_factures ='none';
+$active_paiements ='none';
+$active_menu ='none';
 
+if(strpos($_SERVER['REQUEST_URI'],"accueil") == true){
+  $active_dashboard = 'active';
+}
+if(strpos($_SERVER['REQUEST_URI'],"clients") == true){
+  $active_clients = 'active';
+}
+if(strpos($_SERVER['REQUEST_URI'],"paiements") == true){
+  $active_paiements = 'active';
+}
+if(strpos($_SERVER['REQUEST_URI'],"transactions") == true){
+  $active_paiements = 'active';
+  $active_transactions = 'active';
+  $active_menu = 'menu-open';
+}
+if(strpos($_SERVER['REQUEST_URI'],"factures") == true){
+    $active_paiements = 'active';
+    $active_factures = 'active';
+    $active_menu = 'menu-open';
+}
+@endphp
 <style>
 
 .elektraGradient {
@@ -185,7 +212,7 @@ color:#2282e4 !important;
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-light-navy elevation-4 elektraGradient2">
     <!-- Brand Logo -->
-    <a href="." class="brand-link">
+    <a href="{{ route('welcome.dashboard') }}" class="brand-link">
       <img src="{{ url('dashboardAssets/dist/img/logo-elektra-halo.png') }}" alt="Logo Elektra" class="brand-image img-circle elevation-3"
            style="opacity: .8">
       <span class="brand-text font-weight-light">Tableau Elektra</span>
@@ -210,7 +237,7 @@ color:#2282e4 !important;
                with font-awesome or any other icon font library -->
         <!--  <li class="nav-item has-treeview"> -->
           <li class="nav-item">
-            <a href="#" class="nav-link active">
+            <a href="{{ route('welcome.dashboard') }}" class="nav-link {{ $active_dashboard }}">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Tableau de bord
@@ -219,7 +246,7 @@ color:#2282e4 !important;
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('clients.dashboard') }}" class="nav-link">
+            <a href="{{ route('clients.dashboard') }}" class="nav-link {{ $active_clients }}">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Clients
@@ -227,8 +254,8 @@ color:#2282e4 !important;
               </p>
             </a>
           </li>
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+          <li class="nav-item has-treeview {{ $active_menu }}">
+            <a href="#" class="nav-link {{ $active_paiements }}">
               <i class="nav-icon fas fa-copy"></i>
               <p>
                 Paiements
@@ -238,13 +265,13 @@ color:#2282e4 !important;
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/layout/top-nav.html" class="nav-link">
+                <a href="{{ route('transactions.dashboard') }}" class="nav-link {{ $active_transactions }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Transactions</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+                <a href="{{ route('bills.dashboard') }}" class="nav-link {{ $active_factures}}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Factures</p>
                 </a>

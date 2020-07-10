@@ -7,12 +7,12 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0 text-dark">Clients</h1>
+          <h1 class="m-0 text-dark">Factures</h1>
         </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Accueil</a></li>
-              <li class="breadcrumb-item active">Clients</li>
+              <li class="breadcrumb-item active">Factures</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -26,18 +26,19 @@
         <!-- /.METTRE TABLEAU ICI -->
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title">Suivi des clients</h3>
+            <h3 class="card-title">Suivi des factures</h3>
           </div>
           <!-- /.card-header -->
           <div class="card-body">
-            <table id="clientsTable" class="table table-bordered table-hover">
+            <table id="clientsTable" class="table table-bordered table-striped">
               <thead>
               <tr>
                 <th>Numéro Identification Nationale</th>
                 <th>Prénom(s)</th>
                 <th>Nom</th>
-                <th>Compte Elektra</th>
+                <th>Facture</th>
                 <th>Statut</th>
+                <th></th>
               </tr>
               </thead>
               <tbody>
@@ -46,184 +47,225 @@
                 <td>Mame Astou
                 </td>
                 <td>Faye</td>
-                <td> OUI</td>
-                <td>actif</td>
+                <td> Facture du mois de mai 2020</td>
+                <td>Payé</td>
+                <td style="vertical-align: middle;"><i class="fas fa-dice-one fa-1x" style="color: forestgreen;" ></i>
+                </td>
               </tr>
               <tr>
                 <td>1234563890123</td>
                 <td>Yacine
                 </td>
                 <td>Coulibaly</td>
-                <td> OUI</td>
-                <td>actif</td>
+                <td> Facture du mois de mai 2020</td>
+                <td>Impayé</td>
+                <td style="vertical-align: middle;"><i class="fas fa-dice-one fa-1x" style="color: red;" ></i>
               </tr>
               <tr>
                 <td>1234590890123</td>
                 <td>Pape Oumar
                 </td>
                 <td>Mbodj</td>
-                <td> NON</td>
-                <td>actif</td>
+                <td> Facture du mois de mai 2020</td>
+                <td>Payé</td>
+                <td style="vertical-align: middle;"><i class="fas fa-dice-one fa-1x" style="color: forestgreen;" ></i>
               </tr>
               <tr>
                 <td>1232567890123</td>
                 <td>Aissatou
                 </td>
                 <td>Lô</td>
-                <td> OUI</td>
-                <td>actif</td>
+                <td> Facture du mois de mai 2020</td>
+                <td>Impayé</td>
+                <td style="vertical-align: middle;"><i class="fas fa-dice-one fa-1x" style="color: red;" ></i>
               </tr>
               <tr>
                 <td>1234507890123</td>
                 <td>Woulimata
                 </td>
                 <td>Lô</td>
-                <td> OUI</td>
-                <td>actif</td>
+                <td> Facture du mois de mai 2020</td>
+                <td>Payé</td>
+                <td style="vertical-align: middle;"><i class="fas fa-dice-one fa-1x" style="color: forestgreen;" ></i>
               </tr>
               <tr>
                 <td>1234567890654</td>
                 <td>Awa
                 </td>
                 <td>Ndiaye</td>
-                <td> OUI</td>
-                <td>actif</td>
+                <td> Facture du mois de mai 2020</td>
+                <td>Impayé</td>
+                <td></td>
               </tr>
               <tr>
                 <td>1234567890123</td>
                 <td>Mame Astou
                 </td>
                 <td>Faye</td>
-                <td> OUI</td>
-                <td>actif</td>
+                <td> Facture du mois de mai 2020</td>
+                <td>Impayé</td>
+                <td></td>
+
               </tr>
               <tr>
                 <td>1234567890123</td>
                 <td>Mame Astou
                 </td>
                 <td>Faye</td>
-                <td> OUI</td>
-                <td>actif</td>
+                <td> Facture du mois de mai 2020</td>
+                <td>Impayé</td>
+                <td></td>
+
               </tr>
               <tr>
                 <td>1234567890123</td>
                 <td>Mame Astou
                 </td>
                 <td>Faye</td>
-                <td> OUI</td>
-                <td>actif</td>
+                <td> Facture du mois de mai 2020</td>
+                <td>Payé</td>
+                <td></td>
+
               </tr>
               <tr>
                 <td>1234567890123</td>
                 <td>Mame Astou
                 </td>
                 <td>Faye</td>
-                <td> OUI</td>
-                <td>actif</td>
+                <td> Facture du mois de mai 2020</td>
+                <td>Impayé</td>
+                <td></td>
+
               </tr>
               <tr>
                 <td>1234567890123</td>
                 <td>Mame Astou
                 </td>
                 <td>Faye</td>
-                <td> OUI</td>
-                <td>actif</td>
+                <td> Facture du mois de mai 2020</td>
+                <td>Impayé</td>
+                <td></td>
+
               </tr>
               <tr>
                 <td>1234567890123</td>
                 <td>Mame Astou
                 </td>
                 <td>Faye</td>
-                <td> OUI</td>
-                <td>actif</td>
+                <td> Facture du mois de mai 2020</td>
+                <td>Impayé</td>
+                <td></td>
+
               </tr>
               <tr>
                 <td>1234567890123</td>
                 <td>Mame Astou
                 </td>
                 <td>Faye</td>
-                <td> OUI</td>
-                <td>actif</td>
+                <td> Facture du mois de mai 2020</td>
+                <td>Impayé</td>
+                <td></td>
+
               </tr>
               <tr>
                 <td>1234567890123</td>
                 <td>Mame Astou
                 </td>
                 <td>Faye</td>
-                <td> OUI</td>
-                <td>actif</td>
+                <td> Facture du mois de Février 2020</td>
+                <td>Impayé</td>
+                <td></td>
+
               </tr>
               <tr>
                 <td>1234567890123</td>
                 <td>Mame Astou
                 </td>
                 <td>Faye</td>
-                <td> OUI</td>
-                <td>actif</td>
+                <td> Facture du mois de Février 2020</td>
+                <td>Impayé</td>
+                <td></td>
+
               </tr>
               <tr>
                 <td>1234567890123</td>
                 <td>Mame Astou
                 </td>
                 <td>Faye</td>
-                <td> OUI</td>
-                <td>actif</td>
+                <td> Facture du mois de Février 2020</td>
+                <td>Impayé</td>
+                <td></td>
+
               </tr>
               <tr>
                 <td>1234567890123</td>
                 <td>Mame Astou
                 </td>
                 <td>Faye</td>
-                <td> OUI</td>
-                <td>actif</td>
+                <td> Facture du mois de Février 2020</td>
+                <td>Impayé</td>
+                <td></td>
+
               </tr>
               <tr>
                 <td>1234567890123</td>
                 <td>Mame Astou
                 </td>
                 <td>Faye</td>
-                <td> OUI</td>
-                <td>actif</td>
+                <td> Facture du mois de Février 2020</td>
+                <td>Impayé</td>
+                <td></td>
+
               </tr>
               <tr>
                 <td>1234567890123</td>
                 <td>Mame Astou
                 </td>
                 <td>Faye</td>
-                <td> OUI</td>
-                <td>actif</td>
+                <td> Facture du mois de Février 2020</td>
+                <td>Impayé</td>
+                <td></td>
+
               </tr>
               <tr>
                 <td>1234567890123</td>
                 <td>Mame Astou
                 </td>
                 <td>Faye</td>
-                <td> OUI</td>
-                <td>actif</td>
+                <td> Facture du mois de Février 2020</td>
+                <td>Payé</td>
+                <td></td>
+
               </tr>
               <tr>
                 <td>1234567890123</td>
                 <td>Mame Astou
                 </td>
                 <td>Faye</td>
-                <td> OUI</td>
-                <td>actif</td>
+                <td> Facture du mois de Février 2020</td>
+                <td>Payé</td>
+                <td></td>
+
               </tr>
               <tr>
                 <td>1234567890123</td>
                 <td>Mame Astou
                 </td>
                 <td>Faye</td>
-                <td> OUI</td>
-                <td>actif</td>
+                <td> Facture du mois de Février 2020</td>
+                <td>Payé</td>
+                <td></td>
+
               </tr>
               <tr>
                 <td>1234567890123</td>
                 <td>Mame Astou
                 </td>
                 <td>Faye</td>
-                <td> OUI</td>
-                <td>actif</td>
+                <td> Facture du mois de Février 2020</td>
+                <td>Payé</td>
+                <td></td>
+
               </tr>
 
               </tbody>
