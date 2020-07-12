@@ -45,6 +45,7 @@
               <tbody>
                 @foreach($infos_factures as $infos_facture)
                   <tr>
+                    <td style="vertical-align: middle;text-align:center;"><i class="fas fa-dice-one fa-1x" style="color: red;" ></i>
                     <td>{{ $infos_facture->customerId}}</td>
                     <td>{{ $infos_facture->first_name}}
                     </td>
@@ -54,7 +55,6 @@
                      ?>
                     <td> Facture du mois de {{ $months[(int)$creation_date[1] - 1] }} {{ $creation_date[0]}}</td>
                     <td>{{ $infos_facture->payment_status}}</td>
-                    <td style="vertical-align: middle;"><i class="fas fa-dice-one fa-1x" style="color: red;" ></i>
                     </td>
                   </tr>
               @endforeach
