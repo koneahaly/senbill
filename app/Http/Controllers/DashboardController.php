@@ -51,5 +51,9 @@ class DashboardController extends Controller
     {
       return view('dashboard.companyDashboard');
     }
+    public function import_dashboard()
+    {
+      return view('dashboard.importDashboard');
+    }
 
 }

@@ -44,6 +44,7 @@ $active_paiements ='none';
 $active_menu ='none';
 $active_profile ='none';
 $active_general ='none';
+$active_import ='none';
 
 if(strpos($_SERVER['REQUEST_URI'],"accueil") == true){
   $active_dashboard = 'active';
@@ -70,6 +71,9 @@ if(strpos($_SERVER['REQUEST_URI'],"profil") == true){
 }
 if(strpos($_SERVER['REQUEST_URI'],"general") == true){
   $active_general = 'active';
+}
+if(strpos($_SERVER['REQUEST_URI'],"import") == true){
+  $active_import = 'active';
 }
 @endphp
 <style>
@@ -176,6 +180,9 @@ color:#2282e4 !important;
 }
 .elektraBlue {
     background: rgba(155,192,221,1) !important;
+}
+.toggleElek::after {
+    vertical-align: 0em !important;
 }
 </style>
 <body class="hold-transition sidebar-mini layout-fixed bgElek">
@@ -301,14 +308,6 @@ color:#2282e4 !important;
               </li>
             </ul>
           </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-chart-pie"></i>
-              <p>
-                Suivi paiements
-              </p>
-            </a>
-          </li>
 
           <li class="nav-header">CONFIGURATIONS</li>
           <li class="nav-item">
@@ -330,7 +329,7 @@ color:#2282e4 !important;
           </li>
 
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+            <a href="{{ route('import.dashboard') }}" class="nav-link {{ $active_import }}">
               <i class="nav-icon far fa-plus-square"></i>
               <p>
                 Importer

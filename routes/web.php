@@ -76,6 +76,9 @@ Route::get('/dashboard/profil', 'DashboardController@profile_dashboard')->name('
 Route::post('/dashboard/general', 'DashboardController@company_dashboard')->name('company.dashboard');
 Route::get('/dashboard/general', 'DashboardController@company_dashboard')->name('company.dashboard');
 
+Route::post('/dashboard/import', 'DashboardController@import_dashboard')->name('import.dashboard');
+Route::get('/dashboard/import', 'DashboardController@import_dashboard')->name('import.dashboard');
+
 //++++++++++++++++++++++++++++ END ROUTES OF THE PARTNER DASHBOARD ++++++++++++++++++++++++++++++++++++++++
 
 Route::post('/mes-factures/{id?}/pdf_bill','billController@pdf_bill')->name('mes-factures.pdf_bill');
