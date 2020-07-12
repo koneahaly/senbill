@@ -33,239 +33,231 @@
             <table id="clientsTable" class="table table-bordered table-striped">
               <thead>
               <tr>
+                <th></th>
                 <th>Numéro Identification Nationale</th>
                 <th>Prénom(s)</th>
                 <th>Nom</th>
                 <th>Facture</th>
                 <th>Statut</th>
-                <th></th>
               </tr>
               </thead>
               <tbody>
               <tr>
+                <td style="vertical-align: middle;"><i class="fas fa-dice-one fa-1x" style="color: forestgreen;" ></i>
+                </td>
                 <td>1234567890123</td>
                 <td>Mame Astou
                 </td>
                 <td>Faye</td>
                 <td> Facture du mois de mai 2020</td>
                 <td>Payé</td>
-                <td style="vertical-align: middle;"><i class="fas fa-dice-one fa-1x" style="color: forestgreen;" ></i>
-                </td>
+
               </tr>
               <tr>
+                <td style="vertical-align: middle;"><i class="fas fa-dice-one fa-1x" style="color: red;" ></i></td>
                 <td>1234563890123</td>
                 <td>Yacine
                 </td>
                 <td>Coulibaly</td>
                 <td> Facture du mois de mai 2020</td>
                 <td>Impayé</td>
-                <td style="vertical-align: middle;"><i class="fas fa-dice-one fa-1x" style="color: red;" ></i>
+
               </tr>
               <tr>
+                <td style="vertical-align: middle;"><i class="fas fa-dice-one fa-1x" style="color: forestgreen;" ></i></td>
                 <td>1234590890123</td>
                 <td>Pape Oumar
                 </td>
                 <td>Mbodj</td>
                 <td> Facture du mois de mai 2020</td>
                 <td>Payé</td>
-                <td style="vertical-align: middle;"><i class="fas fa-dice-one fa-1x" style="color: forestgreen;" ></i>
               </tr>
               <tr>
+                <td style="vertical-align: middle;"><i class="fas fa-dice-one fa-1x" style="color: red;" ></i></td>
                 <td>1232567890123</td>
                 <td>Aissatou
                 </td>
                 <td>Lô</td>
                 <td> Facture du mois de mai 2020</td>
                 <td>Impayé</td>
-                <td style="vertical-align: middle;"><i class="fas fa-dice-one fa-1x" style="color: red;" ></i>
               </tr>
               <tr>
+                <td style="vertical-align: middle;"><i class="fas fa-dice-one fa-1x" style="color: forestgreen;" ></i></td>
                 <td>1234507890123</td>
                 <td>Woulimata
                 </td>
                 <td>Lô</td>
                 <td> Facture du mois de mai 2020</td>
                 <td>Payé</td>
-                <td style="vertical-align: middle;"><i class="fas fa-dice-one fa-1x" style="color: forestgreen;" ></i>
               </tr>
               <tr>
+                <td style="vertical-align: middle;"><i class="fas fa-dice-one fa-1x" style="color: red;" ></i></td>
                 <td>1234567890654</td>
                 <td>Awa
                 </td>
                 <td>Ndiaye</td>
                 <td> Facture du mois de mai 2020</td>
                 <td>Impayé</td>
-                <td></td>
               </tr>
               <tr>
+                <td style="vertical-align: middle;"><i class="fas fa-dice-one fa-1x" style="color: red;" ></i></td>
                 <td>1234567890123</td>
                 <td>Mame Astou
                 </td>
                 <td>Faye</td>
                 <td> Facture du mois de mai 2020</td>
                 <td>Impayé</td>
-                <td></td>
 
               </tr>
               <tr>
+                <td style="vertical-align: middle;"><i class="fas fa-dice-one fa-1x" style="color: red;" ></i></td>
                 <td>1234567890123</td>
                 <td>Mame Astou
                 </td>
                 <td>Faye</td>
                 <td> Facture du mois de mai 2020</td>
                 <td>Impayé</td>
-                <td></td>
-
               </tr>
               <tr>
+                <td style="vertical-align: middle;"><i class="fas fa-dice-one fa-1x" style="color: forestgreen;" ></i></td>
                 <td>1234567890123</td>
                 <td>Mame Astou
                 </td>
                 <td>Faye</td>
                 <td> Facture du mois de mai 2020</td>
                 <td>Payé</td>
-                <td></td>
-
               </tr>
               <tr>
+                <td style="vertical-align: middle;"><i class="fas fa-dice-one fa-1x" style="color: red;" ></i></td>
                 <td>1234567890123</td>
                 <td>Mame Astou
                 </td>
                 <td>Faye</td>
                 <td> Facture du mois de mai 2020</td>
                 <td>Impayé</td>
-                <td></td>
 
               </tr>
               <tr>
+                <td style="vertical-align: middle;"><i class="fas fa-dice-one fa-1x" style="color: red;" ></i></td>
                 <td>1234567890123</td>
                 <td>Mame Astou
                 </td>
                 <td>Faye</td>
                 <td> Facture du mois de mai 2020</td>
                 <td>Impayé</td>
-                <td></td>
 
               </tr>
               <tr>
+                <td style="vertical-align: middle;"><i class="fas fa-dice-one fa-1x" style="color: red;" ></i></td>
                 <td>1234567890123</td>
                 <td>Mame Astou
                 </td>
                 <td>Faye</td>
                 <td> Facture du mois de mai 2020</td>
                 <td>Impayé</td>
-                <td></td>
 
               </tr>
               <tr>
+                <td style="vertical-align: middle;"><i class="fas fa-dice-one fa-1x" style="color: red;" ></i></td>
                 <td>1234567890123</td>
                 <td>Mame Astou
                 </td>
                 <td>Faye</td>
                 <td> Facture du mois de mai 2020</td>
                 <td>Impayé</td>
-                <td></td>
-
               </tr>
               <tr>
+                <td style="vertical-align: middle;"><i class="fas fa-dice-one fa-1x" style="color: red;" ></i></td>
                 <td>1234567890123</td>
                 <td>Mame Astou
                 </td>
                 <td>Faye</td>
                 <td> Facture du mois de Février 2020</td>
                 <td>Impayé</td>
-                <td></td>
-
               </tr>
               <tr>
+                <td style="vertical-align: middle;"><i class="fas fa-dice-one fa-1x" style="color: red;" ></i></td>
                 <td>1234567890123</td>
                 <td>Mame Astou
                 </td>
                 <td>Faye</td>
                 <td> Facture du mois de Février 2020</td>
                 <td>Impayé</td>
-                <td></td>
-
               </tr>
               <tr>
+                <td style="vertical-align: middle;"><i class="fas fa-dice-one fa-1x" style="color: red;" ></i></td>
                 <td>1234567890123</td>
                 <td>Mame Astou
                 </td>
                 <td>Faye</td>
                 <td> Facture du mois de Février 2020</td>
                 <td>Impayé</td>
-                <td></td>
-
               </tr>
               <tr>
+                <td style="vertical-align: middle;"><i class="fas fa-dice-one fa-1x" style="color: red;" ></i></td>
                 <td>1234567890123</td>
                 <td>Mame Astou
                 </td>
                 <td>Faye</td>
                 <td> Facture du mois de Février 2020</td>
                 <td>Impayé</td>
-                <td></td>
-
               </tr>
               <tr>
+                <td style="vertical-align: middle;"><i class="fas fa-dice-one fa-1x" style="color: red;" ></i></td>
                 <td>1234567890123</td>
                 <td>Mame Astou
                 </td>
                 <td>Faye</td>
                 <td> Facture du mois de Février 2020</td>
                 <td>Impayé</td>
-                <td></td>
-
               </tr>
               <tr>
+                <td style="vertical-align: middle;"><i class="fas fa-dice-one fa-1x" style="color: red;" ></i></td>
                 <td>1234567890123</td>
                 <td>Mame Astou
                 </td>
                 <td>Faye</td>
                 <td> Facture du mois de Février 2020</td>
                 <td>Impayé</td>
-                <td></td>
 
               </tr>
               <tr>
+                <td style="vertical-align: middle;"><i class="fas fa-dice-one fa-1x" style="color: forestgreen;" ></i></td>
                 <td>1234567890123</td>
                 <td>Mame Astou
                 </td>
                 <td>Faye</td>
                 <td> Facture du mois de Février 2020</td>
                 <td>Payé</td>
-                <td></td>
 
               </tr>
               <tr>
+                <td style="vertical-align: middle;"><i class="fas fa-dice-one fa-1x" style="color: forestgreen;" ></i></td>
                 <td>1234567890123</td>
                 <td>Mame Astou
                 </td>
                 <td>Faye</td>
                 <td> Facture du mois de Février 2020</td>
                 <td>Payé</td>
-                <td></td>
-
               </tr>
               <tr>
+                <td style="vertical-align: middle;"><i class="fas fa-dice-one fa-1x" style="color: forestgreen;" ></i></td>
                 <td>1234567890123</td>
                 <td>Mame Astou
                 </td>
                 <td>Faye</td>
                 <td> Facture du mois de Février 2020</td>
                 <td>Payé</td>
-                <td></td>
 
               </tr>
               <tr>
+                <td style="vertical-align: middle;"><i class="fas fa-dice-one fa-1x" style="color: forestgreen;" ></i></td>
                 <td>1234567890123</td>
                 <td>Mame Astou
                 </td>
                 <td>Faye</td>
                 <td> Facture du mois de Février 2020</td>
                 <td>Payé</td>
-                <td></td>
-
               </tr>
 
               </tbody>

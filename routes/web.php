@@ -70,6 +70,12 @@ Route::get('/dashboard/transactions', 'DashboardController@transactions_dashboar
 Route::post('/dashboard/factures', 'DashboardController@bills_dashboard')->name('bills.dashboard');
 Route::get('/dashboard/factures', 'DashboardController@bills_dashboard')->name('bills.dashboard');
 
+Route::post('/dashboard/profil', 'DashboardController@profile_dashboard')->name('profile.dashboard');
+Route::get('/dashboard/profil', 'DashboardController@profile_dashboard')->name('profile.dashboard');
+
+Route::post('/dashboard/general', 'DashboardController@company_dashboard')->name('company.dashboard');
+Route::get('/dashboard/general', 'DashboardController@company_dashboard')->name('company.dashboard');
+
 //++++++++++++++++++++++++++++ END ROUTES OF THE PARTNER DASHBOARD ++++++++++++++++++++++++++++++++++++++++
 
 Route::post('/mes-factures/{id?}/pdf_bill','billController@pdf_bill')->name('mes-factures.pdf_bill');

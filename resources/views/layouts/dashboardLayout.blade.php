@@ -30,6 +30,10 @@
   <link rel="stylesheet" href="{{url('dashboardAssets/plugins/summernote/summernote-bs4.css')}}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+  <!-- Select2 -->
+  <link rel="stylesheet" href="{{url('dashboardAssets/plugins/select2/css/select2.min.css')}}">
+  <link rel="stylesheet" href="{{url('dashboardAssets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
 </head>
 @php
 $active_dashboard ='none';
@@ -38,6 +42,8 @@ $active_transactions ='none';
 $active_factures ='none';
 $active_paiements ='none';
 $active_menu ='none';
+$active_profile ='none';
+$active_general ='none';
 
 if(strpos($_SERVER['REQUEST_URI'],"accueil") == true){
   $active_dashboard = 'active';
@@ -48,6 +54,7 @@ if(strpos($_SERVER['REQUEST_URI'],"clients") == true){
 if(strpos($_SERVER['REQUEST_URI'],"paiements") == true){
   $active_paiements = 'active';
 }
+
 if(strpos($_SERVER['REQUEST_URI'],"transactions") == true){
   $active_paiements = 'active';
   $active_transactions = 'active';
@@ -57,6 +64,12 @@ if(strpos($_SERVER['REQUEST_URI'],"factures") == true){
     $active_paiements = 'active';
     $active_factures = 'active';
     $active_menu = 'menu-open';
+}
+if(strpos($_SERVER['REQUEST_URI'],"profil") == true){
+  $active_profile = 'active';
+}
+if(strpos($_SERVER['REQUEST_URI'],"general") == true){
+  $active_general = 'active';
 }
 @endphp
 <style>
@@ -153,6 +166,16 @@ color:#2282e4 !important;
 }
 .dataTables_filter input{
     margin-left:4%!important;
+}
+.label.required:after {
+  content:"*";
+  color:red;
+}
+.card-primary.card-outline {
+    border-top: 3px solid #6181a2 !important;
+}
+.elektraBlue {
+    background: rgba(155,192,221,1) !important;
 }
 </style>
 <body class="hold-transition sidebar-mini layout-fixed bgElek">
@@ -289,7 +312,7 @@ color:#2282e4 !important;
 
           <li class="nav-header">CONFIGURATIONS</li>
           <li class="nav-item">
-            <a href="pages/calendar.html" class="nav-link">
+            <a href="{{ route('profile.dashboard') }}" class="nav-link {{ $active_profile }}">
               <i class="nav-icon far fa-calendar-alt"></i>
               <p>
                 Profil admin
@@ -298,7 +321,7 @@ color:#2282e4 !important;
             </a>
           </li>
           <li class="nav-item">
-            <a href="pages/gallery.html" class="nav-link">
+            <a href="{{ route('company.dashboard') }}" class="nav-link {{ $active_general }}">
               <i class="nav-icon far fa-image"></i>
               <p>
                 Paramètres généraux
