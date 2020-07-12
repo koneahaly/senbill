@@ -107,7 +107,7 @@ if(/^[a-zA-Z ]{2,30}$/.test(myFistName)){
     myLastName = myLastName;
 
 
-    if(/^[a-zA-Z0-9 ]{13}$/.test(myCNI)){
+    if(/^[a-zA-Z0-9 ]{13,15}$/.test(myCNI)){
       myCNI = myCNI;
 
 
@@ -175,7 +175,7 @@ else{
 
 
 
-if(/^[a-zA-Z ]{2,30}$/.test(myFistName) && /^[a-zA-Z ]{2,30}$/.test(myLastName) && /^[a-zA-Z0-9 ]{13}$/.test(myCNI) && regexPhone.test(myPhone) && regexAddr.test(myAddress)){
+if(/^[a-zA-Z ]{2,30}$/.test(myFistName) && /^[a-zA-Z ]{2,30}$/.test(myLastName) && /^[a-zA-Z0-9 ]{13,15}$/.test(myCNI) && regexPhone.test(myPhone) && regexAddr.test(myAddress)){
   //Add Class Active
   $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
 

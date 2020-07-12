@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Storage;
+use Illuminate\Support\Facades\DB;
 //use Faker\Factory;
 //use fzaninotto\faker;
 
@@ -71,27 +72,113 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-         User::create([
-            'civilite' => $data['salutation'],
-            'name' => $data['name'],
-            'first_name' => $data['first_name'],
-            'email' => $data['email'],
-            'phone' => $data['phone'],
-            'customerId' =>$data['customerId'],
-            'address' =>$data['address'],
-            'password' => bcrypt($data['password']),
-          ]);
-          return Service::create([
-            'customerId' => $data['customerId'],
-            'service_1' => (!empty($data['service_1'])) ? $data['service_1'] : 'NULL',
-            'service_2' => (!empty($data['service_2'])) ? $data['service_2'] : 'NULL',
-            'service_3' => (!empty($data['service_3'])) ? $data['service_3'] : 'NULL',
-            'service_4' => (!empty($data['service_4'])) ? $data['service_4'] : 'NULL',
-            'service_5' => (!empty($data['service_5'])) ? $data['service_5'] : 'NULL',
-            'service_6' => (!empty($data['service_6'])) ? $data['service_6'] : 'NULL',
-            'service_7' => (!empty($data['service_5'])) ? $data['service_5'] : 'NULL',
-            'service_8' => (!empty($data['service_6'])) ? $data['service_6'] : 'NULL',
-        ]);
+          $in_elektra = DB::connection('mysql2')->table('contacts')->join('subscriptions', 'contacts.id', '=', 'subscriptions.contact_id')->where('contacts.customerId',$data['customerId'])->count();
+
+          Service::create([
+           'customerId' => $data['customerId'],
+           'service_1' => (!empty($data['service_1'])) ? $data['service_1'] : 'NULL',
+           'service_2' => (!empty($data['service_2'])) ? $data['service_2'] : 'NULL',
+           'service_3' => (!empty($data['service_3'])) ? $data['service_3'] : 'NULL',
+           'service_4' => (!empty($data['service_4'])) ? $data['service_4'] : 'NULL',
+           'service_5' => (!empty($data['service_5'])) ? $data['service_5'] : 'NULL',
+           'service_6' => (!empty($data['service_6'])) ? $data['service_6'] : 'NULL',
+           'service_7' => (!empty($data['service_5'])) ? $data['service_5'] : 'NULL',
+           'service_8' => (!empty($data['service_6'])) ? $data['service_6'] : 'NULL',
+       ]);
+
+          if($in_elektra > 0){
+            $infos_contacts = DB::connection('mysql2')->table('contacts')
+            ->join('subscriptions', 'contacts.id', '=', 'subscriptions.contact_id')
+            ->join('offers', 'offers.id', '=', 'subscriptions.service_id')
+            ->select('contacts.customerId','offers.libelle as of_lib','offers.service_type as of_st')
+            ->where('contacts.customerId',$data['customerId'])->get();
+
+            DB::connection('mysql2')->table('contacts')
+                ->where('customerId', $data['customerId'])
+                ->update(['in_elektra' => 'Y']);
+
+            foreach($infos_contacts as $val){
+              //dd(strpos(strtolower($val->of_lib),'electricit'));
+              if(strpos(strtolower($val->of_lib),'eau') === false){
+                //dd('test_eau');
+              }
+              else{
+                $attribut = "service_1";
+                $value = "eau";
+              }
+
+              if(strpos(strtolower($val->of_lib),'electricit') === false){
+                //dd('test_elec');
+              }
+              else{
+                $attribut = "service_2";
+                $value = "electricite";
+              }
+
+              if(strpos(strtolower($val->of_lib),'tv') === false){
+                //dd('test_tv');
+              }
+              else{
+                $attribut = "service_3";
+                $value = "tv";
+              }
+
+              if(strpos(strtolower($val->of_lib),'mobile') === false){
+                //dd('test_mobile');
+              }
+              else{
+                $attribut = "service_4";
+                $value = "mobile";
+              }
+
+              if(strpos(strtolower($val->of_lib),'locataire') === false){
+                //dd('test_loc');
+              }
+              else{
+                $attribut = "service_5";
+                $value = "locataire";
+              }
+
+              if(strpos(strtolower($val->of_lib),'proprietaire') === false){
+                //dd('test_prop');
+              }
+              else{
+                $attribut = "service_6";
+                $value = "proprietaire";
+              }
+
+              if(strpos(strtolower($val->of_lib),'scolarite') === false){
+                //dd('test_scol');
+              }
+              else{
+                $attribut = "service_7";
+                $value = "scolarite";
+              }
+
+              if(strpos(strtolower($val->of_lib),'sport') === false){
+                //dd('test_sport');
+              }
+              else{
+                $attribut = "service_8";
+                $value = "sport";
+              }
+
+              DB::table('services')
+                  ->where('customerId', $data['customerId'])
+                  ->update([$attribut => $value, 'type_'.$attribut => $val->of_st]);
+              }
+          }
+
+        return User::create([
+           'civilite' => $data['salutation'],
+           'name' => $data['name'],
+           'first_name' => $data['first_name'],
+           'email' => $data['email'],
+           'phone' => $data['phone'],
+           'customerId' =>$data['customerId'],
+           'address' =>$data['address'],
+           'password' => bcrypt($data['password']),
+         ]);
     }
 
     public function create_users_demo() {
