@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 use Auth;
 
 class AdminLoginController extends Controller
@@ -35,6 +37,33 @@ class AdminLoginController extends Controller
     	}
     	return $this->sendFailedLoginResponse($request);
     }
+
+		public function dashboardLogin(Request $input)
+    {
+    	$this->validate($input,[
+    		'email'=> 'required|email',
+    		'password' => 'required|min:6'
+    	]);
+    	if(Auth::guard('partner')->attempt(['email' => $input->email,'password' =>$input->password],$input->remember))
+    	{
+				Session::put('email_partner', $input->email);
+				$infos_partenaires['infos_partenaires'] = DB::connection('mysql2')->table('partners')->where('email',$input->email)->first();
+				foreach ($infos_partenaires as $info_partenaire) {
+					Session::put('social_name', $info_partenaire->social_name);
+					Session::put('partner_id', $info_partenaire->id);
+					Session::put('full_name', $info_partenaire->email);
+				}
+				return view('dashboard.dashboardWelcome')->with($infos_partenaires);
+    	}
+    	return $this->sendFailedLoginResponse($input);
+    }
+
+		public function display_panel()
+    {
+				$infos_partenaires['infos_partenaires'] = DB::connection('mysql2')->table('partners')->where('email',session()->get('email_partner'))->first();
+				return view('dashboard.dashboardWelcome')->with($infos_partenaires);
+    }
+
     public function logout(Request $request)
     {
         Auth::guard('admin')->logout();

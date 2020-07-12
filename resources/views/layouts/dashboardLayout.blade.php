@@ -189,7 +189,7 @@ color:#2282e4 !important;
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Benana</a>
+        <a href="#" class="nav-link">{{ $social_name }}</a>
       </li>
     </ul>
 
@@ -249,7 +249,7 @@ color:#2282e4 !important;
           <img src="{{ url('dashboardAssets/dist/img/yassnana.jpg') }}" class="img-circle elevation-2" alt="Image utilisateur">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Yacine Ndiaye</a>
+          <a href="#" class="d-block">{{ $full_name }}</a>
         </div>
       </div>
 
@@ -260,7 +260,7 @@ color:#2282e4 !important;
                with font-awesome or any other icon font library -->
         <!--  <li class="nav-item has-treeview"> -->
           <li class="nav-item">
-            <a href="{{ route('welcome.dashboard') }}" class="nav-link {{ $active_dashboard }}">
+            <a href="{{ route('welcome.get.dashboard') }}" class="nav-link {{ $active_dashboard }}">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Tableau de bord
