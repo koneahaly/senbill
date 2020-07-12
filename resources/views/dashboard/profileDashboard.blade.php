@@ -76,25 +76,15 @@
               <!-- form start -->
               <form role="form">
                 <div class="card-body">
-                  <div class="row">
-                  <div class="col-6">
-                    <label for="" class="label required">Prénom</label>
-                    <input type="text" class="form-control" placeholder="prénom" value="Yacine">
-                  </div>
-                  <div class="col-6">
-                    <label for="" class="label required">Nom</label>
-                    <input type="text" class="form-control" placeholder="nom" value="Ndiaye">
-                  </div>
-                </div>
                   <div class="form-group">
-                    <label for="exampleInputEmail1" class="label required">Adresse email</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="email" value="yacinenana@gmail.com">
+                    <label for="" class="label">Adresse email</label>
+                    <input type="text" class="form-control" placeholder="prénom" value="yacinenana@gmail.com" disabled>
                   </div>
                 </div>
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn elektraBlue">Enregistrer les modifications</button>
+                  <button type="submit" class="btn elektraBlue">Demander une modification</button>
                 </div>
               </form>
             </div>
