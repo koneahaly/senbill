@@ -283,14 +283,14 @@ html, body {
   @if($_SERVER['REQUEST_URI'] != '/register' && strpos($_SERVER['REQUEST_URI'],"admin") == false)
     <div class="circleEspace ">
       <div class="ringEspace ">
-        <a href="../mes-factures/eau" class="menuItemEspace fa fa-faucet fa-2x {{ (!empty($services->service_1)) ? '' : 'disabled' }}" title="Espace Eau"></a>
-        <a href="../mes-factures/electricite" class="menuItemEspace fa fa-plug fa-2x {{ (!empty($services->service_2)) ? '' : 'disabled' }}" title="Espace Electricité"></a>
-        <a href="../mes-factures/tv" class="menuItemEspace fa fa-tv fa-2x" <?php if($services->service_3 != NULL) echo ''; else{ echo 'disabled';} ?> title="Espace Télévision"></a>
-        <a href="../mes-factures/mobile" class="menuItemEspace fa fa-wifi fa-2x {{ (!empty($services->service_4)) ? '' : 'disabled' }}" title="Espace Mobile &  Internet"></a>
-        <a href="../transactions-proprietaire" class="menuItemEspace fa fa-building fa-2x {{ (!empty($services->service_6)) ? '' : 'disabled' }}" title="Espace Propriétaire"></a>
-        <a href="../mes-factures/locataire" class="menuItemEspace fa fa-key fa-2x {{ (!empty($services->service_5)) ? '' : 'disabled' }}" title="Espace Locataire"></a>
-        <a href="../mes-factures/scolarite" class="menuItemEspace fa fa-university fa-2x {{ (!empty($services->service_7)) ? '' : 'disabled' }}" title="Espace Scolarité"></a>
-        <a href="../mes-factures/sport" class="menuItemEspace fa fa-running fa-2x {{ (!empty($services->service_8)) ? '' : 'disabled' }}" title="Espace Sport"></a>
+        <a href="../mes-factures/eau" class="menuItemEspace fa fa-faucet fa-2x {{ (!empty($services->service_1) && $actived_services->service_1 != 'NULL') ? '' : 'disabled' }}" title="Espace Eau"></a>
+        <a href="../mes-factures/electricite" class="menuItemEspace fa fa-plug fa-2x {{ (!empty($services->service_2) && $actived_services->service_2 != 'NULL') ? '' : 'disabled' }}" title="Espace Electricité"></a>
+        <a href="../mes-factures/tv" class="menuItemEspace fa fa-tv fa-2x {{ (!empty($services->service_3) && $actived_services->service_3 != 'NULL') ? '' : 'disabled' }}" title="Espace Télévision"></a>
+        <a href="../mes-factures/mobile" class="menuItemEspace fa fa-wifi fa-2x {{ (!empty($services->service_4) && $actived_services->service_4 != 'NULL') ? '' : 'disabled' }}" title="Espace Mobile &  Internet"></a>
+        <a href="../transactions-proprietaire" class="menuItemEspace fa fa-building fa-2x {{ (!empty($services->service_6) && $actived_services->service_6 != 'NULL') ? '' : 'disabled' }}" title="Espace Propriétaire"></a>
+        <a href="../mes-factures/locataire" class="menuItemEspace fa fa-key fa-2x {{ (!empty($services->service_5) && $actived_services->service_5 != 'NULL') ? '' : 'disabled' }}" title="Espace Locataire"></a>
+        <a href="../mes-factures/scolarite" class="menuItemEspace fa fa-university fa-2x {{ (!empty($services->service_7) && $actived_services->service_7 != 'NULL') ? '' : 'disabled' }}" title="Espace Scolarité"></a>
+        <a href="../mes-factures/sport" class="menuItemEspace fa fa-running fa-2x {{ (!empty($services->service_8) && $actived_services->service_8 != 'NULL') ? '' : 'disabled' }}" title="Espace Sport"></a>
       </div>
       <a href="#" class="center fa fa-th fa-2x"  title="Changer d'espace"></a>
     </div>
