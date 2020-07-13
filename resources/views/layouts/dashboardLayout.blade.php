@@ -184,6 +184,43 @@ color:#2282e4 !important;
 .toggleElek::after {
     vertical-align: 0em !important;
 }
+/* Mac Download Button */
+    .elektra-button-wrapper {
+        color: #ffffff !important;
+        border-color: #ffffff;
+        background-color: #007bff;
+        padding: 10px 34px;
+        -webkit-transition: all 0.2s linear;
+        -o-transition: all 0.2s linear;
+        transition: all 0.2s linear;
+        min-width: 200px;
+        text-align: center;
+        border-radius: 45px;
+        border: 1px solid #007bff;
+        margin-left: auto;
+        margin-right: auto;
+        display: table;
+   }
+   .elektra-button-wrapper a {
+       color: #ffffff !important;
+  }
+    .elektra-button {
+        font: 500 16px "Cabin", sans-serif;
+   }
+    .elektra-button-wrapper:hover {
+        color: #007bff;
+        background: #ffffff;
+        border-color: #ffffff;
+        -webkit-box-shadow: 0px 20px 30px 0px rgba(12, 0, 46, 0.1);
+                box-shadow: 0px 20px 30px 0px rgba(12, 0, 46, 0.1);
+
+   }
+   .elektra-button-wrapper:hover a {
+       color: #007bff !important;
+  }
+  .custom-file-label::after {
+    content: "Parcourir" !important;;
+}
 </style>
 <body class="hold-transition sidebar-mini layout-fixed bgElek">
 <div class="wrapper">
