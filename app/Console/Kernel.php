@@ -53,7 +53,7 @@ class Kernel extends ConsoleKernel
       $infos_contacts = DB::connection('mysql2')->table('contacts')->join('subscriptions', 'contacts.id', '=', 'subscriptions.contact_id')->select('contacts.customerId as customerId', 'subscriptions.id as sid')->where('partner_id',4)->get();
       foreach($infos_contacts as $infos_contact){
 
-        $new_line = '"'.strval($infos_contact->customerId).'","'.$infos_contact->sid.'","'.strval($faker->vat).'","'.$faker->randomElement($array = array ('Mensualité', 'Paiement Facture', 'Régularisation')).'",'.$faker->numberBetween($min = 1000, $max = 9000).','.$faker->numberBetween($min = 1000, $max = 9000).','.date('Y-m-d H:i:s', strtotime('+5 day', time())).',"","En attente","Akilee","1","A",'.$faker->numberBetween($min = 1000, $max = 9000).',""';
+        $new_line = '"'.strval($infos_contact->customerId).'","'.$infos_contact->sid.'","'.strval($faker->vat).'","'.$faker->randomElement($array = array ('Mensualité', 'Paiement Facture', 'Régularisation')).'",'.$faker->numberBetween($min = 1000, $max = 9000).','.$faker->numberBetween($min = 1000, $max = 9000).','.date('Y-m-d H:i:s', strtotime('+5 day', time())).',"","En attente","Akilee","1",'.$faker->numberBetween($min = 1000, $max = 9000).',""';
         array_push($fake_data_invoices,$new_line);
       }
 

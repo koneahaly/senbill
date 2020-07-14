@@ -407,10 +407,12 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
                       @if(!empty($last_row_data))
                         <?php $amount = (Auth::user()->user_type == 2) ? $last_row_data['amount'] : $last_row_data->amount; ?>
                         <?php $id_bill = (Auth::user()->user_type == 2) ? $last_row_data['id'] : $last_row_data->id; ?>
+                        <?php $order_number = (Auth::user()->user_type == 2) ? $last_row_data['order_number'] : $last_row_data->order_number; ?>
                       @endif
                       @if($last_row_data == NULL)
                       <?php $amount = 0;
                             $id_bill = 0;
+                            $order_number = 0;
                       ?>
                       @endif
                     <button class="btn btn-success btn-lg btn-block" type="submit">Payez {{ $amount }} fcfa
@@ -424,6 +426,8 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
                     </div>
                     </div>
                     <input type="hidden" name="payment_method" value="CB" />
+                    <input type="hidden" name="payment_amount" value="{{ $amount }}" />
+                    <input type="hidden" name="order_number" value="{{ $order_number }}" />
                     <input type="hidden" name="service" value="{{ $_SESSION['current_service'] }}"/>
                     <input type="hidden" name='id_bill' value="{{ (!empty($id_bill)) ? $id_bill : '0' }}" />
                     </form>
@@ -532,6 +536,8 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
                         </div>
                         </div>
                         <input type="hidden" name="payment_method" value="OrangeMoney" />
+                        <input type="hidden" name="payment_amount" value="{{ $amount }}" />
+                        <input type="hidden" name="order_number" value="{{ $order_number }}" />
                         <input type="hidden" name="service" value="{{ $_SESSION['current_service'] }}"/>
                         <input type="hidden" name='id_bill' value="{{ (!empty($id_bill)) ? $id_bill : '0' }}" />
                         </form>
@@ -648,6 +654,8 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
                       </div>
                       </div>
                       <input type="hidden" name="payment_method" value="FreeCash" />
+                      <input type="hidden" name="payment_amount" value="{{ $amount }}" />
+                      <input type="hidden" name="order_number" value="{{ $order_number }}" />
                       <input type="hidden" name="service" value="{{ $_SESSION['current_service'] }}"/>
                       <input type="hidden" name='id_bill' value="{{ (!empty($id_bill)) ? $id_bill : '0' }}" />
                       </form>
@@ -993,6 +1001,8 @@ if($i == $limit){
               </div>
               <input type="hidden" name="montant_recharge" value="{{ $t * 5000}}" />
               <input type="hidden" name="payment_method" value="CB" />
+              <input type="hidden" name="payment_amount" value="{{ $t * 5000}}" />
+              <input type="hidden" name="order_number" value="{{ $order_number }}" />
               <input type="hidden" name="service" value="{{ $_SESSION['current_service'] }}"/>
               <input type="hidden" name='id_bill' value="{{ (!empty($id_bill)) ? $id_bill : '0' }}" />
               </form>
@@ -1102,6 +1112,8 @@ if($i == $limit){
 
                 <input type="hidden" name="montant_recharge" value="{{ $t * 5000}}" />
                 <input type="hidden" name="payment_method" value="OrangeMoney" />
+                <input type="hidden" name="payment_amount" value="{{ $t * 5000}}" />
+                <input type="hidden" name="order_number" value="{{ $order_number }}" />
                 <input type="hidden" name="service" value="{{ $_SESSION['current_service'] }}"/>
                 <input type="hidden" name='id_bill' value="{{ (!empty($id_bill)) ? $id_bill : '0' }}" />
                 </form>
@@ -1218,6 +1230,8 @@ if($i == $limit){
                 </div>
                 <input type="hidden" name="montant_recharge" value="{{ $t * 5000}}" />
                 <input type="hidden" name="payment_method" value="FreeCash" />
+                <input type="hidden" name="payment_amount" value="{{ $t * 5000}}" />
+                <input type="hidden" name="order_number" value="{{ $order_number }}" />
                 <input type="hidden" name="service" value="{{ $_SESSION['current_service'] }}"/>
                 <input type="hidden" name='id_bill' value="{{ (!empty($id_bill)) ? $id_bill : '0' }}" />
                 </form>

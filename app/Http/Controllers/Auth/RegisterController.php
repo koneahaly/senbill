@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Bill;
 use App\Service;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -168,6 +169,33 @@ class RegisterController extends Controller
                   ->update([$attribut => $value, 'type_'.$attribut => $val->of_st]);
               }
           }
+
+          $has_bills = DB::connection('mysql2')->table('invoices')->where('customerId',$data['customerId'])->count();
+          $months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
+          if($has_bills > 0){
+            $invoices = DB::connection('mysql2')->table('invoices')->where('customerId',$data['customerId'])->get();
+            foreach($invoices as $invoice){
+              $bill = new Bill;
+              $bill->initial=0;
+              $bill->final=0;
+              $creation_date = explode('-',$invoice->created_at);
+              $bill->customerId=$invoice->customerId;
+              $bill->month=$months[(int)$creation_date[1] - 1];
+              $bill->year=$creation_date[0];
+              $bill->deadline= $invoice->payment_due_date;
+              $bill->amount=$invoice->tot_payment_due;
+              $bill->status= $invoice->payment_status;
+              $bill->units=(integer)$bill->final-(integer)$bill->initial;
+              $bill->payment_method= $invoice->payment_method;
+              $bill->order_number = $invoice->order_number;
+              $bill->save();
+
+              DB::connection('mysql2')->table('invoices')
+                  ->where('id', $invoice->id)
+                  ->update(['import_status' => 'Y']);
+            }
+          }
+
 
         return User::create([
            'civilite' => $data['salutation'],

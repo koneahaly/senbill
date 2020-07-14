@@ -93,6 +93,11 @@ class billController extends Controller
         DB::table('bills')
             ->where([['customerId', $s],['status','<>','paid'],['id',$input->id_bill]])
             ->update(['status' => 'paid','payment_method' => $input->payment_method]);
+
+        DB::connection('mysql2')->table('invoices')
+            ->where('order_number', $input->order_number)
+            ->update(['payment_status' => 'Payée', 'payment_method' => $input->payment_method, 'paid_amount' => $input->payment_amount]);
+
         return redirect('mes-factures/'.$input->service);
     }
 
