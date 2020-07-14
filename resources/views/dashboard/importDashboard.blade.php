@@ -106,7 +106,7 @@
               <p class="text-muted">L'importation via un fichier vous permet d'ajouter  vos clients en masse sans développement. Seul un fichier csv est à éditer puis à charger via cette interface.</p>
               <p  style="margin-bottom: var(--space-s);"> Première étape : Template Elektra</p>
               <p class="text-muted">Vous pouvez  utiliser notre template Elektra standard et y ajouter les données que vous voulez importer. Si les champs du template ne sont pas  adaptés à votre modèle, vous pouvez toujours utiliser votre fichier  personnalisé. </p>
-              <span class="elektra-button-wrapper"><a href=".">
+              <span class="elektra-button-wrapper"><a href="{{ route('import.dashboard.download_contacts_tpl') }}">
                 <i class="fa fa-download"><span class="elektra-button">&nbsp &nbsp Télécharger le template</span></i>
               </a>
               </span>
@@ -230,7 +230,7 @@
               <p class="text-muted">L'importation via un fichier vous permet d'ajouter  vos factures en masse sans développement. Seul un fichier csv est à éditer puis à charger via cette interface.</p>
               <p  style="margin-bottom: var(--space-s);"> Première étape : Template Elektra</p>
               <p class="text-muted">Vous pouvez  utiliser notre template Elektra standard et y ajouter les données que vous voulez importer. Si les champs du template ne sont pas  adaptés à votre modèle, vous pouvez toujours utiliser votre fichier  personnalisé. </p>
-              <span class="elektra-button-wrapper"><a href=".">
+              <span class="elektra-button-wrapper"><a href="{{ route('import.dashboard.download_invoices_tpl') }}">
                 <i class="fa fa-download"><span class="elektra-button">&nbsp &nbsp Télécharger le template</span></i>
               </a>
               </span>

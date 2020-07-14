@@ -103,7 +103,7 @@ class Kernel extends ConsoleKernel
               unlink($file);
           }
         });*/
-        $path = base_path("storage/pending_invoices/*.csv");
+        /*$path = base_path("storage/pending_invoices/*.csv");
 
         //run 2 loops at a time
         foreach (array_slice(glob($path),0,2) as $file) {
@@ -126,7 +126,7 @@ class Kernel extends ConsoleKernel
 
             //delete the file
             unlink($file);
-        }
+        }*/
     }
 
     /**

@@ -56,4 +56,48 @@ class DashboardController extends Controller
       return view('dashboard.importDashboard');
     }
 
+    public function download_contacts_tpl()
+    {
+      $fileName = base_path("storage/template/contacts_tpl.csv");
+
+      if ($fd = fopen ($fileName, "r")) {
+
+        header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+        header('Content-Description: File Transfer');
+        header("Content-type: text/csv");
+        header("Content-Disposition: attachment; filename=contacts_template.csv");
+        header("Expires: 0");
+        header("Pragma: public");
+
+        while(!feof($fd)) {
+        $buffer = fread($fd, 2048);
+        echo $buffer;
+        }
+
+      fclose($fd);
+    }
+  }
+
+  public function download_invoices_tpl()
+  {
+    $fileName = base_path("storage/template/invoices_tpl.csv");
+
+    if ($fd = fopen ($fileName, "r")) {
+
+      header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+      header('Content-Description: File Transfer');
+      header("Content-type: text/csv");
+      header("Content-Disposition: attachment; filename=invoices_template.csv");
+      header("Expires: 0");
+      header("Pragma: public");
+
+      while(!feof($fd)) {
+      $buffer = fread($fd, 2048);
+      echo $buffer;
+      }
+
+    fclose($fd);
+  }
+}
+
 }
