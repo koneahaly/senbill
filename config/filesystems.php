@@ -48,6 +48,16 @@ return [
             'root' => storage_path('app'),
         ],
 
+        'pending_contacts' => [
+            'driver' => 'local',
+            'root' => storage_path('pending_contacts'),
+        ],
+
+        'pending_invoices' => [
+            'driver' => 'local',
+            'root' => storage_path('pending_invoices'),
+        ],
+
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),

@@ -113,15 +113,18 @@
               <br/>
               <p  style="margin-bottom: var(--space-s);"> Deuxième étape : Chargement du fichier de données</p>
               <p class="text-muted">Charger le  template que vous avez déjà  modifié ou votre fichier personnalisé. </p>
+              <form action="{{ route('import.dashboard.load_contacts') }}" method="POST" enctype="multipart/form-data">
+                {{csrf_field()}}
               <div class="input-group">
                       <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="exampleInputFile">
+                        <input type="file" name="file" class="custom-file-input" id="exampleInputFile">
                         <label class="custom-file-label" for="exampleInputFile">Choisir fichier</label>
                       </div>
-                      <div class="input-group-append">
-                        <button class="input-group-text" id="">Charger</button>
-                      </div>
+                        <div class="input-group-append">
+                          <button class="input-group-text" id="">Charger</button>
+                        </div>
               </div>
+              </form>
               <br/>
               <div class="alert alert-success alert-dismissible">
                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -237,15 +240,18 @@
               <br/>
               <p  style="margin-bottom: var(--space-s);"> Deuxième étape : Chargement du fichier de données</p>
               <p class="text-muted">Charger le  template que vous avez déjà  modifié ou votre fichier personnalisé. </p>
+              <form action="{{ route('import.dashboard.load_invoices') }}" method="POST" enctype="multipart/form-data">
+                {{csrf_field()}}
               <div class="input-group">
                       <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="exampleInputFile">
+                        <input type="file" name="file" class="custom-file-input" id="exampleInputFile">
                         <label class="custom-file-label" for="exampleInputFile">Choisir fichier</label>
                       </div>
-                      <div class="input-group-append">
-                        <button class="input-group-text" id="">Charger</button>
-                      </div>
+                        <div class="input-group-append">
+                          <button class="input-group-text" id="">Charger</button>
+                        </div>
               </div>
+              </form>
               <br/>
               <div class="alert alert-success alert-dismissible">
                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>

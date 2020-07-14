@@ -84,6 +84,9 @@ Route::get('/dashboard/import/download_contacts_tpl','DashboardController@downlo
 
 Route::post('/dashboard/import/download_invoices_tpl','DashboardController@download_invoices_tpl')->name('import.dashboard.download_invoices_tpl');
 Route::get('/dashboard/import/download_invoices_tpl','DashboardController@download_invoices_tpl')->name('import.dashboard.download_invoices_tpl');
+
+Route::post('/dashboard/import/load_invoices','DashboardController@load_invoices')->name('import.dashboard.load_invoices');
+Route::post('/dashboard/import/load_contacts','DashboardController@load_contacts')->name('import.dashboard.load_contacts');
 //++++++++++++++++++++++++++++ END ROUTES OF THE PARTNER DASHBOARD ++++++++++++++++++++++++++++++++++++++++
 
 Route::post('/mes-factures/{id?}/pdf_bill','billController@pdf_bill')->name('mes-factures.pdf_bill');
