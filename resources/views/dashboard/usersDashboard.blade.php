@@ -47,7 +47,7 @@
                   <td>{{ $infos_contact->first_name }}
                   </td>
                   <td>{{ $infos_contact->last_name }}</td>
-                  <td> OUI</td>
+                  <td> {{ ($infos_contact->in_elektra == 'Y') ? 'OUI' : 'NON' }}</td>
                   <td>{{ $infos_contact->status }}</td>
                 </tr>
               @endforeach
