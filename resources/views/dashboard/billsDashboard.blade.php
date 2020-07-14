@@ -45,7 +45,7 @@
               <tbody>
                 @foreach($infos_factures as $infos_facture)
                   <tr>
-                    <td style="vertical-align: middle;text-align:center;"><i class="fas fa-dice-one fa-1x" style="color: red;" ></i>
+                    <td style="vertical-align: middle;text-align:center;"><i class="fas fa-dice-one fa-1x" <?php if($infos_facture->payment_status == "Payée") echo 'style="color: forestgreen;"'; else{ echo 'style="color: red;"';} ?> ></i>
                     <td>{{ $infos_facture->customerId}}</td>
                     <td>{{ $infos_facture->first_name}}
                     </td>
