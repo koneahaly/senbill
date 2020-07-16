@@ -102,10 +102,10 @@ class DashboardController extends Controller
   }
 
   public function load_contacts(Request $request){
-    //dd($request->file);
+    //dd($request);
     Storage::disk('pending_contacts')->put('contacts'.date('YmdHis').'.csv',file_get_contents($request->file));
     //$request->file->store("storage/pending_contacts");
-    return redirect()->intended(route('import.dashboard'));
+    return redirect()->intended(route('import.dashboard', ['id' => 2]));
   }
   public function load_invoices(Request $request){
     Storage::disk('pending_invoices')->put('invoices'.date('YmdHis').'.csv',file_get_contents($request->file));

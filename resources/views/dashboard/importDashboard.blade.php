@@ -35,8 +35,8 @@
                         <button type="button" class="btn btn-success dropdown-toggle toggleElek" data-toggle="dropdown" aria-expanded="false">Importer &nbsp</button>
                           <span class="sr-only">Dérouler menu</span>
                           <div class="dropdown-menu" role="menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: -130px; transform: translate3d(-1px, 37px, 0px);">
-                            <a class="dropdown-item" href="#modal-lg"  data-toggle="modal" data-target="#modal-clients">Importer des clients</a>
-                            <a class="dropdown-item" href="#modal-lg" data-toggle="modal" data-target="#modal-factures">Importer des factures</a>
+                            <a class="dropdown-item imp_contacts" href="#modal-lg"  data-toggle="modal" data-target="#modal-clients">Importer des clients</a>
+                            <a class="dropdown-item imp_invoices" href="#modal-lg" data-toggle="modal" data-target="#modal-factures">Importer des factures</a>
                           </div>
                 </div>
                 <div class="col-2">
@@ -126,11 +126,11 @@
               </div>
               </form>
               <br/>
-              <div class="alert alert-success alert-dismissible">
+              <div class="alert alert-success alert-dismissible alert-contact-green">
                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                   <i class="icon fas fa-check "> Le fichier a  été bien chargé.</i>
               </div>
-              <div class="alert alert-danger alert-dismissible">
+              <div class="alert alert-danger alert-dismissible alert-contact-red">
                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                   <i class="icon fas fa-ban "> Le fichier n'a pas été chargé.</i>
               </div>
@@ -253,11 +253,11 @@
               </div>
               </form>
               <br/>
-              <div class="alert alert-success alert-dismissible">
+              <div class="alert alert-success alert-dismissible alert-invoice-green">
                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                   <i class="icon fas fa-check "> Le fichier a  été bien chargé.</i>
               </div>
-              <div class="alert alert-danger alert-dismissible">
+              <div class="alert alert-danger alert-dismissible alert-invoice-red">
                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                   <i class="icon fas fa-ban "> Le fichier n'a pas été chargé.</i>
               </div>
@@ -345,6 +345,22 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+  <?php
+  if(isset($_GET['id']) && $_GET['id'] == 2){
+    echo '<script>
+        $(".imp_contacts").click();
+        $(".alert-contact-red").remove();
+    </script>';
+  }
+
+  if(isset($_GET['id']) && $_GET['id'] == 3){
+    echo '<script>
+        $(".imp_invoices").click();
+        $(".alert-invoice-red").remove();
+    </script>';
+  }
+
+   ?>
   <footer class="main-footer">
     <strong>Copyright &copy; 2020 <a href="">Elektra-S2SN </a>.</strong>
     Tous droits réservés.
