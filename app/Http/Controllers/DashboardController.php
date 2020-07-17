@@ -101,15 +101,44 @@ class DashboardController extends Controller
     }
   }
 
+  public function read_header($file){
+    $row = 1;
+    if (($handle = fopen($file, "r")) !== FALSE) {
+        while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+            $num = count($data);
+            echo "<p> $num fields in line $row: <br /></p>\n";
+            $row++;
+            for ($c=0; $c < $num; $c++) {
+                echo $data[$c] . "<br />\n";
+            }
+            $header = $data;
+            fclose($handle);
+            return $header;
+        }
+    }
+  }
+
   public function load_contacts(Request $request){
-    //dd($request);
-    Storage::disk('pending_contacts')->put('contacts'.date('YmdHis').'.csv',file_get_contents($request->file));
-    //$request->file->store("storage/pending_contacts");
-    return redirect()->intended(route('import.dashboard', ['id' => 2]));
+    $filename = 'contacts'.date('YmdHis').'.csv';
+    if($request->file->isValid() && $request->file->getClientOriginalExtension() == 'csv'){
+      Storage::disk('pending_contacts')->put($filename,file_get_contents($request->file));
+      $data = $this->read_header(base_path('storage/pending_contacts/'.$filename));
+      return redirect()->intended(route('import.dashboard', ['id' => '2_success', 'data' => $data]));
+    }
+    else{
+      return redirect()->intended(route('import.dashboard', ['id' => '2_error']));
+    }
   }
   public function load_invoices(Request $request){
-    Storage::disk('pending_invoices')->put('invoices'.date('YmdHis').'.csv',file_get_contents($request->file));
-    return redirect()->intended(route('import.dashboard'));
+    $filename = 'invoices'.date('YmdHis').'.csv';
+    if($request->file->isValid() && $request->file->getClientOriginalExtension() == 'csv'){
+      Storage::disk('pending_invoices')->put($filename,file_get_contents($request->file));
+      $data = $this->read_header(base_path('storage/pending_invoices/'.$filename));
+      return redirect()->intended(route('import.dashboard', ['id' => '3_success', 'data' => $data]));
+    }
+    else{
+      return redirect()->intended(route('import.dashboard', ['id' => '3_error']));
+    }
   }
 
 }
