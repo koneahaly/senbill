@@ -1,8 +1,11 @@
 <?php $__env->startSection('content'); ?>
 
 <?php
-if(isset($_GET['data'])){
-  $data = $_GET['data'];
+if(isset($_GET['data_contacts'])){
+  $data_contacts = $_GET['data_contacts'];
+}
+if(isset($_GET['data_invoices'])){
+  $data_invoices = $_GET['data_invoices'];
 }
  ?>
 <!-- Content Wrapper. Contains page content -->
@@ -151,29 +154,31 @@ if(isset($_GET['data'])){
                   </div>
               </div>
               <!-- /.card-header -->
+              <form method="POST" action="<?php echo e(route('import.dashboard.final_load_contacts')); ?>">
+                <?php echo e(csrf_field()); ?>
               <div class="card-body">
                 <dl class="row">
-                  <?php if(!empty($data)): ?>
-                  <?php $__currentLoopData = $data; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $dt): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                  <?php if(!empty($data_contacts)): ?>
+                  <?php $__currentLoopData = $data_contacts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $dt): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                   <dt class="col-sm-4"><?php echo e(substr($dt,1,strlen($dt)-2)); ?></dt>
                   <dd class="col-sm-8">
                     <div class="form-group">
-                      <select class="form-control">
-                        <option <?php if(substr($dt,1,strlen($dt)-2) == 'cni') echo 'selected';?> >CNI</option>
-                        <option <?php if(substr($dt,1,strlen($dt)-2) == 'email') echo 'selected';?> >Email</option>
-                        <option <?php if(substr($dt,1,strlen($dt)-2) == 'phone') echo 'selected';?> >Téléphone</option>
-                        <option <?php if(substr($dt,1,strlen($dt)-2) == 'address_1') echo 'selected';?> >Adresse 1</option>
-                        <option <?php if(substr($dt,1,strlen($dt)-2) == 'address_2') echo 'selected';?> >Adresse 2</option>
-                        <option <?php if(substr($dt,1,strlen($dt)-2) == 'first_name') echo 'selected';?> >Prénom</option>
-                        <option <?php if(substr($dt,1,strlen($dt)-2) == 'last_name') echo 'selected';?> >Nom</option>
-                        <option <?php if(substr($dt,1,strlen($dt)-2) == 'status') echo 'selected';?> >Statut client</option>
-                        <option <?php if(substr($dt,1,strlen($dt)-2) == 'service_id') echo 'selected';?> >Service</option>
-                        <option <?php if(substr($dt,1,strlen($dt)-2) == 'partner_id') echo 'selected';?> >Partenaire</option>
-                        <option <?php if(substr($dt,1,strlen($dt)-2) == 'status') echo 'selected';?> >Statut souscription</option>
-                        <option <?php if(substr($dt,1,strlen($dt)-2) == 'salutation') echo 'selected';?> >Civilité</option>
-                        <option <?php if(substr($dt,1,strlen($dt)-2) == 'dob') echo 'selected';?> >Date de naissance</option>
-                        <option <?php if(substr($dt,1,strlen($dt)-2) == 'pob') echo 'selected';?> >Lieu de naissance</option>
-                        <option <?php if(substr($dt,1,strlen($dt)-2) == 'billing_period') echo 'selected';?> >Fréquence de facturation</option>
+                      <select class="form-control" name='fields[]'>
+                        <option value='customerId' <?php if(substr($dt,1,strlen($dt)-2) == 'cni') echo 'selected';?> >CNI</option>
+                        <option value='email' <?php if(substr($dt,1,strlen($dt)-2) == 'email') echo 'selected';?> >Email</option>
+                        <option value='phone' <?php if(substr($dt,1,strlen($dt)-2) == 'phone') echo 'selected';?> >Téléphone</option>
+                        <option value='address_1' <?php if(substr($dt,1,strlen($dt)-2) == 'address_1') echo 'selected';?> >Adresse 1</option>
+                        <option value='address_2' <?php if(substr($dt,1,strlen($dt)-2) == 'address_2') echo 'selected';?> >Adresse 2</option>
+                        <option value='first_name' <?php if(substr($dt,1,strlen($dt)-2) == 'first_name') echo 'selected';?> >Prénom</option>
+                        <option value='last_name' <?php if(substr($dt,1,strlen($dt)-2) == 'last_name') echo 'selected';?> >Nom</option>
+                        <option value='status' <?php if(substr($dt,1,strlen($dt)-2) == 'status') echo 'selected';?> >Statut client</option>
+                        <option value='service_id' <?php if(substr($dt,1,strlen($dt)-2) == 'service_id') echo 'selected';?> >Service</option>
+                        <option value='partner_id' <?php if(substr($dt,1,strlen($dt)-2) == 'partner_id') echo 'selected';?> >Partenaire</option>
+                        <option value='status' <?php if(substr($dt,1,strlen($dt)-2) == 'status') echo 'selected';?> >Statut souscription</option>
+                        <option value='salutation' <?php if(substr($dt,1,strlen($dt)-2) == 'salutation') echo 'selected';?> >Civilité</option>
+                        <option value='dob'<?php if(substr($dt,1,strlen($dt)-2) == 'dob') echo 'selected';?> >Date de naissance</option>
+                        <option value='pob'<?php if(substr($dt,1,strlen($dt)-2) == 'pob') echo 'selected';?> >Lieu de naissance</option>
+                        <option value='billing_period' <?php if(substr($dt,1,strlen($dt)-2) == 'billing_period') echo 'selected';?> >Fréquence de facturation</option>
                       </select>
                     </div>
                   </dd>
@@ -186,8 +191,10 @@ if(isset($_GET['data'])){
             </div>
             <div class="modal-footer justify-content-between">
               <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-              <button type="button" class="btn btn-primary">Importer des clients</button>
+              <button type="submit" class="btn btn-primary">Importer des clients</button>
             </div>
+            <input type='hidden' name="file_to_import" value="<?php if(isset($_GET['file_to_import'])) echo $_GET['file_to_import']; else{echo '';} ?>" />
+          </form>
           </div>
           <!-- /.modal-content -->
         </div>
@@ -253,16 +260,17 @@ if(isset($_GET['data'])){
                   </div>
               </div>
               <!-- /.card-header -->
+              <form method="POST" action="<?php echo e(route('import.dashboard.final_load_invoices')); ?>">
               <div class="card-body">
                 <dl class="row">
-                  <?php if(!empty($data)): ?>
-                  <?php $__currentLoopData = $data; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $dt): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                  <?php if(!empty($data_invoices)): ?>
+                  <?php $__currentLoopData = $data_invoices; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $dt): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                   <dt class="col-sm-4"><?php echo e(substr($dt,1,strlen($dt)-2)); ?></dt>
                   <dd class="col-sm-8">
                     <div class="form-group">
-                      <select class="form-control">
-                        <option <?php if(substr($dt,1,strlen($dt)-2) == 'cni') echo 'selected';?> >CNI</option>
-                        <option <?php if(substr($dt,1,strlen($dt)-2) == 'souscription') echo 'selected';?> >Souscription</option>
+                      <select class="form-control" name='fields[]'>
+                        <option value='customerId' <?php if(substr($dt,1,strlen($dt)-2) == 'cni') echo 'selected';?> >CNI</option>
+                        <option value='souscription_id' <?php if(substr($dt,1,strlen($dt)-2) == 'souscription') echo 'selected';?> >Souscription</option>
                         <option <?php if(substr($dt,1,strlen($dt)-2) == 'order_number') echo 'selected';?> >Numéro de facturation</option>
                         <option <?php if(substr($dt,1,strlen($dt)-2) == 'title') echo 'selected';?> >Intitulé facture</option>
                         <option <?php if(substr($dt,1,strlen($dt)-2) == 'min_payment_due') echo 'selected';?> >Minimum à payer</option>
@@ -288,6 +296,8 @@ if(isset($_GET['data'])){
               <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
               <button type="button" class="btn btn-primary">Importer des clients</button>
             </div>
+            <input type="file_to_import" value="<?php if(isset($_GET['file_to_import'])) echo $_GET['file_to_import']; else{echo '';} ?>" />
+          </form>
           </div>
           <!-- /.modal-content -->
         </div>

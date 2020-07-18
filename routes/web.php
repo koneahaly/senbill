@@ -89,6 +89,12 @@ Route::post('/dashboard/import/load_invoices','DashboardController@load_invoices
 Route::post('/dashboard/import/load_contacts','DashboardController@load_contacts')->name('import.dashboard.load_contacts');
 Route::get('/dashboard/import/load_invoices','DashboardController@load_invoices')->name('import.dashboard.load_invoices');
 Route::get('/dashboard/import/load_contacts','DashboardController@load_contacts')->name('import.dashboard.load_contacts');
+
+
+Route::post('/dashboard/import/final_load_invoices','DashboardController@final_load_invoices')->name('import.dashboard.final_load_invoices');
+Route::post('/dashboard/import/final_load_contacts','DashboardController@final_load_contacts')->name('import.dashboard.final_load_contacts');
+Route::get('/dashboard/import/final_load_invoices','DashboardController@final_load_invoices')->name('import.dashboard.final_load_invoices');
+Route::get('/dashboard/import/final_load_contacts','DashboardController@final_load_contacts')->name('import.dashboard.final_load_contacts');
 //++++++++++++++++++++++++++++ END ROUTES OF THE PARTNER DASHBOARD ++++++++++++++++++++++++++++++++++++++++
 
 Route::post('/mes-factures/{id?}/pdf_bill','billController@pdf_bill')->name('mes-factures.pdf_bill');
