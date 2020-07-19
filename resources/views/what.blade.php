@@ -275,7 +275,7 @@
 
 
 
-    <nav class="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm" style="background: #131212;">
+    <nav class="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm" style="background:#f0f4f5;">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <div class="hamburger">
                 <span></span>
@@ -288,11 +288,11 @@
             <div class="navbar-brand">
                 <span class="navbar-logo">
                     <a href=".">
-                         <img src="{{url('images/logo-s2sn.png')}}" alt="Elektra" style="height: 3.8rem;">
+                         <img src="{{url('images/hexagon.svg')}}" alt="Elektra" style="height: 3.8rem;">
                     </a>
                 </span>
                 <span class="navbar-caption-wrap">
-                    <a class="navbar-caption text-white display-4" href=".">
+                    <a class="navbar-caption text-black display-4" href=".">
                         ELEKTRA
                     </a>
                 </span>
@@ -302,25 +302,32 @@
     </nav>
 </section>
 
-<section class="engine"></section><section class="header6 cid-s2zrea1bZ0 mbr-fullscreen" data-bg-video="https://www.youtube.com/watch?v=OCyIKZEphoA?version=3&loop=1&playlist=OCyIKZEphoA" id="header6-2">
+<section class="engine"></section><section class="header6 mbr-fullscreen" style="background-image: url({{url('images/3587377.svg')}});"  id="header6-2">
 
 
 
-    <div class="mbr-overlay" style="opacity: 0.5; background-color: rgb(35, 35, 35);">
+    <div class="mbr-overlay" style="opacity: 0.5; background-color: rgb(255, 255, 255);">
     </div>
 
     <div class="container">
-        <div class="row justify-content-md-center">
-            <div class="mbr-white col-md-10">
-                <h1 class="mbr-section-title align-center mbr-bold pb-3 mbr-fonts-style display-1">
-                    TOUS LES PAIEMENTS EN UNE PLATEFORME
-                </h1>
-                <p class="mbr-text align-center pb-3 mbr-fonts-style display-5">
-                    Elektra simplifie les paiements de vos factures au Sénégal et en Afrique. Plusieurs services sont inclus dans la plateforme. Dîtes adieu aux factures impayées ou oubliées.
-                </p>
-                <div class="mbr-section-btn align-center"><a class="btn btn-md btn-primary display-4" href=".">DÉMO LIVE</a>
-                        </div>
-            </div>
+      <div class="row">
+        <div class="col-md-4" style="padding-top: 7%;">
+          <div class="row justify-content-md-center">
+              <div class="col-md-10">
+                  <h2 class="mbr-section-title align-center mbr-bold pb-3 mbr-fonts-style" style="margin: 0 0 25px;font-size: 3rem;">
+                      Toutes les factures en une plateforme
+                  </h2>
+                  <p class="mbr-text align-center pb-3 mbr-fonts-style display-6">
+                      Elektra simplifie les paiements de vos factures au Sénégal et en Afrique. Dîtes adieu aux factures impayées ou oubliées.
+                  </p>
+                  <div class="mbr-section-btn align-center"><a class="btn btn-md btn-primary display-4" href=".">DÉMO LIVE</a>
+                          </div>
+              </div>
+          </div>
+          </div>
+          <div class="lottie anim col-md-8">
+            <lottie-player src="{{url('images/lottie/what.json')}}" id=icon10  background="transparent"  speed="1" class="space-logo"   loop  autoplay></lottie-player>
+          </div>
         </div>
     </div>
 
