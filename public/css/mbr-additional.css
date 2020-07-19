@@ -713,6 +713,16 @@ section.lazy-placeholder:after {
 .cid-s020q4nzkT {
   background-image: url("/../images/africa-11115_1280.jpg");
 }
+.lottie-bg{
+  background-image: url("/../images/3587377.svg");
+}
+.lottie-anim {
+z-index: 1; // lowest in your page
+position: absolute; // or static, depending on what you have
+width: 100%;
+height: 100%;
+pointer-events: none;
+}
 .cid-s020q4nzkT .icons-media-container {
   display: flex;
   -webkit-justify-content: center;
