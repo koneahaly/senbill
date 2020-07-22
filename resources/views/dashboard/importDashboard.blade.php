@@ -124,7 +124,7 @@ if(isset($_GET['data_invoices'])){
               <form action="<?php echo e(route('import.dashboard.load_contacts')); ?>" method="POST" enctype="multipart/form-data">
                 <?php echo e(csrf_field()); ?>
 
-              <div class="input-group">
+              <div class="input-group add-alert">
                       <div class="custom-file">
                         <input type="file" name="file" class="custom-file-input" id="exampleInputFile">
                         <label class="custom-file-label" for="exampleInputFile">Choisir fichier</label>
@@ -135,14 +135,6 @@ if(isset($_GET['data_invoices'])){
               </div>
               </form>
               <br/>
-              <div class="alert alert-success alert-dismissible alert-contact-green">
-                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                  <i class="icon fas fa-check "> Le fichier a  été bien chargé.</i>
-              </div>
-              <div class="alert alert-danger alert-dismissible alert-contact-red">
-                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                  <i class="icon fas fa-ban "> Le fichier n'a pas été chargé.</i>
-              </div>
               <br/>
               <p  style="margin-bottom: var(--space-s);"> Troisième étape : Vérification du mapping</p>
               <p class="text-muted">Merci de vérifier que  tous  les champs sont bien mappés </p>
@@ -313,13 +305,19 @@ if(isset($_GET['data_invoices'])){
   if(isset($_GET['id']) && $_GET['id'] == '2_success'){
     echo '<script>
         $(".imp_contacts").click();
-        $(".alert-contact-red").remove();
+        $(".add-alert").after(`<br /> <div class="alert alert-success alert-dismissible alert-contact-green">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <i class="icon fas fa-check "> Le fichier a  été bien chargé.</i>
+        </div>`);
     </script>';
   }
   if(isset($_GET['id']) && $_GET['id'] == '2_error'){
     echo '<script>
         $(".imp_contacts").click();
-        $(".alert-contact-green").remove();
+        $(".add-alert").after(`<br /> <div class="alert alert-danger alert-dismissible alert-contact-red">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <i class="icon fas fa-ban "> Le fichier n\'a pas été chargé.</i>
+        </div>`);
     </script>';
   }
 
