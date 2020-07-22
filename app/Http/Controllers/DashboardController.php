@@ -137,7 +137,7 @@ class DashboardController extends Controller
     if($request->file->isValid() && $request->file->getClientOriginalExtension() == 'csv'){
       Storage::disk('pending_invoices')->put($filename,file_get_contents($request->file));
       $data = $this->read_header(base_path('storage/pending_invoices/'.$filename));
-      return redirect()->intended(route('import.dashboard', ['id' => '3_success', 'data_invoices' => $data]));
+      return redirect()->intended(route('import.dashboard', ['id' => '3_success', 'data_invoices' => $data,'file_to_import' => $filename]));
     }
     else{
       return redirect()->intended(route('import.dashboard', ['id' => '3_error']));
@@ -195,8 +195,37 @@ class DashboardController extends Controller
   }
 
   public function final_load_invoices(Request $request){
+    try{
+      $fields = $request->input('fields');
+      $index_customer_id = $this->fetch_field_index($fields, 'customerId');
+      $index_order_number = $this->fetch_field_index($fields, 'order_number');
+      //$index_partner_id = $this->fetch_field_index($fields, 'partner_id');
 
-    return redirect()->intended(route('import.dashboard'));
+      //dd($fields[0]);
+      $path = base_path("storage/pending_invoices/".$request->file_to_import);
+      foreach (array_slice(glob($path),0,2) as $file) {
+          $data = array_map('str_getcsv', file($file));
+          $i = 0;
+          foreach($data as $row) {
+              if($i > 0){
+                Invoice::updateOrCreate([
+                    'customerId' => str_replace('"','',$row[$index_customer_id]), 'order_number' => str_replace('"','',$row[$index_order_number]),
+                ], [$fields[1] => str_replace('"','',$row[1]),$fields[2] => str_replace('"','',$row[2]), $fields[3] => $row[3],
+                    $fields[4] => str_replace('"','',$row[4]), $fields[5] => str_replace('"','',$row[5]), $fields[6] => str_replace('"','',$row[6]),
+                    $fields[7] => str_replace('"','',$row[7]),$fields[8] => str_replace('"','',$row[8]), $fields[9] => str_replace('"','',$row[9]),
+                      $fields[10] => str_replace('"','',$row[10]), $fields[11] => str_replace('"','',$row[11]), $fields[12] => str_replace('"','',$row[12])]);
+              }
+              $i++;
+          }
+          //delete the file
+          unlink($file);
+      }
+
+      return redirect()->intended(route('import.dashboard'));
+    } catch (Throwable $e) {
+     report($e);
+     return redirect()->intended(route('import.dashboard',['error' => $e]));
+   }
   }
 
 

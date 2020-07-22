@@ -261,6 +261,7 @@ if(isset($_GET['data_invoices'])){
               </div>
               <!-- /.card-header -->
               <form method="POST" action="<?php echo e(route('import.dashboard.final_load_invoices')); ?>">
+                <?php echo e(csrf_field()); ?>
               <div class="card-body">
                 <dl class="row">
                   <?php if(!empty($data_invoices)): ?>
@@ -271,17 +272,17 @@ if(isset($_GET['data_invoices'])){
                       <select class="form-control" name='fields[]'>
                         <option value='customerId' <?php if(substr($dt,1,strlen($dt)-2) == 'cni') echo 'selected';?> >CNI</option>
                         <option value='souscription_id' <?php if(substr($dt,1,strlen($dt)-2) == 'souscription') echo 'selected';?> >Souscription</option>
-                        <option <?php if(substr($dt,1,strlen($dt)-2) == 'order_number') echo 'selected';?> >Numéro de facturation</option>
-                        <option <?php if(substr($dt,1,strlen($dt)-2) == 'title') echo 'selected';?> >Intitulé facture</option>
-                        <option <?php if(substr($dt,1,strlen($dt)-2) == 'min_payment_due') echo 'selected';?> >Minimum à payer</option>
-                        <option <?php if(substr($dt,1,strlen($dt)-2) == 'tot_payment_due') echo 'selected';?> >Total à payer</option>
-                        <option <?php if(substr($dt,1,strlen($dt)-2) == 'payment_due_date') echo 'selected';?> >Date d'échéance</option>
-                        <option <?php if(substr($dt,1,strlen($dt)-2) == 'payment_method') echo 'selected';?> >Moyen de paiement</option>
-                        <option <?php if(substr($dt,1,strlen($dt)-2) == 'payment_status') echo 'selected';?> >Statut du paiement</option>
-                        <option <?php if(substr($dt,1,strlen($dt)-2) == 'provider') echo 'selected';?> >Partenaire</option>
-                        <option <?php if(substr($dt,1,strlen($dt)-2) == 'import_status') echo 'selected';?> >Statut import</option>
-                        <option <?php if(substr($dt,1,strlen($dt)-2) == 'paid_amount') echo 'selected';?> >Somme payée</option>
-                        <option <?php if(substr($dt,1,strlen($dt)-2) == 'bill') echo 'selected';?> >Description</option>
+                        <option value='order_number' <?php if(substr($dt,1,strlen($dt)-2) == 'order_number') echo 'selected';?> >Numéro de facturation</option>
+                        <option value='title' <?php if(substr($dt,1,strlen($dt)-2) == 'title') echo 'selected';?> >Intitulé facture</option>
+                        <option value='min_payment_due' <?php if(substr($dt,1,strlen($dt)-2) == 'min_payment_due') echo 'selected';?> >Minimum à payer</option>
+                        <option value='tot_payment_due' <?php if(substr($dt,1,strlen($dt)-2) == 'tot_payment_due') echo 'selected';?> >Total à payer</option>
+                        <option value='payment_due_date' <?php if(substr($dt,1,strlen($dt)-2) == 'payment_due_date') echo 'selected';?> >Date d'échéance</option>
+                        <option value='payment_method' <?php if(substr($dt,1,strlen($dt)-2) == 'payment_method') echo 'selected';?> >Moyen de paiement</option>
+                        <option value='payment_status' <?php if(substr($dt,1,strlen($dt)-2) == 'payment_status') echo 'selected';?> >Statut du paiement</option>
+                        <option value='provider' <?php if(substr($dt,1,strlen($dt)-2) == 'provider') echo 'selected';?> >Partenaire</option>
+                        <option value='import_status' <?php if(substr($dt,1,strlen($dt)-2) == 'import_status') echo 'selected';?> >Statut import</option>
+                        <option value='paid_amount' <?php if(substr($dt,1,strlen($dt)-2) == 'paid_amount') echo 'selected';?> >Somme payée</option>
+                        <option value='bill' <?php if(substr($dt,1,strlen($dt)-2) == 'bill') echo 'selected';?> >Description</option>
                       </select>
                     </div>
                   </dd>
@@ -294,9 +295,9 @@ if(isset($_GET['data_invoices'])){
             </div>
             <div class="modal-footer justify-content-between">
               <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-              <button type="button" class="btn btn-primary">Importer des clients</button>
+              <button type="submit" class="btn btn-primary">Importer des clients</button>
             </div>
-            <input type="file_to_import" value="<?php if(isset($_GET['file_to_import'])) echo $_GET['file_to_import']; else{echo '';} ?>" />
+            <input type='hidden' name="file_to_import" value="<?php if(isset($_GET['file_to_import'])) echo $_GET['file_to_import']; else{echo '';} ?>" />
           </form>
           </div>
           <!-- /.modal-content -->
