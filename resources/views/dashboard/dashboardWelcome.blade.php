@@ -34,12 +34,12 @@ session_start();
             <!-- small box -->
             <div class="small-box bg-warning elektraGradient2">
               <div class="inner">
-                <h2>15 000 000 FCFA</h2>
+                <h2>{{ $pending_amount }} FCFA</h2>
 
                 <p>En attente <a data-toggle="tooltip" data-placement="bottom" title="Ces fonds sont en attente de paiement auprès de vos clients finaux.  Les frais des partenaires ont déjà été appliqués et déduits du montant."> <i class="fas fa-info-circle iconElekRightDark"></i></a> </p>
               </div>
 
-            <span class="small-box-footer elektraWarningGradient text-xs"> 12000 factures</span>
+            <span class="small-box-footer elektraWarningGradient text-xs"> {{ $nb_pending_amount }} factures</span>
             </div>
           </div>
           <!-- ./col -->
@@ -47,12 +47,12 @@ session_start();
             <!-- small box -->
             <div class="small-box bg-warning elektraGradient2">
               <div class="inner">
-                <h2>35 000 000 FCFA</h2>
+                <h2>{{ $paid_amount }} FCFA</h2>
 
                 <p>Payés<a data-toggle="tooltip" data-placement="bottom" title="Ces fonds ont été payés par vos clients finaux et vous ont été versés.  Les frais des partenaires ont déjà été appliqués et déduits du montant."> <i class="fas fa-info-circle iconElekRightDark"></i></a> </p>
               </div>
 
-              <span class="small-box-footer elektraSuccess text-xs"> 20000 factures</span>
+              <span class="small-box-footer elektraSuccess text-xs"> {{ $nb_paid_amount}} factures</span>
             </div>
           </div>
           <!-- ./col -->
@@ -60,11 +60,11 @@ session_start();
             <!-- small box -->
             <div class="small-box bg-warning elektraGradient2">
               <div class="inner">
-                <h2>50 000 000 FCFA</h2>
+                <h2>{{ $unpaid_amount }} FCFA</h2>
 
                 <p> Impayées<a data-toggle="tooltip" data-placement="bottom" title="Ces factures n'ont pas été payés par vos clients finaux et les dates d'échéance des factures sont dépassées. Les frais des partenaires ont déjà été appliqués et déduits du montant."> <i class="fas fa-info-circle iconElekRightDark"></i></a> </p>
               </div>
-              <span class="small-box-footer elektraError text-xs"> 35000 factures </span>
+              <span class="small-box-footer elektraError text-xs"> {{ $nb_unpaid_amount }} factures </span>
             </div>
           </div>
           <!-- ./col -->
@@ -72,7 +72,7 @@ session_start();
             <!-- small box -->
             <div class="small-box bg-warning elektraGradient2">
               <div class="inner">
-                <h2>560</h2>
+                <h2>{{ $nb_contacts }}</h2>
 
                 <p>Utilisateurs inscrits</p>
               </div>

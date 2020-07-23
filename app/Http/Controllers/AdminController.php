@@ -34,7 +34,8 @@ class AdminController extends Controller
 
     public function welcome_dashboard()
     {
-      return view('dashbord.dashboardWelcome');
+      $nb_contacts['nb_contacts'] = DB::connection('mysql2')->table('contacts')->count();
+      return view('dashbord.dashboardWelcome')->with($nb_contacts);
     }
 
     public function add_service(Request $input){

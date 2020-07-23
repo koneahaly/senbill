@@ -41,11 +41,14 @@ class DashboardController extends Controller
     }
     public function transactions_dashboard()
     {
-      return view('dashboard.transactionsDashboard');
+      $transactions['transactions'] = DB::connection('mysql2')->table('invoices')->join('contacts', 'contacts.customerId', '=', 'invoices.customerId')
+      ->select('contacts.first_name as first_name', 'contacts.last_name as last_name','contacts.customerId as customerId','invoices.created_at as created_at','invoices.payment_status as payment_status','invoices.payment_method as payment_method','invoices.paid_amount as paid_amount')
+      ->where('provider',session()->get('social_name'))->where('payment_status','Payée')->get();
+      return view('dashboard.transactionsDashboard')->with($transactions);
     }
     public function bills_dashboard()
     {
-      $infos_factures['infos_factures'] = DB::connection('mysql2')->table('invoices')->join('contacts', 'contacts.customerId', '=', 'invoices.customerId')->select('contacts.first_name as first_name', 'contacts.last_name as last_name','contacts.customerId as customerId','invoices.created_at as created_at','invoices.payment_status as payment_status')->where('provider','Akilee')->get();
+      $infos_factures['infos_factures'] = DB::connection('mysql2')->table('invoices')->join('contacts', 'contacts.customerId', '=', 'invoices.customerId')->select('contacts.first_name as first_name', 'contacts.last_name as last_name','contacts.customerId as customerId','invoices.created_at as created_at','invoices.payment_status as payment_status')->where('provider',session()->get('social_name'))->get();
       return view('dashboard.billsDashboard')->with($infos_factures);
     }
     public function profile_dashboard()

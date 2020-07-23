@@ -36,8 +36,7 @@
               <tr>
                 <th>Date de création</th>
                 <th>Type d'opération</th>
-                <th>Prénom</th>
-                <th>Nom</th>
+                <th>Nom Complet</th>
                 <th>CNI</th>
                 <th>Montant</th>
                 <th>Devise</th>
@@ -46,56 +45,19 @@
               </tr>
               </thead>
               <tbody>
-              <tr>
-                <td>09/07/2020</td>
-                <td>Mensualité</td>
-                <td>Yacine</td>
-                <td>Gadiagua</td>
-                <td> 1234567890123</td>
-                <td>250 000</td>
-                <td>FCFA</td>
-                <td>Orange Money</td>
-                <td>  <img src="{{ url('images/Orange_Money-Logo.png') }}" alt="Logo OM" class="brand-image img-circle elevation-3" style="max-height: 40px;">
-                </td>
-              </tr>
-              <tr>
-                <td>09/07/2020</td>
-                <td>Régularisation</td>
-                <td>Oumar</td>
-                <td>Mbodj</td>
-                <td> 1234567897123</td>
-                <td>150 000</td>
-                <td>FCFA</td>
-                <td>Free Money</td>
-                <td>  <img src="{{ url('images/logo-free-money.png') }}" alt="Logo OM" class="brand-image img-circle elevation-3" style="max-height: 40px;">
-                </td>
-              </tr>
-              <tr>
-                <td>09/07/2020</td>
-                <td>Paiement Facture</td>
-                <td>Khady</td>
-                <td>Diagne</td>
-                <td> 1244567890123</td>
-                <td>250 000</td>
-                <td>FCFA</td>
-                <td>Carte bancaire</td>
-                <td>  <img src="{{ url('images/CB.png') }}" alt="Logo OM" class="brand-image img-circle elevation-3" style="max-height: 40px;">
-                </td>
-              </tr>
-              <tr>
-                <td>09/07/2020</td>
-                <td>Paiement Facture</td>
-                <td>Aliou</td>
-                <td>Sall</td>
-                <td> 1244567890723</td>
-                <td>50 000</td>
-                <td>FCFA</td>
-                <td>Paypal</td>
-                <td>  <img src="{{ url('images/logo-paypal.png') }}" alt="Logo OM" class="brand-image img-circle elevation-3" style="max-height: 40px;">
-                </td>
-              </tr>
-
-
+                @foreach($transactions as $transaction)
+                <tr>
+                  <td>{{ $transaction->created_at }}</td>
+                  <td>Mensualité</td>
+                  <td> {{ $transaction->first_name.' '.$transaction->last_name }} </td>
+                  <td> {{ str_replace(' ','',$transaction->customerId) }}</td>
+                  <td>{{ $transaction->paid_amount }}</td>
+                  <td>FCFA</td>
+                  <td>{{ $transaction->payment_method }}</td>
+                  <td>  <img src="{{ url('images/Orange_Money-Logo.png') }}" alt="Logo OM" class="brand-image img-circle elevation-3" style="max-height: 40px;">
+                  </td>
+                </tr>
+                @endforeach
               </tbody>
             </table>
           </div>

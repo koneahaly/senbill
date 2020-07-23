@@ -61,7 +61,18 @@ class AdminLoginController extends Controller
 		public function display_panel()
     {
 				$infos_partenaires['infos_partenaires'] = DB::connection('mysql2')->table('partners')->where('email',session()->get('email_partner'))->first();
-				return view('dashboard.dashboardWelcome')->with($infos_partenaires);
+				$nb_contacts['nb_contacts'] = DB::connection('mysql2')->table('contacts')->where('in_elektra','Y')->count();
+				$paid_amount['paid_amount'] = DB::connection('mysql2')->table('invoices')->where('payment_status','Payée')->where('provider',session()->get('social_name'))->sum('paid_amount');
+				$pending_amount['pending_amount'] = DB::connection('mysql2')->table('invoices')->where('payment_status','En attente')->where('provider',session()->get('social_name'))->sum('tot_payment_due');
+				$unpaid_amount['unpaid_amount'] = DB::connection('mysql2')->table('invoices')->where('payment_status','Impayée')->where('provider',session()->get('social_name'))->sum('tot_payment_due');
+				$nb_paid_amount['nb_paid_amount'] = DB::connection('mysql2')->table('invoices')->where('provider',session()->get('social_name'))->where('payment_status','Payée')->count();
+				$nb_pending_amount['nb_pending_amount'] = DB::connection('mysql2')->table('invoices')->where('payment_status','En attente')->where('provider',session()->get('social_name'))->count();
+				$nb_unpaid_amount['nb_unpaid_amount'] = DB::connection('mysql2')->table('invoices')->where('payment_status','Impayée')->where('provider',session()->get('social_name'))->count();
+
+				//dd($paid_amount['paid_amount']);
+				return view('dashboard.dashboardWelcome')->with($infos_partenaires)->with($nb_contacts)
+				->with($pending_amount)->with($paid_amount)->with($unpaid_amount)
+				->with($nb_paid_amount)->with($nb_pending_amount)->with($nb_unpaid_amount);
     }
 
     public function logout(Request $request)
