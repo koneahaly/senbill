@@ -65,27 +65,15 @@ if(isset($_GET['data_invoices'])){
               </tr>
               </thead>
               <tbody>
+              @foreach($infos_imports as $infos_import)
               <tr>
-                <td>08/07/2020</td>
-                <td>Client</td>
-                <td>CLI00345X2400</td>
-                <td>Invalide</td>
-                <td style="vertical-align: middle;text-align:center;"><i class="fas fa-dice-one fa-1x" style="color: red;" ></i>
+                <td>{{ $infos_import->created_at }}</td>
+                <td>{{ $infos_import->import_type }}</td>
+                <td>{{ $infos_import->import_number }}</td>
+                <td> <?php if($infos_import->status == 'Y') echo 'Active'; else{echo 'Inactive';} ?> </td>
+                <td style="vertical-align: middle;text-align:center;"><i class="fas fa-dice-one fa-1x" <?php if($infos_import->status == 'Y') echo 'style="color: forestgreen;"'; else{echo 'style="color: red;"';} ?> ></i>
               </tr>
-              <tr>
-                <td>09/07/2020</td>
-                <td>Client</td>
-                <td>CLI0034543R00</td>
-                <td>Valide</td>
-                <td style="vertical-align: middle;text-align:center;"><i class="fas fa-dice-one fa-1x" style="color: forestgreen;" ></i>
-              </tr>
-              <tr>
-                <td>09/07/2020</td>
-                <td>Facture</td>
-                <td>FAC0034800U00</td>
-                <td>Valide</td>
-                <td style="vertical-align: middle;text-align:center;"><i class="fas fa-dice-one fa-1x" style="color: forestgreen;" ></i>
-              </tr>
+              @endforeach
             </tbody>
             </table>
           </div>

@@ -77,7 +77,7 @@ Route::post('/dashboard/general', 'DashboardController@company_dashboard')->name
 Route::get('/dashboard/general', 'DashboardController@company_dashboard')->name('company.dashboard');
 
 Route::post('/dashboard/import', 'DashboardController@import_dashboard')->name('import.dashboard');
-Route::get('/dashboard/import', 'DashboardController@import_dashboard')->name('import.dashboard');
+Route::get('/dashboard/import/{name?}', 'DashboardController@import_dashboard')->name('import.dashboard');
 
 Route::post('/dashboard/import/download_contacts_tpl','DashboardController@download_contacts_tpl')->name('import.dashboard.download_contacts_tpl');
 Route::get('/dashboard/import/download_contacts_tpl','DashboardController@download_contacts_tpl')->name('import.dashboard.download_contacts_tpl');

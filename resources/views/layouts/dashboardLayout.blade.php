@@ -366,7 +366,7 @@ color:#2282e4 !important;
           </li>
 
           <li class="nav-item has-treeview">
-            <a href="{{ route('import.dashboard') }}" class="nav-link {{ $active_import }}">
+            <a href="{{ route('import.dashboard',['name' => $social_name]) }}" class="nav-link {{ $active_import }}">
               <i class="nav-icon far fa-plus-square"></i>
               <p>
                 Importer

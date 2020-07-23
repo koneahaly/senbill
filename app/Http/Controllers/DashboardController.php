@@ -13,6 +13,7 @@ use App\Partner;
 use App\Contact;
 use App\Subscription;
 use App\Invoice;
+use App\Importation;
 use Illuminate\Support\Facades\Storage;
 
 class DashboardController extends Controller
@@ -57,7 +58,8 @@ class DashboardController extends Controller
     }
     public function import_dashboard()
     {
-      return view('dashboard.importDashboard');
+      $infos_imports['infos_imports'] = DB::connection('mysql2')->table('importations')->where('provider',session()->get('social_name'))->get();
+      return view('dashboard.importDashboard')->with($infos_imports);
     }
 
     public function download_contacts_tpl()
@@ -109,7 +111,7 @@ class DashboardController extends Controller
     if (($handle = fopen($file, "r")) !== FALSE) {
         while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
             $num = count($data);
-            echo "<p> $num fields in line $row: <br /></p>\n";
+            //echo "<p> $num fields in line $row: <br /></p>\n";
             $row++;
             for ($c=0; $c < $num; $c++) {
                 echo $data[$c] . "<br />\n";
@@ -126,10 +128,10 @@ class DashboardController extends Controller
     if($request->file->isValid() && $request->file->getClientOriginalExtension() == 'csv'){
       Storage::disk('pending_contacts')->put($filename,file_get_contents($request->file));
       $data = $this->read_header(base_path('storage/pending_contacts/'.$filename));
-      return redirect()->intended(route('import.dashboard', ['id' => '2_success', 'data_contacts' => $data,'file_to_import' => $filename]));
+      return redirect()->intended(route('import.dashboard', ['name' => session()->get('social_name'),'id' => '2_success', 'data_contacts' => $data,'file_to_import' => $filename]));
     }
     else{
-      return redirect()->intended(route('import.dashboard', ['id' => '2_error']));
+      return redirect()->intended(route('import.dashboard', ['name' => session()->get('social_name'),'id' => '2_error']));
     }
   }
   public function load_invoices(Request $request){
@@ -137,10 +139,10 @@ class DashboardController extends Controller
     if($request->file->isValid() && $request->file->getClientOriginalExtension() == 'csv'){
       Storage::disk('pending_invoices')->put($filename,file_get_contents($request->file));
       $data = $this->read_header(base_path('storage/pending_invoices/'.$filename));
-      return redirect()->intended(route('import.dashboard', ['id' => '3_success', 'data_invoices' => $data,'file_to_import' => $filename]));
+      return redirect()->intended(route('import.dashboard', ['name' => session()->get('social_name'),'id' => '3_success', 'data_invoices' => $data,'file_to_import' => $filename]));
     }
     else{
-      return redirect()->intended(route('import.dashboard', ['id' => '3_error']));
+      return redirect()->intended(route('import.dashboard', ['name' => session()->get('social_name'),'id' => '3_error']));
     }
   }
 
@@ -154,7 +156,10 @@ class DashboardController extends Controller
   }
 
   public function final_load_contacts(Request $request){
-
+    $importation = new Importation;
+    $importation->import_number = 'CLI'.date('YmdHis');
+    $importation->import_type = 'Client';
+    $importation->provider = session()->get('social_name');
     try{
       $fields = $request->input('fields');
       $index_customer_id = $this->fetch_field_index($fields, 'customerId');
@@ -186,15 +191,22 @@ class DashboardController extends Controller
           //delete the file
           unlink($file);
       }
-
-      return redirect()->intended(route('import.dashboard'));
+      $importation->status = 'Y';
+      $importation->save();
+      return redirect()->intended(route('import.dashboard',['name' => session()->get('social_name')]));
     } catch (Throwable $e) {
      report($e);
-     return redirect()->intended(route('import.dashboard',['error' => $e]));
+     $importation->status = 'N';
+     $importation->save();
+     return redirect()->intended(route('import.dashboard',['name' => session()->get('social_name'),'error' => $e]));
    }
   }
 
   public function final_load_invoices(Request $request){
+    $importation = new Importation;
+    $importation->import_number = 'FAC'.date('YmdHis');
+    $importation->import_type = 'Facture';
+    $importation->provider = session()->get('social_name');
     try{
       $fields = $request->input('fields');
       $index_customer_id = $this->fetch_field_index($fields, 'customerId');
@@ -220,11 +232,14 @@ class DashboardController extends Controller
           //delete the file
           unlink($file);
       }
-
-      return redirect()->intended(route('import.dashboard'));
+      $importation->status = 'Y';
+      $importation->save();
+      return redirect()->intended(route('import.dashboard',['name' => session()->get('social_name')]));
     } catch (Throwable $e) {
      report($e);
-     return redirect()->intended(route('import.dashboard',['error' => $e]));
+     $importation->status = 'N';
+     $importation->save();
+     return redirect()->intended(route('import.dashboard',['name' => session()->get('social_name'),'error' => $e]));
    }
   }
 
