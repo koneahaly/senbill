@@ -37,11 +37,11 @@
                   <div class="row">
                   <div class="col-6">
                     <label for="" class="label">Société</label>
-                    <input type="text" class="form-control" placeholder="prénom" value="Benana Salon" disabled>
+                    <input type="text" class="form-control" placeholder="prénom" value="{{ $infos_company->social_name }}" disabled>
                   </div>
                   <div class="col-6">
                     <label for="" class="label">Adresse</label>
-                    <input type="text" class="form-control" placeholder="nom" value="Hann Maristes 2 Villa Y46" disabled>
+                    <input type="text" class="form-control" placeholder="nom" value="{{ $infos_company->address }}" disabled>
                   </div>
                 </div>
                 <div class="row">
@@ -57,7 +57,7 @@
               <div class="row">
               <div class="col-6">
                 <label for="" class="label">SIREN</label>
-                <input type="text" class="form-control" placeholder="prénom" value="123456789098765432" disabled>
+                <input type="text" class="form-control" placeholder="prénom" value="{{ $infos_company->siret }}" disabled>
               </div>
 
             </div>

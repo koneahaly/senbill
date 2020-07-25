@@ -78,7 +78,7 @@
                 <div class="card-body">
                   <div class="form-group">
                     <label for="" class="label">Adresse email</label>
-                    <input type="text" class="form-control" placeholder="prénom" value="yacinenana@gmail.com" disabled>
+                    <input type="text" class="form-control" placeholder="prénom" value="{{ $infos_company->email }}" disabled>
                   </div>
                 </div>
                 <!-- /.card-body -->
@@ -94,16 +94,27 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form">
+              <form role="form" method="POST" action="{{ route('profile.dashboard.change_password')}}">
+                <?php echo e(csrf_field()); ?>
+
+                @if(session('message'))
+                <div class="s2sn-error-login" id="s2sn-error-login">
+                    <span class="help-block">
+                      <span class="fa fa-exclamation-circle"></span>
+                        <p>{{ session('message') }}</p>
+                    </span>
+                  </div>
+                @endif
+
                 <div class="card-body">
                   <div class="row">
                   <div class="col-3">
                   </div>
                   <div class="col-9">
                     <label for="" class="label required">Mot de passe actuel</label>
-                    <input type="text" class="form-control" placeholder="mot de passe actuel">
+                    <input type="text" name="current_password" class="form-control" placeholder="mot de passe actuel">
                     <label for="" class="label required" data-toggle="tooltip" data-placement="left" title="Choisissez un nouveau mot de passe ici. Pour garantir la sécurité de votre compte, choisissez un mot passe de 12 chiffres avec des caractètres alphanumériques.">Nouveau mot de passe</label>
-                    <input type="text" class="form-control" placeholder="nouveau mot de passe">
+                    <input type="text" name="new_password" class="form-control" placeholder="nouveau mot de passe">
                   </div>
                 </div>
                 </div>
@@ -112,6 +123,7 @@
                 <div class="card-footer">
                   <button type="submit" class="btn elektraBlue">Enregistrer les modifications</button>
                 </div>
+                  <input type="hidden" name="email" value="{{ $infos_company->email}}" />
               </form>
             </div>
             <div class="card">

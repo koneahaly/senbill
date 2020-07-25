@@ -73,6 +73,9 @@ Route::get('/dashboard/factures', 'DashboardController@bills_dashboard')->name('
 Route::post('/dashboard/profil', 'DashboardController@profile_dashboard')->name('profile.dashboard');
 Route::get('/dashboard/profil', 'DashboardController@profile_dashboard')->name('profile.dashboard');
 
+Route::post('/dashboard/profil/change_password', 'DashboardController@change_password')->name('profile.dashboard.change_password');
+Route::get('/dashboard/profil/change_password', 'DashboardController@change_password')->name('profile.dashboard.change_password');
+
 Route::post('/dashboard/general', 'DashboardController@company_dashboard')->name('company.dashboard');
 Route::get('/dashboard/general', 'DashboardController@company_dashboard')->name('company.dashboard');
 

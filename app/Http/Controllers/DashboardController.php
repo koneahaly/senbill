@@ -53,11 +53,25 @@ class DashboardController extends Controller
     }
     public function profile_dashboard()
     {
-      return view('dashboard.profileDashboard');
+      $infos_company['infos_company'] = DB::connection('mysql2')->table('partners')->where('social_name',session()->get('social_name'))->first();
+      return view('dashboard.profileDashboard')->with($infos_company);
     }
+
+    public function change_password(Request $request){
+      if(Auth::guard('partner')->attempt(['email' => $request->email,'password' =>$request->current_password],$request->remember))
+    	{
+        DB::connection('mysql2')->table('partners')
+            ->where('email', $request->email)
+            ->update(['password' => bcrypt($request->new_password)]);
+        return redirect()->intended(route('profile.dashboard'));
+      }
+      return redirect()->intended(route('profile.dashboard',['password' => 'error']))->with('message', 'Le mot de passe renseigné n\'est pas correct');
+    }
+
     public function company_dashboard()
     {
-      return view('dashboard.companyDashboard');
+      $infos_company['infos_company'] = DB::connection('mysql2')->table('partners')->where('social_name',session()->get('social_name'))->first();
+      return view('dashboard.companyDashboard')->with($infos_company);
     }
     public function import_dashboard()
     {
