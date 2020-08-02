@@ -65,7 +65,7 @@ class DashboardController extends Controller
             ->update(['password' => bcrypt($request->new_password)]);
         return redirect()->intended(route('profile.dashboard'));
       }
-      return redirect()->intended(route('profile.dashboard',['password' => 'error']))->with('message', 'Le mot de passe renseigné n\'est pas correct');
+      return redirect()->intended(route('profile.dashboard',['password' => 'error']))->with('message', 'Le mot de passe renseigné n\'est pas correct.');
     }
 
     public function company_dashboard()

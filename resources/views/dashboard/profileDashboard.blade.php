@@ -96,16 +96,11 @@
               <!-- form start -->
               <form role="form" method="POST" action="{{ route('profile.dashboard.change_password')}}">
                 <?php echo e(csrf_field()); ?>
-
                 @if(session('message'))
-                <div class="s2sn-error-login" id="s2sn-error-login">
-                    <span class="help-block">
-                      <span class="fa fa-exclamation-circle"></span>
+                 <div class="alert alert-danger">
                         <p>{{ session('message') }}</p>
-                    </span>
                   </div>
                 @endif
-
                 <div class="card-body">
                   <div class="row">
                   <div class="col-3">

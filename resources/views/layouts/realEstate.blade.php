@@ -58,7 +58,7 @@
 
 <link rel="stylesheet" type="text/css" href="css/util.css">
 <!--CHARGER MAIN.CSS PARTOUT SAUF POUR LA PAGE MES LOGEMENTS-->
-@if ($_SERVER['REQUEST_URI'] != '/mes-logements' && strpos($_SERVER['REQUEST_URI'],"mes-locataires") == false )
+@if ($_SERVER['REQUEST_URI'] != '/mes-logements' && strpos($_SERVER['REQUEST_URI'],"mes-locataires") == false && strpos($_SERVER['REQUEST_URI'],"mes-locataires") == false)
 <link rel="stylesheet" type="text/css" href="css/main.css">
 @endif
 <link rel="stylesheet" type="text/css" href="{{url('css/elektra.css')}}">

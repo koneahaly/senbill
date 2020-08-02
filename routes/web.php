@@ -59,7 +59,7 @@ Route::get('/admin/dashboard', 'Auth\AdminLoginController@display_dashboard')->n
 Route::post('/admin/dashboard', 'Auth\AdminLoginController@display_dashboard')->name('admin.panel');
 
 Route::post('/dashboard/accueil', 'Auth\AdminLoginController@dashboardLogin')->name('welcome.dashboard');
-Route::get('/dashboard/accueil', 'Auth\AdminLoginController@display_panel')->name('welcome.get.dashboard');
+Route::get('/dashboard/accueil/{name?}', 'Auth\AdminLoginController@display_panel')->name('welcome.get.dashboard');
 
 Route::post('/dashboard/clients', 'DashboardController@clients_dashboard')->name('clients.dashboard');
 Route::get('/dashboard/clients', 'DashboardController@clients_dashboard')->name('clients.dashboard');

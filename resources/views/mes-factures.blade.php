@@ -1002,7 +1002,6 @@ if($i == $limit){
               <input type="hidden" name="montant_recharge" value="{{ $t * 5000}}" />
               <input type="hidden" name="payment_method" value="CB" />
               <input type="hidden" name="payment_amount" value="{{ $t * 5000}}" />
-              <input type="hidden" name="order_number" value="{{ $order_number }}" />
               <input type="hidden" name="service" value="{{ $_SESSION['current_service'] }}"/>
               <input type="hidden" name='id_bill' value="{{ (!empty($id_bill)) ? $id_bill : '0' }}" />
               </form>
@@ -1113,7 +1112,6 @@ if($i == $limit){
                 <input type="hidden" name="montant_recharge" value="{{ $t * 5000}}" />
                 <input type="hidden" name="payment_method" value="OrangeMoney" />
                 <input type="hidden" name="payment_amount" value="{{ $t * 5000}}" />
-                <input type="hidden" name="order_number" value="{{ $order_number }}" />
                 <input type="hidden" name="service" value="{{ $_SESSION['current_service'] }}"/>
                 <input type="hidden" name='id_bill' value="{{ (!empty($id_bill)) ? $id_bill : '0' }}" />
                 </form>
@@ -1231,7 +1229,6 @@ if($i == $limit){
                 <input type="hidden" name="montant_recharge" value="{{ $t * 5000}}" />
                 <input type="hidden" name="payment_method" value="FreeCash" />
                 <input type="hidden" name="payment_amount" value="{{ $t * 5000}}" />
-                <input type="hidden" name="order_number" value="{{ $order_number }}" />
                 <input type="hidden" name="service" value="{{ $_SESSION['current_service'] }}"/>
                 <input type="hidden" name='id_bill' value="{{ (!empty($id_bill)) ? $id_bill : '0' }}" />
                 </form>
