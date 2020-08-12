@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e594fd9b95ad564473ffdd1011a976ae",
+    "content-hash": "6b5295bc28ffeb0f1aa6ec6527993e12",
     "packages": [
         {
             "name": "barryvdh/laravel-dompdf",
@@ -1505,6 +1505,63 @@
             "time": "2017-09-27T21:40:39+00:00"
         },
         {
+            "name": "paydunya/paydunya",
+            "version": "1.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/paydunya/paydunya-php-composer.git",
+                "reference": "df0e64ff8f19bc04311185aa26fef5f4beb8f833"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/paydunya/paydunya-php-composer/zipball/df0e64ff8f19bc04311185aa26fef5f4beb8f833",
+                "reference": "df0e64ff8f19bc04311185aa26fef5f4beb8f833",
+                "shasum": ""
+            },
+            "require": {
+                "rmccue/requests": "^1.6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Paydunya\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PAYDUNYA",
+                    "email": "paydunya@paydunya.com"
+                }
+            ],
+            "description": "PAYDUNYA PHP CLIENT",
+            "keywords": [
+                "Marchand en ligne",
+                "Mobile Payments",
+                "Orange Money",
+                "Paiement Sénégal",
+                "Passerelle de paiement en ligne",
+                "Plateforme de paiement en ligne Afrique",
+                "Sénégal",
+                "api",
+                "best payment gateway",
+                "client php",
+                "library",
+                "online payment gateway",
+                "paiement",
+                "paiement en ligne",
+                "paydunya",
+                "paydunya.com",
+                "payment gateway",
+                "payment gateway Africa",
+                "php client"
+            ],
+            "time": "2017-08-19T00:59:56+00:00"
+        },
+        {
             "name": "phenx/php-font-lib",
             "version": "0.5.1",
             "source": {
@@ -1969,6 +2026,55 @@
                 "uuid"
             ],
             "time": "2017-09-22T20:46:04+00:00"
+        },
+        {
+            "name": "rmccue/requests",
+            "version": "v1.7.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rmccue/Requests.git",
+                "reference": "87932f52ffad70504d93f04f15690cf16a089546"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rmccue/Requests/zipball/87932f52ffad70504d93f04f15690cf16a089546",
+                "reference": "87932f52ffad70504d93f04f15690cf16a089546",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2"
+            },
+            "require-dev": {
+                "requests/test-server": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Requests": "library/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "ISC"
+            ],
+            "authors": [
+                {
+                    "name": "Ryan McCue",
+                    "homepage": "http://ryanmccue.info"
+                }
+            ],
+            "description": "A HTTP library written in PHP, for human beings.",
+            "homepage": "http://github.com/rmccue/Requests",
+            "keywords": [
+                "curl",
+                "fsockopen",
+                "http",
+                "idna",
+                "ipv6",
+                "iri",
+                "sockets"
+            ],
+            "time": "2016-10-13T00:11:37+00:00"
         },
         {
             "name": "sabberworm/php-css-parser",

@@ -35,12 +35,16 @@ Route::get('/suivi-conso/{id?}', 'HomeController@suivi_conso')->name('suivi-cons
 Route::post('/infos-services/{id?}/update', 'HomeController@update_services_infos')->name('infos-services.update');
 Route::post('/infos-services-pro/update', 'HomeController@update_services_pro_infos')->name('infos-services-pro.update');
 
+//pAYDUNYA Callback
+Route::get('/notification-paiement', 'billController@display_callBackPD')->name('callBackPD');
 
 //Route::get('/home', 'HomeController@index')->name('home');
 //Route::post('/home', 'HomeController@index')->name('home');
 //Route::get('/home', 'HomeController@index')->name('home-woyofal');
 Route::post('/mes-factures/{id?}/pay','billController@pay')->name('mes-factures.pay');
 Route::get('/mes-factures/{id?}/pay','billController@pay')->name('mes-factures.pay');
+Route::post('/mes-factures/{id?}/payviaPD','billController@payviaPD')->name('mes-factures.payviaPD');
+Route::get('/mes-factures/{id?}/payviaPD','billController@payviaPD')->name('mes-factures.payviaPD');
 Route::post('/mes-factures/{id?}/facture_a_payer','billController@pay_bill')->name('mes-factures.facture_a_payer');
 Route::get('/mes-factures/{id?}/buy','ApiController@index')->name('mes-factures.buy');
 Route::get('/mes-factures/{id?}/bought','billController@buy')->name('mes-factures.bought');

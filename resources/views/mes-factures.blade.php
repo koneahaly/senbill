@@ -92,7 +92,9 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
                           <td style="width:20%;"> {{$value->payment_method}} </td>
                         @endif
                         @if($value->status != "paid")
-                          <td><button data-toggle="modal" data-target="#pay_bill" class="btn btn-danger btn-xs"> Régler</button> <br /> <span style="font-size:0.7em;font-weight: lighter;color:black;"> avant le {{$value->created_at}} <span></td>
+                        <!--  <td><button data-toggle="modal" data-target="#pay_bill" class="btn btn-danger btn-xs"> Régler</button> <br /> <span style="font-size:0.7em;font-weight: lighter;color:black;"> avant le {{$value->created_at}} <span></td> -->
+                            <td><button onclick="window.location='../mes-factures/{{ $_SESSION['current_service'] }}/payviaPD'" class="btn btn-danger btn-xs"> Régler</button> <br /> <span style="font-size:0.7em;font-weight: lighter;color:black;"> avant le {{$value->created_at}} <span></td>
+
                           <td> n/a </td>
                           <input type='hidden' id="{{$value->month}}_status" value="{{$value->status}}" />
                         @endif

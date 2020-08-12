@@ -473,7 +473,7 @@
     <div class="container">
         <div class="media-container-row">
             <div class="media-content px-3 align-self-center mbr-white py-2">
-                <h2 class="mbr-title pt-2 mbr-fonts-style display-2 mbr-black" style="margin-top: -60%;">
+                <h2 class="mbr-title pt-2 mbr-fonts-style display-2 mbr-black">
                   <strong style="font-weight: 500;">Un</strong> compte, <br/> <strong style="font-weight: 500;">Plusieurs</strong> services
                 </h2>
                 <p class="mbr-text testimonial-text mbr-fonts-style display-7">

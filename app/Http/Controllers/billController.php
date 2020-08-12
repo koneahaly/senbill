@@ -8,9 +8,12 @@ use App\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Redirect;
 use PDF;
 use Auth;
 use Foris\OmSdk\OmSdk;
+
+
 class billController extends Controller
 {
 
@@ -101,6 +104,33 @@ class billController extends Controller
         return redirect('mes-factures/'.$input->service);
     }
 
+    public function payviaPD()
+    {
+      //$token = $_GET['token'];
+
+      $invoice = new \Paydunya\Checkout\CheckoutInvoice();
+    //  $invoice->addChannels(['card', 'jonijoni-senegal', 'orange-money-senegal']);
+
+      //var_dump($invoice);
+      //A insérer dans le fichier du code source qui doit effectuer l'action
+
+      /* L'ajout d'éléments à votre facture est très basique.
+      Les paramètres attendus sont nom du produit, la quantité, le prix unitaire,
+      le prix total et une description optionelle. */
+      $invoice->addItem("Consommation du mois de Juin", 1, 12600, 12600, "Facture d'eau du partenaire SDEQ");
+      $invoice->addItem("Frais", 1, 0, 0,"Frais gratuits");
+      //ajouter d'autres lignes si besoin
+      $invoice->setTotalAmount(12600);
+      //var_dump($invoice);
+      if($invoice->create()) {
+        //echo $invoice->getInvoiceUrl();
+          return Redirect::to($invoice->getInvoiceUrl());
+      }else{
+          echo $invoice->response_text;
+      }
+
+    }
+
     public function buy()
     {
         return redirect('mes-factures/'.$input->service);
@@ -184,4 +214,14 @@ class billController extends Controller
     {
         //
     }
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+   public function display_callBackPD()
+   {
+       return view('callBackPD');
+   }
 }
