@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Session\middleware\StartSession;
 use stdClass;
+use Session;
 
 class HomeController extends Controller
 {
@@ -47,7 +48,18 @@ class HomeController extends Controller
           }
           return $object;
         }
-
+        //Récupération Token bill de PD
+        $uriString =explode('?',$_SERVER['REQUEST_URI']);
+        if(count($uriString)>1){
+          $tokenPhrase = $uriString[1];
+          if(strpos($tokenPhrase,'token') !== false)
+            $tokenbill=($_GET['token']);
+          Session::push('billToken',$tokenbill);
+            //  dd(response()->json(['success' => true, 'token' => Session::get('billToken')]));
+        }
+        //if($_GET['token'])
+        //  $billToken=$_GET['token'];
+        //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         $s=Auth::user()->customerId;
         $actived_services['actived_services'] = DB::table('services')->where('customerId',$s)->first();
         if(Auth::user()->user_type != 2){
@@ -95,6 +107,7 @@ class HomeController extends Controller
         //session(['keepNumberOfBillsNonPaid' => $numberOfBillsNonPaid]);
         Session::push('keepNumberOfBillsNonPaid', $keepNumberOfBillsNonPaid);
         Session::push('layout', 'app');
+
         //dd(Session::get('keepNumberOfBillsNonPaid'));
 
         } catch (Throwable $e) {
@@ -105,9 +118,24 @@ class HomeController extends Controller
 
     }
 
+
     public function index()
     {
         display_bills();
+    }
+      //Get the person's name.
+   public function getTb(){
+       return $this->tb;
+   }
+   //Get the person's name.
+    public function setTb($tb){
+         $this->tb=$tb;
+    }
+
+    public function paydunyaApi()
+    {
+           return response()->json(['success' => true, 'token' => session('billToken')]);
+
     }
 
     public function update_personal_infos(Request $given){

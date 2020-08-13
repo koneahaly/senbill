@@ -45,6 +45,9 @@ Route::post('/mes-factures/{id?}/pay','billController@pay')->name('mes-factures.
 Route::get('/mes-factures/{id?}/pay','billController@pay')->name('mes-factures.pay');
 Route::post('/mes-factures/{id?}/payviaPD','billController@payviaPD')->name('mes-factures.payviaPD');
 Route::get('/mes-factures/{id?}/payviaPD','billController@payviaPD')->name('mes-factures.payviaPD');
+Route::get('/mes-factures/{id?}/paydunya-api','HomeController@paydunyaApi')->name('mes-factures.paydunya-api');
+Route::post('/mes-factures/{id?}/paydunya-api','HomeController@paydunyaApi')->name('mes-factures.paydunya-api');
+
 Route::post('/mes-factures/{id?}/facture_a_payer','billController@pay_bill')->name('mes-factures.facture_a_payer');
 Route::get('/mes-factures/{id?}/buy','ApiController@index')->name('mes-factures.buy');
 Route::get('/mes-factures/{id?}/bought','billController@buy')->name('mes-factures.bought');

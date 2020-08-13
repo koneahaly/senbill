@@ -124,13 +124,14 @@ class billController extends Controller
       $invoice->setTotalAmount(12600);
       //var_dump($invoice);
       if($invoice->create()) {
-        //echo $invoice->getInvoiceUrl();
           return Redirect::to($invoice->getInvoiceUrl());
       }else{
           echo $invoice->response_text;
       }
 
     }
+
+  
 
     public function buy()
     {
