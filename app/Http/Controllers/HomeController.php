@@ -10,7 +10,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Session\middleware\StartSession;
 use stdClass;
 use Session;
-
+$service =explode('/',$_SERVER['REQUEST_URI']);
+$_SESSION['current_service'] = $service[2];
 class HomeController extends Controller
 {
     /**
@@ -76,6 +77,7 @@ class HomeController extends Controller
           }
           //dd(count($data));
           //dd($numberOfBills);
+
           return view('mes-factures')->with($data)->with($last_row_data)->with(compact('numberOfBillsNonPaid'))->with($actived_services);
         }
         if(Auth::user()->user_type == 2){
@@ -134,7 +136,30 @@ class HomeController extends Controller
 
     public function paydunyaApi()
     {
-           return response()->json(['success' => true, 'token' => session('billToken')]);
+      $invoice = new \Paydunya\Checkout\CheckoutInvoice();
+      $invoice->setReturnUrl("http://localhost:8000/mes-factures/".$_SESSION['current_service']."/");
+      $invoice->setCancelUrl("http://localhost:8000/mes-factures/".$_SESSION['current_service']."/");
+
+      /* L'ajout d'éléments à votre facture est très basique.
+      Les paramètres attendus sont nom du produit, la quantité, le prix unitaire,
+      le prix total et une description optionelle. */
+      $invoice->addItem("Consommation du mois de Juin", 1, 12600, 12600, "Facture d'eau du partenaire SDEQ");
+      $invoice->addItem("Frais", 1, 0, 0,"Frais gratuits");
+      //ajouter d'autres lignes si besoin
+      $invoice->setTotalAmount(12600);
+      if($invoice->create()) {
+        $uriString=$invoice->getInvoiceUrl();
+        $uriString =explode('/',$uriString);
+        if(count($uriString)>5){
+          $tokenPhrase = $uriString[5];
+          if(strpos($tokenPhrase,'test') !== false)
+            $tokenbill=$tokenPhrase;
+        return( response()->json(['success' => true, 'token' => $tokenbill]));
+        }
+      }
+      else{
+            echo $invoice->response_text;
+      }
 
     }
 

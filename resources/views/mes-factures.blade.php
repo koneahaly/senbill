@@ -93,8 +93,8 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
                         @endif
                         @if($value->status != "paid")
                         <!--  <td><button data-toggle="modal" data-target="#pay_bill" class="btn btn-danger btn-xs"> Régler</button> <br /> <span style="font-size:0.7em;font-weight: lighter;color:black;"> avant le {{$value->created_at}} <span></td> -->
-                            <td><button id="regler" onclick="" class="btn btn-danger btn-xs"> Régler</button> <br /> <span style="font-size:0.7em;font-weight: lighter;color:black;"> avant le {{$value->created_at}} <span></td>
-
+                        <!--     <td><button id="regler" onclick= class="btn btn-danger btn-xs"> Régler</button> <br /> <span style="font-size:0.7em;font-weight: lighter;color:black;"> avant le {{$value->created_at}} <span></td> -->
+                        <td><button class="pay" id="regler1" onclick="" data-ref="102" data-fullname="Alioune Faye" data-email="aliounefaye@gmail.com" data-phone="774563209">Régler PD</button><br /> <span style="font-size:0.7em;font-weight: lighter;color:black;"> avant le {{$value->created_at}} <span></td>
                           <td> n/a </td>
                           <input type='hidden' id="{{$value->month}}_status" value="{{$value->status}}" />
                         @endif
@@ -1261,6 +1261,7 @@ if($i == $limit){
 @section('scripts')
 <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.21/js/dataTables.material.min.js"></script>
+<script src="https://paydunya.com/assets/psr/js/psr.paydunya.min.js"></script>
 <script>
 $(document).ready(function() {
     $('#regler').click(function(){
@@ -1269,6 +1270,36 @@ $(document).ready(function() {
       else
         window.location.href = window.location.href.split('?')[0] + "payviaPD";
 
+    });
+
+    $('#regler1').click(function(){
+
+        PayDunya.setup({
+            selector: $('#regler1'),
+            url: "http://localhost:8000/mes-factures/tv/paydunya-api",
+            method: "GET",
+            displayMode: PayDunya.DISPLAY_IN_POPUP,
+            beforeRequest: function() {
+                console.log("About to get a token and the url");
+            },
+            onSuccess: function(token) {
+                console.log("Token: " +  token);
+            },
+            onTerminate: function(ref, token, status) {
+                console.log(ref);
+                console.log(token);
+                console.log(status);
+            },
+            onError: function (error) {
+                alert("Unknown Error ==> ", error.toString());
+            },
+            onUnsuccessfulResponse: function (jsonResponse) {
+                console.log("Unsuccessful response ==> " + jsonResponse);
+            },
+            onClose: function() {
+                console.log("Close");
+            }
+        }).requestToken();
     });
 } );
 $(document).ready(function() {
@@ -1418,5 +1449,6 @@ $(document).ready(function() {
 
 });
 </script>
+
 
 @endsection
