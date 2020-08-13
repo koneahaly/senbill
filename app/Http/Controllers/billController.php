@@ -13,6 +13,9 @@ use PDF;
 use Auth;
 use Foris\OmSdk\OmSdk;
 
+$service =explode('/',$_SERVER['REQUEST_URI']);
+$_SESSION['current_service'] = $service[2];
+
 
 class billController extends Controller
 {
@@ -109,10 +112,8 @@ class billController extends Controller
       //$token = $_GET['token'];
 
       $invoice = new \Paydunya\Checkout\CheckoutInvoice();
-    //  $invoice->addChannels(['card', 'jonijoni-senegal', 'orange-money-senegal']);
-
-      //var_dump($invoice);
-      //A insérer dans le fichier du code source qui doit effectuer l'action
+      $invoice->setReturnUrl("http://localhost:8000/mes-factures/".$_SESSION['current_service']."/");
+      $invoice->setCancelUrl("http://localhost:8000/mes-factures/".$_SESSION['current_service']."/");
 
       /* L'ajout d'éléments à votre facture est très basique.
       Les paramètres attendus sont nom du produit, la quantité, le prix unitaire,

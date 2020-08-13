@@ -13,7 +13,7 @@ class Store extends Paydunya
     private static $websiteUrl='http://www.services2sn.com';
     private static $logoUrl='https://elektra.s3.amazonaws.com/images/icons/logo-s2sn.png';
     private static $cancelUrl;
-    private static $returnUrl='http://localhost:8000/mes-factures/eau';
+    private static $returnUrl='http://localhost:8000/mes-factures/eau/';
     private static $callbackUrl='http://localhost:8000/notification-paiement';
 
     public static function setName($name)

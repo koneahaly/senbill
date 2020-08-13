@@ -93,7 +93,7 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
                         @endif
                         @if($value->status != "paid")
                         <!--  <td><button data-toggle="modal" data-target="#pay_bill" class="btn btn-danger btn-xs"> Régler</button> <br /> <span style="font-size:0.7em;font-weight: lighter;color:black;"> avant le {{$value->created_at}} <span></td> -->
-                            <td><button onclick="window.location='../mes-factures/{{ $_SESSION['current_service'] }}/payviaPD'" class="btn btn-danger btn-xs"> Régler</button> <br /> <span style="font-size:0.7em;font-weight: lighter;color:black;"> avant le {{$value->created_at}} <span></td>
+                            <td><button id="regler" onclick="" class="btn btn-danger btn-xs"> Régler</button> <br /> <span style="font-size:0.7em;font-weight: lighter;color:black;"> avant le {{$value->created_at}} <span></td>
 
                           <td> n/a </td>
                           <input type='hidden' id="{{$value->month}}_status" value="{{$value->status}}" />
@@ -1263,6 +1263,15 @@ if($i == $limit){
 <script src="https://cdn.datatables.net/1.10.21/js/dataTables.material.min.js"></script>
 <script>
 $(document).ready(function() {
+    $('#regler').click(function(){
+      if (!window.location.href.split('?')[0].endsWith("/"))
+        window.location.href = window.location.href.split('?')[0] + "/payviaPD";
+      else
+        window.location.href = window.location.href.split('?')[0] + "payviaPD";
+
+    });
+} );
+$(document).ready(function() {
     $('#billsTable').DataTable( {
         autoWidth: true,
         columnDefs: [
@@ -1298,9 +1307,11 @@ $(document).ready(function() {
             "url": "//cdn.datatables.net/plug-ins/1.10.21/i18n/French.json"
         }
     } );
+
 } );
 
 $(document).ready(function() {
+
 
   $('.picker').click(function(){
     var month_value = $('.slider-input').val();
