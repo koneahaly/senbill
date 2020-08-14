@@ -15,8 +15,6 @@ use Dompdf\Renderer\TableCell;
 use Dompdf\Renderer\TableRowGroup;
 use Dompdf\Renderer\Text;
 
-use Dompdf\Frame;
-
 /**
  * Concrete renderer
  *
@@ -67,7 +65,7 @@ class Renderer extends AbstractRenderer
 
         $style = $frame->get_style();
 
-        if (in_array($style->visibility, array("hidden", "collapse"))) {
+        if (in_array($style->visibility, ["hidden", "collapse"])) {
             return;
         }
 
@@ -89,7 +87,7 @@ class Renderer extends AbstractRenderer
                 $values[] = $x + (float)$style->length_in_pt($origin[0], (float)$style->length_in_pt($style->width));
                 $values[] = $y + (float)$style->length_in_pt($origin[1], (float)$style->length_in_pt($style->height));
 
-                call_user_func_array(array($this->_canvas, $function), $values);
+                call_user_func_array([$this->_canvas, $function], $values);
             }
         }
 
@@ -169,7 +167,7 @@ class Renderer extends AbstractRenderer
             }
         }
 
-        $stack = array();
+        $stack = [];
 
         foreach ($frame->get_children() as $child) {
             // < 0 : nagative z-index
@@ -224,8 +222,8 @@ class Renderer extends AbstractRenderer
         }
 
         if (is_array($this->_callbacks) && isset($this->_callbacks[$event])) {
-            $info = array(0 => $this->_canvas, "canvas" => $this->_canvas,
-                1 => $frame, "frame" => $frame);
+            $info = [0 => $this->_canvas, "canvas" => $this->_canvas,
+                1 => $frame, "frame" => $frame];
             $fs = $this->_callbacks[$event];
             foreach ($fs as $f) {
                 if (is_callable($f)) {

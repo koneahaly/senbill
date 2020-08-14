@@ -5,10 +5,12 @@ namespace App\Http\Controllers\Auth;
 use App\User;
 use App\Bill;
 use App\Service;
+use App\Http\Controllers\PhpmailerController;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Storage;
+use Illuminate\Mail\Mailable;
 use Illuminate\Support\Facades\DB;
 //use Faker\Factory;
 //use fzaninotto\faker;
@@ -195,7 +197,6 @@ class RegisterController extends Controller
                   ->update(['import_status' => 'Y']);
             }
           }
-
 
         return User::create([
            'civilite' => $data['salutation'],
