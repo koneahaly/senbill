@@ -10,8 +10,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Session\middleware\StartSession;
 use stdClass;
 use Session;
+
 $service =explode('/',$_SERVER['REQUEST_URI']);
-$_SESSION['current_service'] = $service[2];
+$except_page = $service[1];
+if($except_page == 'mes-factures')
+  $_SESSION['current_service'] = $service[2];
 class HomeController extends Controller
 {
     /**
@@ -143,10 +146,13 @@ class HomeController extends Controller
       /* L'ajout d'éléments à votre facture est très basique.
       Les paramètres attendus sont nom du produit, la quantité, le prix unitaire,
       le prix total et une description optionelle. */
-      $invoice->addItem("Consommation du mois de Juin", 1, 12600, 12600, "Facture d'eau du partenaire SDEQ");
-      $invoice->addItem("Frais", 1, 0, 0,"Frais gratuits");
+      $payment_due  =  12600;
+      $fees = $payment_due  * 0.05;
+      $payment_tot_due  = $payment_due + $fees;
+      $invoice->addItem("Consommation du mois de Juin", 1, $payment_due, $payment_due, "Facture d'eau du partenaire SDEQ");
+      $invoice->addItem("Frais de gestion", 1, $fees, $fees,"Frais gratuits");
       //ajouter d'autres lignes si besoin
-      $invoice->setTotalAmount(12600);
+      $invoice->setTotalAmount($payment_tot_due);
       if($invoice->create()) {
         $uriString=$invoice->getInvoiceUrl();
         $uriString =explode('/',$uriString);
