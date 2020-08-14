@@ -20,10 +20,10 @@ class MailController extends Controller {
    }
    public function html_email() {
       $data = array('name'=>"Virat Gandhi");
-      Mail::send('mail', $data, function($message) {
-         $message->to('abc@gmail.com', 'Tutorials Point')->subject
+      Mail::send('emails.contact', $data, function($message) {
+         $message->to('yacinenana@gmail.com', 'Tutorials Point')->subject
             ('Laravel HTML Testing Mail');
-         $message->from('xyz@gmail.com','Virat Gandhi');
+         $message->from('admin@services2sn.com','Virat Gandhi');
       });
       echo "HTML Email Sent. Check your inbox.";
    }
