@@ -19,11 +19,11 @@ class MailController extends Controller {
       echo "Basic Email Sent. Check your inbox.";
    }
    public function html_email() {
-      $data = array('name'=>"Virat Gandhi");
+      $data = array('name'=>"SENBILL");
       Mail::send('emails.contact', $data, function($message) {
-         $message->to('yacinenana@gmail.com', 'Tutorials Point')->subject
-            ('Laravel HTML Testing Mail');
-         $message->from('admin@services2sn.com','Virat Gandhi');
+         $message->to('yacinenana@gmail.com', 'Yacine Ndiaye')->subject
+            ('Inscription sur SenBill réussie');
+         $message->from('admin@services2sn.com','SEN BILL');
       });
       echo "HTML Email Sent. Check your inbox.";
    }
