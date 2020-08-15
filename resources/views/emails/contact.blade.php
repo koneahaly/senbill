@@ -110,6 +110,10 @@
       display: block !important;
       max-height: none !important;
     }
+    .mobiletextsize {
+      font-size: 10px !important;
+
+    }
   }
   </style>
 </head>
@@ -156,7 +160,7 @@
             </div>
           </div>
           <div style="background-color:#007be8;">
-            <div class="block-grid mixed-two-up" style="Margin: 0 auto; min-width: 320px; max-width: 700px; overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; background-color: transparent;">
+            <div class="block-grid mixed-two-up no-stack" style="Margin: 0 auto; min-width: 320px; max-width: 700px; overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; background-color: transparent;">
               <div style="border-collapse: collapse;display: table;width: 100%;background-color:transparent;">
                 <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#007be8;"><tr><td align="center"><table cellpadding="0" cellspacing="0" border="0" style="width:700px"><tr class="layout-full-width" style="background-color:transparent"><![endif]-->
                 <!--[if (mso)|(IE)]><td align="center" width="233" style="background-color:transparent;width:233px; border-top: 0px dashed transparent; border-left: 0px dashed transparent; border-bottom: 0px dashed transparent; border-right: 0px dashed transparent;" valign="top"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 0px; padding-left: 0px; padding-top:5px; padding-bottom:5px;"><![endif]-->
@@ -166,7 +170,7 @@
                     <div style="border-top:0px dashed transparent; border-left:0px dashed transparent; border-bottom:0px dashed transparent; border-right:0px dashed transparent; padding-top:5px; padding-bottom:5px; padding-right: 0px; padding-left: 0px;">
                       <!--<![endif]-->
                       <div align="center" class="img-container center autowidth" style="padding-right: 0px;padding-left: 0px;">
-                        <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px"><td style="padding-right: 0px;padding-left: 0px;" align="center"><![endif]--><img align="center" alt="Alternate text" border="0" class="center autowidth" src="{{ $message->embed(public_path() . '/images/emails/logo-elektra-halo.png')}}" style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; width: 100%; max-width: 200px; display: block;" title="Alternate text" width="200"/>
+                        <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px"><td style="padding-right: 0px;padding-left: 0px;" align="center"><![endif]--><img align="center" alt="Alternate text" border="0" class="center autowidth" src="{{ $message->embed(public_path() . '/images/emails/logo-elektra-halo.png')}}" style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; width: 100%; max-width: 50px; display: block;" title="Alternate text" width="50"/>
                         <!--[if mso]></td></tr></table><![endif]-->
                       </div>
                       <!--[if (!mso)&(!IE)]><!-->
@@ -182,9 +186,9 @@
                     <div style="border-top:0px solid transparent; border-left:2px solid #F9F9F9; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:5px; padding-bottom:5px; padding-right: 0px; padding-left: 0px;">
                       <!--<![endif]-->
                       <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 10px; padding-left: 10px; padding-top: 60px; padding-bottom: 0px; font-family: Verdana, sans-serif"><![endif]-->
-                      <div style="color:#555555;font-family: 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Geneva, Verdana, sans-serif;line-height:2;padding-top:60px;padding-right:10px;padding-bottom:0px;padding-left:10px;">
+                      <div style="color:#555555;font-family: 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Geneva, Verdana, sans-serif;line-height:2;padding-top:10px;padding-right:10px;padding-bottom:0px;padding-left:10px;">
                         <div style="line-height: 2; font-size: 12px; font-family: 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Geneva, Verdana, sans-serif; color: #555555; mso-line-height-alt: 24px;">
-                          <p style="font-size: 28px; line-height: 2; font-family: 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Geneva, Verdana, sans-serif; word-break: break-word; mso-line-height-alt: 56px; margin: 0;"><span style="font-size: 28px; color: #ffffff;">Gérez vos factures et paiements</span></p>
+                          <p style="font-size: 17px; line-height: 2; font-family: 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Geneva, Verdana, sans-serif; word-break: break-word; mso-line-height-alt: 34px;mso-ansi-font-size: 18px; margin: 0;"><span class="mobiletextsize" style="font-size: 17px; color: #ffffff;">Gérez vos factures et paiements</span></p>
                         </div>
                       </div>
                       <!--[if mso]></td></tr></table><![endif]-->
@@ -950,7 +954,7 @@
                       <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 40px; padding-left: 40px; padding-top: 0px; padding-bottom: 10px; font-family: Tahoma, sans-serif"><![endif]-->
                       <div style="color:#555555;font-family:Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;line-height:2;padding-top:0px;padding-right:40px;padding-bottom:10px;padding-left:40px;">
                         <div style="line-height: 2; font-size: 12px; color: #555555; font-family: Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif; mso-line-height-alt: 24px;">
-                          <p style="font-size: 14px; line-height: 2; word-break: break-word; text-align: center; mso-line-height-alt: 28px; margin: 0;">Pour toute question, merci de nous contacter sur support@services2sn.com. Tous droits réservés. Mettre à jour les <a href="#" rel="noopener" style="text-decoration: none; color: #555555;" target="_blank">préférences</a> or <a href="#" rel="noopener" style="text-decoration: none; color: #555555;" target="_blank">Se désinscrire</a>.</p>
+                          <p style="font-size: 14px; line-height: 2; word-break: break-word; text-align: center; mso-line-height-alt: 28px; margin: 0;">Pour toute question, merci de nous contacter sur support@services2sn.com. Tous droits réservés. Mettre à jour les <a href="#" rel="noopener" style="text-decoration: none; color: #555555;" target="_blank">préférences</a> ou <a href="#" rel="noopener" style="text-decoration: none; color: #555555;" target="_blank">Se désinscrire</a>.</p>
                         </div>
                       </div>
                       <!--[if mso]></td></tr></table><![endif]-->
