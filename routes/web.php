@@ -140,3 +140,4 @@ Route::get('json-api', 'ApiController@index');
 
 Route::get('sendbasicemail','MailController@basic_email');
 Route::get('sendhtmlemail','MailController@html_email');
+Route::get('verify-email/{name?}','Auth\RegisterController@verify_email');

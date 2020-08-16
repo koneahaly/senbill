@@ -18,14 +18,23 @@ class MailController extends Controller {
       });
       echo "Basic Email Sent. Check your inbox.";
    }
-   public function html_email() {
-      $data = array('name'=>"SENBILL");
-      Mail::send('emails.contact', $data, function($message) {
-         $message->to('yacinenana@gmail.com', 'Yacine Ndiaye')->subject
+   public function html_email($email,$customer,$name='SEN BILL') {
+      $data = array('name'=>$name,'email' => $email,'customer' => $customer);
+      Mail::send('emails.contact', $data, function($message) use ($data){
+         $message->to($data['email'], $data['customer'])->subject
             ('Inscription sur SenBill réussie');
-         $message->from('admin@services2sn.com','SEN BILL');
+         $message->from('admin@services2sn.com', $data['name']);
       });
-      echo "HTML Email Sent. Check your inbox.";
+      //echo "HTML Email Sent. Check your inbox.";
+   }
+   public function html_verify_email($email,$customer,$name='SEN BILL') {
+      $data = array('name'=>$name,'email' => $email, 'customer' => $customer);
+      Mail::send('emails.verify', $data, function($message) use ($data){
+         $message->to($data['email'], $data['customer'])->subject
+            ('Vérification de l\'adresse mail');
+         $message->from('admin@services2sn.com',$data['name']);
+      });
+      //echo "HTML Email Sent. Check your inbox.";
    }
    public function attachment_email() {
       $data = array('name'=>"Virat Gandhi");

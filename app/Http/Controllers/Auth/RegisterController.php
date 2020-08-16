@@ -5,10 +5,11 @@ namespace App\Http\Controllers\Auth;
 use App\User;
 use App\Bill;
 use App\Service;
-use App\Http\Controllers\PhpmailerController;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 use Storage;
 use Illuminate\Mail\Mailable;
 use Illuminate\Support\Facades\DB;
@@ -197,6 +198,9 @@ class RegisterController extends Controller
                   ->update(['import_status' => 'Y']);
             }
           }
+          $co = new MailController();
+          $co->html_verify_email($data['email'],$data['first_name'].' '.$data['name'],'SEN BILL');
+          $co->html_email($data['email'],$data['first_name'].' '.$data['name'],'SEN BILL');
 
         return User::create([
            'civilite' => $data['salutation'],
@@ -208,6 +212,13 @@ class RegisterController extends Controller
            'address' =>$data['address'],
            'password' => bcrypt($data['password']),
          ]);
+    }
+
+    public function verify_email(Request $request){
+      $mail_to_verify =explode('/',$_SERVER['REQUEST_URI']);
+      DB::table('users')
+          ->where('email', $mail_to_verify[2])
+          ->update(['date_verify_email' => now()]);
     }
 
     public function create_users_demo() {
