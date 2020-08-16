@@ -139,3 +139,4 @@ Route::post('/infos-services-pro', 'HomeController@display_services_pro_infos')-
 Route::get('json-api', 'ApiController@index');
 
 Route::get('sendbasicemail','MailController@basic_email');
+Route::get('sendhtmlemail','MailController@html_email');

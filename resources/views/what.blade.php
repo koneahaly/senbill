@@ -9,7 +9,7 @@
   <meta name="description" content="">
 
 
-  <title>Plateforme Elektra</title>
+  <title>Plateforme SenBill</title>
   <link rel="stylesheet" href="{{url('whatFolder/assets/web/assets/mobirise-icons/mobirise-icons.css')}}">
   <link rel="stylesheet" href="{{url('whatFolder/assets/bootstrap/css/bootstrap.min.css')}}">
   <link rel="stylesheet" href="{{url('whatFolder/assets/bootstrap/css/bootstrap-grid.min.css')}}">
@@ -288,12 +288,12 @@
             <div class="navbar-brand">
                 <span class="navbar-logo">
                     <a href=".">
-                         <img src="{{url('images/hexagon.svg')}}" alt="Elektra" style="height: 3.8rem;">
+                         <img src="{{url('images/hexagon.svg')}}" alt="SenBill" style="height: 3.8rem;">
                     </a>
                 </span>
                 <span class="navbar-caption-wrap">
                     <a class="navbar-caption text-black display-4" href=".">
-                        ELEKTRA
+                        SENBILL
                     </a>
                 </span>
             </div>
@@ -318,7 +318,7 @@
                       Toutes les factures en une plateforme
                   </h2>
                   <p class="mbr-text align-center pb-3 mbr-fonts-style display-6">
-                      Elektra simplifie les paiements de vos factures au Sénégal et en Afrique. Dîtes adieu aux factures impayées ou oubliées.
+                      SenBill simplifie les paiements de vos factures au Sénégal et en Afrique. Dîtes adieu aux factures impayées ou oubliées.
                   </p>
                   <div class="mbr-section-btn align-center"><a class="btn btn-md btn-primary display-4" href=".">DÉMO LIVE</a>
                           </div>
@@ -355,7 +355,7 @@
                         Votre entreprise est gratuitement intégrée
                     </h4>
                     <p class="mbr-text mbr-fonts-style display-7">
-                       Elektra offre un onboarding spécialement conçu pour votre entreprise sans coût. Démarquez vous,  contactez nous et devenez notre partenaire et laissez Elektra apporter de la valeur à votre business.
+                       SenBill offre un onboarding spécialement conçu pour votre entreprise sans coût. Démarquez vous,  contactez nous et devenez notre partenaire et laissez SenBill apporter de la valeur à votre business.
                     </p>
                 </div>
             </div>
@@ -383,7 +383,7 @@
                         Vos clients sont notifiés ou relancés si nécessaire
                     </h4>
                     <p class="mbr-text mbr-fonts-style display-7">
-                       Les clients peuvent suivre leurs factures et sont notifiés des factures impayés. Elektra offre aussi la possibilité de mettre en place des paiements récurrents. Plus d'excuses pour justifier une facture impayée.
+                       Les clients peuvent suivre leurs factures et sont notifiés des factures impayés. SenBill offre aussi la possibilité de mettre en place des paiements récurrents. Plus d'excuses pour justifier une facture impayée.
                     </p>
                 </div>
             </div>
@@ -414,7 +414,7 @@
                     </h2>
                     <div class="mbr-section-text">
                         <p class="mbr-text mb-5 pt-3 mbr-light mbr-fonts-style display-5">
-                        Une plateforme dédiée peut être conçue quelque soit le domaine de votre entreprise. Elektra vous accompagne à accroître votre business.
+                        Une plateforme dédiée peut être conçue quelque soit le domaine de votre entreprise. SenBill vous accompagne à accroître votre business.
                         </p>
                     </div>
 
@@ -534,7 +534,7 @@
                           Eau, Electricité, Mobile, Internet, Location, Scolarité, Télévision, Sport...
                         </h4>
                         <p class="mbr-step-text mbr-fonts-style display-7">
-                            La plateforme Elektra vous permet de voir et payer toutes vos factures via votre mobile ou ordinateur grâce à un seul compte.</p>
+                            La plateforme SenBill vous permet de voir et payer toutes vos factures via votre mobile ou ordinateur grâce à un seul compte.</p>
                     </div>
                 </div>
             </div>
@@ -622,7 +622,7 @@
                     Liens  utiles
                 </h5>
                 <p class="mbr-text">
-                    <a class="text-primary" href="./">Elektra</a>
+                    <a class="text-primary" href="./">SenBill</a>
                     <br><a class="text-primary" href="www.services2sn.com">Services2sn</a>
 
                 </p>
@@ -637,7 +637,7 @@
             <div class="media-container-row mbr-white">
                 <div class="col-sm-6 copyright">
                     <p class="mbr-text mbr-fonts-style display-7">
-                        © Copyright 2020 S2SN - All Rights Reserved
+                        © Copyright 2020 S2SN - Tous droits réservés
                     </p>
                 </div>
                 <div class="col-md-6">
