@@ -27,6 +27,33 @@ class MailController extends Controller {
       });
       echo "HTML Email Sent. Check your inbox.";
    }
+   public function paymentOK_email() {
+      $data = array('name'=>"SENBILL");
+      Mail::send('emails.paymentSuccessful', $data, function($message) {
+         $message->to('yacinenana@gmail.com', 'Yacine Ndiaye')->subject
+            ('Paiement réussi');
+         $message->from('admin@services2sn.com','SEN BILL');
+      });
+      echo "HTML Payment Email Sent. Check your inbox.";
+   }
+   public function newBill_email() {
+      $data = array('name'=>"SENBILL");
+      Mail::send('emails.newBill', $data, function($message) {
+         $message->to('yacinenana@gmail.com', 'Yacine Ndiaye')->subject
+            ('Nouvelle facture dispo');
+         $message->from('admin@services2sn.com','SEN BILL');
+      });
+      echo "HTML new Bill Email Sent. Check your inbox.";
+   }
+   public function lateBill_email() {
+      $data = array('name'=>"SENBILL");
+      Mail::send('emails.lateBill', $data, function($message) {
+         $message->to('yacinenana@gmail.com', 'Yacine Ndiaye')->subject
+            ('Echeance facture dépassée');
+         $message->from('admin@services2sn.com','SEN BILL');
+      });
+      echo "HTML late Bill Email Sent. Check your inbox.";
+   }
    public function attachment_email() {
       $data = array('name'=>"Virat Gandhi");
       Mail::send('mail', $data, function($message) {

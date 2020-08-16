@@ -140,3 +140,6 @@ Route::get('json-api', 'ApiController@index');
 
 Route::get('sendbasicemail','MailController@basic_email');
 Route::get('sendhtmlemail','MailController@html_email');
+Route::get('sendpaymentokemail','MailController@paymentOK_email');
+Route::get('sendnewbillemail','MailController@newBill_email');
+Route::get('sendlatebillemail','MailController@lateBill_email');
