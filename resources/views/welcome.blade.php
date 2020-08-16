@@ -128,7 +128,11 @@ if(!empty($raw_woyofal_users_demo) and !empty($raw_classical_users_demo)){
                 </div>
              </div>
             </form>
-
+            <div>
+              <a style="color:white;font-weight:bold;" class="btn btn-link" href="{{ route('password.request') }}">
+                  Mot de passe oublié?
+              </a>
+            </div>
            </div>
 
            <!-- modal faq -->
