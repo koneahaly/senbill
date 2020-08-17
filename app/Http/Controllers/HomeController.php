@@ -65,6 +65,7 @@ class HomeController extends Controller
         //  $billToken=$_GET['token'];
         //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         $s=Auth::user()->customerId;
+        $user['user'] = DB::table('users')->where('customerId',$s)->first();
         $actived_services['actived_services'] = DB::table('services')->where('customerId',$s)->first();
         if(Auth::user()->user_type != 2){
           $numberOfBillsNonPaid = (int)DB::table('bills')->where('customerId',$s)->where('status','!=','paid')->orderBy('id', 'DESC')->count();
@@ -81,7 +82,7 @@ class HomeController extends Controller
           //dd(count($data));
           //dd($numberOfBills);
 
-          return view('mes-factures')->with($data)->with($last_row_data)->with(compact('numberOfBillsNonPaid'))->with($actived_services);
+          return view('mes-factures')->with($data)->with($user)->with($last_row_data)->with(compact('numberOfBillsNonPaid'))->with($actived_services);
         }
         if(Auth::user()->user_type == 2){
           //$data['data']=DB::connection('mysql2')->table('buys')->where('counter_number',$s)->orderBy('id', 'DESC')->get();
@@ -107,7 +108,7 @@ class HomeController extends Controller
           }
 
           $numberOfBillsNonPaid = 0;
-          return view('mes-factures')->with($data)->with($last_row_data)->with(compact('numberOfBillsNonPaid'))->with($actived_services);
+          return view('mes-factures')->with($data)->with($user)->with($last_row_data)->with(compact('numberOfBillsNonPaid'))->with($actived_services);
         }
         //session(['keepNumberOfBillsNonPaid' => $numberOfBillsNonPaid]);
         Session::push('keepNumberOfBillsNonPaid', $keepNumberOfBillsNonPaid);

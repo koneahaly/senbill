@@ -38,6 +38,7 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
           <div class="row" style="font-size:20px;margin-bottom:20px;text-align:center;">
             <div class="col-md-12">
               <!-- if prepaid client-->
+          @if (!empty($user->date_verify_email))
             @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'prepaid' and (!empty($data) || $data != NULL))
               <span><strong> Tous vos achats  </strong></span>
               <span class="text-success"><strong> à ce jour ! </strong></span>
@@ -62,13 +63,20 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
             @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'postpaid' and empty($data) || $data == NULL)
               <span><strong> Aucune facture à ce jour ! </strong></span>
             @endif
+          @endif
             </div>
+            @if (empty($user->date_verify_email))
+                <div class="alert alert-success">
+                    <p>Veuillez valider votre adresse mail pour utiliser l'ensemble des services.<br/>
+                    Un mail de vérification vous a été envoyé à l'adresse suivante : <strong> {{ $user->email }} <strong>.</p>
+                </div>
+            @endif
           </div>
 
           <div class="row" style="z-index:1001">
 		        <div class="col-md-12">
               <!-- if postpaid client-->
-            @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'postpaid' and !empty($data) and $data != NULL)
+            @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'postpaid' and !empty($data) and $data != NULL and !empty($user->date_verify_email))
                 <!--<h4>Paiements déjà réalisés</h4> -->
               <br/>
                 <table id="billsTable" class="mdl-data-table" style="width:100%">
@@ -109,7 +117,7 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
             @endif
 
             <!-- if prepaid client-->
-            @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'prepaid' and (!empty($data) and $data != NULL))
+            @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'prepaid' and (!empty($data) and $data != NULL) and !empty($user->date_verify_email))
                   <!--<h4>Achats déjà effectués</h4>-->
                 <br/>
                 <table id="buysTable" class="mdl-data-table" style="width:100%">
@@ -144,7 +152,7 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
           </div>
           <br />
           <!-- if prepaid client-->
-          @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'prepaid')
+          @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'prepaid' and !empty($user->date_verify_email))
           <div class=" buydiv row panel-heading" style="margin-top:10px;margin-bottom:20px">
            <button class="btnBuy" data-toggle="modal" data-target="#buy_card">
              <span class="circle">
@@ -157,10 +165,10 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
 
           @endif
 
-          @if(!empty($last_row_data))
+          @if(!empty($last_row_data) and !empty($user->date_verify_email))
           <div class="row">
             <!-- if postpaid client-->
-            @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'postpaid')
+            @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'postpaid' and !empty($user->date_verify_email))
               <div class="col-md-8 col-md-offset-2 picker">
                 @if(!empty($last_row_data->month))
                   <input type="hidden" class="slider-input" value={{ date('n',strtotime($last_row_data->month)) }} />
@@ -171,7 +179,7 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
               </div>
             @endif
             <!-- if prepaid client-->
-            @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'prepaid')
+            @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'prepaid' and !empty($user->date_verify_email))
               <div class="col-md-8 col-md-offset-2 picker_2">
                 @if(!empty($last_row_data->month))
                   <input type="hidden" class="slider-input" value={{ date('n',strtotime($last_row_data->month)) }} />
@@ -183,7 +191,7 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
             @endif
             <br />
             <!-- if postpaid client-->
-            @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'postpaid')
+            @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'postpaid' and !empty($user->date_verify_email))
             <br/>
               <div class="col-md-4 col-md-offset-4 ticket" style="text-align:center;">
                 <form class="form-inline" action="../mes-factures/{{ $_SESSION['current_service'] }}/pdf_bill" method="POST">
@@ -268,7 +276,7 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
         <form class="form-inline" action="{{ route('mes-factures.pdf_buy')}}" method="GET">
             {{csrf_field()}}
             <!-- if prepaid client-->
-            @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'prepaid' and (!empty($data) and $data != NULL))
+            @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'prepaid' and (!empty($data) and $data != NULL) and !empty($user->date_verify_email))
               <div class="col-md-4 col-md-offset-4 ticket  rowContentMobile" style="text-align:center;">
                 <div class="large-main-panel" style="background-color:#fff;">
                   <div>
@@ -307,7 +315,7 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
           <br />
           <br />
 
-          @if(!empty($last_row_data))
+          @if(!empty($last_row_data) and !empty($user->date_verify_email))
           <div class="modal fade" id="pay_bill" tabindex="-1" role="dialog" style="z-index:1300;overflow-x: hidden;overflow-y: auto;" aria-labelledby="pay_bill_title" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -448,7 +456,7 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
         </div>
         @endif
 
-        @if(!empty($last_row_data))
+        @if(!empty($last_row_data) and !empty($user->date_verify_email))
         <div class="modal fade" id="om" tabindex="-1" style="overflow-x: hidden;overflow-y: auto;z-index:1300;" role="dialog" aria-labelledby="om_title" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
@@ -566,7 +574,7 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
 </div>
 @endif
 
-      @if(!empty($last_row_data))
+      @if(!empty($last_row_data) and !empty($user->date_verify_email))
       <div class="modal fade" id="fc" tabindex="-1" style="overflow-x: hidden;overflow-y: auto;z-index:1300;" role="dialog" aria-labelledby="fc_title" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
