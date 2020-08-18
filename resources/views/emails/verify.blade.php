@@ -10,6 +10,7 @@
   <!--<![endif]-->
   <title></title>
   <!--[if !mso]><!-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css"/>
   <!--<![endif]-->
   <style type="text/css">
   body {
@@ -34,7 +35,7 @@
   }
   </style>
   <style id="media-query" type="text/css">
-  @media (max-width: 720px) {
+  @media (max-width: 620px) {
 
     .block-grid,
     .col {
@@ -110,14 +111,10 @@
       display: block !important;
       max-height: none !important;
     }
-    .mobiletextsize {
-      font-size: 10px !important;
-
-    }
   }
   </style>
 </head>
-<body class="clean-body" style="margin: 0; padding: 0; -webkit-text-size-adjust: 100%; background-color: #f9f9f9;">
+<body class="clean-body" style="margin: 0; padding: 0; -webkit-text-size-adjust: 100%; background-color: #e0e5eb;">
   <!--[if IE]><div class="ie-browser"><![endif]-->
 <a href="http://127.0.0.1:8000/verify-email/{{ $data['email'] }}"> cliquez sur ce lien pour vérifier votre adresse mail.</a>
   <!--[if (IE)]></div><![endif]-->

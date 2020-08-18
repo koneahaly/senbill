@@ -63,6 +63,15 @@ class MailController extends Controller {
       });
       echo "HTML late Bill Email Sent. Check your inbox.";
    }
+   public function validate_email() {
+      $data = array('name'=>"SENBILL");
+      Mail::send('emails.validateEmail', $data, function($message) {
+         $message->to('yacinenana@gmail.com', 'Yacine Ndiaye')->subject
+            ('Vérification de votre  adresse mail');
+         $message->from('admin@services2sn.com','SEN BILL');
+      });
+      echo "HTML late Bill Email Sent. Check your inbox.";
+   }
    public function attachment_email() {
       $data = array('name'=>"Virat Gandhi");
       Mail::send('mail', $data, function($message) {
