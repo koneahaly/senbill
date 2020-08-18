@@ -1,6 +1,7 @@
 <?php
 session_start();
 $_SESSION["numberOfBillsNonPaid"]=$numberOfBillsNonPaid;
+$_SESSION["profilNotif"]=$profilNotif;
 $service =explode('/',$_SERVER['REQUEST_URI']);
 $_SESSION['current_service'] = $service[2];
 
@@ -10,7 +11,7 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
                           'sport' => 'type_service_8'];
 
 ?>
-@extends('layouts.app', ['notification' => $numberOfBillsNonPaid, 'service' => $_SESSION['current_service'], 'services' => $actived_services])
+@extends('layouts.app', ['notification' => $numberOfBillsNonPaid, 'service' => $_SESSION['current_service'], 'services' => $actived_services, 'profilNotif' => $_SESSION['profilNotif']])
 
 @section('content')
 <div class="container">

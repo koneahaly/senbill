@@ -14,7 +14,7 @@ if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} != 
   $wording_offer = "Inconnue";
 ?>
 
-@extends('layouts.app', ['notification' => $notification, 'service' => $_SESSION['current_service'], 'services' => $actived_services])
+@extends('layouts.app', ['notification' => $notification, 'service' => $_SESSION['current_service'], 'services' => $actived_services, 'profilNotif' => $_SESSION['profilNotif']])
 
 @section('content')
 <div class="container">

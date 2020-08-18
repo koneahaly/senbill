@@ -2,7 +2,7 @@
 session_start();
 $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOfBillsNonPaid"] : '';
 ?>
-@extends('layouts.app', ['notification' => $notification, 'service' => $_SESSION['current_service'], 'services' => $actived_services])
+@extends('layouts.app', ['notification' => $notification, 'service' => $_SESSION['current_service'], 'services' => $actived_services, 'profilNotif' => $_SESSION['profilNotif']])
 
 @section('content')
 
@@ -187,13 +187,21 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                     <div class="col-md-6" style="margin-bottom:10px">
                       <p><strong>T&Eacute;L&Eacute;PHONE</strong></p>
                       <span class="recapData">{{ Auth::user()->phone }}</span>
-                      <div>
+                      <div class="row">
+                        @if ($_SESSION['profilNotif'] > 0)
+                        <button class="btn btn-success" style="color:white;margin-top:8px">
+                          <span class="glyphicon glyphicon-saved"></span> Vérifier
+                        </button>
+                        <input type="hidden" name="verify_phone" value="yes"/>
+                        @endif
                         <button style="background:rgba(137,180,213,1);color:white;margin-top:8px" class="btn">
                           <span class="glyphicon glyphicon-edit"></span> Modifier
                         </button>
                       </div>
                     </div>
-                    <input type="hidden" name="update_phone" value="true"/>
+                    @if ($_SESSION['profilNotif'] <= 0)
+                      <input type="hidden" name="update_phone" value="true"/>
+                    @endif
                     <input type="hidden" name="service" value="{{ $_SESSION['current_service'] }}"/>
                   </form>
                 @endif
@@ -256,4 +264,33 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
     </div>
 </div>
 </div>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Vérification du numéro de téléphone</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input name="verification_code" type="text" placeholder="code à 5 chiffres" />
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+        <button type="button" class="btn btn-primary">Vérifier</button>
+      </div>
+    </div>
+  </div>
+</div>
+<?php
+
+if($withPopup == "true"){
+  echo '<script>
+        $(document).ready(function() {
+          $("#exampleModal").modal("show");
+      });
+  </script>';
+}
+ ?>
 @endsection

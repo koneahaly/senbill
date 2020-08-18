@@ -119,7 +119,7 @@
 </head>
 <body class="clean-body" style="margin: 0; padding: 0; -webkit-text-size-adjust: 100%; background-color: #f9f9f9;">
   <!--[if IE]><div class="ie-browser"><![endif]-->
-<a href="http://127.0.0.1:8000/verify-email/yacinenana@gmail.com"> cliquez sur ce lien pour vérifier votre adresse mail.</a>
+<a href="http://127.0.0.1:8000/verify-email/{{ $data['email'] }}"> cliquez sur ce lien pour vérifier votre adresse mail.</a>
   <!--[if (IE)]></div><![endif]-->
 </body>
 </html>

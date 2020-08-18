@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Bill;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\SmsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Session\middleware\StartSession;
 use stdClass;
@@ -64,6 +65,16 @@ class HomeController extends Controller
         //if($_GET['token'])
         //  $billToken=$_GET['token'];
         //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        if(empty($user->date_activation_code)){
+          $profilNotif = 1;
+          Session::push('profilNotif', $profilNotif);
+        }
+        else{
+          $profilNotif = 0;
+          Session::push('profilNotif', $profilNotif);
+        }
+
         $s=Auth::user()->customerId;
         $user['user'] = DB::table('users')->where('customerId',$s)->first();
         $actived_services['actived_services'] = DB::table('services')->where('customerId',$s)->first();
@@ -82,7 +93,7 @@ class HomeController extends Controller
           //dd(count($data));
           //dd($numberOfBills);
 
-          return view('mes-factures')->with($data)->with($user)->with($last_row_data)->with(compact('numberOfBillsNonPaid'))->with($actived_services);
+          return view('mes-factures')->with($data)->with($user)->with($last_row_data)->with(compact('numberOfBillsNonPaid'))->with($actived_services)->with(compact('profilNotif'));
         }
         if(Auth::user()->user_type == 2){
           //$data['data']=DB::connection('mysql2')->table('buys')->where('counter_number',$s)->orderBy('id', 'DESC')->get();
@@ -108,9 +119,10 @@ class HomeController extends Controller
           }
 
           $numberOfBillsNonPaid = 0;
-          return view('mes-factures')->with($data)->with($user)->with($last_row_data)->with(compact('numberOfBillsNonPaid'))->with($actived_services);
+          return view('mes-factures')->with($data)->with($user)->with($last_row_data)->with(compact('numberOfBillsNonPaid'))->with($actived_services)->with(compact('profilNotif'));
         }
         //session(['keepNumberOfBillsNonPaid' => $numberOfBillsNonPaid]);
+
         Session::push('keepNumberOfBillsNonPaid', $keepNumberOfBillsNonPaid);
         Session::push('layout', 'app');
 
@@ -124,6 +136,18 @@ class HomeController extends Controller
 
     }
 
+    public function activate_code(){
+
+      $s=Auth::user()->customerId;
+      $activation_code = rand(10000, 99999);
+      // enregistrement en base données
+      DB::table('users')
+          ->where('customerId', $s)
+          ->update(['activation_code' => $activation_code]);
+
+      $sms = new SmsController();
+      $sms->send_activation_code($activation_code);
+    }
 
     public function index()
     {
@@ -244,11 +268,17 @@ class HomeController extends Controller
       return view('mon-contrat')->with($actived_services);
     }
 
-    public function display_personal_infos()
+    public function display_personal_infos(Request $request)
     {
       $s=Auth::user()->customerId;
+      $withPopup = "false";
       $actived_services['actived_services'] = DB::table('services')->where('customerId',$s)->first();
-      return view('infos-personnelles')->with($actived_services);
+      if($request->verify_phone == "yes"){
+        $withPopup = "true";
+        $this->activate_code();
+      }
+        return view('infos-personnelles')->with($actived_services)->with(compact('withPopup'));
+
     }
 
     public function display_services_infos()

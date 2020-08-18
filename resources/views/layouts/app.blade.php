@@ -181,7 +181,7 @@ html, body {
                <li class="nav-item item-connected">
                  <a class="nav-link {{ $active_3 }}"  href="../mes-factures/{{ $service }}">
                    <i  class="fa fa-envelope-open-text fa-2x ">
-                      <?php if($notification > 0) echo '<span class="badge">'.$notification.'</span>'; ?>
+                      <?php if($notification > 0) echo '<span class="badge badge_2">'.$notification.'</span>'; ?>
                    </i> <p>Factures et paiements</p>
                   </a>
                </li>
@@ -194,14 +194,16 @@ html, body {
 
                <li class="dropdown nav-item item-connected">
                    <a href="#" class="nav-link {{ $active_1 }} dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
-                     <i class="fa fa-user fa-2x"></i> <p>Profil</p>
+                     <i class="fa fa-user fa-2x">
+                       <?php if($profilNotif > 0) echo '<span class="badge badge_2">'.$profilNotif.'</span>'; ?>
+                     </i> <p>Profil</p>
                      <span class="caret"></span>
                    </a>
 
                    <ul class="dropdown-menu">
                        <li class="dropdown-item" style="text-transform:capitalize">
                          <a href="../infos-personnelles/{{ $service }}">
-                           mes infos personnelles
+                           mes infos personnelles <?php if($profilNotif > 0){ echo ' '; echo '<span class="badge" style="background-color:red">'.$profilNotif.'</span>';} ?>
                          </a>
                        </li>
                        <li style="padding:0px;text-transform:capitalize" class="dropdown-item">

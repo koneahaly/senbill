@@ -145,3 +145,5 @@ Route::get('sendnewbillemail','MailController@newBill_email');
 Route::get('sendlatebillemail','MailController@lateBill_email');
 
 Route::get('verify-email/{name?}','Auth\RegisterController@verify_email');
+
+Route::get('send-sms','SmsController@send_sms');
