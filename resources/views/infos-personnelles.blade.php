@@ -7,23 +7,6 @@ if (!empty(Auth::user()->date_activation_code)) $_SESSION['profilNotif'] = 0;
 
 @section('content')
 
-@if(!empty($message))
-<div class="alert alert-success alert-dismissible fade show" role="alert">
-  <strong>Félicitations {{ Auth::user()->first_name }}!</strong> {{ $message }}.
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
-@endif
-@if(!empty($error_message))
-<div class="alert alert-danger alert-dismissible fade show" role="alert">
-  <strong>Oups!</strong> {{ $error_message }}.
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
-@endif
-
 <div class="container">
   <div class="row lottie-lines" style="margin-top:4%;">
       <lottie-player src="{{url('images/lottie/lines.json')}}"  background="transparent"  speed="0.1"  style="width: 500px; height: 500px; position:absolute;z-index:1000;margin-left:-20%;margin-top: 2.5%;"  loop  autoplay></lottie-player>
@@ -33,6 +16,24 @@ if (!empty(Auth::user()->date_activation_code)) $_SESSION['profilNotif'] = 0;
   <div class="col-md-12" style="margin-top:10px;margin-bottom:20px;text-align:center;">
    <h3><strong>Mes informations personnelles</strong></h3>
  </div>
+
+ @if(!empty($message))
+ <div class="alert alert-success alert-dismissible fade show" role="alert">
+   <strong>Félicitations {{ Auth::user()->first_name }}!</strong> {{ $message }}.
+   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+     <span aria-hidden="true">&times;</span>
+   </button>
+ </div>
+ @endif
+ @if(!empty($error_message))
+ <div class="alert alert-danger alert-dismissible fade show" role="alert">
+   <strong>Oups!</strong> {{ $error_message }}.
+   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+     <span aria-hidden="true">&times;</span>
+   </button>
+ </div>
+ @endif
+
   </div>
   <lottie-player src="{{url('images/lottie/bubble.json')}}" class="lottie-bubbles" background="transparent"  speed="1"  style="width: 80px; height: 80px; position:absolute;z-index:1000;margin-left:-8%;margin-top: 15%;"  loop  autoplay></lottie-player>
   <lottie-player src="{{url('images/lottie/bubble.json')}}" class="lottie-bubbles" background="transparent"  speed="1"  style="width: 100px; height: 100px; position:absolute;z-index:1000;margin-left:80%;margin-top: -1.5%;"  loop  autoplay></lottie-player>
@@ -208,15 +209,17 @@ if (!empty(Auth::user()->date_activation_code)) $_SESSION['profilNotif'] = 0;
                       <div class="row">
                         @if (empty(Auth::user()->date_activation_code))
                         <div class="col-md-3">
-                          <form method="post" action="../infos-personnelles/{{ $_SESSION['current_service']}}">
-                            {{csrf_field()}}
-                            <button class="btn btn-success" style="color:white;margin-top:8px">
-                              <span class="glyphicon glyphicon-saved"></span> Vérifier
-                            </button>
-                            <input type="hidden" name="verify_phone" value="yes"/>
-                            <input type="hidden" name="phone" value="{{ Auth::user()->phone }}"/>
-                            <input type="hidden" name="service" value="{{ $_SESSION['current_service'] }}"/>
-                          </form>
+                          @if (Auth::user()->attempt_sms_sent < 3)
+                            <form method="post" action="../infos-personnelles/{{ $_SESSION['current_service']}}">
+                              {{csrf_field()}}
+                              <button class="btn btn-success" style="color:white;margin-top:8px">
+                                <span class="glyphicon glyphicon-saved"></span> Vérifier
+                              </button>
+                              <input type="hidden" name="verify_phone" value="yes"/>
+                              <input type="hidden" name="phone" value="{{ Auth::user()->phone }}"/>
+                              <input type="hidden" name="service" value="{{ $_SESSION['current_service'] }}"/>
+                            </form>
+                          @endif
                       </div>
                         @endif
                         <div class="col-md-3">

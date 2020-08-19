@@ -199,6 +199,7 @@ class HomeController extends Controller
     public function update_personal_infos(Request $given){
 
       $s=Auth::user()->customerId;
+      $myuser = DB::table('users')->where('customerId',$s)->first();
 
       if($given->action == "save"){
         $this->validate($given,[
@@ -217,8 +218,11 @@ class HomeController extends Controller
         ]);
         DB::table('users')
             ->where('customerId', $s)
-            ->update(['email' => $given->email]);
+            ->update(['email' => $given->email, 'date_verify_email' => '']);
         }
+
+        $co = new MailController();
+        $co->html_verify_email($given->email,$myuser->first_name.' '.$myuser->name,'SEN BILL');
 
       if($given->action_phone == "save"){
         $this->validate($given,[
@@ -226,7 +230,7 @@ class HomeController extends Controller
         ]);
         DB::table('users')
             ->where('customerId', $s)
-            ->update(['phone' => $given->phone]);
+            ->update(['phone' => $given->phone, 'date_activation_code' => '']);
         }
         if($given->page == "proprietaire"){
           return redirect('infos-proprietaire');
@@ -273,16 +277,20 @@ class HomeController extends Controller
     public function display_personal_infos(Request $request)
     {
       $s=Auth::user()->customerId;
+      $user = DB::table('users')->where('customerId',$s)->first();
+
       $withPopup = "false";
       $actived_services['actived_services'] = DB::table('services')->where('customerId',$s)->first();
       if($request->verify_phone == "yes"){
         $withPopup = "true";
         $this->activate_code($request->phone);
+        DB::table('users')
+            ->where('customerId', $s)
+            ->update(['attempt_sms_sent' => $user->attempt_sms_sent + 1]);
       }
       $message = null;
       $error_message = null;
       if($request->verify == "yes"){
-        $user = DB::table('users')->where('customerId',$s)->first();
         if($user->activation_code == $request->verification_code){
           DB::table('users')
               ->where('customerId', $s)
