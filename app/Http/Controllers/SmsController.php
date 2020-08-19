@@ -15,8 +15,8 @@ class SmsController extends Controller {
              'apiKey'=> '39c1b91ea0d827b4adebe92e4a027e303e71793d',
              'phoneNumbers'=> $phone,
              'message'=> 'Bonjour, le code d\'activation est :'.$activation_code,
-             'sender' => 'SENBILL'
-             //'sandbox' => 1
+             'sender' => 'SENBILL',
+             'sandbox' => 1
          );
 
 

@@ -265,7 +265,7 @@
 
                 </fieldset>
                     <fieldset>
-                        <div class="form-card">
+                        <div class="form-card last_card">
                             <div class="row">
                                 <div class="col-7">
                                     <h2 class="fs-title">Récap de la souscription</h2>
@@ -358,7 +358,7 @@
                         </div>
                             <div class="row justify-content-center">
                                 <div class="col-7 text-center">
-                                    <input type='submit' class='btn btn-primary submitForm' value='Soumettre' />
+                                   <input type="button" name="previous" class="previous_last action-button-previous" value="Précédent" /> <input type='submit' class='btn btn-primary submitForm' value='Soumettre' />
                                 </div>
                             </div>
                         </div>
