@@ -1,11 +1,28 @@
 <?php
 session_start();
 $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOfBillsNonPaid"] : '';
+if (!empty(Auth::user()->date_activation_code)) $_SESSION['profilNotif'] = 0;
 ?>
 @extends('layouts.app', ['notification' => $notification, 'service' => $_SESSION['current_service'], 'services' => $actived_services, 'profilNotif' => $_SESSION['profilNotif']])
 
 @section('content')
 
+@if(!empty($message))
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+  <strong>Félicitations {{ Auth::user()->first_name }}!</strong> {{ $message }}.
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+@endif
+@if(!empty($error_message))
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  <strong>Oups!</strong> {{ $error_message }}.
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+@endif
 
 <div class="container">
   <div class="row lottie-lines" style="margin-top:4%;">
@@ -182,28 +199,38 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                 @endif
 
                 @if(!isset($_POST['update_phone']))
-                  <form method="post" action="../infos-personnelles/{{ $_SESSION['current_service']}}">
-                    {{csrf_field()}}
                     <div class="col-md-6" style="margin-bottom:10px">
                       <p><strong>T&Eacute;L&Eacute;PHONE</strong></p>
                       <span class="recapData">{{ Auth::user()->phone }}</span>
+                      @if (!empty(Auth::user()->date_activation_code))
+                        <span class="glyphicon glyphicon-ok-circle text-success " style="font-size:15px"></span>
+                      @endif
                       <div class="row">
-                        @if ($_SESSION['profilNotif'] > 0)
-                        <button class="btn btn-success" style="color:white;margin-top:8px">
-                          <span class="glyphicon glyphicon-saved"></span> Vérifier
-                        </button>
-                        <input type="hidden" name="verify_phone" value="yes"/>
+                        @if (empty(Auth::user()->date_activation_code))
+                        <div class="col-md-3">
+                          <form method="post" action="../infos-personnelles/{{ $_SESSION['current_service']}}">
+                            {{csrf_field()}}
+                            <button class="btn btn-success" style="color:white;margin-top:8px">
+                              <span class="glyphicon glyphicon-saved"></span> Vérifier
+                            </button>
+                            <input type="hidden" name="verify_phone" value="yes"/>
+                            <input type="hidden" name="phone" value="{{ Auth::user()->phone }}"/>
+                            <input type="hidden" name="service" value="{{ $_SESSION['current_service'] }}"/>
+                          </form>
+                      </div>
                         @endif
-                        <button style="background:rgba(137,180,213,1);color:white;margin-top:8px" class="btn">
-                          <span class="glyphicon glyphicon-edit"></span> Modifier
-                        </button>
+                        <div class="col-md-3">
+                          <form method="post" action="../infos-personnelles/{{ $_SESSION['current_service']}}">
+                            {{csrf_field()}}
+                            <button style="background:rgba(137,180,213,1);color:white;margin-top:8px" class="btn">
+                              <span class="glyphicon glyphicon-edit"></span> Modifier
+                            </button>
+                            <input type="hidden" name="update_phone" value="true"/>
+                            <input type="hidden" name="service" value="{{ $_SESSION['current_service'] }}"/>
+                          </form>
+                        </div>
                       </div>
                     </div>
-                    @if ($_SESSION['profilNotif'] <= 0)
-                      <input type="hidden" name="update_phone" value="true"/>
-                    @endif
-                    <input type="hidden" name="service" value="{{ $_SESSION['current_service'] }}"/>
-                  </form>
                 @endif
 
                 @if(isset($_POST['update_phone']))
@@ -211,7 +238,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                     {{csrf_field()}}
                     <div class="col-md-6" style="margin-bottom:10px">
                       <p><strong>PHONE:</strong></p>
-                      <input <input pattern="(\+[1-9]{1}[0-9]{3,14}) |([0-9]{9,14})" title="le numéro de téléphone n'est pas valide." class="col-form-label" name="phone" value="{{Auth::user()->phone}}" style="border-bottom:3px solid #084f78 !important">
+                      <input <input pattern="^(?:0|\(?\+33\)?\s?|0033\s?)[1-79](?:[\.\-\s]?\d\d){4}$" title="le numéro de téléphone n'est pas valide." class="col-form-label" name="phone" value="{{Auth::user()->phone}}" style="border-bottom:3px solid #084f78 !important">
                       <div>
                         <button type="submit" name="action_phone" value='save' style="margin-top:8px" class="btn btn-primary">
                           <span class="glyphicon glyphicon-edit"></span> Enregistrer
@@ -266,6 +293,8 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
 </div>
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
+    <form method="POST" action="../infos-personnelles/{{ $_SESSION['current_service']}}">
+      {{csrf_field()}}
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Vérification du numéro de téléphone</h5>
@@ -278,11 +307,14 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-        <button type="button" class="btn btn-primary">Vérifier</button>
+        <button type="submit" class="btn btn-primary">Vérifier</button>
+        <input type="hidden" name="verify" value="yes" />
       </div>
     </div>
+  </form>
   </div>
 </div>
+
 <?php
 
 if($withPopup == "true"){

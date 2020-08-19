@@ -10,13 +10,13 @@ use Illuminate\Support\Facades\DB;
 
 class SmsController extends Controller {
 
-  public function send_activation_code($activation_code){
+  public function send_activation_code($activation_code,$phone){
     $fields = array(
              'apiKey'=> '39c1b91ea0d827b4adebe92e4a027e303e71793d',
-             'phoneNumbers'=> '+221775394047',
+             'phoneNumbers'=> $phone,
              'message'=> 'Bonjour, le code d\'activation est :'.$activation_code,
-             'sender' => 'SENBILL',
-             'sandbox' => 1
+             'sender' => 'SENBILL'
+             //'sandbox' => 1
          );
 
 

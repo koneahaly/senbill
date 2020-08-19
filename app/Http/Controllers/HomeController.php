@@ -66,17 +66,19 @@ class HomeController extends Controller
         //  $billToken=$_GET['token'];
         //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-        if(empty($user->date_activation_code)){
-          $profilNotif = 1;
-          Session::push('profilNotif', $profilNotif);
-        }
-        else{
+        $s=Auth::user()->customerId;
+        $user['user'] = DB::table('users')->where('customerId',$s)->first();
+        $myuser = DB::table('users')->where('customerId',$s)->first();
+
+        if(!empty($myuser->date_activation_code)){
           $profilNotif = 0;
           Session::push('profilNotif', $profilNotif);
         }
+        else{
+          $profilNotif = 1;
+          Session::push('profilNotif', $profilNotif);
+        }
 
-        $s=Auth::user()->customerId;
-        $user['user'] = DB::table('users')->where('customerId',$s)->first();
         $actived_services['actived_services'] = DB::table('services')->where('customerId',$s)->first();
         if(Auth::user()->user_type != 2){
           $numberOfBillsNonPaid = (int)DB::table('bills')->where('customerId',$s)->where('status','!=','paid')->orderBy('id', 'DESC')->count();
@@ -136,7 +138,7 @@ class HomeController extends Controller
 
     }
 
-    public function activate_code(){
+    public function activate_code($phone){
 
       $s=Auth::user()->customerId;
       $activation_code = rand(10000, 99999);
@@ -146,7 +148,7 @@ class HomeController extends Controller
           ->update(['activation_code' => $activation_code]);
 
       $sms = new SmsController();
-      $sms->send_activation_code($activation_code);
+      $sms->send_activation_code($activation_code,$phone);
     }
 
     public function index()
@@ -220,7 +222,7 @@ class HomeController extends Controller
 
       if($given->action_phone == "save"){
         $this->validate($given,[
-          'phone' => 'required|string|string|max:10|unique:users'
+          'phone' => 'required|string|string|max:15|unique:users'
         ]);
         DB::table('users')
             ->where('customerId', $s)
@@ -275,9 +277,23 @@ class HomeController extends Controller
       $actived_services['actived_services'] = DB::table('services')->where('customerId',$s)->first();
       if($request->verify_phone == "yes"){
         $withPopup = "true";
-        $this->activate_code();
+        $this->activate_code($request->phone);
       }
-        return view('infos-personnelles')->with($actived_services)->with(compact('withPopup'));
+      $message = null;
+      $error_message = null;
+      if($request->verify == "yes"){
+        $user = DB::table('users')->where('customerId',$s)->first();
+        if($user->activation_code == $request->verification_code){
+          DB::table('users')
+              ->where('customerId', $s)
+              ->update(['date_activation_code' => now()]);
+          $message = 'Votre numéro de téléphone est maintenant vérifié.';
+        }
+        else{
+          $error_message = 'Echec de la vérification de votre numéro de téléphone.';
+        }
+      }
+        return view('infos-personnelles')->with($actived_services)->with(compact('withPopup'))->with('message',$message)->with('error_message',$error_message);
 
     }
 
