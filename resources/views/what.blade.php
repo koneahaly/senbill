@@ -572,7 +572,7 @@
                     <h2 class="mbr-title pt-2 mbr-fonts-style display-2">
                       Vous êtes une entreprise?
                     </h2>
-                    <a class="btn btn-sm btn-primary display-4" href="http://www.services2sn.com/#contact">
+                    <a class="btn btn-sm btn-primary display-4" href="https://www.services2sn.com/#contact">
                         <span class="mbri-calendar mbr-iconfont mbr-iconfont-btn "></span>
                         Demandez un rdv
                     </a>
@@ -623,7 +623,7 @@
                 </h5>
                 <p class="mbr-text">
                     <a class="text-primary" href="./">SenBill</a>
-                    <br><a class="text-primary" href="www.services2sn.com">Services2sn</a>
+                    <br><a class="text-primary" href="https://www.services2sn.com">Services2sn</a>
 
                 </p>
             </div>

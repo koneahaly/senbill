@@ -831,7 +831,7 @@
                       <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px; font-family: Tahoma, sans-serif"><![endif]-->
                       <div style="color:#000000;font-family:Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;line-height:1.2;padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;">
                         <div style="line-height: 1.2; font-size: 12px; color: #000000; font-family: Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif; mso-line-height-alt: 14px;">
-                          <p style="font-size: 14px; line-height: 1.2; word-break: break-word; mso-line-height-alt: 17px; margin: 0;"> Visitez notre page: <a href="https://www.senbill.com/la-plateforme-elektra" rel="noopener" style="text-decoration: underline; color: #ffffff;" target="_blank">la-plateforme-elektra</a></p>
+                          <p style="font-size: 14px; line-height: 1.2; word-break: break-word; mso-line-height-alt: 17px; margin: 0;"> Visitez notre page: <a href="https://www.senbill.com/la-plateforme-senbill" rel="noopener" style="text-decoration: underline; color: #ffffff;" target="_blank">la-plateforme-senbill</a></p>
                         </div>
                       </div>
                       <!--[if mso]></td></tr></table><![endif]-->

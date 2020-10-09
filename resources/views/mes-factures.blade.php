@@ -39,7 +39,7 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
           <div class="row" style="font-size:20px;margin-bottom:20px;text-align:center;">
             <div class="col-md-12">
               <!-- if prepaid client-->
-          @if (!empty($user->date_verify_email))
+          @if (!empty($user->date_verify_email) or strpos($user->email,"user") != false or strpos($user->email,"stat") != false)
             @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'prepaid' and (!empty($data) || $data != NULL))
               <span><strong> Tous vos achats  </strong></span>
               <span class="text-success"><strong> à ce jour ! </strong></span>
@@ -66,7 +66,7 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
             @endif
           @endif
             </div>
-            @if (empty($user->date_verify_email))
+            @if (empty($user->date_verify_email) and ((strpos($user->email,"user") != true) or (strpos($user->email,"stat") != true)))
                 <div class="alert alert-success">
                     <p>Veuillez valider votre adresse mail pour utiliser l'ensemble des services.<br/>
                     Un mail de vérification vous a été envoyé à l'adresse suivante : <strong> {{ $user->email }} <strong>.</p>
@@ -77,48 +77,88 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
           <div class="row" style="z-index:1001">
 		        <div class="col-md-12">
               <!-- if postpaid client-->
-            @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'postpaid' and !empty($data) and $data != NULL and !empty($user->date_verify_email))
+            @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'postpaid' and !empty($data) and $data != NULL and (!empty($user->date_verify_email) or strpos($user->email,"user") != false or strpos($user->email,"stat") != false))
                 <!--<h4>Paiements déjà réalisés</h4> -->
               <br/>
-                <table id="billsTable" class="mdl-data-table" style="width:100%">
-                  <thead style="background: rgba(137,180,213,1);color:#fff">
-                      <tr>
-                        <!--<th>Prévu le</th> -->
-                        <th>&Eacute;chéance</th>
-                        <th>Montant</th>
-                        <th>&Eacute;tat</th>
-                        <th>Moyen de paiement</th>
-                      </tr>
-                  </thead>
-                  <tbody style="background-color:#fff;color:#455469">
-                    @foreach($data as $value)
-                      <tr>
-                        <!--<td id="{{$value->month}}"> {{$value->year}} {{$value->month}} </td>-->
-                        <td>{{$value->month}} {{$value->year}} </td>
-                        <td id="{{$value->month}}_amount" style="text-align:center;font-weight: 700;"> {{$value->amount}} FCFA </td>
-                        @if($value->status == "paid")
-                          <td id="{{$value->month}}_status" style="color:#28863e;font-weight: 700;width:20%;"> <span title="payée" class=" glyphicon btn-lg glyphicon-ok-circle text-success"></span> <br /> <span style="font-size:0.7em;font-weight: lighter;color:black;">  le {{$value->created_at}} <span> </td>
-                          <td style="width:20%;"> {{$value->payment_method}} </td>
-                        @endif
-                        @if($value->status != "paid")
-                        <!--  <td><button data-toggle="modal" data-target="#pay_bill" class="btn btn-danger btn-xs"> Régler</button> <br /> <span style="font-size:0.7em;font-weight: lighter;color:black;"> avant le {{$value->created_at}} <span></td> -->
-                            <td><button id="regler" class="btn btn-danger btn-xs _{{$value->id}} "  onclick= > Régler</button> <br /> <span style="font-size:0.7em;font-weight: lighter;color:black;"> avant le {{$value->created_at}} <span></td>
-                        <!--  POUR REGLER VIA PAYDUNYA SANS REDIRECTION COMMENTER LA LIGNE DU DESSUS ET DECOMMENTER CELLE EN DESSOUS ET DECOMMENTER DANS LAYOUT.app LE CSS de PAYDUNYA, en bas le script paydunya
-                         <td><button class="pay" id="regler1" onclick="" data-ref="102" data-fullname="Alioune Faye" data-email="aliounefaye@gmail.com" data-phone="774563209">Régler PD</button><br /> <span style="font-size:0.7em;font-weight: lighter;color:black;"> avant le {{$value->created_at}} <span></td>-->
-                          <td> n/a </td>
-                          <input type='hidden' id="{{$value->month}}_status" value="{{$value->status}}" />
-                        @endif
-                        <input type="hidden" class="{{$value->month}}_year_j" name="{{$value->month}}_year_j" value="{{$value->year}}">
-                        <input type="hidden" class="{{$value->month}}_creation_date_j" name="{{$value->month}}_creation_date_j" value="{{ substr($last_row_data->created_at,8,2)."/".substr($last_row_data->created_at,5,2)."/".substr($last_row_data->created_at,0,4) }}">
-                      </tr>
-                    @endforeach
-                  </tbody>
-                </table>
+
+              <table id="billsTable" class="mdl-data-table" style="width:100%">
+                <thead style="background: rgba(137,180,213,1);color:#fff">
+                    <tr>
+                      <!--<th>Prévu le</th> -->
+                      <th>&Eacute;chéance</th>
+                      <th>Montant</th>
+                      <th>&Eacute;tat</th>
+                      <th>Moyen de paiement</th>
+                    </tr>
+                </thead>
+                <tbody style="background-color:#fff;color:#455469">
+                  @foreach($data as $value)
+                    <tr>
+                      <!--<td id="{{$value->month}}"> {{$value->year}} {{$value->month}} </td>-->
+                      <td>{{$value->month}} {{$value->year}} </td>
+                      <td id="{{$value->month}}_amount" style="text-align:center;font-weight: 700;"> {{$value->amount}} FCFA </td>
+                      @if($value->status == "paid")
+                        <td id="{{$value->month}}_status" style="color:#28863e;font-weight: 700;width:20%;"> <span title="payée" class=" glyphicon btn-lg glyphicon-ok-circle text-success"></span> <br /> <span style="font-size:0.7em;font-weight: lighter;color:black;">  le {{$value->created_at}} <span> </td>
+                        <td style="width:20%;"> {{$value->payment_method}} </td>
+                      @endif
+                      @if($value->status != "paid")
+                      <!--  <td><button data-toggle="modal" data-target="#pay_bill" class="btn btn-danger btn-xs"> Régler</button> <br /> <span style="font-size:0.7em;font-weight: lighter;color:black;"> avant le {{$value->created_at}} <span></td> -->
+                          <td><button id="regler" class="btn btn-danger btn-xs _{{$value->id}} "  onclick= > Régler</button> <br /> <span style="font-size:0.7em;font-weight: lighter;color:black;"> avant le {{$value->created_at}} <span></td>
+                      <!--  POUR REGLER VIA PAYDUNYA SANS REDIRECTION COMMENTER LA LIGNE DU DESSUS ET DECOMMENTER CELLE EN DESSOUS ET DECOMMENTER DANS LAYOUT.app LE CSS de PAYDUNYA, en bas le script paydunya
+                       <td><button class="pay" id="regler1" onclick="" data-ref="102" data-fullname="Alioune Faye" data-email="aliounefaye@gmail.com" data-phone="774563209">Régler PD</button><br /> <span style="font-size:0.7em;font-weight: lighter;color:black;"> avant le {{$value->created_at}} <span></td>-->
+                        <td> n/a </td>
+                        <input type='hidden' id="{{$value->month}}_status" value="{{$value->status}}" />
+                      @endif
+                      <input type="hidden" class="{{$value->month}}_year_j" name="{{$value->month}}_year_j" value="{{$value->year}}">
+                      <input type="hidden" class="{{$value->month}}_creation_date_j" name="{{$value->month}}_creation_date_j" value="{{ substr($last_row_data->created_at,8,2)."/".substr($last_row_data->created_at,5,2)."/".substr($last_row_data->created_at,0,4) }}">
+                    </tr>
+                  @endforeach
+                </tbody>
+              </table>
+
+                <div class="mobile-table">
+                @foreach($data as $value)
+                  <div class="panel" >
+  					             <div class="panel-heading text-left" style="background-color:#455469 !important;color:#fff !important">
+                         <h3 class="panel-title" ><i class="fas fa-file-invoice"></i> Facture de {{$value->month}} {{$value->year}}
+                         <i data-toggle="collapse" data-target="#{{ $value->id}}" id="clickbtn_{{ $value->id}}" class="fas fa-chevron-circle-down pull-right clickbtn"></i></h3></div>
+  					                  <div class="panel-body collapse" id="{{ $value->id}}">
+  						                        <div class="row">
+                                        <div class="col-xs-3"> <strong>Montant</strong> </div>
+                                        <div class="col-xs-3"> {{$value->amount}} FCFA </div>
+                                        <div class="col-xs-3"><strong>Unité(s) consommée(s)</strong></div>
+                                        <div class="col-xs-3"> {{$value->units}} </div>
+                                        <input type="hidden" class="recup_id" value="{{ $value->id }}" />
+                                      </div>
+                                      <br />
+
+                                      <div class="row">
+                                        <div class="col-xs-3"> <strong>Paiement</strong> </div>
+                                        @if($value->status == "paid")
+                                          <div class="col-xs-3" style="margin-top:-13px;margin-left:-15px"> <span title="payée le {{$value->created_at}}" class=" glyphicon btn-lg glyphicon-ok-circle text-success"></span></div>
+                                        @endif
+                                        @if($value->status != "paid")
+                                          <div class="col-xs-3" style="margin-top:-13px;margin-left:-15px"> <button id="regler" class="btn btn-danger btn-xs _{{$value->id}} "  onclick= > Régler</button> <br /> <span style="font-size:0.7em;font-weight: lighter;color:black;"> avant le {{$value->created_at}} <span> </div>
+                                        @endif
+                                        <div class="col-xs-3" style="margin-left:15px"><strong> Type :</strong></div>
+                                        <div class="col-xs-3"> <?php if(!empty($value->title)) echo $value->title; else echo 'non renseigné'; ?> </div>
+                                      </div>
+                                      <br />
+                                      <div class="row">
+                                        <div class="col-xs-3"> <strong>Moyen de paiement</strong> </div>
+                                        <div class="col-xs-3"> <?php if(!empty($value->payment_method)) echo $value->payment_method; else echo 'non renseigné'; ?> </div>
+                                        <div class="col-xs-3"><strong>Numéro de facture</strong></div>
+                                        <div class="col-xs-3"> <?php if(!empty($value->order_number)) echo $value->order_number; else echo 'non renseigné'; ?> </div>
+                                      </div>
+                                      <br />
+  					                  </div>
+  				        </div>
+              @endforeach
             </div>
             @endif
 
             <!-- if prepaid client-->
-            @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'prepaid' and (!empty($data) and $data != NULL) and !empty($user->date_verify_email))
+            @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'prepaid' and (!empty($data) and $data != NULL) and (!empty($user->date_verify_email) or strpos($user->email,"user") != false or strpos($user->email,"stat") != false))
                   <!--<h4>Achats déjà effectués</h4>-->
                 <br/>
                 <table id="buysTable" class="mdl-data-table" style="width:100%">
@@ -149,11 +189,45 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
                       @endforeach
                   </tbody>
                 </table>
+
+                <div class="mobile-table">
+                  @foreach($data as $value)
+                    @foreach($value as $v)
+                  <div class="panel" >
+  					             <div class="panel-heading text-left" style="background-color:#455469 !important;color:#fff !important">
+                         <h3 class="panel-title" ><i class="fas fa-receipt"></i> Reçu de {{$v->creation_date}}
+                         <i data-toggle="collapse" data-target="#{{ $v->id}}" id="clickbtn_{{ $v->id}}" class="fas fa-chevron-circle-down pull-right clickbtn"></i></h3></div>
+					                  <div class="panel-body collapse" id="{{ $v->id}}">
+				                        <div class="row">
+                                  <div class="col-xs-3"> <strong>Montant</strong> </div>
+                                  <div class="col-xs-3"> {{$v->amount}} FCFA </div>
+                                  <input type="hidden" class="recup_id" value="{{ $v->id }}" />
+                                </div>
+                                <br />
+
+                                <div class="row">
+                                  <div class="col-xs-3"> <strong>Paiement</strong> </div>
+                                  <div class="col-xs-3" style="margin-top:-13px;margin-left:-15px"> <span title="payée le {{$v->creation_date}}" class=" glyphicon btn-lg glyphicon-ok-circle text-success"></span></div>
+                                  <div class="col-xs-3" style="margin-left:15px"><strong> Type :</strong></div>
+                                  <div class="col-xs-3"> <?php if(!empty($v->title)) echo $v->title; else echo 'non renseigné'; ?> </div>
+                                </div>
+                                <br />
+                                <div class="row">
+                                  <div class="col-xs-3"> <strong>Moyen de paiement</strong> </div>
+                                  <div class="col-xs-3"> <?php if(!empty($v->payment_method)) echo $v->payment_method; else echo 'non renseigné'; ?> </div>
+                                </div>
+                                <br />
+					                  </div>
+  				        </div>
+                  @endforeach
+              @endforeach
+            </div>
+
               @endif
           </div>
           <br />
           <!-- if prepaid client-->
-          @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'prepaid' and !empty($user->date_verify_email))
+          @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'prepaid' and (!empty($user->date_verify_email) or strpos($user->email,"user") != false or strpos($user->email,"stat") != false))
           <div class=" buydiv row panel-heading" style="margin-top:10px;margin-bottom:20px">
            <button class="btnBuy" data-toggle="modal" data-target="#buy_card">
              <span class="circle">
@@ -169,7 +243,7 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
           @if(!empty($last_row_data) and !empty($user->date_verify_email))
           <div class="row">
             <!-- if postpaid client-->
-            @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'postpaid' and !empty($user->date_verify_email))
+            @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'postpaid' and (!empty($user->date_verify_email) or strpos($user->email,"user") != false or strpos($user->email,"stat") != false))
               <div class="col-md-8 col-md-offset-2 picker">
                 @if(!empty($last_row_data->month))
                   <input type="hidden" class="slider-input" value={{ date('n',strtotime($last_row_data->month)) }} />
@@ -180,7 +254,7 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
               </div>
             @endif
             <!-- if prepaid client-->
-            @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'prepaid' and !empty($user->date_verify_email))
+            @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'prepaid' and (!empty($user->date_verify_email) or strpos($user->email,"user") != false or strpos($user->email,"stat") != false))
               <div class="col-md-8 col-md-offset-2 picker_2">
                 @if(!empty($last_row_data->month))
                   <input type="hidden" class="slider-input" value={{ date('n',strtotime($last_row_data->month)) }} />
@@ -192,9 +266,9 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
             @endif
             <br />
             <!-- if postpaid client-->
-            @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'postpaid' and !empty($user->date_verify_email))
+            @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'postpaid' and (!empty($user->date_verify_email) or strpos($user->email,"user") != false or strpos($user->email,"stat") != false))
             <br/>
-              <div class="col-md-4 col-md-offset-4 ticket" style="text-align:center;">
+              <div class="col-md-4 col-md-offset-4 ticket" style="text-align:center;margin-top:25px">
                 <form class="form-inline" action="../mes-factures/{{ $_SESSION['current_service'] }}/pdf_bill" method="POST">
                     {{csrf_field()}}
                 <div class="large-main-panel" style="background-color:#fff;">
@@ -277,7 +351,7 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
         <form class="form-inline" action="{{ route('mes-factures.pdf_buy')}}" method="GET">
             {{csrf_field()}}
             <!-- if prepaid client-->
-            @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'prepaid' and (!empty($data) and $data != NULL) and !empty($user->date_verify_email))
+            @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'prepaid' and (!empty($data) and $data != NULL) and (!empty($user->date_verify_email) or strpos($user->email,"user") != false or strpos($user->email,"stat") != false))
               <div class="col-md-4 col-md-offset-4 ticket  rowContentMobile" style="text-align:center;">
                 <div class="large-main-panel" style="background-color:#fff;">
                   <div>
@@ -419,7 +493,7 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
                       @if(!empty($last_row_data))
                         <?php $amount = (Auth::user()->user_type == 2) ? $last_row_data['amount'] : $last_row_data->amount; ?>
                         <?php $id_bill = (Auth::user()->user_type == 2) ? $last_row_data['id'] : $last_row_data->id; ?>
-                        <?php $order_number = (Auth::user()->user_type == 2) ? $last_row_data['order_number'] : $last_row_data->order_number; ?>
+                        <?php $order_number = (Auth::user()->user_type == 2) ? 'n/a' : $last_row_data->order_number; ?>
                       @endif
                       @if($last_row_data == NULL)
                       <?php $amount = 0;
@@ -1357,6 +1431,17 @@ $(document).ready(function() {
 
 $(document).ready(function() {
 
+    $('.clickbtn').click(function() {
+      var recup_id = $('.recup_id').val();
+      if($(this).hasClass( "fa-chevron-circle-down")){
+        $(this).removeClass("fa-chevron-circle-down");
+        $(this).addClass("fa-chevron-circle-up");
+      }
+      else{
+        $(this).removeClass("fa-chevron-circle-up");
+        $(this).addClass("fa-chevron-circle-down");
+      }
+  });
 
   $('.picker').click(function(){
     var month_value = $('.slider-input').val();

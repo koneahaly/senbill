@@ -22,6 +22,7 @@ if(!empty($raw_woyofal_users_demo) and !empty($raw_classical_users_demo)){
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
     <head>
+      <script src='https://www.google.com/recaptcha/api.js'></script>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -61,7 +62,7 @@ if(!empty($raw_woyofal_users_demo) and !empty($raw_classical_users_demo)){
           <ul class="s2sn-navbar">
               <li><a class="s2sn-header-link" href=".">ACCUEIL &nbsp</a></li>
               <li><a class="s2sn-header-link" href="https://www.services2sn.com" target="blank">QUI SOMMES-NOUS &nbsp </a></li>
-              <li><a class="s2sn-header-link" href="{{ route('what') }}">LA PLATEFORME ELEKTRA &nbsp </a></li>
+              <li><a class="s2sn-header-link" href="{{ route('what') }}">LA PLATEFORME SENBILL &nbsp </a></li>
               <li><a class="s2sn-header-link" href="{{ route('register') }}">S'INSCRIRE</a></li>
           </ul>
       </div>
@@ -78,7 +79,7 @@ if(!empty($raw_woyofal_users_demo) and !empty($raw_classical_users_demo)){
                  <ul class="navbar-nav">
                       <li class="nav-item"><a class="nav-link" href=".">ACCUEIL</a></li>
                      <li class="nav-item"><a class="nav-link" href="www.services2sn.com">QUI SOMMES-NOUS</a></li>
-                     <li class="nav-item"><a class="nav-link" href="{{ route('what') }}">LA PLATEFORME ELEKTRA</a></li>
+                     <li class="nav-item"><a class="nav-link" href="{{ route('what') }}">LA PLATEFORME SENBILL</a></li>
                      <li class="nav-item"><a class="nav-link" href="{{ route('register') }}" >S'INSCRIRE</a></li>
 
 
@@ -127,7 +128,17 @@ if(!empty($raw_woyofal_users_demo) and !empty($raw_classical_users_demo)){
                      </div>
                 </div>
              </div>
+
+             <div id="captcha" class="captcha-verif">
+               <div class="g-recaptcha" data-sitekey="6LdfdNUZAAAAAJlzQvySC5f86LvXR7agH34qS9As"></div>
+               <div id="error" class="left red-text text-darken-2" style="display: none">
+               Veuillez cliquer sur le Captcha, merci.
+               </div>
+             </div>
+
             </form>
+
+
             <div>
               <a style="color:white;font-weight:bold;" class="btn btn-link" href="{{ route('password.request') }}">
                   Mot de passe oublié?
@@ -146,14 +157,14 @@ if(!empty($raw_woyofal_users_demo) and !empty($raw_classical_users_demo)){
                      </button>
                  </div>
                  <div class="modal-body">
-                         <p class="s2sn-modal-title">Qu'est-ce que la plateforme Elektra?</p>
-                         <p class="s2sn-modal-text">Elektra est une plateforme d'accès unique à vos paiements et factures de plusieurs établissements</p>
+                         <p class="s2sn-modal-title">Qu'est-ce que la plateforme Senbill?</p>
+                         <p class="s2sn-modal-text">Senbill est une plateforme d'accès unique à vos paiements et factures de plusieurs établissements</p>
 
-                         <p class="s2sn-modal-title">Comment accéder à Elektra?</p>
+                         <p class="s2sn-modal-title">Comment accéder à Senbill?</p>
                          <p class="s2sn-modal-text">Vous pouvez vous connecter avec vos identifiants et accéder aux services auxquels vous vous êtes abonnés.  Si vous n'avez pas de compte, vous pouvez en créer via le lien <strong>s'inscrire</strong> </p>
 
-                         <p class="s2sn-modal-title">Combien me coûte l'utilisation d'Elektra?</p>
-                         <p class="s2sn-modal-text">Elektra inclut des achats intégrés (cartes, factures...) mais son utilisation est complètement gratuite</p>
+                         <p class="s2sn-modal-title">Combien me coûte l'utilisation de Senbill?</p>
+                         <p class="s2sn-modal-text">Senbill inclut des achats intégrés (cartes, factures...) mais son utilisation est complètement gratuite</p>
 
                          <p class="s2sn-modal-title">Que puis-je faire lorsque je n'arrive pas à me connecter?</p>
                          <p class="s2sn-modal-text">Dans ce cas, vos identifiants sont certainement incorrects, vous pouvez les resaisir ou récupérer votre mot de passe. En cas de porblèmes, contactez le service client Services2sn</p>
@@ -181,7 +192,7 @@ if(!empty($raw_woyofal_users_demo) and !empty($raw_classical_users_demo)){
                   </div>
 
                   <div class="col-9">
-                    <p>Vous pouvez explorer la plateforme Elektra en vous connectant en tant qu'utilisateur démo.
+                    <p>Vous pouvez explorer la plateforme Senbill en vous connectant en tant qu'utilisateur démo.
                     </p>
                     <p>
                       <strong>Copiez les identifiants de connexion suivants et les utiliser pour vous connecter. Merci de les noter puisque l'identifiant sera unique et ne peut être généré qu'

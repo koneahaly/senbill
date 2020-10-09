@@ -19,7 +19,7 @@ Auth::routes();
 
 
 Route::get('/qui-sommes-nous', 'WhoController@display_who')->name('who');
-Route::get('/la-plateforme-elektra', 'WhatController@display_what')->name('what');
+Route::get('/la-plateforme-senbill', 'WhatController@display_what')->name('what');
 Route::get('/mes-factures/{id?}', 'HomeController@display_bills')->name('mes-factures');
 Route::post('/mes-factures/{id?}', 'HomeController@display_bills')->name('mes-factures');
 Route::get('/mes-services/{id?}', 'HomeController@display_services')->name('platform');

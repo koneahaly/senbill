@@ -74,6 +74,7 @@ html, body {
     font-size:15px;
 }
 
+
 .form-present {
     margin-top:16px;
 }
@@ -601,12 +602,24 @@ background: linear-gradient(90deg, rgba(49,140,231,1) 0%, rgba(137,180,213,1) 50
   .registerPanel {
    margin-top: 20% !important;
   }
+  .mobile-table{
+    display: none;
+  }
 }
 @media all and (max-width: 1300px) {
   .s2sn-navbar-elektra {
    margin-left: 37%;
   }
 }
+
+@media all and (min-width: 1000px) {
+  .mobile-table{
+    display: none;
+  }
+}
+
+
+
 @media all and (max-width: 1200px) {
   .s2sn-navbar-elektra {
    margin-left: 20%;
@@ -616,11 +629,15 @@ background: linear-gradient(90deg, rgba(49,140,231,1) 0%, rgba(137,180,213,1) 50
   .s2sn-navbar-elektra {
    margin-left: 10%;
   }
+  .mdl-data-table, .dataTables_filter, .dataTables_paginate{
+    display: none;
+  }
 }
 @media all and (max-width: 790px) {
   .s2sn-navbar-elektra {
    margin-left: 1%;
   }
+
 }
 
 .space-logo{
@@ -664,6 +681,9 @@ background: linear-gradient(90deg, rgba(49,140,231,1) 0%, rgba(137,180,213,1) 50
   }
   .space-logo-tv{
     margin-left: -32%;
+  }
+  .mobile-table{
+    display: none;
   }
 }
 @media all and (max-width: 1280px){
@@ -725,7 +745,9 @@ background: linear-gradient(90deg, rgba(49,140,231,1) 0%, rgba(137,180,213,1) 50
   .contractContentMobile{
    margin-bottom: 72px !important;
   }
-
+  .mdl-data-table, .dataTables_filter, .dataTables_paginate{
+    display: none;
+  }
 
 }
 
@@ -738,6 +760,7 @@ background: linear-gradient(90deg, rgba(49,140,231,1) 0%, rgba(137,180,213,1) 50
   .contractContentMobile{
    margin-bottom: 72px !important;
   }
+
 
 }
 
@@ -1310,7 +1333,6 @@ background: linear-gradient(90deg, rgba(49,140,231,1) 0%, rgba(137,180,213,1) 50
       box-shadow: 0 0 0 1px rgba(255,255,255,.35) inset;
     }
 
-
 }
 
 .form-image{
@@ -1326,6 +1348,9 @@ background: linear-gradient(90deg, rgba(49,140,231,1) 0%, rgba(137,180,213,1) 50
     }
     .form-image{
         margin-left:0%;
+    }
+    .mdl-data-table, .dataTables_filter, .dataTables_paginate{
+      display: none;
     }
 }
 @media (max-height: 767px) {
@@ -1345,11 +1370,17 @@ background: linear-gradient(90deg, rgba(49,140,231,1) 0%, rgba(137,180,213,1) 50
     .s2sn-store-buttons img {
         margin-bottom:16px;
     }
+    .mdl-data-table, .dataTables_filter, .dataTables_paginate{
+      display: none;
+    }
 }
 @media (max-width: 375px) {
     .s2sn-wrapper-center {
         margin-top:90px;
         margin-bottom:90px;
+    }
+    .mdl-data-table, .dataTables_filter, .dataTables_paginate{
+      display: none;
     }
 }
 
