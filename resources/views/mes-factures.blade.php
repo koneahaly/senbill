@@ -66,7 +66,7 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
             @endif
           @endif
             </div>
-            @if (empty($user->date_verify_email) and ((strpos($user->email,"user") != true) or (strpos($user->email,"stat") != true)))
+            @if (empty($user->date_verify_email) and ((strpos($user->email,"user") === false) and (strpos($user->email,"stat") === false)))
                 <div class="alert alert-success">
                     <p>Veuillez valider votre adresse mail pour utiliser l'ensemble des services.<br/>
                     Un mail de vérification vous a été envoyé à l'adresse suivante : <strong> {{ $user->email }} <strong>.</p>
@@ -77,7 +77,7 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
           <div class="row" style="z-index:1001">
 		        <div class="col-md-12">
               <!-- if postpaid client-->
-            @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'postpaid' and !empty($data) and $data != NULL and (!empty($user->date_verify_email) or strpos($user->email,"user") != false or strpos($user->email,"stat") != false))
+            @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'postpaid' and !empty($data) and $data != NULL and (!empty($user->date_verify_email) or strpos($user->email,"user") === 0 or strpos($user->email,"stat") === 0))
                 <!--<h4>Paiements déjà réalisés</h4> -->
               <br/>
 
@@ -158,7 +158,7 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
             @endif
 
             <!-- if prepaid client-->
-            @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'prepaid' and (!empty($data) and $data != NULL) and (!empty($user->date_verify_email) or strpos($user->email,"user") != false or strpos($user->email,"stat") != false))
+            @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'prepaid' and (!empty($data) and $data != NULL) and (!empty($user->date_verify_email) or strpos($user->email,"user") === 0 or strpos($user->email,"stat") === 0))
                   <!--<h4>Achats déjà effectués</h4>-->
                 <br/>
                 <table id="buysTable" class="mdl-data-table" style="width:100%">
@@ -227,7 +227,7 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
           </div>
           <br />
           <!-- if prepaid client-->
-          @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'prepaid' and (!empty($user->date_verify_email) or strpos($user->email,"user") != false or strpos($user->email,"stat") != false))
+          @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'prepaid' and (!empty($user->date_verify_email) or strpos($user->email,"user") === 0 or strpos($user->email,"stat") === 0))
           <div class=" buydiv row panel-heading" style="margin-top:10px;margin-bottom:20px">
            <button class="btnBuy" data-toggle="modal" data-target="#buy_card">
              <span class="circle">
@@ -243,7 +243,7 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
           @if(!empty($last_row_data) and !empty($user->date_verify_email))
           <div class="row">
             <!-- if postpaid client-->
-            @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'postpaid' and (!empty($user->date_verify_email) or strpos($user->email,"user") != false or strpos($user->email,"stat") != false))
+            @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'postpaid' and (!empty($user->date_verify_email) or strpos($user->email,"user") === 0 or strpos($user->email,"stat") === 0))
               <div class="col-md-8 col-md-offset-2 picker">
                 @if(!empty($last_row_data->month))
                   <input type="hidden" class="slider-input" value={{ date('n',strtotime($last_row_data->month)) }} />
@@ -254,7 +254,7 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
               </div>
             @endif
             <!-- if prepaid client-->
-            @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'prepaid' and (!empty($user->date_verify_email) or strpos($user->email,"user") != false or strpos($user->email,"stat") != false))
+            @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'prepaid' and (!empty($user->date_verify_email) or strpos($user->email,"user") === 0 or strpos($user->email,"stat") === 0))
               <div class="col-md-8 col-md-offset-2 picker_2">
                 @if(!empty($last_row_data->month))
                   <input type="hidden" class="slider-input" value={{ date('n',strtotime($last_row_data->month)) }} />
@@ -266,7 +266,7 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
             @endif
             <br />
             <!-- if postpaid client-->
-            @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'postpaid' and (!empty($user->date_verify_email) or strpos($user->email,"user") != false or strpos($user->email,"stat") != false))
+            @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'postpaid' and (!empty($user->date_verify_email) or strpos($user->email,"user") === 0 or strpos($user->email,"stat") === 0))
             <br/>
               <div class="col-md-4 col-md-offset-4 ticket" style="text-align:center;margin-top:25px">
                 <form class="form-inline" action="../mes-factures/{{ $_SESSION['current_service'] }}/pdf_bill" method="POST">
@@ -351,7 +351,7 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
         <form class="form-inline" action="{{ route('mes-factures.pdf_buy')}}" method="GET">
             {{csrf_field()}}
             <!-- if prepaid client-->
-            @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'prepaid' and (!empty($data) and $data != NULL) and (!empty($user->date_verify_email) or strpos($user->email,"user") != false or strpos($user->email,"stat") != false))
+            @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'prepaid' and (!empty($data) and $data != NULL) and (!empty($user->date_verify_email) or strpos($user->email,"user") === 0 or strpos($user->email,"stat") === 0))
               <div class="col-md-4 col-md-offset-4 ticket  rowContentMobile" style="text-align:center;">
                 <div class="large-main-panel" style="background-color:#fff;">
                   <div>
@@ -424,7 +424,7 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
 
                     <h3 class="panel-title display-td" > Details de paiement par CB</h3>
                     <div class="display-td" >
-                    <img class="img-responsive pull-right" src="http://i76.imgup.net/accepted_c22e0.png">
+                    <img class="img-responsive pull-right" src="https://i76.imgup.net/accepted_c22e0.png">
                     </div>
                     </div>
                     </div>
@@ -1009,7 +1009,7 @@ if($i == $limit){
 
               <h3 class="panel-title display-td" > Details de paiement par CB</h3>
               <div class="display-td" >
-              <img class="img-responsive pull-right" src="http://i76.imgup.net/accepted_c22e0.png">
+              <img class="img-responsive pull-right" src="https://i76.imgup.net/accepted_c22e0.png">
               </div>
               </div>
               </div>
@@ -1364,7 +1364,7 @@ $(document).ready(function() {
 
         PayDunya.setup({
             selector: $('#regler1'),
-            url: "http://localhost:8000/mes-factures/tv/paydunya-api",
+            url: "https://localhost:8000/mes-factures/tv/paydunya-api",
             method: "GET",
             displayMode: PayDunya.DISPLAY_IN_POPUP,
             beforeRequest: function() {

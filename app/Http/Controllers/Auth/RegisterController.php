@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Storage;
 use Illuminate\Mail\Mailable;
 use Illuminate\Support\Facades\DB;
+use App\Rules\Captcha;
 //use Faker\Factory;
 //use fzaninotto\faker;
 
@@ -65,6 +66,7 @@ class RegisterController extends Controller
             'address' =>'required|string|max:255',
             'password' => 'required|string|min:6|confirmed',
             'first_name' => 'required|string|max:255',
+            'g-recaptcha-response' => new Captcha(),
         ]);
     }
 
@@ -86,8 +88,8 @@ class RegisterController extends Controller
            'service_4' => (!empty($data['service_4'])) ? $data['service_4'] : 'NULL',
            'service_5' => (!empty($data['service_5'])) ? $data['service_5'] : 'NULL',
            'service_6' => (!empty($data['service_6'])) ? $data['service_6'] : 'NULL',
-           'service_7' => (!empty($data['service_5'])) ? $data['service_5'] : 'NULL',
-           'service_8' => (!empty($data['service_6'])) ? $data['service_6'] : 'NULL',
+           'service_7' => (!empty($data['service_7'])) ? $data['service_7'] : 'NULL',
+           'service_8' => (!empty($data['service_8'])) ? $data['service_8'] : 'NULL',
        ]);
 
           if($in_elektra > 0){

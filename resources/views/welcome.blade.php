@@ -131,8 +131,8 @@ if(!empty($raw_woyofal_users_demo) and !empty($raw_classical_users_demo)){
 
              <div id="captcha" class="captcha-verif">
                <div class="g-recaptcha" data-sitekey="6LdfdNUZAAAAAJlzQvySC5f86LvXR7agH34qS9As"></div>
-               <div id="error" class="left red-text text-darken-2" style="display: none">
-               Veuillez cliquer sur le Captcha, merci.
+               <div id="error" class="left red-text text-darken-2" style="color: red;font-size:12px">
+               {{ $errors->first('g-recaptcha-response') }}.
                </div>
              </div>
 

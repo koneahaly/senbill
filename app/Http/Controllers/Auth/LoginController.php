@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\Rules\Captcha;
 
 class LoginController extends Controller
 {

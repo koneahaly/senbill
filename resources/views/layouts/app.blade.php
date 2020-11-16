@@ -15,6 +15,7 @@
        // Notice how this gets configured before we load Font Awesome
        window.FontAwesomeConfig = { autoReplaceSvg: false }
   </script>
+  <script src='https://www.google.com/recaptcha/api.js'></script>
   <script src="{!! mix('js/app.js') !!}"></script>
   @yield('scripts')
 

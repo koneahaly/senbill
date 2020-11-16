@@ -355,7 +355,19 @@
                             </div>
 
                             </div>
+
                         </div>
+                        <div class="row justify-content-center" style="margin-left:30%">
+                            <div class="col-7 text-center">
+                              <div id="captcha" class="row captcha-verif">
+                                <div class="g-recaptcha" data-sitekey="6LdfdNUZAAAAAJlzQvySC5f86LvXR7agH34qS9As"></div>
+                                <div id="error" class="left red-text text-darken-2" style="color: red;font-size:12px">
+                                {{ $errors->first('g-recaptcha-response') }}.
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <br />
                             <div class="row justify-content-center">
                                 <div class="col-7 text-center">
                                    <input type="button" name="previous" class="previous_last action-button-previous" value="Précédent" /> <input type='submit' class='btn btn-primary submitForm' value='Soumettre' />
