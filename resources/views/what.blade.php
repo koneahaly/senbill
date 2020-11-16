@@ -315,7 +315,7 @@
           <div class="row justify-content-md-center">
               <div class="col-md-10">
                   <h2 class="mbr-section-title align-center mbr-bold pb-3 mbr-fonts-style" style="margin: 0 0 25px;font-size: 3rem;">
-                      Toutes les factures en une plateforme
+                      Toutes vos factures en une plateforme
                   </h2>
                   <p class="mbr-text align-center pb-3 mbr-fonts-style display-6">
                       SenBill simplifie les paiements de vos factures au Sénégal et en Afrique. Dîtes adieu aux factures impayées ou oubliées.
@@ -355,7 +355,7 @@
                         Votre entreprise est gratuitement intégrée
                     </h4>
                     <p class="mbr-text mbr-fonts-style display-7">
-                       SenBill offre un onboarding spécialement conçu pour votre entreprise sans coût. Démarquez vous,  contactez nous et devenez notre partenaire et laissez SenBill apporter de la valeur à votre business.
+                       SenBill offre un onboarding spécialement conçu pour votre entreprise sans coût. Démarquez vous,  contactez nous, devenez notre partenaire et laissez SenBill apporter de la valeur à votre business.
                     </p>
                 </div>
             </div>
@@ -383,7 +383,7 @@
                         Vos clients sont notifiés ou relancés si nécessaire
                     </h4>
                     <p class="mbr-text mbr-fonts-style display-7">
-                       Les clients peuvent suivre leurs factures et sont notifiés des factures impayés. SenBill offre aussi la possibilité de mettre en place des paiements récurrents. Plus d'excuses pour justifier une facture impayée.
+                       Les clients peuvent suivre leurs factures et sont notifiés des factures impayées. SenBill offre aussi la possibilité de mettre en place des paiements récurrents. Plus d'excuses pour justifier une facture impayée.
                     </p>
                 </div>
             </div>
@@ -410,7 +410,7 @@
                 </div>
                 <div class=" align-left aside-content">
                     <h2 class="mbr-title pt-2 mbr-fonts-style display-2">
-                      Spécialement adapté à votre entreprise
+                      Spécialement adaptée à votre entreprise
                     </h2>
                     <div class="mbr-section-text">
                         <p class="mbr-text mb-5 pt-3 mbr-light mbr-fonts-style display-5">
@@ -452,7 +452,7 @@
 
                             <div class="card-box">
                                 <p class="block-text mbr-fonts-style display-7">
-                                    La collecte de vos paiements est facilité grâce aux moyens de paiement locaux déjà intégrés dans l'espace du client. Le processus de paiement
+                                    La collecte de vos paiements est facilitée grâce aux moyens de paiement locaux déjà intégrés dans l'espace du client. Le processus de paiement
                                     est transparent pour vous, vous ne gérez plus qu'un tableau de bord pour tous vos paiements.
                                 </p>
                             </div>
@@ -477,13 +477,13 @@
                   <strong style="font-weight: 500;">Un</strong> compte, <br/> <strong style="font-weight: 500;">Plusieurs</strong> services
                 </h2>
                 <p class="mbr-text testimonial-text mbr-fonts-style display-7">
-                   L'inscription ne prend que 3 minutes et l'application est simple à utiliser. Vous pouvez retrouver toutes vos factures  en une seule application.
+                   L'inscription ne prend que 3 minutes et l'application est simple à utiliser. Vous pouvez retrouver toutes vos factures en une seule application.
                 </p>
                 <p class="mbr-author-name pt-4 mb-2 mbr-fonts-style display-7">
 
                 </p>
                 <p class="mbr-author-desc mbr-fonts-style display-7">
-                   A chaque service, son espace dédiée.
+                   A chaque service, son espace dédié.
                 </p>
             </div>
 
@@ -612,7 +612,7 @@
                     Contacts
                 </h5>
                 <p class="mbr-text">
-                    Site web: www.services2sn.com
+                    Site web: https://www.services2sn.com
                     <br>Phone: +33 (0) 6 25 32 54 45
 
                 </p>
