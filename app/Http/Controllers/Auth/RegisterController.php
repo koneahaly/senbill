@@ -216,12 +216,12 @@ class RegisterController extends Controller
          ]);
     }
 
-    public function verify_email(Request $request){
+    /*public function verify_email(Request $request){
       $mail_to_verify =explode('/',$_SERVER['REQUEST_URI']);
       DB::table('users')
           ->where('email', $mail_to_verify[2])
           ->update(['date_verify_email' => now()]);
-    }
+    }*/
 
     public function create_users_demo() {
 

@@ -54,7 +54,7 @@ else{
 if(myPasswordConfirm != myPassword){
   $('#password-confirm').css("border","1px solid red");
   $("#password-confirm")
-        .popover({content: "Les deux mots de passe ne sont pas identiques.",placement:'top' });
+        .popover({content: "Les deux mots de passe ne sont pas identiques ("+myPasswordConfirm+ " # "+myPassword+").",placement:'top' });
   $("#password-confirm").popover('show');
   $("#password-confirm").blur(function(){
     $("#password-confirm").popover('hide');

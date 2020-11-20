@@ -91,6 +91,7 @@ class MailController extends Controller {
       DB::table('users')
           ->where('email', $mail_to_verify[2])
           ->update(['date_verify_email' => now()]);
+          return view('verify-email');
     }
 
 }
