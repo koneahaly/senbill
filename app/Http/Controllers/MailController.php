@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\User;
 use Mail;
 
 use App\Http\Requests;
@@ -83,4 +85,12 @@ class MailController extends Controller {
       });
       echo "Email Sent with attachment. Check your inbox.";
    }
+
+   public function verify_email(Request $request){
+      $mail_to_verify =explode('/',$_SERVER['REQUEST_URI']);
+      DB::table('users')
+          ->where('email', $mail_to_verify[2])
+          ->update(['date_verify_email' => now()]);
+    }
+
 }

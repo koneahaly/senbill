@@ -116,7 +116,7 @@
 </head>
 <body class="clean-body" style="margin: 0; padding: 0; -webkit-text-size-adjust: 100%; background-color: #e0e5eb;">
   <!--[if IE]><div class="ie-browser"><![endif]-->
-<a href="http://127.0.0.1:8000/verify-email/<?php echo $email; ?>"> cliquez sur ce lien pour vérifier votre adresse mail.</a>
+<a href="http://<?php env('APP_URL');?>/verify-email/<?php echo $email; ?>"> cliquez sur ce lien pour vérifier votre adresse mail.</a>
   <!--[if (IE)]></div><![endif]-->
 </body>
 </html>
