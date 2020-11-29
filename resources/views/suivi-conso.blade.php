@@ -59,25 +59,40 @@ $dataPoints4 = array(
 );
 
 ?>
-@extends('layouts.app', ['notification' => $notification, 'service' => $_SESSION['current_service'], 'services' => $actived_services, 'profilNotif' => $_SESSION['profilNotif']])
+@extends('layouts.appv2', ['notification' => $notification, 'service' => $_SESSION['current_service'], 'services' => $actived_services, 'profilNotif' => $_SESSION['profilNotif']])
 <link rel="stylesheet" type="text/css" href="{{url('css/nv.d3.css')}}">
 @section('content')
 
-<div class="container">
-  <div class="row rowmobile" style="margin-top:14%;z-index: 1100;">
-  <div class="col-md-12" style="margin-top:10px;margin-bottom:20px;text-align:center;">
-   <h3><strong>Mon Suivi de consommation</strong></h3>
-  </div>
-  </div>
-  <lottie-player src="{{url('images/lottie/bubble.json')}}" class="lottie-bubbles" background="transparent"  speed="1"  style="width: 80px; height: 80px; position:absolute;z-index:1000;margin-left:-8%;margin-top: 15%;"  loop  autoplay></lottie-player>
-  <lottie-player src="{{url('images/lottie/bubble.json')}}" class="lottie-bubbles" background="transparent"  speed="1"  style="width: 100px; height: 100px; position:absolute;z-index:1000;margin-left:80%;margin-top: -1.5%;"  loop  autoplay></lottie-player>
-  <lottie-player src="{{url('images/lottie/bubble.json')}}" class="lottie-bubbles" background="transparent"  speed="1"  style="width: 60px; height: 60px; position:absolute;z-index:1000;margin-left:1%;margin-top: -2%;"  loop  autoplay></lottie-player>
-  <div class="row rowContentMobile">
-    <div id="chart11" style="height: 70%; width: 80%; z-index:1100;margin-left:10%" class="col-md-11 offset-md-2">
-      <svg></svg>
+<div class="container-fluid page-body-wrapper">
+    <div class="main-panel">
+      <div class="content-wrapper">
+        <div class="col-lg-12 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body" style="text-align:center">
+              <h4 class="card-title" >Mon Suivi de consommation</h4>
+              </div>
+            </div>
+          </div>
+          <div id="chart11" style="background: white;height: 700px;" class="col-lg-12 grid-margin stretch-card">
+            <svg></svg>
+          </div>
+        </div>
+
+      </div>
+      <!-- content-wrapper ends   -->
+
+      <!-- partial   -->
+</div>
+<!-- partial:partials/_footer.html   -->
+<footer class="footer">
+  <div class="footer-wrap">
+    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+      <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © services2sn 2020</span>
+      <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Solution de <a href="https://www.services2sn.com/" target="_blank">Services2sn.com</a></span>
     </div>
   </div>
-</div>
+</footer>
+
 @endsection
 
 @section('scripts')
@@ -124,7 +139,6 @@ nv.addGraph(function() {
           ]
           )
         .call(chart);
-
     nv.utils.windowResize(chart.update);
 
     return chart;

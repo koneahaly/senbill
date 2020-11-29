@@ -1,0 +1,313 @@
+<?php
+session_start();
+$notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOfBillsNonPaid"] : '';
+?>
+
+
+<?php $__env->startSection('content'); ?>
+
+
+<div class="container">
+  <div class="row lottie-lines" style="margin-top:4%;">
+      <lottie-player src="<?php echo e(url('images/lottie/lines.json')); ?>"  background="transparent"  speed="0.1"  style="width: 500px; height: 500px; position:absolute;z-index:1000;margin-left:-20%;margin-top: 2.5%;"  loop  autoplay></lottie-player>
+      <lottie-player src="<?php echo e(url('images/lottie/lines.json')); ?>"  background="transparent"  speed="0.1"  style="width: 500px; height: 500px; position:absolute;z-index:1000;margin-left:66%;margin-top: 2.5%;"  loop  autoplay></lottie-player>
+  </div>
+  <div class="row rowmobile" style="margin-top:10%;z-index: 1100;">
+  <div class="col-md-12" style="margin-top:10px;margin-bottom:20px;text-align:center;">
+   <h3><strong>Mes services</strong></h3></div>
+  </div>
+  <lottie-player src="<?php echo e(url('images/lottie/bubble.json')); ?>" class="lottie-bubbles" background="transparent"  speed="1"  style="width: 80px; height: 80px; position:absolute;z-index:1000;margin-left:-8%;margin-top: 15%;"  loop  autoplay></lottie-player>
+  <lottie-player src="<?php echo e(url('images/lottie/bubble.json')); ?>" class="lottie-bubbles" background="transparent"  speed="1"  style="width: 100px; height: 100px; position:absolute;z-index:1000;margin-left:80%;margin-top: -1.5%;"  loop  autoplay></lottie-player>
+  <lottie-player src="<?php echo e(url('images/lottie/bubble.json')); ?>" class="lottie-bubbles" background="transparent"  speed="1"  style="width: 60px; height: 60px; position:absolute;z-index:1000;margin-left:1%;margin-top: -2%;"  loop  autoplay></lottie-player>
+    <div class="row rowContentMobile" style="margin-top:50px">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="panel panel-default personalInfoPanel">
+                <div class="panel-body">
+                    <?php if(session('status')): ?>
+                        <div class="alert alert-success">
+                            <?php echo e(session('status')); ?>
+
+                        </div>
+                    <?php endif; ?>
+                    <form id="msform" class="form-horizontal" method="POST" action="../infos-services/$_SESSION['current_service']/update">
+                      <?php echo e(csrf_field()); ?>
+
+                      <fieldset class="f3">
+                          <div class="form-card">
+                              <div class="row">
+                                  <div class="col-7">
+                                      <img alt="" class="form-image" src="<?php echo e(url('images/undraw_location_review_dmxd.png')); ?>" height="270px" width="318px" data-component="image">
+
+                                  </div>
+                                  <div class="col-5">
+                                      <!-- <h2 class="steps">Step 3 - 4</h2> -->
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="radio-group row justify-content-between px-3" style="margin-left: 10%;">
+                             <div class="card-block card-body selectRegister1 <?php echo e((empty($actived_services->service_1) || $actived_services->service_1 == 'NULL') ? '' : 'selected'); ?>">
+                                 <div class="row justify-content-end d-flex px-3">
+                                     <div class="fa fa-<?php echo e((empty($actived_services->service_1) || $actived_services->service_1 == 'NULL') ? 'circle' : 'check'); ?>"></div>
+                                 </div>
+                                 <div class="row justify-content-center d-flex">
+                                     <div class="pic"> <i class="fas fa-faucet fa-5x pic-0" style="margin-left:25%;"></i> </div>
+                                     <h5 class="mb-4" style="color:black;text-align:center;">Eau</h5>
+                                 </div>
+                                 <?php if(!empty($actived_services->service_1) && $actived_services->service_1 != 'NULL'): ?>
+                                  <input class='service_1' type='hidden' name='service_1' value='eau' />
+                                  <?php endif; ?>
+                             </div>
+                             <div class="card-block card-body selectRegister2 <?php echo e((empty($actived_services->service_2) || $actived_services->service_2 == 'NULL') ? '' : 'selected'); ?>">
+                                 <div class="row justify-content-end d-flex px-3">
+                                     <div class="fa fa-<?php echo e((empty($actived_services->service_2) || $actived_services->service_2 == 'NULL') ? 'circle' : 'check'); ?>"></div>
+                                 </div>
+                                 <div class="row justify-content-center d-flex">
+                                     <div class="pic"> <i class="fas fa-plug fa-5x pic-0" style="margin-left:25%;"></i> </div>
+                                     <h5 class="mb-4" style="color:black;text-align:center;">Electricité</h5>
+                                 </div>
+                                 <?php if(!empty($actived_services->service_2) && $actived_services->service_2 != 'NULL'): ?>
+                                  <input class='service_2' type='hidden' name='service_2' value='electricite' />
+                                  <?php endif; ?>
+                             </div>
+                             <div class="card-block card-body selectRegister3 <?php echo e((empty($actived_services->service_3) || $actived_services->service_3 == 'NULL') ? '' : 'selected'); ?>">
+                                 <div class="row justify-content-end d-flex px-3">
+                                     <div class="fa fa-<?php echo e((empty($actived_services->service_3) || $actived_services->service_3 == 'NULL') ? 'circle' : 'check'); ?>"></div>
+                                 </div>
+                                 <div class="row justify-content-center d-flex">
+                                     <div class="pic"> <i class="fas fa-tv fa-5x pic-0" style="margin-left:25%;"></i> </div>
+                                     <h5 class="mb-4" style="color:black;text-align:center;">Television</h5>
+                                 </div>
+                                 <?php if(!empty($actived_services->service_3) && $actived_services->service_3 != 'NULL'): ?>
+                                  <input class='service_3' type='hidden' name='service_3' value='tv' />
+                                  <?php endif; ?>
+                             </div>
+                             <div class="card-block card-body selectRegister4 <?php echo e((empty($actived_services->service_4) || $actived_services->service_4 == 'NULL') ? '' : 'selected'); ?>">
+                                 <div class="row justify-content-end d-flex px-3">
+                                     <div class="fa fa-<?php echo e((empty($actived_services->service_4) || $actived_services->service_4 == 'NULL') ? 'circle' : 'check'); ?>"></div>
+                                 </div>
+                                 <div class="row justify-content-center d-flex">
+                                     <div class="pic"> <i class="fas fa-mobile-alt fa-5x pic-0" style="margin-left:25%;"></i> </div>
+                                     <h5 class="mb-4" style="color:black;text-align:center;">Mobile & Internet</h5>
+                                 </div>
+                                 <?php if(!empty($actived_services->service_4) && $actived_services->service_4 != 'NULL'): ?>
+                                  <input class='service_4' type='hidden' name='service_4' value='mobile' />
+                                  <?php endif; ?>
+                             </div>
+                             <div class="card-block card-body selectRegister5 <?php echo e((empty($actived_services->service_5) || $actived_services->service_5 == 'NULL') ? '' : 'selected'); ?>">
+                                 <div class="row justify-content-end d-flex px-3">
+                                     <div class="fa fa-<?php echo e((empty($actived_services->service_5) || $actived_services->service_5 == 'NULL') ? 'circle' : 'check'); ?>"></div>
+                                 </div>
+                                 <div class="row justify-content-center d-flex">
+                                     <div class="pic"> <i class="fas fa-building fa-5x pic-0" style="margin-left:25%;"></i> </div>
+                                     <h5 class="mb-4" style="color:black;text-align:center;">Locataire</h5>
+                                 </div>
+                                 <?php if(!empty($actived_services->service_5) && $actived_services->service_5 != 'NULL'): ?>
+                                  <input class='service_5' type='hidden' name='service_5' value='locataire' />
+                                  <?php endif; ?>
+                             </div>
+                             <div class="card-block card-body selectRegister6 <?php echo e((empty($actived_services->service_6) || $actived_services->service_6 == 'NULL') ? '' : 'selected'); ?>">
+                                 <div class="row justify-content-end d-flex px-3">
+                                     <div class="fa fa-<?php echo e((empty($actived_services->service_6) || $actived_services->service_6 == 'NULL') ? 'circle' : 'check'); ?>"></div>
+                                 </div>
+                                 <div class="row justify-content-center d-flex">
+                                     <div class="pic"> <i class="fas fa-building fa-5x pic-0" style="margin-left:25%;"></i> </div>
+                                     <h5 class="mb-4" style="color:black;text-align:center;">Propriétaire</h5>
+                                 </div>
+                                 <?php if(!empty($actived_services->service_6) && $actived_services->service_6 != 'NULL'): ?>
+                                  <input class='service_6' type='hidden' name='service_6' value='proprietaire' />
+                                  <?php endif; ?>
+                             </div>
+                             <div class="card-block card-body selectRegister7 <?php echo e((empty($actived_services->service_7) || $actived_services->service_7 == 'NULL') ? '' : 'selected'); ?>">
+                                 <div class="row justify-content-end d-flex px-3">
+                                     <div class="fa fa-<?php echo e((empty($actived_services->service_7) || $actived_services->service_7 == 'NULL') ? 'circle' : 'check'); ?>"></div>
+                                 </div>
+                                 <div class="row justify-content-center d-flex">
+                                     <div class="pic"> <i class="fas fa-university fa-5x pic-0" style="margin-left:25%;"></i> </div>
+                                     <h5 class="mb-4" style="color:black;text-align:center;">Scolarité</h5>
+                                 </div>
+                                 <?php if(!empty($actived_services->service_7) && $actived_services->service_7 != 'NULL'): ?>
+                                  <input class='service_7' type='hidden' name='service_7' value='scolarite' />
+                                  <?php endif; ?>
+                             </div>
+                             <div class="card-block card-body selectRegister8 <?php echo e((empty($actived_services->service_8) || $actived_services->service_8 == 'NULL') ? '' : 'selected'); ?>">
+                                 <div class="row justify-content-end d-flex px-3">
+                                     <div class="fa fa-<?php echo e((empty($actived_services->service_8) || $actived_services->service_8 == 'NULL') ? 'circle' : 'check'); ?>"></div>
+                                 </div>
+                                 <div class="row justify-content-center d-flex">
+                                     <div class="pic"> <i class="fas fa-running fa-5x pic-0" style="margin-left:25%;"></i> </div>
+                                     <h5 class="mb-4" style="color:black;text-align:center;">Sport</h5>
+                                 </div>
+                                 <?php if(!empty($actived_services->service_8) && $actived_services->service_8 != 'NULL'): ?>
+                                  <input class='service_8' type='hidden' name='service_8' value='sport' />
+                                  <?php endif; ?>
+                             </div>
+                             <div class="row justify-content-center" style="margin-left: -10%;">
+                                 <div class="col-7 text-center">
+                                     <input type='submit' name='action' class='btn btn-primary submitForm' value='Enregistrer' />
+                                 </div>
+                             </div>
+                         </div>
+                      </fieldset>
+                      <input type="hidden" name="service" value="<?php echo e($_SESSION['current_service']); ?>" />
+                    </form>
+                </div>
+            </div>
+
+
+
+    </div>
+</div>
+</div>
+<script src="<?php echo e(url('js/form.js')); ?>"></script>
+<script>
+
+
+  $('.radio-group .selectRegister1').click(function(){
+  if($(this).hasClass('selected')){
+      $(this).find(".fa").removeClass('fa-check');
+      $(this).find(".fa").addClass('fa-circle');
+      $('.service_1').remove();
+    $(this).removeClass('selected');
+    $('.display_service_1').text('');
+  }
+  else {
+    $(this).addClass('selected');
+    $('.selected .fa').removeClass('fa-circle');
+    $('.selected .fa').addClass('fa-check');
+    $('.selectRegister1').append("<input class='service_1' type='hidden' name='service_1' value='eau' />");
+    var value = $('.service_1').val();
+    $('.display_service_1').text(value);
+  }
+  });
+
+  $('.radio-group .selectRegister2').click(function(){
+  if($(this).hasClass('selected')){
+      $(this).find(".fa").removeClass('fa-check');
+      $(this).find(".fa").addClass('fa-circle');
+      $('.service_2').remove();
+    $(this).removeClass('selected');
+    $('.display_service_2').text('');
+  }
+  else {
+    $(this).addClass('selected');
+    $('.selected .fa').removeClass('fa-circle');
+    $('.selected .fa').addClass('fa-check');
+    $('.selectRegister2').append("<input class='service_2' type='hidden' name='service_2' value='electricite' />");
+    var value = $('.service_2').val();
+    $('.display_service_2').text(value);
+  }
+  });
+
+  $('.radio-group .selectRegister3').click(function(){
+  if($(this).hasClass('selected')){
+      $(this).find(".fa").removeClass('fa-check');
+      $(this).find(".fa").addClass('fa-circle');
+      $('.service_3').remove();
+    $(this).removeClass('selected');
+    $('.display_service_3').text('');
+  }
+  else {
+    $(this).addClass('selected');
+    $('.selected .fa').removeClass('fa-circle');
+    $('.selected .fa').addClass('fa-check');
+    $('.selectRegister3').append("<input class='service_3' type='hidden' name='service_3' value='tv' />");
+    var value = $('.service_3').val();
+    $('.display_service_3').text(value);
+  }
+  });
+
+  $('.radio-group .selectRegister4').click(function(){
+  if($(this).hasClass('selected')){
+      $(this).find(".fa").removeClass('fa-check');
+      $(this).find(".fa").addClass('fa-circle');
+      $('.service_4').remove();
+    $(this).removeClass('selected');
+    $('.display_service_4').text('');
+  }
+  else {
+    $(this).addClass('selected');
+    $('.selected .fa').removeClass('fa-circle');
+    $('.selected .fa').addClass('fa-check');
+    $('.selectRegister4').append("<input class='service_4' type='hidden' name='service_4' value='mobile' />");
+    var value = $('.service_4').val();
+    $('.display_service_4').text(value);
+  }
+  });
+
+  $('.radio-group .selectRegister5').click(function(){
+  if($(this).hasClass('selected')){
+      $(this).find(".fa").removeClass('fa-check');
+      $(this).find(".fa").addClass('fa-circle');
+      $('.service_5').remove();
+    $(this).removeClass('selected');
+    $('.display_service_5').text('');
+  }
+  else {
+    $(this).addClass('selected');
+    $('.selected .fa').removeClass('fa-circle');
+    $('.selected .fa').addClass('fa-check');
+    $('.selectRegister5').append("<input class='service_5' type='hidden' name='service_5' value='locataire' />");
+    var value = $('.service_5').val();
+    $('.display_service_5').text(value);
+  }
+  });
+
+  $('.radio-group .selectRegister6').click(function(){
+  if($(this).hasClass('selected')){
+      $(this).find(".fa").removeClass('fa-check');
+      $(this).find(".fa").addClass('fa-circle');
+      $('.service_6').remove();
+    $(this).removeClass('selected');
+    $('.display_service_6').text('');
+  }
+  else {
+    $(this).addClass('selected');
+    $('.selected .fa').removeClass('fa-circle');
+    $('.selected .fa').addClass('fa-check');
+    $('.selectRegister6').append("<input class='service_6' type='hidden' name='service_6' value='proprietaire' />");
+    var value = $('.service_6').val();
+    $('.display_service_6').text(value);
+  }
+  });
+
+  $('.radio-group .selectRegister7').click(function(){
+  if($(this).hasClass('selected')){
+      $(this).find(".fa").removeClass('fa-check');
+      $(this).find(".fa").addClass('fa-circle');
+      $('.service_7').remove();
+    $(this).removeClass('selected');
+    $('.display_service_7').text('');
+  }
+  else {
+    $(this).addClass('selected');
+    $('.selected .fa').removeClass('fa-circle');
+    $('.selected .fa').addClass('fa-check');
+    $('.selectRegister7').append("<input class='service_7' type='hidden' name='service_7' value='scolarite' />");
+    var value = $('.service_7').val();
+    $('.display_service_7').text(value);
+  }
+  });
+
+  $('.radio-group .selectRegister8').click(function(){
+  if($(this).hasClass('selected')){
+      $(this).find(".fa").removeClass('fa-check');
+      $(this).find(".fa").addClass('fa-circle');
+      $('.service_8').remove();
+    $(this).removeClass('selected');
+    $('.display_service_8').text('');
+  }
+  else {
+    $(this).addClass('selected');
+    $('.selected .fa').removeClass('fa-circle');
+    $('.selected .fa').addClass('fa-check');
+    $('.selectRegister8').append("<input class='service_8' type='hidden' name='service_8' value='sport' />");
+    var value = $('.service_8').val();
+    $('.display_service_8').text(value);
+  }
+  });
+
+</script>
+
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.app', ['notification' => $notification, 'service' => $_SESSION['current_service'], 'services' => $actived_services, 'profilNotif' => $_SESSION['profilNotif']], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
