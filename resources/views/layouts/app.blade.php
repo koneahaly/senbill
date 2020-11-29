@@ -380,7 +380,7 @@ html, body {
 </div>
   <!-- HEADER END -->
 <script>
-$(document).ready(function() {
+ $(document).ready(function() {
   var items = document.querySelectorAll('.menuItemEspace');
 
   for(var i = 0, l = items.length; i < l; i++) {
