@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+logo-senbill<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml">
 <head>
@@ -170,7 +170,7 @@
                     <div style="border-top:0px dashed transparent; border-left:0px dashed transparent; border-bottom:0px dashed transparent; border-right:0px dashed transparent; padding-top:5px; padding-bottom:5px; padding-right: 0px; padding-left: 0px;">
                       <!--<![endif]-->
                       <div align="center" class="img-container center autowidth" style="padding-right: 0px;padding-left: 0px;">
-                        <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px"><td style="padding-right: 0px;padding-left: 0px;" align="center"><![endif]--><img align="center" alt="Alternate text" border="0" class="center autowidth" src="{{ $message->embed(public_path() . '/images/emails/logo-elektra-halo.png')}}" style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; width: 100%; max-width: 50px; display: block;" title="Alternate text" width="50"/>
+                        <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px"><td style="padding-right: 0px;padding-left: 0px;" align="center"><![endif]--><img align="center" alt="Alternate text" border="0" class="center autowidth" src="{{ $message->embed(public_path() . '/images/emails/logo-senbill-halo.png')}}" style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; width: 100%; max-width: 50px; display: block;" title="Alternate text" width="50"/>
                         <!--[if mso]></td></tr></table><![endif]-->
                       </div>
                       <!--[if (!mso)&(!IE)]><!-->
