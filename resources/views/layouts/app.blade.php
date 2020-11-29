@@ -24,7 +24,7 @@
     <link href="{{ asset('css/graphicalChart.css') }}" rel="stylesheet">
 
     <link href="{{ URL::asset('css/common.css') }}" rel="stylesheet">
-    <link rel="icon" type="image/png" href="https://elektra.s3.amazonaws.com/images/icons/logo-elektra-halo.png"/>
+    <link rel="icon" type="image/png" href="https://elektra.s3.amazonaws.com/images/icons/logo-senbill-halo.png"/>
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <!--===============================================================================================-->
@@ -112,8 +112,8 @@ html, body {
    <!--  Header  invité -->
   <div class="s2sn-login-header-desktop-elektra">
       <a class="s2sn-logo-elektra-register" href="{{ $home_directory }}">
-          <img src="{{url('images/logo-elektra-halo.png')}}" alt="logo-elektra" width="80" height="auto" class="s2sn-img-normal">
-          <img src="{{url('images/logo-elektra-halo.png')}}" alt="logo-elektra" width="80" height="auto" class="s2sn-img-retina">
+          <img src="{{url('images/logo-senbill-halo.png')}}" alt=" logo-senbill" width="80" height="auto" class="s2sn-img-normal">
+          <img src="{{url('images/logo-senbill-halo.png')}}" alt=" logo-senbill" width="80" height="auto" class="s2sn-img-retina">
       </a>
       <div class="s2sn-login-header-nav">
        <ul class="s2sn-navbar"  style="margin-left: 300px;">
@@ -130,8 +130,8 @@ html, body {
       <!--  Début Header  user connecté -->
       <div class="s2sn-login-header-desktop-elektra">
           <a class="s2sn-logo-elektra-connected" href="{{ $home_directory }}">
-              <img src="{{url('images/logo-elektra-halo.png')}}" alt="logo-elektra" width="80" height="auto" class="s2sn-img-normal">
-              <img src="{{url('images/logo-elektra-halo.png')}}" alt="logo-elektra" width="80" height="auto" class="s2sn-img-retina">
+              <img src="{{url('images/logo-senbill-halo.png')}}" alt=" logo-senbill" width="80" height="auto" class="s2sn-img-normal">
+              <img src="{{url('images/logo-senbill-halo.png')}}" alt=" logo-senbill" width="80" height="auto" class="s2sn-img-retina">
           </a>
 
 
@@ -245,8 +245,8 @@ html, body {
               @guest
               @else
               <a class="s2sn-logo-elektra-connected" href="{{ $home_directory }}">
-                  <img src="{{url('images/logo-elektra-halo.png')}}" alt="logo-elektra" width="80" height="auto" class="s2sn-img-normal">
-                  <img src="{{url('images/logo-elektra-halo.png')}}" alt="logo-elektra" width="80" height="auto" class="s2sn-img-retina">
+                  <img src="{{url('images/logo-senbill-halo.png')}}" alt="logo-senbill" width="80" height="auto" class="s2sn-img-normal">
+                  <img src="{{url('images/logo-senbill-halo.png')}}" alt="logo-senbill" width="80" height="auto" class="s2sn-img-retina">
               </a>
 
               <!--  POUR ELECTRICITE -->

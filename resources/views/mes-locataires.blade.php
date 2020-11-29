@@ -7,8 +7,6 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
 @section('content')
 <div class="container">
   <div class="row lottie-lines" style="margin-top:4%; display:none;">
-      <lottie-player src="{{url('images/lottie/lines.json')}}"  background="transparent"  speed="0.1"  style="width: 500px; height: 500px; position:absolute;z-index:1000;margin-left:-20%;margin-top: 2.5%;"  loop  autoplay></lottie-player>
-      <lottie-player src="{{url('images/lottie/lines.json')}}"  background="transparent"  speed="0.1"  style="width: 500px; height: 500px; position:absolute;z-index:1000;margin-left:70%;margin-top: 2.5%;"  loop  autoplay></lottie-player>
   </div>
   <!--TITLE OF THE PAGE-->
   <div class="row rowloc rowmobile" style="margin-top:14%;z-index: 1100;">
