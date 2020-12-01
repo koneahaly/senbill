@@ -3,7 +3,7 @@ session_start();
 $_SESSION["numberOfBillsNonPaid"] = $numberOfBillsNonPaid;
 $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOfBillsNonPaid"] : '';
 ?>
-@extends('layouts.realEstate', ['notification' => $notification, 'services' => $actived_services])
+@extends('layouts.realEstate', ['notification' => $notification, 'services' => $actived_services, 'profilNotif' => $_SESSION['profilNotif']])
 
 @section('content')
 <div class="container">
@@ -22,6 +22,13 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
   <lottie-player src="{{url('images/lottie/bubble.json')}}" class="lottie-bubbles" background="transparent"  speed="1"  style="width: 60px; height: 60px; position:absolute;z-index:1000;margin-left:1%;margin-top: -2%;"  loop  autoplay></lottie-player>
 <!-- END TITLE OF THE PAGE-->
 
+@if (empty($user->date_verify_email) and ((strpos($user->email,"user") === false) and (strpos($user->email,"stat") === false)))
+    <div style="margin-bottom:20px;text-align:center;" class="alert alert-success">
+        <p style="font-size:18px;color:#3c763d;">Veuillez valider votre adresse mail pour utiliser l'ensemble des services.<br/>
+        Un mail de vérification vous a été envoyé à l'adresse suivante : <strong> {{ $user->email }} <strong>.</p>
+    </div>
+
+@else
   <!--<h4>TABLEAU DES TRANSACTIONS  </h4> -->
 <div class="row">
   <div class="col-md-12">
@@ -70,6 +77,8 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
   </div>
 
 </div>
+@endif
+
 <?php
 $id = explode('/',$_SERVER['REQUEST_URI']);
 if(!empty($id[2])){

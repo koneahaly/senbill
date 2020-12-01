@@ -31,9 +31,9 @@ class MailController extends Controller {
    }
    public function html_verify_email($email,$customer,$name='SEN BILL') {
       $data = array('name'=>$name,'email' => $email, 'customer' => $customer);
-      Mail::send('emails.verify', $data, function($message) use ($data){
+      Mail::send('emails.validateEmail', $data, function($message) use ($data){
          $message->to($data['email'], $data['customer'])->subject
-            ('Vérification de l\'adresse mail');
+         ('Vérification de votre adresse mail');
          $message->from('admin@services2sn.com',$data['name']);
       });
       //echo "HTML Email Sent. Check your inbox.";

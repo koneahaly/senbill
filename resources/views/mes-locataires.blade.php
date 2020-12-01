@@ -2,7 +2,7 @@
 session_start();
 $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOfBillsNonPaid"] : '';
 ?>
-@extends('layouts.realEstate', ['notification' => $notification, 'services' => $actived_services])
+@extends('layouts.realEstate', ['notification' => $notification, 'services' => $actived_services, 'profilNotif' => $_SESSION['profilNotif']])
 
 @section('content')
 <div class="container">
@@ -288,7 +288,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
             </div>
             <div class="wrap-input100 bg1 rs1-wrap-input100 form-group{{ $errors->has('bail') ? ' has-error' : '' }}">
               <span class="label-input100 control-label">Caution *</span>
-              <input class="input100 update_caution" type="number" pattern="[0-9]{0,10}" name="bail" required  placeholder="Entrez le montant de la caution">
+              <input class="input100 update_caution" type="number" pattern="[0-9]{0,10}" value="0" name="bail" required  placeholder="Entrez le montant de la caution">
               @if ($errors->has('bail'))
                   <span class="help-block">
                       <strong>{{ $errors->first('bail') }}</strong>

@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Session\middleware\StartSession;
 use stdClass;
+use Session;
 
 class realEstateOwnerController extends Controller
 {
@@ -31,6 +32,26 @@ class realEstateOwnerController extends Controller
     public function display_transactions()
     {
       $s=Auth::user()->customerId;
+
+      $user['user'] = DB::table('users')->where('customerId',$s)->first();
+      $myuser = DB::table('users')->where('customerId',$s)->first();
+      $profilNotif = 0;
+
+      if(!empty($myuser->date_activation_code)){
+        $profilNotif = $profilNotif + 0;
+      }
+      else{
+        $profilNotif = 1;
+      }
+
+      if(!empty($myuser->date_verify_email)){
+        $profilNotif = $profilNotif + 0;
+      }
+      else{
+        $profilNotif = $profilNotif + 1;
+      }
+      Session::push('profilNotif', $profilNotif);
+
       $list_renter_id=array();
       $list_housings_infos = [];
       $actived_services['actived_services'] = DB::table('services')->where('customerId',$s)->first();
@@ -45,12 +66,25 @@ class realEstateOwnerController extends Controller
       $data_bills['data_bills'] =DB::table('bills')->whereIn('customerId',$list_renter_id)->whereNotNull('title')->get();
       $numberOfBillsNonPaid = (int)DB::table('bills')->where('status','<>','paid')->whereIn('customerId',$list_renter_id)->whereNotNull('title')->count();
       $data_infos_housing['data_infos_housing'] = $list_housings_infos;
-      return view('ownerTransactions')->with($data_bills)->with($data_infos_housing)->with(compact('numberOfBillsNonPaid'))->with($actived_services);
+      return view('ownerTransactions')->with($data_bills)->with($user)->with($data_infos_housing)->with(compact('numberOfBillsNonPaid'))->with($actived_services);
 
     }
     public function display_locataires()
     {
       $s=Auth::user()->customerId;
+
+      $user['user'] = DB::table('users')->where('customerId',$s)->first();
+      $myuser = DB::table('users')->where('customerId',$s)->first();
+
+      if(!empty($myuser->date_activation_code)){
+        $profilNotif = 0;
+        Session::push('profilNotif', $profilNotif);
+      }
+      else{
+        $profilNotif = 1;
+        Session::push('profilNotif', $profilNotif);
+      }
+
       $list_renter_id=array();
       $list_housings_title = [];
       $list_contracts_infos = [];
@@ -79,6 +113,19 @@ class realEstateOwnerController extends Controller
     public function display_properties()
     {
       $s=Auth::user()->customerId;
+
+      $user['user'] = DB::table('users')->where('customerId',$s)->first();
+      $myuser = DB::table('users')->where('customerId',$s)->first();
+
+      if(!empty($myuser->date_activation_code)){
+        $profilNotif = 0;
+        Session::push('profilNotif', $profilNotif);
+      }
+      else{
+        $profilNotif = 1;
+        Session::push('profilNotif', $profilNotif);
+      }
+
       $actived_services['actived_services'] = DB::table('services')->where('customerId',$s)->first();
       $infos_perso['infos_perso']=DB::table('users')->where('customerId',$s)->first();
       $infos_log['infos_log']=DB::table('owns')->where('owner_id',$s)->where('status','<>','D')->get();
