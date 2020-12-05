@@ -235,6 +235,10 @@ class DashboardController extends Controller
       $index_payment_method = $this->fetch_field_index($fields, 'payment_method');
       $index_paid_amount = $this->fetch_field_index($fields, 'paid_amount');
 
+      $index_month = $this->fetch_field_index($fields, 'month');
+      $index_year = $this->fetch_field_index($fields, 'year');
+
+
       //dd($fields[0]);
       $path = base_path("storage/pending_invoices/".$request->file_to_import);
       foreach (array_slice(glob($path),0,2) as $file) {
@@ -252,8 +256,9 @@ class DashboardController extends Controller
                 Bill::updateOrCreate([
                   'customerId' => str_replace('"','',$row[$index_customer_id]), 'order_number' => str_replace('"','',$row[$index_order_number]),
                 ], ['customerId' => str_replace('"','',$row[$index_customer_id]), 'order_number' => str_replace('"','',$row[$index_order_number]),
-                'title' => str_replace('"','',$row[$index_title]),'deadline' => str_replace('"','',$row[$index_deadline]), 'payment_status' => $row[$index_payment_status],
-                'payment_status' => str_replace('"','',$row[$index_payment_status]), 'paid_amount' => str_replace('"','',$row[$index_paid_amount]), 'created_at' => date('Y-m-d H:i:s'),
+                'title' => str_replace('"','',$row[$index_title]),'deadline' => str_replace('"','',$row[$index_deadline]), 'status' => $row[$index_payment_status],
+                'payment_method' => str_replace('"','',$row[$index_payment_method]), 'amount' => str_replace('"','',$row[$index_paid_amount]), 'created_at' => date('Y-m-d H:i:s'),
+                'month' => str_replace('"','',$row[$index_month]), 'year' => str_replace('"','',$row[$index_year]),
                 'updated_at' => date('Y-m-d H:i:s')]);
               }
               $i++;

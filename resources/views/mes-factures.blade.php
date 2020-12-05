@@ -516,6 +516,9 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
                     <input type="hidden" name="order_number" value="{{ $order_number }}" />
                     <input type="hidden" name="service" value="{{ $_SESSION['current_service'] }}"/>
                     <input type="hidden" name='id_bill' value="{{ (!empty($id_bill)) ? $id_bill : '0' }}" />
+                    <input type="hidden" name="email" value="{{ Auth::user()->email }}" />
+                    <input type="hidden" name="first_name" value="{{ Auth::user()->first_name }}" />
+                    <input type="hidden" name="name" value="{{ Auth::user()->name }}" />
                     </form>
                     </div>
                     </div>
@@ -626,6 +629,9 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
                         <input type="hidden" name="order_number" value="{{ $order_number }}" />
                         <input type="hidden" name="service" value="{{ $_SESSION['current_service'] }}"/>
                         <input type="hidden" name='id_bill' value="{{ (!empty($id_bill)) ? $id_bill : '0' }}" />
+                        <input type="hidden" name="email" value="{{ Auth::user()->email }}" />
+                        <input type="hidden" name="first_name" value="{{ Auth::user()->first_name }}" />
+                        <input type="hidden" name="name" value="{{ Auth::user()->name }}" />
                         </form>
                         </div>
                         </div>
@@ -744,6 +750,9 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
                       <input type="hidden" name="order_number" value="{{ $order_number }}" />
                       <input type="hidden" name="service" value="{{ $_SESSION['current_service'] }}"/>
                       <input type="hidden" name='id_bill' value="{{ (!empty($id_bill)) ? $id_bill : '0' }}" />
+                      <input type="hidden" name="email" value="{{ Auth::user()->email }}" />
+                      <input type="hidden" name="first_name" value="{{ Auth::user()->first_name }}" />
+                      <input type="hidden" name="name" value="{{ Auth::user()->name }}" />
                       </form>
                       </div>
                       </div>
@@ -1090,6 +1099,9 @@ if($i == $limit){
               <input type="hidden" name="payment_amount" value="{{ $t * 5000}}" />
               <input type="hidden" name="service" value="{{ $_SESSION['current_service'] }}"/>
               <input type="hidden" name='id_bill' value="{{ (!empty($id_bill)) ? $id_bill : '0' }}" />
+              <input type="hidden" name="email" value="{{ Auth::user()->email }}" />
+              <input type="hidden" name="first_name" value="{{ Auth::user()->first_name }}" />
+              <input type="hidden" name="name" value="{{ Auth::user()->name }}" />
               </form>
               </div>
               </div>
@@ -1200,6 +1212,9 @@ if($i == $limit){
                 <input type="hidden" name="payment_amount" value="{{ $t * 5000}}" />
                 <input type="hidden" name="service" value="{{ $_SESSION['current_service'] }}"/>
                 <input type="hidden" name='id_bill' value="{{ (!empty($id_bill)) ? $id_bill : '0' }}" />
+                <input type="hidden" name="email" value="{{ Auth::user()->email }}" />
+                <input type="hidden" name="first_name" value="{{ Auth::user()->first_name }}" />
+                <input type="hidden" name="name" value="{{ Auth::user()->name }}" />
                 </form>
                   </div>
                   </div>
@@ -1317,6 +1332,9 @@ if($i == $limit){
                 <input type="hidden" name="payment_amount" value="{{ $t * 5000}}" />
                 <input type="hidden" name="service" value="{{ $_SESSION['current_service'] }}"/>
                 <input type="hidden" name='id_bill' value="{{ (!empty($id_bill)) ? $id_bill : '0' }}" />
+                <input type="hidden" name="email" value="{{ Auth::user()->email }}" />
+                <input type="hidden" name="first_name" value="{{ Auth::user()->first_name }}" />
+                <input type="hidden" name="name" value="{{ Auth::user()->name }}" />
                 </form>
                 </div>
                 </div>
