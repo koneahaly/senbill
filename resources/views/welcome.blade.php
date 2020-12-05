@@ -28,7 +28,7 @@ if(!empty($raw_woyofal_users_demo) and !empty($raw_classical_users_demo)){
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>{{config('app.name')}}</title>
-        <link rel="icon" type="image/png" href="https://elektra.s3.amazonaws.com/images/icons/logo-elektra-halo.png"/>
+        <link rel="icon" type="image/png" href="https://elektra.s3.amazonaws.com/images/icons/logo-senbill-halo.png"/>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
         <link rel="stylesheet" type="text/css" href="{{url('css/bootstrap.min.css')}}">
@@ -42,8 +42,8 @@ if(!empty($raw_woyofal_users_demo) and !empty($raw_classical_users_demo)){
       	 <!-- HEADER START -->
          <div class="s2sn-login-header-desktop">
              <a class="s2sn-logo-elektra" href=".">
-                 <img src="https://elektra.s3.amazonaws.com/images/icons/logo-s2sn.png" alt="logo-elektra" width="162" height="auto" class="s2sn-img-normal">
-             	   <img src="https://elektra.s3.amazonaws.com/images/icons/logo-s2sn-mediumsmall.png" alt="logo-elektra" width="162" height="auto" class="s2sn-img-retina">
+                 <img src="https://elektra.s3.amazonaws.com/images/icons/logo-s2sn.png" alt="logo-senbill" width="162" height="auto" class="s2sn-img-normal">
+             	   <img src="https://elektra.s3.amazonaws.com/images/icons/logo-s2sn-mediumsmall.png" alt="logo-senbill" width="162" height="auto" class="s2sn-img-retina">
              </a>
              <div class="s2sn-login-header-nav">
           <div class="s2sn-login-header-top">
@@ -69,8 +69,8 @@ if(!empty($raw_woyofal_users_demo) and !empty($raw_classical_users_demo)){
          </div>
          <nav class="navbar navbar-dark s2sn-login-header-mobile">
              <a class="s2sn-logo-elektra" href=".">
-                 <img src="https://elektra.s3.amazonaws.com/images/icons/logo-s2sn.png" alt="logo-elektra" width="162" height="auto" class="s2sn-img-normal">
-             	   <img src="https://elektra.s3.amazonaws.com/images/icons/logo-s2sn-mediumsmall.png" alt="logo-elektra" width="162" height="auto" class="s2sn-img-retina">
+                 <img src="https://elektra.s3.amazonaws.com/images/icons/logo-s2sn.png" alt="logo-senbill" width="162" height="auto" class="s2sn-img-normal">
+             	   <img src="https://elektra.s3.amazonaws.com/images/icons/logo-s2sn-mediumsmall.png" alt="logo-senbill" width="162" height="auto" class="s2sn-img-retina">
              </a>
              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-contrs2sn="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                  <span class="navbar-toggler-icon"></span>
@@ -91,7 +91,7 @@ if(!empty($raw_woyofal_users_demo) and !empty($raw_classical_users_demo)){
          </nav>
          <!-- HEADER END -->
          <div class="s2sn-wrapper-center s2sn-wrapper-when-footer">
-           <img src="{{url('images/logo-elektra-halo.png')}}" alt="logo-elektra" width="auto" height="100" class="s2sn-logo-elektra">
+           <img src="{{url('images/logo-senbill-halo.png')}}" alt="logo-elektra" width="auto" height="100" class="s2sn-logo-elektra">
 
 
          <script type="text/javascript">

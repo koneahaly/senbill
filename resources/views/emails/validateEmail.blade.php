@@ -185,7 +185,7 @@
                       </div>
                       <!--[if mso]></td></tr></table><![endif]-->
                       <div align="center" class="img-container center fixedwidth" style="padding-right: 0px;padding-left: 0px;">
-                        <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px"><td style="padding-right: 0px;padding-left: 0px;" align="center"><![endif]--><img align="center" alt="Alternate text" border="0" class="center fixedwidth" src="{{ $message->embed(public_path() . '/images/emails/logo-elektra-halo.png')}}"  style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; width: 100%; max-width: 150px; display: block;" title="Alternate text" width="150"/>
+                        <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px"><td style="padding-right: 0px;padding-left: 0px;" align="center"><![endif]--><img align="center" alt="Alternate text" border="0" class="center fixedwidth" src="{{ $message->embed(public_path() . '/images/emails/logo-senbill-halo.png')}}"  style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; width: 100%; max-width: 150px; display: block;" title="Alternate text" width="150"/>
                         <!--[if mso]></td></tr></table><![endif]-->
                       </div>
                       <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 10px; padding-left: 10px; padding-top: 20px; padding-bottom: 10px; font-family: Tahoma, Verdana, sans-serif"><![endif]-->
