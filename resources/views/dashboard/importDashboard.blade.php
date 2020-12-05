@@ -263,6 +263,8 @@ if(isset($_GET['data_invoices'])){
                         <option value='import_status' <?php if(substr($dt,1,strlen($dt)-2) == 'import_status') echo 'selected';?> >Statut import</option>
                         <option value='paid_amount' <?php if(substr($dt,1,strlen($dt)-2) == 'paid_amount') echo 'selected';?> >Somme payée</option>
                         <option value='bill' <?php if(substr($dt,1,strlen($dt)-2) == 'bill') echo 'selected';?> >Description</option>
+                        <option value='month' <?php if(substr($dt,1,strlen($dt)-2) == 'month') echo 'selected';?> >Mois</option>
+                        <option value='year' <?php if(substr($dt,1,strlen($dt)-2) == 'year') echo 'selected';?> >Année</option>
                       </select>
                     </div>
                   </dd>

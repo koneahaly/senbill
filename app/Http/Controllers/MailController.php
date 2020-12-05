@@ -29,41 +29,56 @@ class MailController extends Controller {
       });
       //echo "HTML Email Sent. Check your inbox.";
    }
+
+   public function html_email_pro($email,$customer,$proprio,$mdp,$name='SEN BILL') {
+      $data = array('name'=>$name,'email' => $email,'customer' => $customer,
+      'proprio' => $proprio,'mdp' => $mdp);
+      Mail::send('emails.contact-pro', $data, function($message) use ($data){
+         $message->to($data['email'], $data['customer'])->subject
+            ('Inscription sur SenBill réussie');
+         $message->from('admin@services2sn.com', $data['name']);
+      });
+      //echo "HTML Email Sent. Check your inbox.";
+   }
+
+
    public function html_verify_email($email,$customer,$name='SEN BILL') {
       $data = array('name'=>$name,'email' => $email, 'customer' => $customer);
-      Mail::send('emails.verify', $data, function($message) use ($data){
+      Mail::send('emails.validateEmail', $data, function($message) use ($data){
          $message->to($data['email'], $data['customer'])->subject
-            ('Vérification de l\'adresse mail');
+         ('Vérification de votre adresse mail');
          $message->from('admin@services2sn.com',$data['name']);
       });
       //echo "HTML Email Sent. Check your inbox.";
    }
-   public function paymentOK_email() {
-      $data = array('name'=>"SENBILL");
-      Mail::send('emails.paymentSuccessful', $data, function($message) {
-         $message->to('yacinenana@gmail.com', 'Yacine Ndiaye')->subject
-            ('Paiement réussi');
-         $message->from('admin@services2sn.com','SEN BILL');
+   public function paymentOK_email($email,$order_number,$amount,$payment_method,$customer,$service,$name='SEN BILL') {
+      $data = array('email' => $email, 'order_number' => $order_number,
+      'amount' => $amount, 'payment_method' => $payment_method, 'customer' => $customer,
+      'service' => $service,'name'=>"SENBILL");
+      Mail::send('emails.paymentSuccessful', $data, function($message) use ($data){
+         $message->to($data['email'], $data['customer'])->subject
+            ('Paiement effectué avec succès');
+         $message->from('admin@services2sn.com',$data['name']);
       });
-      echo "HTML Payment Email Sent. Check your inbox.";
+      //echo "HTML Payment Email Sent. Check your inbox.";
    }
    public function newBill_email() {
-      $data = array('name'=>"SENBILL");
+      $data = array('name'=>"SENBILL", 'email' => $email, 'customer' => $customer);
       Mail::send('emails.newBill', $data, function($message) {
-         $message->to('yacinenana@gmail.com', 'Yacine Ndiaye')->subject
-            ('Nouvelle facture dispo');
-         $message->from('admin@services2sn.com','SEN BILL');
+         $message->to($data['email'], $data['customer'])->subject
+            ('Une nouvelle facture disponible depuis votre espace client');
+         $message->from('admin@services2sn.com',$data['name']);
       });
-      echo "HTML new Bill Email Sent. Check your inbox.";
+     // echo "HTML new Bill Email Sent. Check your inbox.";
    }
    public function lateBill_email() {
-      $data = array('name'=>"SENBILL");
+      $data = array('name'=>"SENBILL", 'email' => $email, 'customer' => $customer);
       Mail::send('emails.lateBill', $data, function($message) {
-         $message->to('yacinenana@gmail.com', 'Yacine Ndiaye')->subject
+         $message->to($data['email'], $data['customer'])->subject
             ('Echeance facture dépassée');
-         $message->from('admin@services2sn.com','SEN BILL');
+         $message->from('admin@services2sn.com',$data['name']);
       });
-      echo "HTML late Bill Email Sent. Check your inbox.";
+      //echo "HTML late Bill Email Sent. Check your inbox.";
    }
    public function validate_email() {
       $data = array('name'=>"SENBILL");

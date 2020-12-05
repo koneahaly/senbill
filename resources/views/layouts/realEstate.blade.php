@@ -144,18 +144,20 @@ html, body {
                </li>
                <li class="dropdown nav-item item-connected">
                    <a href="#" class="nav-link {{ $active_1 }} dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
-                     <i class="fa fa-user fa-2x"></i> <p>Profil</p>
+                     <i class="fa fa-user fa-2x">
+                       <?php if($profilNotif > 0) echo '<span class="badge badge_2">'.$profilNotif.'</span>'; ?>
+                     </i> <p>Profil</p>
                      <span class="caret"></span>
                    </a>
 
                    <ul class="dropdown-menu">
-                       <li style="text-transform:capitalize" >
-                         <a href="{{ route('infos-proprietaire') }}">
-                           mes infos personnelles
+                       <li class="dropdown-item" style="text-transform:capitalize">
+                         <a href="../infos-proprietaire">
+                           mes infos personnelles <?php if($profilNotif > 0){ echo ' '; echo '<span class="badge" style="background-color:red">'.$profilNotif.'</span>';} ?>
                          </a>
                        </li>
-                       <li style="padding:0px;text-transform:capitalize">
-                         <a href="{{ route('infos-services-pro') }}">
+                       <li style="padding:0px;text-transform:capitalize" class="dropdown-item">
+                         <a  href="../infos-services-pro">
                            mes services
                          </a>
                        </li>

@@ -2,7 +2,7 @@
 session_start();
 $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOfBillsNonPaid"] : '';
 ?>
-@extends('layouts.realEstate', ['notification' => $notification, 'services' => $actived_services])
+@extends('layouts.realEstate', ['notification' => $notification, 'services' => $actived_services, 'profilNotif' => $_SESSION['profilNotif']])
 
 @section('content')
 
@@ -158,7 +158,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                     {{csrf_field()}}
                     <div class="col-md-6" style="margin-bottom:10px">
                       <p><strong>EMAIL:</strong></p>
-                      <input <input pattern="\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+" title="l'adresse mail n'est pas valide." class="col-form-label" name="email" value="{{Auth::user()->email}}" style="border-bottom:3px solid #084f78 !important">
+                      <input pattern="\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+" title="l'adresse mail n'est pas valide." class="col-form-label" name="email" value="{{Auth::user()->email}}" style="border-bottom:3px solid #084f78 !important">
                       <div>
                         <button type="submit" name="action_email" value='save' style="margin-top:8px" class="btn btn-primary">
                           <span class="glyphicon glyphicon-edit"></span> Enregistrer

@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 use PDF;
 use Auth;
+use App\Http\Controllers\MailController;
+use Illuminate\Mail\Mailable;
 use Foris\OmSdk\OmSdk;
 
 $service =explode('/',$_SERVER['REQUEST_URI']);
@@ -103,6 +105,11 @@ class billController extends Controller
         DB::connection('mysql2')->table('invoices')
             ->where('order_number', $input->order_number)
             ->update(['payment_status' => 'Payée', 'payment_method' => $input->payment_method, 'paid_amount' => $input->payment_amount]);
+
+        $co = new MailController();
+        $co->paymentOK_email($input->email,$input->order_number,$input->payment_amount,$input->payment_method,$input->first_name.' '.$input->name,$_SESSION['current_service'],'SEN BILL');
+        //$co->html_email_pro($given->email,$given->first_name.' '.$given->name,$proprio->first_name.' '.$proprio->name,$given->name.'123','SEN BILL');
+
 
         return redirect('mes-factures/'.$input->service);
     }

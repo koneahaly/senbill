@@ -93,7 +93,7 @@ myLastName = $('.name').val();
 myCNI = $('.cni').val();
 myPhone = $('.phone').val();
 myAddress = $('.address').val();
-const regexAddr = RegExp("^(?=.*[0-9]?){1,3}(([,. ]?){1}[-a-zA-Z0-9àâäéèêëïîôöùûüç']+)*$");
+const regexAddr = RegExp("^(?=.*[-a-zA-Z0-9]?){1,5}(([,. ]?){1}[-a-zA-Z0-9àâäéèêëïîôöùûüç']+)*$");
 const regexPhone = RegExp('^(\\+[1-9]{1}[0-9]{3,14}) |([0-9]{9,14})$');
 
 

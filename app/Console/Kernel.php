@@ -30,8 +30,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
 
-      $faker = Faker::create('fr_FR');
-    /*  $fake_data= [];
+      /*$faker = Faker::create('fr_FR');
+      $fake_data= [];
 
       for ($i = 0; $i < 10; $i++) {
           $new_line = '"'.strval($faker->nir).'","'.strval($faker->unique()->email).'",'.$faker->phoneNumber.','.str_replace(',',' ',$faker->streetAddress).','.str_replace(',',' ',$faker->streetAddress).',"'.$faker->firstName.'","'.$faker->lastName.'","A",'.$faker->numberBetween($min = 1, $max = 4).',1,"A","bimestriel","Mr","18/11/1992","DAKAR"';
@@ -48,7 +48,7 @@ class Kernel extends ConsoleKernel
       }
       fclose($fp);*/
 
-      $fake_data_invoices= [];
+      /* $fake_data_invoices= [];
 
       $infos_contacts = DB::connection('mysql2')->table('contacts')->join('subscriptions', 'contacts.id', '=', 'subscriptions.contact_id')->select('contacts.customerId as customerId', 'subscriptions.id as sid')->where('partner_id',4)->get();
       foreach($infos_contacts as $infos_contact){
@@ -65,15 +65,15 @@ class Kernel extends ConsoleKernel
           $val = explode(",", $line);
           fputcsv($fp, $val,',','"');
       }
-      fclose($fp);
+      fclose($fp);*/
 
-    /*  $schedule->call(function () {
+      $schedule->call(function () {
         DB::table('bills')
             ->where([['status','En attente'],['deadline','<',date('Y-m-d H:i:s')]])
             ->update(['status' => 'Impayé']);
 
                 //set the path for the csv files
-          $path = base_path("storage/pending_contacts/*.csv");
+          /*$path = base_path("storage/pending_contacts/*.csv");
 
           //run 2 loops at a time
           foreach (array_slice(glob($path),0,2) as $file) {
@@ -101,9 +101,9 @@ class Kernel extends ConsoleKernel
 
               //delete the file
               unlink($file);
-          }
-        });*/
-        /*$path = base_path("storage/pending_invoices/*.csv");
+          }*/
+        });
+       /* $path = base_path("storage/pending_invoices/*.csv");
 
         //run 2 loops at a time
         foreach (array_slice(glob($path),0,2) as $file) {

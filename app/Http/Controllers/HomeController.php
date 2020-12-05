@@ -69,15 +69,22 @@ class HomeController extends Controller
         $s=Auth::user()->customerId;
         $user['user'] = DB::table('users')->where('customerId',$s)->first();
         $myuser = DB::table('users')->where('customerId',$s)->first();
+        $profilNotif = 0;
 
         if(!empty($myuser->date_activation_code)){
-          $profilNotif = 0;
-          Session::push('profilNotif', $profilNotif);
+          $profilNotif = $profilNotif + 0;
         }
         else{
           $profilNotif = 1;
-          Session::push('profilNotif', $profilNotif);
         }
+
+        if(!empty($myuser->date_verify_email)){
+          $profilNotif = $profilNotif + 0;
+        }
+        else{
+          $profilNotif = $profilNotif + 1;
+        }
+        Session::push('profilNotif', $profilNotif);
 
         $actived_services['actived_services'] = DB::table('services')->where('customerId',$s)->first();
         if(Auth::user()->user_type != 2){
