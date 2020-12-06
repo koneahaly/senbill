@@ -54,7 +54,7 @@ if(!empty($raw_woyofal_users_demo) and !empty($raw_classical_users_demo)){
               </ul>
               <ul class="s2sn-login-header-modals">
                   <li><a class="s2sn-header-link" href="#" data-toggle="modal" data-target="#modalFAQ">FAQ</a></li>
-                  <li><a class="s2sn-header-link" href="#" data-toggle="modal" data-target="#modal2">Contact</a></li>
+                  <li><a class="s2sn-header-link" href="./nous-contacter">Contact</a></li>
                   <li><a class="s2sn-header-link" href="#" data-toggle="modal" data-target="#modalDemo">DEMO</a></li>
                   <li class="s2sn-copyright">SERVICES2SN 2019</li>
               </ul>
@@ -84,7 +84,7 @@ if(!empty($raw_woyofal_users_demo) and !empty($raw_classical_users_demo)){
 
 
                     <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#modalFAQ">FAQ</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#modal2">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./nous-contacter">Contact</a></li>
                     <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#modalDemo">DEMO</a></li>
                  </ul>
              </div>
