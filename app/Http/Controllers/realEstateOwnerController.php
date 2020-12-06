@@ -68,7 +68,7 @@ class realEstateOwnerController extends Controller
       $data_bills['data_bills'] =DB::table('bills')->whereIn('customerId',$list_renter_id)->whereNotNull('title')->get();
       $numberOfBillsNonPaid = (int)DB::table('bills')->where('status','<>','paid')->whereIn('customerId',$list_renter_id)->whereNotNull('title')->count();
       $data_infos_housing['data_infos_housing'] = $list_housings_infos;
-      return view('ownerTransactions')->with($data_bills)->with($user)->with($data_infos_housing)->with(compact('numberOfBillsNonPaid'))->with($actived_services);
+      return view('ownerTransactions')->with($data_bills)->with($user)->with($data_infos_housing)->with(compact('numberOfBillsNonPaid'))->with($actived_services)->with(compact('profilNotif'));
 
     }
     public function display_locataires()

@@ -1,5 +1,6 @@
 <?php
 session_start();
+$_SESSION["profilNotif"]=$profilNotif;
 $_SESSION["numberOfBillsNonPaid"] = $numberOfBillsNonPaid;
 $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOfBillsNonPaid"] : '';
 ?>

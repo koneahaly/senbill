@@ -277,7 +277,7 @@ if(isset($_GET['data_invoices'])){
             </div>
             <div class="modal-footer justify-content-between">
               <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-              <button type="submit" class="btn btn-primary">Importer des clients</button>
+              <button type="submit" class="btn btn-primary">Importer des factures</button>
             </div>
             <input type='hidden' name="file_to_import" value="<?php if(isset($_GET['file_to_import'])) echo $_GET['file_to_import']; else{echo '';} ?>" />
           </form>

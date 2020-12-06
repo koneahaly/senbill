@@ -103,6 +103,11 @@ class Kernel extends ConsoleKernel
               unlink($file);
           }*/
         });
+
+        $schedule->call(function () {
+            $actived_contracts= DB::table('contracts')
+                ->where([['status','Y'],['end_date','<',date('Ymd')]])
+                ->get();
        /* $path = base_path("storage/pending_invoices/*.csv");
 
         //run 2 loops at a time

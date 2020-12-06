@@ -83,6 +83,7 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
                 <thead style="background: rgba(137,180,213,1);color:#fff">
                     <tr>
                       <!--<th>Prévu le</th> -->
+                      <th> # </th>
                       <th>&Eacute;chéance</th>
                       <th>Montant</th>
                       <th>&Eacute;tat</th>
@@ -90,8 +91,10 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
                     </tr>
                 </thead>
                 <tbody style="background-color:#fff;color:#455469">
+                <?php $i = 1; ?>
                   @foreach($data as $value)
                     <tr>
+                      <td> <?php echo $i; ?> </td>
                       <!--<td id="{{$value->month}}"> {{$value->year}} {{$value->month}} </td>-->
                       <td>{{$value->month}} {{$value->year}} </td>
                       <td id="{{$value->month}}_amount" style="text-align:center;font-weight: 700;"> {{$value->amount}} FCFA </td>
@@ -110,6 +113,7 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
                       <input type="hidden" class="{{$value->month}}_year_j" name="{{$value->month}}_year_j" value="{{$value->year}}">
                       <input type="hidden" class="{{$value->month}}_creation_date_j" name="{{$value->month}}_creation_date_j" value="{{ substr($last_row_data->created_at,8,2)."/".substr($last_row_data->created_at,5,2)."/".substr($last_row_data->created_at,0,4) }}">
                     </tr>
+                    <?php $i++; ?>
                   @endforeach
                 </tbody>
               </table>
@@ -1411,7 +1415,7 @@ $(document).ready(function() {
         autoWidth: true,
         columnDefs: [
             {
-                targets: ['_all'],
+                targets: [ 4 ],
                 className: 'mdc-data-table__cell'
             }
         ],
