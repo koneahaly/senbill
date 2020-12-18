@@ -1089,6 +1089,21 @@ Vous pouvez  aussi nous contacter pour que  nous procédions à l'onboarding de 
   <script src="{{url('whatFolder/assets/dropdown/js/navbar-dropdown.js')}}"></script>
   <script src="{{url('whatFolder/assets/theme/js/script.js')}}"></script>
 
+    <!-- GetButton.io widget -->
+    <script type="text/javascript">
+        (function () {
+            var options = {
+                whatsapp: "+33625325445", // WhatsApp number
+                call_to_action: "Envoyez nous un message", // Call to action
+                position: "right", // Position may be 'right' or 'left'
+            };
+            var proto = document.location.protocol, host = "getbutton.io", url = proto + "//static." + host;
+            var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = url + '/widget-send-button/js/init.js';
+            s.onload = function () { WhWidgetSendButton.init(host, proto, options); };
+            var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
+        })();
+    </script>
+<!-- /GetButton.io widget -->
 
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
