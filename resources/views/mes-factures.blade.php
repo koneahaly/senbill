@@ -103,8 +103,9 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
                         <td style="width:20%;"> {{$value->payment_method}} </td>
                       @endif
                       @if($value->status != "paid")
-                      <td><button data-toggle="modal" data-target="#pay_bill" class="btn btn-danger btn-xs"> Régler</button> <br /> <span style="font-size:0.7em;font-weight: lighter;color:black;"> avant le {{$value->created_at}} <span></td>
-                      
+                      <!--<td><button data-toggle="modal" data-target="#pay_bill" class="btn btn-danger btn-xs"> Régler</button> <br /> <span style="font-size:0.7em;font-weight: lighter;color:black;"> avant le {{$value->created_at}} <span></td>
+                      -->
+                      <td> <input class="btn btn-danger btn-xs" type=button onclick='sendPaymentInfos(new Date().getTime(),"SNBIL11162", "NTrmzaD4WyiAKaTa9-8Vjc^$ijuP-ut0oY2J^drhn$v9qTWJC@","senbill.sn","url_redirection_success","url_redirection_fail", {{ $value->amount }}, "dakar", "{{ Auth::user()->email }}","{{ Auth::user()->first_name }}", "{{ Auth::user()->name }}",  "{{ Auth::user()->phone }}" )' value=continuer />  <br /> <span style="font-size:0.7em;font-weight: lighter;color:black;"> avant le {{$value->created_at}} <span></td>
                       <!--  POUR REGLER VIA PAYDUNYA SANS REDIRECTION COMMENTER LA LIGNE DU DESSUS ET DECOMMENTER CELLE EN DESSOUS ET DECOMMENTER DANS LAYOUT.app LE CSS de PAYDUNYA, en bas le script paydunya
                        <td><button class="pay" id="regler1" onclick="" data-ref="102" data-fullname="Alioune Faye" data-email="aliounefaye@gmail.com" data-phone="774563209">Régler PD</button><br /> <span style="font-size:0.7em;font-weight: lighter;color:black;"> avant le {{$value->created_at}} <span></td>-->
                         <td> n/a </td>
@@ -312,7 +313,9 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
                     </div></div>
                     </form>
                       @if($last_row_data->status != "paid")
-                        <button data-toggle="modal" data-target="#pay_bill" class="btn btn-danger rgfac">Régler ma facture</button>
+                        <!--<button data-toggle="modal" data-target="#pay_bill" class="btn btn-danger rgfac">Régler ma facture</button> -->
+                        <input class="btn btn-danger rgfac" type=button onclick='sendPaymentInfos("{{ $value->order_number }}","SNBIL11162", "NTrmzaD4WyiAKaTa9-8Vjc^$ijuP-ut0oY2J^drhn$v9qTWJC@","senbill.sn","url_redirection_success","url_redirection_fail", {{ $value->amount }}, "dakar", "","", "",  "" )' value="Régler ma facture" />
+
                       @endif
                     <br />
                     <br />

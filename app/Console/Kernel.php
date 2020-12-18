@@ -3,12 +3,14 @@
 namespace App\Console;
 
 use App\Contact;
+use App\Bill;
 use App\Subscription;
 use App\Invoice;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Illuminate\Support\Facades\DB;
 use Faker\Factory as Faker;
+use App\Http\Controllers\SmsController;
 
 class Kernel extends ConsoleKernel
 {
@@ -72,6 +74,10 @@ class Kernel extends ConsoleKernel
             ->where([['status','En attente'],['deadline','<',date('Y-m-d H:i:s')]])
             ->update(['status' => 'Impayé']);
 
+            $relances_impayees= DB::table('bills')
+            ->where([['status','Impayé'],['attempt_number_inflation','<',3],['last_inflation_date','Impayé'],['deadline','<',date('Y-m-d H:i:s')]]);
+
+
                 //set the path for the csv files
           /*$path = base_path("storage/pending_contacts/*.csv");
 
@@ -102,12 +108,63 @@ class Kernel extends ConsoleKernel
               //delete the file
               unlink($file);
           }*/
-        });
+        })->dailyAt('23:59');
+
 
         $schedule->call(function () {
+                $relances_impayees= DB::table('bills')
+                ->where([['status','Impayé'],['attempt_number_inflation','<',2],['deadline','<',date('Y-m-d H:i:s')]]);
+                $message='';
+
+                foreach($relances_impayees as $relance_impayee){
+                    DB::table('bills')
+                        ->where([['id',$relance_impayee->id]])
+                        ->update(['attempt_number_inflation' => $relance_impayee->attempt_number_inflation + 1, 'last_inflation_date' => date('Y-m-d H:i:s')]);
+
+                    $contacts_relances_impayees = DB::table('users')
+                    ->where([['customerId',$relance_impayee->customerId]]);
+
+                    $sms = new SmsController();
+                    $sms->send_reflation($relance_impayee->phone,$contacts_relances_impayees->first_name,$relance_impayee->amount);
+
+
+                }
+
+        })->twiceMonthly(8, 13, '18:00');
+
+
+        $schedule->call(function () {
+
+            $faker = Faker::create('fr_FR');
+
             $actived_contracts= DB::table('contracts')
-                ->where([['status','Y'],['end_date','<',date('Ymd')]])
+                ->where([['status','Y'], [DB::raw('CONCAT(substr(end_date, 7, 4),substr(end_date, 4, 2),substr(end_date, 1, 2))'),'>',date('Ymd')]])
                 ->get();
+
+            $months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
+            
+            // creation des factures tous les 27 du mois
+            foreach($actived_contracts as $actived_contract){
+                //gestion de la date de paiement de la facture
+                $one_more_year = date("m") == 12 ? '+1' : '+0';
+                $day_of_pay = $actived_contract->delay == 0 ? '01' : '0'.$actived_contract->delay;
+                $delay= date("Y", strtotime($one_more_year.' year')).'-'.date("m",strtotime('+1 month')).'-'.$day_of_pay.' 23:59:00';
+                $order_number = $faker->vat;
+ 
+                Bill::updateOrCreate([
+                    'customerId' => str_replace('"','',$actived_contract->renter_id), 'order_number' => str_replace('"','',$order_number),
+                  ], ['customerId' => str_replace('"','',$actived_contract->renter_id), 'order_number' => str_replace('"','',$order_number),
+                  'title' => str_replace('"','','location'),'deadline' => $delay, 'status' => 'En attente',
+                  'amount' => str_replace('"','',$actived_contract->monthly_pm), 'created_at' => date('Y-m-d H:i:s'),
+                  'month' => str_replace('"','',$months[intval(date("m",strtotime('+1 month')))]), 'year' => str_replace('"','',date("Y", strtotime($one_more_year.' year'))),
+                  'updated_at' => date('Y-m-d H:i:s')]);
+            }
+
+                //var_dump($actived_contracts);
+        })->monthlyOn(27, '18:00');;
+
+
+
        /* $path = base_path("storage/pending_invoices/*.csv");
 
         //run 2 loops at a time

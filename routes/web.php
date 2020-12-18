@@ -39,6 +39,10 @@ Route::post('/infos-services-pro/update', 'HomeController@update_services_pro_in
 //pAYDUNYA Callback
 Route::get('/notification-paiement', 'billController@display_callBackPD')->name('callBackPD');
 
+//Touchpay Callback
+Route::get('/touchpay', 'billController@touchpay')->name('touchpay');
+
+
 //Route::get('/home', 'HomeController@index')->name('home');
 //Route::post('/home', 'HomeController@index')->name('home');
 //Route::get('/home', 'HomeController@index')->name('home-woyofal');

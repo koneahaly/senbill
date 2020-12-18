@@ -14,6 +14,8 @@ use Auth;
 use App\Http\Controllers\MailController;
 use Illuminate\Mail\Mailable;
 use Foris\OmSdk\OmSdk;
+use App\Http\Controllers\SmsController;
+
 
 $service =explode('/',$_SERVER['REQUEST_URI']);
 $_SESSION['current_service'] = $service[2];
@@ -110,6 +112,10 @@ class billController extends Controller
         $co->paymentOK_email($input->email,$input->order_number,$input->payment_amount,$input->payment_method,$input->first_name.' '.$input->name,$_SESSION['current_service'],'SEN BILL');
         //$co->html_email_pro($given->email,$given->first_name.' '.$given->name,$proprio->first_name.' '.$proprio->name,$given->name.'123','SEN BILL');
 
+        if($_SESSION['current_service'] == 'locataire'){
+          //send sms to the owner to notify payment
+        }
+
 
         return redirect('mes-factures/'.$input->service);
     }
@@ -147,6 +153,26 @@ class billController extends Controller
 
     }
 
+    public function touchpay(Request $input){
+      $s=Auth::user()->customerId;
+
+      $status = $input->status;
+      $mode = $input->mode;
+      $num_from_gu = $input->num_from_gu;
+      $paid_amount = $input->paid_amount;
+      $paid_sum = $input->paid_sum;
+      $validation_date = $input->validation_date;
+
+
+      DB::table('bills')
+          ->where([['customerId', $s],['status','<>','paid'],['order_number',$num_from_gu]])
+          ->update(['status' => $status,'payment_method' => $mode, 'updated_at' => $validation_date]);
+
+      DB::connection('mysql2')->table('invoices')
+          ->where('order_number', $num_from_gu)
+          ->update(['payment_status' => $status, 'payment_method' => $mode, 'paid_amount' => $paid_amount, 'updated_at' => $validation_date]);
+
+    }
 
 
     public function buy()

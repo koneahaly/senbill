@@ -15,6 +15,19 @@
        // Notice how this gets configured before we load Font Awesome
        window.FontAwesomeConfig = { autoReplaceSvg: false }
   </script>
+  <script src=https://touchpay.gutouch.com/touchpay/script/prod_touchpay-0.0.1.js  type="text/javascript"></script>
+<script type="text/javascript">
+function calltouchpay(){
+             sendPaymentInfos(
+                                new Date().getTime(),
+                                'SNBIL11162',
+                                'NTrmzaD4WyiAKaTa9-8Vjc^$ijuP-ut0oY2J^drhn$v9qTWJC@',
+                                'senbill.sn',  
+				'url_redirection_success',
+                                'url_redirection_fail', 5,
+                                'dakar', '','', '',  '');
+}
+</script>
   <script src='https://www.google.com/recaptcha/api.js'></script>
   <script src="{!! mix('js/app.js') !!}"></script>
   @yield('scripts')
