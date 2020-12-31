@@ -17,6 +17,7 @@ use App\Http\Controllers\MailController;
 use Illuminate\Mail\Mailable;
 use stdClass;
 use Session;
+use Faker\Factory as Faker;
 
 class realEstateOwnerController extends Controller
 {
@@ -257,6 +258,28 @@ class realEstateOwnerController extends Controller
         $contract->end_date=$given->end_date;
         $contract->frequency=$given->frequency;
         $contract->save();
+
+        if($contract->bail > 0){
+
+          $months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
+          $month_int = date('n') - 1; //to begin at zero as table index
+
+          $faker = Faker::create('fr_FR');
+          $order_number = $faker->vat;
+
+          $bill = new Bill;
+          $bill->customerId=$renter_id->customerId;
+          $bill->initial=0;
+          $bill->final=0;
+          $bill->month=$months[$month_int];
+          $bill->year=date("Y");
+          $bill->units=0;
+          $bill->order_number=$order_number;
+          $bill->title="caution";
+          $bill->amount=$contract->bail;
+          $bill->status="En attente";
+          $bill->save();
+        }
 
         DB::table('owns')
             ->where('owner_id', $s)->where('id',$given->housing_id)

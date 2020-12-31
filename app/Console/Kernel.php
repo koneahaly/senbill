@@ -142,7 +142,7 @@ class Kernel extends ConsoleKernel
                 ->get();
 
             $months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
-            
+
             // creation des factures tous les 27 du mois
             foreach($actived_contracts as $actived_contract){
                 //gestion de la date de paiement de la facture
@@ -150,18 +150,18 @@ class Kernel extends ConsoleKernel
                 $day_of_pay = $actived_contract->delay == 0 ? '01' : '0'.$actived_contract->delay;
                 $delay= date("Y", strtotime($one_more_year.' year')).'-'.date("m",strtotime('+1 month')).'-'.$day_of_pay.' 23:59:00';
                 $order_number = $faker->vat;
- 
+
                 Bill::updateOrCreate([
                     'customerId' => str_replace('"','',$actived_contract->renter_id), 'order_number' => str_replace('"','',$order_number),
                   ], ['customerId' => str_replace('"','',$actived_contract->renter_id), 'order_number' => str_replace('"','',$order_number),
                   'title' => str_replace('"','','location'),'deadline' => $delay, 'status' => 'En attente',
                   'amount' => str_replace('"','',$actived_contract->monthly_pm), 'created_at' => date('Y-m-d H:i:s'),
-                  'month' => str_replace('"','',$months[intval(date("m",strtotime('+1 month')))]), 'year' => str_replace('"','',date("Y", strtotime($one_more_year.' year'))),
+                  'month' => str_replace('"','',$months[intval(date("m",strtotime('+1 month')))-1]), 'year' => str_replace('"','',date("Y", strtotime($one_more_year.' year'))),
                   'updated_at' => date('Y-m-d H:i:s')]);
             }
 
                 //var_dump($actived_contracts);
-        })->monthlyOn(27, '18:00');;
+        })->monthlyOn(27, '18:00');
 
 
 

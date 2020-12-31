@@ -70,57 +70,57 @@ class DashboardController extends Controller
 
     public function company_dashboard()
     {
+      //$this->download_contacts_tpl();
       $infos_company['infos_company'] = DB::connection('mysql2')->table('partners')->where('social_name',session()->get('social_name'))->first();
       return view('dashboard.companyDashboard')->with($infos_company);
-    }
-    public function import_dashboard()
-    {
-      $infos_imports['infos_imports'] = DB::connection('mysql2')->table('importations')->where('provider',session()->get('social_name'))->get();
-      return view('dashboard.importDashboard')->with($infos_imports);
     }
 
     public function download_contacts_tpl()
     {
+
       $fileName = base_path("storage/template/contacts_tpl.csv");
-
-      if ($fd = fopen ($fileName, "r")) {
-
-        header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+      if (file_exists($fileName)) {
         header('Content-Description: File Transfer');
-        header("Content-type: text/csv");
-        header("Content-Disposition: attachment; filename=contacts_template.csv");
-        header("Expires: 0");
-        header("Pragma: public");
-
-        while(!feof($fd)) {
-        $buffer = fread($fd, 2048);
-        echo $buffer;
-        }
-
-      fclose($fd);
-    }
+        header('Content-Type: application/octet-stream');
+        header('Content-Disposition: attachment; filename="'.basename($fileName).'"');
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate');
+        header('Pragma: public');
+        header('Content-Length: ' . filesize($fileName));
+        readfile($fileName);
+        exit;
+      }
   }
+
+    public function import_dashboard()
+    {
+      if(strpos($_SERVER['REQUEST_URI'],'download_contacts_tpl') !== false){
+        $this->download_contacts_tpl();
+      }
+      if(strpos($_SERVER['REQUEST_URI'],'download_invoices_tpl') !== false){
+        $this->download_invoices_tpl();
+      }
+
+      $infos_imports['infos_imports'] = DB::connection('mysql2')->table('importations')->where('provider',session()->get('social_name'))->get();
+      return view('dashboard.importDashboard')->with($infos_imports);
+    }
+
 
   public function download_invoices_tpl()
   {
       $fileName = base_path("storage/template/invoices_tpl.csv");
 
-      if ($fd = fopen ($fileName, "r")) {
-
-        header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+      if (file_exists($fileName)) {
         header('Content-Description: File Transfer');
-        header("Content-type: text/csv");
-        header("Content-Disposition: attachment; filename=invoices_template.csv");
-        header("Expires: 0");
-        header("Pragma: public");
-
-        while(!feof($fd)) {
-        $buffer = fread($fd, 2048);
-        echo $buffer;
-        }
-
-      fclose($fd);
-    }
+        header('Content-Type: application/octet-stream');
+        header('Content-Disposition: attachment; filename="'.basename($fileName).'"');
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate');
+        header('Pragma: public');
+        header('Content-Length: ' . filesize($fileName));
+        readfile($fileName);
+        exit;
+      }
   }
 
   public function read_header($file){

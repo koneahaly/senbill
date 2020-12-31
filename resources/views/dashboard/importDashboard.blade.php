@@ -1,6 +1,9 @@
+
+
 <?php $__env->startSection('content'); ?>
 
 <?php
+
 if(isset($_GET['data_contacts'])){
   $data_contacts = $_GET['data_contacts'];
 }
@@ -102,7 +105,7 @@ if(isset($_GET['data_invoices'])){
               <p class="text-muted">L'importation via un fichier vous permet d'ajouter  vos clients en masse sans développement. Seul un fichier csv est à éditer puis à charger via cette interface.</p>
               <p  style="margin-bottom: var(--space-s);"> Première étape : Template Elektra</p>
               <p class="text-muted">Vous pouvez  utiliser notre template Elektra standard et y ajouter les données que vous voulez importer. Si les champs du template ne sont pas  adaptés à votre modèle, vous pouvez toujours utiliser votre fichier  personnalisé. </p>
-              <span class="elektra-button-wrapper"><a href="<?php echo e(route('import.dashboard.download_contacts_tpl')); ?>">
+              <span class="elektra-button-wrapper"><a  href="{{ route('dashboard.download_contacts_tpl') }}">
                 <i class="fa fa-download"><span class="elektra-button">&nbsp &nbsp Télécharger le template</span></i>
               </a>
               </span>
@@ -200,7 +203,7 @@ if(isset($_GET['data_invoices'])){
               <p class="text-muted">L'importation via un fichier vous permet d'ajouter  vos factures en masse sans développement. Seul un fichier csv est à éditer puis à charger via cette interface.</p>
               <p  style="margin-bottom: var(--space-s);"> Première étape : Template Elektra</p>
               <p class="text-muted">Vous pouvez  utiliser notre template Elektra standard et y ajouter les données que vous voulez importer. Si les champs du template ne sont pas  adaptés à votre modèle, vous pouvez toujours utiliser votre fichier  personnalisé. </p>
-              <span class="elektra-button-wrapper"><a href="<?php echo e(route('import.dashboard.download_invoices_tpl')); ?>">
+              <span class="elektra-button-wrapper"><a href="<?php echo e(route('dashboard.download_invoices_tpl')); ?>">
                 <i class="fa fa-download"><span class="elektra-button">&nbsp &nbsp Télécharger le template</span></i>
               </a>
               </span>
@@ -327,7 +330,7 @@ if(isset($_GET['data_invoices'])){
 
    ?>
   <footer class="main-footer">
-    <strong>Copyright &copy; 2020 <a href="">Elektra-S2SN </a>.</strong>
+    <strong>Copyright &copy; 2020 <a href="">Senbill-S2SN </a>.</strong>
     Tous droits réservés.
     <div class="float-right d-none d-sm-inline-block">
       <b>Version</b> 1.0.0

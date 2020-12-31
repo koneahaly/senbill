@@ -68,10 +68,20 @@ class AdminLoginController extends Controller
 				$nb_pending_amount['nb_pending_amount'] = DB::connection('mysql2')->table('invoices')->where('payment_status','En attente')->where('provider',session()->get('social_name'))->count();
 				$nb_unpaid_amount['nb_unpaid_amount'] = DB::connection('mysql2')->table('invoices')->where('payment_status','Impayée')->where('provider',session()->get('social_name'))->count();
 
+				$nb_paid_om['nb_paid_om'] = DB::connection('mysql2')->table('invoices')->where('payment_status','Payée')->where('provider',session()->get('social_name'))->where('payment_method','OrangeMoney')->count();
+				$nb_paid_cb['nb_paid_cb'] = DB::connection('mysql2')->table('invoices')->where('payment_status','Payée')->where('provider',session()->get('social_name'))->where('payment_method','CB')->count();
+				$nb_paid_fc['nb_paid_fc'] = DB::connection('mysql2')->table('invoices')->where('payment_status','Payée')->where('provider',session()->get('social_name'))->where('payment_method','FreeCash')->count();
+				$nb_paid_em['nb_paid_em'] = DB::connection('mysql2')->table('invoices')->where('payment_status','Payée')->where('provider',session()->get('social_name'))->where('payment_method','Emoney')->count();
+				$nb_paid_wz['nb_paid_wz'] = DB::connection('mysql2')->table('invoices')->where('payment_status','Payée')->where('provider',session()->get('social_name'))->where('payment_method','Wizall')->count();
+
+
+
+
 				//dd($paid_amount['paid_amount']);
 				return view('dashboard.dashboardWelcome')->with($infos_partenaires)->with($nb_contacts)
 				->with($pending_amount)->with($paid_amount)->with($unpaid_amount)
-				->with($nb_paid_amount)->with($nb_pending_amount)->with($nb_unpaid_amount);
+				->with($nb_paid_amount)->with($nb_pending_amount)->with($nb_unpaid_amount)
+				->with($nb_paid_om)->with($nb_paid_fc)->with($nb_paid_cb)->with($nb_paid_em)->with($nb_paid_wz);
     	}
     	return $this->sendFailedLoginResponse($input);
     }
@@ -87,10 +97,19 @@ class AdminLoginController extends Controller
 				$nb_pending_amount['nb_pending_amount'] = DB::connection('mysql2')->table('invoices')->where('payment_status','En attente')->where('provider',session()->get('social_name'))->count();
 				$nb_unpaid_amount['nb_unpaid_amount'] = DB::connection('mysql2')->table('invoices')->where('payment_status','Impayée')->where('provider',session()->get('social_name'))->count();
 
+
+				$nb_paid_om['nb_paid_om'] = DB::connection('mysql2')->table('invoices')->where('payment_status','Payée')->where('provider',session()->get('social_name'))->where('payment_method','OrangeMoney')->count();
+				$nb_paid_cb['nb_paid_cb'] = DB::connection('mysql2')->table('invoices')->where('payment_status','Payée')->where('provider',session()->get('social_name'))->where('payment_method','CB')->count();
+				$nb_paid_fc['nb_paid_fc'] = DB::connection('mysql2')->table('invoices')->where('payment_status','Payée')->where('provider',session()->get('social_name'))->where('payment_method','FreeCash')->count();
+				$nb_paid_em['nb_paid_em'] = DB::connection('mysql2')->table('invoices')->where('payment_status','Payée')->where('provider',session()->get('social_name'))->where('payment_method','Emoney')->count();
+				$nb_paid_wz['nb_paid_wz'] = DB::connection('mysql2')->table('invoices')->where('payment_status','Payée')->where('provider',session()->get('social_name'))->where('payment_method','Wizall')->count();
+
+
 				//dd($paid_amount['paid_amount']);
 				return view('dashboard.dashboardWelcome')->with($infos_partenaires)->with($nb_contacts)
 				->with($pending_amount)->with($paid_amount)->with($unpaid_amount)
-				->with($nb_paid_amount)->with($nb_pending_amount)->with($nb_unpaid_amount);
+				->with($nb_paid_amount)->with($nb_pending_amount)->with($nb_unpaid_amount)
+				->with($nb_paid_om)->with($nb_paid_fc)->with($nb_paid_cb)->with($nb_paid_em)->with($nb_paid_wz);
     }
 
     public function logout(Request $request)

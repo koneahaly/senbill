@@ -198,7 +198,7 @@
                       <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 25px; padding-left: 25px; padding-top: 10px; padding-bottom: 20px; font-family: Arial, sans-serif"><![endif]-->
                       <div style="color:#555555;font-family:Nunito, Arial, Helvetica Neue, Helvetica, sans-serif;line-height:1.5;padding-top:10px;padding-right:25px;padding-bottom:20px;padding-left:25px;">
                         <div style="line-height: 1.5; font-size: 12px; color: #555555; font-family: Nunito, Arial, Helvetica Neue, Helvetica, sans-serif; mso-line-height-alt: 18px;">
-                          <p style="font-size: 14px; line-height: 1.5; word-break: break-word; text-align: center; mso-line-height-alt: 21px; margin: 0;"><span style="color: #ffffff;"><a href="http://<?php echo env('APP_URL');?>/verify-email/"<?php echo $email; ?> rel="noopener" style="text-decoration: underline; color: #ffffff;" target="_blank">http://<?php echo env('APP_URL');?>/verify-email/<?php echo $email; ?> </a></span></p>
+                          <p style="font-size: 14px; line-height: 1.5; word-break: break-word; text-align: center; mso-line-height-alt: 21px; margin: 0;"><span style="color: #ffffff;"><a href="<?php echo env('APP_URL');?>/verify-email/<?php echo $email; ?>" rel="noopener" style="text-decoration: underline; color: #ffffff;" target="_blank"><?php echo env('APP_URL');?>/verify-email/<?php echo $email; ?> </a></span></p>
                         </div>
                       </div>
                       <!--[if mso]></td></tr></table><![endif]-->

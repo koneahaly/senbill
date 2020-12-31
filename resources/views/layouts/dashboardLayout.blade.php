@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Elektra | Tableau de bord</title>
+  <title>Senbill | Tableau de bord</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -282,7 +282,7 @@ color:#2282e4 !important;
     <a href="{{ route('welcome.dashboard') }}" class="brand-link">
       <img src="{{ url('dashboardAssets/dist/img/logo-senbill-halo.png') }}" alt="Logo Elektra" class="brand-image img-circle elevation-3"
            style="opacity: .8">
-      <span class="brand-text font-weight-light">Tableau Elektra</span>
+      <span class="brand-text font-weight-light">Tableau Senbill</span>
     </a>
 
     <!-- Sidebar -->
@@ -317,7 +317,7 @@ color:#2282e4 !important;
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Clients
-                <span class="right badge badge-danger">Nouveau</span>
+                <!-- <span class="right badge badge-danger">Nouveau</span> -->
               </p>
             </a>
           </li>
@@ -327,7 +327,7 @@ color:#2282e4 !important;
               <p>
                 Paiements
                 <i class="fas fa-angle-left right"></i>
-                <span class="badge badge-info right">6</span>
+                <!-- <span class="badge badge-info right">6</span> -->
               </p>
             </a>
             <ul class="nav nav-treeview">
@@ -352,7 +352,7 @@ color:#2282e4 !important;
               <i class="nav-icon far fa-calendar-alt"></i>
               <p>
                 Profil admin
-                <span class="badge badge-info right">2</span>
+                <!-- <span class="badge badge-info right">2</span> -->
               </p>
             </a>
           </li>

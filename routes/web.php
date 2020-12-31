@@ -94,11 +94,11 @@ Route::get('/dashboard/general', 'DashboardController@company_dashboard')->name(
 Route::post('/dashboard/import', 'DashboardController@import_dashboard')->name('import.dashboard');
 Route::get('/dashboard/import/{name?}', 'DashboardController@import_dashboard')->name('import.dashboard');
 
-Route::post('/dashboard/import/download_contacts_tpl','DashboardController@download_contacts_tpl')->name('import.dashboard.download_contacts_tpl');
-Route::get('/dashboard/import/download_contacts_tpl','DashboardController@download_contacts_tpl')->name('import.dashboard.download_contacts_tpl');
+Route::post('/dashboard/import/download_contacts_tpl','DashboardController@download_contacts_tpl')->name('dashboard.download_contacts_tpl');
+Route::get('/dashboard/import/download_contacts_tpl','DashboardController@download_contacts_tpl')->name('dashboard.download_contacts_tpl');
 
-Route::post('/dashboard/import/download_invoices_tpl','DashboardController@download_invoices_tpl')->name('import.dashboard.download_invoices_tpl');
-Route::get('/dashboard/import/download_invoices_tpl','DashboardController@download_invoices_tpl')->name('import.dashboard.download_invoices_tpl');
+Route::post('/dashboard/import/download_invoices_tpl','DashboardController@download_invoices_tpl')->name('dashboard.download_invoices_tpl');
+Route::get('/dashboard/import/download_invoices_tpl','DashboardController@download_invoices_tpl')->name('dashboard.download_invoices_tpl');
 
 Route::post('/dashboard/import/load_invoices','DashboardController@load_invoices')->name('import.dashboard.load_invoices');
 Route::post('/dashboard/import/load_contacts','DashboardController@load_contacts')->name('import.dashboard.load_contacts');

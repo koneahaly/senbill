@@ -14,8 +14,15 @@ use Session;
 
 $service =explode('/',$_SERVER['REQUEST_URI']);
 $except_page = $service[1];
-if($except_page == 'mes-factures')
+if($except_page == 'mes-factures'){
   $_SESSION['current_service'] = $service[2];
+
+if(strpos($service[2],'?') !== false){
+  $clean_service = explode('?',$service[2]);
+  $_SESSION['current_service'] = $clean_service[0];
+  }
+}
+
 class HomeController extends Controller
 {
     /**
@@ -36,7 +43,7 @@ class HomeController extends Controller
 
 
 
-    public function display_bills()
+    public function display_bills(Request $input)
     {
       try{
 
@@ -53,20 +60,18 @@ class HomeController extends Controller
           }
           return $object;
         }
-        //Récupération Token bill de PD
-        $uriString =explode('?',$_SERVER['REQUEST_URI']);
-        if(count($uriString)>1){
-          $tokenPhrase = $uriString[1];
-          if(strpos($tokenPhrase,'token') !== false)
-            $tokenbill=($_GET['token']);
-          Session::push('billToken',$tokenbill);
-            //  dd(response()->json(['success' => true, 'token' => Session::get('billToken')]));
-        }
-        //if($_GET['token'])
-        //  $billToken=$_GET['token'];
         //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         $s=Auth::user()->customerId;
+        if(strpos($_SERVER['REQUEST_URI'],'errorCode=200') !== false){
+          $payment_method = "n/a";
+          if(strpos($_SERVER['REQUEST_URI'],'ompaysnsuccess') !== false)
+            $payment_method = "OrangeMoney";
+          DB::table('bills')
+              ->where([['customerId', $s],['order_number',$input->order]])
+              ->update(['status' => 'paid','payment_method' => $payment_method]);
+        }
+
         $user['user'] = DB::table('users')->where('customerId',$s)->first();
         $myuser = DB::table('users')->where('customerId',$s)->first();
         $profilNotif = 0;
@@ -171,37 +176,6 @@ class HomeController extends Controller
          $this->tb=$tb;
     }
 
-    public function paydunyaApi()
-    {
-      $invoice = new \Paydunya\Checkout\CheckoutInvoice();
-      $invoice->setReturnUrl("http://localhost:8000/mes-factures/".$_SESSION['current_service']."/");
-      $invoice->setCancelUrl("http://localhost:8000/mes-factures/".$_SESSION['current_service']."/");
-
-      /* L'ajout d'éléments à votre facture est très basique.
-      Les paramètres attendus sont nom du produit, la quantité, le prix unitaire,
-      le prix total et une description optionelle. */
-      $payment_due  =  12600;
-      $fees = $payment_due  * 0.05;
-      $payment_tot_due  = $payment_due + $fees;
-      $invoice->addItem("Consommation du mois de Juin", 1, $payment_due, $payment_due, "Facture d'eau du partenaire SDEQ");
-      $invoice->addItem("Frais de gestion", 1, $fees, $fees,"Frais gratuits");
-      //ajouter d'autres lignes si besoin
-      $invoice->setTotalAmount($payment_tot_due);
-      if($invoice->create()) {
-        $uriString=$invoice->getInvoiceUrl();
-        $uriString =explode('/',$uriString);
-        if(count($uriString)>5){
-          $tokenPhrase = $uriString[5];
-          if(strpos($tokenPhrase,'test') !== false)
-            $tokenbill=$tokenPhrase;
-        return( response()->json(['success' => true, 'token' => $tokenbill]));
-        }
-      }
-      else{
-            echo $invoice->response_text;
-      }
-
-    }
 
     public function update_personal_infos(Request $given){
 

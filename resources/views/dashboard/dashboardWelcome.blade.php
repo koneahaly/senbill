@@ -144,40 +144,40 @@ session_start();
                         <td>Orange Money</td>
                         <td>
                           <div class="progress progress-xs">
-                            <div class="progress-bar progress-bar-danger elektraOM" style="width: 55%"></div>
+                            <div class="progress-bar progress-bar-danger elektraOM" style="width: {{ $nb_paid_om*100/$nb_paid_om+$nb_paid_cb+$nb_paid_fc+$nb_paid_wz }}%"></div>
                           </div>
                         </td>
-                        <td><span class="badge bg-danger elektraOM">55%</span></td>
+                        <td><span class="badge bg-danger elektraOM">{{ $nb_paid_om*100/$nb_paid_om+$nb_paid_cb+$nb_paid_fc+$nb_paid_wz }}%</span></td>
                       </tr>
                       <tr>
                         <td>2.</td>
                         <td>Free Cash</td>
                         <td>
                           <div class="progress progress-xs">
-                            <div class="progress-bar bg-warning elektraFree" style="width: 70%"></div>
+                            <div class="progress-bar bg-warning elektraFree" style="width: {{ $nb_paid_fc*100/$nb_paid_om+$nb_paid_cb+$nb_paid_fc+$nb_paid_wz }}%"></div>
                           </div>
                         </td>
-                        <td><span class="badge bg-warning elektraFree">70%</span></td>
+                        <td><span class="badge bg-warning elektraFree">{{ $nb_paid_fc*100/$nb_paid_om+$nb_paid_cb+$nb_paid_fc+$nb_paid_wz }}%</span></td>
                       </tr>
                       <tr>
                         <td>3.</td>
                         <td>Carte bancaire</td>
                         <td>
                           <div class="progress progress-xs progress-striped active">
-                            <div class="progress-bar bg-primary elektraCB" style="width: 30%"></div>
+                            <div class="progress-bar bg-primary elektraCB" style="width: {{ $nb_paid_cb*100/$nb_paid_om+$nb_paid_cb+$nb_paid_fc+$nb_paid_wz }}%"></div>
                           </div>
                         </td>
-                        <td><span class="badge bg-primary elektraCB">30%</span></td>
+                        <td><span class="badge bg-primary elektraCB">{{ $nb_paid_cb*100/$nb_paid_om+$nb_paid_cb+$nb_paid_fc+$nb_paid_wz }}%</span></td>
                       </tr>
                       <tr>
                         <td>4.</td>
-                        <td>Paypal</td>
+                        <td>Wizall</td>
                         <td>
                           <div class="progress progress-xs progress-striped active">
-                            <div class="progress-bar bg-success elektraPaypal" style="width: 5%"></div>
+                            <div class="progress-bar bg-success elektraPaypal" style="width: {{ $nb_paid_wz*100/$nb_paid_om+$nb_paid_cb+$nb_paid_fc+$nb_paid_wz }}%"></div>
                           </div>
                         </td>
-                        <td><span class="badge bg-success elektraPaypal">5%</span></td>
+                        <td><span class="badge bg-success elektraPaypal">{{ $nb_paid_wz*100/$nb_paid_om+$nb_paid_cb+$nb_paid_fc+$nb_paid_wz }}%</span></td>
                       </tr>
                     </tbody>
                   </table>
@@ -195,7 +195,7 @@ session_start();
               <div class="card-header border-0">
                 <h3 class="card-title">
                   <i class="fas fa-map-marker-alt mr-1"></i>
-                  Vos clients Elektra
+                  Vos clients Senbill
                 </h3>
                 <!-- card tools -->
                 <div class="card-tools">
@@ -278,7 +278,7 @@ session_start();
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <strong>Copyright &copy; 2020 <a href="">Elektra-S2SN </a>.</strong>
+    <strong>Copyright &copy; 2020 <a href="">Senbill-S2SN </a>.</strong>
     Tous droits réservés.
     <div class="float-right d-none d-sm-inline-block">
       <b>Version</b> 1.0.0
