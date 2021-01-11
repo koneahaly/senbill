@@ -275,8 +275,8 @@ class realEstateOwnerController extends Controller
           $bill->year=date("Y");
           $bill->units=0;
           $bill->order_number=$order_number;
-          $bill->title="caution";
-          $bill->amount=$contract->bail;
+          $bill->title="location";
+          $bill->amount=$contract->bail + ($contract->bail * 0.035);
           $bill->status="En attente";
           $bill->save();
         }

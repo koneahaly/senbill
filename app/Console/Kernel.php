@@ -155,7 +155,7 @@ class Kernel extends ConsoleKernel
                     'customerId' => str_replace('"','',$actived_contract->renter_id), 'order_number' => str_replace('"','',$order_number),
                   ], ['customerId' => str_replace('"','',$actived_contract->renter_id), 'order_number' => str_replace('"','',$order_number),
                   'title' => str_replace('"','','location'),'deadline' => $delay, 'status' => 'En attente',
-                  'amount' => str_replace('"','',$actived_contract->monthly_pm), 'created_at' => date('Y-m-d H:i:s'),
+                  'amount' => str_replace('"','',$actived_contract->monthly_pm + ($actived_contract->monthly_pm * 0.035)), 'created_at' => date('Y-m-d H:i:s'),
                   'month' => str_replace('"','',$months[intval(date("m",strtotime('+1 month')))-1]), 'year' => str_replace('"','',date("Y", strtotime($one_more_year.' year'))),
                   'updated_at' => date('Y-m-d H:i:s')]);
             }

@@ -133,7 +133,7 @@ if (!empty(Auth::user()->date_activation_code)) $_SESSION['profilNotif'] = 0;
 
                     <div class="col-md-6" style="margin-bottom:10px">
                       <p><strong>ADRESSE DE FACTURATION:</strong></p>
-                      <input pattern="[0-9]{1,3}(([,. ]?){1}[-a-zA-Zàâäéèêëïîôöùûüç']+)*" title="l'adresse renseigné n'est pas valide." class="col-form-label" name="address" value="{{Auth::user()->address}}" style="border-bottom:3px solid #084f78 !important" required>
+                      <input pattern="(?=.*[-a-zA-Z0-9]?){1,5}(([,. ]?){1}[-a-zA-Z0-9àâäéèêëïîôöùûüç'°]+)*" title="l'adresse renseigné n'est pas valide." class="col-form-label" name="address" value="{{Auth::user()->address}}" style="border-bottom:3px solid #084f78 !important" required>
                     </div>
                     <br />
                     <div class="row form-check" style="margin-bottom:10px;margin-left:18px">

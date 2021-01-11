@@ -63,6 +63,8 @@ class HomeController extends Controller
         //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         $s=Auth::user()->customerId;
+
+
         if(strpos($_SERVER['REQUEST_URI'],'errorCode=200') !== false){
           $payment_method = "n/a";
           if(strpos($_SERVER['REQUEST_URI'],'ompaysnsuccess') !== false)
@@ -91,13 +93,34 @@ class HomeController extends Controller
         }
         Session::push('profilNotif', $profilNotif);
 
+        if(strpos($_SERVER['REQUEST_URI'],'eau') !== false){
+          $title_service = "eau";
+        }
+
+        if(strpos($_SERVER['REQUEST_URI'],'electricité') !== false){
+          $title_service = "electricité";
+        }
+
+        if(strpos($_SERVER['REQUEST_URI'],'locataire') !== false){
+          $title_service = "location";
+        }
+        if(strpos($_SERVER['REQUEST_URI'],'scolarité') !== false){
+          $title_service = "scolarité";
+        }
+        if(strpos($_SERVER['REQUEST_URI'],'sport') !== false){
+          $title_service = "sport";
+        }
+        if(strpos($_SERVER['REQUEST_URI'],'mobile') !== false){
+          $title_service = "mobile";
+        }
+
         $actived_services['actived_services'] = DB::table('services')->where('customerId',$s)->first();
         if(Auth::user()->user_type != 2){
-          $numberOfBillsNonPaid = (int)DB::table('bills')->where('customerId',$s)->where('status','!=','paid')->orderBy('id', 'DESC')->count();
-          $numberOfBills = (int)DB::table('bills')->where('customerId',$s)->orderBy('id', 'DESC')->count();
+          $numberOfBillsNonPaid = (int)DB::table('bills')->where('customerId',$s)->where('status','!=','paid')->where('title',$title_service)->orderBy('id', 'DESC')->count();
+          $numberOfBills = (int)DB::table('bills')->where('customerId',$s)->where('title',$title_service)->orderBy('id', 'DESC')->count();
           if($numberOfBills > 0){
-            $data['data']=DB::table('bills')->where('customerId',$s)->orderBy('id', 'DESC')->get();
-            $last_row_data['last_row_data']=DB::table('bills')->where('customerId',$s)->orderBy('id', 'DESC')->first();
+            $data['data']=DB::table('bills')->where('customerId',$s)->where('title',$title_service)->orderBy('id', 'DESC')->get();
+            $last_row_data['last_row_data']=DB::table('bills')->where('customerId',$s)->where('title',$title_service)->orderBy('id', 'DESC')->first();
 
           }
           else {
@@ -180,7 +203,6 @@ class HomeController extends Controller
     public function update_personal_infos(Request $given){
 
       $s=Auth::user()->customerId;
-      $myuser = DB::table('users')->where('customerId',$s)->first();
 
       if($given->action == "save"){
         $this->validate($given,[
@@ -202,8 +224,9 @@ class HomeController extends Controller
             ->update(['email' => $given->email, 'date_verify_email' => '']);
         }
 
+        $myuser = DB::table('users')->where('customerId',$s)->first();
         $co = new MailController();
-        $co->html_verify_email($given->email,$myuser->first_name.' '.$myuser->name,'SEN BILL');
+        $co->html_verify_email($myuser->email,$myuser->first_name.' '.$myuser->name,'SEN BILL');
 
       if($given->action_phone == "save"){
         $this->validate($given,[

@@ -224,14 +224,6 @@ if(isset($_GET['data_invoices'])){
               </div>
               </form>
               <br/>
-              <div class="alert alert-success alert-dismissible alert-invoice-green">
-                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                  <i class="icon fas fa-check "> Le fichier a  été bien chargé.</i>
-              </div>
-              <div class="alert alert-danger alert-dismissible alert-invoice-red">
-                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                  <i class="icon fas fa-ban "> Le fichier n'a pas été chargé.</i>
-              </div>
               <br/>
               <p  style="margin-bottom: var(--space-s);"> Troisième étape : Vérification du mapping</p>
               <p class="text-muted">Merci de vérifier que  tous  les champs sont bien mappés </p>

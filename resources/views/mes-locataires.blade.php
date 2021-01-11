@@ -277,7 +277,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
             </div>
             <div class="wrap-input100 validate-input bg1 form-group{{ $errors->has('customerId') ? ' has-error' : '' }}" data-validate="Entrez svp un cni pour le logement">
               <span class="label-input100 control-label">Numéro CNI *</span>
-              <input class="input100 update_cni" type="text" pattern="[0-9,A-Z,a-z]{13}" required name="customerId" placeholder="Entrez le numéro de Carte d'identité nationale du locataire" value="A000305199377">
+              <input class="input100 update_cni" type="text" pattern="[0-9,A-Z,a-z]{18}" required name="customerId" placeholder="Entrez le numéro de Carte d'identité nationale du locataire" value="A000305199377">
               @if ($errors->has('customerId'))
                   <span class="help-block">
                       <strong>{{ $errors->first('customerId') }}</strong>
