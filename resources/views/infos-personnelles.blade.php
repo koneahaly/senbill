@@ -167,7 +167,7 @@ if (!empty(Auth::user()->date_activation_code)) $_SESSION['profilNotif'] = 0;
                     <div class="col-md-6" style="margin-bottom:10px">
                       <p><strong>EMAIL</strong>
                       @if (empty(Auth::user()->date_verify_email))
-                        <i style="color:red" itle="Veuillez valider votre adresse mail en cliquant le lien de vérification depuis votre compte email"class="fas fa-exclamation-circle"></i>
+                        <i style="color:red" itle="Veuillez valider votre adresse mail en cliquant le lien de vérification depuis votre compte email" class="fas fa-exclamation-circle"></i>
                       @endif
                       </p>
                       <span class="recapData">{{ Auth::user()->email }}</span>

@@ -62,6 +62,7 @@
 
                                 <div class="col-md-6">
                                     <input  id="password" type="password" value="{{ old('password') }}" class="form-control" name="password" placeholder="Mot de passe" required>
+                                    <span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
 
                                     @if ($errors->has('password'))
                                         <span class="help-block">
@@ -76,6 +77,8 @@
 
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation" value="{{ old('password_confirmation') }}" placeholder="Confirmation du mot de passe" required>
+                                    <span toggle="#password-confirm" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+
                                 </div>
                             </div>
                         </div>
@@ -569,6 +572,16 @@ $('.sv_2').click(function(){
 var value = $('.service_1').val();
 $('.display_service_1').text(value);
 
+$(".toggle-password").click(function() {
+
+$(this).toggleClass("fa-eye fa-eye-slash");
+var input = $($(this).attr("toggle"));
+if (input.attr("type") == "password") {
+  input.attr("type", "text");
+} else {
+  input.attr("type", "password");
+}
+});
 </script>
 
 @endsection

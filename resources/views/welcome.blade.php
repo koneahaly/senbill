@@ -99,6 +99,14 @@ if(!empty($raw_woyofal_users_demo) and !empty($raw_classical_users_demo)){
          function submitCredentials(){
                  return document.forms['loginForm'].submit();
                 }
+                function myFunction() {
+                  var x = document.getElementById("PWD");
+                  if (x.type === "password") {
+                    x.type = "text";
+                  } else {
+                    x.type = "password";
+                  }
+                }
 
          </script>
 
@@ -127,6 +135,7 @@ if(!empty($raw_woyofal_users_demo) and !empty($raw_classical_users_demo)){
                         <button class="btn s2sn-js-btn-next" type="submit" onclick="return submitCredentials();"><span class="fa fa-arrow-right"></span></button>
                      </div>
                 </div>
+                <input type="checkbox" onclick="myFunction();"> Afficher mot de passe
              </div>
 
              <div id="captcha" class="captcha-verif">
