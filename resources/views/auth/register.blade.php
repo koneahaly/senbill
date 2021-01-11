@@ -145,6 +145,19 @@
                                 </div>
                             </div>
 
+                            <div class="row">
+                                  <label for="exampleFormControlSelect1" class="col-md-4 control-label">PAYS</label>
+                                  <div class="col-md-6">
+                                    <select class="form-control" name="country" id="exampleFormControlSelect1">
+                                      <option value="" disabled="disabled">--Votre pays--</option>
+                                      <option value="sn">Sénégal</option>
+                                      <option value="ci">Côte d'ivoire</option>
+                                      <option value="fr">France</option>
+                                    </select>
+                                    <br />
+                                </div>
+                              </div>
+
                             <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
                                 <label for="phone" class="col-md-4 control-label">Numéro de téléphone</label>
 

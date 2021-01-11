@@ -204,12 +204,17 @@ class RegisterController extends Controller
           $co->html_verify_email($data['email'],$data['first_name'].' '.$data['name'],'SEN BILL');
           $co->html_email($data['email'],$data['first_name'].' '.$data['name'],'SEN BILL');
 
+          $indicatif = "";
+          if($data['country'] == "sn")
+            $indicatif = "+221";
+          if($data['country'] == "ci")
+            $indicatif = "+225";
         return User::create([
            'civilite' => $data['salutation'],
            'name' => $data['name'],
            'first_name' => $data['first_name'],
            'email' => $data['email'],
-           'phone' => $data['phone'],
+           'phone' => $indicatif.''.$data['phone'],
            'customerId' =>$data['customerId'],
            'address' =>$data['address'],
            'password' => bcrypt($data['password']),

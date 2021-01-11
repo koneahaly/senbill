@@ -165,13 +165,17 @@ if (!empty(Auth::user()->date_activation_code)) $_SESSION['profilNotif'] = 0;
                   <form method="post" action="../infos-personnelles/{{ $_SESSION['current_service']}}">
                     {{csrf_field()}}
                     <div class="col-md-6" style="margin-bottom:10px">
-                      <p><strong>EMAIL</strong></p>
+                      <p><strong>EMAIL</strong>
+                      @if (empty(Auth::user()->date_verify_email))
+                        <i style="color:red" itle="Veuillez valider votre adresse mail en cliquant le lien de vérification depuis votre compte email"class="fas fa-exclamation-circle"></i>
+                      @endif
+                      </p>
                       <span class="recapData">{{ Auth::user()->email }}</span>
                       <div>
                         <button style="background:rgba(137,180,213,1);color:white;margin-top:8px" class="btn">
                           <span class="glyphicon glyphicon-edit"></span> Modifier
-                        </button>
                       </div>
+          
                     </div>
                     <input type="hidden" name="update_email" value="true"/>
                     <input type="hidden" name="service" value="{{ $_SESSION['current_service'] }}"/>
@@ -199,7 +203,11 @@ if (!empty(Auth::user()->date_activation_code)) $_SESSION['profilNotif'] = 0;
 
                 @if(!isset($_POST['update_phone']))
                     <div class="col-md-6" style="margin-bottom:10px">
-                      <p><strong>T&Eacute;L&Eacute;PHONE</strong></p>
+                      <p><strong>T&Eacute;L&Eacute;PHONE</strong>
+                      @if (empty(Auth::user()->date_activation_code))
+                        <i style="color:red" title="Veuillez valider votre numéro de téléphone en cliquant sur le bouton vérifier" class="fas fa-exclamation-circle"></i>
+                      @endif
+                      </p>
                       <span class="recapData">{{ Auth::user()->phone }}</span>
                       @if (!empty(Auth::user()->date_activation_code))
                         <span class="glyphicon glyphicon-ok-circle text-success " style="font-size:15px"></span>
@@ -229,7 +237,7 @@ if (!empty(Auth::user()->date_activation_code)) $_SESSION['profilNotif'] = 0;
                             <input type="hidden" name="update_phone" value="true"/>
                             <input type="hidden" name="service" value="{{ $_SESSION['current_service'] }}"/>
                           </form>
-                        </div>
+                        </div> 
                       </div>
                     </div>
                 @endif
