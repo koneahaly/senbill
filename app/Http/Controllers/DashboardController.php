@@ -36,7 +36,7 @@ class DashboardController extends Controller
 
     public function clients_dashboard()
     {
-      $infos_contacts['infos_contacts'] = DB::connection('mysql2')->table('contacts')->join('subscriptions', 'contacts.id', '=', 'subscriptions.contact_id')->where('partner_id',session()->get('partner_id'))->get();
+      $infos_contacts['infos_contacts'] = DB::connection('mysql2')->table('contacts')->join('subscriptions', 'contacts.id', '=', 'subscriptions.contact_id')->where('subscriptions.partner_id',session()->get('partner_id'))->get();
       return view('dashboard.usersDashboard')->with($infos_contacts);
     }
     public function transactions_dashboard()
@@ -191,8 +191,8 @@ class DashboardController extends Controller
           foreach($data as $row) {
               if($i > 0){
                 Contact::updateOrCreate([
-                    'customerId' => str_replace('"','',$row[$index_customer_id]),
-                ], [$fields[1] => str_replace('"','',$row[1]),$fields[2] => str_replace('"','',$row[2]), $fields[3] => $row[3],
+                    'customerId' => str_replace('"','',$row[$index_customer_id]), 'partner_id' => str_replace('"','',$row[$index_partner_id])
+                ], [$fields[1] => str_replace('"','',$row[1]),'partner_id' => str_replace('"','',$row[$index_partner_id]),$fields[2] => str_replace('"','',$row[2]), $fields[3] => $row[3],
                     $fields[4] => $row[4], $fields[5] => str_replace('"','',$row[5]), $fields[6] => str_replace('"','',$row[6]),
                     $fields[7] => str_replace('"','',$row[7]),$fields[12] => str_replace('"','',$row[12]), $fields[13] => str_replace('"','',$row[13]),
                       $fields[14] => str_replace('"','',$row[14])]);

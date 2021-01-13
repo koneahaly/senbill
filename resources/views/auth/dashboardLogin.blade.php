@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>{{config('app.name')}}</title>
-        <link rel="icon" type="image/png" href="https://elektra.s3.amazonaws.com/images/icons/logo-elektra-halo.png"/>
+        <link rel="icon" type="image/png" href="https://elektra.s3.amazonaws.com/images/icons/logo-senbill-halo.png"/>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
         <link rel="stylesheet" type="text/css" href="{{url('css/bootstrap.min.css')}}">
@@ -18,7 +18,7 @@
     <body class="welcome_elektra">
       <div class="s2sn-wrapper-login-container s2sn-js-login" style="background-image: url({{url('images/bare-tree.jpg')}});">
          <div class="s2sn-wrapper-center s2sn-wrapper-center-dashboard s2sn-wrapper-when-footer">
-           <img src="{{url('images/logo-elektra-halo.png')}}" alt="logo-elektra" width="auto" height="100" class="s2sn-logo-elektra">
+           <img src="https://elektra.s3.amazonaws.com/images/icons/logo-senbill-halo.png" alt="logo-senbill" width="auto" height="100" class="s2sn-logo-elektra">
          <form action="{{ route('welcome.dashboard') }}" name="loginForm" id="loginForm" method="post" autocomplete="off">
            {{ csrf_field() }}
 
@@ -43,6 +43,8 @@
                         <button class="btn s2sn-js-btn-next" type="submit" onclick="return submitCredentials();"><span class="fa fa-arrow-right"></span></button>
                      </div>
                 </div>
+             </div><br />
+             <div><input type="checkbox" onclick="myFunction();"> Afficher mot de passe
              </div>
             </form>
 
@@ -51,6 +53,17 @@
          <script src="{{url('js/jquery.min.js')}}"></script>
          <script src="{{url('js/popper.min.js')}}"></script>
          <script src="{{url('js/bootstrap.min.js')}}"></script>
+         <script type="text/javascript">
+                function myFunction() {
+                  var x = document.getElementById("PWD");
+                  if (x.type === "password") {
+                    x.type = "text";
+                  } else {
+                    x.type = "password";
+                  }
+                }
+
+         </script>
 
     </div>
     </body>

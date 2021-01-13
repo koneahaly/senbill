@@ -118,7 +118,9 @@ session_start();
               </div><!-- /.card-body -->
             </div>
             <!-- /.card -->
-
+            <?php
+              $sum_nb_payments = $nb_paid_om+$nb_paid_cb+$nb_paid_fc+$nb_paid_wz;
+            ?>
             <!-- TO DO List -->
             <div class="card">
                 <div class="card-header">
@@ -144,40 +146,40 @@ session_start();
                         <td>Orange Money</td>
                         <td>
                           <div class="progress progress-xs">
-                            <div class="progress-bar progress-bar-danger elektraOM" style="width: {{ $nb_paid_om*100/$nb_paid_om+$nb_paid_cb+$nb_paid_fc+$nb_paid_wz }}%"></div>
+                            <div class="progress-bar progress-bar-danger elektraOM" style="width: {{ ($sum_nb_payments > 0) ? $nb_paid_om*100/$sum_nb_payments : 0 }}%"></div>
                           </div>
                         </td>
-                        <td><span class="badge bg-danger elektraOM">{{ $nb_paid_om*100/$nb_paid_om+$nb_paid_cb+$nb_paid_fc+$nb_paid_wz }}%</span></td>
+                        <td><span class="badge bg-danger elektraOM">{{ ($sum_nb_payments > 0) ? $nb_paid_om*100/$nsum_nb_payments : 0 }}%</span></td>
                       </tr>
                       <tr>
                         <td>2.</td>
                         <td>Free Cash</td>
                         <td>
                           <div class="progress progress-xs">
-                            <div class="progress-bar bg-warning elektraFree" style="width: {{ $nb_paid_fc*100/$nb_paid_om+$nb_paid_cb+$nb_paid_fc+$nb_paid_wz }}%"></div>
+                            <div class="progress-bar bg-warning elektraFree" style="width: {{ ($sum_nb_payments > 0) ? $nb_paid_fc*100/$sum_nb_payments : 0 }}%"></div>
                           </div>
                         </td>
-                        <td><span class="badge bg-warning elektraFree">{{ $nb_paid_fc*100/$nb_paid_om+$nb_paid_cb+$nb_paid_fc+$nb_paid_wz }}%</span></td>
+                        <td><span class="badge bg-warning elektraFree">{{ ($sum_nb_payments > 0) ? $nb_paid_fc*100/$sum_nb_payments : 0 }}%</span></td>
                       </tr>
                       <tr>
                         <td>3.</td>
                         <td>Carte bancaire</td>
                         <td>
                           <div class="progress progress-xs progress-striped active">
-                            <div class="progress-bar bg-primary elektraCB" style="width: {{ $nb_paid_cb*100/$nb_paid_om+$nb_paid_cb+$nb_paid_fc+$nb_paid_wz }}%"></div>
+                            <div class="progress-bar bg-primary elektraCB" style="width: {{ ($sum_nb_payments > 0) ? $nb_paid_cb*100/$sum_nb_payments : 0}}%"></div>
                           </div>
                         </td>
-                        <td><span class="badge bg-primary elektraCB">{{ $nb_paid_cb*100/$nb_paid_om+$nb_paid_cb+$nb_paid_fc+$nb_paid_wz }}%</span></td>
+                        <td><span class="badge bg-primary elektraCB">{{ ($sum_nb_payments > 0) ? $nb_paid_cb*100/$sum_nb_payments : 0}}%</span></td>
                       </tr>
                       <tr>
                         <td>4.</td>
                         <td>Wizall</td>
                         <td>
                           <div class="progress progress-xs progress-striped active">
-                            <div class="progress-bar bg-success elektraPaypal" style="width: {{ $nb_paid_wz*100/$nb_paid_om+$nb_paid_cb+$nb_paid_fc+$nb_paid_wz }}%"></div>
+                            <div class="progress-bar bg-success elektraPaypal" style="width: {{ ($sum_nb_payments > 0) ? $nb_paid_wz*100/$sum_nb_payments : 0 }}%"></div>
                           </div>
                         </td>
-                        <td><span class="badge bg-success elektraPaypal">{{ $nb_paid_wz*100/$nb_paid_om+$nb_paid_cb+$nb_paid_fc+$nb_paid_wz }}%</span></td>
+                        <td><span class="badge bg-success elektraPaypal">{{ ($sum_nb_payments > 0) ? $nb_paid_wz*100/$sum_nb_payments : 0 }}%</span></td>
                       </tr>
                     </tbody>
                   </table>

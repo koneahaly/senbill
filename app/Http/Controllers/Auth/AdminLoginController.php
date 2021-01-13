@@ -60,9 +60,9 @@ class AdminLoginController extends Controller
 					Session::put('full_name', $info_partenaire->email);
 				}
 				$infos_partenaires['infos_partenaires'] = DB::connection('mysql2')->table('partners')->where('email',session()->get('email_partner'))->first();
-				$nb_contacts['nb_contacts'] = DB::connection('mysql2')->table('contacts')->where('in_elektra','Y')->count();
+				$nb_contacts['nb_contacts'] = DB::connection('mysql2')->table('contacts')->where('in_elektra','Y')->where('partner_id',Session::get('partner_id'))->count();
 				$paid_amount['paid_amount'] = DB::connection('mysql2')->table('invoices')->where('payment_status','Payée')->where('provider',session()->get('social_name'))->sum('paid_amount');
-				$pending_amount['pending_amount'] = DB::connection('mysql2')->table('invoices')->where('payment_status','En attente')->where('provider','Akilee')->sum('tot_payment_due');
+				$pending_amount['pending_amount'] = DB::connection('mysql2')->table('invoices')->where('payment_status','En attente')->where('provider',session()->get('social_name'))->sum('tot_payment_due');
 				$unpaid_amount['unpaid_amount'] = DB::connection('mysql2')->table('invoices')->where('payment_status','Impayée')->where('provider',session()->get('social_name'))->sum('tot_payment_due');
 				$nb_paid_amount['nb_paid_amount'] = DB::connection('mysql2')->table('invoices')->where('provider',session()->get('social_name'))->where('payment_status','Payée')->count();
 				$nb_pending_amount['nb_pending_amount'] = DB::connection('mysql2')->table('invoices')->where('payment_status','En attente')->where('provider',session()->get('social_name'))->count();
@@ -88,21 +88,20 @@ class AdminLoginController extends Controller
 
 		public function display_panel()
     {
-				$infos_partenaires['infos_partenaires'] = DB::connection('mysql2')->table('partners')->where('email',session()->get('email_partner'))->first();
-				$nb_contacts['nb_contacts'] = DB::connection('mysql2')->table('contacts')->where('in_elektra','Y')->count();
-				$paid_amount['paid_amount'] = DB::connection('mysql2')->table('invoices')->where('payment_status','Payée')->where('provider',session()->get('social_name'))->sum('paid_amount');
-				$pending_amount['pending_amount'] = DB::connection('mysql2')->table('invoices')->where('payment_status','En attente')->where('provider','Akilee')->sum('tot_payment_due');
-				$unpaid_amount['unpaid_amount'] = DB::connection('mysql2')->table('invoices')->where('payment_status','Impayée')->where('provider',session()->get('social_name'))->sum('tot_payment_due');
-				$nb_paid_amount['nb_paid_amount'] = DB::connection('mysql2')->table('invoices')->where('provider',session()->get('social_name'))->where('payment_status','Payée')->count();
-				$nb_pending_amount['nb_pending_amount'] = DB::connection('mysql2')->table('invoices')->where('payment_status','En attente')->where('provider',session()->get('social_name'))->count();
-				$nb_unpaid_amount['nb_unpaid_amount'] = DB::connection('mysql2')->table('invoices')->where('payment_status','Impayée')->where('provider',session()->get('social_name'))->count();
+		$infos_partenaires['infos_partenaires'] = DB::connection('mysql2')->table('partners')->where('email',session()->get('email_partner'))->first();
+		$nb_contacts['nb_contacts'] = DB::connection('mysql2')->table('contacts')->where('in_elektra','Y')->where('partner_id',Session::get('partner_id'))->count();
+		$paid_amount['paid_amount'] = DB::connection('mysql2')->table('invoices')->where('payment_status','Payée')->where('provider',session()->get('social_name'))->sum('paid_amount');
+		$pending_amount['pending_amount'] = DB::connection('mysql2')->table('invoices')->where('payment_status','En attente')->where('provider',session()->get('social_name'))->sum('tot_payment_due');
+		$unpaid_amount['unpaid_amount'] = DB::connection('mysql2')->table('invoices')->where('payment_status','Impayée')->where('provider',session()->get('social_name'))->sum('tot_payment_due');
+		$nb_paid_amount['nb_paid_amount'] = DB::connection('mysql2')->table('invoices')->where('provider',session()->get('social_name'))->where('payment_status','Payée')->count();
+		$nb_pending_amount['nb_pending_amount'] = DB::connection('mysql2')->table('invoices')->where('payment_status','En attente')->where('provider',session()->get('social_name'))->count();
+		$nb_unpaid_amount['nb_unpaid_amount'] = DB::connection('mysql2')->table('invoices')->where('payment_status','Impayée')->where('provider',session()->get('social_name'))->count();
 
-
-				$nb_paid_om['nb_paid_om'] = DB::connection('mysql2')->table('invoices')->where('payment_status','Payée')->where('provider',session()->get('social_name'))->where('payment_method','OrangeMoney')->count();
-				$nb_paid_cb['nb_paid_cb'] = DB::connection('mysql2')->table('invoices')->where('payment_status','Payée')->where('provider',session()->get('social_name'))->where('payment_method','CB')->count();
-				$nb_paid_fc['nb_paid_fc'] = DB::connection('mysql2')->table('invoices')->where('payment_status','Payée')->where('provider',session()->get('social_name'))->where('payment_method','FreeCash')->count();
-				$nb_paid_em['nb_paid_em'] = DB::connection('mysql2')->table('invoices')->where('payment_status','Payée')->where('provider',session()->get('social_name'))->where('payment_method','Emoney')->count();
-				$nb_paid_wz['nb_paid_wz'] = DB::connection('mysql2')->table('invoices')->where('payment_status','Payée')->where('provider',session()->get('social_name'))->where('payment_method','Wizall')->count();
+		$nb_paid_om['nb_paid_om'] = DB::connection('mysql2')->table('invoices')->where('payment_status','Payée')->where('provider',session()->get('social_name'))->where('payment_method','OrangeMoney')->count();
+		$nb_paid_cb['nb_paid_cb'] = DB::connection('mysql2')->table('invoices')->where('payment_status','Payée')->where('provider',session()->get('social_name'))->where('payment_method','CB')->count();
+		$nb_paid_fc['nb_paid_fc'] = DB::connection('mysql2')->table('invoices')->where('payment_status','Payée')->where('provider',session()->get('social_name'))->where('payment_method','FreeCash')->count();
+		$nb_paid_em['nb_paid_em'] = DB::connection('mysql2')->table('invoices')->where('payment_status','Payée')->where('provider',session()->get('social_name'))->where('payment_method','Emoney')->count();
+		$nb_paid_wz['nb_paid_wz'] = DB::connection('mysql2')->table('invoices')->where('payment_status','Payée')->where('provider',session()->get('social_name'))->where('payment_method','Wizall')->count();
 
 
 				//dd($paid_amount['paid_amount']);

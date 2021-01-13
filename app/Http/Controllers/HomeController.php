@@ -93,6 +93,7 @@ class HomeController extends Controller
         }
         Session::push('profilNotif', $profilNotif);
 
+        $title_service="";
         if(strpos($_SERVER['REQUEST_URI'],'eau') !== false){
           $title_service = "eau";
         }
@@ -112,6 +113,9 @@ class HomeController extends Controller
         }
         if(strpos($_SERVER['REQUEST_URI'],'mobile') !== false){
           $title_service = "mobile";
+        }
+        if(strpos($_SERVER['REQUEST_URI'],'tv') !== false){
+          $title_service = "tv";
         }
 
         $actived_services['actived_services'] = DB::table('services')->where('customerId',$s)->first();
