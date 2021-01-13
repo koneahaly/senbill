@@ -246,7 +246,7 @@ if(isset($_GET['data_invoices'])){
                     <div class="form-group">
                       <select class="form-control" name='fields[]'>
                         <option value='customerId' <?php if(substr($dt,1,strlen($dt)-2) == 'cni') echo 'selected';?> >CNI</option>
-                        <option value='souscription_id' <?php if(substr($dt,1,strlen($dt)-2) == 'souscription') echo 'selected';?> >Souscription</option>
+                        <option value='souscription_id' <?php if(substr($dt,1,strlen($dt)-2) == 'subscription_id') echo 'selected';?> >Souscription</option>
                         <option value='order_number' <?php if(substr($dt,1,strlen($dt)-2) == 'order_number') echo 'selected';?> >Numéro de facturation</option>
                         <option value='title' <?php if(substr($dt,1,strlen($dt)-2) == 'title') echo 'selected';?> >Intitulé facture</option>
                         <option value='min_payment_due' <?php if(substr($dt,1,strlen($dt)-2) == 'min_payment_due') echo 'selected';?> >Minimum à payer</option>

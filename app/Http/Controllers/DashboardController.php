@@ -251,7 +251,7 @@ class DashboardController extends Controller
                 ], [$fields[1] => str_replace('"','',$row[1]),$fields[2] => str_replace('"','',$row[2]), $fields[3] => $row[3],
                     $fields[4] => str_replace('"','',$row[4]), $fields[5] => str_replace('"','',$row[5]), $fields[6] => str_replace('"','',$row[6]),
                     $fields[7] => str_replace('"','',$row[7]),$fields[8] => str_replace('"','',$row[8]), $fields[9] => str_replace('"','',$row[9]),
-                      $fields[10] => str_replace('"','',$row[10]), $fields[11] => str_replace('"','',$row[11]), $fields[12] => str_replace('"','',$row[12])]);
+                      $fields[10] => str_replace('"','',$row[10]), $fields[11] => str_replace('"','',$row[11])]);
 
                 Bill::updateOrCreate([
                   'customerId' => str_replace('"','',$row[$index_customer_id]), 'order_number' => str_replace('"','',$row[$index_order_number]),
