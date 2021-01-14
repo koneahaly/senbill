@@ -19,19 +19,22 @@ myEmail = $('#email').val();
 myPassword = $('#password').val();
 myPasswordConfirm = $('#password-confirm').val();
 
+var strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+var mediumRegex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})");
+
 current_fs = $(this).parent();
 next_fs = $(this).parent().next();
 
 if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(myEmail)){
   myEmail = myEmail;
 
-  if(/^(?=.*[0-9])[a-zA-Z0-9]{7,55}$/.test(myPassword)){
+  if(mediumRegex.test(myPassword) || strongRegex.test(myPassword)){
     myPassword = myPassword;
   }
   else{
     $('#password').css("border","1px solid red");
     $("#password")
-          .popover({content: "Le mot de passe doit contenir 7 caractères ou plus avec un chiffre au moins (sans caractères spéciaux).",placement:'top' });
+          .popover({content: "Le mot de passe doit contenir 6 caractères ou plus avec un chiffre au moins.",placement:'top' });
     $("#password").popover('show');
     $("#password").blur(function(){
       $("#password").popover('hide');
@@ -62,7 +65,7 @@ if(myPasswordConfirm != myPassword){
 }
 
 
-if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(myEmail) && /^(?=.*[0-9])[a-zA-Z0-9]{7,15}$/.test(myPassword) && myPasswordConfirm == myPassword){
+if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(myEmail) && (mediumRegex.test(myPassword) || strongRegex.test(myPassword)) && myPasswordConfirm == myPassword){
   //Add Class Active
   $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
 

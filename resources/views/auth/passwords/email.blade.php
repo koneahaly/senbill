@@ -19,7 +19,7 @@
       <div class="s2sn-wrapper-login-container s2sn-js-login" style="background-image: url({{url('images/stLouis.jpg')}});">
       	 <!-- HEADER START -->
          <div class="s2sn-login-header-desktop">
-             <a class="s2sn-logo-elektra" href=".">
+             <a class="s2sn-logo-elektra" href="{{ env('APP_URL') }}">
                  <img src="https://elektra.s3.amazonaws.com/images/icons/logo-s2sn.png" alt="logo-elektra" width="162" height="auto" class="s2sn-img-normal">
              	   <img src="https://elektra.s3.amazonaws.com/images/icons/logo-s2sn-mediumsmall.png" alt="logo-elektra" width="162" height="auto" class="s2sn-img-retina">
              </a>
@@ -46,7 +46,7 @@
       </div>
          </div>
          <nav class="navbar navbar-dark s2sn-login-header-mobile">
-             <a class="s2sn-logo-elektra" href=".">
+             <a class="s2sn-logo-elektra" href="{{ env('APP_URL') }}">
                  <img src="https://elektra.s3.amazonaws.com/images/icons/logo-s2sn.png" alt="logo-elektra" width="162" height="auto" class="s2sn-img-normal">
              	   <img src="https://elektra.s3.amazonaws.com/images/icons/logo-s2sn-mediumsmall.png" alt="logo-elektra" width="162" height="auto" class="s2sn-img-retina">
              </a>
