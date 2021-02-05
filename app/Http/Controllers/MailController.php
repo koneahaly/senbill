@@ -62,9 +62,11 @@ class MailController extends Controller {
       });
       //echo "HTML Payment Email Sent. Check your inbox.";
    }
-   public function newBill_email() {
-      $data = array('name'=>"SENBILL", 'email' => $email, 'customer' => $customer);
-      Mail::send('emails.newBill', $data, function($message) {
+   public function newBill_email($email,$order_number,$amount,$deadline,$customer,$service,$name='SEN BILL') {
+      $data = array('email' => $email, 'order_number' => $order_number,
+      'amount' => $amount, 'deadline' => $deadline, 'customer' => $customer,
+      'service' => $service,'name'=>"SENBILL");
+      Mail::send('emails.newBill', $data, function($message) use ($data){
          $message->to($data['email'], $data['customer'])->subject
             ('Une nouvelle facture disponible depuis votre espace client');
          $message->from('admin@services2sn.com',$data['name']);
@@ -73,7 +75,7 @@ class MailController extends Controller {
    }
    public function lateBill_email() {
       $data = array('name'=>"SENBILL", 'email' => $email, 'customer' => $customer);
-      Mail::send('emails.lateBill', $data, function($message) {
+      Mail::send('emails.lateBill', $data, function($message) use ($data){
          $message->to($data['email'], $data['customer'])->subject
             ('Echeance facture dépassée');
          $message->from('admin@services2sn.com',$data['name']);
@@ -82,7 +84,7 @@ class MailController extends Controller {
    }
    public function validate_email() {
       $data = array('name'=>"SENBILL");
-      Mail::send('emails.validateEmail', $data, function($message) {
+      Mail::send('emails.validateEmail', $data, function($message) use ($data){
          $message->to('yacinenana@gmail.com', 'Yacine Ndiaye')->subject
             ('Vérification de votre  adresse mail');
          $message->from('admin@services2sn.com','SEN BILL');

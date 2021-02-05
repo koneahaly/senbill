@@ -187,7 +187,7 @@ if (!empty(Auth::user()->date_activation_code)) $_SESSION['profilNotif'] = 0;
                     {{csrf_field()}}
                     <div class="col-md-6" style="margin-bottom:10px">
                       <p><strong>EMAIL:</strong></p>
-                      <input <input pattern="\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+" title="l'adresse mail n'est pas valide." class="col-form-label" name="email" value="{{Auth::user()->email}}" style="border-bottom:3px solid #084f78 !important">
+                      <input pattern="\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+" title="l'adresse mail n'est pas valide." class="col-form-label" name="email" value="{{Auth::user()->email}}" style="border-bottom:3px solid #084f78 !important">
                       <div>
                         <button type="submit" name="action_email" value='save' style="margin-top:8px" class="btn btn-primary">
                           <span class="glyphicon glyphicon-edit"></span> Enregistrer
@@ -203,11 +203,11 @@ if (!empty(Auth::user()->date_activation_code)) $_SESSION['profilNotif'] = 0;
 
                 @if(!isset($_POST['update_phone']))
                     <div class="col-md-6" style="margin-bottom:10px">
-                      <p><strong>T&Eacute;L&Eacute;PHONE</strong>
-                      @if (empty(Auth::user()->date_activation_code))
-                        <i style="color:red" title="Veuillez valider votre numéro de téléphone en cliquant sur le bouton vérifier" class="fas fa-exclamation-circle"></i>
-                      @endif
-                      </p>
+                        <p><strong>T&Eacute;L&Eacute;PHONE</strong>
+                        @if (empty(Auth::user()->date_activation_code))
+                          <i style="color:red" title="Veuillez valider votre numéro de téléphone en cliquant sur le bouton vérifier" class="fas fa-exclamation-circle"></i>
+                        @endif
+                        </p>
                       <span class="recapData">{{ Auth::user()->phone }}</span>
                       @if (!empty(Auth::user()->date_activation_code))
                         <span class="glyphicon glyphicon-ok-circle text-success " style="font-size:15px"></span>
@@ -247,7 +247,7 @@ if (!empty(Auth::user()->date_activation_code)) $_SESSION['profilNotif'] = 0;
                     {{csrf_field()}}
                     <div class="col-md-6" style="margin-bottom:10px">
                       <p><strong>PHONE:</strong></p>
-                      <input <input pattern="^(?:0|\(?\+33\)?\s?|0033\s?)[1-79](?:[\.\-\s]?\d\d){4}$" title="le numéro de téléphone n'est pas valide." class="col-form-label" name="phone" value="{{Auth::user()->phone}}" style="border-bottom:3px solid #084f78 !important">
+                      <input pattern="^(?:0|\(?\+33\)?\s?|0033\s?)[1-79](?:[\.\-\s]?\d\d){4}$" title="le numéro de téléphone n'est pas valide." class="col-form-label" name="phone" value="{{Auth::user()->phone}}" style="border-bottom:3px solid #084f78 !important">
                       <div>
                         <button type="submit" name="action_phone" value='save' style="margin-top:8px" class="btn btn-primary">
                           <span class="glyphicon glyphicon-edit"></span> Enregistrer

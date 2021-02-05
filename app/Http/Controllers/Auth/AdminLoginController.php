@@ -57,6 +57,7 @@ class AdminLoginController extends Controller
 				foreach ($infos_partenaires as $info_partenaire) {
 					Session::put('social_name', $info_partenaire->social_name);
 					Session::put('partner_id', $info_partenaire->id);
+					Session::put('service_id', $info_partenaire->service_id);
 					Session::put('full_name', $info_partenaire->email);
 				}
 				$infos_partenaires['infos_partenaires'] = DB::connection('mysql2')->table('partners')->where('email',session()->get('email_partner'))->first();

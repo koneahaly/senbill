@@ -22,6 +22,15 @@ if(!empty($raw_woyofal_users_demo) and !empty($raw_classical_users_demo)){
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
     <head>
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-CXR499BH4X"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-CXR499BH4X');
+      </script>
       <script src='https://www.google.com/recaptcha/api.js'></script>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -78,7 +87,7 @@ if(!empty($raw_woyofal_users_demo) and !empty($raw_classical_users_demo)){
              <div class="collapse navbar-collapse" id="navbarNav">
                  <ul class="navbar-nav">
                       <li class="nav-item"><a class="nav-link" href=".">ACCUEIL</a></li>
-                     <li class="nav-item"><a class="nav-link" href="www.services2sn.com">QUI SOMMES-NOUS</a></li>
+                     <li class="nav-item"><a class="nav-link" href="https://www.services2sn.com">QUI SOMMES-NOUS</a></li>
                      <li class="nav-item"><a class="nav-link" href="{{ route('what') }}">LA PLATEFORME SENBILL</a></li>
                      <li class="nav-item"><a class="nav-link" href="{{ route('register') }}" >S'INSCRIRE</a></li>
 
@@ -209,8 +218,6 @@ if(!empty($raw_woyofal_users_demo) and !empty($raw_classical_users_demo)){
                     </p>
                     <p class="mb-0">Pour vous connecter en tant que client <strong>classique(postpayé)</strong>, utilisez <span class="text-info">{{ $user_wy }}</span> comme nom d'utilisateur et <span class="text-white bg-dark">demo123</span> comme mot de passe.</p>
                     <br/>
-                    <p class="mb-0">Pour vous connecter en tant que client <strong>prépayé</strong>, utilisez <span class="text-info">{{ $user_cl }}</span> comme nom d'utilisateur et <span class="text-white bg-dark">demo123</span> comme mot de passe.</p>
-
                   </div>
                 </div>
                </div>

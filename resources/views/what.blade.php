@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html  >
 <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CXR499BH4X"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-CXR499BH4X');
+    </script>
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -765,8 +774,8 @@ Vous pouvez  aussi nous contacter pour que  nous procédions à l'onboarding de 
                     </div>
                 </div>
             </div>
-                    <div class="text_contact">
-                        <h1>Vous voulez commencer maintenant ?</h1>
+                    <div class="px-5 align-self-center mbr-white py-2">
+                        <h1 class="mbr-title pt-2 mbr-fonts-style display-2 mbr-black">Vous voulez commencer maintenant ?</h1>
                         <h4>S'inscrire ou nous contacter pour de l'aide</h4>
                     </div>
 				
@@ -811,8 +820,8 @@ Vous pouvez  aussi nous contacter pour que  nous procédions à l'onboarding de 
                   <strong style="font-weight: 500;">Senbill</strong> met l'accent sur <br/> <strong style="font-weight: 500;">les notifications</strong> 
                 </h2>
                 <p class="mbr-text testimonial-text mbr-fonts-style display-7">
-                   En tant que locataire, vous êtes notifiés par email  et SMS  dès que votre propriétaire vous associe à un logement et êtes invités à
-                   vous inscrire sur Senbill si vous ne l'êtes pas déjà. 
+                   En tant que locataire, vous êtes notifiés par email dès que votre propriétaire vous associe à un logement et êtes invités à
+                   vous connecter sur votre espace client Senbill. 
                 </p>
                 <p class="mbr-author-name pt-4 mb-2 mbr-fonts-style display-7">
 
@@ -906,10 +915,10 @@ Vous pouvez  aussi nous contacter pour que  nous procédions à l'onboarding de 
                     <div class="plan-list align-center">
                         <ul class="list-group list-group-flush mbr-fonts-style display-7">
                             <li class="list-group-item">
-                                Les frais de la transaction seront à la charge du propriétaire. Dans ce cas le locataire paiera  le montant exact de sa facture de location.
+                                Les frais de la transaction seront à la charge du propriétaire. Dans ce cas le locataire paiera le montant exact de sa facture de location.
                             </li>
                             <li class="list-group-item price-figure mbr-fonts-style display-1">
-                                5% 
+                                3.5% 
                             </li>
                             <li>
                                 par transaction
@@ -942,10 +951,10 @@ Vous pouvez  aussi nous contacter pour que  nous procédions à l'onboarding de 
                         <ul class="list-group list-group-flush mbr-fonts-style display-7">
                             <li class="list-group-item">
                                 Les frais de la transaction seront à la charge du locataire. Dans ce cas le locataire paiera le montant du loyer
-                                majoré de 5%
+                                majoré de 3.5%
                             </li>
                             <li class="list-group-item price-figure mbr-fonts-style display-1">
-                                5% 
+                                3.5% 
                             </li>
                             <li>
                                 par transaction

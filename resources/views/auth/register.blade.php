@@ -101,7 +101,7 @@
                                   <div class="col-md-6">
                                     <select class="form-control" name="salutation" id="exampleFormControlSelect1">
                                       <option value="" disabled="disabled">--Votre civilité--</option>
-                                      <option value="Mme">Madame</option>
+                                      <option value="Mme" selected="selected">Madame</option>
                                       <option value="Mr">Monsieur</option>
                                     </select>
                                     <br />
@@ -201,17 +201,17 @@
                             </div>
                         </div>
                         <div class="radio-group row justify-content-between px-3" style="margin-left: -3px;">
-                           <div class="card-block card-body selectRegister1 selected">
+                           <div class="card-block card-body selectRegister1" style="cursor:not-allowed;">
                                <div class="row justify-content-end d-flex px-3">
-                                   <div class="fa fa-check"></div>
+                                   <div class="fa fa-circle"></div>
                                </div>
                                <div class="row justify-content-center d-flex">
                                    <div class="pic"> <i class="fas fa-faucet fa-5x pic-0" style="margin-left:25%;"></i> </div>
                                    <h5 class="mb-4" style="color:black;text-align:center;">Eau</h5>
                                </div>
-                               <input class='service_1' type='hidden' name='service_1' value='eau' />
+                               <!-- <input class='service_1' type='hidden' name='service_1' value='eau' /> -->
                            </div>
-                           <div class="card-block card-body selectRegister2">
+                           <div class="card-block card-body selectRegister2" style="cursor:not-allowed;">
                                <div class="row justify-content-end d-flex px-3">
                                    <div class="fa fa-circle"></div>
                                </div>
@@ -220,7 +220,7 @@
                                    <h5 class="mb-4" style="color:black;text-align:center;">Electricité</h5>
                                </div>
                            </div>
-                           <div class="card-block card-body selectRegister3">
+                           <div class="card-block card-body selectRegister3" style="cursor:not-allowed;">
                                <div class="row justify-content-end d-flex px-3">
                                    <div class="fa fa-circle"></div>
                                </div>
@@ -229,7 +229,7 @@
                                    <h5 class="mb-4" style="color:black;text-align:center;">Television</h5>
                                </div>
                            </div>
-                           <div class="card-block card-body selectRegister4">
+                           <div class="card-block card-body selectRegister4" style="cursor:not-allowed;">
                                <div class="row justify-content-end d-flex px-3">
                                    <div class="fa fa-circle"></div>
                                </div>
@@ -256,7 +256,7 @@
                                    <h5 class="mb-4" style="color:black;text-align:center;">Propriétaire</h5>
                                </div>
                            </div>
-                           <div class="card-block card-body selectRegister7">
+                           <div class="card-block card-body selectRegister7" style="cursor:not-allowed;">
                                <div class="row justify-content-end d-flex px-3">
                                    <div class="fa fa-circle"></div>
                                </div>
@@ -265,7 +265,7 @@
                                    <h5 class="mb-4" style="color:black;text-align:center;">Scolarité</h5>
                                </div>
                            </div>
-                           <div class="card-block card-body selectRegister8">
+                           <div class="card-block card-body selectRegister8" style="cursor:not-allowed;">
                                <div class="row justify-content-end d-flex px-3">
                                    <div class="fa fa-circle"></div>
                                </div>
@@ -403,7 +403,7 @@
 <script>
 
 
-  $('.radio-group .selectRegister1').click(function(){
+ /*  $('.radio-group .selectRegister1').click(function(){
   if($(this).hasClass('selected')){
       $(this).find(".fa").removeClass('fa-check');
       $(this).find(".fa").addClass('fa-circle');
@@ -473,7 +473,7 @@
     var value = $('.service_4').val();
     $('.display_service_4').text(value);
   }
-  });
+  }); */
 
   $('.radio-group .selectRegister5').click(function(){
   if($(this).hasClass('selected')){
@@ -511,7 +511,7 @@
   }
   });
 
-  $('.radio-group .selectRegister7').click(function(){
+  /* $('.radio-group .selectRegister7').click(function(){
   if($(this).hasClass('selected')){
       $(this).find(".fa").removeClass('fa-check');
       $(this).find(".fa").addClass('fa-circle');
@@ -545,7 +545,7 @@
     var value = $('.service_8').val();
     $('.display_service_8').text(value);
   }
-  });
+  }); */
 
 $('.sv_1').click(function(){
   var value = $('.mail').val();

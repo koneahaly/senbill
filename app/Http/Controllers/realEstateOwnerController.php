@@ -279,6 +279,11 @@ class realEstateOwnerController extends Controller
           $bill->amount=$contract->bail + ($contract->bail * 0.035);
           $bill->status="En attente";
           $bill->save();
+
+          //send mail notifaction for new bill
+          $renter_infos=DB::table('users')->where('customerId',$renter_id->customerId)->first();
+          $co = new MailController();
+          $co->newBill_email($renter_infos->email,$order_number,$contract->bail + ($contract->bail * 0.035),date('Y-m-d'),$renter_infos->first_name.' '.$renter_infos->name,'location','SEN BILL');
         }
 
         DB::table('owns')
@@ -291,7 +296,7 @@ class realEstateOwnerController extends Controller
             $co->html_verify_email($given->email,$given->first_name.' '.$given->name,'SEN BILL');
             $co->html_email_pro($given->email,$given->first_name.' '.$given->name,$proprio->first_name.' '.$proprio->name,$given->name.'123','SEN BILL');
 
-            return redirect()->back()->with('message', 'Le locataire a été correctement ajouté au logement, il recevra sous peu un SMS et un email l\'invitant à rejoindre Elektra pour payer ses factures!');
+            return redirect()->back()->with('message', 'Le locataire a été correctement ajouté au logement, il recevra sous peu un email l\'invitant à rejoindre Elektra pour payer ses factures!');
       }
 
       public function update_occupant(Request $given){

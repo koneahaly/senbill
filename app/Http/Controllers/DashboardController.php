@@ -43,17 +43,17 @@ class DashboardController extends Controller
     {
       $transactions['transactions'] = DB::connection('mysql2')->table('invoices')->join('contacts', 'contacts.customerId', '=', 'invoices.customerId')
       ->select('contacts.first_name as first_name', 'contacts.last_name as last_name','contacts.customerId as customerId','invoices.created_at as created_at','invoices.payment_status as payment_status','invoices.payment_method as payment_method','invoices.paid_amount as paid_amount')
-      ->where('provider',session()->get('social_name'))->where('payment_status','Payée')->get();
+      ->where('partner_id',session()->get('partner_id'))->where('payment_status','Payée')->get();
       return view('dashboard.transactionsDashboard')->with($transactions);
     }
     public function bills_dashboard()
     {
-      $infos_factures['infos_factures'] = DB::connection('mysql2')->table('invoices')->join('contacts', 'contacts.customerId', '=', 'invoices.customerId')->select('contacts.first_name as first_name', 'contacts.last_name as last_name','contacts.customerId as customerId','invoices.created_at as created_at','invoices.payment_status as payment_status')->where('provider',session()->get('social_name'))->get();
+      $infos_factures['infos_factures'] = DB::connection('mysql2')->table('invoices')->join('contacts', 'contacts.customerId', '=', 'invoices.customerId')->select('contacts.first_name as first_name', 'contacts.last_name as last_name','contacts.customerId as customerId','invoices.created_at as created_at','invoices.payment_due_date as deadline','invoices.payment_status as payment_status')->where('partner_id',session()->get('partner_id'))->get();
       return view('dashboard.billsDashboard')->with($infos_factures);
     }
     public function profile_dashboard()
     {
-      $infos_company['infos_company'] = DB::connection('mysql2')->table('partners')->where('social_name',session()->get('social_name'))->first();
+      $infos_company['infos_company'] = DB::connection('mysql2')->table('partners')->where('id',session()->get('partner_id'))->first();
       return view('dashboard.profileDashboard')->with($infos_company);
     }
 
@@ -71,7 +71,7 @@ class DashboardController extends Controller
     public function company_dashboard()
     {
       //$this->download_contacts_tpl();
-      $infos_company['infos_company'] = DB::connection('mysql2')->table('partners')->where('social_name',session()->get('social_name'))->first();
+      $infos_company['infos_company'] = DB::connection('mysql2')->table('partners')->where('id',session()->get('partner_id'))->first();
       return view('dashboard.companyDashboard')->with($infos_company);
     }
 
@@ -180,8 +180,8 @@ class DashboardController extends Controller
     try{
       $fields = $request->input('fields');
       $index_customer_id = $this->fetch_field_index($fields, 'customerId');
-      $index_service_id = $this->fetch_field_index($fields, 'service_id');
-      $index_partner_id = $this->fetch_field_index($fields, 'partner_id');
+      //$index_service_id = $this->fetch_field_index($fields, 'service_id');
+      //$index_partner_id = $this->fetch_field_index($fields, 'partner_id');
 
       //dd($fields[0]);
       $path = base_path("storage/pending_contacts/".$request->file_to_import);
@@ -191,17 +191,17 @@ class DashboardController extends Controller
           foreach($data as $row) {
               if($i > 0){
                 Contact::updateOrCreate([
-                    'customerId' => str_replace('"','',$row[$index_customer_id]), 'partner_id' => str_replace('"','',$row[$index_partner_id])
-                ], [$fields[1] => str_replace('"','',$row[1]),'partner_id' => str_replace('"','',$row[$index_partner_id]),$fields[2] => str_replace('"','',$row[2]), $fields[3] => $row[3],
+                    'customerId' => str_replace('"','',$row[$index_customer_id]), 'partner_id' => str_replace('"','',session()->get('partner_id'))
+                ], ['customerId' => str_replace('"','',$row[$index_customer_id]), $fields[1] => str_replace('"','',$row[1]),'partner_id' => str_replace('"','',session()->get('partner_id')),$fields[2] => str_replace('"','',$row[2]), $fields[3] => $row[3],
                     $fields[4] => $row[4], $fields[5] => str_replace('"','',$row[5]), $fields[6] => str_replace('"','',$row[6]),
-                    $fields[7] => str_replace('"','',$row[7]),$fields[12] => str_replace('"','',$row[12]), $fields[13] => str_replace('"','',$row[13]),
-                      $fields[14] => str_replace('"','',$row[14])]);
+                    $fields[7] => str_replace('"','',$row[7]),$fields[8] => str_replace('"','',$row[8]), $fields[9] => str_replace('"','',$row[9]),
+                      $fields[10] => str_replace('"','',$row[10])]);
                 $contact_id = DB::connection('mysql2')->table('contacts')->where('customerId',str_replace('"','',$row[$index_customer_id]))->first();
 
                 Subscription::updateOrCreate([
-                    'service_id' => str_replace('"','',$row[$index_service_id]), 'partner_id' => str_replace('"','',$row[$index_partner_id]), 'customerId' => str_replace('"','',$row[$index_customer_id])
-                ], [$fields[8] => str_replace('"','',$row[8]),'contact_id' => $contact_id->id,$fields[9] => str_replace('"','',$row[9]), $fields[0] => str_replace('"','',$row[0]),
-                    $fields[10] => str_replace('"','',$row[10]), $fields[11] => str_replace('"','',$row[11])]);
+                    'service_id' => str_replace('"','',session()->get('service_id')), 'partner_id' => str_replace('"','',session()->get('partner_id')), 'customerId' => str_replace('"','',$row[$index_customer_id])
+                ], ['service_id' => str_replace('"','',session()->get('service_id')), 'partner_id' => str_replace('"','',session()->get('partner_id')), 'customerId' => str_replace('"','',$row[$index_customer_id]),
+                    $fields[11] => str_replace('"','',$row[11]),'contact_id' => $contact_id->id,$fields[7] => str_replace('"','',$row[7])]);
               }
               $i++;
           }
@@ -248,10 +248,10 @@ class DashboardController extends Controller
               if($i > 0){
                 Invoice::updateOrCreate([
                     'customerId' => str_replace('"','',$row[$index_customer_id]), 'order_number' => str_replace('"','',$row[$index_order_number]),
-                ], [$fields[1] => str_replace('"','',$row[1]),$fields[2] => str_replace('"','',$row[2]), $fields[3] => $row[3],
+                ], ['customerId' => str_replace('"','',$row[$index_customer_id]), $fields[1] => str_replace('"','',$row[1]),$fields[2] => str_replace('"','',$row[2]), $fields[3] => $row[3],
                     $fields[4] => str_replace('"','',$row[4]), $fields[5] => str_replace('"','',$row[5]), $fields[6] => str_replace('"','',$row[6]),
                     $fields[7] => str_replace('"','',$row[7]),$fields[8] => str_replace('"','',$row[8]), $fields[9] => str_replace('"','',$row[9]),
-                      $fields[10] => str_replace('"','',$row[10]), $fields[11] => str_replace('"','',$row[11])]);
+                      $fields[10] => str_replace('"','',$row[10]), $fields[11] => str_replace('"','',$row[11]), 'provider' => session()->get('social_name')]);
 
                 Bill::updateOrCreate([
                   'customerId' => str_replace('"','',$row[$index_customer_id]), 'order_number' => str_replace('"','',$row[$index_order_number]),

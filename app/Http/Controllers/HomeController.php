@@ -98,14 +98,14 @@ class HomeController extends Controller
           $title_service = "eau";
         }
 
-        if(strpos($_SERVER['REQUEST_URI'],'electricité') !== false){
+        if(strpos($_SERVER['REQUEST_URI'],'electricit') !== false){
           $title_service = "electricité";
         }
 
         if(strpos($_SERVER['REQUEST_URI'],'locataire') !== false){
           $title_service = "location";
         }
-        if(strpos($_SERVER['REQUEST_URI'],'scolarité') !== false){
+        if(strpos($_SERVER['REQUEST_URI'],'scolarit') !== false){
           $title_service = "scolarité";
         }
         if(strpos($_SERVER['REQUEST_URI'],'sport') !== false){
@@ -327,11 +327,36 @@ class HomeController extends Controller
       return view('infos-services-pro')->with($actived_services);
     }
 
-    public function display_proprio_infos()
+    public function display_proprio_infos(Request $request)
     {
       $s=Auth::user()->customerId;
+      $user = DB::table('users')->where('customerId',$s)->first();
+
+      $withPopup = "false";
       $actived_services['actived_services'] = DB::table('services')->where('customerId',$s)->first();
-      return view('infos-proprietaire')->with($actived_services);
+      if($request->verify_phone == "yes"){
+        $withPopup = "true";
+        $this->activate_code($request->phone);
+        DB::table('users')
+            ->where('customerId', $s)
+            ->update(['attempt_sms_sent' => $user->attempt_sms_sent + 1]);
+      }
+      $message = null;
+      $error_message = null;
+      if($request->verify == "yes"){
+        if($user->activation_code == $request->verification_code){
+          DB::table('users')
+              ->where('customerId', $s)
+              ->update(['date_activation_code' => now()]);
+          $message = 'Votre numéro de téléphone est maintenant vérifié.';
+        }
+        else{
+          $error_message = 'Echec de la vérification de votre numéro de téléphone.';
+        }
+      }
+
+      $actived_services['actived_services'] = DB::table('services')->where('customerId',$s)->first();
+      return view('infos-proprietaire')->with($actived_services)->with(compact('withPopup'))->with('message',$message)->with('error_message',$error_message);
     }
 
     public function display_services()

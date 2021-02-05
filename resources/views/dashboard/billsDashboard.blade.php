@@ -51,7 +51,7 @@
                     </td>
                     <td>{{ $infos_facture->last_name}}</td>
                     <?php
-                      $creation_date = explode("-",$infos_facture->created_at);
+                      $creation_date = explode("-",$infos_facture->deadline);
                      ?>
                     <td> Facture du mois de {{ $months[(int)$creation_date[1] - 1] }} {{ $creation_date[0]}}</td>
                     <td>{{ $infos_facture->payment_status}}</td>

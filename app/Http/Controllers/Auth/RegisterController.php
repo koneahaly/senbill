@@ -98,6 +98,7 @@ class RegisterController extends Controller
             ->join('offers', 'offers.id', '=', 'subscriptions.service_id')
             ->select('contacts.customerId','offers.libelle as of_lib','offers.service_type as of_st')
             ->where('contacts.customerId',$data['customerId'])->get();
+            //dd($infos_contacts);
 
             DB::connection('mysql2')->table('contacts')
                 ->where('customerId', $data['customerId'])
@@ -105,6 +106,8 @@ class RegisterController extends Controller
 
             foreach($infos_contacts as $val){
               //dd(strpos(strtolower($val->of_lib),'electricit'));
+              $value="";
+              $attribut="";
               if(strpos(strtolower($val->of_lib),'eau') === false){
                 //dd('test_eau');
               }
@@ -153,12 +156,12 @@ class RegisterController extends Controller
                 $value = "proprietaire";
               }
 
-              if(strpos(strtolower($val->of_lib),'scolarite') === false){
+              if(strpos(strtolower($val->of_lib),'scolarit') === false){
                 //dd('test_scol');
               }
               else{
                 $attribut = "service_7";
-                $value = "scolarite";
+                $value = "scolarité";
               }
 
               if(strpos(strtolower($val->of_lib),'sport') === false){
@@ -190,6 +193,7 @@ class RegisterController extends Controller
               $bill->deadline= $invoice->payment_due_date;
               $bill->amount=$invoice->tot_payment_due;
               $bill->status= $invoice->payment_status;
+              $bill->title= $invoice->title;
               $bill->units=(integer)$bill->final-(integer)$bill->initial;
               $bill->payment_method= $invoice->payment_method;
               $bill->order_number = $invoice->order_number;

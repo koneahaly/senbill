@@ -155,9 +155,6 @@ if(isset($_GET['data_invoices'])){
                         <option value='first_name' <?php if(substr($dt,1,strlen($dt)-2) == 'first_name') echo 'selected';?> >Prénom</option>
                         <option value='last_name' <?php if(substr($dt,1,strlen($dt)-2) == 'last_name') echo 'selected';?> >Nom</option>
                         <option value='status' <?php if(substr($dt,1,strlen($dt)-2) == 'status') echo 'selected';?> >Statut client</option>
-                        <option value='service_id' <?php if(substr($dt,1,strlen($dt)-2) == 'service_id') echo 'selected';?> >Service</option>
-                        <option value='partner_id' <?php if(substr($dt,1,strlen($dt)-2) == 'partner_id') echo 'selected';?> >Partenaire</option>
-                        <option value='status' <?php if(substr($dt,1,strlen($dt)-2) == 'status') echo 'selected';?> >Statut souscription</option>
                         <option value='salutation' <?php if(substr($dt,1,strlen($dt)-2) == 'salutation') echo 'selected';?> >Civilité</option>
                         <option value='dob'<?php if(substr($dt,1,strlen($dt)-2) == 'dob') echo 'selected';?> >Date de naissance</option>
                         <option value='pob'<?php if(substr($dt,1,strlen($dt)-2) == 'pob') echo 'selected';?> >Lieu de naissance</option>
@@ -246,7 +243,6 @@ if(isset($_GET['data_invoices'])){
                     <div class="form-group">
                       <select class="form-control" name='fields[]'>
                         <option value='customerId' <?php if(substr($dt,1,strlen($dt)-2) == 'cni') echo 'selected';?> >CNI</option>
-                        <option value='souscription_id' <?php if(substr($dt,1,strlen($dt)-2) == 'subscription_id') echo 'selected';?> >Souscription</option>
                         <option value='order_number' <?php if(substr($dt,1,strlen($dt)-2) == 'order_number') echo 'selected';?> >Numéro de facturation</option>
                         <option value='title' <?php if(substr($dt,1,strlen($dt)-2) == 'title') echo 'selected';?> >Intitulé facture</option>
                         <option value='min_payment_due' <?php if(substr($dt,1,strlen($dt)-2) == 'min_payment_due') echo 'selected';?> >Minimum à payer</option>
@@ -254,7 +250,6 @@ if(isset($_GET['data_invoices'])){
                         <option value='payment_due_date' <?php if(substr($dt,1,strlen($dt)-2) == 'payment_due_date') echo 'selected';?> >Date d'échéance</option>
                         <option value='payment_method' <?php if(substr($dt,1,strlen($dt)-2) == 'payment_method') echo 'selected';?> >Moyen de paiement</option>
                         <option value='payment_status' <?php if(substr($dt,1,strlen($dt)-2) == 'payment_status') echo 'selected';?> >Statut du paiement</option>
-                        <option value='provider' <?php if(substr($dt,1,strlen($dt)-2) == 'provider') echo 'selected';?> >Partenaire</option>
                         <option value='import_status' <?php if(substr($dt,1,strlen($dt)-2) == 'import_status') echo 'selected';?> >Statut import</option>
                         <option value='paid_amount' <?php if(substr($dt,1,strlen($dt)-2) == 'paid_amount') echo 'selected';?> >Somme payée</option>
                         <option value='bill' <?php if(substr($dt,1,strlen($dt)-2) == 'bill') echo 'selected';?> >Description</option>

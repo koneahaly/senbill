@@ -29,8 +29,8 @@
 <?php
   function getServiceColor($service)
   {
-      if ($service =='eau' || $service =='tv' || $service =='electricite' ||
-      $service =='mobile' || $service == 'locataire' || $service == 'proprietaire' || $service == 'scolarite' || $service == 'sport')
+      if ($service =='eau_stop' || $service =='tv_stop' || $service =='electricite_stop' ||
+      $service =='mobile_stop' || $service == 'locataire' || $service == 'proprietaire' || $service == 'scolarité_stop' || $service == 'sport_stop')
           return '#ffffff';
       else
           return '#888484';
@@ -54,7 +54,7 @@
                       <div class="card col-12 col-md-6 col-lg-3" style="color: <?=getServiceColor($actived_services->service_1)?>;">
                           <div class="icon-block">
                             <?php
-                            if($actived_services->service_1 != "eau")
+                            if($actived_services->service_1 != "eau_stop")
                             {
                                 echo '<a href="javascript:void(0);" style="cursor:not-allowed;">';
                             }
@@ -73,7 +73,7 @@
                       <div class="card col-12 col-md-6 col-lg-3" style="color: <?=getServiceColor($actived_services->service_2)?>;">
                           <div class="icon-block">
                             <?php
-                            if($actived_services->service_2 != "electricite")
+                            if($actived_services->service_2 != "electricite_stop")
                             {
                                 echo '<a href="javascript:void(0);" style="cursor:not-allowed;">';
                             }
@@ -92,7 +92,7 @@
                       <div class="card col-12 col-md-6 col-lg-3" style="color: <?=getServiceColor($actived_services->service_3)?>;">
                           <div class="icon-block">
                             <?php
-                            if($actived_services->service_3 != "tv")
+                            if($actived_services->service_3 != "tv_stop")
                             {
                                 echo '<a href="javascript:void(0);" style="cursor:not-allowed;">';
                             }
@@ -111,7 +111,7 @@
                       <div class="card col-12 col-md-6 col-lg-3" style="color: <?=getServiceColor($actived_services->service_4)?>;">
                           <div class="icon-block">
                             <?php
-                            if($actived_services->service_4 != "mobile")
+                            if($actived_services->service_4 != "mobile_stop")
                             {
                                 echo '<a href="javascript:void(0);" style="cursor:not-allowed;">';
                             }
@@ -168,7 +168,7 @@
                       <div class="card col-12 col-md-6 col-lg-3" style="color: <?=getServiceColor($actived_services->service_7)?>;">
                           <div class="icon-block">
                             <?php
-                            if($actived_services->service_7 != "scolarite")
+                            if($actived_services->service_7 != "scolarité_stop")
                             {
                                 echo '<a href="javascript:void(0);" style="cursor:not-allowed;">';
                             }
@@ -187,7 +187,7 @@
                       <div class="card col-12 col-md-6 col-lg-3" style="color: <?=getServiceColor($actived_services->service_8)?>;">
                           <div class="icon-block">
                             <?php
-                            if($actived_services->service_8 != "sport")
+                            if($actived_services->service_8 != "sport_stop")
                             {
                                 echo '<a href="javascript:void(0);" style="cursor:not-allowed;">';
                             }
