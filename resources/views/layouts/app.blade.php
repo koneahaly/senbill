@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-CXR499BH4X"></script>
     <script>
@@ -9,6 +11,7 @@
       gtag('js', new Date());
 
       gtag('config', 'G-CXR499BH4X');
+      gtag('config', 'AW-434612469');
     </script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -37,6 +40,7 @@ function calltouchpay(){
                                 'dakar', '','', '',  '');
 }
 </script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
   <script src='https://www.google.com/recaptcha/api.js'></script>
   <script src="{!! mix('js/app.js') !!}"></script>
   @yield('scripts')
@@ -44,6 +48,8 @@ function calltouchpay(){
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/graphicalChart.css') }}" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="https://paytech.sn/cdn/paytech.min.css"> -->
+
 
     <link href="{{ URL::asset('css/common.css') }}" rel="stylesheet">
     <link rel="icon" type="image/png" href="https://elektra.s3.amazonaws.com/images/icons/logo-senbill-halo.png"/>
@@ -98,6 +104,7 @@ if($_SERVER['REQUEST_URI'] == '/register' || strpos($_SERVER['REQUEST_URI'],"adm
   $service="";
 }
 else{
+  
 $home_directory = "../mes-factures/".$service."";
 }
 if(strpos($_SERVER['REQUEST_URI'],"infos-personnelles") == true)

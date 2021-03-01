@@ -1,6 +1,12 @@
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
     <head>
+                <!-- Event snippet for Inscription conversion page -->
+        <script>
+        gtag('event', 'conversion', {'send_to': 'AW-434612469/9slwCO72y_QBEPXRns8B'});
+        </script>
+
+
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -30,7 +36,7 @@
   function getServiceColor($service)
   {
       if ($service =='eau_stop' || $service =='tv_stop' || $service =='electricite_stop' ||
-      $service =='mobile_stop' || $service == 'locataire' || $service == 'proprietaire' || $service == 'scolarité_stop' || $service == 'sport_stop')
+      $service =='mobile_stop' || $service == 'locataire' || $service == 'proprietaire' || $service == 'scolarité' || $service == 'sport_stop')
           return '#ffffff';
       else
           return '#888484';
@@ -168,7 +174,7 @@
                       <div class="card col-12 col-md-6 col-lg-3" style="color: <?=getServiceColor($actived_services->service_7)?>;">
                           <div class="icon-block">
                             <?php
-                            if($actived_services->service_7 != "scolarité_stop")
+                            if($actived_services->service_7 != "scolarité")
                             {
                                 echo '<a href="javascript:void(0);" style="cursor:not-allowed;">';
                             }

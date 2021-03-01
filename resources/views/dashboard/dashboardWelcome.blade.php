@@ -149,7 +149,7 @@ session_start();
                             <div class="progress-bar progress-bar-danger elektraOM" style="width: {{ ($sum_nb_payments > 0) ? $nb_paid_om*100/$sum_nb_payments : 0 }}%"></div>
                           </div>
                         </td>
-                        <td><span class="badge bg-danger elektraOM">{{ ($sum_nb_payments > 0) ? $nb_paid_om*100/$nsum_nb_payments : 0 }}%</span></td>
+                        <td><span class="badge bg-danger elektraOM">{{ ($sum_nb_payments > 0) ? $nb_paid_om*100/$sum_nb_payments : 0 }}%</span></td>
                       </tr>
                       <tr>
                         <td>2.</td>

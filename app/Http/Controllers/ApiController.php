@@ -11,7 +11,7 @@ class ApiController extends Controller
   //protected $client;
   public function index(Request $input)
   {
-    $raw_content = file_get_contents("http://localhost/api_elec/electrical_counter/read_one.php?counter_number=".Auth::user()->customerId);
+/*     $raw_content = file_get_contents("http://localhost/api_elec/electrical_counter/read_one.php?counter_number=".Auth::user()->customerId);
     $clean_content = json_decode($raw_content);
     $current_real_amount = $clean_content->current_amount;
     $montant_recharche_total = $current_real_amount + $input->montant_recharge;
@@ -27,7 +27,7 @@ class ApiController extends Controller
     //$request->setBody(['current_amount'=>$montant_recharche_total, 'counter_number'=>Auth::user()->customerId]); #set body!
     //$response = $request->send();
 
-    return redirect()->action('billController@buy');
+    return redirect()->action('billController@buy'); */
 
   }
 }

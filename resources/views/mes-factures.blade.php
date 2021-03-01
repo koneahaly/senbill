@@ -109,7 +109,12 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
                       @if($value->status != "paid")
                       <!--<td><button data-toggle="modal" data-target="#pay_bill" class="btn btn-danger btn-xs"> Régler</button> <br /> <span style="font-size:0.7em;font-weight: lighter;color:black;"> avant le {{$value->created_at}} <span></td>
                       -->
-                      <td> <input class="btn btn-danger btn-xs" type=button onclick='sendPaymentInfos(new Date().getTime(),"SNBIL11162", "NTrmzaD4WyiAKaTa9-8Vjc^$ijuP-ut0oY2J^drhn$v9qTWJC@","senbill.sn","https://www.senbill.com/mes-factures/{{ $_SESSION["current_service"] }}?order={{ $value->order_number }}","https://www.senbill.com/mes-factures/{{ $_SESSION["current_service"] }}?order={{ $value->order_number }}", {{ $value->amount }}, "dakar", "{{ Auth::user()->email }}","{{ Auth::user()->first_name }}", "{{ Auth::user()->name }}",  "{{ Auth::user()->phone }}" )' value=payez />  <br /> <span style="font-size:0.7em;font-weight: lighter;color:black;"> avant le {{$value->created_at}} <span></td>
+                      <?php if( Auth::user()->email == "issayacoubkone@gmail.com"){ ?>
+                      <td> <button class="buy" onclick="callpaytech(this)" data-item-id="{{$value->order_number}}-{{$value->amount}}" >Payez
+                        </button> </td>
+                      <?php }else{ ?>
+                      <td><input class="btn btn-danger btn-xs" type=button onclick='sendPaymentInfos(new Date().getTime(),"SNBIL11162", "NTrmzaD4WyiAKaTa9-8Vjc^$ijuP-ut0oY2J^drhn$v9qTWJC@","senbill.sn","https://www.senbill.com/mes-factures/{{ $_SESSION["current_service"] }}?order={{ $value->order_number }}","https://www.senbill.com/mes-factures/{{ $_SESSION["current_service"] }}?order={{ $value->order_number }}", {{ $value->amount }}, "dakar", "{{ Auth::user()->email }}","{{ Auth::user()->first_name }}", "{{ Auth::user()->name }}",  "{{ substr(Auth::user()->phone,4,12) }}" )' value=payez /> </td>
+                      <?php } ?>
                       <!--  POUR REGLER VIA PAYDUNYA SANS REDIRECTION COMMENTER LA LIGNE DU DESSUS ET DECOMMENTER CELLE EN DESSOUS ET DECOMMENTER DANS LAYOUT.app LE CSS de PAYDUNYA, en bas le script paydunya
                        <td><button class="pay" id="regler1" onclick="" data-ref="102" data-fullname="Alioune Faye" data-email="aliounefaye@gmail.com" data-phone="774563209">Régler PD</button><br /> <span style="font-size:0.7em;font-weight: lighter;color:black;"> avant le {{$value->created_at}} <span></td>-->
                         <td> n/a </td>
@@ -145,7 +150,7 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
                                           <div class="col-xs-3" style="margin-top:-13px;margin-left:-15px"> <span title="payée le {{$value->created_at}}" class=" glyphicon btn-lg glyphicon-ok-circle text-success"></span></div>
                                         @endif
                                         @if($value->status != "paid")
-                                          <div class="col-xs-3" style="margin-top:-13px;margin-left:-15px"> <input class="btn btn-danger btn-xs" type=button onclick='sendPaymentInfos(new Date().getTime(),"SNBIL11162", "NTrmzaD4WyiAKaTa9-8Vjc^$ijuP-ut0oY2J^drhn$v9qTWJC@","senbill.sn","https://www.senbill.com/mes-factures/{{ $_SESSION["current_service"] }}?order={{ $value->order_number }}","https://www.senbill.com/mes-factures/{{ $_SESSION["current_service"] }}?order={{ $value->order_number }}", {{ $value->amount }}, "dakar", "{{ Auth::user()->email }}","{{ Auth::user()->first_name }}", "{{ Auth::user()->name }}",  "{{ Auth::user()->phone }}" )' value=payez />  <br /> <span style="font-size:0.7em;font-weight: lighter;color:black;"> avant le {{$value->created_at}} <span> </div>
+                                          <div class="col-xs-3" style="margin-top:-13px;margin-left:-15px"> <input class="btn btn-danger btn-xs" type=button onclick='sendPaymentInfos(new Date().getTime(),"SNBIL11162", "NTrmzaD4WyiAKaTa9-8Vjc^$ijuP-ut0oY2J^drhn$v9qTWJC@","senbill.sn","https://www.senbill.com/mes-factures/{{ $_SESSION["current_service"] }}?order={{ $value->order_number }}","https://www.senbill.com/mes-factures/{{ $_SESSION["current_service"] }}?order={{ $value->order_number }}", {{ $value->amount }}, "dakar", "{{ Auth::user()->email }}","{{ Auth::user()->first_name }}", "{{ Auth::user()->name }}",  "{{ substr(Auth::user()->phone,4,12) }}" )' value=payez />  <br /> <span style="font-size:0.7em;font-weight: lighter;color:black;"> avant le {{$value->created_at}} <span> </div>
                                         @endif
                                         <div class="col-xs-3" style="margin-left:15px"><strong> Type :</strong></div>
                                         <div class="col-xs-3"> <?php if(!empty($value->title)) echo $value->title; else echo 'non renseigné'; ?> </div>
@@ -1575,6 +1580,36 @@ $(document).ready(function() {
 
 });
 </script>
+<script src="https://paytech.sn/cdn/paytech.min.js"></script>
+<script>
+    function callpaytech(btn) {
+      var idTransaction = pQuery(btn).attr('data-item-id');
+        (new PayTech({
+          idTransaction           :   idTransaction,
+        })).withOption({
+            requestTokenUrl           :   'https://www.senbill.com/paytech',
+            method              :   'POST',
+            headers             :   {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                "Accept"          :    "text/html",
+            },
+            prensentationMode   :   PayTech.OPEN_IN_POPUP,
+            willGetToken        :   function () {
+                
+            },
+            didGetToken         : function (token, redirectUrl) {
+                
+            },
+            didReceiveError: function (error) {
+                
+            },
+            didReceiveNonSuccessResponse: function (jsonResponse) {
+                
+            }
+        }).send();
 
+        //.send params are optional
+    }
+</script>
 
 @endsection

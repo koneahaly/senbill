@@ -42,6 +42,12 @@ Route::get('/notification-paiement', 'billController@display_callBackPD')->name(
 //Touchpay Callback
 Route::get('/touchpay', 'billController@touchpay')->name('touchpay');
 
+//Touchpay Callback
+Route::get('/paytech', 'billController@paytech')->name('paytech');
+Route::post('/paytech', 'billController@paytech')->name('paytech');
+
+Route::post('/notify', 'billController@notify')->name('notify');
+
 
 //Route::get('/home', 'HomeController@index')->name('home');
 //Route::post('/home', 'HomeController@index')->name('home');

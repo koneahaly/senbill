@@ -225,6 +225,12 @@ class realEstateOwnerController extends Controller
         $renter_check_id=DB::table('users')->select('customerId')->where('customerId',$given->customerId)->count();
         if($renter_check_id < 1){
           $occupant_id = $given->customerId;
+          if(strpos($given->phone,'+221') !== false){
+            $treat_phone = $given->phone;
+          }
+          else{
+            $treat_phone = "+221".$given->phone;
+          }
           User::create([
               'civilite' => $given->civilite,
               'name' => $given->name,
@@ -232,7 +238,7 @@ class realEstateOwnerController extends Controller
               'email' => $given->email,
               'dob' => $given->dateOB,
               'pob' => $given->placeOB,
-              'phone' => $given->phone,
+              'phone' => $treat_phone,
               'customerId' =>$given->customerId,
               'address' =>trim($given->housing_address),
               'password' => bcrypt($given->name.'123'),
@@ -296,7 +302,7 @@ class realEstateOwnerController extends Controller
             $co->html_verify_email($given->email,$given->first_name.' '.$given->name,'SEN BILL');
             $co->html_email_pro($given->email,$given->first_name.' '.$given->name,$proprio->first_name.' '.$proprio->name,$given->name.'123','SEN BILL');
 
-            return redirect()->back()->with('message', 'Le locataire a été correctement ajouté au logement, il recevra sous peu un email l\'invitant à rejoindre Elektra pour payer ses factures!');
+            return redirect()->back()->with('message', 'Le locataire a été correctement ajouté au logement, il recevra sous peu un email l\'invitant à rejoindre Senbill pour payer ses factures!');
       }
 
       public function update_occupant(Request $given){

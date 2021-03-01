@@ -256,7 +256,7 @@
                                    <h5 class="mb-4" style="color:black;text-align:center;">Propriétaire</h5>
                                </div>
                            </div>
-                           <div class="card-block card-body selectRegister7" style="cursor:not-allowed;">
+                           <div class="card-block card-body selectRegister7">
                                <div class="row justify-content-end d-flex px-3">
                                    <div class="fa fa-circle"></div>
                                </div>
@@ -511,7 +511,7 @@
   }
   });
 
-  /* $('.radio-group .selectRegister7').click(function(){
+   $('.radio-group .selectRegister7').click(function(){
   if($(this).hasClass('selected')){
       $(this).find(".fa").removeClass('fa-check');
       $(this).find(".fa").addClass('fa-circle');
@@ -545,7 +545,7 @@
     var value = $('.service_8').val();
     $('.display_service_8').text(value);
   }
-  }); */
+  });
 
 $('.sv_1').click(function(){
   var value = $('.mail').val();

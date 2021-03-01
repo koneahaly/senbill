@@ -45,6 +45,7 @@ class HomeController extends Controller
 
     public function display_bills(Request $input)
     {
+      //dd($input);
       try{
 
         function ToObject($Array){

@@ -209,16 +209,31 @@ class RegisterController extends Controller
           $co->html_email($data['email'],$data['first_name'].' '.$data['name'],'SEN BILL');
 
           $indicatif = "";
-          if($data['country'] == "sn")
-            $indicatif = "+221";
-          if($data['country'] == "ci")
-            $indicatif = "+225";
+          $treat_phone = $data['phone'];
+          
+          if($data['country'] == "sn"){
+            if(strpos($data['phone'],'+221') !== false){
+              $treat_phone = $data['phone'];
+            }
+            else{
+              $treat_phone = "+221".$data['phone'];
+            }
+          }
+
+          if($data['country'] == "ci"){
+            if(strpos($data['phone'],'+225') !== false){
+              $treat_phone = $data['phone'];
+            }
+            else{
+              $treat_phone = "+225".$data['phone'];
+            }
+          }
         return User::create([
            'civilite' => $data['salutation'],
            'name' => $data['name'],
            'first_name' => $data['first_name'],
            'email' => $data['email'],
-           'phone' => $indicatif.''.$data['phone'],
+           'phone' => $data['phone'],
            'customerId' =>$data['customerId'],
            'address' =>$data['address'],
            'password' => bcrypt($data['password']),

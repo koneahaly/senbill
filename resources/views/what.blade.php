@@ -647,6 +647,14 @@ Vous pouvez  aussi nous contacter pour que  nous procédions à l'onboarding de 
     </div>
 
 </section>
+
+<section style="left:15%;width:70%;" id="RentSection2_bis">
+    <figure class="mbr-figure align-center">
+        <div class="video-block" style="width: 100%;">
+            <div><iframe class="mbr-embedded-video" src="https://www.youtube.com/embed/NsBSTrZiVKs?rel=0&amp;amp;showinfo=0&amp;autoplay=0&amp;loop=0" width="1280" height="720" frameborder="0" allowfullscreen></iframe></div>
+        </div>
+    </figure>
+</section>
 <!-- FIN SECTION 2 LOCATION -->
 
 <section class="features11 cid-s2zt0G9su6" id="PartnerSection3">
@@ -1133,6 +1141,7 @@ Vous pouvez  aussi nous contacter pour que  nous procédions à l'onboarding de 
      else{
        document.getElementById("RentSection1").style.display = "none";
        document.getElementById("RentSection2").style.display = "none";
+       document.getElementById("RentSection2_bis").style.display = "none";
        document.getElementById("RentSection3").style.display = "none";
        document.getElementById("RentSection4").style.display = "none";
        document.getElementById("RentSection5").style.display = "none";
@@ -1226,6 +1235,7 @@ Vous pouvez  aussi nous contacter pour que  nous procédions à l'onboarding de 
       }
       document.getElementById("RentSection1").style.display = "block";
       document.getElementById("RentSection2").style.display = "block";
+      document.getElementById("RentSection2_bis").style.display = "block";
       document.getElementById("RentSection3").style.display = "block";
       document.getElementById("RentSection4").style.display = "block";
       document.getElementById("RentSection5").style.display = "block";
@@ -1238,6 +1248,7 @@ Vous pouvez  aussi nous contacter pour que  nous procédions à l'onboarding de 
       }
       if (document.getElementById("RentSection2").style.display != "none"){
         document.getElementById("RentSection2").style.display = "none";
+        document.getElementById("RentSection2_bis").style.display = "none";
       }
       if (document.getElementById("RentSection3").style.display != "none"){
         document.getElementById("RentSection3").style.display = "none";
