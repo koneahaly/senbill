@@ -159,3 +159,6 @@ Route::get('sendvalidateemail','MailController@validate_email');
 Route::get('verify-email/{name?}','MailController@verify_email')->name('verify-email');;
 
 Route::get('send-sms','SmsController@send_sms');
+
+//++++++++++++++++++++++++++++ ADDING IMAGES TO LOGEMENT ++++++++++++++++++++++++++++++++++++++++++++
+Route::post('/images-save', 'ImageController@store')->name('images.add');

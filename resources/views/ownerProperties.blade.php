@@ -271,6 +271,13 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                      <div class="dropDownSelect2"></div>
                    </div>
                  </div>
+                 <div class="wrap-input100 input100-select bg1">
+                   <span class="label-input100">Image/Photo du logement *</span>
+                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                       Ajouter image(s)
+                      </button>
+                 </div>
+
 
                <!--  <div class="wrap-input100 input100-select bg1">
                    <span class="label-input100">Libre ou occupé *</span>
@@ -305,8 +312,6 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                    </div>
 
                  </div>
-
-
                  <div class="container-contact100-form-btn">
                    <button type="submit" class="contact100-form-btn">
                      <span>
@@ -319,6 +324,42 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
              </div>
            </div>
          </form>
+         <!-- Modal imgUploadDropzone-->
+         <div class="modal fade" id="exampleModalCenter"  tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+              <div class="modal-content ">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Chargez vos images</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                  <div class="modal-body">
+                  <div class="container">
+                  <div class="col-md-12">
+                  <h2 class="page-heading">Chargez vos images <span id="counter"></span></h2>
+                  <form method="post" action="{{ route('images.add') }}"
+                        enctype="multipart/form-data" class="dropzone" id="my-dropzone" >
+                      {{ csrf_field() }}
+                      <div class="dz-message">
+                          <div class="col-md-12">
+                              <div class="message">
+                                  <p>Déposez les fichiers ici ou cliquez pour télécharger</p>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="fallback">
+                          <input type="file" name="file" multiple>
+                      </div>
+                  </form>
+              </div>
+          </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
          <!--- FIN FORMULAIRE AJOUT LOGEMENT-->
 
@@ -578,6 +619,11 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
      @endsection
 
      @section('scripts')
+      <!--=============DROPZONE SCRIPT============-->
+    <script src="{{ url('/js/dropzone/jquery.js') }}"></script>
+    <script src="{{ url('/js/dropzone/dropzone.js') }}"></script>
+    <!-- <script src="{{ url('/js/dropzone/dropzone-config.js') }}"></script> -->
+
      <script src="{{url('js/mainForm.js')}}"></script>
      <script src="{{url('vendor/animsition/js/animsition.min.js')}}"></script>
 
@@ -795,5 +841,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
 
      </script>
 
+ 
+    
 
      @endsection

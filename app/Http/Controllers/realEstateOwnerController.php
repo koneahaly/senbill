@@ -151,7 +151,7 @@ class realEstateOwnerController extends Controller
     }
 
     public function add_housing(Request $given){
-
+     
       $this->validate($given,[
           'title'=> 'required|min:4|max:255',
           'address'=> 'required|min:10|max:255',
