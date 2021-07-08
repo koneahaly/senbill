@@ -1,6 +1,319 @@
 {
     "packages": [
         {
+            "name": "aws/aws-sdk-php",
+            "version": "3.185.6",
+            "version_normalized": "3.185.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aws/aws-sdk-php.git",
+                "reference": "35310302912fdc3b4a0e829b84424c41e3fd9727"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/35310302912fdc3b4a0e829b84424c41e3fd9727",
+                "reference": "35310302912fdc3b4a0e829b84424c41e3fd9727",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "ext-pcre": "*",
+                "ext-simplexml": "*",
+                "guzzlehttp/guzzle": "^5.3.3|^6.2.1|^7.0",
+                "guzzlehttp/promises": "^1.4.0",
+                "guzzlehttp/psr7": "^1.7.0",
+                "mtdowling/jmespath.php": "^2.6",
+                "php": ">=5.5"
+            },
+            "require-dev": {
+                "andrewsville/php-token-reflection": "^1.4",
+                "aws/aws-php-sns-message-validator": "~1.0",
+                "behat/behat": "~3.0",
+                "doctrine/cache": "~1.4",
+                "ext-dom": "*",
+                "ext-openssl": "*",
+                "ext-pcntl": "*",
+                "ext-sockets": "*",
+                "nette/neon": "^2.3",
+                "paragonie/random_compat": ">= 2",
+                "phpunit/phpunit": "^4.8.35|^5.4.3",
+                "psr/cache": "^1.0",
+                "psr/simple-cache": "^1.0",
+                "sebastian/comparator": "^1.2.3"
+            },
+            "suggest": {
+                "aws/aws-php-sns-message-validator": "To validate incoming SNS notifications",
+                "doctrine/cache": "To use the DoctrineCacheAdapter",
+                "ext-curl": "To send requests using cURL",
+                "ext-openssl": "Allows working with CloudFront private distributions and verifying received SNS messages",
+                "ext-sockets": "To use client-side monitoring"
+            },
+            "time": "2021-07-02T18:13:18+00:00",
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0-dev"
+                }
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "Aws\\": "src/"
+                },
+                "files": [
+                    "src/functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Amazon Web Services",
+                    "homepage": "http://aws.amazon.com"
+                }
+            ],
+            "description": "AWS SDK for PHP - Use Amazon Web Services in your PHP project",
+            "homepage": "http://aws.amazon.com/sdkforphp",
+            "keywords": [
+                "amazon",
+                "aws",
+                "cloud",
+                "dynamodb",
+                "ec2",
+                "glacier",
+                "s3",
+                "sdk"
+            ],
+            "support": {
+                "forum": "https://forums.aws.amazon.com/forum.jspa?forumID=80",
+                "issues": "https://github.com/aws/aws-sdk-php/issues",
+                "source": "https://github.com/aws/aws-sdk-php/tree/3.185.6"
+            },
+            "install-path": "../aws/aws-sdk-php"
+        },
+        {
+            "name": "aws/aws-sdk-php-laravel",
+            "version": "3.6.0",
+            "version_normalized": "3.6.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aws/aws-sdk-php-laravel.git",
+                "reference": "49bc5d90b1ebfb107d0b650fd49b41b241425a36"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php-laravel/zipball/49bc5d90b1ebfb107d0b650fd49b41b241425a36",
+                "reference": "49bc5d90b1ebfb107d0b650fd49b41b241425a36",
+                "shasum": ""
+            },
+            "require": {
+                "aws/aws-sdk-php": "~3.0",
+                "illuminate/support": "^5.1 || ^6.0 || ^7.0 || ^8.0",
+                "php": ">=5.5.9"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.0 || ^5.0",
+                "vlucas/phpdotenv": "^1.0 || ^2.0 || ^3.0 || ^4.0 || ^5.0"
+            },
+            "suggest": {
+                "laravel/framework": "To test the Laravel bindings",
+                "laravel/lumen-framework": "To test the Lumen bindings"
+            },
+            "time": "2020-09-14T17:33:55+00:00",
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Aws\\Laravel\\AwsServiceProvider"
+                    ],
+                    "aliases": {
+                        "AWS": "Aws\\Laravel\\AwsFacade"
+                    }
+                }
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "Aws\\Laravel\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Amazon Web Services",
+                    "homepage": "http://aws.amazon.com"
+                }
+            ],
+            "description": "A simple Laravel 5/6/7/8 service provider for including the AWS SDK for PHP.",
+            "homepage": "http://aws.amazon.com/sdkforphp2",
+            "keywords": [
+                "amazon",
+                "aws",
+                "dynamodb",
+                "ec2",
+                "laravel",
+                "laravel 5",
+                "laravel 6",
+                "laravel 7",
+                "laravel 8",
+                "s3",
+                "sdk"
+            ],
+            "support": {
+                "issues": "https://github.com/aws/aws-sdk-php-laravel/issues",
+                "source": "https://github.com/aws/aws-sdk-php-laravel/tree/3.6.0"
+            },
+            "install-path": "../aws/aws-sdk-php-laravel"
+        },
+        {
+            "name": "backup-manager/backup-manager",
+            "version": "1.4.1",
+            "version_normalized": "1.4.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/backup-manager/backup-manager.git",
+                "reference": "5d8cdadeda8b89bffa70829b4b74c0c774fa0364"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/backup-manager/backup-manager/zipball/5d8cdadeda8b89bffa70829b4b74c0c774fa0364",
+                "reference": "5d8cdadeda8b89bffa70829b4b74c0c774fa0364",
+                "shasum": ""
+            },
+            "require": {
+                "league/flysystem": "^1.0",
+                "php": ">=7.1",
+                "symfony/process": "^2.1 || ^3.0 || ^4"
+            },
+            "require-dev": {
+                "aws/aws-sdk-php": "~3.0",
+                "dropbox/dropbox-sdk": "~1.1",
+                "league/flysystem-aws-s3-v3": "~1.0",
+                "league/flysystem-dropbox": "~1.0",
+                "league/flysystem-rackspace": "~1.0",
+                "league/flysystem-sftp": "~1.0",
+                "league/flysystem-webdav": "~1.0",
+                "mhetreramesh/flysystem-backblaze": "~1.0",
+                "mockery/mockery": "~0.9",
+                "phpspec/phpspec": "~2.1",
+                "satooshi/php-coveralls": "~0.6",
+                "srmklive/flysystem-dropbox-v2": "~1.0",
+                "superbalist/flysystem-google-storage": "^7.0"
+            },
+            "suggest": {
+                "league/flysystem-aws-s3-v3": "AWS S3 adapter support.",
+                "league/flysystem-rackspace": "Rackspace adapter support.",
+                "league/flysystem-sftp": "SFTP adapter support.",
+                "league/flysystem-webdav": "Webdav adapter support.",
+                "mhetreramesh/flysystem-backblaze": "B2 adapter support.",
+                "srmklive/flysystem-dropbox-v2": "Dropbox API v2 adapter support.",
+                "superbalist/flysystem-google-storage": "Google Cloud Storage adapter support."
+            },
+            "time": "2019-11-22T13:33:22+00:00",
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "BackupManager\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Shawn McCool",
+                    "email": "shawn@heybigname.com",
+                    "homepage": "http://heybigname.com/"
+                },
+                {
+                    "name": "Mitchell van Wijngaarden",
+                    "email": "mitchell@kooding.nl",
+                    "homepage": "http://heybigname.com/"
+                }
+            ],
+            "description": "A framework agnostic database backup manager with user-definable procedures and support for S3, Dropbox, FTP, SFTP, and more with drivers for popular frameworks.",
+            "support": {
+                "issues": "https://github.com/backup-manager/backup-manager/issues",
+                "source": "https://github.com/backup-manager/backup-manager/tree/1.4.1"
+            },
+            "install-path": "../backup-manager/backup-manager"
+        },
+        {
+            "name": "backup-manager/laravel",
+            "version": "2.0",
+            "version_normalized": "2.0.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/backup-manager/laravel.git",
+                "reference": "58ccef9882f97240c86f6d747b240dc16b5c7060"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/backup-manager/laravel/zipball/58ccef9882f97240c86f6d747b240dc16b5c7060",
+                "reference": "58ccef9882f97240c86f6d747b240dc16b5c7060",
+                "shasum": ""
+            },
+            "require": {
+                "backup-manager/backup-manager": "^1.0",
+                "illuminate/console": "^5.5||^6||^7",
+                "illuminate/container": "^5.5||^6||^7",
+                "illuminate/support": "^5.5||^6||^7",
+                "php": "^7.3||^7.4",
+                "symfony/process": "^3||^4||^5"
+            },
+            "require-dev": {
+                "mockery/mockery": "dev-master",
+                "satooshi/php-coveralls": "~0.6"
+            },
+            "time": "2020-04-30T10:49:41+00:00",
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "BackupManager\\Laravel\\Laravel55ServiceProvider"
+                    ]
+                }
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "BackupManager\\Laravel\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Shawn McCool",
+                    "email": "shawn@heybigname.com",
+                    "homepage": "https://shawnmc.cool"
+                }
+            ],
+            "description": "Database backup manager seamlessly integrated with Laravel 4 or 5 with user-definable procedures and support for S3, Dropbox, FTP, SFTP, and more.",
+            "support": {
+                "issues": "https://github.com/backup-manager/laravel/issues",
+                "source": "https://github.com/backup-manager/laravel/tree/master"
+            },
+            "install-path": "../backup-manager/laravel"
+        },
+        {
             "name": "barryvdh/laravel-dompdf",
             "version": "v0.8.7",
             "version_normalized": "0.8.7.0",
@@ -982,49 +1295,47 @@
         },
         {
             "name": "guzzlehttp/guzzle",
-            "version": "6.5.5",
-            "version_normalized": "6.5.5.0",
+            "version": "6.3.3",
+            "version_normalized": "6.3.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "9d4290de1cfd701f38099ef7e183b64b4b7b0c5e"
+                "reference": "407b0cb880ace85c9b63c5f9551db498cb2d50ba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/9d4290de1cfd701f38099ef7e183b64b4b7b0c5e",
-                "reference": "9d4290de1cfd701f38099ef7e183b64b4b7b0c5e",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/407b0cb880ace85c9b63c5f9551db498cb2d50ba",
+                "reference": "407b0cb880ace85c9b63c5f9551db498cb2d50ba",
                 "shasum": ""
             },
             "require": {
-                "ext-json": "*",
                 "guzzlehttp/promises": "^1.0",
-                "guzzlehttp/psr7": "^1.6.1",
-                "php": ">=5.5",
-                "symfony/polyfill-intl-idn": "^1.17.0"
+                "guzzlehttp/psr7": "^1.4",
+                "php": ">=5.5"
             },
             "require-dev": {
                 "ext-curl": "*",
                 "phpunit/phpunit": "^4.8.35 || ^5.7 || ^6.4 || ^7.0",
-                "psr/log": "^1.1"
+                "psr/log": "^1.0"
             },
             "suggest": {
                 "psr/log": "Required for using the Log middleware"
             },
-            "time": "2020-06-16T21:01:06+00:00",
+            "time": "2018-04-22T15:46:56+00:00",
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "6.5-dev"
+                    "dev-master": "6.3-dev"
                 }
             },
             "installation-source": "dist",
             "autoload": {
-                "psr-4": {
-                    "GuzzleHttp\\": "src/"
-                },
                 "files": [
                     "src/functions_include.php"
-                ]
+                ],
+                "psr-4": {
+                    "GuzzleHttp\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -1048,6 +1359,10 @@
                 "rest",
                 "web service"
             ],
+            "support": {
+                "issues": "https://github.com/guzzle/guzzle/issues",
+                "source": "https://github.com/guzzle/guzzle/tree/master"
+            },
             "install-path": "../guzzlehttp/guzzle"
         },
         {
@@ -1408,39 +1723,30 @@
             "install-path": "../jakub-onderka/php-console-highlighter"
         },
         {
-            "name": "kylekatarnls/update-helper",
-            "version": "1.2.1",
-            "version_normalized": "1.2.1.0",
+            "name": "kylekatarnls/laravel-carbon-2",
+            "version": "1.0.0",
+            "version_normalized": "1.0.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/kylekatarnls/update-helper.git",
-                "reference": "429be50660ed8a196e0798e5939760f168ec8ce9"
+                "url": "https://github.com/kylekatarnls/laravel-carbon-2.git",
+                "reference": "0b68e0454d8e17b31cc42038dda8b7faef8055b3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kylekatarnls/update-helper/zipball/429be50660ed8a196e0798e5939760f168ec8ce9",
-                "reference": "429be50660ed8a196e0798e5939760f168ec8ce9",
+                "url": "https://api.github.com/repos/kylekatarnls/laravel-carbon-2/zipball/0b68e0454d8e17b31cc42038dda8b7faef8055b3",
+                "reference": "0b68e0454d8e17b31cc42038dda8b7faef8055b3",
                 "shasum": ""
             },
             "require": {
-                "composer-plugin-api": "^1.1.0 || ^2.0.0",
-                "php": ">=5.3.0"
+                "nesbot/carbon": "^2.0.0-beta.2"
             },
-            "require-dev": {
-                "codeclimate/php-test-reporter": "dev-master",
-                "composer/composer": "2.0.x-dev || ^2.0.0-dev",
-                "phpunit/phpunit": ">=4.8.35 <6.0"
-            },
-            "time": "2020-04-07T20:44:10+00:00",
-            "type": "composer-plugin",
-            "extra": {
-                "class": "UpdateHelper\\ComposerPlugin"
-            },
+            "time": "2018-08-17T09:41:47+00:00",
+            "type": "library",
             "installation-source": "dist",
             "autoload": {
-                "psr-0": {
-                    "UpdateHelper\\": "src/"
-                }
+                "files": [
+                    "src/Carbon.php"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -1448,12 +1754,21 @@
             ],
             "authors": [
                 {
-                    "name": "Kyle",
-                    "email": "kylekatarnls@gmail.com"
+                    "name": "kylekatarnls",
+                    "homepage": "https://github.com/kylekatarnls"
                 }
             ],
-            "description": "Update helper",
-            "install-path": "../kylekatarnls/update-helper"
+            "description": "Carbon 2 adapter for Laravel",
+            "homepage": "http://carbon.nesbot.com",
+            "keywords": [
+                "carbon",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/kylekatarnls/laravel-carbon-2/issues",
+                "source": "https://github.com/kylekatarnls/laravel-carbon-2"
+            },
+            "install-path": "../kylekatarnls/laravel-carbon-2"
         },
         {
             "name": "laravel/framework",
@@ -1760,6 +2075,60 @@
             "install-path": "../league/flysystem"
         },
         {
+            "name": "league/flysystem-aws-s3-v3",
+            "version": "1.0.29",
+            "version_normalized": "1.0.29.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/flysystem-aws-s3-v3.git",
+                "reference": "4e25cc0582a36a786c31115e419c6e40498f6972"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/flysystem-aws-s3-v3/zipball/4e25cc0582a36a786c31115e419c6e40498f6972",
+                "reference": "4e25cc0582a36a786c31115e419c6e40498f6972",
+                "shasum": ""
+            },
+            "require": {
+                "aws/aws-sdk-php": "^3.20.0",
+                "league/flysystem": "^1.0.40",
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "henrikbjorn/phpspec-code-coverage": "~1.0.1",
+                "phpspec/phpspec": "^2.0.0"
+            },
+            "time": "2020-10-08T18:58:37+00:00",
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "League\\Flysystem\\AwsS3v3\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Frank de Jonge",
+                    "email": "info@frenky.net"
+                }
+            ],
+            "description": "Flysystem adapter for the AWS S3 SDK v3.x",
+            "support": {
+                "issues": "https://github.com/thephpleague/flysystem-aws-s3-v3/issues",
+                "source": "https://github.com/thephpleague/flysystem-aws-s3-v3/tree/1.0.29"
+            },
+            "install-path": "../league/flysystem-aws-s3-v3"
+        },
+        {
             "name": "league/mime-type-detection",
             "version": "1.7.0",
             "version_normalized": "1.7.0.0",
@@ -2024,6 +2393,70 @@
             "install-path": "../mtdowling/cron-expression"
         },
         {
+            "name": "mtdowling/jmespath.php",
+            "version": "2.6.1",
+            "version_normalized": "2.6.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jmespath/jmespath.php.git",
+                "reference": "9b87907a81b87bc76d19a7fb2d61e61486ee9edb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jmespath/jmespath.php/zipball/9b87907a81b87bc76d19a7fb2d61e61486ee9edb",
+                "reference": "9b87907a81b87bc76d19a7fb2d61e61486ee9edb",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.4 || ^7.0 || ^8.0",
+                "symfony/polyfill-mbstring": "^1.17"
+            },
+            "require-dev": {
+                "composer/xdebug-handler": "^1.4 || ^2.0",
+                "phpunit/phpunit": "^4.8.36 || ^7.5.15"
+            },
+            "time": "2021-06-14T00:11:39+00:00",
+            "bin": [
+                "bin/jp.php"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.6-dev"
+                }
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "JmesPath\\": "src/"
+                },
+                "files": [
+                    "src/JmesPath.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Dowling",
+                    "email": "mtdowling@gmail.com",
+                    "homepage": "https://github.com/mtdowling"
+                }
+            ],
+            "description": "Declaratively specify how to extract elements from a JSON document",
+            "keywords": [
+                "json",
+                "jsonpath"
+            ],
+            "support": {
+                "issues": "https://github.com/jmespath/jmespath.php/issues",
+                "source": "https://github.com/jmespath/jmespath.php/tree/2.6.1"
+            },
+            "install-path": "../mtdowling/jmespath.php"
+        },
+        {
             "name": "myclabs/deep-copy",
             "version": "1.10.2",
             "version_normalized": "1.10.2.0",
@@ -2086,46 +2519,60 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "1.39.1",
-            "version_normalized": "1.39.1.0",
+            "version": "2.42.0",
+            "version_normalized": "2.42.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "4be0c005164249208ce1b5ca633cd57bdd42ff33"
+                "reference": "d0463779663437392fe42ff339ebc0213bd55498"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/4be0c005164249208ce1b5ca633cd57bdd42ff33",
-                "reference": "4be0c005164249208ce1b5ca633cd57bdd42ff33",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/d0463779663437392fe42ff339ebc0213bd55498",
+                "reference": "d0463779663437392fe42ff339ebc0213bd55498",
                 "shasum": ""
             },
             "require": {
-                "kylekatarnls/update-helper": "^1.1",
-                "php": ">=5.3.9",
-                "symfony/translation": "~2.6 || ~3.0 || ~4.0"
+                "ext-json": "*",
+                "php": "^7.1.8 || ^8.0",
+                "symfony/polyfill-mbstring": "^1.0",
+                "symfony/translation": "^3.4 || ^4.0 || ^5.0"
             },
             "require-dev": {
-                "composer/composer": "^1.2",
-                "friendsofphp/php-cs-fixer": "~2",
-                "phpunit/phpunit": "^4.8.35 || ^5.7"
+                "doctrine/orm": "^2.7",
+                "friendsofphp/php-cs-fixer": "^2.14 || ^3.0",
+                "kylekatarnls/multi-tester": "^2.0",
+                "phpmd/phpmd": "^2.9",
+                "phpstan/extension-installer": "^1.0",
+                "phpstan/phpstan": "^0.12.54",
+                "phpunit/phpunit": "^7.5 || ^8.0",
+                "squizlabs/php_codesniffer": "^3.4"
             },
-            "time": "2019-10-14T05:51:36+00:00",
+            "time": "2020-11-28T14:25:28+00:00",
             "bin": [
-                "bin/upgrade-carbon"
+                "bin/carbon"
             ],
             "type": "library",
             "extra": {
-                "update-helper": "Carbon\\Upgrade",
+                "branch-alias": {
+                    "dev-master": "2.x-dev",
+                    "dev-3.x": "3.x-dev"
+                },
                 "laravel": {
                     "providers": [
                         "Carbon\\Laravel\\ServiceProvider"
+                    ]
+                },
+                "phpstan": {
+                    "includes": [
+                        "extension.neon"
                     ]
                 }
             },
             "installation-source": "dist",
             "autoload": {
                 "psr-4": {
-                    "": "src/"
+                    "Carbon\\": "src/Carbon/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -2137,30 +2584,48 @@
                     "name": "Brian Nesbitt",
                     "email": "brian@nesbot.com",
                     "homepage": "http://nesbot.com"
+                },
+                {
+                    "name": "kylekatarnls",
+                    "homepage": "http://github.com/kylekatarnls"
                 }
             ],
-            "description": "A simple API extension for DateTime.",
+            "description": "An API extension for DateTime that supports 281 different languages.",
             "homepage": "http://carbon.nesbot.com",
             "keywords": [
                 "date",
                 "datetime",
                 "time"
             ],
+            "support": {
+                "issues": "https://github.com/briannesbitt/Carbon/issues",
+                "source": "https://github.com/briannesbitt/Carbon"
+            },
+            "funding": [
+                {
+                    "url": "https://opencollective.com/Carbon",
+                    "type": "open_collective"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/nesbot/carbon",
+                    "type": "tidelift"
+                }
+            ],
             "install-path": "../nesbot/carbon"
         },
         {
             "name": "nikic/php-parser",
-            "version": "v4.10.5",
-            "version_normalized": "4.10.5.0",
+            "version": "v4.11.0",
+            "version_normalized": "4.11.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "4432ba399e47c66624bc73c8c0f811e5c109576f"
+                "reference": "fe14cf3672a149364fb66dfe11bf6549af899f94"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/4432ba399e47c66624bc73c8c0f811e5c109576f",
-                "reference": "4432ba399e47c66624bc73c8c0f811e5c109576f",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/fe14cf3672a149364fb66dfe11bf6549af899f94",
+                "reference": "fe14cf3672a149364fb66dfe11bf6549af899f94",
                 "shasum": ""
             },
             "require": {
@@ -2171,7 +2636,7 @@
                 "ircmaxell/php-yacc": "^0.0.7",
                 "phpunit/phpunit": "^6.5 || ^7.0 || ^8.0 || ^9.0"
             },
-            "time": "2021-05-03T19:11:20+00:00",
+            "time": "2021-07-03T13:36:55+00:00",
             "bin": [
                 "bin/php-parse"
             ],
@@ -2203,7 +2668,7 @@
             ],
             "support": {
                 "issues": "https://github.com/nikic/PHP-Parser/issues",
-                "source": "https://github.com/nikic/PHP-Parser/tree/v4.10.5"
+                "source": "https://github.com/nikic/PHP-Parser/tree/v4.11.0"
             },
             "install-path": "../nikic/php-parser"
         },
@@ -6289,6 +6754,7 @@
         "doctrine/instantiator",
         "filp/whoops",
         "hamcrest/hamcrest-php",
+        "league/flysystem-aws-s3-v3",
         "mockery/mockery",
         "myclabs/deep-copy",
         "phar-io/manifest",

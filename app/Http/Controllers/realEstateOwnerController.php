@@ -18,6 +18,7 @@ use Illuminate\Mail\Mailable;
 use stdClass;
 use Session;
 use Faker\Factory as Faker;
+use Illuminate\Support\Facades\Storage;
 
 class realEstateOwnerController extends Controller
 {
@@ -142,11 +143,23 @@ class realEstateOwnerController extends Controller
       }
       Session::push('profilNotif', $profilNotif);
 
+      //DEBUT IMAGE DISPLAYING
+      $url = 'https://s3.' . env('AWS_REGION') . '.amazonaws.com/' . env('AWS_BUCKET') . '/';
+      $images = [];
+      $files = Storage::disk('s3')->files('images');
+      foreach ($files as $file) {
+      $images[] = [
+      'name' => str_replace('images/', '', $file),
+      'src' => $url . $file
+      ];
+      }
+      //END IMAGE DISPLAYING
+
       $actived_services['actived_services'] = DB::table('services')->where('customerId',$s)->first();
       $infos_perso['infos_perso']=DB::table('users')->where('customerId',$s)->first();
       $infos_log['infos_log']=DB::table('owns')->where('owner_id',$s)->where('status','<>','D')->get();
       $nb_log=(int)DB::table('owns')->where('owner_id',$s)->where('status','<>','D')->count();
-      return view('ownerProperties')->with($infos_perso)->with($infos_log)->with('nb_log',$nb_log)->with($actived_services)->with(compact('profilNotif'));
+      return view('ownerProperties')->with($infos_perso)->with($infos_log)->with('nb_log',$nb_log)->with($actived_services)->with(compact('profilNotif', 'images'));
 
     }
 

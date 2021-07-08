@@ -82,12 +82,13 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                      <div class="markup"></div>
                      <!-- DEBUT BODY DETAIL -->
                      <div class="m-panel__body">
-
                        <div class="body-detail">
+                       @foreach($images as $image)
                         <div class="detail-img"> <a title="icone logement" href="">
-                          <img imageonload="" class="img-responsive s-image--loading_success" alt="avatar" src="{{url('images/icon-undraw-house.png')}}">
+                          <img imageonload="" class="img-responsive s-image--loading_success" alt="{{$image['name']}}" src="{{ $image['src'] }}">
                          </a>
                        </div>
+                       @endforeach
                         <div class="detail-info">
                            <div class="info-name">
                               <div class="name-address">
@@ -272,10 +273,21 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                    </div>
                  </div>
                  <div class="wrap-input100 input100-select bg1">
-                   <span class="label-input100">Image/Photo du logement *</span>
-                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-                       Ajouter image(s)
-                      </button>
+                 <div class="row">
+                  <div class="col-md-6">
+                  <span class="label-input100">Image/Photo du logement * </span> 
+                  </div>
+                  <div class="col-md-6">
+                  <span style="color: #7790b3; text-align:center;" id="counter"></span>
+                  </div>
+                 </div>
+                   <div>
+                      <div id="dZUpload" class="dropzone">
+                        <div class="dz-default dz-message">
+                          <p>Déposez les images/photos ici ou cliquez pour télécharger</p>
+                        </div>
+                      </div>
+                   </div>
                  </div>
 
 
@@ -324,42 +336,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
              </div>
            </div>
          </form>
-         <!-- Modal imgUploadDropzone-->
-         <div class="modal fade" id="exampleModalCenter"  tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-md" role="document">
-              <div class="modal-content ">
-                <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalCenterTitle">Chargez vos images</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                </div>
-                  <div class="modal-body">
-                  <div class="container">
-                  <div class="col-md-12">
-                  <h2 class="page-heading">Chargez vos images <span id="counter"></span></h2>
-                  <form method="post" action="{{ route('images.add') }}"
-                        enctype="multipart/form-data" class="dropzone" id="my-dropzone" >
-                      {{ csrf_field() }}
-                      <div class="dz-message">
-                          <div class="col-md-12">
-                              <div class="message">
-                                  <p>Déposez les fichiers ici ou cliquez pour télécharger</p>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="fallback">
-                          <input type="file" name="file" multiple>
-                      </div>
-                  </form>
-              </div>
-          </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-            </div>
-          </div>
-        </div>
-      </div>
+       
 
          <!--- FIN FORMULAIRE AJOUT LOGEMENT-->
 
@@ -839,6 +816,45 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
      });
       }
 
+     </script>
+ <!--=============DROPZONE SCRIPT============-->
+     <script>
+     Dropzone.autoDiscover = false;
+     $(document).ready(function () {
+      var total_photos_counter = 0;
+      var name = "";
+    // Dropzone.autoDiscover = false;
+    $("#dZUpload").dropzone({
+      headers: {
+						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+					},
+        method: "POST",
+        url: "{{ route('images.add') }}",
+        // uploadMultiple: true,
+        parallelUploads: 2,
+        maxFilesize: 100,
+        addRemoveLinks: true,
+        dictRemoveFile: "Enlever l'image",
+        dictFileTooBig: 'Image is larger than 16MB',
+        timeout: 10000,
+        renameFile: function (file) {
+        // name = new Date().getTime() + Math.floor((Math.random() * 100) + 1) + '_' + file.name;
+        name = new Date().getTime() + '_' + file.name;
+        return name;
+    },
+        success: function (file, response) {
+            var imgName = response;
+            file.previewElement.classList.add("dz-success");
+            console.log("Successfully uploaded :" + imgName);
+            total_photos_counter++;
+            $("#counter").text("# " + total_photos_counter + "  images(s) au total" );
+            file["customName"] = name;
+        },
+        error: function (file, response) {
+            file.previewElement.classList.add("dz-error");
+        }
+    });
+});
      </script>
 
  

@@ -6,11 +6,47 @@
     'aliases' => 
     array (
     ),
-    'reference' => '19fe5d418cb33d1d372dcbafc1733f6a3639c549',
+    'reference' => '4fbc2c5519204c4c36d1c738f56a36996b0c4fe6',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
   array (
+    'aws/aws-sdk-php' => 
+    array (
+      'pretty_version' => '3.185.6',
+      'version' => '3.185.6.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '35310302912fdc3b4a0e829b84424c41e3fd9727',
+    ),
+    'aws/aws-sdk-php-laravel' => 
+    array (
+      'pretty_version' => '3.6.0',
+      'version' => '3.6.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '49bc5d90b1ebfb107d0b650fd49b41b241425a36',
+    ),
+    'backup-manager/backup-manager' => 
+    array (
+      'pretty_version' => '1.4.1',
+      'version' => '1.4.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '5d8cdadeda8b89bffa70829b4b74c0c774fa0364',
+    ),
+    'backup-manager/laravel' => 
+    array (
+      'pretty_version' => '2.0',
+      'version' => '2.0.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '58ccef9882f97240c86f6d747b240dc16b5c7060',
+    ),
     'barryvdh/laravel-dompdf' => 
     array (
       'pretty_version' => 'v0.8.7',
@@ -316,12 +352,12 @@
     ),
     'guzzlehttp/guzzle' => 
     array (
-      'pretty_version' => '6.5.5',
-      'version' => '6.5.5.0',
+      'pretty_version' => '6.3.3',
+      'version' => '6.3.3.0',
       'aliases' => 
       array (
       ),
-      'reference' => '9d4290de1cfd701f38099ef7e183b64b4b7b0c5e',
+      'reference' => '407b0cb880ace85c9b63c5f9551db498cb2d50ba',
     ),
     'guzzlehttp/promises' => 
     array (
@@ -580,14 +616,14 @@
         0 => '*',
       ),
     ),
-    'kylekatarnls/update-helper' => 
+    'kylekatarnls/laravel-carbon-2' => 
     array (
-      'pretty_version' => '1.2.1',
-      'version' => '1.2.1.0',
+      'pretty_version' => '1.0.0',
+      'version' => '1.0.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '429be50660ed8a196e0798e5939760f168ec8ce9',
+      'reference' => '0b68e0454d8e17b31cc42038dda8b7faef8055b3',
     ),
     'laravel/framework' => 
     array (
@@ -605,7 +641,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '19fe5d418cb33d1d372dcbafc1733f6a3639c549',
+      'reference' => '4fbc2c5519204c4c36d1c738f56a36996b0c4fe6',
     ),
     'laravel/tinker' => 
     array (
@@ -624,6 +660,15 @@
       array (
       ),
       'reference' => 'f3ad69181b8afed2c9edf7be5a2918144ff4ea32',
+    ),
+    'league/flysystem-aws-s3-v3' => 
+    array (
+      'pretty_version' => '1.0.29',
+      'version' => '1.0.29.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '4e25cc0582a36a786c31115e419c6e40498f6972',
     ),
     'league/mime-type-detection' => 
     array (
@@ -661,6 +706,15 @@
       ),
       'reference' => '9be552eebcc1ceec9776378f7dcc085246cacca6',
     ),
+    'mtdowling/jmespath.php' => 
+    array (
+      'pretty_version' => '2.6.1',
+      'version' => '2.6.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '9b87907a81b87bc76d19a7fb2d61e61486ee9edb',
+    ),
     'myclabs/deep-copy' => 
     array (
       'pretty_version' => '1.10.2',
@@ -676,21 +730,22 @@
     ),
     'nesbot/carbon' => 
     array (
-      'pretty_version' => '1.39.1',
-      'version' => '1.39.1.0',
+      'pretty_version' => '2.42.0',
+      'version' => '2.42.0.0',
       'aliases' => 
       array (
+        0 => '1.26.3',
       ),
-      'reference' => '4be0c005164249208ce1b5ca633cd57bdd42ff33',
+      'reference' => 'd0463779663437392fe42ff339ebc0213bd55498',
     ),
     'nikic/php-parser' => 
     array (
-      'pretty_version' => 'v4.10.5',
-      'version' => '4.10.5.0',
+      'pretty_version' => 'v4.11.0',
+      'version' => '4.11.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '4432ba399e47c66624bc73c8c0f811e5c109576f',
+      'reference' => 'fe14cf3672a149364fb66dfe11bf6549af899f94',
     ),
     'paragonie/random_compat' => 
     array (
