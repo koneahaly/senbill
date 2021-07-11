@@ -302,7 +302,7 @@ class realEstateOwnerController extends Controller
             $co->html_verify_email($given->email,$given->first_name.' '.$given->name,'SEN BILL');
             $co->html_email_pro($given->email,$given->first_name.' '.$given->name,$proprio->first_name.' '.$proprio->name,$given->name.'123','SEN BILL');
 
-            return redirect()->back()->with('message', 'Le locataire a été correctement ajouté au logement, il recevra sous peu un email l\'invitant à rejoindre Elektra pour payer ses factures!');
+            return redirect()->back()->with('message', 'Le locataire a été correctement ajouté au logement, il recevra sous peu un email l\'invitant à rejoindre Senbill pour payer ses factures!');
       }
 
       public function update_occupant(Request $given){

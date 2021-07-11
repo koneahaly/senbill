@@ -123,38 +123,6 @@ class billController extends Controller
         return redirect('mes-factures/'.$input->service);
     }
 
-    public function payviaPD()
-    {
-      //$token = $_GET['token'];
-
-      $service =explode('?',$_SERVER['REQUEST_URI']);
-      $pd_id_bill  =  $service[1];
-
-      $infos_bills = DB::table('bills')->where('id',$pd_id_bill)->first();
-
-      $invoice = new \Paydunya\Checkout\CheckoutInvoice();
-      $invoice->setReturnUrl("http://localhost:8000/mes-factures/".$_SESSION['current_service']."/");
-      $invoice->setCancelUrl("http://localhost:8000/mes-factures/".$_SESSION['current_service']."/");
-
-      /* L'ajout d'éléments à votre facture est très basique.
-      Les paramètres attendus sont nom du produit, la quantité, le prix unitaire,
-      le prix total et une description optionelle. */
-      $payment_due  =  $infos_bills->amount;
-      $fees = $payment_due  * 0.05;
-      $payment_tot_due  = $payment_due + $fees;
-
-      $invoice->addItem("Echéance de ".$infos_bills->month." ".$infos_bills->year, 1, $payment_due, $payment_due, "Facture d'eau du partenaire SDEQ");
-      $invoice->addItem("Frais de gestion", 1, $fees, $fees,"");
-      //ajouter d'autres lignes si besoin
-      $invoice->setTotalAmount($payment_tot_due);
-      //var_dump($invoice);
-      if($invoice->create()) {
-          return Redirect::to($invoice->getInvoiceUrl());
-      }else{
-          echo $invoice->response_text;
-      }
-
-    }
 
     public function touchpay(Request $input){
       $s=Auth::user()->customerId;

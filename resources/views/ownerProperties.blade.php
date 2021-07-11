@@ -438,7 +438,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                      <div>
                        <select class="js-select-civ" name="civilite">
                          <option disabled>Votre civilité</option>
-                         <option value="Mr">Monsieur</option>
+                         <option value="Mr" selected="selected">Monsieur</option>
                          <option value="Mme">Madame</option>
                        </select>
                        <div class="dropDownSelect2"></div>
