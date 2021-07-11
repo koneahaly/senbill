@@ -16,7 +16,7 @@ class SmsController extends Controller {
              'phoneNumbers'=> $phone,
              'message'=> 'Bonjour, le code d\'activation est :'.$activation_code,
              'sender' => 'SENBILL',
-             'sandbox' => 1
+             'sandbox' => 0 
          );
 
 

@@ -148,7 +148,7 @@ if(!empty($raw_woyofal_users_demo) and !empty($raw_classical_users_demo)){
              </div>
 
              <div id="captcha" class="captcha-verif">
-               <div class="g-recaptcha" data-sitekey="6LdfdNUZAAAAAJlzQvySC5f86LvXR7agH34qS9As"></div>
+               <div class="g-recaptcha" data-sitekey="{{ env('GOOGLE_RECAPTCHA_KEY') }}"></div>
                <div id="error" class="left red-text text-darken-2" style="color: red;font-size:12px">
                {{ $errors->first('g-recaptcha-response') }}.
                </div>

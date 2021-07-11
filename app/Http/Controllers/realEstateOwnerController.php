@@ -226,7 +226,7 @@ class realEstateOwnerController extends Controller
         if($renter_check_id < 1){
           $occupant_id = $given->customerId;
           if(strpos($given->phone,'+221') !== false){
-            $treat_phone = $given->phone;
+            $treat_phone = substr($given->phone,4,1);
           }
           else{
             $treat_phone = "+221".$given->phone;

@@ -18,11 +18,11 @@ class ApiController extends Controller
     $prepaid_cards_id = $input->montant_recharge / 5000;
 
     $client = new Client();
-    $url_to_electrical_counter = "http://localhost/api_elec/electrical_counter/update.php?current_amount=".$montant_recharche_total."&counter_number=".Auth::user()->customerId;
+    $url_to_electrical_counter = "http://18.204.203.83/api_elec/electrical_counter/update.php?current_amount=".$montant_recharche_total."&counter_number=".Auth::user()->customerId;
     $request = $client->post($url_to_electrical_counter);
 
     $client_2 = new Client();
-    $url_to_buy = "http://localhost/api_elec/buys/create.php?amount=".$input->montant_recharge."&counter_number=".Auth::user()->customerId."&prepaid_cards_id=".$prepaid_cards_id."&payment_method=".$input->payment_method."&creation_date=&last_updated_date=";
+    $url_to_buy = "http://18.204.203.83/api_elec/buys/create.php?amount=".$input->montant_recharge."&counter_number=".Auth::user()->customerId."&prepaid_cards_id=".$prepaid_cards_id."&payment_method=".$input->payment_method."&creation_date=&last_updated_date=";
     $request_2 = $client_2->post($url_to_buy);
     //$request->setBody(['current_amount'=>$montant_recharche_total, 'counter_number'=>Auth::user()->customerId]); #set body!
     //$response = $request->send();

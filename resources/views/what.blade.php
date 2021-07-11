@@ -926,7 +926,7 @@ Vous pouvez  aussi nous contacter pour que  nous procédions à l'onboarding de 
                                 Les frais de la transaction seront à la charge du propriétaire. Dans ce cas le locataire paiera le montant exact de sa facture de location.
                             </li>
                             <li class="list-group-item price-figure mbr-fonts-style display-1">
-                                3.5% 
+                                1% 
                             </li>
                             <li>
                                 par transaction
@@ -959,10 +959,10 @@ Vous pouvez  aussi nous contacter pour que  nous procédions à l'onboarding de 
                         <ul class="list-group list-group-flush mbr-fonts-style display-7">
                             <li class="list-group-item">
                                 Les frais de la transaction seront à la charge du locataire. Dans ce cas le locataire paiera le montant du loyer
-                                majoré de 3.5%
+                                majoré de 1%
                             </li>
                             <li class="list-group-item price-figure mbr-fonts-style display-1">
-                                3.5% 
+                                1% 
                             </li>
                             <li>
                                 par transaction

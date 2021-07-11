@@ -26,7 +26,7 @@ class Captcha implements Rule
      */
     public function passes($attribute, $value)
     {
-        $recaptcha = new ReCaptcha("6LdfdNUZAAAAAG6K6nEjUC0BwLzK4jL-dBGMu32B");
+        $recaptcha = new ReCaptcha(env('GOOGLE_RECAPTCHA_SECRET'));
         $response = $recaptcha->verify($value,$_SERVER['REMOTE_ADDR']);
         return $response->isSuccess();
     }
