@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html  >
 <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CXR499BH4X"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-CXR499BH4X');
+    </script>
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -266,6 +275,110 @@
 .show-lottie{
     display:block !important;
 }
+.rentwelcome
+{
+    background-color: #0c0319;
+    color:white;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+.custom-shape-divider-bottom-1606678211 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1606678211 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 150px;
+}
+
+.custom-shape-divider-bottom-1606678211 .shape-fill {
+    fill: #EFEFEF;
+}
+.cid-s2zsdet9N1 {
+  background-color: rgb(241, 242, 245);
+}
+.text_contact {
+    margin-left: -20%;
+    padding-top: 10%;
+}
+
+.cid-s5anz4skym {
+  background-image: url("../../../assets/images/background4.jpg");
+}
+.cid-sik5p8lWkI {
+  padding-top: 90px;
+  padding-bottom: 90px;
+  background: linear-gradient(45deg, #0f7699, #cc2952);
+}
+.cid-sik5p8lWkI .list-group-item {
+  padding: .75rem 3.25rem;
+}
+.cid-sik5p8lWkI .plan {
+  word-break: break-word;
+  position: relative;
+  max-width: 300px;
+  padding-right: 0;
+  padding-left: 0;
+  color: #767676;
+}
+.cid-sik5p8lWkI .plan .list-group-item {
+  position: relative;
+  -webkit-justify-content: center;
+  justify-content: center;
+  border: 0;
+}
+.cid-sik5p8lWkI .plan .list-group-item::after {
+  position: absolute;
+  bottom: 0;
+  left: 20%;
+  width: 60%;
+  height: 2px;
+  content: "";
+  background-color: #eaeaea;
+}
+.cid-sik5p8lWkI .plan .list-group-item:last-child::after {
+  display: none;
+}
+.cid-sik5p8lWkI .plan-header {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.cid-sik5p8lWkI .plan-header,
+.cid-sik5p8lWkI .plan-body {
+  background-color: #fff;
+}
+.cid-sik5p8lWkI .price-figure {
+  font-weight: 700;
+  color: #232323;
+}
+.cid-sik5p8lWkI .price-value {
+  font-weight: 700;
+  vertical-align: top;
+}
+@media (max-width: 550px) {
+  .cid-sik5p8lWkI .price-figure {
+    font-size: 4.25rem;
+  }
+}
+.emphasizePlan  {
+    border: 5px solid #cc7d7d;
+    -webkit-box-shadow: 0px 0px 11px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 11px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 11px 0px #cc7d7d;
+}
+
 
 </style>
 
@@ -299,10 +412,25 @@
             </div>
         </div>
 
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true">
+                <li class="nav-item">
+                    <a class="nav-link link text-black display-4"  onclick="viewRent()">
+                        Location
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link link text-black display-4"  onclick="viewPartner()">
+                        Partenariat
+                    </a>
+                </li>
+            </ul>
+        </div>
+
     </nav>
 </section>
 
-<section class="engine"></section><section class="header6 mbr-fullscreen" style="background-image: url({{url('images/3587377.svg')}});"  id="header6-2">
+<section class="engine"></section><section class="header6 mbr-fullscreen" id ="PartnerSection1" style="background-image: url({{url('images/3587377.svg')}});"  id="header6-2">
 
 
 
@@ -315,7 +443,7 @@
           <div class="row justify-content-md-center">
               <div class="col-md-10">
                   <h2 class="mbr-section-title align-center mbr-bold pb-3 mbr-fonts-style" style="margin: 0 0 25px;font-size: 3rem;">
-                      Toutes les factures en une plateforme
+                      Toutes vos factures en une plateforme
                   </h2>
                   <p class="mbr-text align-center pb-3 mbr-fonts-style display-6">
                       SenBill simplifie les paiements de vos factures au Sénégal et en Afrique. Dîtes adieu aux factures impayées ou oubliées.
@@ -338,11 +466,56 @@
     </div>
 </section>
 
-<section class="features6 cid-s2zsdet9N1" id="features6-3">
+<!-- SECTION 1 LOCATION -->
+
+<section class="engine"></section><section class="header6 mbr-fullscreen" id="RentSection1" style="background-image: url({{url('images/3587377.svg')}});"  id="header6-2">
 
 
 
+    <div class="mbr-overlay" style="opacity: 0.5; background-color: rgb(255, 255, 255);">
+    </div>
 
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6" style="padding-top: 17%;">
+          <div class="row justify-content-md-center">
+              <div class="col-md-10">
+                  <h2 class="mbr-section-title align-center mbr-bold pb-3 mbr-fonts-style" style="margin: 0 0 25px;font-size: 3rem;">
+                      Une façon sure et simple d'encaisser le loyer
+                  </h2>
+                  <p class="mbr-text align-center pb-3 mbr-fonts-style display-6">
+                      SenBill simplifie la tâche aux propriétaires pour qu'ils perçoivent de façon efficace et automatique leurs loyers.
+                  </p>
+                  <div class="mbr-section-btn align-center"><a class="btn btn-md btn-primary display-4" href="../register">S'INSCRIRE MAINTENANT</a>
+                          </div>
+              </div>
+          </div>
+          </div>
+          <div class="lottie anim col-md-6">
+            <lottie-player src="{{url('images/lottie/rent.json')}}" id=icon10  background="transparent"  speed="1" class="space-logo"   loop  autoplay></lottie-player>
+          </div>
+        </div>
+    </div>
+
+    <div class="mbr-arrow hidden-sm-down" aria-hidden="true">
+        <a href="#next">
+            <i class="mbri-down mbr-iconfont"></i>
+        </a>
+    </div>
+
+    <!-- SHAPE DIVIDER  -->
+    <!-- <div class="custom-shape-divider-bottom-1606678211">
+        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M1200 0L0 0 892.25 114.72 1200 0z" class="shape-fill"></path>
+        </svg>
+    </div> -->
+</section>
+
+
+<!-- FIN SECTION 1 LOCATION -->
+
+
+<section class="features6 cid-s2zsdet9N1" id="PartnerSection2">
     <div class="container">
         <div class="media-container-row">
 
@@ -355,7 +528,7 @@
                         Votre entreprise est gratuitement intégrée
                     </h4>
                     <p class="mbr-text mbr-fonts-style display-7">
-                       SenBill offre un onboarding spécialement conçu pour votre entreprise sans coût. Démarquez vous,  contactez nous et devenez notre partenaire et laissez SenBill apporter de la valeur à votre business.
+                       SenBill offre un onboarding spécialement conçu pour votre entreprise sans coût. Démarquez vous,  contactez nous, devenez notre partenaire et laissez SenBill apporter de la valeur à votre business.
                     </p>
                 </div>
             </div>
@@ -383,7 +556,7 @@
                         Vos clients sont notifiés ou relancés si nécessaire
                     </h4>
                     <p class="mbr-text mbr-fonts-style display-7">
-                       Les clients peuvent suivre leurs factures et sont notifiés des factures impayés. SenBill offre aussi la possibilité de mettre en place des paiements récurrents. Plus d'excuses pour justifier une facture impayée.
+                       Les clients peuvent suivre leurs factures et sont notifiés des factures impayées. SenBill offre aussi la possibilité de mettre en place des paiements récurrents. Plus d'excuses pour justifier une facture impayée.
                     </p>
                 </div>
             </div>
@@ -396,11 +569,95 @@
 
 </section>
 
-<section class="features11 cid-s2zt0G9su6" id="features11-5">
+<!-- SECTION 2 LOCATION -->
+<section class="features6 cid-s2zsdet9N1" id="RentSection2">
+    <div class="container">
+      <div class="media-container-row">
+        <div class="lottie anim col-md-6">
+          <lottie-player src="{{url('images/lottie/lf30_editor_olbp0rdr.json')}}" id=icon10  background="transparent"  speed="1" class="space-logo"   loop  autoplay></lottie-player>
+        </div>
+
+            <div class="card col-md-6 ">
+                <div class="card-img pb-3">
+                    <h1> Recevez votre loyer sans effort</h1>
+                </div>
+                <div class="card-box">
+                    <h4 class="card-title py-3 mbr-fonts-style display-7">
+                         Offrez vous un moyen  simple et sécurisé de percevoir votre loyer
+                    </h4>
+                    <p class="mbr-text mbr-fonts-style display-7" style="font-size: 1.15rem;">
+                      En plus de vos activités, vous avez mieux à faire que de courir derrière vos locataires. Nous nous occupons de
+                      cette tâche de collecte de loyers pour vous en toute sécurité  et sans que vous ne bougiez le petit doigt.
+                      Vous méritez moins de stress, profitez de cette  charge en moins pour vous occuper de vous ou de  vos autres préoccupations.
+                    </p>
+                </div>
+            </div>
+
+      </div>
+        <div class="media-container-row">
+
+              <div class="card p-3 col-12 col-md-6 col-lg-4">
+                  <div class="card-img pb-3">
+                      <span class="mbri-key mbr-iconfont"></span>
+                  </div>
+                  <div class="card-box">
+                      <h4 class="card-title py-3 mbr-fonts-style display-7">
+                          Intégration des logements
+                      </h4>
+                      <p class="mbr-text mbr-fonts-style display-7">
+Profitez de notre plateforme en ligne pour ajouter facilement un ou plusieurs logements et inviter facilement vos locataires en rentrant toutes les informations nécessaires.
+Vous pouvez  aussi nous contacter pour que  nous procédions à l'onboarding de vos logements et locataires.                      </p>
+                  </div>
+              </div>
+              <div class="card p-3 col-12 col-md-6 col-lg-4">
+                  <div class="card-img pb-3">
+                      <span class="mbri-touch mbr-iconfont"></span>
+                  </div>
+                  <div class="card-box">
+                      <h4 class="card-title py-3 mbr-fonts-style display-7">
+                          Paiement en ligne du loyer
+                      </h4>
+                      <p class="mbr-text mbr-fonts-style display-7">
+                         Vos locataires reçoivent automatiquement les factures dans leur espace dès la fin du mois. Ils ont ensuite la possibilité de régler leur loyer en ligne via 
+                         leur moyen de paiement préféré (Mobile Money ou Carte bancaire). Vous serez automatiquement notifié de l'issue du paiement.
+                      </p>
+                  </div>
+              </div>
+
+              <div class="card p-3 col-12 col-md-6 col-lg-4">
+                  <div class="card-img pb-3">
+                      <span class="mbri-responsive mbr-iconfont"></span>
+                  </div>
+                  <div class="card-box">
+                      <h4 class="card-title py-3 mbr-fonts-style display-7">
+                          Notifications et relances
+                      </h4>
+                      <p class="mbr-text mbr-fonts-style display-7">
+                         Les locataires peuvent suivre leurs factures et sont notifiés des factures impayées. SenBill offre aussi la possibilité de relancer automatiquement les locataires et 
+                         de rester en contact avec eux. Ceci vous permettra d'éviter les imprévus et de diminuer le stress de la gestion locative.
+
+                      </p>
+                  </div>
+              </div>
 
 
 
+        </div>
 
+    </div>
+
+</section>
+
+<section style="left:15%;width:70%;" id="RentSection2_bis">
+    <figure class="mbr-figure align-center">
+        <div class="video-block" style="width: 100%;">
+            <div><iframe class="mbr-embedded-video" src="https://www.youtube.com/embed/NsBSTrZiVKs?rel=0&amp;amp;showinfo=0&amp;autoplay=0&amp;loop=0" width="1280" height="720" frameborder="0" allowfullscreen></iframe></div>
+        </div>
+    </figure>
+</section>
+<!-- FIN SECTION 2 LOCATION -->
+
+<section class="features11 cid-s2zt0G9su6" id="PartnerSection3">
 
     <div class="container">
         <div class="col-md-12">
@@ -410,7 +667,7 @@
                 </div>
                 <div class=" align-left aside-content">
                     <h2 class="mbr-title pt-2 mbr-fonts-style display-2">
-                      Spécialement adapté à votre entreprise
+                      Spécialement adaptée à votre entreprise
                     </h2>
                     <div class="mbr-section-text">
                         <p class="mbr-text mb-5 pt-3 mbr-light mbr-fonts-style display-5">
@@ -452,7 +709,7 @@
 
                             <div class="card-box">
                                 <p class="block-text mbr-fonts-style display-7">
-                                    La collecte de vos paiements est facilité grâce aux moyens de paiement locaux déjà intégrés dans l'espace du client. Le processus de paiement
+                                    La collecte de vos paiements est facilitée grâce aux moyens de paiement locaux déjà intégrés dans l'espace du client. Le processus de paiement
                                     est transparent pour vous, vous ne gérez plus qu'un tableau de bord pour tous vos paiements.
                                 </p>
                             </div>
@@ -464,12 +721,81 @@
     </div>
 </section>
 
-<section class="testimonials3 cid-s2zttbvYmL" id="testimonials3-7">
+<!-- RENT SECTION 3 -->
+<section class="features11 cid-s2zt0G9su6" id="RentSection3">
 
+    <div class="container">
+        <div class="col-md-12">
+            <div class="media-container-row">
+                <div class="mbr-figure m-auto" style="width: 50%;">
+                    <img src="{{url('whatFolder/assets/images/industries.png')}}" alt="entreprises et industries" title="">
+                </div>
+                <div class=" align-left aside-content">
+                    <h2 class="mbr-title pt-2 mbr-fonts-style display-2">
+                      Un tableau de bord adapté à vous
+                    </h2>
+                    <div class="mbr-section-text">
+                        <p class="mbr-text mb-5 pt-3 mbr-light mbr-fonts-style display-5">
+                        En vous inscrivant sur Senbill en tant que propriétaire, vous accéderez à un espace pour suivre votre activité et celles de vos locataires.
+                        </p>
+                    </div>
 
+                    <div class="block-content">
+                        <div class="card p-3 pr-3">
+                            <div class="media">
+                                <div class=" align-self-center card-img pb-3">
+                                    <span class="mbri-devices mbr-iconfont"></span>
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="card-title mbr-fonts-style display-7">
+                                        Digitalisation des factures
+                                    </h4>
+                                </div>
+                            </div>
 
+                            <div class="card-box">
+                                <p class="block-text mbr-fonts-style display-7">
+                                   Des factures électroniques sont présentées au locataire avant chaque date d'échéance. Après règlement, le reçu de paiement reste disponible dans leur compte pour consultation ou téléchargement.
+                                </p>
+                            </div>
+                        </div>
 
+                        <div class="card p-3 pr-3">
+                            <div class="media">
+                                <div class="align-self-center card-img pb-3">
+                                    <span class="mbri-drag-n-drop2 mbr-iconfont"></span>
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="card-title mbr-fonts-style display-7">
+                                        Traçabilité des paiements
+                                    </h4>
+                                </div>
+                            </div>
 
+                            <div class="card-box">
+                                <p class="block-text mbr-fonts-style display-7">
+                                    La collecte de vos paiements est facilitée grâce aux moyens de paiement locaux déjà intégrés dans l'espace du client. Le processus de paiement
+                                    est transparent pour vous, vous ne gérez plus qu'un tableau de bord pour voir tous vos paiements.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                    <div class="px-5 align-self-center mbr-white py-2">
+                        <h1 class="mbr-title pt-2 mbr-fonts-style display-2 mbr-black">Vous voulez commencer maintenant ?</h1>
+                        <h4>S'inscrire ou nous contacter pour de l'aide</h4>
+                    </div>
+				
+                <div class="mbr-section-btn align-center"><a class="btn btn-md btn-primary display-4" href="../register">S'inscrire</a> <a class="btn btn-md btn-primary display-4" href="./nous-contacter">Nous contacter</a>
+                </div>							
+        </div>
+    </div>
+</section>
+
+<!-- END RENT SECTION 3 -->
+
+<section class="testimonials3 cid-s2zttbvYmL" id="PartnerSection4">
     <div class="container">
         <div class="media-container-row">
             <div class="media-content px-3 align-self-center mbr-white py-2">
@@ -477,13 +803,13 @@
                   <strong style="font-weight: 500;">Un</strong> compte, <br/> <strong style="font-weight: 500;">Plusieurs</strong> services
                 </h2>
                 <p class="mbr-text testimonial-text mbr-fonts-style display-7">
-                   L'inscription ne prend que 3 minutes et l'application est simple à utiliser. Vous pouvez retrouver toutes vos factures  en une seule application.
+                   L'inscription ne prend que 3 minutes et l'application est simple à utiliser. Vous pouvez retrouver toutes vos factures en une seule application.
                 </p>
                 <p class="mbr-author-name pt-4 mb-2 mbr-fonts-style display-7">
 
                 </p>
                 <p class="mbr-author-desc mbr-fonts-style display-7">
-                   A chaque service, son espace dédiée.
+                   A chaque service, son espace dédié.
                 </p>
             </div>
 
@@ -493,13 +819,36 @@
         </div>
     </div>
 </section>
+<!-- RENT SECTION 4 -->
+<section class="testimonials3 cid-s2zttbvYmL" id="RentSection4">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="media-content px-3 align-self-center mbr-white py-2">
+                <h2 class="mbr-title pt-2 mbr-fonts-style display-2 mbr-black">
+                  <strong style="font-weight: 500;">Senbill</strong> met l'accent sur <br/> <strong style="font-weight: 500;">les notifications</strong> 
+                </h2>
+                <p class="mbr-text testimonial-text mbr-fonts-style display-7">
+                   En tant que locataire, vous êtes notifiés par email dès que votre propriétaire vous associe à un logement et êtes invités à
+                   vous connecter sur votre espace client Senbill. 
+                </p>
+                <p class="mbr-author-name pt-4 mb-2 mbr-fonts-style display-7">
 
-<section class="step2 cid-s2zszP35jl" id="step2-4">
+                </p>
+                <p class="mbr-author-desc mbr-fonts-style display-7">
+                   Plus besoin de vous déplacer ou voir votre propriétaire pour payer votre loyer :) .
+                </p>
+            </div>
 
+                <div class="lottie anim col-md-6">
+                    <lottie-player src="{{url('images/lottie/lf30_editor_q7ntr7f5.json')}}" id=icon10  background="transparent"  speed="1" class="space-logo"   loop  autoplay></lottie-player>
+                </div>
+        </div>
+    </div>
+</section>
 
+<!-- END RENT SECTION 4 -->
 
-
-
+<section class="step2 cid-s2zszP35jl" id="PartnerSection5">
     <div class="container" id="sliderDiv">
         <h2 class="mbr-section-title pb-3 mbr-fonts-style align-center display-2">
             Enrichissez votre espace
@@ -539,28 +888,103 @@
                 </div>
             </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
         </div>
     </div>
 </section>
 
+<!--  RENT SECTION 5 -->
+<section class="pricing-table1 cid-sik5p8lWkI" id="RentSection5">
+    <div class="container">
+        <h2 class="mbr-section-title pb-3 mbr-fonts-style align-center display-2 mbr-white">
+            Tarification
+        </h2>
+        <h3 class="mbr-section-subtitle pb-5 mbr-fonts-style align-center display-5">
+            Vous pouvez choisir une des options suivantes, nous conseillons aux propriétaires l'option LOCATAIRE ZERO pour que les frais soient transparents pour le locataire.
+            Vous pouvez prévoir ces frais dans le montant du loyer mensuel.
+        </h3>
+        <div class="media-container-row">
+            <div class="plan col-12 mx-2 my-2 justify-content-center col-lg-3 emphasizePlan">
+                <div class="plan-header text-center pt-5">
+                    <h3 class="plan-title mbr-fonts-style display-5">
+                        LOCATAIRE ZERO
+                    </h3>
+                    <div class="plan-price">
+                        <span class="price-figure mbr-fonts-style display-1">
+                            0</span>
+                            <span class="price-value mbr-fonts-style display-5">
+                            FCFA
+                        </span>
+                        <small class="price-term mbr-fonts-style display-7">
+                            par mois
+                        </small>
+                    </div>
+                </div>
+                <div class="plan-body pb-5">
+                    <div class="plan-list align-center">
+                        <ul class="list-group list-group-flush mbr-fonts-style display-7">
+                            <li class="list-group-item">
+                                Les frais de la transaction seront à la charge du propriétaire. Dans ce cas le locataire paiera le montant exact de sa facture de location.
+                            </li>
+                            <li class="list-group-item price-figure mbr-fonts-style display-1">
+                                1% 
+                            </li>
+                            <li>
+                                par transaction
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="mbr-section-btn text-center pt-4">
+                        <a href="../register" class="btn btn-primary display-4">S'inscrire</a>
+                    </div>
+                </div>
+            </div>
+            <div class="plan col-12 mx-2 my-2 justify-content-center col-lg-3">
+                <div class="plan-header text-center pt-5">
+                    <h3 class="plan-title mbr-fonts-style display-5">
+                        PROPRIETAIRE ZERO
+                    </h3>
+                    <div class="plan-price">
+                        <span class="price-figure mbr-fonts-style display-1">
+                            0</span>
+                            <span class="price-value mbr-fonts-style display-5">
+                            FCFA
+                        </span>
+                        <small class="price-term mbr-fonts-style display-7">
+                            par mois
+                        </small>
+                    </div>
+                </div>
+                <div class="plan-body pb-5">
+                    <div class="plan-list align-center">
+                        <ul class="list-group list-group-flush mbr-fonts-style display-7">
+                            <li class="list-group-item">
+                                Les frais de la transaction seront à la charge du locataire. Dans ce cas le locataire paiera le montant du loyer
+                                majoré de 1%
+                            </li>
+                            <li class="list-group-item price-figure mbr-fonts-style display-1">
+                                1% 
+                            </li>
+                            <li>
+                                par transaction
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="mbr-section-btn text-center pt-4">
+                        <a href="../register" class="btn btn-primary display-4">S'inscrire</a>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+    </div>
+</section>
+
+
+<!-- END RENT SECTION 5 -->
+
+
+
 <section class="features11 cid-s2zt0G9su6" id="features11-5" style="background-color: #f3f4f6;">
-
-
-
-
 
     <div class="container">
         <div class="col-md-12">
@@ -572,7 +996,7 @@
                     <h2 class="mbr-title pt-2 mbr-fonts-style display-2">
                       Vous êtes une entreprise?
                     </h2>
-                    <a class="btn btn-sm btn-primary display-4" href="https://www.services2sn.com/#contact">
+                    <a class="btn btn-sm btn-primary display-4" href="./nous-contacter">
                         <span class="mbri-calendar mbr-iconfont mbr-iconfont-btn "></span>
                         Demandez un rdv
                     </a>
@@ -612,7 +1036,7 @@
                     Contacts
                 </h5>
                 <p class="mbr-text">
-                    Site web: www.services2sn.com
+                    Site web: https://www.services2sn.com
                     <br>Phone: +33 (0) 6 25 32 54 45
 
                 </p>
@@ -682,12 +1106,49 @@
   <script src="{{url('whatFolder/assets/dropdown/js/navbar-dropdown.js')}}"></script>
   <script src="{{url('whatFolder/assets/theme/js/script.js')}}"></script>
 
+    <!-- GetButton.io widget -->
+    <script type="text/javascript">
+        (function () {
+            var options = {
+                whatsapp: "+33625325445", // WhatsApp number
+                call_to_action: "Envoyez nous un message", // Call to action
+                position: "right", // Position may be 'right' or 'left'
+            };
+            var proto = document.location.protocol, host = "getbutton.io", url = proto + "//static." + host;
+            var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = url + '/widget-send-button/js/init.js';
+            s.onload = function () { WhWidgetSendButton.init(host, proto, options); };
+            var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
+        })();
+    </script>
+<!-- /GetButton.io widget -->
 
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
 <script src="https://unpkg.com/@lottiefiles/lottie-player@0.4.0/dist/lottie-player.js"></script>
 <script>
  $(document).ready(function() {
+   // INITIALISATION DE LA PAGE A AFFICHER : switcher la valeur à 1 pour passer en mode partenaire
+   pageMode(0);
+
+   function pageMode(mode) {
+     if(mode==0){
+       document.getElementById("PartnerSection1").style.display = "none";
+       document.getElementById("PartnerSection2").style.display = "none";
+       document.getElementById("PartnerSection3").style.display = "none";
+       document.getElementById("PartnerSection4").style.display = "none";
+       document.getElementById("PartnerSection5").style.display = "none";
+     }
+     else{
+       document.getElementById("RentSection1").style.display = "none";
+       document.getElementById("RentSection2").style.display = "none";
+       document.getElementById("RentSection2_bis").style.display = "none";
+       document.getElementById("RentSection3").style.display = "none";
+       document.getElementById("RentSection4").style.display = "none";
+       document.getElementById("RentSection5").style.display = "none";
+     }
+   }
+
+
    function iconDisplayer(value,maxlength) {
      var i;
      var j;
@@ -756,6 +1217,55 @@
   });
 
 
+    function viewRent() {
+      if (document.getElementById("PartnerSection1").style.display != "none"){
+        document.getElementById("PartnerSection1").style.display = "none";
+      }
+      if (document.getElementById("PartnerSection2").style.display != "none"){
+        document.getElementById("PartnerSection2").style.display = "none";
+      }
+      if (document.getElementById("PartnerSection3").style.display != "none"){
+        document.getElementById("PartnerSection3").style.display = "none";
+      }
+      if (document.getElementById("PartnerSection4").style.display != "none"){
+        document.getElementById("PartnerSection4").style.display = "none";
+      }
+      if (document.getElementById("PartnerSection5").style.display != "none"){
+        document.getElementById("PartnerSection5").style.display = "none";
+      }
+      document.getElementById("RentSection1").style.display = "block";
+      document.getElementById("RentSection2").style.display = "block";
+      document.getElementById("RentSection2_bis").style.display = "block";
+      document.getElementById("RentSection3").style.display = "block";
+      document.getElementById("RentSection4").style.display = "block";
+      document.getElementById("RentSection5").style.display = "block";
+    
+    }
+
+    function viewPartner() {
+      if (document.getElementById("RentSection1").style.display != "none"){
+        document.getElementById("RentSection1").style.display = "none";
+      }
+      if (document.getElementById("RentSection2").style.display != "none"){
+        document.getElementById("RentSection2").style.display = "none";
+        document.getElementById("RentSection2_bis").style.display = "none";
+      }
+      if (document.getElementById("RentSection3").style.display != "none"){
+        document.getElementById("RentSection3").style.display = "none";
+      }
+      if (document.getElementById("RentSection4").style.display != "none"){
+        document.getElementById("RentSection4").style.display = "none";
+      }
+      if (document.getElementById("RentSection5").style.display != "none"){
+        document.getElementById("RentSection5").style.display = "none";
+      }
+      document.getElementById("PartnerSection1").style.display = "block";
+      document.getElementById("PartnerSection2").style.display = "block";
+      document.getElementById("PartnerSection3").style.display = "block";
+      document.getElementById("PartnerSection4").style.display = "block";
+      document.getElementById("PartnerSection5").style.display = "block";
+   
+    }
 
 
 

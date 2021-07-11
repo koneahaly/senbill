@@ -173,7 +173,7 @@
                       <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px; font-family: Arial, sans-serif"><![endif]-->
                       <div style="color:#ffffff;font-family:Nunito, Arial, Helvetica Neue, Helvetica, sans-serif;line-height:1.2;padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;">
                         <div style="line-height: 1.2; font-size: 12px; color: #ffffff; font-family: Nunito, Arial, Helvetica Neue, Helvetica, sans-serif; mso-line-height-alt: 14px;">
-                          <p style="font-size: 14px; line-height: 1.2; word-break: break-word; text-align: center; mso-line-height-alt: 17px; margin: 0;">Cher(e) Yacine,</p>
+                          <p style="font-size: 14px; line-height: 1.2; word-break: break-word; text-align: center; mso-line-height-alt: 17px; margin: 0;">Cher(e) <?php echo $customer; ?>,</p>
                         </div>
                       </div>
                       <!--[if mso]></td></tr></table><![endif]-->
@@ -185,7 +185,7 @@
                       </div>
                       <!--[if mso]></td></tr></table><![endif]-->
                       <div align="center" class="img-container center fixedwidth" style="padding-right: 0px;padding-left: 0px;">
-                        <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px"><td style="padding-right: 0px;padding-left: 0px;" align="center"><![endif]--><img align="center" alt="Alternate text" border="0" class="center fixedwidth" src="{{ $message->embed(public_path() . '/images/emails/logo-elektra-halo.png')}}"  style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; width: 100%; max-width: 150px; display: block;" title="Alternate text" width="150"/>
+                        <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px"><td style="padding-right: 0px;padding-left: 0px;" align="center"><![endif]--><img align="center"  border="0" class="center fixedwidth" src="{{ $message->embed(public_path() . '/images/emails/logo-senbill-halo.png')}}"  style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; width: 100%; max-width: 150px; display: block;" width="150"/>
                         <!--[if mso]></td></tr></table><![endif]-->
                       </div>
                       <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 10px; padding-left: 10px; padding-top: 20px; padding-bottom: 10px; font-family: Tahoma, Verdana, sans-serif"><![endif]-->
@@ -198,7 +198,7 @@
                       <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 25px; padding-left: 25px; padding-top: 10px; padding-bottom: 20px; font-family: Arial, sans-serif"><![endif]-->
                       <div style="color:#555555;font-family:Nunito, Arial, Helvetica Neue, Helvetica, sans-serif;line-height:1.5;padding-top:10px;padding-right:25px;padding-bottom:20px;padding-left:25px;">
                         <div style="line-height: 1.5; font-size: 12px; color: #555555; font-family: Nunito, Arial, Helvetica Neue, Helvetica, sans-serif; mso-line-height-alt: 18px;">
-                          <p style="font-size: 14px; line-height: 1.5; word-break: break-word; text-align: center; mso-line-height-alt: 21px; margin: 0;"><span style="color: #ffffff;"><a href="http://127.0.0.1:8000/verify-email/yacinenana@gmail.com" rel="noopener" style="text-decoration: underline; color: #ffffff;" target="_blank">http://127.0.0.1:8000/verify-email/yacinenana@gmail.com </a></span></p>
+                          <p style="font-size: 14px; line-height: 1.5; word-break: break-word; text-align: center; mso-line-height-alt: 21px; margin: 0;"><span style="color: #ffffff;"><a href="<?php echo env('APP_URL');?>/verify-email/<?php echo $email; ?>" rel="noopener" style="text-decoration: underline; color: #ffffff;" target="_blank"><?php echo env('APP_URL');?>/verify-email/<?php echo $email; ?> </a></span></p>
                         </div>
                       </div>
                       <!--[if mso]></td></tr></table><![endif]-->
@@ -223,7 +223,7 @@
                     <div style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:0px; padding-bottom:5px; padding-right: 0px; padding-left: 0px;">
                       <!--<![endif]-->
                       <div align="center" class="img-container center autowidth" style="padding-right: 0px;padding-left: 0px;">
-                        <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px"><td style="padding-right: 0px;padding-left: 0px;" align="center"><![endif]--><img align="center" alt="Alternate text" border="0" class="center autowidth" src="{{ $message->embed(public_path() . '/images/emails/c3442940-e990-444e-8100-ccead3a1bd1f.png')}}" style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; width: 100%; max-width: 600px; display: block;" title="Alternate text" width="600"/>
+                        <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px"><td style="padding-right: 0px;padding-left: 0px;" align="center"><![endif]--><img align="center"  border="0" class="center autowidth" src="{{ $message->embed(public_path() . '/images/emails/c3442940-e990-444e-8100-ccead3a1bd1f.png')}}" style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; width: 100%; max-width: 600px; display: block;"  width="600"/>
                         <!--[if mso]></td></tr></table><![endif]-->
                       </div>
                       <!--[if (!mso)&(!IE)]><!-->

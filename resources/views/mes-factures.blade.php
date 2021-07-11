@@ -4,6 +4,10 @@ $_SESSION["numberOfBillsNonPaid"]=$numberOfBillsNonPaid;
 $_SESSION["profilNotif"]=$profilNotif;
 $service =explode('/',$_SERVER['REQUEST_URI']);
 $_SESSION['current_service'] = $service[2];
+if(strpos($service[2],'?') !== false){
+  $clean_service = explode('?',$service[2]);
+  $_SESSION['current_service'] = $clean_service[0];
+}
 
 $months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
 $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_service_2', 'tv' => 'type_service_3', 'mobile' => 'type_service_4',
@@ -16,8 +20,6 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
 @section('content')
 <div class="container">
           <div class="row lottie-lines" style="margin-top:4%;">
-              <lottie-player src="{{url('images/lottie/lines.json')}}"  background="transparent"  speed="0.1"  style="width: 500px; height: 500px; position:absolute;z-index:1000;margin-left:-20%;margin-top: 2.5%;"  loop  autoplay></lottie-player>
-              <lottie-player src="{{url('images/lottie/lines.json')}}"  background="transparent"  speed="0.1"  style="width: 500px; height: 500px; position:absolute;z-index:1000;margin-left:70%;margin-top: 2.5%;"  loop  autoplay></lottie-player>
           </div>
           <div class="row rowmobile" style="margin-top:10%">
             <div class="col-md-12" style="margin-top:10px;margin-bottom:20px;text-align:center;">
@@ -66,7 +68,7 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
             @endif
           @endif
             </div>
-            @if (empty($user->date_verify_email) and ((strpos($user->email,"user") != true) or (strpos($user->email,"stat") != true)))
+            @if (empty($user->date_verify_email) and ((strpos($user->email,"user") === false) and (strpos($user->email,"stat") === false)))
                 <div class="alert alert-success">
                     <p>Veuillez valider votre adresse mail pour utiliser l'ensemble des services.<br/>
                     Un mail de vérification vous a été envoyé à l'adresse suivante : <strong> {{ $user->email }} <strong>.</p>
@@ -77,7 +79,7 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
           <div class="row" style="z-index:1001">
 		        <div class="col-md-12">
               <!-- if postpaid client-->
-            @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'postpaid' and !empty($data) and $data != NULL and (!empty($user->date_verify_email) or strpos($user->email,"user") != false or strpos($user->email,"stat") != false))
+            @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'postpaid' and !empty($data) and $data != NULL and (!empty($user->date_verify_email) or strpos($user->email,"user") === 0 or strpos($user->email,"stat") === 0))
                 <!--<h4>Paiements déjà réalisés</h4> -->
               <br/>
 
@@ -85,6 +87,7 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
                 <thead style="background: rgba(137,180,213,1);color:#fff">
                     <tr>
                       <!--<th>Prévu le</th> -->
+                      <th> # </th>
                       <th>&Eacute;chéance</th>
                       <th>Montant</th>
                       <th>&Eacute;tat</th>
@@ -92,8 +95,10 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
                     </tr>
                 </thead>
                 <tbody style="background-color:#fff;color:#455469">
+                <?php $i = 1; ?>
                   @foreach($data as $value)
                     <tr>
+                      <td> <?php echo $i; ?> </td>
                       <!--<td id="{{$value->month}}"> {{$value->year}} {{$value->month}} </td>-->
                       <td>{{$value->month}} {{$value->year}} </td>
                       <td id="{{$value->month}}_amount" style="text-align:center;font-weight: 700;"> {{$value->amount}} FCFA </td>
@@ -102,8 +107,14 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
                         <td style="width:20%;"> {{$value->payment_method}} </td>
                       @endif
                       @if($value->status != "paid")
-                      <!--  <td><button data-toggle="modal" data-target="#pay_bill" class="btn btn-danger btn-xs"> Régler</button> <br /> <span style="font-size:0.7em;font-weight: lighter;color:black;"> avant le {{$value->created_at}} <span></td> -->
-                          <td><button id="regler" class="btn btn-danger btn-xs _{{$value->id}} "  onclick= > Régler</button> <br /> <span style="font-size:0.7em;font-weight: lighter;color:black;"> avant le {{$value->created_at}} <span></td>
+                      <!--<td><button data-toggle="modal" data-target="#pay_bill" class="btn btn-danger btn-xs"> Régler</button> <br /> <span style="font-size:0.7em;font-weight: lighter;color:black;"> avant le {{$value->created_at}} <span></td>
+                      -->
+                      <?php if( Auth::user()->email == "issayacoubkone@gmail.com"){ ?>
+                      <td> <button class="buy" onclick="callpaytech(this)" data-item-id="{{$value->order_number}}-{{$value->amount}}" >Payez
+                        </button> </td>
+                      <?php }else{ ?>
+                      <td><input class="btn btn-danger btn-xs" type=button onclick='sendPaymentInfos(new Date().getTime(),"SNBIL11162", "NTrmzaD4WyiAKaTa9-8Vjc^$ijuP-ut0oY2J^drhn$v9qTWJC@","senbill.sn","https://www.senbill.com/mes-factures/{{ $_SESSION["current_service"] }}?order={{ $value->order_number }}","https://www.senbill.com/mes-factures/{{ $_SESSION["current_service"] }}?order={{ $value->order_number }}", {{ $value->amount }}, "dakar", "{{ Auth::user()->email }}","{{ Auth::user()->first_name }}", "{{ Auth::user()->name }}",  "{{ substr(Auth::user()->phone,4,12) }}" )' value=payez /> </td>
+                      <?php } ?>
                       <!--  POUR REGLER VIA PAYDUNYA SANS REDIRECTION COMMENTER LA LIGNE DU DESSUS ET DECOMMENTER CELLE EN DESSOUS ET DECOMMENTER DANS LAYOUT.app LE CSS de PAYDUNYA, en bas le script paydunya
                        <td><button class="pay" id="regler1" onclick="" data-ref="102" data-fullname="Alioune Faye" data-email="aliounefaye@gmail.com" data-phone="774563209">Régler PD</button><br /> <span style="font-size:0.7em;font-weight: lighter;color:black;"> avant le {{$value->created_at}} <span></td>-->
                         <td> n/a </td>
@@ -112,6 +123,7 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
                       <input type="hidden" class="{{$value->month}}_year_j" name="{{$value->month}}_year_j" value="{{$value->year}}">
                       <input type="hidden" class="{{$value->month}}_creation_date_j" name="{{$value->month}}_creation_date_j" value="{{ substr($last_row_data->created_at,8,2)."/".substr($last_row_data->created_at,5,2)."/".substr($last_row_data->created_at,0,4) }}">
                     </tr>
+                    <?php $i++; ?>
                   @endforeach
                 </tbody>
               </table>
@@ -138,7 +150,7 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
                                           <div class="col-xs-3" style="margin-top:-13px;margin-left:-15px"> <span title="payée le {{$value->created_at}}" class=" glyphicon btn-lg glyphicon-ok-circle text-success"></span></div>
                                         @endif
                                         @if($value->status != "paid")
-                                          <div class="col-xs-3" style="margin-top:-13px;margin-left:-15px"> <button id="regler" class="btn btn-danger btn-xs _{{$value->id}} "  onclick= > Régler</button> <br /> <span style="font-size:0.7em;font-weight: lighter;color:black;"> avant le {{$value->created_at}} <span> </div>
+                                          <div class="col-xs-3" style="margin-top:-13px;margin-left:-15px"> <input class="btn btn-danger btn-xs" type=button onclick='sendPaymentInfos(new Date().getTime(),"SNBIL11162", "NTrmzaD4WyiAKaTa9-8Vjc^$ijuP-ut0oY2J^drhn$v9qTWJC@","senbill.sn","https://www.senbill.com/mes-factures/{{ $_SESSION["current_service"] }}?order={{ $value->order_number }}","https://www.senbill.com/mes-factures/{{ $_SESSION["current_service"] }}?order={{ $value->order_number }}", {{ $value->amount }}, "dakar", "{{ Auth::user()->email }}","{{ Auth::user()->first_name }}", "{{ Auth::user()->name }}",  "{{ substr(Auth::user()->phone,4,12) }}" )' value=payez />  <br /> <span style="font-size:0.7em;font-weight: lighter;color:black;"> avant le {{$value->created_at}} <span> </div>
                                         @endif
                                         <div class="col-xs-3" style="margin-left:15px"><strong> Type :</strong></div>
                                         <div class="col-xs-3"> <?php if(!empty($value->title)) echo $value->title; else echo 'non renseigné'; ?> </div>
@@ -158,7 +170,7 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
             @endif
 
             <!-- if prepaid client-->
-            @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'prepaid' and (!empty($data) and $data != NULL) and (!empty($user->date_verify_email) or strpos($user->email,"user") != false or strpos($user->email,"stat") != false))
+            @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'prepaid' and (!empty($data) and $data != NULL) and (!empty($user->date_verify_email) or strpos($user->email,"user") === 0 or strpos($user->email,"stat") === 0))
                   <!--<h4>Achats déjà effectués</h4>-->
                 <br/>
                 <table id="buysTable" class="mdl-data-table" style="width:100%">
@@ -227,7 +239,7 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
           </div>
           <br />
           <!-- if prepaid client-->
-          @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'prepaid' and (!empty($user->date_verify_email) or strpos($user->email,"user") != false or strpos($user->email,"stat") != false))
+          @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'prepaid' and (!empty($user->date_verify_email) or strpos($user->email,"user") === 0 or strpos($user->email,"stat") === 0))
           <div class=" buydiv row panel-heading" style="margin-top:10px;margin-bottom:20px">
            <button class="btnBuy" data-toggle="modal" data-target="#buy_card">
              <span class="circle">
@@ -243,7 +255,7 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
           @if(!empty($last_row_data) and !empty($user->date_verify_email))
           <div class="row">
             <!-- if postpaid client-->
-            @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'postpaid' and (!empty($user->date_verify_email) or strpos($user->email,"user") != false or strpos($user->email,"stat") != false))
+            @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'postpaid' and (!empty($user->date_verify_email) or strpos($user->email,"user") === 0 or strpos($user->email,"stat") === 0))
               <div class="col-md-8 col-md-offset-2 picker">
                 @if(!empty($last_row_data->month))
                   <input type="hidden" class="slider-input" value={{ date('n',strtotime($last_row_data->month)) }} />
@@ -254,7 +266,7 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
               </div>
             @endif
             <!-- if prepaid client-->
-            @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'prepaid' and (!empty($user->date_verify_email) or strpos($user->email,"user") != false or strpos($user->email,"stat") != false))
+            @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'prepaid' and (!empty($user->date_verify_email) or strpos($user->email,"user") === 0 or strpos($user->email,"stat") === 0))
               <div class="col-md-8 col-md-offset-2 picker_2">
                 @if(!empty($last_row_data->month))
                   <input type="hidden" class="slider-input" value={{ date('n',strtotime($last_row_data->month)) }} />
@@ -266,7 +278,7 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
             @endif
             <br />
             <!-- if postpaid client-->
-            @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'postpaid' and (!empty($user->date_verify_email) or strpos($user->email,"user") != false or strpos($user->email,"stat") != false))
+            @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'postpaid' and (!empty($user->date_verify_email) or strpos($user->email,"user") === 0 or strpos($user->email,"stat") === 0))
             <br/>
               <div class="col-md-4 col-md-offset-4 ticket" style="text-align:center;margin-top:25px">
                 <form class="form-inline" action="../mes-factures/{{ $_SESSION['current_service'] }}/pdf_bill" method="POST">
@@ -310,7 +322,9 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
                     </div></div>
                     </form>
                       @if($last_row_data->status != "paid")
-                        <button data-toggle="modal" data-target="#pay_bill" class="btn btn-danger rgfac">Régler ma facture</button>
+                        <!--<button data-toggle="modal" data-target="#pay_bill" class="btn btn-danger rgfac">Régler ma facture</button> -->
+                        <input class="btn btn-danger rgfac" type=button onclick='sendPaymentInfos("{{ $value->order_number }}","SNBIL11162", "NTrmzaD4WyiAKaTa9-8Vjc^$ijuP-ut0oY2J^drhn$v9qTWJC@","senbill.sn","https://www.senbill.com/mes-factures/{{ $_SESSION["current_service"] }}?status=success","https://www.senbill.com/mes-factures/{{ $_SESSION["current_service"] }}?status=failed", {{ $value->amount }}, "dakar", "","", "",  "" )' value="Régler ma facture" />
+
                       @endif
                     <br />
                     <br />
@@ -351,7 +365,7 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
         <form class="form-inline" action="{{ route('mes-factures.pdf_buy')}}" method="GET">
             {{csrf_field()}}
             <!-- if prepaid client-->
-            @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'prepaid' and (!empty($data) and $data != NULL) and (!empty($user->date_verify_email) or strpos($user->email,"user") != false or strpos($user->email,"stat") != false))
+            @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'prepaid' and (!empty($data) and $data != NULL) and (!empty($user->date_verify_email) or strpos($user->email,"user") === 0 or strpos($user->email,"stat") === 0))
               <div class="col-md-4 col-md-offset-4 ticket  rowContentMobile" style="text-align:center;">
                 <div class="large-main-panel" style="background-color:#fff;">
                   <div>
@@ -424,7 +438,7 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
 
                     <h3 class="panel-title display-td" > Details de paiement par CB</h3>
                     <div class="display-td" >
-                    <img class="img-responsive pull-right" src="http://i76.imgup.net/accepted_c22e0.png">
+                    <img class="img-responsive pull-right" src="https://i76.imgup.net/accepted_c22e0.png">
                     </div>
                     </div>
                     </div>
@@ -516,6 +530,9 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
                     <input type="hidden" name="order_number" value="{{ $order_number }}" />
                     <input type="hidden" name="service" value="{{ $_SESSION['current_service'] }}"/>
                     <input type="hidden" name='id_bill' value="{{ (!empty($id_bill)) ? $id_bill : '0' }}" />
+                    <input type="hidden" name="email" value="{{ Auth::user()->email }}" />
+                    <input type="hidden" name="first_name" value="{{ Auth::user()->first_name }}" />
+                    <input type="hidden" name="name" value="{{ Auth::user()->name }}" />
                     </form>
                     </div>
                     </div>
@@ -626,6 +643,9 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
                         <input type="hidden" name="order_number" value="{{ $order_number }}" />
                         <input type="hidden" name="service" value="{{ $_SESSION['current_service'] }}"/>
                         <input type="hidden" name='id_bill' value="{{ (!empty($id_bill)) ? $id_bill : '0' }}" />
+                        <input type="hidden" name="email" value="{{ Auth::user()->email }}" />
+                        <input type="hidden" name="first_name" value="{{ Auth::user()->first_name }}" />
+                        <input type="hidden" name="name" value="{{ Auth::user()->name }}" />
                         </form>
                         </div>
                         </div>
@@ -744,6 +764,9 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
                       <input type="hidden" name="order_number" value="{{ $order_number }}" />
                       <input type="hidden" name="service" value="{{ $_SESSION['current_service'] }}"/>
                       <input type="hidden" name='id_bill' value="{{ (!empty($id_bill)) ? $id_bill : '0' }}" />
+                      <input type="hidden" name="email" value="{{ Auth::user()->email }}" />
+                      <input type="hidden" name="first_name" value="{{ Auth::user()->first_name }}" />
+                      <input type="hidden" name="name" value="{{ Auth::user()->name }}" />
                       </form>
                       </div>
                       </div>
@@ -1009,7 +1032,7 @@ if($i == $limit){
 
               <h3 class="panel-title display-td" > Details de paiement par CB</h3>
               <div class="display-td" >
-              <img class="img-responsive pull-right" src="http://i76.imgup.net/accepted_c22e0.png">
+              <img class="img-responsive pull-right" src="https://i76.imgup.net/accepted_c22e0.png">
               </div>
               </div>
               </div>
@@ -1090,6 +1113,9 @@ if($i == $limit){
               <input type="hidden" name="payment_amount" value="{{ $t * 5000}}" />
               <input type="hidden" name="service" value="{{ $_SESSION['current_service'] }}"/>
               <input type="hidden" name='id_bill' value="{{ (!empty($id_bill)) ? $id_bill : '0' }}" />
+              <input type="hidden" name="email" value="{{ Auth::user()->email }}" />
+              <input type="hidden" name="first_name" value="{{ Auth::user()->first_name }}" />
+              <input type="hidden" name="name" value="{{ Auth::user()->name }}" />
               </form>
               </div>
               </div>
@@ -1200,6 +1226,9 @@ if($i == $limit){
                 <input type="hidden" name="payment_amount" value="{{ $t * 5000}}" />
                 <input type="hidden" name="service" value="{{ $_SESSION['current_service'] }}"/>
                 <input type="hidden" name='id_bill' value="{{ (!empty($id_bill)) ? $id_bill : '0' }}" />
+                <input type="hidden" name="email" value="{{ Auth::user()->email }}" />
+                <input type="hidden" name="first_name" value="{{ Auth::user()->first_name }}" />
+                <input type="hidden" name="name" value="{{ Auth::user()->name }}" />
                 </form>
                   </div>
                   </div>
@@ -1317,6 +1346,9 @@ if($i == $limit){
                 <input type="hidden" name="payment_amount" value="{{ $t * 5000}}" />
                 <input type="hidden" name="service" value="{{ $_SESSION['current_service'] }}"/>
                 <input type="hidden" name='id_bill' value="{{ (!empty($id_bill)) ? $id_bill : '0' }}" />
+                <input type="hidden" name="email" value="{{ Auth::user()->email }}" />
+                <input type="hidden" name="first_name" value="{{ Auth::user()->first_name }}" />
+                <input type="hidden" name="name" value="{{ Auth::user()->name }}" />
                 </form>
                 </div>
                 </div>
@@ -1364,7 +1396,7 @@ $(document).ready(function() {
 
         PayDunya.setup({
             selector: $('#regler1'),
-            url: "http://localhost:8000/mes-factures/tv/paydunya-api",
+            url: "https://localhost:8000/mes-factures/tv/paydunya-api",
             method: "GET",
             displayMode: PayDunya.DISPLAY_IN_POPUP,
             beforeRequest: function() {
@@ -1395,7 +1427,7 @@ $(document).ready(function() {
         autoWidth: true,
         columnDefs: [
             {
-                targets: ['_all'],
+                targets: [ 4 ],
                 className: 'mdc-data-table__cell'
             }
         ],
@@ -1548,6 +1580,36 @@ $(document).ready(function() {
 
 });
 </script>
+<script src="https://paytech.sn/cdn/paytech.min.js"></script>
+<script>
+    function callpaytech(btn) {
+      var idTransaction = pQuery(btn).attr('data-item-id');
+        (new PayTech({
+          idTransaction           :   idTransaction,
+        })).withOption({
+            requestTokenUrl           :   'https://www.senbill.com/paytech',
+            method              :   'POST',
+            headers             :   {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                "Accept"          :    "text/html",
+            },
+            prensentationMode   :   PayTech.OPEN_IN_POPUP,
+            willGetToken        :   function () {
+                
+            },
+            didGetToken         : function (token, redirectUrl) {
+                
+            },
+            didReceiveError: function (error) {
+                
+            },
+            didReceiveNonSuccessResponse: function (jsonResponse) {
+                
+            }
+        }).send();
 
+        //.send params are optional
+    }
+</script>
 
 @endsection

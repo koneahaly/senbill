@@ -20,6 +20,7 @@ Auth::routes();
 
 Route::get('/qui-sommes-nous', 'WhoController@display_who')->name('who');
 Route::get('/la-plateforme-senbill', 'WhatController@display_what')->name('what');
+Route::get('/nous-contacter', 'ContactController@display_contact')->name('contact');
 Route::get('/mes-factures/{id?}', 'HomeController@display_bills')->name('mes-factures');
 Route::post('/mes-factures/{id?}', 'HomeController@display_bills')->name('mes-factures');
 Route::get('/mes-services/{id?}', 'HomeController@display_services')->name('platform');
@@ -37,6 +38,16 @@ Route::post('/infos-services-pro/update', 'HomeController@update_services_pro_in
 
 //pAYDUNYA Callback
 Route::get('/notification-paiement', 'billController@display_callBackPD')->name('callBackPD');
+
+//Touchpay Callback
+Route::get('/touchpay', 'billController@touchpay')->name('touchpay');
+
+//Touchpay Callback
+Route::get('/paytech', 'billController@paytech')->name('paytech');
+Route::post('/paytech', 'billController@paytech')->name('paytech');
+
+Route::post('/notify', 'billController@notify')->name('notify');
+
 
 //Route::get('/home', 'HomeController@index')->name('home');
 //Route::post('/home', 'HomeController@index')->name('home');
@@ -89,11 +100,11 @@ Route::get('/dashboard/general', 'DashboardController@company_dashboard')->name(
 Route::post('/dashboard/import', 'DashboardController@import_dashboard')->name('import.dashboard');
 Route::get('/dashboard/import/{name?}', 'DashboardController@import_dashboard')->name('import.dashboard');
 
-Route::post('/dashboard/import/download_contacts_tpl','DashboardController@download_contacts_tpl')->name('import.dashboard.download_contacts_tpl');
-Route::get('/dashboard/import/download_contacts_tpl','DashboardController@download_contacts_tpl')->name('import.dashboard.download_contacts_tpl');
+Route::post('/dashboard/import/download_contacts_tpl','DashboardController@download_contacts_tpl')->name('dashboard.download_contacts_tpl');
+Route::get('/dashboard/import/download_contacts_tpl','DashboardController@download_contacts_tpl')->name('dashboard.download_contacts_tpl');
 
-Route::post('/dashboard/import/download_invoices_tpl','DashboardController@download_invoices_tpl')->name('import.dashboard.download_invoices_tpl');
-Route::get('/dashboard/import/download_invoices_tpl','DashboardController@download_invoices_tpl')->name('import.dashboard.download_invoices_tpl');
+Route::post('/dashboard/import/download_invoices_tpl','DashboardController@download_invoices_tpl')->name('dashboard.download_invoices_tpl');
+Route::get('/dashboard/import/download_invoices_tpl','DashboardController@download_invoices_tpl')->name('dashboard.download_invoices_tpl');
 
 Route::post('/dashboard/import/load_invoices','DashboardController@load_invoices')->name('import.dashboard.load_invoices');
 Route::post('/dashboard/import/load_contacts','DashboardController@load_contacts')->name('import.dashboard.load_contacts');
@@ -145,6 +156,6 @@ Route::get('sendnewbillemail','MailController@newBill_email');
 Route::get('sendlatebillemail','MailController@lateBill_email');
 Route::get('sendvalidateemail','MailController@validate_email');
 
-Route::get('verify-email/{name?}','Auth\RegisterController@verify_email');
+Route::get('verify-email/{name?}','MailController@verify_email')->name('verify-email');;
 
 Route::get('send-sms','SmsController@send_sms');

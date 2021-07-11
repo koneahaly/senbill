@@ -22,13 +22,22 @@ if(!empty($raw_woyofal_users_demo) and !empty($raw_classical_users_demo)){
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
     <head>
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-CXR499BH4X"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-CXR499BH4X');
+      </script>
       <script src='https://www.google.com/recaptcha/api.js'></script>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>{{config('app.name')}}</title>
-        <link rel="icon" type="image/png" href="https://elektra.s3.amazonaws.com/images/icons/logo-elektra-halo.png"/>
+        <link rel="icon" type="image/png" href="https://elektra.s3.amazonaws.com/images/icons/logo-senbill-halo.png"/>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
         <link rel="stylesheet" type="text/css" href="{{url('css/bootstrap.min.css')}}">
@@ -42,8 +51,8 @@ if(!empty($raw_woyofal_users_demo) and !empty($raw_classical_users_demo)){
       	 <!-- HEADER START -->
          <div class="s2sn-login-header-desktop">
              <a class="s2sn-logo-elektra" href=".">
-                 <img src="https://elektra.s3.amazonaws.com/images/icons/logo-s2sn.png" alt="logo-elektra" width="162" height="auto" class="s2sn-img-normal">
-             	   <img src="https://elektra.s3.amazonaws.com/images/icons/logo-s2sn-mediumsmall.png" alt="logo-elektra" width="162" height="auto" class="s2sn-img-retina">
+                 <img src="https://elektra.s3.amazonaws.com/images/icons/logo-s2sn.png" alt="logo-senbill" width="162" height="auto" class="s2sn-img-normal">
+             	   <img src="https://elektra.s3.amazonaws.com/images/icons/logo-s2sn-mediumsmall.png" alt="logo-senbill" width="162" height="auto" class="s2sn-img-retina">
              </a>
              <div class="s2sn-login-header-nav">
           <div class="s2sn-login-header-top">
@@ -54,7 +63,7 @@ if(!empty($raw_woyofal_users_demo) and !empty($raw_classical_users_demo)){
               </ul>
               <ul class="s2sn-login-header-modals">
                   <li><a class="s2sn-header-link" href="#" data-toggle="modal" data-target="#modalFAQ">FAQ</a></li>
-                  <li><a class="s2sn-header-link" href="#" data-toggle="modal" data-target="#modal2">Contact</a></li>
+                  <li><a class="s2sn-header-link" href="./nous-contacter">Contact</a></li>
                   <li><a class="s2sn-header-link" href="#" data-toggle="modal" data-target="#modalDemo">DEMO</a></li>
                   <li class="s2sn-copyright">SERVICES2SN 2019</li>
               </ul>
@@ -69,8 +78,8 @@ if(!empty($raw_woyofal_users_demo) and !empty($raw_classical_users_demo)){
          </div>
          <nav class="navbar navbar-dark s2sn-login-header-mobile">
              <a class="s2sn-logo-elektra" href=".">
-                 <img src="https://elektra.s3.amazonaws.com/images/icons/logo-s2sn.png" alt="logo-elektra" width="162" height="auto" class="s2sn-img-normal">
-             	   <img src="https://elektra.s3.amazonaws.com/images/icons/logo-s2sn-mediumsmall.png" alt="logo-elektra" width="162" height="auto" class="s2sn-img-retina">
+                 <img src="https://elektra.s3.amazonaws.com/images/icons/logo-s2sn.png" alt="logo-senbill" width="162" height="auto" class="s2sn-img-normal">
+             	   <img src="https://elektra.s3.amazonaws.com/images/icons/logo-s2sn-mediumsmall.png" alt="logo-senbill" width="162" height="auto" class="s2sn-img-retina">
              </a>
              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-contrs2sn="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                  <span class="navbar-toggler-icon"></span>
@@ -78,26 +87,34 @@ if(!empty($raw_woyofal_users_demo) and !empty($raw_classical_users_demo)){
              <div class="collapse navbar-collapse" id="navbarNav">
                  <ul class="navbar-nav">
                       <li class="nav-item"><a class="nav-link" href=".">ACCUEIL</a></li>
-                     <li class="nav-item"><a class="nav-link" href="www.services2sn.com">QUI SOMMES-NOUS</a></li>
+                     <li class="nav-item"><a class="nav-link" href="https://www.services2sn.com">QUI SOMMES-NOUS</a></li>
                      <li class="nav-item"><a class="nav-link" href="{{ route('what') }}">LA PLATEFORME SENBILL</a></li>
                      <li class="nav-item"><a class="nav-link" href="{{ route('register') }}" >S'INSCRIRE</a></li>
 
 
                     <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#modalFAQ">FAQ</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#modal2">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./nous-contacter">Contact</a></li>
                     <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#modalDemo">DEMO</a></li>
                  </ul>
              </div>
          </nav>
          <!-- HEADER END -->
          <div class="s2sn-wrapper-center s2sn-wrapper-when-footer">
-           <img src="{{url('images/logo-elektra-halo.png')}}" alt="logo-elektra" width="auto" height="100" class="s2sn-logo-elektra">
+           <img src="{{url('images/logo-senbill-halo.png')}}" alt="logo-elektra" width="auto" height="100" class="s2sn-logo-elektra">
 
 
          <script type="text/javascript">
 
          function submitCredentials(){
                  return document.forms['loginForm'].submit();
+                }
+                function myFunction() {
+                  var x = document.getElementById("PWD");
+                  if (x.type === "password") {
+                    x.type = "text";
+                  } else {
+                    x.type = "password";
+                  }
                 }
 
          </script>
@@ -127,12 +144,13 @@ if(!empty($raw_woyofal_users_demo) and !empty($raw_classical_users_demo)){
                         <button class="btn s2sn-js-btn-next" type="submit" onclick="return submitCredentials();"><span class="fa fa-arrow-right"></span></button>
                      </div>
                 </div>
+                <input type="checkbox" onclick="myFunction();"> Afficher mot de passe
              </div>
 
              <div id="captcha" class="captcha-verif">
-               <div class="g-recaptcha" data-sitekey="6LdfdNUZAAAAAJlzQvySC5f86LvXR7agH34qS9As"></div>
-               <div id="error" class="left red-text text-darken-2" style="display: none">
-               Veuillez cliquer sur le Captcha, merci.
+               <div class="g-recaptcha" data-sitekey="{{ env('GOOGLE_RECAPTCHA_KEY') }}"></div>
+               <div id="error" class="left red-text text-darken-2" style="color: red;font-size:12px">
+               {{ $errors->first('g-recaptcha-response') }}.
                </div>
              </div>
 
@@ -200,8 +218,6 @@ if(!empty($raw_woyofal_users_demo) and !empty($raw_classical_users_demo)){
                     </p>
                     <p class="mb-0">Pour vous connecter en tant que client <strong>classique(postpayé)</strong>, utilisez <span class="text-info">{{ $user_wy }}</span> comme nom d'utilisateur et <span class="text-white bg-dark">demo123</span> comme mot de passe.</p>
                     <br/>
-                    <p class="mb-0">Pour vous connecter en tant que client <strong>prépayé</strong>, utilisez <span class="text-info">{{ $user_cl }}</span> comme nom d'utilisateur et <span class="text-white bg-dark">demo123</span> comme mot de passe.</p>
-
                   </div>
                 </div>
                </div>

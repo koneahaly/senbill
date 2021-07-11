@@ -14,8 +14,15 @@ use Session;
 
 $service =explode('/',$_SERVER['REQUEST_URI']);
 $except_page = $service[1];
-if($except_page == 'mes-factures')
+if($except_page == 'mes-factures'){
   $_SESSION['current_service'] = $service[2];
+
+if(strpos($service[2],'?') !== false){
+  $clean_service = explode('?',$service[2]);
+  $_SESSION['current_service'] = $clean_service[0];
+  }
+}
+
 class HomeController extends Controller
 {
     /**
@@ -36,8 +43,9 @@ class HomeController extends Controller
 
 
 
-    public function display_bills()
+    public function display_bills(Request $input)
     {
+      //dd($input);
       try{
 
         function ToObject($Array){
@@ -53,46 +61,78 @@ class HomeController extends Controller
           }
           return $object;
         }
-        //Récupération Token bill de PD
-        $uriString =explode('?',$_SERVER['REQUEST_URI']);
-        if(count($uriString)>1){
-          $tokenPhrase = $uriString[1];
-          if(strpos($tokenPhrase,'token') !== false)
-            $tokenbill=($_GET['token']);
-          Session::push('billToken',$tokenbill);
-            //  dd(response()->json(['success' => true, 'token' => Session::get('billToken')]));
-        }
-        //if($_GET['token'])
-        //  $billToken=$_GET['token'];
         //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         $s=Auth::user()->customerId;
+
+
+        if(strpos($_SERVER['REQUEST_URI'],'errorCode=200') !== false){
+          $payment_method = "n/a";
+          if(strpos($_SERVER['REQUEST_URI'],'ompaysnsuccess') !== false)
+            $payment_method = "OrangeMoney";
+          DB::table('bills')
+              ->where([['customerId', $s],['order_number',$input->order]])
+              ->update(['status' => 'paid','payment_method' => $payment_method]);
+        }
+
         $user['user'] = DB::table('users')->where('customerId',$s)->first();
         $myuser = DB::table('users')->where('customerId',$s)->first();
+        $profilNotif = 0;
 
         if(!empty($myuser->date_activation_code)){
-          $profilNotif = 0;
-          Session::push('profilNotif', $profilNotif);
+          $profilNotif = $profilNotif + 0;
         }
         else{
           $profilNotif = 1;
-          Session::push('profilNotif', $profilNotif);
+        }
+
+        if(!empty($myuser->date_verify_email)){
+          $profilNotif = $profilNotif + 0;
+        }
+        else{
+          $profilNotif = $profilNotif + 1;
+        }
+        Session::push('profilNotif', $profilNotif);
+
+        $title_service="";
+        if(strpos($_SERVER['REQUEST_URI'],'eau') !== false){
+          $title_service = "eau";
+        }
+
+        if(strpos($_SERVER['REQUEST_URI'],'electricit') !== false){
+          $title_service = "electricité";
+        }
+
+        if(strpos($_SERVER['REQUEST_URI'],'locataire') !== false){
+          $title_service = "location";
+        }
+        if(strpos($_SERVER['REQUEST_URI'],'scolarit') !== false){
+          $title_service = "scolarité";
+        }
+        if(strpos($_SERVER['REQUEST_URI'],'sport') !== false){
+          $title_service = "sport";
+        }
+        if(strpos($_SERVER['REQUEST_URI'],'mobile') !== false){
+          $title_service = "mobile";
+        }
+        if(strpos($_SERVER['REQUEST_URI'],'tv') !== false){
+          $title_service = "tv";
         }
 
         $actived_services['actived_services'] = DB::table('services')->where('customerId',$s)->first();
         if(Auth::user()->user_type != 2){
-          $numberOfBillsNonPaid = (int)DB::table('bills')->where('customerId',$s)->where('status','!=','paid')->orderBy('id', 'DESC')->count();
-          $numberOfBills = (int)DB::table('bills')->where('customerId',$s)->orderBy('id', 'DESC')->count();
+          $numberOfBillsNonPaid = (int)DB::table('bills')->where('customerId',$s)->where('status','!=','paid')->where('title',$title_service)->orderBy('id', 'DESC')->count();
+          $numberOfBills = (int)DB::table('bills')->where('customerId',$s)->where('title',$title_service)->orderBy('id', 'DESC')->count();
           if($numberOfBills > 0){
-            $data['data']=DB::table('bills')->where('customerId',$s)->orderBy('id', 'DESC')->get();
-            $last_row_data['last_row_data']=DB::table('bills')->where('customerId',$s)->orderBy('created_at', 'DESC')->first();
+            $data['data']=DB::table('bills')->where('customerId',$s)->where('title',$title_service)->orderBy('id', 'DESC')->get();
+            $last_row_data['last_row_data']=DB::table('bills')->where('customerId',$s)->where('title',$title_service)->orderBy('id', 'DESC')->first();
 
           }
           else {
             $data['data']= NULL;
             $last_row_data['last_row_data']= NULL;
           }
-          //dd(count($data));
+          //dd($data);
           //dd($numberOfBills);
 
           return view('mes-factures')->with($data)->with($user)->with($last_row_data)->with(compact('numberOfBillsNonPaid'))->with($actived_services)->with(compact('profilNotif'));
@@ -164,42 +204,10 @@ class HomeController extends Controller
          $this->tb=$tb;
     }
 
-    public function paydunyaApi()
-    {
-      $invoice = new \Paydunya\Checkout\CheckoutInvoice();
-      $invoice->setReturnUrl("http://localhost:8000/mes-factures/".$_SESSION['current_service']."/");
-      $invoice->setCancelUrl("http://localhost:8000/mes-factures/".$_SESSION['current_service']."/");
-
-      /* L'ajout d'éléments à votre facture est très basique.
-      Les paramètres attendus sont nom du produit, la quantité, le prix unitaire,
-      le prix total et une description optionelle. */
-      $payment_due  =  12600;
-      $fees = $payment_due  * 0.05;
-      $payment_tot_due  = $payment_due + $fees;
-      $invoice->addItem("Consommation du mois de Juin", 1, $payment_due, $payment_due, "Facture d'eau du partenaire SDEQ");
-      $invoice->addItem("Frais de gestion", 1, $fees, $fees,"Frais gratuits");
-      //ajouter d'autres lignes si besoin
-      $invoice->setTotalAmount($payment_tot_due);
-      if($invoice->create()) {
-        $uriString=$invoice->getInvoiceUrl();
-        $uriString =explode('/',$uriString);
-        if(count($uriString)>5){
-          $tokenPhrase = $uriString[5];
-          if(strpos($tokenPhrase,'test') !== false)
-            $tokenbill=$tokenPhrase;
-        return( response()->json(['success' => true, 'token' => $tokenbill]));
-        }
-      }
-      else{
-            echo $invoice->response_text;
-      }
-
-    }
 
     public function update_personal_infos(Request $given){
 
       $s=Auth::user()->customerId;
-      $myuser = DB::table('users')->where('customerId',$s)->first();
 
       if($given->action == "save"){
         $this->validate($given,[
@@ -221,8 +229,9 @@ class HomeController extends Controller
             ->update(['email' => $given->email, 'date_verify_email' => '']);
         }
 
+        $myuser = DB::table('users')->where('customerId',$s)->first();
         $co = new MailController();
-        $co->html_verify_email($given->email,$myuser->first_name.' '.$myuser->name,'SEN BILL');
+        $co->html_verify_email($myuser->email,$myuser->first_name.' '.$myuser->name,'SEN BILL');
 
       if($given->action_phone == "save"){
         $this->validate($given,[
@@ -319,11 +328,36 @@ class HomeController extends Controller
       return view('infos-services-pro')->with($actived_services);
     }
 
-    public function display_proprio_infos()
+    public function display_proprio_infos(Request $request)
     {
       $s=Auth::user()->customerId;
+      $user = DB::table('users')->where('customerId',$s)->first();
+
+      $withPopup = "false";
       $actived_services['actived_services'] = DB::table('services')->where('customerId',$s)->first();
-      return view('infos-proprietaire')->with($actived_services);
+      if($request->verify_phone == "yes"){
+        $withPopup = "true";
+        $this->activate_code($request->phone);
+        DB::table('users')
+            ->where('customerId', $s)
+            ->update(['attempt_sms_sent' => $user->attempt_sms_sent + 1]);
+      }
+      $message = null;
+      $error_message = null;
+      if($request->verify == "yes"){
+        if($user->activation_code == $request->verification_code){
+          DB::table('users')
+              ->where('customerId', $s)
+              ->update(['date_activation_code' => now()]);
+          $message = 'Votre numéro de téléphone est maintenant vérifié.';
+        }
+        else{
+          $error_message = 'Echec de la vérification de votre numéro de téléphone.';
+        }
+      }
+
+      $actived_services['actived_services'] = DB::table('services')->where('customerId',$s)->first();
+      return view('infos-proprietaire')->with($actived_services)->with(compact('withPopup'))->with('message',$message)->with('error_message',$error_message);
     }
 
     public function display_services()

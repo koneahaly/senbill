@@ -19,19 +19,22 @@ myEmail = $('#email').val();
 myPassword = $('#password').val();
 myPasswordConfirm = $('#password-confirm').val();
 
+var strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+var mediumRegex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})");
+
 current_fs = $(this).parent();
 next_fs = $(this).parent().next();
 
 if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(myEmail)){
   myEmail = myEmail;
 
-  if(/^(?=.*[0-9])[a-zA-Z0-9]{7,15}$/.test(myPassword)){
+  if(mediumRegex.test(myPassword) || strongRegex.test(myPassword)){
     myPassword = myPassword;
   }
   else{
     $('#password').css("border","1px solid red");
     $("#password")
-          .popover({content: "Le mot de passe doit contenir 7 caractères ou plus avec un chiffre au moins.",placement:'top' });
+          .popover({content: "Le mot de passe doit contenir 6 caractères ou plus avec un chiffre au moins.",placement:'top' });
     $("#password").popover('show');
     $("#password").blur(function(){
       $("#password").popover('hide');
@@ -54,7 +57,7 @@ else{
 if(myPasswordConfirm != myPassword){
   $('#password-confirm').css("border","1px solid red");
   $("#password-confirm")
-        .popover({content: "Les deux mots de passe ne sont pas identiques.",placement:'top' });
+        .popover({content: "Les deux mots de passe ne sont pas identiques ("+myPasswordConfirm+ " # "+myPassword+").",placement:'top' });
   $("#password-confirm").popover('show');
   $("#password-confirm").blur(function(){
     $("#password-confirm").popover('hide');
@@ -62,7 +65,7 @@ if(myPasswordConfirm != myPassword){
 }
 
 
-if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(myEmail) && /^(?=.*[0-9])[a-zA-Z0-9]{7,15}$/.test(myPassword) && myPasswordConfirm == myPassword){
+if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(myEmail) && (mediumRegex.test(myPassword) || strongRegex.test(myPassword)) && myPasswordConfirm == myPassword){
   //Add Class Active
   $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
 
@@ -93,7 +96,7 @@ myLastName = $('.name').val();
 myCNI = $('.cni').val();
 myPhone = $('.phone').val();
 myAddress = $('.address').val();
-const regexAddr = RegExp("^[0-9]{1,3}(([,. ]?){1}[-a-zA-Zàâäéèêëïîôöùûüç']+)*$");
+const regexAddr = RegExp("^(?=.*[-a-zA-Z0-9]?){1,5}(([,. ]?){1}[-a-zA-Z0-9àâäéèêëïîôöùûüç'°]+)*$");
 const regexPhone = RegExp('^(\\+[1-9]{1}[0-9]{3,14}) |([0-9]{9,14})$');
 
 
@@ -107,7 +110,7 @@ if(/^[a-zA-Z ]{2,30}$/.test(myFistName)){
     myLastName = myLastName;
 
 
-    if(/^[a-zA-Z0-9 ]{13,15}$/.test(myCNI)){
+    if(/^[a-zA-Z0-9 ]{13,18}$/.test(myCNI)){
       myCNI = myCNI;
 
 
@@ -175,7 +178,7 @@ else{
 
 
 
-if(/^[a-zA-Z ]{2,30}$/.test(myFistName) && /^[a-zA-Z ]{2,30}$/.test(myLastName) && /^[a-zA-Z0-9 ]{13,15}$/.test(myCNI) && regexPhone.test(myPhone) && regexAddr.test(myAddress)){
+if(/^[a-zA-Z ]{2,30}$/.test(myFistName) && /^[a-zA-Z ]{2,30}$/.test(myLastName) && /^[a-zA-Z0-9 ]{13,18}$/.test(myCNI) && regexPhone.test(myPhone) && regexAddr.test(myAddress)){
   //Add Class Active
   $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
 

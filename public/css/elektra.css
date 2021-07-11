@@ -74,6 +74,12 @@ html, body {
     font-size:15px;
 }
 
+.rc-anchor-normal, .captcha-verif{
+  background-clip: border-box;
+  font-size: 8px !important;
+  margin-top: 10px !important;
+  margin-left: 10px;
+}
 
 .form-present {
     margin-top:16px;
@@ -2309,3 +2315,10 @@ button.btnBuy:hover .button-text {
     margin-left: auto  !important;
     margin-right: auto  !important;
 }
+.field-icon {
+    float: right;
+    margin-left: -25px;
+    margin-top: -25px;
+    position: relative;
+    z-index: 2;
+  }

@@ -170,7 +170,7 @@
                     <div style="border-top:0px dashed transparent; border-left:0px dashed transparent; border-bottom:0px dashed transparent; border-right:0px dashed transparent; padding-top:5px; padding-bottom:5px; padding-right: 0px; padding-left: 0px;">
                       <!--<![endif]-->
                       <div align="center" class="img-container center autowidth" style="padding-right: 0px;padding-left: 0px;">
-                        <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px"><td style="padding-right: 0px;padding-left: 0px;" align="center"><![endif]--><img align="center" alt="Alternate text" border="0" class="center autowidth" src="{{ $message->embed(public_path() . '/images/emails/logo-elektra-halo.png')}}" style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; width: 100%; max-width: 50px; display: block;" title="Alternate text" width="50"/>
+                        <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px"><td style="padding-right: 0px;padding-left: 0px;" align="center"><![endif]--><img align="center" border="0" class="center autowidth" src="{{ $message->embed(public_path() . '/images/emails/logo-senbill-halo.png')}}" style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; width: 100%; max-width: 50px; display: block;"   width="50"/>
                         <!--[if mso]></td></tr></table><![endif]-->
                       </div>
                       <!--[if (!mso)&(!IE)]><!-->
@@ -248,7 +248,7 @@
                     <div style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:5px; padding-bottom:0px; padding-right: 0px; padding-left: 0px;">
                       <!--<![endif]-->
                       <div align="center" class="img-container center autowidth" style="padding-right: 0px;padding-left: 0px;">
-                        <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px"><td style="padding-right: 0px;padding-left: 0px;" align="center"><![endif]--><img align="center" alt="Alternate text" border="0" class="center autowidth" src="{{ $message->embed(public_path() . '/images/emails/77fcce2f-ae97-4bae-a10b-719b8aabffb6.png')}}" style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; width: 100%; max-width: 700px; display: block;" title="Alternate text" width="700"/>
+                        <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px"><td style="padding-right: 0px;padding-left: 0px;" align="center"><![endif]--><img align="center"  border="0" class="center autowidth" src="{{ $message->embed(public_path() . '/images/emails/77fcce2f-ae97-4bae-a10b-719b8aabffb6.png')}}" style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; width: 100%; max-width: 700px; display: block;"  width="700"/>
                         <!--[if mso]></td></tr></table><![endif]-->
                       </div>
                       <!--[if (!mso)&(!IE)]><!-->
@@ -287,13 +287,13 @@
                         </tbody>
                       </table>
                       <div align="center" class="img-container center fixedwidth" style="padding-right: 0px;padding-left: 0px;">
-                        <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px"><td style="padding-right: 0px;padding-left: 0px;" align="center"><![endif]--><img align="center" alt="I'm an image" border="0" class="center fixedwidth" src="{{ $message->embed(public_path() . '/images/emails/undraw_celebrating_bol5_2.png')}}" style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; width: 100%; max-width: 420px; display: block;" title="I'm an image" width="420"/>
+                        <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px"><td style="padding-right: 0px;padding-left: 0px;" align="center"><![endif]--><img align="center" alt=" " border="0" class="center fixedwidth" src="{{ $message->embed(public_path() . '/images/emails/undraw_celebrating_bol5_2.png')}}" style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; width: 100%; max-width: 420px; display: block;" title=" " width="420"/>
                         <!--[if mso]></td></tr></table><![endif]-->
                       </div>
                       <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 40px; padding-left: 40px; padding-top: 10px; padding-bottom: 10px; font-family: Tahoma, sans-serif"><![endif]-->
                       <div style="color:#191919;font-family:Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;line-height:1.5;padding-top:10px;padding-right:40px;padding-bottom:10px;padding-left:40px;">
                         <div style="line-height: 1.5; font-size: 12px; color: #191919; font-family: Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif; mso-line-height-alt: 18px;">
-                          <p style="font-size: 16px; line-height: 1.5; text-align: center; word-break: break-word; mso-line-height-alt: 24px; margin: 0;"><strong><span style="font-size: 38px;">Bonjour Yacine Ndiaye, </span></strong></p>
+                          <p style="font-size: 16px; line-height: 1.5; text-align: center; word-break: break-word; mso-line-height-alt: 24px; margin: 0;"><strong><span style="font-size: 38px;">Bonjour <?php echo $customer; ?>, </span></strong></p>
                           <p style="font-size: 16px; line-height: 1.5; text-align: center; word-break: break-word; mso-line-height-alt: 24px; margin: 0;"><strong><span style="font-size: 38px;">Bienvenue dans SenBill !</span></strong></p>
                         </div>
                       </div>
@@ -463,7 +463,7 @@
                     <div style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:5px; padding-bottom:5px; padding-right: 0px; padding-left: 0px;">
                       <!--<![endif]-->
                       <div align="center" class="img-container center fixedwidth" style="padding-right: 40px;padding-left: 0px;">
-                        <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px"><td style="padding-right: 40px;padding-left: 0px;" align="center"><![endif]--><img align="center" alt="I'm an image" border="0" class="center fixedwidth" src="{{ $message->embed(public_path() . '/images/emails/undraw_contract_uy56_1.png')}}" style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; width: 100%; max-width: 191px; display: block;" title="I'm an image" width="191"/>
+                        <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px"><td style="padding-right: 40px;padding-left: 0px;" align="center"><![endif]--><img align="center" alt=" " border="0" class="center fixedwidth" src="{{ $message->embed(public_path() . '/images/emails/undraw_contract_uy56_1.png')}}" style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; width: 100%; max-width: 191px; display: block;" title=" " width="191"/>
                         <!--[if mso]></td></tr></table><![endif]-->
                       </div>
                       <!--[if (!mso)&(!IE)]><!-->
@@ -522,7 +522,7 @@
                     <div style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:5px; padding-bottom:5px; padding-right: 0px; padding-left: 0px;">
                       <!--<![endif]-->
                       <div align="center" class="img-container center autowidth" style="padding-right: 0px;padding-left: 40px;">
-                        <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px"><td style="padding-right: 0px;padding-left: 40px;" align="center"><![endif]--><img align="center" alt="I'm an image" border="0" class="center autowidth" src=  "{{ $message->embed(public_path() . '/images/emails/undraw_operating_system_4lr6.png') }}"  style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; width: 100%; max-width: 193px; display: block;" title="I'm an image" width="193"/>
+                        <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px"><td style="padding-right: 0px;padding-left: 40px;" align="center"><![endif]--><img align="center" alt=" " border="0" class="center autowidth" src=  "{{ $message->embed(public_path() . '/images/emails/undraw_operating_system_4lr6.png') }}"  style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; width: 100%; max-width: 193px; display: block;" title=" " width="193"/>
                         <!--[if mso]></td></tr></table><![endif]-->
                       </div>
                       <!--[if (!mso)&(!IE)]><!-->
@@ -664,7 +664,7 @@
                     <div style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:5px; padding-bottom:5px; padding-right: 0px; padding-left: 0px;">
                       <!--<![endif]-->
                       <div align="center" class="img-container center autowidth" style="padding-right: 35px;padding-left: 0px;">
-                        <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px"><td style="padding-right: 35px;padding-left: 0px;" align="center"><![endif]--><img align="center" alt="I'm an image" border="0" class="center autowidth" src="{{ $message->embed(public_path() . '/images/emails/undraw_terms_lso0.png')}}" style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; width: 100%; max-width: 198px; display: block;" title="I'm an image" width="198"/>
+                        <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px"><td style="padding-right: 35px;padding-left: 0px;" align="center"><![endif]--><img align="center" alt=" " border="0" class="center autowidth" src="{{ $message->embed(public_path() . '/images/emails/undraw_terms_lso0.png')}}" style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; width: 100%; max-width: 198px; display: block;" title=" " width="198"/>
                         <div style="font-size:1px;line-height:10px"> </div>
                         <!--[if mso]></td></tr></table><![endif]-->
                       </div>
@@ -724,7 +724,7 @@
                     <div style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:0px; padding-bottom:5px; padding-right: 0px; padding-left: 0px;">
                       <!--<![endif]-->
                       <div align="center" class="img-container center autowidth" style="padding-right: 0px;padding-left: 0px;">
-                        <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px"><td style="padding-right: 0px;padding-left: 0px;" align="center"><![endif]--><img align="center" alt="Alternate text" border="0" class="center autowidth" src="{{ $message->embed(public_path() . '/images/emails/white_down.png')}}" style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; width: 100%; max-width: 700px; display: block;" title="Alternate text" width="700"/>
+                        <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px"><td style="padding-right: 0px;padding-left: 0px;" align="center"><![endif]--><img align="center"  border="0" class="center autowidth" src="{{ $message->embed(public_path() . '/images/emails/white_down.png')}}" style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; width: 100%; max-width: 700px; display: block;"  width="700"/>
                         <!--[if mso]></td></tr></table><![endif]-->
                       </div>
                       <!--[if (!mso)&(!IE)]><!-->
@@ -783,7 +783,7 @@
                     <div style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:5px; padding-bottom:0px; padding-right: 0px; padding-left: 0px;">
                       <!--<![endif]-->
                       <div align="center" class="img-container center autowidth" style="padding-right: 0px;padding-left: 0px;">
-                        <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px"><td style="padding-right: 0px;padding-left: 0px;" align="center"><![endif]--><img align="center" alt="Alternate text" border="0" class="center autowidth" src="{{ $message->embed(public_path() . '/images/emails/bcd4e57c-024f-4c1a-bce4-3868fd4d7bbb.png')}}" style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; width: 100%; max-width: 700px; display: block;" title="Alternate text" width="700"/>
+                        <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px"><td style="padding-right: 0px;padding-left: 0px;" align="center"><![endif]--><img align="center"  border="0" class="center autowidth" src="{{ $message->embed(public_path() . '/images/emails/bcd4e57c-024f-4c1a-bce4-3868fd4d7bbb.png')}}" style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; width: 100%; max-width: 700px; display: block;" width="700"/>
                         <!--[if mso]></td></tr></table><![endif]-->
                       </div>
                       <!--[if (!mso)&(!IE)]><!-->
@@ -879,7 +879,7 @@
                       </table>
                       <div align="center" class="img-container center fixedwidth" style="padding-right: 0px;padding-left: 0px;">
                         <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px"><td style="padding-right: 0px;padding-left: 0px;" align="center"><![endif]-->
-                        <div style="font-size:1px;line-height:20px"> </div><img align="center" alt="Alternate text" border="0" class="center fixedwidth" src="{{ $message->embed(public_path() . '/images/emails/f483f91a-686f-46c8-9797-2883d8a81229.png')}}" style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; width: 100%; max-width: 297px; display: block;" title="Alternate text" width="297"/>
+                        <div style="font-size:1px;line-height:20px"> </div><img align="center"  border="0" class="center fixedwidth" src="{{ $message->embed(public_path() . '/images/emails/f483f91a-686f-46c8-9797-2883d8a81229.png')}}" style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; width: 100%; max-width: 297px; display: block;"  width="297"/>
                         <!--[if mso]></td></tr></table><![endif]-->
                       </div>
                       <!--[if (!mso)&(!IE)]><!-->
@@ -1006,7 +1006,7 @@
                     <div style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:0px; padding-bottom:5px; padding-right: 0px; padding-left: 0px;">
                       <!--<![endif]-->
                       <div align="center" class="img-container center autowidth" style="padding-right: 0px;padding-left: 0px;">
-                        <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px"><td style="padding-right: 0px;padding-left: 0px;" align="center"><![endif]--><img align="center" alt="Alternate text" border="0" class="center autowidth" src="{{ $message->embed(public_path() . '/images/emails/white_down.png')}}" style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; width: 100%; max-width: 700px; display: block;" title="Alternate text" width="700"/>
+                        <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px"><td style="padding-right: 0px;padding-left: 0px;" align="center"><![endif]--><img align="center"  border="0" class="center autowidth" src="{{ $message->embed(public_path() . '/images/emails/white_down.png')}}" style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; width: 100%; max-width: 700px; display: block;"  width="700"/>
                         <!--[if mso]></td></tr></table><![endif]-->
                       </div>
                       <!--[if (!mso)&(!IE)]><!-->

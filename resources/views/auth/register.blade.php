@@ -61,7 +61,8 @@
                                 <label for="password" class="col-md-4 control-label">Mot de passe</label>
 
                                 <div class="col-md-6">
-                                    <input id="password" type="password" value="{{ old('password') }}" class="form-control" name="password" placeholder="Mot de passe" required>
+                                    <input  id="password" type="password" value="{{ old('password') }}" class="form-control" name="password" placeholder="Mot de passe" required>
+                                    <span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
 
                                     @if ($errors->has('password'))
                                         <span class="help-block">
@@ -76,6 +77,8 @@
 
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation" value="{{ old('password_confirmation') }}" placeholder="Confirmation du mot de passe" required>
+                                    <span toggle="#password-confirm" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+
                                 </div>
                             </div>
                         </div>
@@ -98,7 +101,7 @@
                                   <div class="col-md-6">
                                     <select class="form-control" name="salutation" id="exampleFormControlSelect1">
                                       <option value="" disabled="disabled">--Votre civilité--</option>
-                                      <option value="Mme">Madame</option>
+                                      <option value="Mme" selected="selected">Madame</option>
                                       <option value="Mr">Monsieur</option>
                                     </select>
                                     <br />
@@ -145,6 +148,19 @@
                                 </div>
                             </div>
 
+                            <div class="row">
+                                  <label for="exampleFormControlSelect1" class="col-md-4 control-label">PAYS</label>
+                                  <div class="col-md-6">
+                                    <select class="form-control" name="country" id="exampleFormControlSelect1">
+                                      <option value="" disabled="disabled">--Votre pays--</option>
+                                      <option value="sn">Sénégal</option>
+                                      <option value="ci">Côte d'ivoire</option>
+                                      <option value="fr">France</option>
+                                    </select>
+                                    <br />
+                                </div>
+                              </div>
+
                             <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
                                 <label for="phone" class="col-md-4 control-label">Numéro de téléphone</label>
 
@@ -185,17 +201,17 @@
                             </div>
                         </div>
                         <div class="radio-group row justify-content-between px-3" style="margin-left: -3px;">
-                           <div class="card-block card-body selectRegister1 selected">
+                           <div class="card-block card-body selectRegister1" style="cursor:not-allowed;">
                                <div class="row justify-content-end d-flex px-3">
-                                   <div class="fa fa-check"></div>
+                                   <div class="fa fa-circle"></div>
                                </div>
                                <div class="row justify-content-center d-flex">
                                    <div class="pic"> <i class="fas fa-faucet fa-5x pic-0" style="margin-left:25%;"></i> </div>
                                    <h5 class="mb-4" style="color:black;text-align:center;">Eau</h5>
                                </div>
-                               <input class='service_1' type='hidden' name='service_1' value='eau' />
+                               <!-- <input class='service_1' type='hidden' name='service_1' value='eau' /> -->
                            </div>
-                           <div class="card-block card-body selectRegister2">
+                           <div class="card-block card-body selectRegister2" style="cursor:not-allowed;">
                                <div class="row justify-content-end d-flex px-3">
                                    <div class="fa fa-circle"></div>
                                </div>
@@ -204,7 +220,7 @@
                                    <h5 class="mb-4" style="color:black;text-align:center;">Electricité</h5>
                                </div>
                            </div>
-                           <div class="card-block card-body selectRegister3">
+                           <div class="card-block card-body selectRegister3" style="cursor:not-allowed;">
                                <div class="row justify-content-end d-flex px-3">
                                    <div class="fa fa-circle"></div>
                                </div>
@@ -213,7 +229,7 @@
                                    <h5 class="mb-4" style="color:black;text-align:center;">Television</h5>
                                </div>
                            </div>
-                           <div class="card-block card-body selectRegister4">
+                           <div class="card-block card-body selectRegister4" style="cursor:not-allowed;">
                                <div class="row justify-content-end d-flex px-3">
                                    <div class="fa fa-circle"></div>
                                </div>
@@ -249,7 +265,7 @@
                                    <h5 class="mb-4" style="color:black;text-align:center;">Scolarité</h5>
                                </div>
                            </div>
-                           <div class="card-block card-body selectRegister8">
+                           <div class="card-block card-body selectRegister8" style="cursor:not-allowed;">
                                <div class="row justify-content-end d-flex px-3">
                                    <div class="fa fa-circle"></div>
                                </div>
@@ -355,7 +371,19 @@
                             </div>
 
                             </div>
+
                         </div>
+                        <div class="row justify-content-center" style="margin-left:30%">
+                            <div class="col-7 text-center">
+                              <div id="captcha" class="row captcha-verif">
+                                <div class="g-recaptcha" data-sitekey="6LdfdNUZAAAAAJlzQvySC5f86LvXR7agH34qS9As"></div>
+                                <div id="error" class="left red-text text-darken-2" style="color: red;font-size:12px">
+                                {{ $errors->first('g-recaptcha-response') }}.
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <br />
                             <div class="row justify-content-center">
                                 <div class="col-7 text-center">
                                    <input type="button" name="previous" class="previous_last action-button-previous" value="Précédent" /> <input type='submit' class='btn btn-primary submitForm' value='Soumettre' />
@@ -375,7 +403,7 @@
 <script>
 
 
-  $('.radio-group .selectRegister1').click(function(){
+ /*  $('.radio-group .selectRegister1').click(function(){
   if($(this).hasClass('selected')){
       $(this).find(".fa").removeClass('fa-check');
       $(this).find(".fa").addClass('fa-circle');
@@ -445,7 +473,7 @@
     var value = $('.service_4').val();
     $('.display_service_4').text(value);
   }
-  });
+  }); */
 
   $('.radio-group .selectRegister5').click(function(){
   if($(this).hasClass('selected')){
@@ -483,7 +511,7 @@
   }
   });
 
-  $('.radio-group .selectRegister7').click(function(){
+   $('.radio-group .selectRegister7').click(function(){
   if($(this).hasClass('selected')){
       $(this).find(".fa").removeClass('fa-check');
       $(this).find(".fa").addClass('fa-circle');
@@ -544,6 +572,16 @@ $('.sv_2').click(function(){
 var value = $('.service_1').val();
 $('.display_service_1').text(value);
 
+$(".toggle-password").click(function() {
+
+$(this).toggleClass("fa-eye fa-eye-slash");
+var input = $($(this).attr("toggle"));
+if (input.attr("type") == "password") {
+  input.attr("type", "text");
+} else {
+  input.attr("type", "password");
+}
+});
 </script>
 
 @endsection

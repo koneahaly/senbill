@@ -2,13 +2,11 @@
 session_start();
 $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOfBillsNonPaid"] : '';
 ?>
-@extends('layouts.realEstate', ['notification' => $notification, 'services' => $actived_services])
+@extends('layouts.realEstate', ['notification' => $notification, 'services' => $actived_services, 'profilNotif' => $_SESSION['profilNotif']])
 
 @section('content')
 <div class="container">
   <div class="row lottie-lines" style="margin-top:4%; display:none;">
-      <lottie-player src="{{url('images/lottie/lines.json')}}"  background="transparent"  speed="0.1"  style="width: 500px; height: 500px; position:absolute;z-index:1000;margin-left:-20%;margin-top: 2.5%;"  loop  autoplay></lottie-player>
-      <lottie-player src="{{url('images/lottie/lines.json')}}"  background="transparent"  speed="0.1"  style="width: 500px; height: 500px; position:absolute;z-index:1000;margin-left:70%;margin-top: 2.5%;"  loop  autoplay></lottie-player>
   </div>
   <!--TITLE OF THE PAGE-->
   <div class="row rowloc rowmobile" style="margin-top:14%;z-index: 1100;">
@@ -279,7 +277,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
             </div>
             <div class="wrap-input100 validate-input bg1 form-group{{ $errors->has('customerId') ? ' has-error' : '' }}" data-validate="Entrez svp un cni pour le logement">
               <span class="label-input100 control-label">Numéro CNI *</span>
-              <input class="input100 update_cni" type="text" pattern="[0-9,A-Z,a-z]{13}" required name="customerId" placeholder="Entrez le numéro de Carte d'identité nationale du locataire" value="A000305199377">
+              <input class="input100 update_cni" type="text" pattern="[0-9,A-Z,a-z]{13,19}" required name="customerId" placeholder="Entrez le numéro de Carte d'identité nationale du locataire" value="A000305199377">
               @if ($errors->has('customerId'))
                   <span class="help-block">
                       <strong>{{ $errors->first('customerId') }}</strong>
@@ -288,7 +286,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
             </div>
             <div class="wrap-input100 bg1 rs1-wrap-input100 form-group{{ $errors->has('bail') ? ' has-error' : '' }}">
               <span class="label-input100 control-label">Caution *</span>
-              <input class="input100 update_caution" type="number" pattern="[0-9]{0,10}" name="bail" required  placeholder="Entrez le montant de la caution">
+              <input class="input100 update_caution" type="number" pattern="[0-9]{0,10}" value="0" name="bail" required  placeholder="Entrez le montant de la caution">
               @if ($errors->has('bail'))
                   <span class="help-block">
                       <strong>{{ $errors->first('bail') }}</strong>

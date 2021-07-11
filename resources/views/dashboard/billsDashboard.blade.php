@@ -51,7 +51,7 @@
                     </td>
                     <td>{{ $infos_facture->last_name}}</td>
                     <?php
-                      $creation_date = explode("-",$infos_facture->created_at);
+                      $creation_date = explode("-",$infos_facture->deadline);
                      ?>
                     <td> Facture du mois de {{ $months[(int)$creation_date[1] - 1] }} {{ $creation_date[0]}}</td>
                     <td>{{ $infos_facture->payment_status}}</td>
@@ -72,7 +72,7 @@
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <strong>Copyright &copy; 2020 <a href="">Elektra-S2SN </a>.</strong>
+    <strong>Copyright &copy; 2020 <a href="">Senbill-S2SN </a>.</strong>
     Tous droits réservés.
     <div class="float-right d-none d-sm-inline-block">
       <b>Version</b> 1.0.0

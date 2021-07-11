@@ -13,7 +13,11 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Session\middleware\StartSession;
+use App\Http\Controllers\MailController;
+use Illuminate\Mail\Mailable;
 use stdClass;
+use Session;
+use Faker\Factory as Faker;
 
 class realEstateOwnerController extends Controller
 {
@@ -31,6 +35,26 @@ class realEstateOwnerController extends Controller
     public function display_transactions()
     {
       $s=Auth::user()->customerId;
+
+      $user['user'] = DB::table('users')->where('customerId',$s)->first();
+      $myuser = DB::table('users')->where('customerId',$s)->first();
+      $profilNotif = 0;
+
+      if(!empty($myuser->date_activation_code)){
+        $profilNotif = $profilNotif + 0;
+      }
+      else{
+        $profilNotif = 1;
+      }
+
+      if(!empty($myuser->date_verify_email)){
+        $profilNotif = $profilNotif + 0;
+      }
+      else{
+        $profilNotif = $profilNotif + 1;
+      }
+      Session::push('profilNotif', $profilNotif);
+
       $list_renter_id=array();
       $list_housings_infos = [];
       $actived_services['actived_services'] = DB::table('services')->where('customerId',$s)->first();
@@ -45,12 +69,33 @@ class realEstateOwnerController extends Controller
       $data_bills['data_bills'] =DB::table('bills')->whereIn('customerId',$list_renter_id)->whereNotNull('title')->get();
       $numberOfBillsNonPaid = (int)DB::table('bills')->where('status','<>','paid')->whereIn('customerId',$list_renter_id)->whereNotNull('title')->count();
       $data_infos_housing['data_infos_housing'] = $list_housings_infos;
-      return view('ownerTransactions')->with($data_bills)->with($data_infos_housing)->with(compact('numberOfBillsNonPaid'))->with($actived_services);
+      return view('ownerTransactions')->with($data_bills)->with($user)->with($data_infos_housing)->with(compact('numberOfBillsNonPaid'))->with($actived_services)->with(compact('profilNotif'));
 
     }
     public function display_locataires()
     {
       $s=Auth::user()->customerId;
+
+      $user['user'] = DB::table('users')->where('customerId',$s)->first();
+      $myuser = DB::table('users')->where('customerId',$s)->first();
+
+      $profilNotif = 0;
+
+      if(!empty($myuser->date_activation_code)){
+        $profilNotif = $profilNotif + 0;
+      }
+      else{
+        $profilNotif = 1;
+      }
+
+      if(!empty($myuser->date_verify_email)){
+        $profilNotif = $profilNotif + 0;
+      }
+      else{
+        $profilNotif = $profilNotif + 1;
+      }
+      Session::push('profilNotif', $profilNotif);
+
       $list_renter_id=array();
       $list_housings_title = [];
       $list_contracts_infos = [];
@@ -73,17 +118,35 @@ class realEstateOwnerController extends Controller
       $data_locations['data_locations'] =DB::table('users')->whereIn('customerId',$list_renter_id)->get();
       $data_housing_title['data_housing_title'] = $list_housings_title;
       $data_contracts_compact['data_contracts_compact'] = $list_contracts_infos;
-      return view('mes-locataires')->with($data_locations)->with($data_housing_title)->with($data_contracts_compact)->with('nb_locataires',$nb_locataires)->with($actived_services);
+      return view('mes-locataires')->with($data_locations)->with($data_housing_title)->with($data_contracts_compact)->with('nb_locataires',$nb_locataires)->with($actived_services)->with(compact('profilNotif'));
 
     }
     public function display_properties()
     {
       $s=Auth::user()->customerId;
+
+      $profilNotif = 0;
+
+      if(!empty($myuser->date_activation_code)){
+        $profilNotif = $profilNotif + 0;
+      }
+      else{
+        $profilNotif = 1;
+      }
+
+      if(!empty($myuser->date_verify_email)){
+        $profilNotif = $profilNotif + 0;
+      }
+      else{
+        $profilNotif = $profilNotif + 1;
+      }
+      Session::push('profilNotif', $profilNotif);
+
       $actived_services['actived_services'] = DB::table('services')->where('customerId',$s)->first();
       $infos_perso['infos_perso']=DB::table('users')->where('customerId',$s)->first();
       $infos_log['infos_log']=DB::table('owns')->where('owner_id',$s)->where('status','<>','D')->get();
       $nb_log=(int)DB::table('owns')->where('owner_id',$s)->where('status','<>','D')->count();
-      return view('ownerProperties')->with($infos_perso)->with($infos_log)->with('nb_log',$nb_log)->with($actived_services);
+      return view('ownerProperties')->with($infos_perso)->with($infos_log)->with('nb_log',$nb_log)->with($actived_services)->with(compact('profilNotif'));
 
     }
 
@@ -162,6 +225,12 @@ class realEstateOwnerController extends Controller
         $renter_check_id=DB::table('users')->select('customerId')->where('customerId',$given->customerId)->count();
         if($renter_check_id < 1){
           $occupant_id = $given->customerId;
+          if(strpos($given->phone,'+221') !== false){
+            $treat_phone = substr($given->phone,4,1);
+          }
+          else{
+            $treat_phone = "+221".$given->phone;
+          }
           User::create([
               'civilite' => $given->civilite,
               'name' => $given->name,
@@ -169,7 +238,7 @@ class realEstateOwnerController extends Controller
               'email' => $given->email,
               'dob' => $given->dateOB,
               'pob' => $given->placeOB,
-              'phone' => $given->phone,
+              'phone' => $treat_phone,
               'customerId' =>$given->customerId,
               'address' =>trim($given->housing_address),
               'password' => bcrypt($given->name.'123'),
@@ -178,6 +247,7 @@ class realEstateOwnerController extends Controller
             $service = new Service;
             $service->customerId= $given->customerId;
             $service->service_5='locataire';
+            $service->type_service_5='postpaid';
             $service->save();
         }
         $renter_id=DB::table('users')->select('customerId')->where('customerId',$given->customerId)->first();
@@ -195,11 +265,44 @@ class realEstateOwnerController extends Controller
         $contract->frequency=$given->frequency;
         $contract->save();
 
+        if($contract->bail > 0){
+
+          $months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
+          $month_int = date('n') - 1; //to begin at zero as table index
+
+          $faker = Faker::create('fr_FR');
+          $order_number = $faker->vat;
+
+          $bill = new Bill;
+          $bill->customerId=$renter_id->customerId;
+          $bill->initial=0;
+          $bill->final=0;
+          $bill->month=$months[$month_int];
+          $bill->year=date("Y");
+          $bill->units=0;
+          $bill->order_number=$order_number;
+          $bill->title="location";
+          $bill->amount=$contract->bail + ($contract->bail * 0.035);
+          $bill->status="En attente";
+          $bill->save();
+
+          //send mail notifaction for new bill
+          $renter_infos=DB::table('users')->where('customerId',$renter_id->customerId)->first();
+          $co = new MailController();
+          $co->newBill_email($renter_infos->email,$order_number,$contract->bail + ($contract->bail * 0.035),date('Y-m-d'),$renter_infos->first_name.' '.$renter_infos->name,'location','SEN BILL');
+        }
+
         DB::table('owns')
             ->where('owner_id', $s)->where('id',$given->housing_id)
             ->update(['status' => 'N','current_occupant_name' => $given->first_name.' '.$given->name,'occupant_id' => $given->customerId]);
 
-            return redirect()->back()->with('message', 'Le locataire a été correctement ajouté au logement, il recevra sous peu un SMS et un email l invitant à rejoindre Elektra pour payer ses factures!');
+            $proprio=DB::table('users')->where('customerId',$s)->first();
+
+            $co = new MailController();
+            $co->html_verify_email($given->email,$given->first_name.' '.$given->name,'SEN BILL');
+            $co->html_email_pro($given->email,$given->first_name.' '.$given->name,$proprio->first_name.' '.$proprio->name,$given->name.'123','SEN BILL');
+
+            return redirect()->back()->with('message', 'Le locataire a été correctement ajouté au logement, il recevra sous peu un email l\'invitant à rejoindre Elektra pour payer ses factures!');
       }
 
       public function update_occupant(Request $given){

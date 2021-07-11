@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Storage;
 use Illuminate\Mail\Mailable;
 use Illuminate\Support\Facades\DB;
+use App\Rules\Captcha;
 //use Faker\Factory;
 //use fzaninotto\faker;
 
@@ -60,11 +61,12 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'phone' => 'required|string|string|max:10|unique:users',
+            'phone' => 'required|string|string|max:15|unique:users',
             'customerId' =>'required|string|max:25|min:10|unique:users',
             'address' =>'required|string|max:255',
             'password' => 'required|string|min:6|confirmed',
             'first_name' => 'required|string|max:255',
+            'g-recaptcha-response' => new Captcha(),
         ]);
     }
 
@@ -86,8 +88,8 @@ class RegisterController extends Controller
            'service_4' => (!empty($data['service_4'])) ? $data['service_4'] : 'NULL',
            'service_5' => (!empty($data['service_5'])) ? $data['service_5'] : 'NULL',
            'service_6' => (!empty($data['service_6'])) ? $data['service_6'] : 'NULL',
-           'service_7' => (!empty($data['service_5'])) ? $data['service_5'] : 'NULL',
-           'service_8' => (!empty($data['service_6'])) ? $data['service_6'] : 'NULL',
+           'service_7' => (!empty($data['service_7'])) ? $data['service_7'] : 'NULL',
+           'service_8' => (!empty($data['service_8'])) ? $data['service_8'] : 'NULL',
        ]);
 
           if($in_elektra > 0){
@@ -96,6 +98,7 @@ class RegisterController extends Controller
             ->join('offers', 'offers.id', '=', 'subscriptions.service_id')
             ->select('contacts.customerId','offers.libelle as of_lib','offers.service_type as of_st')
             ->where('contacts.customerId',$data['customerId'])->get();
+            //dd($infos_contacts);
 
             DB::connection('mysql2')->table('contacts')
                 ->where('customerId', $data['customerId'])
@@ -103,6 +106,8 @@ class RegisterController extends Controller
 
             foreach($infos_contacts as $val){
               //dd(strpos(strtolower($val->of_lib),'electricit'));
+              $value="";
+              $attribut="";
               if(strpos(strtolower($val->of_lib),'eau') === false){
                 //dd('test_eau');
               }
@@ -151,12 +156,12 @@ class RegisterController extends Controller
                 $value = "proprietaire";
               }
 
-              if(strpos(strtolower($val->of_lib),'scolarite') === false){
+              if(strpos(strtolower($val->of_lib),'scolarit') === false){
                 //dd('test_scol');
               }
               else{
                 $attribut = "service_7";
-                $value = "scolarite";
+                $value = "scolarité";
               }
 
               if(strpos(strtolower($val->of_lib),'sport') === false){
@@ -188,6 +193,7 @@ class RegisterController extends Controller
               $bill->deadline= $invoice->payment_due_date;
               $bill->amount=$invoice->tot_payment_due;
               $bill->status= $invoice->payment_status;
+              $bill->title= $invoice->title;
               $bill->units=(integer)$bill->final-(integer)$bill->initial;
               $bill->payment_method= $invoice->payment_method;
               $bill->order_number = $invoice->order_number;
@@ -202,6 +208,26 @@ class RegisterController extends Controller
           $co->html_verify_email($data['email'],$data['first_name'].' '.$data['name'],'SEN BILL');
           $co->html_email($data['email'],$data['first_name'].' '.$data['name'],'SEN BILL');
 
+          $indicatif = "";
+          $treat_phone = $data['phone'];
+          
+          if($data['country'] == "sn"){
+            if(strpos($data['phone'],'+221') !== false){
+              $treat_phone = $data['phone'];
+            }
+            else{
+              $treat_phone = "+221".$data['phone'];
+            }
+          }
+
+          if($data['country'] == "ci"){
+            if(strpos($data['phone'],'+225') !== false){
+              $treat_phone = $data['phone'];
+            }
+            else{
+              $treat_phone = "+225".$data['phone'];
+            }
+          }
         return User::create([
            'civilite' => $data['salutation'],
            'name' => $data['name'],
@@ -214,12 +240,12 @@ class RegisterController extends Controller
          ]);
     }
 
-    public function verify_email(Request $request){
+    /*public function verify_email(Request $request){
       $mail_to_verify =explode('/',$_SERVER['REQUEST_URI']);
       DB::table('users')
           ->where('email', $mail_to_verify[2])
           ->update(['date_verify_email' => now()]);
-    }
+    }*/
 
     public function create_users_demo() {
 

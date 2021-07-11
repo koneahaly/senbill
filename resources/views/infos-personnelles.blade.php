@@ -9,8 +9,6 @@ if (!empty(Auth::user()->date_activation_code)) $_SESSION['profilNotif'] = 0;
 
 <div class="container">
   <div class="row lottie-lines" style="margin-top:4%;">
-      <lottie-player src="{{url('images/lottie/lines.json')}}"  background="transparent"  speed="0.1"  style="width: 500px; height: 500px; position:absolute;z-index:1000;margin-left:-20%;margin-top: 2.5%;"  loop  autoplay></lottie-player>
-      <lottie-player src="{{url('images/lottie/lines.json')}}"  background="transparent"  speed="0.1"  style="width: 500px; height: 500px; position:absolute;z-index:1000;margin-left:70%;margin-top: 2.5%;"  loop  autoplay></lottie-player>
   </div>
   <div class="row rowmobile" style="margin-top:10%;z-index: 1100;">
   <div class="col-md-12" style="margin-top:10px;margin-bottom:20px;text-align:center;">
@@ -135,7 +133,7 @@ if (!empty(Auth::user()->date_activation_code)) $_SESSION['profilNotif'] = 0;
 
                     <div class="col-md-6" style="margin-bottom:10px">
                       <p><strong>ADRESSE DE FACTURATION:</strong></p>
-                      <input pattern="[0-9]{1,3}(([,. ]?){1}[-a-zA-Zàâäéèêëïîôöùûüç']+)*" title="l'adresse renseigné n'est pas valide." class="col-form-label" name="address" value="{{Auth::user()->address}}" style="border-bottom:3px solid #084f78 !important" required>
+                      <input pattern="(?=.*[-a-zA-Z0-9]?){1,5}(([,. ]?){1}[-a-zA-Z0-9àâäéèêëïîôöùûüç'°]+)*" title="l'adresse renseigné n'est pas valide." class="col-form-label" name="address" value="{{Auth::user()->address}}" style="border-bottom:3px solid #084f78 !important" required>
                     </div>
                     <br />
                     <div class="row form-check" style="margin-bottom:10px;margin-left:18px">
@@ -167,13 +165,17 @@ if (!empty(Auth::user()->date_activation_code)) $_SESSION['profilNotif'] = 0;
                   <form method="post" action="../infos-personnelles/{{ $_SESSION['current_service']}}">
                     {{csrf_field()}}
                     <div class="col-md-6" style="margin-bottom:10px">
-                      <p><strong>EMAIL</strong></p>
+                      <p><strong>EMAIL</strong>
+                      @if (empty(Auth::user()->date_verify_email))
+                        <i style="color:red" itle="Veuillez valider votre adresse mail en cliquant le lien de vérification depuis votre compte email" class="fas fa-exclamation-circle"></i>
+                      @endif
+                      </p>
                       <span class="recapData">{{ Auth::user()->email }}</span>
                       <div>
                         <button style="background:rgba(137,180,213,1);color:white;margin-top:8px" class="btn">
                           <span class="glyphicon glyphicon-edit"></span> Modifier
-                        </button>
                       </div>
+          
                     </div>
                     <input type="hidden" name="update_email" value="true"/>
                     <input type="hidden" name="service" value="{{ $_SESSION['current_service'] }}"/>
@@ -185,7 +187,7 @@ if (!empty(Auth::user()->date_activation_code)) $_SESSION['profilNotif'] = 0;
                     {{csrf_field()}}
                     <div class="col-md-6" style="margin-bottom:10px">
                       <p><strong>EMAIL:</strong></p>
-                      <input <input pattern="\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+" title="l'adresse mail n'est pas valide." class="col-form-label" name="email" value="{{Auth::user()->email}}" style="border-bottom:3px solid #084f78 !important">
+                      <input pattern="\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+" title="l'adresse mail n'est pas valide." class="col-form-label" name="email" value="{{Auth::user()->email}}" style="border-bottom:3px solid #084f78 !important">
                       <div>
                         <button type="submit" name="action_email" value='save' style="margin-top:8px" class="btn btn-primary">
                           <span class="glyphicon glyphicon-edit"></span> Enregistrer
@@ -201,7 +203,11 @@ if (!empty(Auth::user()->date_activation_code)) $_SESSION['profilNotif'] = 0;
 
                 @if(!isset($_POST['update_phone']))
                     <div class="col-md-6" style="margin-bottom:10px">
-                      <p><strong>T&Eacute;L&Eacute;PHONE</strong></p>
+                        <p><strong>T&Eacute;L&Eacute;PHONE</strong>
+                        @if (empty(Auth::user()->date_activation_code))
+                          <i style="color:red" title="Veuillez valider votre numéro de téléphone en cliquant sur le bouton vérifier" class="fas fa-exclamation-circle"></i>
+                        @endif
+                        </p>
                       <span class="recapData">{{ Auth::user()->phone }}</span>
                       @if (!empty(Auth::user()->date_activation_code))
                         <span class="glyphicon glyphicon-ok-circle text-success " style="font-size:15px"></span>
@@ -231,7 +237,7 @@ if (!empty(Auth::user()->date_activation_code)) $_SESSION['profilNotif'] = 0;
                             <input type="hidden" name="update_phone" value="true"/>
                             <input type="hidden" name="service" value="{{ $_SESSION['current_service'] }}"/>
                           </form>
-                        </div>
+                        </div> 
                       </div>
                     </div>
                 @endif
@@ -241,7 +247,7 @@ if (!empty(Auth::user()->date_activation_code)) $_SESSION['profilNotif'] = 0;
                     {{csrf_field()}}
                     <div class="col-md-6" style="margin-bottom:10px">
                       <p><strong>PHONE:</strong></p>
-                      <input <input pattern="^(?:0|\(?\+33\)?\s?|0033\s?)[1-79](?:[\.\-\s]?\d\d){4}$" title="le numéro de téléphone n'est pas valide." class="col-form-label" name="phone" value="{{Auth::user()->phone}}" style="border-bottom:3px solid #084f78 !important">
+                      <input pattern="^(?:0|\(?\+33\)?\s?|0033\s?)[1-79](?:[\.\-\s]?\d\d){4}$" title="le numéro de téléphone n'est pas valide." class="col-form-label" name="phone" value="{{Auth::user()->phone}}" style="border-bottom:3px solid #084f78 !important">
                       <div>
                         <button type="submit" name="action_phone" value='save' style="margin-top:8px" class="btn btn-primary">
                           <span class="glyphicon glyphicon-edit"></span> Enregistrer

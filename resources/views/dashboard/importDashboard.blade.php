@@ -1,6 +1,9 @@
+
+
 <?php $__env->startSection('content'); ?>
 
 <?php
+
 if(isset($_GET['data_contacts'])){
   $data_contacts = $_GET['data_contacts'];
 }
@@ -102,7 +105,7 @@ if(isset($_GET['data_invoices'])){
               <p class="text-muted">L'importation via un fichier vous permet d'ajouter  vos clients en masse sans développement. Seul un fichier csv est à éditer puis à charger via cette interface.</p>
               <p  style="margin-bottom: var(--space-s);"> Première étape : Template Elektra</p>
               <p class="text-muted">Vous pouvez  utiliser notre template Elektra standard et y ajouter les données que vous voulez importer. Si les champs du template ne sont pas  adaptés à votre modèle, vous pouvez toujours utiliser votre fichier  personnalisé. </p>
-              <span class="elektra-button-wrapper"><a href="<?php echo e(route('import.dashboard.download_contacts_tpl')); ?>">
+              <span class="elektra-button-wrapper"><a  href="{{ route('dashboard.download_contacts_tpl') }}">
                 <i class="fa fa-download"><span class="elektra-button">&nbsp &nbsp Télécharger le template</span></i>
               </a>
               </span>
@@ -152,9 +155,6 @@ if(isset($_GET['data_invoices'])){
                         <option value='first_name' <?php if(substr($dt,1,strlen($dt)-2) == 'first_name') echo 'selected';?> >Prénom</option>
                         <option value='last_name' <?php if(substr($dt,1,strlen($dt)-2) == 'last_name') echo 'selected';?> >Nom</option>
                         <option value='status' <?php if(substr($dt,1,strlen($dt)-2) == 'status') echo 'selected';?> >Statut client</option>
-                        <option value='service_id' <?php if(substr($dt,1,strlen($dt)-2) == 'service_id') echo 'selected';?> >Service</option>
-                        <option value='partner_id' <?php if(substr($dt,1,strlen($dt)-2) == 'partner_id') echo 'selected';?> >Partenaire</option>
-                        <option value='status' <?php if(substr($dt,1,strlen($dt)-2) == 'status') echo 'selected';?> >Statut souscription</option>
                         <option value='salutation' <?php if(substr($dt,1,strlen($dt)-2) == 'salutation') echo 'selected';?> >Civilité</option>
                         <option value='dob'<?php if(substr($dt,1,strlen($dt)-2) == 'dob') echo 'selected';?> >Date de naissance</option>
                         <option value='pob'<?php if(substr($dt,1,strlen($dt)-2) == 'pob') echo 'selected';?> >Lieu de naissance</option>
@@ -200,7 +200,7 @@ if(isset($_GET['data_invoices'])){
               <p class="text-muted">L'importation via un fichier vous permet d'ajouter  vos factures en masse sans développement. Seul un fichier csv est à éditer puis à charger via cette interface.</p>
               <p  style="margin-bottom: var(--space-s);"> Première étape : Template Elektra</p>
               <p class="text-muted">Vous pouvez  utiliser notre template Elektra standard et y ajouter les données que vous voulez importer. Si les champs du template ne sont pas  adaptés à votre modèle, vous pouvez toujours utiliser votre fichier  personnalisé. </p>
-              <span class="elektra-button-wrapper"><a href="<?php echo e(route('import.dashboard.download_invoices_tpl')); ?>">
+              <span class="elektra-button-wrapper"><a href="<?php echo e(route('dashboard.download_invoices_tpl')); ?>">
                 <i class="fa fa-download"><span class="elektra-button">&nbsp &nbsp Télécharger le template</span></i>
               </a>
               </span>
@@ -221,14 +221,6 @@ if(isset($_GET['data_invoices'])){
               </div>
               </form>
               <br/>
-              <div class="alert alert-success alert-dismissible alert-invoice-green">
-                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                  <i class="icon fas fa-check "> Le fichier a  été bien chargé.</i>
-              </div>
-              <div class="alert alert-danger alert-dismissible alert-invoice-red">
-                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                  <i class="icon fas fa-ban "> Le fichier n'a pas été chargé.</i>
-              </div>
               <br/>
               <p  style="margin-bottom: var(--space-s);"> Troisième étape : Vérification du mapping</p>
               <p class="text-muted">Merci de vérifier que  tous  les champs sont bien mappés </p>
@@ -251,7 +243,6 @@ if(isset($_GET['data_invoices'])){
                     <div class="form-group">
                       <select class="form-control" name='fields[]'>
                         <option value='customerId' <?php if(substr($dt,1,strlen($dt)-2) == 'cni') echo 'selected';?> >CNI</option>
-                        <option value='souscription_id' <?php if(substr($dt,1,strlen($dt)-2) == 'souscription') echo 'selected';?> >Souscription</option>
                         <option value='order_number' <?php if(substr($dt,1,strlen($dt)-2) == 'order_number') echo 'selected';?> >Numéro de facturation</option>
                         <option value='title' <?php if(substr($dt,1,strlen($dt)-2) == 'title') echo 'selected';?> >Intitulé facture</option>
                         <option value='min_payment_due' <?php if(substr($dt,1,strlen($dt)-2) == 'min_payment_due') echo 'selected';?> >Minimum à payer</option>
@@ -259,10 +250,11 @@ if(isset($_GET['data_invoices'])){
                         <option value='payment_due_date' <?php if(substr($dt,1,strlen($dt)-2) == 'payment_due_date') echo 'selected';?> >Date d'échéance</option>
                         <option value='payment_method' <?php if(substr($dt,1,strlen($dt)-2) == 'payment_method') echo 'selected';?> >Moyen de paiement</option>
                         <option value='payment_status' <?php if(substr($dt,1,strlen($dt)-2) == 'payment_status') echo 'selected';?> >Statut du paiement</option>
-                        <option value='provider' <?php if(substr($dt,1,strlen($dt)-2) == 'provider') echo 'selected';?> >Partenaire</option>
                         <option value='import_status' <?php if(substr($dt,1,strlen($dt)-2) == 'import_status') echo 'selected';?> >Statut import</option>
                         <option value='paid_amount' <?php if(substr($dt,1,strlen($dt)-2) == 'paid_amount') echo 'selected';?> >Somme payée</option>
                         <option value='bill' <?php if(substr($dt,1,strlen($dt)-2) == 'bill') echo 'selected';?> >Description</option>
+                        <option value='month' <?php if(substr($dt,1,strlen($dt)-2) == 'month') echo 'selected';?> >Mois</option>
+                        <option value='year' <?php if(substr($dt,1,strlen($dt)-2) == 'year') echo 'selected';?> >Année</option>
                       </select>
                     </div>
                   </dd>
@@ -275,7 +267,7 @@ if(isset($_GET['data_invoices'])){
             </div>
             <div class="modal-footer justify-content-between">
               <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-              <button type="submit" class="btn btn-primary">Importer des clients</button>
+              <button type="submit" class="btn btn-primary">Importer des factures</button>
             </div>
             <input type='hidden' name="file_to_import" value="<?php if(isset($_GET['file_to_import'])) echo $_GET['file_to_import']; else{echo '';} ?>" />
           </form>
@@ -325,7 +317,7 @@ if(isset($_GET['data_invoices'])){
 
    ?>
   <footer class="main-footer">
-    <strong>Copyright &copy; 2020 <a href="">Elektra-S2SN </a>.</strong>
+    <strong>Copyright &copy; 2020 <a href="">Senbill-S2SN </a>.</strong>
     Tous droits réservés.
     <div class="float-right d-none d-sm-inline-block">
       <b>Version</b> 1.0.0

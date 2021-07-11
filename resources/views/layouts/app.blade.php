@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CXR499BH4X"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-CXR499BH4X');
+      gtag('config', 'AW-434612469');
+    </script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,22 +20,39 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'eLECTRA') }}</title>
+    <title>{{ config('app.name', 'Senbill') }}</title>
 
     <!-- Scripts -->
   <script type="text/javascript">
        // Notice how this gets configured before we load Font Awesome
        window.FontAwesomeConfig = { autoReplaceSvg: false }
   </script>
+  <script src=https://touchpay.gutouch.com/touchpay/script/prod_touchpay-0.0.1.js  type="text/javascript"></script>
+<script type="text/javascript">
+function calltouchpay(){
+             sendPaymentInfos(
+                                new Date().getTime(),
+                                'SNBIL11162',
+                                'NTrmzaD4WyiAKaTa9-8Vjc^$ijuP-ut0oY2J^drhn$v9qTWJC@',
+                                'senbill.sn',
+				'url_redirection_success',
+                                'url_redirection_fail', 5,
+                                'dakar', '','', '',  '');
+}
+</script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src='https://www.google.com/recaptcha/api.js'></script>
   <script src="{!! mix('js/app.js') !!}"></script>
   @yield('scripts')
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/graphicalChart.css') }}" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="https://paytech.sn/cdn/paytech.min.css"> -->
+
 
     <link href="{{ URL::asset('css/common.css') }}" rel="stylesheet">
-    <link rel="icon" type="image/png" href="https://elektra.s3.amazonaws.com/images/icons/logo-elektra-halo.png"/>
+    <link rel="icon" type="image/png" href="https://elektra.s3.amazonaws.com/images/icons/logo-senbill-halo.png"/>
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <!--===============================================================================================-->
@@ -68,11 +97,14 @@ $active_2 ='none';
 $active_3 ='none';
 $active_4 ='none';
 
+$suivi_none='none';
+
 if($_SERVER['REQUEST_URI'] == '/register' || strpos($_SERVER['REQUEST_URI'],"admin") == true){
   $home_directory = '.';
   $service="";
 }
 else{
+  
 $home_directory = "../mes-factures/".$service."";
 }
 if(strpos($_SERVER['REQUEST_URI'],"infos-personnelles") == true)
@@ -85,6 +117,9 @@ if(strpos($_SERVER['REQUEST_URI'],"suivi-conso") == true)
     $active_4 = 'active';
 if(strpos($_SERVER['REQUEST_URI'],"infos-services") == true)
       $active_1 = 'active';
+
+if(strpos($_SERVER['REQUEST_URI'],"locataire") == true)
+      $suivi_none = 'active';
 
 @endphp
 
@@ -111,8 +146,8 @@ html, body {
    <!--  Header  invité -->
   <div class="s2sn-login-header-desktop-elektra">
       <a class="s2sn-logo-elektra-register" href="{{ $home_directory }}">
-          <img src="{{url('images/logo-elektra-halo.png')}}" alt="logo-elektra" width="80" height="auto" class="s2sn-img-normal">
-          <img src="{{url('images/logo-elektra-halo.png')}}" alt="logo-elektra" width="80" height="auto" class="s2sn-img-retina">
+          <img src="{{url('images/logo-senbill-halo.png')}}" alt=" logo-senbill" width="80" height="auto" class="s2sn-img-normal">
+          <img src="{{url('images/logo-senbill-halo.png')}}" alt=" logo-senbill" width="80" height="auto" class="s2sn-img-retina">
       </a>
       <div class="s2sn-login-header-nav">
        <ul class="s2sn-navbar"  style="margin-left: 300px;">
@@ -129,8 +164,8 @@ html, body {
       <!--  Début Header  user connecté -->
       <div class="s2sn-login-header-desktop-elektra">
           <a class="s2sn-logo-elektra-connected" href="{{ $home_directory }}">
-              <img src="{{url('images/logo-elektra-halo.png')}}" alt="logo-elektra" width="80" height="auto" class="s2sn-img-normal">
-              <img src="{{url('images/logo-elektra-halo.png')}}" alt="logo-elektra" width="80" height="auto" class="s2sn-img-retina">
+              <img src="{{url('images/logo-senbill-halo.png')}}" alt=" logo-senbill" width="80" height="auto" class="s2sn-img-normal">
+              <img src="{{url('images/logo-senbill-halo.png')}}" alt=" logo-senbill" width="80" height="auto" class="s2sn-img-retina">
           </a>
 
 
@@ -172,8 +207,8 @@ html, body {
           <div class="s2sn-login-header-nav  navbarElektra">
          <ul class="s2sn-navbar-elektra">
              @if($notification >=0)
-             <li class="nav-item item-connected">
-               <a class="nav-link {{ $active_4 }}"  href="../suivi-conso/{{ $service }}">
+             <li class="nav-item item-connected {{ $suivi_none == 'active' ? 'disabled' : '' }}">
+               <a class="nav-link {{ $active_4 }}"  href="../suivi-conso/{{ $service }}" onclick="{{ $suivi_none == 'active' ? 'return false' : '' }}">
                  <i  class="fa fa-chart-bar fa-2x ">
                  </i> <p>Suivi conso</p>
                 </a>
@@ -244,8 +279,8 @@ html, body {
               @guest
               @else
               <a class="s2sn-logo-elektra-connected" href="{{ $home_directory }}">
-                  <img src="{{url('images/logo-elektra-halo.png')}}" alt="logo-elektra" width="80" height="auto" class="s2sn-img-normal">
-                  <img src="{{url('images/logo-elektra-halo.png')}}" alt="logo-elektra" width="80" height="auto" class="s2sn-img-retina">
+                  <img src="{{url('images/logo-senbill-halo.png')}}" alt="logo-senbill" width="80" height="auto" class="s2sn-img-normal">
+                  <img src="{{url('images/logo-senbill-halo.png')}}" alt="logo-senbill" width="80" height="auto" class="s2sn-img-retina">
               </a>
 
               <!--  POUR ELECTRICITE -->
@@ -322,8 +357,8 @@ html, body {
           </a>
       </li>
       @else
-      <li class="mobile-nav-elektra-item">
-          <a href="../suivi-conso/{{ $service }}" class="mobile-nav-elektra-link mobile-nav-elektra-link--active">
+      <li class="mobile-nav-elektra-item {{ $suivi_none == 'active' ? 'disabled' : '' }}">
+          <a href="../suivi-conso/{{ $service }}" onclick="{{ $suivi_none == 'active' ? 'return false' : '' }}" class="mobile-nav-elektra-link mobile-nav-elektra-link--active">
               <i class="fa fa-envelope-open-text mobile-nav-elektra-icon"></i>
               Suivi conso
           </a>
@@ -379,7 +414,7 @@ html, body {
 </div>
   <!-- HEADER END -->
 <script>
-$(document).ready(function() {
+ $(document).ready(function() {
   var items = document.querySelectorAll('.menuItemEspace');
 
   for(var i = 0, l = items.length; i < l; i++) {

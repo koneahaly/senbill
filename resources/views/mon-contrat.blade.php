@@ -19,8 +19,6 @@ if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} != 
 @section('content')
 <div class="container">
   <div class="row lottie-lines" style="margin-top:4%;">
-      <lottie-player src="{{url('images/lottie/lines.json')}}"  background="transparent"  speed="0.1"  style="width: 500px; height: 500px; position:absolute;z-index:1000;margin-left:-20%;margin-top: 2.5%;"  loop  autoplay></lottie-player>
-      <lottie-player src="{{url('images/lottie/lines.json')}}"  background="transparent"  speed="0.1"  style="width: 500px; height: 500px; position:absolute;z-index:1000;margin-left:66%;margin-top: 2.5%;"  loop  autoplay></lottie-player>
   </div>
     <div class="row rowmobile" style="margin-top:10%;z-index: 1100;">
       <lottie-player src="{{url('images/lottie/bubble.json')}}" class="lottie-bubbles"  background="transparent"  speed="1"  style="width: 80px; height: 80px; position:absolute;z-index:1000;margin-left:-8%;margin-top: 18%;"  loop  autoplay></lottie-player>

@@ -3,7 +3,7 @@ session_start();
 $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOfBillsNonPaid"] : '';
 
 ?>
-@extends('layouts.realEstate', ['notification' => $notification, 'services' => $actived_services])
+@extends('layouts.realEstate', ['notification' => $notification, 'services' => $actived_services, 'profilNotif' => $_SESSION['profilNotif']])
 
 @section('content')
 
@@ -494,7 +494,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                  </div>
                  <div class="wrap-input100 validate-input bg1 form-group{{ $errors->has('customerId') ? ' has-error' : '' }}" data-validate="Entrez svp un nom pour le logement">
                    <span class="label-input100 control-label">Numéro CNI *</span>
-                   <input class="input100" type="text" pattern="[0-9,A-Z,a-z]{13}" required name="customerId" placeholder="Entrez le numéro de Carte d'identité nationale du locataire">
+                   <input class="input100" type="text" pattern="[0-9,A-Z,a-z]{13,19}" required name="customerId" placeholder="Entrez le numéro de Carte d'identité nationale du locataire">
                    @if ($errors->has('customerId'))
                        <span class="help-block">
                            <strong>{{ $errors->first('customerId') }}</strong>

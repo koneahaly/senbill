@@ -2,7 +2,7 @@
 session_start();
 $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOfBillsNonPaid"] : '';
 ?>
-@extends('layouts.realEstate', ['notification' => $notification, 'services' => $actived_services])
+@extends('layouts.realEstate', ['notification' => $notification, 'services' => $actived_services, 'profilNotif' => $_SESSION['profilNotif']])
 
 @section('content')
 
@@ -108,7 +108,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
 
                     <div class="col-md-6" style="margin-bottom:10px">
                       <p><strong>ADRESSE DE FACTURATION:</strong></p>
-                      <input pattern="[0-9]{1,3}(([,. ]?){1}[-a-zA-Zàâäéèêëïîôöùûüç']+)*" title="l'adresse renseigné n'est pas valide." class="col-form-label" name="address" value="{{Auth::user()->address}}" style="border-bottom:3px solid #084f78 !important" required>
+                      <input pattern="(?=.*[-a-zA-Z0-9]?){1,5}(([,. ]?){1}[-a-zA-Z0-9àâäéèêëïîôöùûüç'°]+)*" title="l'adresse renseigné n'est pas valide." class="col-form-label" name="address" value="{{Auth::user()->address}}" style="border-bottom:3px solid #084f78 !important" required>
                     </div>
                     <br />
                     <div class="row form-check" style="margin-bottom:10px;margin-left:18px">
@@ -140,7 +140,11 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                   <form method="post" action="{{ route('infos-proprietaire') }}">
                     {{csrf_field()}}
                     <div class="col-md-6" style="margin-bottom:10px">
-                      <p><strong>EMAIL</strong></p>
+                    <p><strong>EMAIL</strong>
+                      @if (empty(Auth::user()->date_verify_email))
+                        <i style="color:red" itle="Veuillez valider votre adresse mail en cliquant le lien de vérification depuis votre compte email" class="fas fa-exclamation-circle"></i>
+                      @endif
+                      </p>
                       <span class="recapData">{{ Auth::user()->email }}</span>
                       <div>
                         <button style="background:rgba(137,180,213,1);color:white;margin-top:8px" class="btn">
@@ -158,7 +162,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                     {{csrf_field()}}
                     <div class="col-md-6" style="margin-bottom:10px">
                       <p><strong>EMAIL:</strong></p>
-                      <input <input pattern="\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+" title="l'adresse mail n'est pas valide." class="col-form-label" name="email" value="{{Auth::user()->email}}" style="border-bottom:3px solid #084f78 !important">
+                      <input pattern="\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+" title="l'adresse mail n'est pas valide." class="col-form-label" name="email" value="{{Auth::user()->email}}" style="border-bottom:3px solid #084f78 !important">
                       <div>
                         <button type="submit" name="action_email" value='save' style="margin-top:8px" class="btn btn-primary">
                           <span class="glyphicon glyphicon-edit"></span> Enregistrer
@@ -173,20 +177,44 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                 @endif
 
                 @if(!isset($_POST['update_phone']))
-                  <form method="post" action="{{ route('infos-proprietaire') }}">
-                    {{csrf_field()}}
                     <div class="col-md-6" style="margin-bottom:10px">
-                      <p><strong>PHONE</strong></p>
+                        <p><strong>T&Eacute;L&Eacute;PHONE</strong>
+                        @if (empty(Auth::user()->date_activation_code))
+                          <i style="color:red" title="Veuillez valider votre numéro de téléphone en cliquant sur le bouton vérifier" class="fas fa-exclamation-circle"></i>
+                        @endif
+                        </p>
                       <span class="recapData">{{ Auth::user()->phone }}</span>
-                      <div>
-                        <button style="background:rgba(137,180,213,1);color:white;margin-top:8px" class="btn">
-                          <span class="glyphicon glyphicon-edit"></span> Modifier
-                        </button>
+                      @if (!empty(Auth::user()->date_activation_code))
+                        <span class="glyphicon glyphicon-ok-circle text-success " style="font-size:15px"></span>
+                      @endif
+                      <div class="row">
+                        @if (empty(Auth::user()->date_activation_code))
+                        <div class="col-md-3">
+                          @if (Auth::user()->attempt_sms_sent < 3)
+                            <form method="post" action="../infos-proprietaire">
+                              {{csrf_field()}}
+                              <button class="btn btn-success" style="color:white;margin-top:8px">
+                                <span class="glyphicon glyphicon-saved"></span> Vérifier
+                              </button>
+                              <input type="hidden" name="verify_phone" value="yes"/>
+                              <input type="hidden" name="phone" value="{{ Auth::user()->phone }}"/>
+                              <input type="hidden" name="service" value="propriétaire"/>
+                            </form>
+                          @endif
+                      </div>
+                        @endif
+                        <div class="col-md-3">
+                          <form method="post" action="../infos-proprietaire">
+                            {{csrf_field()}}
+                            <button style="background:rgba(137,180,213,1);color:white;margin-top:8px" class="btn">
+                              <span class="glyphicon glyphicon-edit"></span> Modifier
+                            </button>
+                            <input type="hidden" name="update_phone" value="true"/>
+                            <input type="hidden" name="service" value="propriétaire"/>
+                          </form>
+                        </div> 
                       </div>
                     </div>
-                    <input type="hidden" name="update_phone" value="true"/>
-                    <input type="hidden" name="page" value="proprietaire" />
-                  </form>
                 @endif
 
                 @if(isset($_POST['update_phone']))
@@ -247,4 +275,40 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
     </div>
 </div>
 </div>
+
+<div class="modal fade" id="exampleModal" style="top:20%" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <form method="POST" action="../infos-proprietaire">
+      {{csrf_field()}}
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Vérification du numéro de téléphone</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input name="verification_code" type="text" placeholder="code à 5 chiffres" />
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+        <button type="submit" class="btn btn-primary">Vérifier</button>
+        <input type="hidden" name="verify" value="yes" />
+      </div>
+    </div>
+  </form>
+  </div>
+</div>
+
+<?php
+
+if($withPopup == "true"){
+  echo '<script>
+        $(document).ready(function() {
+          $("#exampleModal").modal("show");
+      });
+  </script>';
+}
+ ?>
+
 @endsection
