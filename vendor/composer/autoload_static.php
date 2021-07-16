@@ -25,9 +25,9 @@ class ComposerStaticInite29c9296813c3a5c421fe01d8e6b437c
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
         'e39a8b23c42d4e1452234d762b03835a' => __DIR__ . '/..' . '/ramsey/uuid/src/functions.php',
+        'fe3b74234e1140ee7cfd9cc2d4c2e566' => __DIR__ . '/..' . '/kylekatarnls/laravel-carbon-2/src/Carbon.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
-        'fe3b74234e1140ee7cfd9cc2d4c2e566' => __DIR__ . '/..' . '/kylekatarnls/laravel-carbon-2/src/Carbon.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -511,6 +511,7 @@ class ComposerStaticInite29c9296813c3a5c421fe01d8e6b437c
         'App\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Image' => __DIR__ . '/../..' . '/app/Image.php',
         'App\\Importation' => __DIR__ . '/../..' . '/app/Importation.php',
         'App\\Invoice' => __DIR__ . '/../..' . '/app/Invoice.php',
         'App\\Mail\\Contact' => __DIR__ . '/../..' . '/app/Mail/Contact.php',
@@ -525,7 +526,6 @@ class ComposerStaticInite29c9296813c3a5c421fe01d8e6b437c
         'App\\Rules\\Captcha' => __DIR__ . '/../..' . '/app/Rules/Captcha.php',
         'App\\Service' => __DIR__ . '/../..' . '/app/Service.php',
         'App\\Subscription' => __DIR__ . '/../..' . '/app/Subscription.php',
-        'App\\UploadImage' => __DIR__ . '/../..' . '/app/UploadImage.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
         'Aws\\ACMPCA\\ACMPCAClient' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/ACMPCA/ACMPCAClient.php',
         'Aws\\ACMPCA\\Exception\\ACMPCAException' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/ACMPCA/Exception/ACMPCAException.php',

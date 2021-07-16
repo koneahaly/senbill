@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUploadImagesTable extends Migration
+class CreateImagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateUploadImagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('upload_images', function (Blueprint $table) {
+        Schema::create('images', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('housing_id')->unsigned();
+            $table->foreign('housing_id')->references('id')->on('owns')->onDelete('cascade')->onUpdate('cascade');
             $table->string('filename');
-            $table->string('resized_name');
-            $table->string('original_name');
             $table->string('url');
             $table->timestamps();
         });
@@ -30,6 +30,6 @@ class CreateUploadImagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('upload_images');
+        Schema::dropIfExists('images');
     }
 }

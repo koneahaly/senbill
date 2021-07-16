@@ -83,12 +83,15 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                      <!-- DEBUT BODY DETAIL -->
                      <div class="m-panel__body">
                        <div class="body-detail">
+                       <div class="detail-img">
                        @foreach($images as $image)
-                        <div class="detail-img"> <a title="icone logement" href="">
-                          <img imageonload="" class="img-responsive s-image--loading_success" alt="{{$image['name']}}" src="{{ $image['src'] }}">
-                         </a>
+                        @if($image['housing_id'] == $vl->id)
+                            <a title="icone logement" href="">
+                            <img imageonload="" class="img-responsive s-image--loading_success" alt="avatar" src="{{$image['src']}}">
+                          </a>
+                          @endif
+                         @endforeach
                        </div>
-                       @endforeach
                         <div class="detail-info">
                            <div class="info-name">
                               <div class="name-address">
@@ -219,7 +222,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
          </div>
 
          <!---FORMULAIRE AJOUT LOGEMENT-->
-         <form method="post" action="{{ route('mes-logements.add') }}">
+         <form method="post" action="{{ route('mes-logements.add') }}" id="add_logement">
            {{csrf_field()}}
            <div class="container-contact100 form-popup" id="propForm">
              <div class="wrap-contact100">
@@ -289,8 +292,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                       </div>
                    </div>
                  </div>
-
-
+               
                <!--  <div class="wrap-input100 input100-select bg1">
                    <span class="label-input100">Libre ou occupé *</span>
                    <div>
@@ -322,10 +324,10 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                        </label>
                      </div>
                    </div>
-
+                   <!-- <input type="hidden" name="housing_id"  /> -->
                  </div>
                  <div class="container-contact100-form-btn">
-                   <button type="submit" class="contact100-form-btn">
+                   <button type="submit" class="contact100-form-btn" id="submit_form">
                      <span>
                        Ajoutez
                        <i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
@@ -823,36 +825,49 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
      $(document).ready(function () {
       var total_photos_counter = 0;
       var name = "";
-    // Dropzone.autoDiscover = false;
     $("#dZUpload").dropzone({
       headers: {
 						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 					},
         method: "POST",
         url: "{{ route('images.add') }}",
-        // uploadMultiple: true,
-        parallelUploads: 2,
-        maxFilesize: 100,
+        uploadMultiple: false,
+        autoProcessQueue: false,
+        parallelUploads: 4,
+        maxFilesize: 5,
         addRemoveLinks: true,
         dictRemoveFile: "Enlever l'image",
-        dictFileTooBig: 'Image is larger than 16MB',
+        dictFileTooBig: "L'image est supérieure à 16 Mo",
         timeout: 10000,
         renameFile: function (file) {
-        // name = new Date().getTime() + Math.floor((Math.random() * 100) + 1) + '_' + file.name;
-        name = new Date().getTime() + '_' + file.name;
+        name = new Date().getTime() + Math.floor((Math.random() * 100) + 1) + '_' + file.name;
         return name;
     },
-        success: function (file, response) {
-            var imgName = response;
+    init: function () {
+        var myDropzone = this;
+        $('#submit_form').on("click", function() {
+            myDropzone.processQueue();
+        });
+        this.on("sending", function(file, xhr, formData){
+            $('#add_logement').find('input').each(function() {
+                formData.append( $(this).attr('name'), $(this).val() );
+            });
+        });
+        this.on("success", function(file, response) {
+          var imgName = response;
             file.previewElement.classList.add("dz-success");
             console.log("Successfully uploaded :" + imgName);
             total_photos_counter++;
             $("#counter").text("# " + total_photos_counter + "  images(s) au total" );
             file["customName"] = name;
-        },
-        error: function (file, response) {
-            file.previewElement.classList.add("dz-error");
-        }
+            console.log(response);
+        });
+        this.on("error", function(file, response) {
+          file.previewElement.classList.add("dz-error");
+        });
+      
+    },
+      
     });
 });
      </script>

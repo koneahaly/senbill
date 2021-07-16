@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Bill;
 use App\Own;
 use App\User;
+use App\Image;
 use App\Service;
 use App\Contract;
 use Illuminate\Support\Facades\Validator;
@@ -19,6 +20,9 @@ use stdClass;
 use Session;
 use Faker\Factory as Faker;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
+
+
 
 class realEstateOwnerController extends Controller
 {
@@ -144,15 +148,18 @@ class realEstateOwnerController extends Controller
       Session::push('profilNotif', $profilNotif);
 
       //DEBUT IMAGE DISPLAYING
-      $url = 'https://s3.' . env('AWS_REGION') . '.amazonaws.com/' . env('AWS_BUCKET') . '/';
+      $photos_housing = Image::all();
       $images = [];
-      $files = Storage::disk('s3')->files('images');
-      foreach ($files as $file) {
-      $images[] = [
-      'name' => str_replace('images/', '', $file),
-      'src' => $url . $file
-      ];
+      foreach ($photos_housing as $key=>$photo) {
+       
+        $images[] = [
+          'id' => $photo->id,
+          'housing_id' => $photo->housing_id,
+          'name' =>  $photo->filename,
+          'src' => $photo->url
+          ];
       }
+      
       //END IMAGE DISPLAYING
 
       $actived_services['actived_services'] = DB::table('services')->where('customerId',$s)->first();
@@ -183,6 +190,35 @@ class realEstateOwnerController extends Controller
       $own->save();
       //return redirect()->intended(route('ownerProperties'));
       return redirect()->back()->with('message', 'Le logement a été correctement ajouté!');
+    }
+
+    public function storeImg(Request $given)
+    {
+       
+        $this->validate($given,[
+            'title'=> 'required|min:4|max:255',
+            'address'=> 'required|min:10|max:255',
+            'file' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        ]);
+  
+        $s=Auth::user()->customerId;
+        
+      if ($given->hasFile('file')) {
+          $file = $given->file('file');
+          $imageName = $s."_".$given->title."_".$given->address."_".$file->getClientOriginalName();
+          $path = $given->file('file')->store('images', 's3');
+          $housing_id = Own::latest('id')->first();
+          $upload = new Image();
+          $upload->housing_id = $housing_id->id;
+          $upload->filename = $imageName;
+          $upload->url = Storage::disk('s3')->url($path);;
+          $upload->save();
+           
+      }
+ 
+        // return back()->withSuccess('Image téléchargée avec succès');
+        return redirect()->back()->with('message', 'Le logement a été correctement ajouté!');
+            
     }
 
     public function update_housing(Request $given){
