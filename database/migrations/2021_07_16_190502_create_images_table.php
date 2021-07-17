@@ -19,6 +19,7 @@ class CreateImagesTable extends Migration
             $table->foreign('housing_id')->references('id')->on('owns')->onDelete('cascade')->onUpdate('cascade');
             $table->string('filename');
             $table->string('url');
+            $table->string('default_img_url');
             $table->timestamps();
         });
     }

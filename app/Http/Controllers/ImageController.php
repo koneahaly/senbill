@@ -33,6 +33,7 @@ class ImageController extends Controller
   
         $s=Auth::user()->customerId;
         
+  
       if ($given->hasFile('file')) {
           $file = $given->file('file');
           $imageName = $s."_".$given->title."_".$given->nb_rooms."_".$file->getClientOriginalName();
@@ -46,8 +47,8 @@ class ImageController extends Controller
            
       }
  
-        return back()->withSuccess('Image téléchargée avec succès');
-        // return redirect()->back()->with('message', 'Le logement a été correctement ajouté!');
+        // return back()->withSuccess('Image téléchargée avec succès');
+        return redirect()->back()->with('message', 'Le logement a été correctement ajouté!');
             
     }
 

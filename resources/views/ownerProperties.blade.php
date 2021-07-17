@@ -217,8 +217,6 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
              </div>
            @endif
 
-
-
          </div>
 
          <!---FORMULAIRE AJOUT LOGEMENT-->
@@ -277,21 +275,25 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                  </div>
                  <div class="wrap-input100 input100-select bg1">
                  <div class="row">
-                  <div class="col-md-6">
-                  <span class="label-input100">Image/Photo du logement * </span> 
+                  <div class="col-md-">
+                  <span class="label-input100">Image/Photo du logement * </span>
+                  <p>La dernière Image/Photo sera par défaut</p>
                   </div>
-                  <div class="col-md-6">
+                  </div>
+                  <div class="row">
+                  <div class="col-md-12">
                   <span style="color: #7790b3; text-align:center;" id="counter"></span>
                   </div>
                  </div>
                    <div>
-                      <div id="dZUpload" class="dropzone">
+                      <div id="dZUpload" class="dropzone" style="margin-left:6px;">
                         <div class="dz-default dz-message">
                           <p>Déposez les images/photos ici ou cliquez pour télécharger</p>
                         </div>
                       </div>
                    </div>
                  </div>
+                
                
                <!--  <div class="wrap-input100 input100-select bg1">
                    <span class="label-input100">Libre ou occupé *</span>
@@ -834,7 +836,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
         uploadMultiple: false,
         autoProcessQueue: false,
         parallelUploads: 4,
-        maxFilesize: 5,
+        maxFilesize: 16,
         addRemoveLinks: true,
         dictRemoveFile: "Enlever l'image",
         dictFileTooBig: "L'image est supérieure à 16 Mo",

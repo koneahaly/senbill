@@ -147,20 +147,24 @@ class realEstateOwnerController extends Controller
       }
       Session::push('profilNotif', $profilNotif);
 
-      //DEBUT IMAGE DISPLAYING
+      //DEBUT DEFAULT IMAGE DISPLAYING
       $photos_housing = Image::all();
       $images = [];
       foreach ($photos_housing as $key=>$photo) {
-       
-        $images[] = [
-          'id' => $photo->id,
-          'housing_id' => $photo->housing_id,
-          'name' =>  $photo->filename,
-          'src' => $photo->url
-          ];
+        $img_default_url = DB::table('images')->where('housing_id',$photo->housing_id)->get()->first();
+
+        if($photo->url == $img_default_url->url){
+            $images[] = [
+              'id' => $photo->id,
+              'housing_id' => $photo->housing_id,
+              'name' =>  $photo->filename,
+              'src' =>  $img_default_url->url
+              ];
+        }
+      
       }
       
-      //END IMAGE DISPLAYING
+      //END DEFAULT IMAGE DISPLAYING
 
       $actived_services['actived_services'] = DB::table('services')->where('customerId',$s)->first();
       $infos_perso['infos_perso']=DB::table('users')->where('customerId',$s)->first();
@@ -189,7 +193,8 @@ class realEstateOwnerController extends Controller
       $own->status=$given->status_housing;
       $own->save();
       //return redirect()->intended(route('ownerProperties'));
-      return redirect()->back()->with('message', 'Le logement a été correctement ajouté!');
+      return back()->withSuccess('Le logement a été correctement ajouté!');
+      // return redirect()->back()->with('message', 'Le logement a été correctement ajouté!');
     }
 
     public function storeImg(Request $given)
@@ -200,6 +205,7 @@ class realEstateOwnerController extends Controller
             'address'=> 'required|min:10|max:255',
             'file' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
+       
   
         $s=Auth::user()->customerId;
         
@@ -211,14 +217,13 @@ class realEstateOwnerController extends Controller
           $upload = new Image();
           $upload->housing_id = $housing_id->id;
           $upload->filename = $imageName;
-          $upload->url = Storage::disk('s3')->url($path);;
+          $upload->url = Storage::disk('s3')->url($path);
+          $upload->default_img_url = Storage::disk('s3')->url($path);
           $upload->save();
-           
       }
  
         // return back()->withSuccess('Image téléchargée avec succès');
         return redirect()->back()->with('message', 'Le logement a été correctement ajouté!');
-            
     }
 
     public function update_housing(Request $given){
