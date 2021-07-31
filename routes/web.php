@@ -33,6 +33,10 @@ Route::post('/infos-services/{id?}', 'HomeController@display_services_infos')->n
 Route::post('/infos-personnelles/{id?}/update', 'HomeController@update_personal_infos')->name('infos-personnelles.update');
 Route::post('/infos-proprietaire/update', 'HomeController@update_personal_infos')->name('infos-proprietaire.update');
 Route::get('/suivi-conso/{id?}', 'HomeController@suivi_conso')->name('suivi-conso');
+//Rechercher logement
+Route::get('/rechercher-logement', 'HomeController@rechercher_logement')->name('recherche-logement');
+Route::get('/', 'HomeController@search')->name('search');
+//End rechercher logement
 Route::post('/infos-services/{id?}/update', 'HomeController@update_services_infos')->name('infos-services.update');
 Route::post('/infos-services-pro/update', 'HomeController@update_services_pro_infos')->name('infos-services-pro.update');
 
