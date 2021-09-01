@@ -9,6 +9,11 @@
     <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
 
     <title><?php echo e(config('app.name', 'eLECTRA')); ?></title>
+    <!-- <link rel="stylesheet" href="<?php echo e(asset('/css/dropzone/bootstrap.css')); ?>"> -->
+    <link rel="stylesheet" href="<?php echo e(asset('css/dropzone/dropzone.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(asset('css/dropzone/custom.css')); ?>">
+    
+<?php echo $__env->yieldContent('head'); ?>
 
     <!-- Scripts -->
   <script type="text/javascript">
@@ -16,7 +21,6 @@
        window.FontAwesomeConfig = { autoReplaceSvg: false }
   </script>
     <script src="<?php echo mix('js/app.js'); ?>"></script>
-
 
   <?php echo $__env->yieldContent('scripts'); ?>
 
@@ -93,6 +97,10 @@ if($_SERVER['REQUEST_URI'] == '/register')
   $home_directory = '.';
 ?>
 
+
+
+    
+
 <style>
 html, body {
     max-width: 100%;
@@ -105,6 +113,8 @@ html, body {
   opacity: 0.5;
   text-decoration: none;
 }
+
+
 
 </style>
 </head>

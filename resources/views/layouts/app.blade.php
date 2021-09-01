@@ -50,6 +50,11 @@ function calltouchpay(){
     <link href="{{ asset('css/graphicalChart.css') }}" rel="stylesheet">
     <!-- <link rel="stylesheet" href="https://paytech.sn/cdn/paytech.min.css"> -->
 
+    <!--Search housing form Load icon library -->
+    <!-- <link href="https://fonts.googleapis.com/css?family=Lato:400,600,700" rel="stylesheet" /> -->
+   
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+
 
     <link href="{{ URL::asset('css/common.css') }}" rel="stylesheet">
     <link rel="icon" type="image/png" href="https://elektra.s3.amazonaws.com/images/icons/logo-senbill-halo.png"/>
@@ -75,14 +80,22 @@ function calltouchpay(){
 <link rel="stylesheet" type="text/css" href="css/util.css">
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <link rel="stylesheet" type="text/css" href="{{url('css/elektra.css')}}">
+<link rel="stylesheet" type="text/css" href="{{url('css/realEstate.css')}}">
+<link rel="stylesheet" type="text/css" href="{{url('css/locationModule.css')}}">
 <link href='https://fonts.googleapis.com/css?family=Alegreya+Sans:400,800' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="{{url('css/jquery.range.css')}}">
 <link rel="stylesheet" href="{{url('css/payment_modal.css')}}">
+<!-- <link rel="stylesheet" type="text/css" href="{{url('css/realEstate.css')}}"> -->
 <script src="{{ url('js/jquery.range.js') }}"></script>
 <script src="{{ url('js/lottie-player.js') }}"></script>
 <link rel="stylesheet" type="text/css" href="{{ url('css/sweetalert.min.css') }}">
 <script src="{{ url('js/notify.js') }}"></script>
 <script src="{{ url('js/sweetalert.min.js') }}"></script>
+
+
+
+<!--=====================logement dispalying search result=================================================================-->
+
 
 <!--===============================================================================================-->
 
@@ -99,7 +112,7 @@ $active_4 ='none';
 
 $suivi_none='none';
 
-if($_SERVER['REQUEST_URI'] == '/register' || strpos($_SERVER['REQUEST_URI'],"admin") == true){
+if($_SERVER['REQUEST_URI'] == '/register' || $_SERVER['REQUEST_URI'] == '/login' || strpos($_SERVER['REQUEST_URI'],"admin") == true){
   $home_directory = '.';
   $service="";
 }
@@ -113,7 +126,7 @@ if(strpos($_SERVER['REQUEST_URI'],"mon-contrat") == true)
   $active_2 = 'active';
 if(strpos($_SERVER['REQUEST_URI'],"mes-factures") == true)
   $active_3 = 'active';
-if(strpos($_SERVER['REQUEST_URI'],"suivi-conso") == true)
+if(strpos($_SERVER['REQUEST_URI'],"rechercher-logement") == true)
     $active_4 = 'active';
 if(strpos($_SERVER['REQUEST_URI'],"infos-services") == true)
       $active_1 = 'active';
@@ -207,10 +220,16 @@ html, body {
           <div class="s2sn-login-header-nav  navbarElektra">
          <ul class="s2sn-navbar-elektra">
              @if($notification >=0)
-             <li class="nav-item item-connected {{ $suivi_none == 'active' ? 'disabled' : '' }}">
+             <!-- <li class="nav-item item-connected {{ $suivi_none == 'active' ? 'disabled' : '' }}">
                <a class="nav-link {{ $active_4 }}"  href="../suivi-conso/{{ $service }}" onclick="{{ $suivi_none == 'active' ? 'return false' : '' }}">
                  <i  class="fa fa-chart-bar fa-2x ">
                  </i> <p>Suivi conso</p>
+                </a>
+             </li> -->
+             <li class="nav-item item-connected">
+               <a class="nav-link {{ $active_4 }}"  href="{{ route('recherche-logement') }}">
+                 <i  class="fa fa-search fa-2x ">
+                 </i> <p>Trouver un logement</p>
                 </a>
              </li>
                <li class="nav-item item-connected">
@@ -357,10 +376,16 @@ html, body {
           </a>
       </li>
       @else
-      <li class="mobile-nav-elektra-item {{ $suivi_none == 'active' ? 'disabled' : '' }}">
+      <!-- <li class="mobile-nav-elektra-item {{ $suivi_none == 'active' ? 'disabled' : '' }}">
           <a href="../suivi-conso/{{ $service }}" onclick="{{ $suivi_none == 'active' ? 'return false' : '' }}" class="mobile-nav-elektra-link mobile-nav-elektra-link--active">
               <i class="fa fa-envelope-open-text mobile-nav-elektra-icon"></i>
               Suivi conso
+          </a>
+      </li> -->
+      <li class="mobile-nav-elektra-item">
+          <a href="{{ route('recherche-logement') }}" class="mobile-nav-elektra-link">
+              <i class="fa fa-search mobile-nav-elektra-icon"></i>
+              Trouver un logement
           </a>
       </li>
       <li class="mobile-nav-elektra-item">

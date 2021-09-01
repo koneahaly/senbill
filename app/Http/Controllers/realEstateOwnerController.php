@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Bill;
 use App\Own;
 use App\User;
+use App\Image;
 use App\Service;
 use App\Contract;
 use Illuminate\Support\Facades\Validator;
@@ -18,6 +19,11 @@ use Illuminate\Mail\Mailable;
 use stdClass;
 use Session;
 use Faker\Factory as Faker;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
+
+
+
 
 class realEstateOwnerController extends Controller
 {
@@ -142,20 +148,50 @@ class realEstateOwnerController extends Controller
       }
       Session::push('profilNotif', $profilNotif);
 
+      //DEBUT DEFAULT IMAGE DISPLAYING
+      $photos_housing = Image::all()->where('status','<>','D');
+      $images = [];
+      foreach ($photos_housing as $key=>$photo) {
+        $img_default_url = DB::table('images')->where('housing_id',$photo->housing_id)->get()->last();
+
+        if($photo->url == $img_default_url->url){
+            $images[] = [
+              'id' => $photo->id,
+              'housing_id' => $photo->housing_id,
+              'name' =>  $photo->filename,
+              'src' =>  $img_default_url->url
+              ];
+        }
+      
+      }
+     
+      $images_housing_id = array();
+      foreach ($photos_housing as $key=>$photo) {
+            $img_s[] = [
+              'id' => $photo->id,
+              'housing_id' => $photo->housing_id,
+              'name' =>  $photo->filename,
+              'src' =>  $photo->url
+              ];
+      }
+      
+      //END DEFAULT IMAGE DISPLAYING
+
       $actived_services['actived_services'] = DB::table('services')->where('customerId',$s)->first();
       $infos_perso['infos_perso']=DB::table('users')->where('customerId',$s)->first();
       $infos_log['infos_log']=DB::table('owns')->where('owner_id',$s)->where('status','<>','D')->get();
       $nb_log=(int)DB::table('owns')->where('owner_id',$s)->where('status','<>','D')->count();
-      return view('ownerProperties')->with($infos_perso)->with($infos_log)->with('nb_log',$nb_log)->with($actived_services)->with(compact('profilNotif'));
+      return view('ownerProperties')->with($infos_perso)->with($infos_log)->with('nb_log',$nb_log)->with($actived_services)->with(compact('profilNotif', 'images','img_s'));
 
     }
 
     public function add_housing(Request $given){
-
+     
       $this->validate($given,[
           'title'=> 'required|min:4|max:255',
           'address'=> 'required|min:10|max:255',
-          'city'=> 'required|min:3|max:45'
+          'city'=> 'required|min:3|max:45',
+          'file' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
       ]);
 
       $s=Auth::user()->customerId;
@@ -164,33 +200,92 @@ class realEstateOwnerController extends Controller
       $own->title=$given->title;
       $own->address=$given->address;
       $own->city=$given->city;
-      $own->nb_rooms=$given->nb_rooms;
+      $own->nb_rooms=$given->strong_option_selected;
       $own->housing_type=$given->housing_type;
       $own->status=$given->status_housing;
       $own->save();
       //return redirect()->intended(route('ownerProperties'));
-      return redirect()->back()->with('message', 'Le logement a été correctement ajouté!');
+
+      if ($given->hasFile('file')) {
+        $file = $given->file('file');
+        $imageName = $s."_".$given->title."_".$given->address."_".$file->getClientOriginalName();
+        $path = $given->file('file')->store('images', 's3');
+        $housing_id = Own::latest('id')->first();
+        $upload = new Image();
+        $upload->housing_id = $housing_id->id;
+        $upload->filename = $imageName;
+        $upload->url = Storage::disk('s3')->url($path);
+        $upload->default_img_url = Storage::disk('s3')->url($path);
+        $upload->save();
     }
 
+      return back()->withSuccess('Le logement a été correctement ajouté!');
+      // return redirect()->back()->with('message', 'Le logement a Ã©tÃ© correctement ajoutÃ©!');
+    }
+
+  /*  public function storeImg(Request $given)
+    {
+       
+        $this->validate($given,[
+            'title'=> 'required|min:4|max:255',
+            'address'=> 'required|min:10|max:255',
+            'file' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        ]);
+       
+  
+        $s=Auth::user()->customerId;
+        
+      if ($given->hasFile('file')) {
+          $file = $given->file('file');
+          $imageName = $s."_".$given->title."_".$given->address."_".$file->getClientOriginalName();
+          $path = $given->file('file')->store('images', 's3');
+          $housing_id = Own::latest('id')->first();
+          $upload = new Image();
+          $upload->housing_id = $housing_id->id;
+          $upload->filename = $imageName;
+          $upload->url = Storage::disk('s3')->url($path);
+          $upload->default_img_url = Storage::disk('s3')->url($path);
+          $upload->save();
+      }
+ 
+        // return back()->withSuccess('Image téléchargée avec succès');
+        return redirect()->back()->with('message', 'Le logement a été correctement ajouté!');
+    }*/
+
     public function update_housing(Request $given){
+
 
         $this->validate($given,[
             'title'=> 'required|min:4|max:255',
             'address'=> 'required|min:10|max:255',
-            'city'=> 'required|min:3|max:45'
+            'city'=> 'required|min:3|max:45',
+            'file' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
 
         $s=Auth::user()->customerId;
           DB::table('owns')
               ->where('owner_id', $s)->where('id',$given->housing_id_m)
               ->update(['title' => $given->title, 'address' => trim($given->address),'city' => $given->city,
-               'nb_rooms' => $given->nb_rooms_housing_m,'housing_type' => $given->type_housing_m,'status' => $given->status_housing_m]);
+               'nb_rooms' => $given->strong_nb_rooms_housing,'housing_type' => $given->type_housing_m,'status' => $given->strong_status_housing]);
 
         if($given->status_housing_m == "Y"){
           DB::table('contracts')
               ->where('owner_id', $s)->where('id_own',$given->housing_id_m)
               ->update(['status' => 'N']);
         }
+
+        if ($given->hasFile('file')) {
+          $file = $given->file('file');
+          $imageName = $s."_".$given->title."_".$given->address."_".$file->getClientOriginalName();
+          $path = $given->file('file')->store('images', 's3');
+          $upload = new Image();
+          $upload->housing_id = $given->housing_id_m;
+          $upload->filename = $imageName;
+          $upload->url = Storage::disk('s3')->url($path);
+          $upload->default_img_url = Storage::disk('s3')->url($path);
+          $upload->save();
+      }
+
         return redirect()->back()->with('message', 'Le logement a été correctement modifié!');
       }
 
@@ -206,6 +301,17 @@ class realEstateOwnerController extends Controller
             ->update(['status' => 'D']);
 
         return redirect()->intended(route('ownerProperties'));
+      }
+
+      public function delete_image(Request $given){
+
+        DB::table('images')
+            ->where('id',$given->image_id)
+            ->update(['status' => 'D']);
+
+        //Log::info('Mes informations 1.', ['data' => $given->data]);
+        //Log::info('Mes informations 2.', ['data' => $given->request]);
+        //Log::info('Mes informations 3.', ['data' => $given->image_id]);
       }
 
       public function add_occupant(Request $given){
@@ -226,7 +332,7 @@ class realEstateOwnerController extends Controller
         if($renter_check_id < 1){
           $occupant_id = $given->customerId;
           if(strpos($given->phone,'+221') !== false){
-            $treat_phone = substr($given->phone,4,1);
+            $treat_phone = $given->phone;
           }
           else{
             $treat_phone = "+221".$given->phone;
@@ -267,7 +373,7 @@ class realEstateOwnerController extends Controller
 
         if($contract->bail > 0){
 
-          $months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
+          $months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'AoÃ»t', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
           $month_int = date('n') - 1; //to begin at zero as table index
 
           $faker = Faker::create('fr_FR');
@@ -302,7 +408,7 @@ class realEstateOwnerController extends Controller
             $co->html_verify_email($given->email,$given->first_name.' '.$given->name,'SEN BILL');
             $co->html_email_pro($given->email,$given->first_name.' '.$given->name,$proprio->first_name.' '.$proprio->name,$given->name.'123','SEN BILL');
 
-            return redirect()->back()->with('message', 'Le locataire a été correctement ajouté au logement, il recevra sous peu un email l\'invitant à rejoindre Senbill pour payer ses factures!');
+            return redirect()->back()->with('message', 'Le locataire a été correctement ajouté au logement, il recevra sous peu un email l\'invitant à  rejoindre Senbill pour payer ses factures!');
       }
 
       public function update_occupant(Request $given){
@@ -333,7 +439,7 @@ class realEstateOwnerController extends Controller
             ->update(['bail' => $given->bail, 'monthly_pm' => $given->monthly_pm,
           'delay' =>$given->delay, 'frequency' => $given->frequency]);
 
-          return redirect()->back()->with('message', 'Le locataire a été correctement modifié');
+          return redirect()->back()->with('message', 'Le locataire a Ã©tÃ© correctement modifiÃ©');
       }
 
       public function delete_occupant(Request $given,$id){
