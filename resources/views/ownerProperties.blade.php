@@ -82,11 +82,15 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                      <div class="markup"></div>
                      <!-- DEBUT BODY DETAIL -->
                      <div class="m-panel__body">
-
                        <div class="body-detail">
-                        <div class="detail-img"> <a title="icone logement" href="">
-                          <img imageonload="" class="img-responsive s-image--loading_success" alt="avatar" src="{{url('images/icon-undraw-house.png')}}">
-                         </a>
+                       <div class="detail-img">
+                       @foreach($images as $image)
+                        @if($image['housing_id'] == $vl->id)
+                            <a title="icone logement" href="">
+                            <img imageonload="" class="img-responsive s-image--loading_success" alt="avatar" src="{{$image['src']}}">
+                          </a>
+                          @endif
+                         @endforeach
                        </div>
                         <div class="detail-info">
                            <div class="info-name">
@@ -193,6 +197,12 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                  <input type="hidden" class="modify_status_{{ $vl->id }}" value="{{ $vl->status }}" />
                  <input type="hidden" class="modify_nb_rooms_{{ $vl->id }}" value="{{ $vl->nb_rooms }}" />
                  <input type="hidden" class="modify_housing_type_{{ $vl->id }}" value="{{ $vl->housing_type }}" />
+                 @foreach($img_s as $img_)
+                        @if($img_['housing_id'] == $vl->id)
+                        <input type="hidden" class="modify_image_{{ $vl->id }}" value="{{ $img_['src'] }}" />
+                        <input type="hidden" class="image_id_{{ $vl->id }}" value="{{ $img_['id'] }}" />
+                        @endif
+                 @endforeach
                  @endforeach
 
        <!---FIN CARTE LOGEMENT 1 -->
@@ -213,12 +223,10 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
              </div>
            @endif
 
-
-
          </div>
 
          <!---FORMULAIRE AJOUT LOGEMENT-->
-         <form method="post" action="{{ route('mes-logements.add') }}">
+         <form method="post" action="{{ route('mes-logements.add') }}" id="add_logement">
            {{csrf_field()}}
            <div class="container-contact100 form-popup" id="propForm">
              <div class="wrap-contact100">
@@ -259,26 +267,47 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                    <span class="label-input100">Nombre de chambres *</span>
                    <div>
                      <select class="js-select-bed" name="nb_rooms" required>
-                       <option>Studio</option>
-                       <option>1</option>
-                       <option>2</option>
-                       <option>3</option>
-                       <option>4</option>
-                       <option>5</option>
-                       <option>6</option>
-                       <option>maison</option>
+                       <option value="Studio">Studio</option>
+                       <option value="1">1</option>
+                       <option value="2">2</option>
+                       <option value="3">3</option>
+                       <option value="4">4</option>
+                       <option value="5">5</option>
+                       <option value="6">6</option>
+                       <option value="maison">maison</option>
                      </select>
                      <div class="dropDownSelect2"></div>
                    </div>
                  </div>
-
+                 <div class="wrap-input100 input100-select bg1">
+                 <div class="row">
+                  <div class="col-md-">
+                  <span class="label-input100">Image/Photo du logement * </span>
+                  <p>La dernière Image/Photo sera par défaut</p>
+                  </div>
+                  </div>
+                  <div class="row">
+                  <div class="col-md-12">
+                  <span style="color: #7790b3; text-align:center;" id="counter"></span>
+                  </div>
+                 </div>
+                   <div>
+                      <div id="dZUpload" class="dropzone" style="margin-left:6px;">
+                        <div class="dz-default dz-message">
+                          <p>Déposez les images/photos ici ou cliquez pour télécharger</p>
+                        </div>
+                      </div>
+                   </div>
+                 </div>
+                
+               
                <!--  <div class="wrap-input100 input100-select bg1">
-                   <span class="label-input100">Libre ou occupé *</span>
+                   <span class="label-input100">Libre ou occupÃ© *</span>
                    <div>
                      <select class="js-select2" name="status_housing" required>
                        <option disabled>Choisir svp</option>
                        <option value="Y">Logement libre</option>
-                       <option value="N">Logement occupé</option>
+                       <option value="N">Logement occupÃ©</option>
                      </select>
                      <div class="dropDownSelect2"></div>
                    </div>
@@ -303,12 +332,10 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                        </label>
                      </div>
                    </div>
-
+                   <!-- <input type="hidden" name="housing_id"  /> -->
                  </div>
-
-
                  <div class="container-contact100-form-btn">
-                   <button type="submit" class="contact100-form-btn">
+                   <button type="submit" class="contact100-form-btn" id="submit_form">
                      <span>
                        Ajoutez
                        <i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
@@ -319,11 +346,12 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
              </div>
            </div>
          </form>
+       
 
          <!--- FIN FORMULAIRE AJOUT LOGEMENT-->
 
          <!---DESCRIPTION LOGEMENT-->
-         <form method="post" action="{{ route('mes-logements.update') }}">
+         <form method="post" action="{{ route('mes-logements.update') }}" id="update_logement">
            {{csrf_field()}}
            <div class="container-contact100 desc-popup" id="propDesc">
              <div class="wrap-contact100">
@@ -363,7 +391,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                  <div class="wrap-input100 input100-select bg1">
                    <span class="label-input100">Nombre de chambres *</span>
                    <div class="update_nb_rooms_log">
-                     <select class="js-select-bed" name="nb_rooms_housing_m" required>
+                     <select class="js-select-bed js-select-bed-m" name="nb_rooms_housing_m" required>
                        <option class="disp_studio" value="Studio">Studio</option>
                        <option class="disp_1" value="1">1</option>
                        <option class="disp_2" value="2">2</option>
@@ -378,9 +406,30 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                  </div>
 
                  <div class="wrap-input100 input100-select bg1">
+                 <div class="row">
+                  <div class="col-md-">
+                  <span class="label-input100">Image/Photo du logement * </span>
+                  <p>La dernière Image/Photo sera par défaut</p>
+                  </div>
+                  </div>
+                  <div class="row">
+                  <div class="col-md-12">
+                  <span style="color: #7790b3; text-align:center;" id="counter"></span>
+                  </div>
+                 </div>
+                   <div>
+                      <div id="dZUploadMd" class="dropzone" style="margin-left:6px;">
+                        <div class="dz-default dz-message dz-image">
+                          <p>Déposez les images/photos ici ou cliquez pour télécharger</p>
+                        </div>
+                      </div>
+                   </div>
+                 </div>
+
+                 <div class="wrap-input100 input100-select bg1">
                    <span class="label-input100">Libre ou occupé *</span>
                    <div class="update_status_log">
-                     <select class="js-select2" name="status_housing_m" required>
+                     <select class="js-select2 js-select2-m" name="status_housing_m" required>
                        <option disabled>Choisir svp</option>
                        <option class="status_Y" value="Y">Logement libre</option>
                        <option class="status_N" value="N">Logement occupé</option>
@@ -388,6 +437,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                      <div class="dropDownSelect2"></div>
                    </div>
                  </div>
+
                  <div class="w-full dis-none js-show-service">
                    <div class="wrap-contact100-form-radio">
                      <span class="label-input100">Le logement est-il meublé?</span>
@@ -410,14 +460,14 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                  </div>
 
                  <div class="container-contact100-form-btn">
-                   <button type="submit" class="contact100-form-btn">
+                   <button type="submit" class="contact100-form-btn" id="submit_form_m">
                      <span>
                        Modifier
                        <i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
                      </span>
                    </button>
                  </div>
-                 <input type="hidden" name="housing_id_m" class="update_housing_id" value=""/>
+                 <input type="hidden" name="housing_id_m" class="update_housing_id" value="true"/>
                </form>
              </div>
            </div>
@@ -446,9 +496,9 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                    </div>
                    <div class="rs1-wrap-input100">
                    </div>
-                 <div class="wrap-input100 validate-input bg1 rs1-wrap-input100 form-group{{ $errors->has('first_name') ? ' has-error' : '' }}" data-validate = "Entrez le prénom">
+                 <div class="wrap-input100 validate-input bg1 rs1-wrap-input100 form-group{{ $errors->has('first_name') ? ' has-error' : '' }}" data-validate = "Entrez le prÃ©nom">
                    <span class="label-input100 control-label">Prénom *</span>
-                   <input class="input100" type="text" name="first_name" required placeholder="Entrez le prénom du locataire">
+                   <input class="input100" type="text" name="first_name" required placeholder="Entrez le prÃ©nom du locataire">
                    @if ($errors->has('first_name'))
                        <span class="help-block">
                            <strong>{{ $errors->first('first_name') }}</strong>
@@ -485,7 +535,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
 
                  <div class="wrap-input100 bg1 rs1-wrap-input100 form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
                    <span class="label-input100 control-label">Téléphone * </span>
-                   <input class="input100" type="tel" name="phone" required placeholder="Entrez le téléphone du locataire">
+                   <input class="input100" type="tel" name="phone" required placeholder="Entrez le tÃ©lÃ©phone du locataire">
                    @if ($errors->has('phone'))
                        <span class="help-block">
                            <strong>{{ $errors->first('phone') }}</strong>
@@ -494,7 +544,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                  </div>
                  <div class="wrap-input100 validate-input bg1 form-group{{ $errors->has('customerId') ? ' has-error' : '' }}" data-validate="Entrez svp un nom pour le logement">
                    <span class="label-input100 control-label">Numéro CNI *</span>
-                   <input class="input100" type="text" pattern="[0-9,A-Z,a-z]{13,19}" required name="customerId" placeholder="Entrez le numéro de Carte d'identité nationale du locataire">
+                   <input class="input100" type="text" pattern="[0-9,A-Z,a-z]{13,19}" required name="customerId" placeholder="Entrez le numÃ©ro de Carte d'identitÃ© nationale du locataire">
                    @if ($errors->has('customerId'))
                        <span class="help-block">
                            <strong>{{ $errors->first('customerId') }}</strong>
@@ -578,6 +628,11 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
      @endsection
 
      @section('scripts')
+      <!--=============DROPZONE SCRIPT============-->
+    <script src="{{ url('/js/dropzone/jquery.js') }}"></script>
+    <script src="{{ url('/js/dropzone/dropzone.js') }}"></script>
+    <!-- <script src="{{ url('/js/dropzone/dropzone-config.js') }}"></script> -->
+
      <script src="{{url('js/mainForm.js')}}"></script>
      <script src="{{url('vendor/animsition/js/animsition.min.js')}}"></script>
 
@@ -739,7 +794,16 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
      });
 
      $(document).ready(function() {
-       $('.modify_housing').click(function(){
+
+        var selectedOption = 'Studio'
+        $(".js-select-bed").on("change", function() {
+          selectedOption = $(this).val();
+          $("<input class='strong_option_selected' type='hidden' name='strong_option_selected' value='"+selectedOption+"' />").insertAfter('.select2-selection__rendered');
+        });
+
+        
+
+         $('.modify_housing').click(function(){
          $('option').removeAttr('selected');
          var nameClass = this.className.split(' ');
          var housing_id = nameClass[2].split('_');
@@ -749,16 +813,45 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
          var city_housing = $('.modify_city_'+housing_id[1]).val();
          var housing_type = $('.modify_housing_type_'+housing_id[1]).val();
          var nb_rooms_housing = $('.modify_nb_rooms_'+housing_id[1]).val();
+         var strong_nb_rooms_housing = $('.js-select2').val(status_housing);
+         var img_housing_id_m = {};
+         var img_id_m ={};
+          $(".modify_image_"+housing_id[1]).each(function(index) {
+            img_housing_id_m[index] = $(this).val();
+            img_id_m[index] = $(".image_id_"+housing_id[1]).val();
+            $("<input class='new_img_modif' type='hidden' name='new_img_modif' value='"+img_housing_id_m[index]+"' />").insertAfter('.modify_title_'+housing_id[1]);
+            //console.log(img_housing_id_m[index]);
+          });
+          $(".image_id_"+housing_id[1]).each(function(index) {
+            img_id_m[index] = $(this).val();
+            $("<input class='img_id_modif' type='hidden' name='img_id_modif' value='"+img_id_m[index]+"' />").insertAfter('.modify_title_'+housing_id[1]);
+            //console.log(img_housing_id_m[index]);
+          });
+
+  
          $('.update_title_log').val(title_housing);
          $('.update_address_log').val(address_housing);
          $('.update_city_log').val(city_housing);
-         $("select option[value="+nb_rooms_housing+"]").attr('selected','selected');
-         $('.js-select-bed').val(nb_rooms_housing).change();
          $("select option[value="+status_housing+"]").attr('selected','selected');
          $('.js-select2').val(status_housing).change();
+         $("select option[value="+nb_rooms_housing+"]").attr('selected','selected');
+         $('.js-select-bed').val(nb_rooms_housing).change();
          $('.update_housing_type_log').val(housing_type);
          $('.update_housing_id').val(housing_id[1]);
+
        });
+       $(".js-select-bed-m").on("change", function() {
+          $( ".strong_nb_rooms_housing" ).remove();
+          nb_rooms_housing = $(this).val();
+          $("<input class='strong_nb_rooms_housing' type='hidden' name='strong_nb_rooms_housing' value='"+nb_rooms_housing+"' />").insertAfter('.update_housing_id');
+          //console.log(nb_rooms_housing);
+        });
+        $(".js-select2-m").on("change", function() {
+          $( ".strong_status_housing" ).remove();
+          status_housing = $(this).val();
+          $("<input class='strong_status_housing' type='hidden' name='strong_status_housing' value='"+status_housing+"' />").insertAfter('.update_housing_id');
+
+        });
 
        $('.add_occ').click(function(){
          var nameClass_2 = this.className.split(' ');
@@ -794,6 +887,170 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
       }
 
      </script>
+ <!--=============DROPZONE SCRIPT============-->
+     <script>
+     Dropzone.autoDiscover = false;
+     $(document).ready(function () {
+      var total_photos_counter = 0;
+      var name = "";
+    $("#dZUpload").dropzone({
+      headers: {
+						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+					},
+        method: "POST",
+        url: "{{ route('mes-logements.add') }}",
+        uploadMultiple: false,
+        autoProcessQueue: false,
+        parallelUploads: 4,
+        maxFilesize: 16,
+        addRemoveLinks: true,
+        dictRemoveFile: "Enlever l'image",
+        dictFileTooBig: "L'image est supérieure à 16 Mo",
+        timeout: 10000,
+        renameFile: function (file) {
+        name = new Date().getTime() + Math.floor((Math.random() * 100) + 1) + '_' + file.name;
+        return name;
+    },
+    init: function () {
+        var myDropzone = this;
+        $('#submit_form').on("click", function() {
+            myDropzone.processQueue();
+        });
+        this.on("sending", function(file, xhr, formData){
+            $('#add_logement').find('input').each(function() {
+                formData.append( $(this).attr('name'), $(this).val() );
+            });
+        });
+        this.on("success", function(file, response) {
+          var imgName = response;
+            file.previewElement.classList.add("dz-success");
+            console.log("Successfully uploaded :" + imgName);
+            total_photos_counter++;
+            $("#counter").text("# " + total_photos_counter + "  images(s) au total" );
+            file["customName"] = name;
+            console.log(response);
+        });
+        this.on("error", function(file, response) {
+          file.previewElement.classList.add("dz-error");
+        });
+      
+    },
+      
+    });
+});
 
+$(document).ready(function () {
+      var total_photos_counter = 0;
+      var name = "";
+  
+  $('.modify_housing').click(function(){
+  var new_img_modif = {};
+  var img_id_m = {};
+  var index = 0;
+  var idx = 0;
+    
+    $(".new_img_modif").each(function(index) {
+      new_img_modif[index] = $(this).val();
+
+      //console.log(new_img_modif[index]);
+    });
+
+    $(".img_id_modif").each(function(idx) {
+      img_id_m[idx] = $(this).val();
+    });
+
+
+    $("#dZUploadMd").dropzone({
+      headers: {
+						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+					},
+        method: "POST",
+        url: "{{ route('mes-logements.update') }}",
+        uploadMultiple: false,
+        autoProcessQueue: false,
+        parallelUploads: 4,
+        maxFilesize: 16,
+        addRemoveLinks: true,
+        removedfile: function(file) {
+          var fileName = file.name;
+          var image_id = fileName.split(' ');
+          console.log(image_id[1]);
+          $.ajax({
+            type: 'POST',
+            headers: {
+						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+					},
+            url: "{{ route('mes-images.delete') }}",
+            data: {name: fileName,request: 'delete',image_id: image_id[1]},
+            sucess: function(data){
+                console.log('success: ' + data);
+            }
+          });
+          var _ref;
+            return (_ref = file.previewElement) != null ? _ref.parentNode.removeChild(file.previewElement) : void 0;
+        },
+        dictRemoveFile: "Enlever l'image",
+        dictFileTooBig: "L'image est supérieure à 16 Mo",
+        timeout: 10000,
+        renameFile: function (file) {
+        name = new Date().getTime() + Math.floor((Math.random() * 100) + 1) + '_' + file.name;
+        return name;
+      },
+        
+    init: function () {
+        var myDropzone = this;
+        // Create the mock file:
+        for (pic in new_img_modif){
+          var img = new Image();
+          img.size = 12345;
+          img.src = new_img_modif[pic];
+          img.name = 'Photo '+img_id_m[pic];
+          img.height = 944;
+          img.width = 698;
+
+          // Call the default addedfile event handler
+          myDropzone.emit("addedfile", img);
+
+          // And optionally show the thumbnail of the file:
+          myDropzone.emit("thumbnail", img, img.src);
+
+          myDropzone.emit("complete", img);
+          $('img').css({"max-width": "100%", "max-height": "100%"});
+          $('.dz-image').css({"width": "120", "height": "120"});
+
+        }
+
+
+        $('#submit_form_m').on("click", function() {
+            myDropzone.processQueue();
+        });
+        this.on("sending", function(file, xhr, formData){
+            $('#update_logement').find('input').each(function() {
+                formData.append( $(this).attr('name'), $(this).val() );
+            });
+        });
+        this.on("success", function(file, response) {
+          $('.dz-image').css({"width":"100%", "height":"auto"});
+          var imgName = response;
+            file.previewElement.classList.add("dz-success");
+            console.log("Successfully uploaded :" + imgName);
+            total_photos_counter++;
+            $("#counter").text("# " + total_photos_counter + "  images(s) au total" );
+            file["customName"] = name;
+            console.log(response);
+        });
+        this.on("error", function(file, response) {
+          file.previewElement.classList.add("dz-error");
+        });
+      
+    },
+      
+    });
+  });
+});
+     </script>
+
+ 
+    
 
      @endsection

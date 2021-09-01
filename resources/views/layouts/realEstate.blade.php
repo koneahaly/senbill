@@ -8,7 +8,12 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'eLECTRA') }}</title>
+    <title>{{ config('app.name', 'Senbill') }}</title>
+    <!-- <link rel="stylesheet" href="{{ asset('/css/dropzone/bootstrap.css') }}"> -->
+    <link rel="stylesheet" href="{{ asset('css/dropzone/dropzone.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/dropzone/custom.css') }}">
+    
+@yield('head')
 
     <!-- Scripts -->
   <script type="text/javascript">
@@ -16,7 +21,6 @@
        window.FontAwesomeConfig = { autoReplaceSvg: false }
   </script>
     <script src="{!! mix('js/app.js') !!}"></script>
-
 
   @yield('scripts')
 
@@ -93,6 +97,10 @@ if($_SERVER['REQUEST_URI'] == '/register')
   $home_directory = '.';
 @endphp
 
+
+
+    
+
 <style>
 html, body {
     max-width: 100%;
@@ -105,6 +113,8 @@ html, body {
   opacity: 0.5;
   text-decoration: none;
 }
+
+
 
 </style>
 </head>

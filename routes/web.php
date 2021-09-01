@@ -17,7 +17,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-
 Route::get('/qui-sommes-nous', 'WhoController@display_who')->name('who');
 Route::get('/la-plateforme-senbill', 'WhatController@display_what')->name('what');
 Route::get('/nous-contacter', 'ContactController@display_contact')->name('contact');
@@ -33,6 +32,10 @@ Route::post('/infos-services/{id?}', 'HomeController@display_services_infos')->n
 Route::post('/infos-personnelles/{id?}/update', 'HomeController@update_personal_infos')->name('infos-personnelles.update');
 Route::post('/infos-proprietaire/update', 'HomeController@update_personal_infos')->name('infos-proprietaire.update');
 Route::get('/suivi-conso/{id?}', 'HomeController@suivi_conso')->name('suivi-conso');
+//Rechercher logement
+Route::get('/rechercher-logement', 'HomeController@rechercher_logement')->name('recherche-logement');
+Route::get('search/', 'HomeController@search')->name('search');
+//End rechercher logement
 Route::post('/infos-services/{id?}/update', 'HomeController@update_services_infos')->name('infos-services.update');
 Route::post('/infos-services-pro/update', 'HomeController@update_services_pro_infos')->name('infos-services-pro.update');
 
@@ -159,3 +162,7 @@ Route::get('sendvalidateemail','MailController@validate_email');
 Route::get('verify-email/{name?}','MailController@verify_email')->name('verify-email');;
 
 Route::get('send-sms','SmsController@send_sms');
+
+//++++++++++++++++++++++++++++ ADDING IMAGES TO LOGEMENT ++++++++++++++++++++++++++++++++++++++++++++
+Route::post('/','realEstateOwnerController@storeImg')->name('images.add');
+Route::post('/mes-images/delete/{id?}','realEstateOwnerController@delete_image')->name('mes-images.delete');

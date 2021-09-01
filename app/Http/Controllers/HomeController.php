@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\SmsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Session\middleware\StartSession;
+use App\Own;
+use App\Image;
 use stdClass;
 use Session;
 
@@ -388,4 +390,69 @@ class HomeController extends Controller
       $my_infos_conso_euro['my_infos_conso_euro'] = $useful_conso_euro;
       return view('suivi-conso')->with($my_infos_conso)->with($my_infos_conso_euro)->with($actived_services);
     }
+    public function rechercher_logement()
+    {
+      $s=Auth::user()->customerId;
+      $actived_services['actived_services'] = DB::table('services')->where('customerId',$s)->first();
+
+      $housings_all = Own::all();
+      $nbr_housing_all = count($housings_all); 
+       //DEBUT DEFAULT IMAGE DISPLAYING
+       $photos_housing = Image::all();
+       $images = [];
+       foreach ($photos_housing as $key=>$photo) {
+         $img_default_url = DB::table('images')->where('housing_id',$photo->housing_id)->get()->first();
+ 
+         if($photo->url == $img_default_url->url){
+             $images[] = [
+               'id' => $photo->id,
+               'housing_id' => $photo->housing_id,
+               'name' =>  $photo->filename,
+               'src' =>  $img_default_url->url
+               ];
+         }
+       
+       }
+     
+       return view('recherche-logement', compact('images', 'housings_all'))->with($actived_services);
+     
+    }
+
+    public function search(Request $given){
+      // Get the search value from the request
+      $search = $given->input('search');
+      $s=Auth::user()->customerId;
+      $actived_services['actived_services'] = DB::table('services')->where('customerId',$s)->first();
+  
+      // Search in the title and body columns from the posts table
+      $housings_all = Own::all();
+        
+      $housings = Own::query()
+          ->where('title', 'LIKE', "%{$search}%")
+          ->orWhere('address', 'LIKE', "%{$search}%")
+          ->get();
+      $nbr_housing = count($housings);
+      $nbr_housing_all = count($housings_all); 
+       //DEBUT DEFAULT IMAGE DISPLAYING
+       $photos_housing = Image::all();
+       $images = [];
+       foreach ($photos_housing as $key=>$photo) {
+         $img_default_url = DB::table('images')->where('housing_id',$photo->housing_id)->get()->first();
+ 
+         if($photo->url == $img_default_url->url){
+             $images[] = [
+               'id' => $photo->id,
+               'housing_id' => $photo->housing_id,
+               'name' =>  $photo->filename,
+               'src' =>  $img_default_url->url
+               ];
+         }
+       
+       }
+       
+       //END DEFAULT IMAGE DISPLAYING   
+      //dd($housings_all);
+      // Return the search view with the resluts compacted
+      return view('recherche-logement', compact('housings', 'images', 'housings_all'))->with($actived_services);
+  }
 }
