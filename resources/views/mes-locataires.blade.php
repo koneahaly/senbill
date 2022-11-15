@@ -630,7 +630,7 @@ $(function() {
     minYear: 1901,
     maxYear: parseInt(moment().format('YYYY'),10),
     locale: {
-      format: 'DD/MM/YYYY',
+      format: 'YYYY-MM-DD',
     separator: " - ",
         applyLabel: "Valider",
         cancelLabel: "Annuler",

@@ -41,6 +41,18 @@ class MailController extends Controller {
       //echo "HTML Email Sent. Check your inbox.";
    }
 
+   public function contact_email(Request $request, $name='SEN BILL') {
+      $data = array('name'=>$name,'email' => $request->email,'client' => $request->client,
+      'phone' => $request->phone,'msg' => $request->msg, 'proprio' => $request->proprio);
+      Mail::send('emails.contact-loc', $data, function($message) use ($data){
+         $message->to($data['email'], $data['client'])->subject
+            ('Demande de location depuis SENBILL');
+         $message->from('admin@services2sn.com', $data['name']);
+      });
+      return redirect()->back()->withSuccess('Votre message a été envoyé avec succès!');
+      //echo "HTML Email Sent. Check your inbox.";
+   }
+
 
    public function html_verify_email($email,$customer,$name='SEN BILL') {
       $data = array('name'=>$name,'email' => $email, 'customer' => $customer);

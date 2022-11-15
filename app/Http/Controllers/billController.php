@@ -172,7 +172,7 @@ class billController extends Controller
 
       $fields =explode('-',$input->ref_command);
       $true_ref_command = $fields[0];
-      if($type_event == sale_complete)
+      if($type_event == 'sale_complete')
         $status = 'paid';
       else
         $status = 'Unpaid'; //En réalité mettre le statut actuel de la facture (Imapyé ou en attente)
@@ -186,6 +186,14 @@ class billController extends Controller
         DB::connection('mysql2')->table('invoices')
             ->where('order_number', $true_ref_command)
             ->update(['payment_status' => $status, 'payment_method' => $payment_method, 'paid_amount' => $item_price, 'updated_at' => date('Y-m-d H:is')]);
+
+        if($_SESSION['current_service'] == 'servicepublic' && $type_event == 'sale_complete'){
+          DB::table('demands')
+          ->where(['order_number' => $true_ref_command])
+          ->update(['status' => 'T']);
+
+          return redirect('mes-factures/'.$_SESSION['current_service']);
+        }
 
         //$co = new MailController();
         //$co->paymentOK_email($data->email,$input->ref_command,$input->item_price,$input->payment_method,$data->first_name.' '.$data->name,$_SESSION['current_service'],'SEN BILL');
@@ -227,7 +235,7 @@ class billController extends Controller
           "command_name" =>  'test_name',
           "env"          =>  'prod',
           "success_url"  =>  'https://www.senbill.com/mes-factures/locataire',
-          "ipn_url"		   =>  'https://www.senbill.com/mes-factures/locataire',
+          "ipn_url"		   =>  'https://www.senbill.com/notify',
           "cancel_url"   =>  'https://www.senbill.com/mes-factures/locataire',
           "custom_field" =>   ''
       );

@@ -18,7 +18,7 @@ $(function () {
     labels  : ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
     datasets: [
       {
-        label               : 'Digital Goods',
+        label               : 'Catégorie 1',
         backgroundColor     : 'rgba(60,141,188,0.9)',
         borderColor         : 'rgba(60,141,188,0.8)',
         pointRadius          : false,
@@ -29,7 +29,7 @@ $(function () {
         data                : [28, 48, 40, 19, 86, 27, 90]
       },
       {
-        label               : 'Electronics',
+        label               : 'Catégorie 2',
         backgroundColor     : 'rgba(210, 214, 222, 1)',
         borderColor         : 'rgba(210, 214, 222, 1)',
         pointRadius         : false,
@@ -38,6 +38,17 @@ $(function () {
         pointHighlightFill  : '#fff',
         pointHighlightStroke: 'rgba(220,220,220,1)',
         data                : [65, 59, 80, 81, 56, 55, 40]
+      },
+      {
+        label               : 'Catégorie 3',
+        backgroundColor     : 'rgba(33, 214, 222, 1)',
+        borderColor         : 'rgba(33, 214, 222, 1)',
+        pointRadius         : false,
+        pointColor          : 'rgba(33, 214, 222, 1)',
+        pointStrokeColor    : '#c1c7d1',
+        pointHighlightFill  : '#fff',
+        pointHighlightStroke: 'rgba(30,220,220,1)',
+        data                : [80, 76, 95, 96, 70, 69, 60]
       },
     ]
   }

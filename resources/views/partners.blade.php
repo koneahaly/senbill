@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>{{config('app.name')}}</title>
-        <link rel="icon" type="image/png" href="https://elektra.s3.amazonaws.com/images/icons/logo-elektra-halo.png"/>
+        <link rel="icon" type="image/png" href="{{ env('S3_URL')}}/{{ env('AWS_BUCKET')}}/logo-elektra-halo.png"/>
         <!-- Fonts -->
 
         <link rel="stylesheet" type="text/css" href="{{url('css/bootstrap.min.css')}}">

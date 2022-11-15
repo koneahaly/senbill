@@ -2,7 +2,7 @@
 session_start();
 $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOfBillsNonPaid"] : '';
 
-$mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_service_2', 'tv' => 'type_service_3', 'mobile' => 'type_service_4',
+$mapping_type_services = ['distribution' => 'type_service_1', 'servicepublic' => 'type_service_2', 'telecom' => 'type_service_3', 'sante' => 'type_service_4',
                           'locataire' => 'type_service_5', 'proprietaire' => 'type_service_6', 'scolarite' => 'type_service_7',
                           'sport' => 'type_service_8'];
 
@@ -72,8 +72,8 @@ if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} != 
                 <div class="card-body-contract">
                   <div class="row" style="margin-left: 1%;">
                     <div class="col-md-8">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Début du contrat</h5>
-                      <span class="h4 font-weight-bold mb-0">@php echo substr(Auth::user()->created_at, 0, 10); @endphp</span>
+                      <h5 class="card-title text-uppercase text-muted mb-0">Date de cr&eacute;ation du contrat</h5>
+                      <span class="h4 font-weight-bold mb-0">{{ ( null !== $actived_contracts) ? substr($actived_contracts->created_at, 0, 10) : '' }}</span>
                     </div>
                     <div class="col-auto">
                       <div>
@@ -151,7 +151,7 @@ if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} != 
 
                   <div class="col-md-6" style="margin-bottom:20px;">
                     <p>DATE DE D&Eacute;BUT DU CONTRAT</p>
-                    <span class="recapData"><strong> {{Auth::user()->created_at}} </strong></span>
+                    <span class="recapData"><strong> {{ ( null !== $actived_contracts) ? substr($actived_contracts->start_date, 0, 10) : '' }} </strong></span>
                   </div>
 
                   <div class="col-md-12" style="margin-bottom:40px;" >
@@ -216,7 +216,7 @@ if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} != 
 
                   <div class="col-md-6 col-md-offset-0" style="margin-bottom:20px;">
                     <p>TYPE DE FACTURATION</p>
-                    <span class="recapData"><strong> BIMESTRE </strong></span>
+                    <span class="recapData"><strong> {{ ( null !== $actived_contracts) ? $actived_contracts->frequency : '' }} </strong></span>
                   </div>
 
                   <div class="col-md-12" style="margin-bottom:40px;" >

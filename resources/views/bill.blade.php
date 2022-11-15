@@ -209,16 +209,16 @@ text-align: center;
   </head><body>
     <main>
       <div id="logo">
-        <img src="https://elektra.s3.amazonaws.com/images/icons/logo-elektra-halo.png">
+        <img src="{{ env('S3_URL')}}/{{ env('AWS_BUCKET')}}/logo-elektra-halo.png">
       </div>
-      <h1  class="clearfix"> Facture du mois de {{$data[0]->month}} <small><span>PAY&Eacute; LE</span><br /> {{$data[0]->created_at}}</small></h1>
+      <h1  class="clearfix"> Facture du mois de {{$data[0]->month}} <small><span>PAY&Eacute; LE</span><br /> {{$data[0]->updated_at}}</small></h1>
       <table>
         <thead>
           <tr>
             <th class="service">Consommation initiale</th>
             <th class="desc">Consommation finale</th>
             <th>Consommation totale</th>
-            <th>prix de l'unité</th>
+            <th>frais</th>
             <th>TOTAL</th>
           </tr>
         </thead>
@@ -226,9 +226,9 @@ text-align: center;
           <tr>
             <td class="service">{{$data[0]->initial}}</td>
             <td class="desc">{{$data[0]->final}}</td>
-            <td class="unit">{{$data[0]->units}}</td>
-            <td class="qty">{{($data[0]->amount)/($data[0]->units)}} FCFA per unit</td>
-            <td class="total">{{$data[0]->amount}} FCFA</td>
+            <td class="unit">{{$data[0]->amount}}</td>
+            <td class="qty">{{ ($data[0]->amount) * 0.01}}</td>
+            <td class="total">{{ ($data[0]->amount * 1.01) }} FCFA</td>
           </tr>
 
           <tr>
@@ -236,12 +236,12 @@ text-align: center;
             <td class="sub total">{{$data[0]->amount}} FCFA</td>
           </tr>
           <tr>
-            <td colspan="4">TAX 0%</td>
-            <td class="total">0.00 FCFA</td>
+            <td colspan="4">FRAIS 1%</td>
+            <td class="total">{{ ($data[0]->amount) * 0.01}} FCFA</td>
           </tr>
           <tr>
             <td colspan="4" class="grand total">TOTAL</td>
-            <td class="grand total">{{$data[0]->amount}} FCFA</td>
+            <td class="grand total">{{ ($data[0]->amount * 1.01) }} FCFA</td>
           </tr>
         </tbody>
       </table>
@@ -261,7 +261,7 @@ text-align: center;
       </div>
       <div id="notices">
         <div>NOTICE:</div>
-        <div class="notice">Une majoration de 1,5% sera appliquée sur les factures impayés après 30 jours.</div>
+        <div class="notice">Une majoration de 1% sera appliquée sur les factures impayés après 30 jours.</div>
       </div>
     </main>
     <footer>

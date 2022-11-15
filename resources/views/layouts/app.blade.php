@@ -21,6 +21,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Senbill') }}</title>
+    <link rel="stylesheet" href="{{ asset('css/dropzone/dropzone.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/dropzone/custom.css') }}">
 
     <!-- Scripts -->
   <script type="text/javascript">
@@ -57,7 +59,7 @@ function calltouchpay(){
 
 
     <link href="{{ URL::asset('css/common.css') }}" rel="stylesheet">
-    <link rel="icon" type="image/png" href="https://elektra.s3.amazonaws.com/images/icons/logo-senbill-halo.png"/>
+    <link rel="icon" type="image/png" href="{{ env('S3_URL')}}/{{ env('AWS_BUCKET')}}/logo-senbill-halo.png"/>
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <!--===============================================================================================-->
@@ -85,6 +87,7 @@ function calltouchpay(){
 <link href='https://fonts.googleapis.com/css?family=Alegreya+Sans:400,800' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="{{url('css/jquery.range.css')}}">
 <link rel="stylesheet" href="{{url('css/payment_modal.css')}}">
+
 <!-- <link rel="stylesheet" type="text/css" href="{{url('css/realEstate.css')}}"> -->
 <script src="{{ url('js/jquery.range.js') }}"></script>
 <script src="{{ url('js/lottie-player.js') }}"></script>
@@ -111,6 +114,8 @@ $active_3 ='none';
 $active_4 ='none';
 
 $suivi_none='none';
+$historique_sp='none';
+$demande_sp='none';
 
 if($_SERVER['REQUEST_URI'] == '/register' || $_SERVER['REQUEST_URI'] == '/login' || strpos($_SERVER['REQUEST_URI'],"admin") == true){
   $home_directory = '.';
@@ -124,15 +129,35 @@ if(strpos($_SERVER['REQUEST_URI'],"infos-personnelles") == true)
   $active_1 = 'active';
 if(strpos($_SERVER['REQUEST_URI'],"mon-contrat") == true)
   $active_2 = 'active';
-if(strpos($_SERVER['REQUEST_URI'],"mes-factures") == true)
+if(strpos($_SERVER['REQUEST_URI'],"mes-factures") == true && strpos($_SERVER['REQUEST_URI'],"servicepublic") == false)
   $active_3 = 'active';
-if(strpos($_SERVER['REQUEST_URI'],"rechercher-logement") == true)
+if(strpos($_SERVER['REQUEST_URI'],"demande") == true && strpos($_SERVER['REQUEST_URI'],"servicepublic") == true)
+  $active_3 = 'active';
+if(strpos($_SERVER['REQUEST_URI'],"rechercher-logement") == true){
     $active_4 = 'active';
+    $suivi_none = 'active'; //avoid suivi conso display
+}
+if(strpos($_SERVER['REQUEST_URI'],"mes-factures") == true && strpos($_SERVER['REQUEST_URI'],"servicepublic") == true){
+    $active_4 = 'active';
+}
+if(strpos($_SERVER['REQUEST_URI'],"logement") == true){
+    $active_4 = 'active';
+    $suivi_none = 'active';   //avoid suivi conso display
+}
 if(strpos($_SERVER['REQUEST_URI'],"infos-services") == true)
       $active_1 = 'active';
 
 if(strpos($_SERVER['REQUEST_URI'],"locataire") == true)
       $suivi_none = 'active';
+
+if(strpos($_SERVER['REQUEST_URI'],"servicepublic") == true){
+    $historique_sp = 'active';   //avoid suivi conso display and display prev sp requests
+    $demande_sp = 'active';
+}
+
+if(strpos($_SERVER['REQUEST_URI'],"suivi-conso/servicepublic") == true){
+    $active_4 = 'active';
+}
 
 @endphp
 
@@ -182,26 +207,26 @@ html, body {
           </a>
 
 
-        <!--  POUR ELECTRICITE -->
-        @if( $service == "electricite")
-          <p class="custom-space">Espace electricité</p>
-          <lottie-player src="{{url('images/lottie/light.json')}}"  background="transparent"  speed="1" class="space-logo"   loop  autoplay></lottie-player>
+        <!--  POUR SERVICE PUBLIC -->
+        @if( $service == "servicepublic")
+          <p class="custom-space">Espace service public</p>
+          <lottie-player src="{{url('images/lottie/servicepublic.json')}}"  background="transparent"  speed="1" class="space-logo"   loop  autoplay></lottie-player>
         @endif
 
-       <!--  POUR EAU -->
-        @if( $service == "eau")
-          <p class="custom-space">Espace eau</p>
-          <lottie-player src="{{url('images/lottie/water.json')}}"  background="transparent"  speed="1" class="space-logo"  loop  autoplay></lottie-player>
+       <!--  POUR RESEAU DE DISTRIBUTION  -->
+        @if( $service == "distribution")
+          <p class="custom-space">Espace distribution</p>
+          <lottie-player src="{{url('images/lottie/distribution.json')}}"  background="transparent"  speed="1" class="space-logo"  loop  autoplay></lottie-player>
        @endif
       <!--  POUR TV -->
-      @if( $service == "tv")
-        <p class="custom-space">Espace Télévision </p>
+      @if( $service == "telecom")
+        <p class="custom-space">Espace Télécom </p>
         <lottie-player src="{{url('images/lottie/tv.json')}}"  background="transparent"  speed="1" class="space-logo-tv" loop  autoplay></lottie-player>
       @endif
 
      <!--  POUR MOBILE & Internet -->
-     @if( $service == "mobile")
-      <p class="custom-space">Espace Mobile & Internet</p>
+     @if( $service == "sante")
+      <p class="custom-space">Espace Santé</p>
       <lottie-player src="{{url('images/lottie/wifi.json')}}"  background="transparent"  speed="1" class="space-logo-internet"  loop  autoplay></lottie-player>
      @endif
     <!--  POUR Locataire -->
@@ -220,27 +245,52 @@ html, body {
           <div class="s2sn-login-header-nav  navbarElektra">
          <ul class="s2sn-navbar-elektra">
              @if($notification >=0)
-             <!-- <li class="nav-item item-connected {{ $suivi_none == 'active' ? 'disabled' : '' }}">
-               <a class="nav-link {{ $active_4 }}"  href="../suivi-conso/{{ $service }}" onclick="{{ $suivi_none == 'active' ? 'return false' : '' }}">
+             @if($suivi_none != 'active' and $historique_sp != 'active')
+             <li class="nav-item item-connected ">
+               <a class="nav-link {{ $active_4 }}"  href="{{ route('suivi-conso') }}/{{ $service }}">
                  <i  class="fa fa-chart-bar fa-2x ">
                  </i> <p>Suivi conso</p>
                 </a>
-             </li> -->
-             <li class="nav-item item-connected">
-               <a class="nav-link {{ $active_4 }}"  href="{{ route('recherche-logement') }}">
+             </li>
+             @endif
+             @if($historique_sp == 'active')
+             <li class="nav-item item-connected ">
+             <a class="nav-link {{ $active_4 }}"  href="{{ route('mes-factures') }}/{{ $service }}">
+                <i  class="fa fa-envelope-open-text fa-2x ">
+                  <?php if($notification > 0) echo '<span class="badge">'.$notification.'</span>'; ?>
+                </i> <p>Paiements</p>
+                <span class="sr-only">(current)</span>
+              </a>
+             </li>
+             @endif
+             @if($suivi_none == 'active')
+             <li class="nav-item item-connected ">
+               <a class="nav-link {{ $active_4 }}"  href="{{ route('recherche-logement') }} ">
                  <i  class="fa fa-search fa-2x ">
                  </i> <p>Trouver un logement</p>
                 </a>
              </li>
+             @endif
+             @if($demande_sp != 'active')
                <li class="nav-item item-connected">
-                 <a class="nav-link {{ $active_3 }}"  href="../mes-factures/{{ $service }}">
+                 <a class="nav-link {{ $active_3 }}"  href="{{ route('mes-factures') }}/{{ $service }}">
                    <i  class="fa fa-envelope-open-text fa-2x ">
                       <?php if($notification > 0) echo '<span class="badge badge_2">'.$notification.'</span>'; ?>
                    </i> <p>Factures et paiements</p>
                   </a>
                </li>
+               @endif
+               @if($demande_sp == 'active')
                <li class="nav-item item-connected">
-                 <a class="nav-link {{ $active_2 }}"  href="../mon-contrat/{{ $service }}">
+                 <a class="nav-link {{ $active_3 }}"  href="{{ route('mes-demandes') }}/{{ $service }}">
+                   <i  class="fa fa-envelope-open-text fa-2x ">
+                      <?php if($notification > 0) echo '<span class="badge badge_2">'.$notification.'</span>'; ?>
+                   </i> <p>Demandes</p>
+                  </a>
+               </li>
+               @endif
+               <li class="nav-item item-connected">
+                 <a class="nav-link {{ $active_2 }}"  href="{{ route('mon-contrat') }}/{{ $service }}">
                    <i class="fa fa-file-contract fa-2x"></i> <p>Contrat</p>
                      <span class="sr-only">(current)</span>
                  </a>
@@ -256,12 +306,12 @@ html, body {
 
                    <ul class="dropdown-menu">
                        <li class="dropdown-item" style="text-transform:capitalize">
-                         <a href="../infos-personnelles/{{ $service }}">
+                         <a href="{{ route('infos-personnelles') }}/{{ $service }}">
                            mes infos personnelles <?php if($profilNotif > 0){ echo ' '; echo '<span class="badge" style="background-color:red">'.$profilNotif.'</span>';} ?>
                          </a>
                        </li>
                        <li style="padding:0px;text-transform:capitalize" class="dropdown-item">
-                         <a  href="../infos-services/{{ $service }}">
+                         <a  href="{{ route('infos-services') }}/{{ $service }}">
                            mes services
                          </a>
                        </li>
@@ -303,15 +353,15 @@ html, body {
               </a>
 
               <!--  POUR ELECTRICITE -->
-              @if( $service == "electricite")
-                <p class="custom-space">Espace electricité</p>
-                <lottie-player src="{{url('images/lottie/light.json')}}"  background="transparent"  speed="1" class="space-logo logoEspaceMobile"   loop  autoplay></lottie-player>
+              @if( $service == "servicepublic")
+                <p class="custom-space">Espace service public</p>
+                <lottie-player src="{{url('images/lottie/servicepublic.json')}}"  background="transparent"  speed="1" class="space-logo logoEspaceMobile"   loop  autoplay></lottie-player>
               @endif
 
              <!--  POUR EAU -->
-              @if( $service == "eau")
+              @if( $service == "distribution")
                 <p class="custom-space">Espace eau</p>
-                <lottie-player src="{{url('images/lottie/water.json')}}"  background="transparent"  speed="1" class="space-logo logoEspaceMobile"  loop  autoplay></lottie-player>
+                <lottie-player src="{{url('images/lottie/distribution.json')}}"  background="transparent"  speed="1" class="space-logo logoEspaceMobile"  loop  autoplay></lottie-player>
              @endif
             <!--  POUR TV -->
             @if( $service == "tv")
@@ -344,8 +394,8 @@ html, body {
   @if($_SERVER['REQUEST_URI'] != '/register' && strpos($_SERVER['REQUEST_URI'],"admin") == false)
     <div class="circleEspace ">
       <div class="ringEspace ">
-        <a href="../mes-factures/eau" class="menuItemEspace fa fa-faucet fa-2x {{ (!empty($services->service_1) && $actived_services->service_1 != 'NULL') ? '' : 'disabled' }}" title="Espace Eau"></a>
-        <a href="../mes-factures/electricite" class="menuItemEspace fa fa-plug fa-2x {{ (!empty($services->service_2) && $actived_services->service_2 != 'NULL') ? '' : 'disabled' }}" title="Espace Electricité"></a>
+        <a href="../mes-factures/distribution" class="menuItemEspace fas fa-network-wired fa-2x {{ (!empty($services->service_1) && $actived_services->service_1 != 'NULL') ? '' : 'disabled' }}" title="Espace Distribution"></a>
+        <a href="../mes-demandes/servicepublic" class="menuItemEspace fab fa-galactic-republic fa-2x {{ (!empty($services->service_2) && $actived_services->service_2 != 'NULL') ? '' : 'disabled' }}" title="Espace Service Public"></a>
         <a href="../mes-factures/tv" class="menuItemEspace fa fa-tv fa-2x {{ (!empty($services->service_3) && $actived_services->service_3 != 'NULL') ? '' : 'disabled' }}" title="Espace Télévision"></a>
         <a href="../mes-factures/mobile" class="menuItemEspace fa fa-wifi fa-2x {{ (!empty($services->service_4) && $actived_services->service_4 != 'NULL') ? '' : 'disabled' }}" title="Espace Mobile &  Internet"></a>
         <a href="../transactions-proprietaire" class="menuItemEspace fa fa-building fa-2x {{ (!empty($services->service_6) && $actived_services->service_6 != 'NULL') ? '' : 'disabled' }}" title="Espace Propriétaire"></a>
@@ -389,20 +439,20 @@ html, body {
           </a>
       </li>
       <li class="mobile-nav-elektra-item">
-          <a href="../mes-factures/{{ $service }}" class="mobile-nav-elektra-link ">
+          <a href="{{ route('mes-factures') }}/{{ $service }}" class="mobile-nav-elektra-link ">
               <i class="fa fa-house-user mobile-nav-elektra-icon"></i>
               Paiements
           </a>
       </li>
 
       <li class="mobile-nav-elektra-item">
-          <a href="../mon-contrat/{{ $service }}" class="mobile-nav-elektra-link ">
+          <a href="{{ route('mon-contrat') }}/{{ $service }}" class="mobile-nav-elektra-link ">
               <i class="fa fa-building mobile-nav-elektra-icon"></i>
               Contrat
           </a>
       </li>
       <li class="mobile-nav-elektra-item">
-          <a href="../infos-personnelles/{{ $service }}" class="mobile-nav-elektra-link ">
+          <a href="{{ route('infos-personnelles') }}/{{ $service }}" class="mobile-nav-elektra-link ">
               <i class="fa fa-user mobile-nav-elektra-icon"></i>
               Profil
           </a>
@@ -420,7 +470,7 @@ html, body {
         <!--mobile dropdown-->
         <ul class="mobile-nav-elektra-menu-popup">
             <li class="mobile-nav-elektra-item mobile-nav-elektra-item--popup">
-                <a class="mobile-nav-elektra-inherit-color" href="../infos-services/{{ $service }}">Mes services</a>
+                <a class="mobile-nav-elektra-inherit-color" href="{{ route('infos-services') }}/{{ $service }}">Mes services</a>
             </li>
             <li class="mobile-nav-elektra-item mobile-nav-elektra-item--popup  js-mobile-nav-elektra-menu-my-account">
                 <a class="mobile-nav-elektra-inherit-color" href="../mes-services/">Changer de plateforme</a>
@@ -475,6 +525,52 @@ function toggleMenuMobile() {
     moreDiv.style.display = "none";
 }
 }
+
+</script>
+<script>
+
+var ignoreClickOnMeElement = 'nothing';
+ignoreClickOnMeElement = document.getElementById('update_mdp');
+
+console.log(ignoreClickOnMeElement+'####');
+
+if (typeof isClickInsideElement === 'undefined') {
+  $('#ContactFormModal').modal('show');
+}
+
+$("#update_mdp").click(function(){
+
+  myPassword = $('#mdp').val();
+  myPasswordConfirm = $('#mdp_2').val();
+
+  var strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+  var mediumRegex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})");
+
+
+    if(mediumRegex.test(myPassword) || strongRegex.test(myPassword)){
+      myPassword = myPassword;
+    }
+    else{
+      $('#mdp').css("border","1px solid red");
+      $("#mdp")
+            .popover({content: "Le mot de passe doit contenir 6 caractères ou plus avec un chiffre au moins.",placement:'top' });
+      $("#mdp").popover('show');
+      $("#mdp").blur(function(){
+        $("#mdp").popover('hide');
+    });
+    }
+
+  if(myPasswordConfirm != myPassword){
+    $('#mdp_2').css("border","1px solid red");
+    $("#mdp_2")
+          .popover({content: "Les deux mots de passe ne sont pas identiques ("+myPasswordConfirm+ " # "+myPassword+").",placement:'top' });
+    $("#mdp_2").popover('show');
+    $("#mdp_2").blur(function(){
+      $("#mdp_2").popover('hide');
+  });
+  }
+});
+
 </script>
 </body>
 </html>

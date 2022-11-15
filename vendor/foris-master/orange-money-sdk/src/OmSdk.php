@@ -26,7 +26,6 @@ class OmSdk
     public function getAccesToken(){
 
         $rep = $this->api->getToken();
-	dd($rep);
 //        $data= $rep->getBody()->getContents();
         $data= json_decode((string)$rep->getBody(),true);
 //        setcookie('access_token',$data["access_token"],time()+$data["expires_in"]);

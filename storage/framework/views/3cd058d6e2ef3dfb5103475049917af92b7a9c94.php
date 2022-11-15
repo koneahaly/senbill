@@ -12,7 +12,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title><?php echo e(config('app.name')); ?></title>
-        <link rel="icon" type="image/png" href="https://elektra.s3.amazonaws.com/images/icons/logo-senbill-halo.png"/>
+        <link rel="icon" type="image/png" href="<?php echo e(env('S3_URL')); ?>/<?php echo e(env('AWS_BUCKET')); ?>/logo-senbill-halo.png"/>
         <!-- Fonts -->
 
         <link rel="stylesheet" type="text/css" href="<?php echo e(url('css/bootstrap.min.css')); ?>">
@@ -35,8 +35,8 @@
 <?php
   function getServiceColor($service)
   {
-      if ($service =='eau_stop' || $service =='tv_stop' || $service =='electricite_stop' ||
-      $service =='mobile_stop' || $service == 'locataire' || $service == 'proprietaire' || $service == 'scolarité' || $service == 'sport_stop')
+      if ($service =='distribution_stop' || $service =='mobiletv_stop' || $service =='servicepublic' ||
+      $service =='sante' || $service == 'locataire' || $service == 'proprietaire' || $service == 'scolarité' || $service == 'sport_stop')
           return '#ffffff';
       else
           return '#888484';
@@ -60,76 +60,76 @@
                       <div class="card col-12 col-md-6 col-lg-3" style="color: <?=getServiceColor($actived_services->service_1)?>;">
                           <div class="icon-block">
                             <?php
-                            if($actived_services->service_1 != "eau_stop")
+                            if($actived_services->service_1 != "distribution_stop")
                             {
                                 echo '<a href="javascript:void(0);" style="cursor:not-allowed;">';
                             }
                             else {
-                              echo '<a href="../mes-factures/eau">';
+                              echo '<a href="../mes-factures/distribution">';
                             }
                             ?>
-                              <i class="fas fa-faucet fa-7x" style="color: <?=getServiceColor($actived_services->service_1)?>;"></i>
+                              <i class="fas fa-network-wired fa-7x" style="color: <?=getServiceColor($actived_services->service_1)?>;"></i>
                           </a>
                           </div>
                           <h5 class="mbr-fonts-style display-5">
-                              Eau
+                              Distribution
                           </h5>
                       </div>
 
                       <div class="card col-12 col-md-6 col-lg-3" style="color: <?=getServiceColor($actived_services->service_2)?>;">
                           <div class="icon-block">
                             <?php
-                            if($actived_services->service_2 != "electricite_stop")
+                            if($actived_services->service_2 != "servicepublic")
                             {
                                 echo '<a href="javascript:void(0);" style="cursor:not-allowed;">';
                             }
                             else {
-                              echo '<a href="../mes-factures/electricite">';
+                              echo '<a href="../mes-factures/servicepublic">';
                             }
                             ?>
-                                    <i class="fas fa-plug fa-7x" style="color: <?=getServiceColor($actived_services->service_2)?>;"></i>
+                                    <i class="fab fa-galactic-republic fa-7x" style="color: <?=getServiceColor($actived_services->service_2)?>;"></i>
                               </a>
                           </div>
                           <h5 class="mbr-fonts-style display-5">
-                              Electricité
+                              Service public
                           </h5>
                       </div>
 
                       <div class="card col-12 col-md-6 col-lg-3" style="color: <?=getServiceColor($actived_services->service_3)?>;">
                           <div class="icon-block">
                             <?php
-                            if($actived_services->service_3 != "tv_stop")
+                            if($actived_services->service_3 != "telecom_stop")
                             {
                                 echo '<a href="javascript:void(0);" style="cursor:not-allowed;">';
                             }
                             else {
-                              echo '<a href="../mes-factures/tv">';
+                              echo '<a href="../mes-factures/telecom">';
                             }
                             ?>
                                   <i class="fas fa-tv fa-7x" style="color: <?=getServiceColor($actived_services->service_3)?>;"></i>
                               </a>
                           </div>
                           <h5 class="mbr-fonts-style display-5">
-                              Télévision
+                              Télécom
                           </h5>
                       </div>
 
                       <div class="card col-12 col-md-6 col-lg-3" style="color: <?=getServiceColor($actived_services->service_4)?>;">
                           <div class="icon-block">
                             <?php
-                            if($actived_services->service_4 != "mobile_stop")
+                            if($actived_services->service_4 != "sante")
                             {
                                 echo '<a href="javascript:void(0);" style="cursor:not-allowed;">';
                             }
                             else {
-                              echo '<a href="../mes-factures/mobile">';
+                              echo '<a href="../mes-factures/sante">';
                             }
                             ?>
-                                  <i class="fas fa-wifi fa-7x" style="color: <?=getServiceColor($actived_services->service_4)?>;"></i>
+                                  <i class="fas fa-hospital fa-7x" style="color: <?=getServiceColor($actived_services->service_4)?>;"></i>
                               </a>
                           </div>
                           <h5 class="mbr-fonts-style display-5">
-                              Mobile & Internet
+                              Santé
                           </h5>
                       </div>
 

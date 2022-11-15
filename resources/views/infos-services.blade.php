@@ -46,23 +46,23 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                                      <div class="fa fa-{{ (empty($actived_services->service_1) || $actived_services->service_1 == 'NULL') ? 'circle' : 'check' }}"></div>
                                  </div>
                                  <div class="row justify-content-center d-flex">
-                                     <div class="pic"> <i class="fas fa-faucet fa-5x pic-0" style="margin-left:25%;"></i> </div>
-                                     <h5 class="mb-4" style="color:black;text-align:center;">Eau</h5>
+                                     <div class="pic"> <i class="fas fa-network-wired fa-5x pic-0" style="margin-left:25%;"></i> </div>
+                                     <h5 class="mb-4" style="color:black;text-align:center;">Distribution</h5>
                                  </div>
                                  @if(!empty($actived_services->service_1) && $actived_services->service_1 != 'NULL')
-                                  <input class='service_1' type='hidden' name='service_1' value='eau' />
+                                  <input class='service_1' type='hidden' name='service_1' value='distribution' />
                                   @endif
                              </div>
-                             <div style="cursor:not-allowed;" class="card-block card-body selectRegister2 {{ (empty($actived_services->service_2) || $actived_services->service_2 == 'NULL') ? '' : 'selected' }}">
+                             <div  class="card-block card-body selectRegister2 {{ (empty($actived_services->service_2) || $actived_services->service_2 == 'NULL') ? '' : 'selected' }}">
                                  <div class="row justify-content-end d-flex px-3">
                                      <div class="fa fa-{{ (empty($actived_services->service_2) || $actived_services->service_2 == 'NULL') ? 'circle' : 'check' }}"></div>
                                  </div>
                                  <div class="row justify-content-center d-flex">
-                                     <div class="pic"> <i class="fas fa-plug fa-5x pic-0" style="margin-left:25%;"></i> </div>
-                                     <h5 class="mb-4" style="color:black;text-align:center;">Electricité</h5>
+                                     <div class="pic"> <i class="fab fa-galactic-republic fa-5x pic-0" style="margin-left:25%;"></i> </div>
+                                     <h5 class="mb-4" style="color:black;text-align:center;">Service public</h5>
                                  </div>
                                  @if(!empty($actived_services->service_2) && $actived_services->service_2 != 'NULL')
-                                  <input class='service_2' type='hidden' name='service_2' value='electricite' />
+                                  <input class='service_2' type='hidden' name='service_2' value='servicepublic' />
                                   @endif
                              </div>
                              <div style="cursor:not-allowed;" class="card-block card-body selectRegister3 {{ (empty($actived_services->service_3) || $actived_services->service_3 == 'NULL') ? '' : 'selected' }}">
@@ -71,10 +71,10 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                                  </div>
                                  <div class="row justify-content-center d-flex">
                                      <div class="pic"> <i class="fas fa-tv fa-5x pic-0" style="margin-left:25%;"></i> </div>
-                                     <h5 class="mb-4" style="color:black;text-align:center;">Television</h5>
+                                     <h5 class="mb-4" style="color:black;text-align:center;">Télécom</h5>
                                  </div>
                                  @if(!empty($actived_services->service_3) && $actived_services->service_3 != 'NULL')
-                                  <input class='service_3' type='hidden' name='service_3' value='tv' />
+                                  <input class='service_3' type='hidden' name='service_3' value='telecom' />
                                   @endif
                              </div>
                              <div style="cursor:not-allowed;" class="card-block card-body selectRegister4 {{ (empty($actived_services->service_4) || $actived_services->service_4 == 'NULL') ? '' : 'selected' }}">
@@ -82,11 +82,11 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                                      <div class="fa fa-{{ (empty($actived_services->service_4) || $actived_services->service_4 == 'NULL') ? 'circle' : 'check' }}"></div>
                                  </div>
                                  <div class="row justify-content-center d-flex">
-                                     <div class="pic"> <i class="fas fa-mobile-alt fa-5x pic-0" style="margin-left:25%;"></i> </div>
-                                     <h5 class="mb-4" style="color:black;text-align:center;">Mobile & Internet</h5>
+                                     <div class="pic"> <i class="fas fa-hospital fa-5x pic-0" style="margin-left:25%;"></i> </div>
+                                     <h5 class="mb-4" style="color:black;text-align:center;">Santé</h5>
                                  </div>
                                  @if(!empty($actived_services->service_4) && $actived_services->service_4 != 'NULL')
-                                  <input class='service_4' type='hidden' name='service_4' value='mobile' />
+                                  <input class='service_4' type='hidden' name='service_4' value='sante' />
                                   @endif
                              </div>
                              <div class="card-block card-body selectRegister5 {{ (empty($actived_services->service_5) || $actived_services->service_5 == 'NULL') ? '' : 'selected' }}">
@@ -175,7 +175,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
     $('.display_service_1').text(value);
   }
   });
-
+*/
   $('.radio-group .selectRegister2').click(function(){
   if($(this).hasClass('selected')){
       $(this).find(".fa").removeClass('fa-check');
@@ -193,7 +193,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
     $('.display_service_2').text(value);
   }
   });
-
+/*
   $('.radio-group .selectRegister3').click(function(){
   if($(this).hasClass('selected')){
       $(this).find(".fa").removeClass('fa-check');

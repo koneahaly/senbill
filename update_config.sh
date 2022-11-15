@@ -20,3 +20,8 @@ sed -i "s/$search/$replace/" $filename_2
 sed -i "s/$search/$replace/" $filename_3
 sed -i "s/$search_a/$search_b/" $env_file
 sed -i "s/$search_c/$search_d/" $env_file
+
+
+aws --endpoint-url=http://localhost:4566 s3 mb s3://housingimages
+aws --endpoint-url=http://localhost:4566 s3api put-bucket-acl --bucket housingimages --acl public-read 
+aws --endpoint-url=http://localhost:4566 s3 cp Desktop/electra/public/images s3://housingimages/ --recursive

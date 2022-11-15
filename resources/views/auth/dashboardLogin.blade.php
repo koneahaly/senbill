@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>{{config('app.name')}}</title>
-        <link rel="icon" type="image/png" href="https://elektra.s3.amazonaws.com/images/icons/logo-senbill-halo.png"/>
+        <link rel="icon" type="image/png" href="{{ env('S3_URL')}}/{{ env('AWS_BUCKET')}}/logo-senbill-halo.png"/>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
         <link rel="stylesheet" type="text/css" href="{{url('css/bootstrap.min.css')}}">
@@ -18,7 +18,7 @@
     <body class="welcome_elektra">
       <div class="s2sn-wrapper-login-container s2sn-js-login" style="background-image: url({{url('images/bare-tree.jpg')}});">
          <div class="s2sn-wrapper-center s2sn-wrapper-center-dashboard s2sn-wrapper-when-footer">
-           <img src="https://elektra.s3.amazonaws.com/images/icons/logo-senbill-halo.png" alt="logo-senbill" width="auto" height="100" class="s2sn-logo-elektra">
+           <img src="{{ env('S3_URL')}}/{{ env('AWS_BUCKET')}}/logo-senbill-halo.png" alt="logo-senbill" width="auto" height="100" class="s2sn-logo-elektra">
          <form action="{{ route('welcome.dashboard') }}" name="loginForm" id="loginForm" method="post" autocomplete="off">
            {{ csrf_field() }}
 

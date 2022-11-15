@@ -2,12 +2,16 @@
 
 namespace App\Console;
 
+use Illuminate\Http\Request;
 use App\Contact;
 use App\Bill;
 use App\Subscription;
 use App\Invoice;
+use App\User;
+use stdClass;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 use Faker\Factory as Faker;
 use App\Http\Controllers\SmsController;
@@ -151,20 +155,21 @@ class Kernel extends ConsoleKernel
                 $one_more_year = date("m") == 12 ? '+1' : '+0';
                 $day_of_pay = $actived_contract->delay == 0 ? '01' : '0'.$actived_contract->delay;
                 $delay= date("Y", strtotime($one_more_year.' year')).'-'.date("m",strtotime('+1 month')).'-'.$day_of_pay.' 23:59:00';
-                $order_number = $faker->vat;
+                $raw_order_number = $faker->vat;
+                $order_number = str_replace(' ', '', $raw_order_number);
 
                 Bill::updateOrCreate([
                     'customerId' => str_replace('"','',$actived_contract->renter_id), 'order_number' => str_replace('"','',$order_number),
                   ], ['customerId' => str_replace('"','',$actived_contract->renter_id), 'order_number' => str_replace('"','',$order_number),
                   'title' => str_replace('"','','location'),'deadline' => $delay, 'status' => 'En attente',
-                  'amount' => str_replace('"','',$actived_contract->monthly_pm + ($actived_contract->monthly_pm * 0.035)), 'created_at' => date('Y-m-d H:i:s'),
+                  'amount' => str_replace('"','',$actived_contract->monthly_pm + ($actived_contract->monthly_pm * $actived_contract->fees )), 'created_at' => date('Y-m-d H:i:s'),
                   'month' => str_replace('"','',$months[intval(date("m",strtotime('+1 month')))-1]), 'year' => str_replace('"','',date("Y", strtotime($one_more_year.' year'))),
                   'updated_at' => date('Y-m-d H:i:s')]);
 
                 //send mail notifaction for new bill
                 $renter_infos=DB::table('users')->where('customerId',$actived_contract->renter_id)->first();
                 $co = new MailController();
-                $co->newBill_email($renter_infos->email,$order_number,$actived_contract->monthly_pm + ($actived_contract->monthly_pm * 0.035),$delay,$renter_infos->first_name.' '.$renter_infos->name,'location','SEN BILL');
+                $co->newBill_email($renter_infos->email,$order_number,$actived_contract->monthly_pm + ($actived_contract->monthly_pm * $actived_contract->fees),$delay,$renter_infos->first_name.' '.$renter_infos->name,'location','SEN BILL');
             }
 
                 //var_dump($actived_contracts);

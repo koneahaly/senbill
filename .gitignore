@@ -2,3 +2,6 @@
 # This matches files in the root directory and subdirectories too.
 config/database.php
 storage/*
+node_modules
+node_modules
+vendor

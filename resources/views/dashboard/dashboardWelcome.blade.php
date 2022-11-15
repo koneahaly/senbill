@@ -24,7 +24,50 @@ session_start();
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
-
+<style>
+*{
+  padding:0;margin:0;
+}
+li.inner{
+  list-style:none;
+}
+:root {
+  --w: 300;
+  --speed: 5.5s;
+}
+.g-container {
+  width: calc(--w * 1px);
+  overflow: hidden;
+}
+ul.slide {
+  display: flex;
+  flex-wrap: nowrap;
+   animation: move calc(var(--speed) * var(--s)) steps(var(--s)) infinite;
+}
+ul.slide li {
+  flex-shrink: 0;
+  width: 110%;
+  height: 100%;
+  animation: liMove calc(var(--speed)) infinite;
+}
+@keyframes move {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(calc(var(--s) * var(--w) * -1px), 0);
+  }
+}
+@keyframes liMove {
+  0% {
+    transform: translate(0, 0);
+  }
+  80%,
+  100%  {
+    transform: translate(calc(var(--w) * -1px), 0);
+  }
+}
+</style>
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
@@ -32,6 +75,7 @@ session_start();
         <div class="row">
           <div class="col-lg-3 col-6">
             <!-- small box -->
+            @if($offer->libelle != 'servicepublic' AND $offer->libelle != 'Location')
             <div class="small-box bg-warning elektraGradient2">
               <div class="inner">
                 <h2>{{ $pending_amount }} FCFA</h2>
@@ -41,10 +85,56 @@ session_start();
 
             <span class="small-box-footer elektraWarningGradient text-xs"> {{ $nb_pending_amount }} factures</span>
             </div>
+            @endif
+            @if($offer->libelle == 'servicepublic')
+            <div class="small-box bg-warning elektraGradient2">
+              <div class="inner">
+                <h2>Demandes</h2>
+
+                <p>En attente <a data-toggle="tooltip" data-placement="bottom" title="Ces fonds sont en attente de paiement auprès de vos clients finaux.  Les frais des partenaires ont déjà été appliqués et déduits du montant."> <i class="fas fa-info-circle iconElekRightDark"></i></a> </p>
+              </div>
+
+            <span class="small-box-footer elektraWarningGradient text-xs"> {{ $nb_pending_amount }} factures</span>
+            </div>
+            @endif
+            @if($offer->libelle == 'Location')
+              <div class="small-box bg-warning elektraGradient2">
+              <div class="g-container">
+                  <ul style="--s: 3" class="slide">
+
+                  <li class="inner">
+                    <h2>{{ $infos_proprio_c1 }} </h2>
+
+                      <p> Logements déclarés <a data-toggle="tooltip" data-placement="bottom" title="Il s'agit des logements déclarés par les propriétaires de biens immobiliers ou par le biais des agences."> <i class="fas fa-info-circle iconElekRightDark"></i></a> </p>
+                    </li>
+
+                    <li class="inner">
+                    <h2>{{ $infos_reports_c1 }} </h2>
+
+                      <p> Logements signalés <a data-toggle="tooltip" data-placement="bottom" title="Il s'agit des logements signalés par les locataires ou par les services de l'Etat."> <i class="fas fa-info-circle iconElekRightDark"></i></a> </p>
+                    </li>
+
+                    <li class="inner">
+                    <h2>{{ $mean_price_c1 }} </h2>
+                      <p> Loyer moyen <a data-toggle="tooltip" data-placement="bottom" title="Il s'agit de la moyenne des loyers payés par les locataires pour une catégorie de logement donnée."> <i class="fas fa-info-circle iconElekRightDark"></i></a> </p>
+                    </li>
+
+                    <li class="inner">
+                    <h2>{{ $infos_proprio_c1 }} </h2>
+
+                      <p> Logements déclarés <a data-toggle="tooltip" data-placement="bottom" title="Il s'agit des logements déclarés par les propriétaires de biens immobiliers ou par le biais des agences."> <i class="fas fa-info-circle iconElekRightDark"></i></a> </p>
+                    </li>
+
+                  </ul>
+                </div>
+              <span class="small-box-footer elektraWarningGradient text-xs"> Catégorie A </span>
+            </div>
+            @endif
           </div>
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
+            @if($offer->libelle != 'servicepublic' AND $offer->libelle != 'Location')
             <div class="small-box bg-warning elektraGradient2">
               <div class="inner">
                 <h2>{{ $paid_amount }} FCFA</h2>
@@ -54,10 +144,57 @@ session_start();
 
               <span class="small-box-footer elektraSuccess text-xs"> {{ $nb_paid_amount}} factures</span>
             </div>
+            @endif
+            @if($offer->libelle == 'servicepublic')
+            <div class="small-box bg-warning elektraGradient2">
+              <div class="inner">
+                <h2>Demandes</h2>
+
+                <p>traitées<a data-toggle="tooltip" data-placement="bottom" title="Ces fonds ont été payés par vos clients finaux et vous ont été versés.  Les frais des partenaires ont déjà été appliqués et déduits du montant."> <i class="fas fa-info-circle iconElekRightDark"></i></a> </p>
+              </div>
+
+              <span class="small-box-footer elektraSuccess text-xs"> {{ $nb_paid_amount}} factures</span>
+            </div>
+            @endif
+            @if($offer->libelle == 'Location')
+            <div class="small-box bg-warning elektraGradient2">
+            <div class="g-container">
+                  <ul style="--s: 3" class="slide">
+
+                  <li class="inner">
+                    <h2>{{ $infos_proprio_c2 }} </h2>
+
+                      <p> Logements déclarés <a data-toggle="tooltip" data-placement="bottom" title="Il s'agit des logements déclarés par les propriétaires de biens immobiliers ou par le biais des agences."> <i class="fas fa-info-circle iconElekRightDark"></i></a> </p>
+                    </li>
+
+                    <li class="inner">
+                    <h2>{{ $infos_reports_c2 }} </h2>
+
+                      <p> Logements signalés <a data-toggle="tooltip" data-placement="bottom" title="Il s'agit des logements signalés par les locataires ou par les services de l'Etat."> <i class="fas fa-info-circle iconElekRightDark"></i></a> </p>
+                    </li>
+
+                    <li class="inner">
+                    <h2>{{ $mean_price_c2 }} </h2>
+                      <p> Loyer moyen <a data-toggle="tooltip" data-placement="bottom" title="Il s'agit de la moyenne des loyers payés par les locataires pour une catégorie de logement donnée."> <i class="fas fa-info-circle iconElekRightDark"></i></a> </p>
+                    </li>
+
+                    <li class="inner">
+                    <h2>{{ $infos_proprio_c2 }} </h2>
+
+                      <p> Logements déclarés <a data-toggle="tooltip" data-placement="bottom" title="Il s'agit des logements déclarés par les propriétaires de biens immobiliers ou par le biais des agences."> <i class="fas fa-info-circle iconElekRightDark"></i></a> </p>
+                    </li>
+
+                  </ul>
+                </div>
+
+            <span class="small-box-footer elektraSuccess text-xs"> Catégorie B,C </span>
+            </div>
+            @endif
           </div>
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
+            @if($offer->libelle != 'servicepublic' AND $offer->libelle != 'Location')
             <div class="small-box bg-warning elektraGradient2">
               <div class="inner">
                 <h2>{{ $unpaid_amount }} FCFA</h2>
@@ -66,10 +203,56 @@ session_start();
               </div>
               <span class="small-box-footer elektraError text-xs"> {{ $nb_unpaid_amount }} factures </span>
             </div>
+            @endif
+            @if($offer->libelle == 'servicepublic')
+            <div class="small-box bg-warning elektraGradient2">
+              <div class="inner">
+                <h2>Demandes</h2>
+
+                <p> En attente de paiement<a data-toggle="tooltip" data-placement="bottom" title="Ces factures n'ont pas été payés par vos clients finaux et les dates d'échéance des factures sont dépassées. Les frais des partenaires ont déjà été appliqués et déduits du montant."> <i class="fas fa-info-circle iconElekRightDark"></i></a> </p>
+              </div>
+              <span class="small-box-footer elektraError text-xs"> {{ $nb_unpaid_amount }} factures </span>
+            </div>
+            @endif
+            @if($offer->libelle == 'Location')
+            <div class="small-box bg-warning elektraGradient2">
+            <div class="g-container">
+                  <ul style="--s: 3" class="slide">
+
+                    <li class="inner">
+                    <h2>{{ $infos_proprio_c3 }} </h2>
+
+                      <p> Logements déclarés <a data-toggle="tooltip" data-placement="bottom" title="Il s'agit des logements déclarés par les propriétaires de biens immobiliers ou par le biais des agences."> <i class="fas fa-info-circle iconElekRightDark"></i></a> </p>
+                    </li>
+
+                    <li class="inner">
+                    <h2>{{ $infos_reports_c3 }} </h2>
+
+                      <p> Logements signalés <a data-toggle="tooltip" data-placement="bottom" title="Il s'agit des logements signalés par les locataires ou par les services de l'Etat."> <i class="fas fa-info-circle iconElekRightDark"></i></a> </p>
+                    </li>
+
+                    <li class="inner">
+                    <h2>{{ $mean_price_c3 }} </h2>
+                      <p> Loyer moyen <a data-toggle="tooltip" data-placement="bottom" title="Il s'agit de la moyenne des loyers payés par les locataires pour une catégorie de logement donnée."> <i class="fas fa-info-circle iconElekRightDark"></i></a> </p>
+                    </li>
+
+                    <li class="inner">
+                    <h2>{{ $infos_proprio_c3 }} </h2>
+
+                      <p> Logements déclarés <a data-toggle="tooltip" data-placement="bottom" title="Il s'agit des logements déclarés par les propriétaires de biens immobiliers ou par le biais des agences."> <i class="fas fa-info-circle iconElekRightDark"></i></a> </p>
+                    </li>
+
+                  </ul>
+                </div>
+
+            <span class="small-box-footer elektraError text-xs"> Catégorie D,E,F,G </span>
+            </div>
+            @endif
           </div>
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
+            @if($offer->libelle != 'servicepublic' AND $offer->libelle != 'Location')
             <div class="small-box bg-warning elektraGradient2">
               <div class="inner">
                 <h2>{{ $nb_contacts }}</h2>
@@ -78,6 +261,41 @@ session_start();
               </div>
               <span class="small-box-footer elektraInfo text-xs hideUsers"> utilisateurs inscrits  </span>
             </div>
+            @endif
+            @if($offer->libelle == 'servicepublic')
+            <div class="small-box bg-warning elektraGradient2">
+              <div class="inner">
+                <h2>{{ $nb_contacts }}</h2>
+
+                <p>Demandeurs </p>
+              </div>
+              <span class="small-box-footer elektraInfo text-xs hideUsers"> utilisateurs inscrits  </span>
+            </div>
+            @endif
+            @if($offer->libelle == 'Location')
+            <div class="small-box bg-warning elektraGradient2">
+            <div class="g-container">
+              <ul style="--s: 2" class="slide">
+                <li class="inner">
+                  <h2>{{ $nb_contacts_proprio }}</h2>
+
+                  <p>Propriétaires</p>
+                </li>
+                <li class="inner">
+                  <h2>{{ $nb_contacts_loc }}</h2>
+
+                  <p>Locataires</p>
+                </li>
+                <li class="inner">
+                  <h2>{{ $nb_contacts_proprio }}</h2>
+
+                  <p>Propriétaires</p>
+                </li>
+              </ul>
+            </div>
+              <span class="small-box-footer elektraInfo text-xs hideUsers"> utilisateurs inscrits  </span>
+            </div>
+            @endif
           </div>
           <!-- ./col -->
         </div>
@@ -89,10 +307,18 @@ session_start();
             <!-- Custom tabs (Charts with tabs)-->
             <div class="card">
               <div class="card-header">
+                @if($offer->libelle != 'servicepublic' AND $offer->libelle != 'Location')
                 <h3 class="card-title">
                   <i class="fas fa-chart-pie mr-1"></i>
                   Paiements
                 </h3>
+                @endif
+                @if($offer->libelle == 'servicepublic')
+                <h3 class="card-title">
+                  <i class="fas fa-chart-pie mr-1"></i>
+                  Demandes
+                </h3>
+                @endif
                 <div class="card-tools">
                   <ul class="nav nav-pills ml-auto">
                     <li class="nav-item">
@@ -122,6 +348,7 @@ session_start();
               $sum_nb_payments = $nb_paid_om+$nb_paid_cb+$nb_paid_fc+$nb_paid_wz;
             ?>
             <!-- TO DO List -->
+            @if($offer->libelle != 'servicepublic' AND $offer->libelle != 'Location')
             <div class="card">
                 <div class="card-header">
 
@@ -187,6 +414,66 @@ session_start();
                 <!-- /.card-body -->
               </div>
             <!-- /.card -->
+            @endif
+
+             <!-- TO DO List -->
+             @if($offer->libelle == 'Location')
+            <div class="card">
+                <div class="card-header">
+
+                  <h3 class="card-title">
+                    <i class="fa fa-check-square mr-1" aria-hidden="true"></i>
+                    Loyer moyen des locataires</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body p-0">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th style="width: 10px"></th>
+                        <th>Type de logement</th>
+                        <th>Montant</th>
+                        <th style="width: 40px"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>1.</td>
+                        <td>Catégorie A</td>
+                        <td>
+                          <div class="progress progress-xs">
+                            <div class="progress-bar progress-bar-danger elektraOM" style="width: {{ ($mean_price_c1 > 0) ? $mean_price_c1*100/150000 : 0 }}%"></div>
+                          </div>
+                        </td>
+                        <td><span class="badge bg-danger elektraOM">{{ ($mean_price_c1 > 0) ? $mean_price_c1 : 0 }} FCFA</span></td>
+                      </tr>
+                      <tr>
+                        <td>2.</td>
+                        <td>Catégorie B,C</td>
+                        <td>
+                          <div class="progress progress-xs">
+                            <div class="progress-bar bg-warning elektraFree" style="width: {{ ($mean_price_c2 > 0) ? $mean_price_c2*100/500000 : 0 }}%"></div>
+                          </div>
+                        </td>
+                        <td><span class="badge bg-warning elektraFree">{{ ($mean_price_c2 > 0) ? $mean_price_c2 : 0 }} FCFA</span></td>
+                      </tr>
+                      <tr>
+                        <td>3.</td>
+                        <td>Catégorie D,E,F,G</td>
+                        <td>
+                          <div class="progress progress-xs progress-striped active">
+                            <div class="progress-bar bg-primary elektraCB" style="width: {{ ($mean_price_c3 > 0) ? $mean_price_c3*100/5000000 : 0}}%"></div>
+                          </div>
+                        </td>
+                        <td><span class="badge bg-primary elektraCB">{{ ($mean_price_c3 > 0) ? $mean_price_c3 : 0 }} FCFA</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <!-- /.card-body -->
+              </div>
+            <!-- /.card -->
+            @endif
           </section>
           <!-- /.Left col -->
           <!-- right col (We are only adding the ID to make the widgets sortable)-->
@@ -312,6 +599,10 @@ session_start();
 <!-- JQVMap -->
 <script src="{{ url('dashboardAssets/plugins/jqvmap/jquery.vmap.min.js') }}"></script>
 <script src="{{ url('dashboardAssets/plugins/jqvmap/maps/continents/jquery.vmap.africa.js') }}"></script>
+<script src="{{ url('dashboardAssets/plugins/jqvmap/maps/jquery.vmap.senegal.js') }}"></script>
+<script src="{{ url('dashboardAssets/plugins/jqvmap/maps/jquery.vmap.france.js') }}"></script>
+
+
 <!-- jQuery Knob Chart -->
 <script src="{{ url('dashboardAssets/plugins/jquery-knob/jquery.knob.min.js') }}"></script>
 <!-- daterangepicker -->
@@ -335,4 +626,5 @@ $(document).ready(function() {
     $('[data-toggle="tooltip"]').tooltip()
   })
 });
+
 </script>

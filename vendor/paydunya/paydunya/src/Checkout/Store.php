@@ -6,15 +6,15 @@ use Paydunya\Paydunya;
 
 class Store extends Paydunya
 {
-    private static $name='Elektra';
-    private static $tagline='Gérez vos factures et paiements';
+    private static $name;
+    private static $tagline;
     private static $postalAddress;
     private static $phoneNumber;
-    private static $websiteUrl='http://www.services2sn.com';
-    private static $logoUrl='https://elektra.s3.amazonaws.com/images/icons/logo-s2sn.png';
+    private static $websiteUrl;
+    private static $logoUrl;
     private static $cancelUrl;
-    private static $returnUrl='http://localhost:8000/mes-factures/eau/';
-    private static $callbackUrl='http://localhost:8000/notification-paiement';
+    private static $returnUrl;
+    private static $callbackUrl;
 
     public static function setName($name)
     {

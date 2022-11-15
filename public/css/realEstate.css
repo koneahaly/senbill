@@ -96,6 +96,12 @@
 
 }
 
+.requesterDetails-popup {
+  display: none;
+  border: 3px solid #f1f1f1;
+
+}
+
 .formRow {
   margin-left: 1%;
   margin-right: 5%;

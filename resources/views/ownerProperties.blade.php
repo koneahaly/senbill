@@ -13,6 +13,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
   <div class="col-md-12" style="margin-top:10px;margin-bottom:20px;text-align:center;flex-basis:100%;max-width:100%;z-index: 1100;">
    <h3><strong>Mes logements</strong></h3>
  </div>
+
   </div>
 <!-- END TITLE OF THE PAGE-->
 <!--CONTENT OF THE PAGE-->
@@ -25,8 +26,437 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
   });
  </script>
 @endif
+
+<script type="text/javascript"  src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyBK1lhFLXgX3IbSZegrgp4i2zjj0kyYkt4"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        var places = new google.maps.places.Autocomplete(document.getElementById('address_log'));
+        google.maps.event.addListener(places, 'place_changed', function () {
+        });
+        var places_update = new google.maps.places.Autocomplete(document.getElementById('address_log_update'));
+        google.maps.event.addListener(places_update, 'place_changed', function () {
+        });
+    });
+</script>
+
+
+         <!---FORMULAIRE AJOUT LOGEMENT-->
+         <form enctype="multipart/form-data" method="post" action="{{ route('ownerProperties') }}" id="add_logement">
+
+           {{csrf_field()}}
+           <div class="container-contact100 form-popup" id="propForm">
+             <div class="wrap-contact100">
+               <form class="contact100-form validate-form" >
+                 <span class="contact100-form-title">
+                   Ajoutez un logement
+                 </span>
+
+                 <div class="wrap-input100 validate-input bg1 form-group{{ $errors->has('title') ? ' has-error' : '' }}" data-validate="Entrez svp un nom pour le logement">
+                   <span class="label-input100">Nom du logement *</span>
+                   <input class="input100 control-label" type="text" name="title" placeholder="Entrez un nom pour le logement" required>
+                   @if ($errors->has('title'))
+                       <span class="help-block">
+                           <strong>{{ $errors->first('title') }}</strong>
+                       </span>
+                   @endif
+                 </div>
+                 <div class="wrap-input100 validate-input bg1 rs1-wrap-input100 form-group{{ $errors->has('address') ? ' has-error' : '' }}" data-validate = "Entrez l'adresse ou le quartier">
+                   <span class="label-input100 control-label">Adresse du logement *</span>
+                   <input id="address_log" class="input100" type="text" name="address" placeholder="Entrez l'adresse ou le quartier " autocomplete="on" required>
+                   @if ($errors->has('address'))
+                       <span class="help-block">
+                           <strong>{{ $errors->first('address') }}</strong>
+                       </span>
+                   @endif
+                 </div>
+                 <div class="row" style="padding-left:1%">
+                 <div class="wrap-input100 rs1-wrap-input100 input100-select bg1 col-md-8">
+                   <span class="label-input100">Région du logement *</span>
+                   <div>
+                     <select class="js-select-city" name="city_choice" required>
+                       <option value="Dakar">Dakar</option>
+                       <option value="Diourbel">Diourbel</option>
+                       <option value="Fatick">Fatick</option>
+                       <option value="Kaolack">Kaolack</option>
+                       <option value="Kolda">Kolda</option>
+                       <option value="Louga">Louga</option>
+                       <option value="Matam">Matam</option>
+                       <option value="Stlouis">Stlouis</option>
+                       <option value="Tamba">Tamba</option>
+                       <option value="Thies">Thies</option>
+                       <option value="Ziguinchor">ZIG</option>
+                     </select>
+                     <div class="dropDownSelect2"></div>
+                   </div>
+                 </div>
+                 <div class="col-md-1"></div>
+                 <div class="wrap-input100 rs1-wrap-input100 input100-select bg1 col-md-8">
+                   <span class="label-input100">Nombre de chambres *</span>
+                   <div>
+                     <select class="js-select-bed" name="nb_rooms" required>
+                       <option value="Studio">Studio</option>
+                       <option value="1">1</option>
+                       <option value="2">2</option>
+                       <option value="3">3</option>
+                       <option value="4">4</option>
+                       <option value="5">5</option>
+                       <option value="6">6</option>
+                       <option value="maison">maison</option>
+                     </select>
+                     <div class="dropDownSelect2"></div>
+                   </div>
+                 </div>
+                 <div class="col-md-1"></div>
+                 <div class="wrap-input100 rs1-wrap-input100 input100-select bg1{{ $errors->has('surface') ? ' has-error' : '' }} col-md-6">
+                   <span class="label-input100 ">Superficie *</span>
+                   <input class="input100 surface" type="number" pattern="[0-9]{0,10}" name="surface" required  placeholder="en m">
+                   @if ($errors->has('surface'))
+                       <span class="help-block">
+                           <strong>{{ $errors->first('surface') }}</strong>
+                       </span>
+                   @endif
+                 </div>
+              </div>
+                 <!-- catégorisation du logement -->
+                 <div class="wrap-input100 input100-select bg1">
+                 <span class="label-input100 control-label">Catégorie du logement *
+                 <br />
+                 </span>
+                 <br />
+                 <div class="row">
+                  <div class="form-check-inline col-md-3 offset-md-3">
+                      <label class="form-check-label">
+                        <input type="radio" class="form-check-input" value="A" name="category"> A
+                        <sup><a data-toggle="tooltip" data-placement="bottom" title="<?php echo File::get(storage_path('title-toggle/category-a.txt')); ?>"> <i class="fas fa-info-circle"></i></a></sup>
+                      </label>
+                    </div>
+                    <div class="form-check-inline col-md-3 offset-md-3">
+                      <label class="form-check-label">
+                        <input type="radio" class="form-check-input" value="B" name="category"> B
+                        <sup><a data-toggle="tooltip" data-placement="bottom" title="<?php echo File::get(storage_path('title-toggle/category-b.txt')); ?>"> <i class="fas fa-info-circle"></i></a></sup>
+                      </label>
+                    </div>
+                    <div class="form-check-inline col-md-3 offset-md-3">
+                      <label class="form-check-label">
+                        <input type="radio" class="form-check-input" value="C" name="category" > C
+                        <sup><a data-toggle="tooltip" data-placement="bottom" title="<?php echo File::get(storage_path('title-toggle/category-c.txt')); ?>"> <i class="fas fa-info-circle"></i></a></sup>
+                      </label>
+                    </div>
+                    <div class="form-check-inline col-md-3 offset-md-3">
+                      <label class="form-check-label">
+                        <input type="radio" class="form-check-input" value="D" name="category" > D
+                        <sup><a data-toggle="tooltip" data-placement="bottom" title="<?php echo File::get(storage_path('title-toggle/category-d.txt')); ?>"> <i class="fas fa-info-circle"></i></a></sup>
+                      </label>
+                    </div>
+                    <div class="form-check-inline col-md-3 offset-md-3">
+                      <label class="form-check-label">
+                        <input type="radio" class="form-check-input" value="E" name="category"> E
+                        <sup><a data-toggle="tooltip" data-placement="bottom" title="<?php echo File::get(storage_path('title-toggle/category-e.txt')); ?>"> <i class="fas fa-info-circle"></i></a></sup>
+                      </label>
+                    </div>
+                    <div class="form-check-inline col-md-3 offset-md-3">
+                      <label class="form-check-label">
+                        <input type="radio" class="form-check-input" value="F" name="category"> F
+                        <sup><a data-toggle="tooltip" data-placement="bottom" title="<?php echo File::get(storage_path('title-toggle/category-f.txt')); ?>"> <i class="fas fa-info-circle"></i></a></sup>
+                      </label>
+                    </div>
+                    <div class="form-check-inline col-md-3 offset-md-3">
+                      <label class="form-check-label">
+                        <input type="radio" class="form-check-input" value="G" name="category" > G
+                        <sup><a data-toggle="tooltip" data-placement="bottom" title="<?php echo File::get(storage_path('title-toggle/category-g.txt')); ?>"> <i class="fas fa-info-circle"></i></a></sup>
+                      </label>
+                    </div>
+                    <div class="form-check-inline col-md-3 offset-md-3">
+                      <label class="form-check-label">
+                        <input type="radio" class="form-check-input" value="H" name="category" > H
+                        <sup><a data-toggle="tooltip" data-placement="bottom" title="<?php echo File::get(storage_path('title-toggle/category-h.txt')); ?>"> <i class="fas fa-info-circle"></i></a></sup>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-check-inline col-md-3 offset-md-3">
+                      <label class="form-check-label">
+                        <input type="radio" class="form-check-input" value="I" name="category"> I
+                        <sup><a data-toggle="tooltip" data-placement="bottom" title="<?php echo File::get(storage_path('title-toggle/category-i.txt')); ?>"> <i class="fas fa-info-circle"></i></a></sup>
+                      </label>
+                    </div>
+                    <div class="form-check-inline col-md-3 offset-md-3">
+                      <label class="form-check-label">
+                        <input type="radio" class="form-check-input" value="J" name="category"> J
+                        <sup><a data-toggle="tooltip" data-placement="bottom" title="<?php echo File::get(storage_path('title-toggle/category-j.txt')); ?>"> <i class="fas fa-info-circle"></i></a></sup>
+                      </label>
+                    </div>
+                    <div class="form-check-inline col-md-3 offset-md-3">
+                      <label class="form-check-label">
+                        <input type="radio" class="form-check-input" value="K" name="category"> K
+                        <sup><a data-toggle="tooltip" data-placement="bottom" title="<?php echo File::get(storage_path('title-toggle/category-k.txt')); ?>"> <i class="fas fa-info-circle"></i></a></sup>
+                      </label>
+                    </div>
+                    <div class="form-check-inline col-md-3 offset-md-3">
+                      <label class="form-check-label">
+                        <input type="radio" class="form-check-input" value="L" name="category"> L
+                        <sup><a data-toggle="tooltip" data-placement="bottom" title="<?php echo File::get(storage_path('title-toggle/category-l.txt')); ?>"> <i class="fas fa-info-circle"></i></a></sup>
+                      </label>
+                    </div>
+                    <div class="form-check-inline col-md-3 offset-md-3">
+                      <label class="form-check-label">
+                        <input type="radio" class="form-check-input" value="M" name="category"> M
+                        <sup><a data-toggle="tooltip" data-placement="bottom" title="<?php echo File::get(storage_path('title-toggle/category-m.txt')); ?>"> <i class="fas fa-info-circle"></i></a></sup>
+                      </label>
+                    </div>
+                  </div>
+                  </div>
+                  <!-- Fin de catégorisation du logement -->
+                <div class="row" style="padding-left:1%">
+                <div class="wrap-input100 bg1 rs1-wrap-input100 input100-select col-md-8 {{ $errors->has('monthly_pm_rec') ? ' has-error' : '' }}">
+                    <span class="label-input100 control-label">Loyer recommandé </span>
+                    <input class="input100 monthly_pm_rec" type="number" pattern="[0-9]{0,10}" name="monthly_pm_rec" disabled placeholder="loyer recommandé">
+                    @if ($errors->has('monthly_pm_rec'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('monthly_pm_rec') }}</strong>
+                        </span>
+                    @endif
+                  </div>
+                  <div class="col-md-1"></div>
+                  <div class="wrap-input100 bg1 monthly_pm_div rs1-wrap-input100 input100-select col-md-10 {{ $errors->has('monthly_pm') ? ' has-error' : '' }}">
+                    <span class="label-input100 control-label">Loyer *</span>
+                    <input class="input100 monthly_pm" type="number" pattern="[0-9]{0,10}" name="monthly_pm" name="monthly_pm" required  placeholder="Entrez le montant du loyer">
+                    @if ($errors->has('monthly_pm'))
+                        <span class="help-block help-monthly-pm">
+                            <strong>{{ $errors->first('monthly_pm') }}</strong>
+                        </span>
+                    @endif
+                  </div>
+                </div>
+
+                 <div class="wrap-input100 input100-select bg1">
+                   <span class="label-input100">Frais à la charge du *</span>
+                   <div>
+                     <select class="js-select-fees js-select-fees" name="fees" required>
+                       <option value="0.01">locataire</option>
+                       <option value="-0.01">propriétaire</option>
+                     </select>
+                     <div class="dropDownSelect2"></div>
+                   </div>
+                 </div>
+
+
+                 <div class="wrap-input100 input100-select bg1">
+                 <div class="row">
+                  <div class="col-md-">
+                  <span class="label-input100">Image/Photo du logement * </span>
+                  <p>La dernière Image/Photo sera par défaut</p>
+                  </div>
+                  </div>
+                  <div class="row">
+                  <div class="col-md-12">
+                  <span style="color: #7790b3; text-align:center;" id="counter"></span>
+                  </div>
+                 </div>
+                   <div>
+                      <div id="dZUpload" class="dropzone" style="margin-left:6px;">
+                        <div class="dz-default dz-message">
+                          <p>Déposez les images/photos ici ou cliquez pour télécharger</p>
+                        </div>
+                      </div>
+                   </div>
+                 </div>
+                
+               
+               <!--  <div class="wrap-input100 input100-select bg1">
+                   <span class="label-input100">Libre ou occupÃ© *</span>
+                   <div>
+                     <select class="js-select2" name="status_housing" required>
+                       <option disabled>Choisir svp</option>
+                       <option value="Y">Logement libre</option>
+                       <option value="N">Logement occupÃ©</option>
+                     </select>
+                     <div class="dropDownSelect2"></div>
+                   </div>
+                 </div> -->
+                 <div class="wrap-input100 input100-select bg1">
+                   <span class="label-input100">Le logement est-il meublé? *</span>
+                   <div>
+                     <select class="js-select2 js-select-meuble" name="housing_type" required>
+                       <option value="nonmeuble" selected>NON</option>
+                       <option value="meuble">OUI</option>
+                     </select>
+                     <div class="dropDownSelect2"></div>
+                   </div>
+                 <input type="hidden" name="status_housing" value='Y' />
+                </div>
+                 <div class="container-contact100-form-btn">
+                   <button class="contact100-form-btn" id="submit_form">
+                     <span>
+                       Ajoutez
+                       <i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+                     </span>
+                   </button>
+                 </div>
+                 <?php
+                  $i = 0;
+                  $category = ['A','B','C','D','E','F','G','H','I','J','K','L','M'];
+                  ?>
+                 @foreach($scales_housing as $scale_housing)
+                  <input type="hidden" name="Dakar_{{ $category[$i] }}" value='{{ $scale_housing->Dakar}}' />
+                  <input type="hidden" name="Diourbel_{{ $category[$i] }}" value='{{ $scale_housing->Diourbel}}' />
+                  <input type="hidden" name="Fatick_{{ $category[$i] }}" value='{{ $scale_housing->Fatick}}' />
+                  <input type="hidden" name="Kaolack_{{ $category[$i] }}" value='{{ $scale_housing->Kaolack}}' />
+                  <input type="hidden" name="Kolda_{{ $category[$i] }}" value='{{ $scale_housing->Kolda}}' />
+                  <input type="hidden" name="Louga_{{ $category[$i] }}" value='{{ $scale_housing->Louga}}' />
+                  <input type="hidden" name="Matam_{{ $category[$i] }}" value='{{ $scale_housing->Matam}}' />
+                  <input type="hidden" name="Stlouis_{{ $category[$i] }}" value='{{ $scale_housing->Stlouis}}' />
+                  <input type="hidden" name="Tamba_{{ $category[$i] }}" value='{{ $scale_housing->Tamba}}' />
+                  <input type="hidden" name="Thies_{{ $category[$i] }}" value='{{ $scale_housing->Thies}}' />
+                  <input type="hidden" name="ZIG_{{ $category[$i] }}" value='{{ $scale_housing->ZIG}}' />
+                  <?php $i++; ?>
+                @endforeach
+               </form>
+             </div>
+           </div>
+         </form>
+       
+
+         <!--- FIN FORMULAIRE AJOUT LOGEMENT-->
+
+                  <!---DESCRIPTION LOGEMENT-->
+                  <form method="post" action="{{ route('ownerProperties') }}" id="update_logement">
+           {{csrf_field()}}
+           <div class="container-contact100 desc-popup" id="propDesc">
+             <div class="wrap-contact100">
+               <form class="contact100-form validate-form" >
+                 <span class="contact100-form-title">
+                   Modifier votre logement
+                 </span>
+
+                 <div class="wrap-input100 validate-input bg1 form-group{{ $errors->has('title') ? ' has-error' : '' }}" data-validate="Entrez svp un nom pour le logement">
+                   <span class="label-input100 control-label">Nom du logement *</span>
+                   <input class="input100 update_title_log" type="text" name="title" placeholder="Entrez un nom pour le logement" value="Keur Serigne Saliou" required>
+                   @if ($errors->has('title'))
+                       <span class="help-block">
+                           <strong>{{ $errors->first('title') }}</strong>
+                       </span>
+                   @endif
+                 </div>
+                 <div class="wrap-input100 validate-input bg1 rs1-wrap-input100 form-group{{ $errors->has('address') ? ' has-error' : '' }}" data-validate = "Entrez l'adresse ou le quartier">
+                   <span class="label-input100 control-label">Adresse du logement *</span>
+                   <input id="address_log_update" class="input100 update_address_log" type="text" name="address" placeholder="Entrez l'adresse ou le quartier" value="Hann Mariste 2 villa Y46" required>
+                   @if ($errors->has('address'))
+                       <span class="help-block">
+                           <strong>{{ $errors->first('address') }}</strong>
+                       </span>
+                   @endif
+                 </div>
+
+                 <div class="wrap-input100 bg1 rs1-wrap-input100">
+                   <span class="label-input100 control-label form-group{{ $errors->has('city') ? ' has-error' : '' }}">Ville du logement</span>
+                   <input class="input100 update_city_log" type="text" name="city" placeholder="Entrez la ville du  logement" value="Dakar" required>
+                   @if ($errors->has('city'))
+                       <span class="help-block">
+                           <strong>{{ $errors->first('city') }}</strong>
+                       </span>
+                   @endif
+                 </div>
+                 <div class="wrap-input100 input100-select bg1">
+                   <span class="label-input100">Nombre de chambres *</span>
+                   <div class="update_nb_rooms_log">
+                     <select class="js-select-bed js-select-bed-m" name="nb_rooms_housing_m" required>
+                       <option class="disp_studio" value="Studio">Studio</option>
+                       <option class="disp_1" value="1">1</option>
+                       <option class="disp_2" value="2">2</option>
+                       <option class="disp_3" value="3">3</option>
+                       <option class="disp_4" value="4">4</option>
+                       <option class="disp_5" value="5">5</option>
+                       <option class="disp_6" value="6">6</option>
+                       <option class="disp_maison" value="maison">maison</option>
+                     </select>
+                     <div class="dropDownSelect2"></div>
+                   </div>
+                 </div>
+
+                 <div class="wrap-input100 input100-select bg1">
+                   <span class="label-input100">Frais à la charge du *</span>
+                   <div class="update_fees_log">
+                     <select class="js-select-fees js-select-fees-m" name="fees_m" required>
+                       <option class="disp_loc" value="0.01">locataire</option>
+                       <option class="disp_prop" value="-0.01">propriétaire</option>
+                     </select>
+                     <div class="dropDownSelect2"></div>
+                   </div>
+                 </div>
+
+                 <div class="wrap-input100 input100-select bg1">
+                 <div class="row">
+                  <div class="col-md-">
+                  <span class="label-input100">Image/Photo du logement * </span>
+                  <p>La dernière Image/Photo sera par défaut</p>
+                  </div>
+                  </div>
+                  <div class="row">
+                  <div class="col-md-12">
+                  <span style="color: #7790b3; text-align:center;" id="counter"></span>
+                  </div>
+                 </div>
+                   <div>
+                      <div id="dZUploadMd" class="dropzone" style="margin-left:6px;">
+                        <div class="dz-default dz-message dz-image">
+                          <p>Déposez les images/photos ici ou cliquez pour télécharger</p>
+                        </div>
+                      </div>
+                   </div>
+                 </div>
+
+                 <div class="wrap-input100 input100-select bg1">
+                   <span class="label-input100">Libre ou occupé *</span>
+                   <div class="update_status_log">
+                     <select class="js-select2 js-select2-m" name="status_housing_m" required>
+                       <option disabled>Choisir svp</option>
+                       <option class="status_Y" value="Y">Logement libre</option>
+                       <option class="status_N" value="N">Logement occupé</option>
+                     </select>
+                     <div class="dropDownSelect2"></div>
+                   </div>
+                 </div>
+
+                 <div class="w-full js-show-service">
+                   <div class="wrap-contact100-form-radio">
+                     <span class="label-input100">Le logement est-il meublé?</span>
+
+                     <div class="contact100-form-radio m-t-15">
+                       <input class="input-radio100 update_housing_type_log" id="radio1" type="radio" name="type_housing_m" value="nonmeuble" checked="checked">
+                       <label class="label-radio100" for="radio1">
+                         Logement non meublé
+                       </label>
+                     </div>
+
+                     <div class="contact100-form-radio">
+                       <input class="input-radio100 update_housing_type_log" id="radio2" type="radio" name="type_housing_m" value="meuble">
+                       <label class="label-radio100" for="radio2">
+                         Logement meublé
+                       </label>
+                     </div>
+                   </div>
+
+                 </div>
+
+                 <div class="container-contact100-form-btn">
+                   <button class="contact100-form-btn" id="submit_form_m">
+                     <span>
+                       Modifier
+                       <i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+                     </span>
+                   </button>
+                 </div>
+                 <input type="hidden" name="housing_id_m" class="update_housing_id" value="true"/>
+               </form>
+             </div>
+           </div>
+         </form>
+         <!---FIN  DESCRIPTION LOGEMENT-->
+
   <div class="panel panel-default" style="background-color: #f5f9fc;z-index: 1100;">
     <div class="panel-body propPanelBody">
+
       <!--<h4>DEBUT HEADER  </h4> -->
       <div class="panel-heading">
       <header-sidebar class="u-fillWidth propHeader">
@@ -71,11 +501,14 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
       </div>
 
       <!--<h4>FIN HEADER  </h4> -->
+
            <!--<h4>logements  </h4> -->
            <div class="panel-wrapper column">
+
              <div class="wrapper-list">
                <div class="row propRow">
                    <!---DEBUT  CARTE LOGEMENT 1 -->
+
                  @foreach($infos_log as $vl)
                  <div class="col-xs-24 col-sm-10 col-md-8">
                    <div class="m-panel panel-property--list" >
@@ -83,36 +516,21 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                      <!-- DEBUT BODY DETAIL -->
                      <div class="m-panel__body">
                        <div class="body-detail">
+
                        <div class="detail-img">
-                       @foreach($images as $image)
-                        @if($image['housing_id'] == $vl->id)
-                            <a title="icone logement" href="">
-                            <img imageonload="" class="img-responsive s-image--loading_success" alt="avatar" src="{{$image['src']}}">
-                          </a>
+                        @foreach($images as $image)
+                          @if($image['housing_id'] == $vl->id)
+                              <a title="icone logement" href="">
+                              <img class="img-responsive s-image--loading_success" alt="avatar" src="{{$image['src'] }}" />
+                            </a>
                           @endif
-                         @endforeach
+                        @endforeach
                        </div>
                         <div class="detail-info">
                            <div class="info-name">
                               <div class="name-address">
                                  <a href="">
-                                    <fieldset-property-info property="property" address1="26 Route des Maristes" city-address="Chelles, Dakar, 77500, SN">
-                                       <div class="m-property-info ">
-                                          <div class="info-name-property">
-                                             <span>
-                                               <span>{{ $vl->title }}</span>
-                                             </span>
-                                          </div>
-                                          <!----> <!---->
-                                          <div class="info-location">
-                                             <div class="icon-svg"> <i class="fas fa-map-marker-alt"></i></div>
-                                             <div class="location-address">
-                                             <span>{{ $vl->address }}</span><br><span> {{ $vl->city }}, Sénégal</span><!---->
-                                             </div>
-                                          </div>
-                                          <!---->
-                                       </div>
-                                    </fieldset-property-info>
+
                                  </a>
                               </div>
                               <div class="name-view">
@@ -152,6 +570,7 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
 
                      </div>
                      <!---FIN BODY DETAIL-->
+
                        <!---DEBUT MENU AVEC ICONES-->
                      <div class="m-action-btn-icon">
                         <a class="col-xs-12 col-sm-12 tooltip-link" title="Locataire" href="mes-locataires/{{ $vl->occupant_id }}">
@@ -188,30 +607,44 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
                         <div class="property-view"> <a class="m-btn-link--view modify_housing housing_{{ $vl->id }}" title="détails" href="" style="text-transform: none;"  onclick="openDesc(); return false;"> Modifier <i class="far fa-edit"></i></a> </div>
                         <div class="property-view"> <a class="m-btn-link--view delete_housing housing_{{ $vl->id }}" title="supprimer" href="" style="text-transform: none; color:red;" onclick="confirmation(event,{{ $vl->id }})">  <i class="fa fa-trash" aria-hidden="true"></i></a> </div>
                      </div>
+
                      <!---FIN FOOTER-->
                    </div>
+
                  </div>
+
                  <input type="hidden" class="modify_title_{{ $vl->id }}" value="{{ $vl->title }}" />
                  <input type="hidden" class="modify_address_{{ $vl->id }}" value="{{ $vl->address }}" />
                  <input type="hidden" class="modify_city_{{ $vl->id }}" value="{{ $vl->city }}" />
                  <input type="hidden" class="modify_status_{{ $vl->id }}" value="{{ $vl->status }}" />
                  <input type="hidden" class="modify_nb_rooms_{{ $vl->id }}" value="{{ $vl->nb_rooms }}" />
+                 <input type="hidden" class="strong_option_fees_selected_{{ $vl->id }}" value='{{ $vl->fees }}' />
                  <input type="hidden" class="modify_housing_type_{{ $vl->id }}" value="{{ $vl->housing_type }}" />
+
                  @foreach($img_s as $img_)
                         @if($img_['housing_id'] == $vl->id)
                         <input type="hidden" class="modify_image_{{ $vl->id }}" value="{{ $img_['src'] }}" />
                         <input type="hidden" class="image_id_{{ $vl->id }}" value="{{ $img_['id'] }}" />
                         @endif
                  @endforeach
+
                  @endforeach
 
+       
+       
+       
        <!---FIN CARTE LOGEMENT 1 -->
+    
+
          <!---DEBUT CARTE LOGEMENT 2-->
 
        <!---FIN CARTE LOGEMENT 2-->
                </div>
+
              </div>
+
            </div>
+
            @if ($errors->any())
              <div class="alert alert-danger">
                <p style="text-align:center"><strong> L'enregistrement n'a pas pu être effectué !</strong></p>
@@ -225,254 +658,8 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
 
          </div>
 
-         <!---FORMULAIRE AJOUT LOGEMENT-->
-         <form method="post" action="{{ route('mes-logements.add') }}" id="add_logement">
-           {{csrf_field()}}
-           <div class="container-contact100 form-popup" id="propForm">
-             <div class="wrap-contact100">
-               <form class="contact100-form validate-form" >
-                 <span class="contact100-form-title">
-                   Ajoutez un logement
-                 </span>
 
-                 <div class="wrap-input100 validate-input bg1 form-group{{ $errors->has('title') ? ' has-error' : '' }}" data-validate="Entrez svp un nom pour le logement">
-                   <span class="label-input100">Nom du logement *</span>
-                   <input class="input100 control-label" type="text" name="title" placeholder="Entrez un nom pour le logement" required>
-                   @if ($errors->has('title'))
-                       <span class="help-block">
-                           <strong>{{ $errors->first('title') }}</strong>
-                       </span>
-                   @endif
-                 </div>
-                 <div class="wrap-input100 validate-input bg1 rs1-wrap-input100 form-group{{ $errors->has('address') ? ' has-error' : '' }}" data-validate = "Entrez l'adresse ou le quartier">
-                   <span class="label-input100 control-label">Adresse du logement *</span>
-                   <input class="input100" type="text" name="address" placeholder="Entrez l'adresse ou le quartier " required>
-                   @if ($errors->has('address'))
-                       <span class="help-block">
-                           <strong>{{ $errors->first('address') }}</strong>
-                       </span>
-                   @endif
-                 </div>
 
-                 <div class="wrap-input100 bg1 rs1-wrap-input100 form-group{{ $errors->has('city') ? ' has-error' : '' }}">
-                   <span class="label-input100 control-label">Ville du logement</span>
-                   <input class="input100" type="text" name="city" placeholder="Entrez la ville du  logement" required>
-                   @if ($errors->has('city'))
-                       <span class="help-block">
-                           <strong>{{ $errors->first('city') }}</strong>
-                       </span>
-                   @endif
-                 </div>
-                 <div class="wrap-input100 input100-select bg1">
-                   <span class="label-input100">Nombre de chambres *</span>
-                   <div>
-                     <select class="js-select-bed" name="nb_rooms" required>
-                       <option value="Studio">Studio</option>
-                       <option value="1">1</option>
-                       <option value="2">2</option>
-                       <option value="3">3</option>
-                       <option value="4">4</option>
-                       <option value="5">5</option>
-                       <option value="6">6</option>
-                       <option value="maison">maison</option>
-                     </select>
-                     <div class="dropDownSelect2"></div>
-                   </div>
-                 </div>
-                 <div class="wrap-input100 input100-select bg1">
-                 <div class="row">
-                  <div class="col-md-">
-                  <span class="label-input100">Image/Photo du logement * </span>
-                  <p>La dernière Image/Photo sera par défaut</p>
-                  </div>
-                  </div>
-                  <div class="row">
-                  <div class="col-md-12">
-                  <span style="color: #7790b3; text-align:center;" id="counter"></span>
-                  </div>
-                 </div>
-                   <div>
-                      <div id="dZUpload" class="dropzone" style="margin-left:6px;">
-                        <div class="dz-default dz-message">
-                          <p>Déposez les images/photos ici ou cliquez pour télécharger</p>
-                        </div>
-                      </div>
-                   </div>
-                 </div>
-                
-               
-               <!--  <div class="wrap-input100 input100-select bg1">
-                   <span class="label-input100">Libre ou occupÃ© *</span>
-                   <div>
-                     <select class="js-select2" name="status_housing" required>
-                       <option disabled>Choisir svp</option>
-                       <option value="Y">Logement libre</option>
-                       <option value="N">Logement occupÃ©</option>
-                     </select>
-                     <div class="dropDownSelect2"></div>
-                   </div>
-                 </div> -->
-                 <input type="hidden" name="status_housing" value='Y' />
-
-                 <div class="w-full dis-none js-show-service">
-                   <div class="wrap-contact100-form-radio">
-                     <span class="label-input100">Le logement est-il meublé?</span>
-
-                     <div class="contact100-form-radio m-t-15">
-                       <input class="input-radio100" id="radio1" type="radio" name="housing_type" value="nonmeuble" checked="checked">
-                       <label class="label-radio100" for="radio1">
-                         Logement non meublé
-                       </label>
-                     </div>
-
-                     <div class="contact100-form-radio">
-                       <input class="input-radio100" id="radio2" type="radio" name="type_housing" value="meuble">
-                       <label class="label-radio100" for="radio2">
-                         Logement meublé
-                       </label>
-                     </div>
-                   </div>
-                   <!-- <input type="hidden" name="housing_id"  /> -->
-                 </div>
-                 <div class="container-contact100-form-btn">
-                   <button type="submit" class="contact100-form-btn" id="submit_form">
-                     <span>
-                       Ajoutez
-                       <i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
-                     </span>
-                   </button>
-                 </div>
-               </form>
-             </div>
-           </div>
-         </form>
-       
-
-         <!--- FIN FORMULAIRE AJOUT LOGEMENT-->
-
-         <!---DESCRIPTION LOGEMENT-->
-         <form method="post" action="{{ route('mes-logements.update') }}" id="update_logement">
-           {{csrf_field()}}
-           <div class="container-contact100 desc-popup" id="propDesc">
-             <div class="wrap-contact100">
-               <form class="contact100-form validate-form" >
-                 <span class="contact100-form-title">
-                   Modifier votre logement
-                 </span>
-
-                 <div class="wrap-input100 validate-input bg1 form-group{{ $errors->has('title') ? ' has-error' : '' }}" data-validate="Entrez svp un nom pour le logement">
-                   <span class="label-input100 control-label">Nom du logement *</span>
-                   <input class="input100 update_title_log" type="text" name="title" placeholder="Entrez un nom pour le logement" value="Keur Serigne Saliou" required>
-                   @if ($errors->has('title'))
-                       <span class="help-block">
-                           <strong>{{ $errors->first('title') }}</strong>
-                       </span>
-                   @endif
-                 </div>
-                 <div class="wrap-input100 validate-input bg1 rs1-wrap-input100 form-group{{ $errors->has('address') ? ' has-error' : '' }}" data-validate = "Entrez l'adresse ou le quartier">
-                   <span class="label-input100 control-label">Adresse du logement *</span>
-                   <input class="input100 update_address_log" type="text" name="address" placeholder="Entrez l'adresse ou le quartier" value="Hann Mariste 2 villa Y46" required>
-                   @if ($errors->has('address'))
-                       <span class="help-block">
-                           <strong>{{ $errors->first('address') }}</strong>
-                       </span>
-                   @endif
-                 </div>
-
-                 <div class="wrap-input100 bg1 rs1-wrap-input100">
-                   <span class="label-input100 control-label form-group{{ $errors->has('city') ? ' has-error' : '' }}">Ville du logement</span>
-                   <input class="input100 update_city_log" type="text" name="city" placeholder="Entrez la ville du  logement" value="Dakar" required>
-                   @if ($errors->has('city'))
-                       <span class="help-block">
-                           <strong>{{ $errors->first('city') }}</strong>
-                       </span>
-                   @endif
-                 </div>
-                 <div class="wrap-input100 input100-select bg1">
-                   <span class="label-input100">Nombre de chambres *</span>
-                   <div class="update_nb_rooms_log">
-                     <select class="js-select-bed js-select-bed-m" name="nb_rooms_housing_m" required>
-                       <option class="disp_studio" value="Studio">Studio</option>
-                       <option class="disp_1" value="1">1</option>
-                       <option class="disp_2" value="2">2</option>
-                       <option class="disp_3" value="3">3</option>
-                       <option class="disp_4" value="4">4</option>
-                       <option class="disp_5" value="5">5</option>
-                       <option class="disp_6" value="6">6</option>
-                       <option class="disp_maison" value="maison">maison</option>
-                     </select>
-                     <div class="dropDownSelect2"></div>
-                   </div>
-                 </div>
-
-                 <div class="wrap-input100 input100-select bg1">
-                 <div class="row">
-                  <div class="col-md-">
-                  <span class="label-input100">Image/Photo du logement * </span>
-                  <p>La dernière Image/Photo sera par défaut</p>
-                  </div>
-                  </div>
-                  <div class="row">
-                  <div class="col-md-12">
-                  <span style="color: #7790b3; text-align:center;" id="counter"></span>
-                  </div>
-                 </div>
-                   <div>
-                      <div id="dZUploadMd" class="dropzone" style="margin-left:6px;">
-                        <div class="dz-default dz-message dz-image">
-                          <p>Déposez les images/photos ici ou cliquez pour télécharger</p>
-                        </div>
-                      </div>
-                   </div>
-                 </div>
-
-                 <div class="wrap-input100 input100-select bg1">
-                   <span class="label-input100">Libre ou occupé *</span>
-                   <div class="update_status_log">
-                     <select class="js-select2 js-select2-m" name="status_housing_m" required>
-                       <option disabled>Choisir svp</option>
-                       <option class="status_Y" value="Y">Logement libre</option>
-                       <option class="status_N" value="N">Logement occupé</option>
-                     </select>
-                     <div class="dropDownSelect2"></div>
-                   </div>
-                 </div>
-
-                 <div class="w-full dis-none js-show-service">
-                   <div class="wrap-contact100-form-radio">
-                     <span class="label-input100">Le logement est-il meublé?</span>
-
-                     <div class="contact100-form-radio m-t-15">
-                       <input class="input-radio100 update_housing_type_log" id="radio1" type="radio" name="type_housing_m" value="nonmeuble" checked="checked">
-                       <label class="label-radio100" for="radio1">
-                         Logement non meublé
-                       </label>
-                     </div>
-
-                     <div class="contact100-form-radio">
-                       <input class="input-radio100 update_housing_type_log" id="radio2" type="radio" name="type_housing_m" value="meuble">
-                       <label class="label-radio100" for="radio2">
-                         Logement meublé
-                       </label>
-                     </div>
-                   </div>
-
-                 </div>
-
-                 <div class="container-contact100-form-btn">
-                   <button type="submit" class="contact100-form-btn" id="submit_form_m">
-                     <span>
-                       Modifier
-                       <i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
-                     </span>
-                   </button>
-                 </div>
-                 <input type="hidden" name="housing_id_m" class="update_housing_id" value="true"/>
-               </form>
-             </div>
-           </div>
-         </form>
-         <!---FIN  DESCRIPTION LOGEMENT-->
 
          <!---FORMULAIRE AJOUT LOCATAIRE-->
 
@@ -661,6 +848,20 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
          });
 
        })
+       $(".js-select-fees").each(function(){
+         $(this).select2({
+           minimumResultsForSearch: 20,
+           dropdownParent: $(this).next('.dropDownSelect2')
+         });
+
+       })
+       $(".js-select-city").each(function(){
+         $(this).select2({
+           minimumResultsForSearch: 20,
+           dropdownParent: $(this).next('.dropDownSelect2')
+         });
+
+       })
        } );
      </script>
      <!--===============================================================================================-->
@@ -795,10 +996,64 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
 
      $(document).ready(function() {
 
-        var selectedOption = 'Studio'
+        var selectedOption = 'Studio';
+        $("<input class='strong_option_selected' type='hidden' name='strong_option_selected' value='"+selectedOption+"' />").insertAfter('.select2-selection__rendered');
         $(".js-select-bed").on("change", function() {
           selectedOption = $(this).val();
-          $("<input class='strong_option_selected' type='hidden' name='strong_option_selected' value='"+selectedOption+"' />").insertAfter('.select2-selection__rendered');
+          $('.strong_option_selected').val(selectedOption);
+        });
+
+        var selectedOptionMeuble = 'nonmeuble';
+        $("<input class='strong_option_meuble_selected' type='hidden' name='strong_option_meuble_selected' value='"+selectedOptionMeuble+"' />").insertAfter('.select2-selection__rendered');
+        $(".js-select-meuble").on("change", function() {
+          selectedOptionMeuble = $(this).val();
+          $('.strong_option_meuble_selected').val(selectedOptionMeuble);
+        });
+
+        var selectedOptionFees = '0.01';
+        $("<input class='strong_option_fees_selected' type='hidden' name='strong_option_fees_selected' value='"+selectedOptionFees+"' />").insertAfter('.select2-selection__rendered');
+        $(".js-select-fees").on("change", function() {
+          selectedOptionFees = $(this).val();
+          $('.strong_option_fees_selected').val(selectedOptionFees);
+        });
+
+        var selectedOptionCategory = 'A';
+        $("<input class='strong_option_category_selected' type='hidden' name='strong_option_category_selected' value='"+selectedOptionCategory+"' />").insertAfter('.select2-selection__rendered');
+        $(".form-check-input").on("change", function() {
+          selectedOptionCategory = $(this).val();
+          $('.strong_option_category_selected').val(selectedOptionCategory);
+        });
+
+        var selectedOptionCity = 'Dakar';
+        $("<input class='strong_option_city_selected' type='hidden' name='city' value='"+selectedOptionCity+"' />").insertAfter('.select2-selection__rendered');
+        $(".js-select-city").on("change", function() {
+          selectedOptionCity = $(this).val();
+          $('.strong_option_city_selected').val(selectedOptionCity);
+        });
+
+        $('.js-select-city, .form-check-input, .surface').on('change', function() {
+          var surface = $('.surface').val();
+          if(surface != ''){
+            var dynamic_city = $('.strong_option_city_selected').val();
+            var dynamic_category = $('.strong_option_category_selected').val();
+            var class_to_use = '[name="'+dynamic_city+'_'+dynamic_category+'"]';
+            var recommended_value = $(class_to_use).val();
+            //console.log(dynamic_city+''+dynamic_category+''+recommended_value);
+            $('.monthly_pm_rec').val(parseInt(recommended_value * surface));
+            $('.monthly_pm_rec').attr('style', 'color:green');
+
+          }
+        });
+        $('.monthly_pm').on('change', function() {
+          var monthly_pm_rec = $('.monthly_pm_rec').val();
+          var monthly_pm =  $('.monthly_pm').val();
+          if(monthly_pm_rec != ''){
+            if(monthly_pm_rec < monthly_pm){
+              $('<span style="color:#FFA500;font-size:10px" class="help-block"><strong> Attention le loyer renseigné est supérieur à celui préconisé.</strong></span>').insertAfter('.monthly_pm');
+            }
+            if(monthly_pm_rec > monthly_pm){
+              $( ".help-block" ).remove();            }
+          }
         });
 
         
@@ -814,6 +1069,8 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
          var housing_type = $('.modify_housing_type_'+housing_id[1]).val();
          var nb_rooms_housing = $('.modify_nb_rooms_'+housing_id[1]).val();
          var strong_nb_rooms_housing = $('.js-select2').val(status_housing);
+         var strong_option_fees_selected = $('.strong_option_fees_selected_'+housing_id[1]).val();
+         $("<input class='strong_option_fees_selected' type='hidden' name='strong_option_fees_selected' value='"+strong_option_fees_selected+"' />").insertAfter('.update_housing_id');
          var img_housing_id_m = {};
          var img_id_m ={};
           $(".modify_image_"+housing_id[1]).each(function(index) {
@@ -836,6 +1093,8 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
          $('.js-select2').val(status_housing).change();
          $("select option[value="+nb_rooms_housing+"]").attr('selected','selected');
          $('.js-select-bed').val(nb_rooms_housing).change();
+         $('select option[value="'+strong_option_fees_selected+'"]').attr('selected','selected');
+         $('.js-select-fees').val(strong_option_fees_selected).change();
          $('.update_housing_type_log').val(housing_type);
          $('.update_housing_id').val(housing_id[1]);
 
@@ -851,6 +1110,14 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
           status_housing = $(this).val();
           $("<input class='strong_status_housing' type='hidden' name='strong_status_housing' value='"+status_housing+"' />").insertAfter('.update_housing_id');
 
+        });
+
+
+        $(".js-select-fees-m").on("change", function() {
+          $( ".strong_option_fees_selected" ).remove();
+          fees = $(this).val();
+          $("<input class='strong_option_fees_selected' type='hidden' name='strong_option_fees_selected' value='"+fees+"' />").insertAfter('.update_housing_id');
+          //console.log(nb_rooms_housing);
         });
 
        $('.add_occ').click(function(){
@@ -898,9 +1165,9 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
 						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 					},
         method: "POST",
-        url: "{{ route('mes-logements.add') }}",
+        url: "mes-logements/add",
         uploadMultiple: false,
-        autoProcessQueue: false,
+        autoProcessQueue: true,
         parallelUploads: 4,
         maxFilesize: 16,
         addRemoveLinks: true,
@@ -913,13 +1180,13 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
     },
     init: function () {
         var myDropzone = this;
-        $('#submit_form').on("click", function() {
-            myDropzone.processQueue();
-        });
+
         this.on("sending", function(file, xhr, formData){
             $('#add_logement').find('input').each(function() {
                 formData.append( $(this).attr('name'), $(this).val() );
+                console.log($(this).attr('name')+'__'+$(this).val());
             });
+            formData.append('file','test_2');
         });
         this.on("success", function(file, response) {
           var imgName = response;
@@ -931,6 +1198,9 @@ $notification = (isset($_SESSION["numberOfBillsNonPaid"])) ? $_SESSION["numberOf
             console.log(response);
         });
         this.on("error", function(file, response) {
+          var errorDisplay = document.querySelectorAll('[data-dz-errormessage]');
+          console.log(response);
+          console.log(errorDisplay);
           file.previewElement.classList.add("dz-error");
         });
       
@@ -967,7 +1237,7 @@ $(document).ready(function () {
         method: "POST",
         url: "{{ route('mes-logements.update') }}",
         uploadMultiple: false,
-        autoProcessQueue: false,
+        autoProcessQueue: true,
         parallelUploads: 4,
         maxFilesize: 16,
         addRemoveLinks: true,
@@ -1021,9 +1291,7 @@ $(document).ready(function () {
         }
 
 
-        $('#submit_form_m').on("click", function() {
-            myDropzone.processQueue();
-        });
+
         this.on("sending", function(file, xhr, formData){
             $('#update_logement').find('input').each(function() {
                 formData.append( $(this).attr('name'), $(this).val() );
@@ -1040,6 +1308,7 @@ $(document).ready(function () {
             console.log(response);
         });
         this.on("error", function(file, response) {
+          console.log(response);
           file.previewElement.classList.add("dz-error");
         });
       
@@ -1048,9 +1317,7 @@ $(document).ready(function () {
     });
   });
 });
-     </script>
+</script>
 
- 
-    
 
-     @endsection
+@endsection

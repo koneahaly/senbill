@@ -30,6 +30,7 @@
           </div>
           <!-- /.card-header -->
           <div class="card-body">
+            @if(session()->get('service_id') != 6 AND session()->get('service_id') != 5)
             <table id="clientsTable" class="table table-bordered table-hover">
               <thead>
               <tr>
@@ -53,6 +54,32 @@
               @endforeach
               </tbody>
             </table>
+            @endif
+            @if(session()->get('service_id') == 5)
+            <table id="clientsTable" class="table table-bordered table-hover">
+              <thead>
+              <tr>
+                <th>Numéro Identification Nationale</th>
+                <th>Prénom(s)</th>
+                <th>Nom</th>
+                <th>Type de client</th>
+                <th>TELEPHONE</th>
+              </tr>
+              </thead>
+              <tbody>
+              @foreach($infos_contacts as $infos_contact)
+                <tr>
+                  <td>{{ $infos_contact->customerId }}</td>
+                  <td>{{ $infos_contact->first_name }}
+                  </td>
+                  <td>{{ $infos_contact->name }}</td>
+                  <td> {{ ($infos_contact->service_5 == 'locataire') ? 'locataire' : $infos_contact->service_6 }}</td>
+                  <td>{{ $infos_contact->phone }}</td>
+                </tr>
+              @endforeach
+              </tbody>
+            </table>
+            @endif
           </div>
           <!-- /.card-body -->
         </div>

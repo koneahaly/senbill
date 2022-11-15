@@ -4,11 +4,10 @@ namespace Paydunya;
 
 class Setup extends Paydunya
 {
-  //replace with  production infos after TEST_OPR_BASE_URL: pour les infos de la prod, les stocker dans  des variables d'environnement
-    private static $masterKey='cUYDmiSf-Qi44-Q01W-YUxg-A99OYadRzgA0';
-    private static $privateKey='test_private_1njz5YYHaYlnaZYEmWMzlRJJhhD';
-    private static $publicKey='test_public_SXCURdDUdAxV9wcFlcZewbPJwK1';
-    private static $token='rmzOL4yC3yrqdmXoWjAq';
+    private static $masterKey;
+    private static $privateKey;
+    private static $publicKey;
+    private static $token;
 
     const ROOT_URL_BASE = "https://app.paydunya.com";
 
@@ -126,5 +125,4 @@ class Setup extends Paydunya
             return self::ROOT_URL_BASE . self::TEST_DIRECT_PAY_CREDIT_BASE_URL;
         }
     }
-
 }

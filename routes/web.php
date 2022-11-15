@@ -34,7 +34,16 @@ Route::post('/infos-proprietaire/update', 'HomeController@update_personal_infos'
 Route::get('/suivi-conso/{id?}', 'HomeController@suivi_conso')->name('suivi-conso');
 //Rechercher logement
 Route::get('/rechercher-logement', 'HomeController@rechercher_logement')->name('recherche-logement');
-Route::get('search/', 'HomeController@search')->name('search');
+Route::get('/rechercher-logement/search/', 'HomeController@search')->name('rechercher-logement.search');
+
+Route::post('/rechercher-logement/search/', 'HomeController@search')->name('rechercher-logement.search');
+
+//Signaler logement
+Route::post('/signaler-logement', 'HomeController@signaler_logement')->name('signaler-logement');
+Route::post('/signaler-logement/save', 'HomeController@signaler_logement_save')->name('signaler-logement-save');
+
+Route::get('/signaler-logement', 'HomeController@signaler_logement')->name('signaler-logement');
+
 //End rechercher logement
 Route::post('/infos-services/{id?}/update', 'HomeController@update_services_infos')->name('infos-services.update');
 Route::post('/infos-services-pro/update', 'HomeController@update_services_pro_infos')->name('infos-services-pro.update');
@@ -50,6 +59,7 @@ Route::get('/paytech', 'billController@paytech')->name('paytech');
 Route::post('/paytech', 'billController@paytech')->name('paytech');
 
 Route::post('/notify', 'billController@notify')->name('notify');
+Route::get('/notify', 'billController@notify')->name('notify');
 
 
 //Route::get('/home', 'HomeController@index')->name('home');
@@ -85,11 +95,21 @@ Route::get('/dashboard/accueil/{name?}', 'Auth\AdminLoginController@display_pane
 Route::post('/dashboard/clients', 'DashboardController@clients_dashboard')->name('clients.dashboard');
 Route::get('/dashboard/clients', 'DashboardController@clients_dashboard')->name('clients.dashboard');
 
-Route::post('/dashboard/transactions', 'DashboardController@transactions_dashboard')->name('transactions.dashboard');
+Route::post('/dashboard/transactions', 'DashboardController@update_transactions_dashboard')->name('transactions.dashboard');
 Route::get('/dashboard/transactions', 'DashboardController@transactions_dashboard')->name('transactions.dashboard');
 
-Route::post('/dashboard/factures', 'DashboardController@bills_dashboard')->name('bills.dashboard');
+Route::post('/dashboard/treatments', 'DashboardController@treatments_dashboard')->name('treatments.dashboard');
+Route::get('/dashboard/treatments', 'DashboardController@treatments_dashboard')->name('treatments.dashboard');
+
+
+Route::post('/dashboard/factures', 'DashboardController@update_bills_dashboard')->name('bills.dashboard');
 Route::get('/dashboard/factures', 'DashboardController@bills_dashboard')->name('bills.dashboard');
+Route::get('/dashboard/factures/declined', 'DashboardController@bills_dashboard')->name('bills.dashboard.declined');
+Route::get('/dashboard/factures/finished', 'DashboardController@bills_dashboard')->name('bills.dashboard.finished');
+Route::post('/dashboard/reports', 'DashboardController@update_reports_dashboard')->name('reports.dashboard');
+Route::get('/dashboard/reports', 'DashboardController@reports_dashboard')->name('reports.dashboard');
+
+
 
 Route::post('/dashboard/profil', 'DashboardController@profile_dashboard')->name('profile.dashboard');
 Route::get('/dashboard/profil', 'DashboardController@profile_dashboard')->name('profile.dashboard');
@@ -134,6 +154,7 @@ Route::post('/admin/add-partner','AdminController@add_partner')->name('admin.add
 
 Route::get('/transactions-proprietaire/{id?}','realEstateOwnerController@display_transactions')->name('ownerTransactions');
 Route::get('/mes-logements','realEstateOwnerController@display_properties')->name('ownerProperties');
+Route::post('/mes-logements','realEstateOwnerController@display_properties')->name('ownerProperties');
 Route::post('/mes-logements/add','realEstateOwnerController@add_housing')->name('mes-logements.add');
 Route::post('/mes-logements/update','realEstateOwnerController@update_housing')->name('mes-logements.update');
 Route::get('/mes-logements/delete/{id?}','realEstateOwnerController@delete_housing')->name('mes-logements.delete');
@@ -159,10 +180,28 @@ Route::get('sendnewbillemail','MailController@newBill_email');
 Route::get('sendlatebillemail','MailController@lateBill_email');
 Route::get('sendvalidateemail','MailController@validate_email');
 
-Route::get('verify-email/{name?}','MailController@verify_email')->name('verify-email');;
+Route::post('sendcontactemail','MailController@contact_email')->name('contact.email');
+
+Route::get('verify-email/{name?}','MailController@verify_email')->name('verify-email');
+Route::get('test','HomeController@test')->name('test');
+
+Route::post('success','HomeController@success')->name('success');
 
 Route::get('send-sms','SmsController@send_sms');
 
 //++++++++++++++++++++++++++++ ADDING IMAGES TO LOGEMENT ++++++++++++++++++++++++++++++++++++++++++++
 Route::post('/','realEstateOwnerController@storeImg')->name('images.add');
 Route::post('/mes-images/delete/{id?}','realEstateOwnerController@delete_image')->name('mes-images.delete');
+
+
+//++++++++++++++++++++++++++++ VUE LOGEMENT ++++++++++++++++++++++++++++++++
+Route::get('/logement/{id}', 'realEstateOwnerController@display_log')->name('logement');
+
+
+//+++++++++++++++++++++++++++ SERVICE PUBLIC +++++++++++++++++++++++++++++++
+
+Route::get('/mes-demandes/{id?}', 'ServicePublicController@display_requests')->name('mes-demandes');
+Route::post('/mes-demandes/{id?}', 'ServicePublicController@submit_request')->name('mes-demandes');
+
+Route::get('/demande/{name?}/{id?}', 'ServicePublicController@display_demand')->name('demande');
+Route::post('/demande/{name?}/{id?}', 'ServicePublicController@display_demand')->name('demande');

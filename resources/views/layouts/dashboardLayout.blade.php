@@ -34,6 +34,10 @@
   <!-- Select2 -->
   <link rel="stylesheet" href="{{url('dashboardAssets/plugins/select2/css/select2.min.css')}}">
   <link rel="stylesheet" href="{{url('dashboardAssets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{url('vendor/animate/animate.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{url('vendor/animsition/css/animsition.min.css')}}">
+
+  <script src="{{ url('js/notify.js') }}"></script>
 </head>
 @php
 $active_dashboard ='none';
@@ -41,6 +45,8 @@ $active_clients ='none';
 $active_transactions ='none';
 $active_factures ='none';
 $active_paiements ='none';
+$active_paiements_declined ='none';
+$active_paiements_finished ='none';
 $active_menu ='none';
 $active_profile ='none';
 $active_general ='none';
@@ -61,9 +67,21 @@ if(strpos($_SERVER['REQUEST_URI'],"transactions") == true){
   $active_transactions = 'active';
   $active_menu = 'menu-open';
 }
-if(strpos($_SERVER['REQUEST_URI'],"factures") == true){
+if(strpos($_SERVER['REQUEST_URI'],"factures") == true && strpos($_SERVER['REQUEST_URI'],"declined") !== true && strpos($_SERVER['REQUEST_URI'],"finished") !== true){
     $active_paiements = 'active';
     $active_factures = 'active';
+    $active_menu = 'menu-open';
+}
+if(strpos($_SERVER['REQUEST_URI'],"factures") !== true && strpos($_SERVER['REQUEST_URI'],"declined") == true && strpos($_SERVER['REQUEST_URI'],"finished") !== true){
+    $active_paiements_declined = 'active';
+    $active_paiements = 'none';
+    $active_factures = 'none';
+    $active_menu = 'menu-open';
+}
+if(strpos($_SERVER['REQUEST_URI'],"factures") !== true && strpos($_SERVER['REQUEST_URI'],"declined") !== true && strpos($_SERVER['REQUEST_URI'],"finished") == true){
+    $active_paiements_finished = 'active';
+    $active_paiements = 'none';
+    $active_factures = 'none';
     $active_menu = 'menu-open';
 }
 if(strpos($_SERVER['REQUEST_URI'],"profil") == true){
@@ -290,7 +308,7 @@ color:#2282e4 !important;
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="{{ url('dashboardAssets/dist/img/yassnana.jpg') }}" class="img-circle elevation-2" alt="Image utilisateur">
+          <img src="{{ url('dashboardAssets/dist/img/momar.jpeg') }}" class="img-circle elevation-2" alt="Image utilisateur">
         </div>
         <div class="info">
           <a href="#" class="d-block">{{ $full_name }}</a>
@@ -324,25 +342,90 @@ color:#2282e4 !important;
           <li class="nav-item has-treeview {{ $active_menu }}">
             <a href="#" class="nav-link {{ $active_paiements }}">
               <i class="nav-icon fas fa-copy"></i>
+              @if($offer->libelle != 'servicepublic' AND $offer->libelle != 'Location')
               <p>
                 Paiements
                 <i class="fas fa-angle-left right"></i>
                 <!-- <span class="badge badge-info right">6</span> -->
               </p>
+              @endif
+              @if($offer->libelle == 'servicepublic')
+              <p>
+                Demandes
+                <i class="fas fa-angle-left right"></i>
+                <!-- <span class="badge badge-info right">6</span> -->
+              </p>
+              @endif
+              @if($offer->libelle == 'Location')
+              <p>
+                Locations
+                <i class="fas fa-angle-left right"></i>
+                <!-- <span class="badge badge-info right">6</span> -->
+              </p>
+              @endif
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
+                @if($offer->libelle != 'servicepublic' AND $offer->libelle != 'Location')
                 <a href="{{ route('transactions.dashboard') }}" class="nav-link {{ $active_transactions }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Transactions</p>
                 </a>
+                @endif
+                @if($offer->libelle == 'servicepublic')
+                <a href="{{ route('transactions.dashboard') }}" class="nav-link {{ $active_transactions }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Traitements en attente</p>
+                </a>
+                @endif
+                @if($offer->libelle == 'Location')
+                <a href="{{ route('transactions.dashboard') }}" class="nav-link {{ $active_transactions }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Déclarations</p>
+                </a>
+                @endif
               </li>
+
+              @if($offer->libelle != 'servicepublic' AND $offer->libelle != 'Location')
               <li class="nav-item">
                 <a href="{{ route('bills.dashboard') }}" class="nav-link {{ $active_factures}}">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Factures</p>
+                  <p> Factures </p>
                 </a>
               </li>
+              @endif
+              @if($offer->libelle == 'servicepublic')
+              <li class="nav-item">
+                <a href="{{ route('bills.dashboard') }}" class="nav-link {{ $active_factures}}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p> Paiements en attente </p>
+                </a>
+              </li>
+              @endif
+              @if($offer->libelle == 'Location')
+              <li class="nav-item">
+                <a href="{{ route('reports.dashboard') }}" class="nav-link {{ $active_paiements_declined}}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p> signalements </p>
+                </a>
+              </li>
+              @endif
+              @if($offer->libelle == 'servicepublic')
+              <li class="nav-item">
+                <a href="{{ route('bills.dashboard.declined') }}" class="nav-link {{ $active_paiements_declined}}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p> Demandes déclin&eacute;es </p>
+                </a>
+              </li>
+              @endif
+              @if($offer->libelle == 'servicepublic')
+              <li class="nav-item">
+                <a href="{{ route('bills.dashboard.finished') }}" class="nav-link {{ $active_paiements_finished}}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p> Demandes termin&eacute;es </p>
+                </a>
+              </li>
+              @endif
             </ul>
           </li>
 

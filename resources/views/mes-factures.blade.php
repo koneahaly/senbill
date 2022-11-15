@@ -10,7 +10,7 @@ if(strpos($service[2],'?') !== false){
 }
 
 $months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
-$mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_service_2', 'tv' => 'type_service_3', 'mobile' => 'type_service_4',
+$mapping_type_services = ['distribution' => 'type_service_1', 'servicepublic' => 'type_service_2', 'telecom' => 'type_service_3', 'sante' => 'type_service_4',
                           'locataire' => 'type_service_5', 'proprietaire' => 'type_service_6', 'scolarite' => 'type_service_7',
                           'sport' => 'type_service_8'];
 
@@ -19,6 +19,7 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
 
 @section('content')
 <div class="container">
+
           <div class="row lottie-lines" style="margin-top:4%;">
           </div>
           <div class="row rowmobile" style="margin-top:10%">
@@ -52,18 +53,18 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
               <span class="text-success"><strong> à ce jour ! </strong></span>
             @endif
             <!-- if postpaid client-->
-            @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'postpaid' and (!empty($data) and $data != NULL) and $numberOfBillsNonPaid == 0)
+            @if((!empty($data) and $data != NULL) and $numberOfBillsNonPaid == 0)
               <span><strong> Tous vos paiements sont </strong></span>
               <span class="text-success"><strong> à jour ! </strong></span>
             @endif
             <!-- if postpaid client-->
-            @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'postpaid' and (!empty($data) and $data != NULL) and $numberOfBillsNonPaid > 0)
+            @if((!empty($data) and $data != NULL) and $numberOfBillsNonPaid > 0)
               <span><strong> Vous avez </strong></span>
               <span class="text-danger"><strong> {{ $numberOfBillsNonPaid }} <?php $lib_bill = ($numberOfBillsNonPaid == 1) ? 'facture' : 'factures'; echo $lib_bill; ?></strong></span>
               <span><strong> en attente de paiement ! </strong></span>
             @endif
             <!-- if postpaid client-->
-            @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'postpaid' and empty($data) || $data == NULL)
+            @if(empty($data) || $data == NULL)
               <span><strong> Aucune facture à ce jour ! </strong></span>
             @endif
           @endif
@@ -75,11 +76,15 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
                 </div>
             @endif
           </div>
-
+@if(session()->has('msg_mdp'))
+    <div class="alert alert-success">
+        {{ session()->get('msg_mdp') }}
+    </div>
+@endif
           <div class="row" style="z-index:1001">
 		        <div class="col-md-12">
               <!-- if postpaid client-->
-            @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'postpaid' and !empty($data) and $data != NULL and (!empty($user->date_verify_email) or strpos($user->email,"user") === 0 or strpos($user->email,"stat") === 0))
+            @if(!empty($data) and $data != NULL and (!empty($user->date_verify_email) or strpos($user->email,"user") === 0 or strpos($user->email,"stat") === 0))
                 <!--<h4>Paiements déjà réalisés</h4> -->
               <br/>
 
@@ -103,18 +108,17 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
                       <td>{{$value->month}} {{$value->year}} </td>
                       <td id="{{$value->month}}_amount" style="text-align:center;font-weight: 700;"> {{$value->amount}} FCFA </td>
                       @if($value->status == "paid")
-                        <td id="{{$value->month}}_status" style="color:#28863e;font-weight: 700;width:20%;"> <span title="payée" class=" glyphicon btn-lg glyphicon-ok-circle text-success"></span> <br /> <span style="font-size:0.7em;font-weight: lighter;color:black;">  le {{$value->created_at}} <span> </td>
+                        <td id="{{$value->month}}_status" style="color:#28863e;font-weight: 700;width:20%;"> <span title="payée" class=" glyphicon btn-lg glyphicon-ok-circle text-success"></span> <br /> <span style="font-size:0.7em;font-weight: lighter;color:black;">  le {{$value->updated_at}} <span> </td>
                         <td style="width:20%;"> {{$value->payment_method}} </td>
                       @endif
                       @if($value->status != "paid")
                       <!--<td><button data-toggle="modal" data-target="#pay_bill" class="btn btn-danger btn-xs"> Régler</button> <br /> <span style="font-size:0.7em;font-weight: lighter;color:black;"> avant le {{$value->created_at}} <span></td>
                       -->
-                      <?php if( Auth::user()->email == "issayacoubkone@gmail.com"){ ?>
-                      <td> <button class="buy" onclick="callpaytech(this)" data-item-id="{{$value->order_number}}-{{$value->amount}}" >Payez
-                        </button> </td>
-                      <?php }else{ ?>
-                      <td><input class="btn btn-danger btn-xs" type=button onclick='sendPaymentInfos(new Date().getTime(),"SNBIL11162", "NTrmzaD4WyiAKaTa9-8Vjc^$ijuP-ut0oY2J^drhn$v9qTWJC@","senbill.sn","https://www.senbill.com/mes-factures/{{ $_SESSION["current_service"] }}?order={{ $value->order_number }}","https://www.senbill.com/mes-factures/{{ $_SESSION["current_service"] }}?order={{ $value->order_number }}", {{ $value->amount }}, "dakar", "{{ Auth::user()->email }}","{{ Auth::user()->first_name }}", "{{ Auth::user()->name }}",  "{{ substr(Auth::user()->phone,4,12) }}" )' value=payez /> </td>
-                      <?php } ?>
+                      <td> <button class="buy btn btn-danger" onclick="callpaytech(this)" data-item-id="{{ trim($value->order_number) }}-{{$value->amount}}" >Payez
+                        </button> <br /> <span style="font-size:0.7em;font-weight: lighter;color:black;"> avant le {{ Carbon\Carbon::parse($value->deadline)->locale('fr')->translatedFormat('d F Y à H\hi')  }} <span> </td>
+                      
+                    <!--  <td><input class="btn btn-danger btn-xs" type=button onclick='sendPaymentInfos(new Date().getTime(),"SNBIL11162", "NTrmzaD4WyiAKaTa9-8Vjc^$ijuP-ut0oY2J^drhn$v9qTWJC@","senbill.sn","https://www.senbill.com/mes-factures/{{ $_SESSION["current_service"] }}?order={{ $value->order_number }}","https://www.senbill.com/mes-factures/{{ $_SESSION["current_service"] }}?order={{ $value->order_number }}", {{ $value->amount }}, "dakar", "{{ Auth::user()->email }}","{{ Auth::user()->first_name }}", "{{ Auth::user()->name }}",  "{{ substr(Auth::user()->phone,4,12) }}" )' value=payez /> </td> -->
+                      
                       <!--  POUR REGLER VIA PAYDUNYA SANS REDIRECTION COMMENTER LA LIGNE DU DESSUS ET DECOMMENTER CELLE EN DESSOUS ET DECOMMENTER DANS LAYOUT.app LE CSS de PAYDUNYA, en bas le script paydunya
                        <td><button class="pay" id="regler1" onclick="" data-ref="102" data-fullname="Alioune Faye" data-email="aliounefaye@gmail.com" data-phone="774563209">Régler PD</button><br /> <span style="font-size:0.7em;font-weight: lighter;color:black;"> avant le {{$value->created_at}} <span></td>-->
                         <td> n/a </td>
@@ -147,10 +151,11 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
                                       <div class="row">
                                         <div class="col-xs-3"> <strong>Paiement</strong> </div>
                                         @if($value->status == "paid")
-                                          <div class="col-xs-3" style="margin-top:-13px;margin-left:-15px"> <span title="payée le {{$value->created_at}}" class=" glyphicon btn-lg glyphicon-ok-circle text-success"></span></div>
+                                          <div class="col-xs-3" style="margin-top:-13px;margin-left:-15px"> <span title="payée le {{$value->updated_at}}" class=" glyphicon btn-lg glyphicon-ok-circle text-success"></span></div>
                                         @endif
                                         @if($value->status != "paid")
-                                          <div class="col-xs-3" style="margin-top:-13px;margin-left:-15px"> <input class="btn btn-danger btn-xs" type=button onclick='sendPaymentInfos(new Date().getTime(),"SNBIL11162", "NTrmzaD4WyiAKaTa9-8Vjc^$ijuP-ut0oY2J^drhn$v9qTWJC@","senbill.sn","https://www.senbill.com/mes-factures/{{ $_SESSION["current_service"] }}?order={{ $value->order_number }}","https://www.senbill.com/mes-factures/{{ $_SESSION["current_service"] }}?order={{ $value->order_number }}", {{ $value->amount }}, "dakar", "{{ Auth::user()->email }}","{{ Auth::user()->first_name }}", "{{ Auth::user()->name }}",  "{{ substr(Auth::user()->phone,4,12) }}" )' value=payez />  <br /> <span style="font-size:0.7em;font-weight: lighter;color:black;"> avant le {{$value->created_at}} <span> </div>
+                                        <div> <button class="buy btn btn-danger" style="background-color:red;color:#fff" onclick="callpaytech(this)" data-item-id="{{ trim($value->order_number) }}-{{$value->amount}}" >Payez
+                                          </button> </div>
                                         @endif
                                         <div class="col-xs-3" style="margin-left:15px"><strong> Type :</strong></div>
                                         <div class="col-xs-3"> <?php if(!empty($value->title)) echo $value->title; else echo 'non renseigné'; ?> </div>
@@ -168,6 +173,74 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
               @endforeach
             </div>
             @endif
+
+<!-- Modal -->
+
+@if(Auth::user()->mdp_modified != 1)
+<?php  $uri = $_SERVER['REQUEST_URI']; 
+                    $uriArray = explode('/', $uri);
+                    $page = implode('/',$uriArray);
+              ?>
+
+  <div class="modal fade" style="z-index : 1540 !important" id="ContactFormModal" tabindex="-1" role="dialog" 
+      aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+          <div class="modal-content">
+            <form class="form-horizontal" id="formcontact" role="form" method="post" action="{{ $page }}">
+              {{csrf_field()}}
+                <!-- Modal Header -->
+              <div class="modal-header">
+                  <button type="button" class="close" 
+                    data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                  </button>
+                  <h4 class="modal-title" id="myModalLabel">
+                      Changer votre mot de passe
+                  </h4>
+              </div>
+              
+
+              <!-- Modal Body -->
+              <div class="modal-body">
+                  
+                <div class="form-group">
+                  <label  class="col-sm-2 control-label"
+                            for="inputName"></label>
+                  <div class="col-sm-10">
+                      <input id="mdp" name="mdp" type="password" class="form-control" 
+                      placeholder="Nouveau mot de passe..."/>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label"
+                        for="inputEmail" ></label>
+                    <div class="col-sm-10">
+                        <input id="mdp_2" name="mdp_2" type="password" class="form-control"
+                            placeholder="Confirmer mot de passe..."/>
+                    </div>
+                </div>
+
+    
+              </div>
+              
+              <!-- Modal Footer -->
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-default"
+                          data-dismiss="modal">
+                              Fermer
+                  </button>
+                  <button type="submit" name="reset_mdp" id="reset_mdp" class="btn btn-primary">
+                      Modifier le mot de passe
+                  </button>
+                  <input type="hidden" name="change_mdp" value="true" />
+              </div>
+            </form>
+          </div>
+      </div>
+  </div>
+  <br />
+@endif
 
             <!-- if prepaid client-->
             @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'prepaid' and (!empty($data) and $data != NULL) and (!empty($user->date_verify_email) or strpos($user->email,"user") === 0 or strpos($user->email,"stat") === 0))
@@ -255,7 +328,7 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
           @if(!empty($last_row_data) and !empty($user->date_verify_email))
           <div class="row">
             <!-- if postpaid client-->
-            @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'postpaid' and (!empty($user->date_verify_email) or strpos($user->email,"user") === 0 or strpos($user->email,"stat") === 0))
+            @if((!empty($user->date_verify_email) or strpos($user->email,"user") === 0 or strpos($user->email,"stat") === 0))
               <div class="col-md-8 col-md-offset-2 picker">
                 @if(!empty($last_row_data->month))
                   <input type="hidden" class="slider-input" value={{ date('n',strtotime($last_row_data->month)) }} />
@@ -278,10 +351,10 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
             @endif
             <br />
             <!-- if postpaid client-->
-            @if($actived_services->{$mapping_type_services[$_SESSION['current_service']]} == 'postpaid' and (!empty($user->date_verify_email) or strpos($user->email,"user") === 0 or strpos($user->email,"stat") === 0))
+            @if((!empty($user->date_verify_email) or strpos($user->email,"user") === 0 or strpos($user->email,"stat") === 0))
             <br/>
               <div class="col-md-4 col-md-offset-4 ticket" style="text-align:center;margin-top:25px">
-                <form class="form-inline" action="../mes-factures/{{ $_SESSION['current_service'] }}/pdf_bill" method="POST">
+                <form class="form-inline" action="../mes-factures/{{ $_SESSION['current_service'] }}/pdf_bill" method="POST" target="_blank">
                     {{csrf_field()}}
                 <div class="large-main-panel" style="background-color:#fff;">
                   <div>
@@ -304,17 +377,17 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
                     <hr>
                     <p class="tl_echeance"><strong> Echéance de {{$last_row_data->month}} {{$last_row_data->year}} </strong></p>
                     @if($last_row_data->status == "paid")
-                      <span class="tl_paiement" style="font-size:10px"> paiement effectué le @php echo substr($last_row_data->created_at,8,2)."/"; echo substr($last_row_data->created_at,5,2)."/"; echo substr($last_row_data->created_at,0,4); @endphp </span>
+                      <span class="tl_paiement" style="font-size:10px"> paiement effectué le @php echo substr($last_row_data->updated_at,8,2)."/"; echo substr($last_row_data->created_at,5,2)."/"; echo substr($last_row_data->created_at,0,4); @endphp </span>
                     @endif
                     @if($last_row_data->status != "paid")
-                      <span class="tl_paiement" style="font-size:10px"> &Agrave; régler avant le @php echo substr($last_row_data->created_at,8,2)."/"; echo substr($last_row_data->created_at,5,2)."/"; echo substr($last_row_data->created_at,0,4); @endphp </span>
+                      <span class="tl_paiement" style="font-size:10px"> &Agrave; régler avant le @php echo Carbon\Carbon::parse($value->deadline)->locale('fr')->translatedFormat('d F Y à H\hi'); @endphp </span>
                     @endif
                     <br />
                     <br />
                     <div class="row toPay">
                       @if($last_row_data->status == "paid")
                         <!--<button class="btn rgmail" style="background-color:rgba(137,180,213,1);color:#fff"> Envoyer par mail </button>-->
-                        <button type="submit" class="btn rgdown" style="background-color:rgba(137,180,213,1);color:#fff"> Télécharger</button>
+                        <button type="submit" target ="_blank" class="btn rgdown" style="background-color:rgba(137,180,213,1);color:#fff"> Télécharger</button>
                         <input type="hidden" name="id_bill" value="{{$last_row_data->id}}" />
                         <input type="hidden" name="service" value="{{ $_SESSION['current_service'] }}"/>
                       @endif
@@ -323,8 +396,8 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
                     </form>
                       @if($last_row_data->status != "paid")
                         <!--<button data-toggle="modal" data-target="#pay_bill" class="btn btn-danger rgfac">Régler ma facture</button> -->
-                        <input class="btn btn-danger rgfac" type=button onclick='sendPaymentInfos("{{ $value->order_number }}","SNBIL11162", "NTrmzaD4WyiAKaTa9-8Vjc^$ijuP-ut0oY2J^drhn$v9qTWJC@","senbill.sn","https://www.senbill.com/mes-factures/{{ $_SESSION["current_service"] }}?status=success","https://www.senbill.com/mes-factures/{{ $_SESSION["current_service"] }}?status=failed", {{ $value->amount }}, "dakar", "","", "",  "" )' value="Régler ma facture" />
-
+                        <button class="buy btn btn-danger" onclick="callpaytech(this)" data-item-id="{{ trim($value->order_number) }}-{{$value->amount}}" >Régler ma facture
+                                          </button>
                       @endif
                     <br />
                     <br />
@@ -387,7 +460,7 @@ $mapping_type_services = ['eau' => 'type_service_1', 'electricite' => 'type_serv
                     <br />
                     <div class="row">
                         <!--<button class="btn" style="background-color:rgba(137,180,213,1);color:#fff"> Envoyer par mail </button>-->
-                        <button type="submit" class="btn" style="background-color:rgba(137,180,213,1);color:#fff"> Télécharger</button>
+                        <button type="submit" target='_blank' class="btn" style="background-color:rgba(137,180,213,1);color:#fff"> Télécharger</button>
                         <input type="hidden" name="id_buy" value="{{$last_row_data['id']}}" />
                         <input type="hidden" name="service" value="{{ $_SESSION['current_service'] }}"/>
                     </div>
@@ -1587,29 +1660,33 @@ $(document).ready(function() {
         (new PayTech({
           idTransaction           :   idTransaction,
         })).withOption({
-            requestTokenUrl           :   'https://www.senbill.com/paytech',
+            requestTokenUrl           :   '/paytech',
             method              :   'POST',
             headers             :   {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                "Access-Control-Allow-Origin": "*",
                 "Accept"          :    "text/html",
             },
             prensentationMode   :   PayTech.OPEN_IN_POPUP,
             willGetToken        :   function () {
-                
+
             },
             didGetToken         : function (token, redirectUrl) {
-                
+
             },
             didReceiveError: function (error) {
-                
+
             },
             didReceiveNonSuccessResponse: function (jsonResponse) {
-                
+
             }
         }).send();
 
         //.send params are optional
     }
+</script>
+<script> 
+$('#ContactFormModal').modal('show');
 </script>
 
 @endsection

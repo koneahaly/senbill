@@ -206,8 +206,8 @@
                                    <div class="fa fa-circle"></div>
                                </div>
                                <div class="row justify-content-center d-flex">
-                                   <div class="pic"> <i class="fas fa-faucet fa-5x pic-0" style="margin-left:25%;"></i> </div>
-                                   <h5 class="mb-4" style="color:black;text-align:center;">Eau</h5>
+                                   <div class="pic"> <i class="fas fa-network-wired fa-5x pic-0" style="margin-left:25%;"></i> </div>
+                                   <h5 class="mb-4" style="color:black;text-align:center;">Distribution</h5>
                                </div>
                                <!-- <input class='service_1' type='hidden' name='service_1' value='eau' /> -->
                            </div>
@@ -216,8 +216,8 @@
                                    <div class="fa fa-circle"></div>
                                </div>
                                <div class="row justify-content-center d-flex">
-                                   <div class="pic"> <i class="fas fa-plug fa-5x pic-0" style="margin-left:25%;"></i> </div>
-                                   <h5 class="mb-4" style="color:black;text-align:center;">Electricité</h5>
+                                   <div class="pic"> <i class="fab fa-galactic-republic fa-5x pic-0" style="margin-left:25%;"></i> </div>
+                                   <h5 class="mb-4" style="color:black;text-align:center;">Service public</h5>
                                </div>
                            </div>
                            <div class="card-block card-body selectRegister3" style="cursor:not-allowed;">
@@ -226,7 +226,7 @@
                                </div>
                                <div class="row justify-content-center d-flex">
                                    <div class="pic"> <i class="fas fa-tv fa-5x pic-0" style="margin-left:25%;"></i> </div>
-                                   <h5 class="mb-4" style="color:black;text-align:center;">Television</h5>
+                                   <h5 class="mb-4" style="color:black;text-align:center;">Télécom</h5>
                                </div>
                            </div>
                            <div class="card-block card-body selectRegister4" style="cursor:not-allowed;">
@@ -234,8 +234,8 @@
                                    <div class="fa fa-circle"></div>
                                </div>
                                <div class="row justify-content-center d-flex">
-                                   <div class="pic"> <i class="fas fa-mobile-alt fa-5x pic-0" style="margin-left:25%;"></i> </div>
-                                   <h5 class="mb-4" style="color:black;text-align:center;">Mobile & Internet</h5>
+                                   <div class="pic"> <i class="fas fa-hospital fa-5x pic-0" style="margin-left:25%;"></i> </div>
+                                   <h5 class="mb-4" style="color:black;text-align:center;">Santé</h5>
                                </div>
                            </div>
                            <div class="card-block card-body selectRegister5">
