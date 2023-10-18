@@ -51,8 +51,8 @@ if(!empty($raw_woyofal_users_demo) and !empty($raw_classical_users_demo)){
       	 <!-- HEADER START -->
          <div class="s2sn-login-header-desktop">
              <a class="s2sn-logo-elektra" href=".">
-                 <img src="{{ env('S3_URL')}}/{{ env('AWS_BUCKET')}}/logo-s2sn.png" alt="logo-senbill" width="162" height="auto" class="s2sn-img-normal">
-             	   <img src="{{ env('S3_URL')}}/{{ env('AWS_BUCKET')}}/logo-s2sn-mediumsmall.png" alt="logo-senbill" width="162" height="auto" class="s2sn-img-retina">
+                 <img src="{{url('images/logo-s2sn.png')}}" alt="logo-senbill" width="162" height="auto" class="s2sn-img-normal">
+             	   <img src="{{url('images/logo-s2sn-mediumsmall.png')}}" alt="logo-senbill" width="162" height="auto" class="s2sn-img-retina">
              </a>
              <div class="s2sn-login-header-nav">
           <div class="s2sn-login-header-top">
